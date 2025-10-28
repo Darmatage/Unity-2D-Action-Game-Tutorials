@@ -12853,7 +12853,9 @@ This script works as long as (1) the DialogueManager <b>object</b> with the Dial
 </b><img src="gamedesign/bullet.png" alt=""> <b>Drag</b> the NPC_chat into the Project &gt; Assets folder to make it a <b>Prefab</b>. <br>
 <img src="gamedesign/bullet.png" alt=""> Drag copies into the Scene as needed.<br>
 These copies can include new character art (just disable the old art) and new dialogue lines, but will use the same Canvas DialogueBox.<br>
-The name of these copies in the Hierarchy can also be changed for each NPC non-combat character name.<br>
+The name of these copies in the Hierarchy can also be changed for each NPC non-combat character name.
+
+<br>
 <br>
 <b>b. DialogueManager Prefab and DIALOGUE_BOX Prefab: <br>
 </b><img src="gamedesign/bullet.png" alt=""> <b>Drag</b> the DialogueManager into the Project &gt; Assets folder to make it a <b>Prefab</b>. <br>
@@ -12880,29 +12882,39 @@ Just be sure to add the Scene copies of DIALOGUE_BOX and DialogueText objects to
 With additional scripts, this follow behavior can be activated on an NPC that displays other behaviors first ("save" a character so that it follows the player). Another useful feature could be to add every new follower to a List, then alert the player if any followers get left behind (especially around a bend).<br>
 <br>
 <b>CREATE THE NPC: </b>
-<br><b>a.</b> Create a GameObject &gt; <b>Empty GameObject</b>. <br>
-<img src="gamedesign/bullet.png" alt=""> In the Inspector name it &quot;<b>NPC_Follow</b>&quot; <br>
-<img src="gamedesign/bullet.png" alt=""> <b>Reset </b>Transforms.<br>
-<img src="gamedesign/bullet.png" alt=""> <b>[Add Component]</b> Physics 2D &gt; <b>CircleCollider2D</b>.<br>
-<img src="gamedesign/bullet.png" alt=""> <b>[Add Component]</b> Physics 2D &gt; <b>Rigidbody2D</b>. Set Gravity = 0.
+
+<br><b>a.</b> Create a GameObject &gt; <b>Empty GameObject</b>. 
+<ol>
+<li> In the Inspector name it &quot;<b>NPC_Follow</b>&quot; <br>
+<li> <b>Reset </b>Transforms.<br>
+<li> <b>[Add Component]</b> Physics 2D &gt; <b>CircleCollider2D</b>.<br>
+<li> <b>[Add Component]</b> Physics 2D &gt; <b>Rigidbody2D</b>. Set Gravity = 0.
+</ol>
 
 <br><br>
-<b>b.</b> Drag NPC art into the Hierarchy (or make a temporary Unity sprite). <br>
-<img src="gamedesign/bullet.png" alt=""> Drag onto  NPC_Follow to make it a child.<br>
-<img src="gamedesign/bullet.png" alt=""> Adjust the NPC_Follow BoxCollider2D to fit the art.<br>
+<b>b.</b> Drag NPC art into the Hierarchy (or make a temporary Unity sprite). 
+<ol>
+<li> Drag onto  NPC_Follow to make it a child.<br>
+<li> Adjust the NPC_Follow BoxCollider2D to fit the art.
+</ol>
+
 <br>
-<b>c.</b> Create a new C# script called &quot;<b>NPC_Follower</b>&quot;. <br>
-<img src="gamedesign/bullet.png" alt=""> Add the content below and drag onto  NPC_Follow.<br>
-<img src="gamedesign/bullet.png" alt=""> Make sure the Player has the tag &quot;Player&quot;. 
 <br>
-<img src="gamedesign/bullet.png" alt=""> Check Player's moveSpeed to set NPC_Follow's topSpeed the same.<br>
+<b>c.</b> Create a new C# script called &quot;<b>NPC_Follower</b>&quot;. 
+<ol>
+<li> Add the content below and drag onto  NPC_Follow.
+<li> Make sure the Player has the tag &quot;Player&quot;. 
+<li> Check Player's moveSpeed to set NPC_Follow's topSpeed the same.
+</ol>
+
 <br>
-</font>
+<br>
 <center>
-  <font face="arial"><i>NPC_Follower.cs script:</i></font> <br>
-  <table width=100% cellpadding=10 border=1 bgcolor=#f7f7f7>
-    <tr>
-      <td><font face=arial><font color=#3ab050><b>using</b></font> System.Collections.Generic;<br>
+<i>NPC_Follower.cs script:</i>
+</center>
+
+<div class="blockScript">
+<font color=#3ab050><b>using</b></font> System.Collections.Generic;<br>
         <font color=#3ab050><b>using</b></font> System.Collections;<br>
         <font color=#3ab050><b>using</b></font> UnityEngine;<br>
         <br>
@@ -13204,7 +13216,6 @@ else {<font face=arial>anim.SetBool("Attack", false); </font>}<br>
 &nbsp; &nbsp; &nbsp; &nbsp; }<br> 
 &nbsp; &nbsp; &nbsp; &nbsp; */</font><br><br>
 
-
 &nbsp; &nbsp; &nbsp; &nbsp; <font color="gray">// DISPLAY the range of NPC's follow and stop range, when selected in the Editor</font><br>
 &nbsp; &nbsp; &nbsp; &nbsp; 
 <font color=#31849b><b>void</b></font> OnDrawGizmos(){<br>
@@ -13215,11 +13226,10 @@ Gizmos.DrawWireSphere(transform.position, startDistance);<br>
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
 Gizmos.DrawWireSphere(transform.position, stopDistance);<br>
 &nbsp; &nbsp; &nbsp; &nbsp; }<br>
-<br>}<br><br></font></td>
-</tr></table>
-</center>
-<br><br>
+<br>}<br><br>
+</div>
 
+<br><br>
  
 </td></tr></table>
 </div></td>
@@ -13255,7 +13265,8 @@ Gizmos.DrawWireSphere(transform.position, stopDistance);<br>
     </font>
   </center>
 
-<font face=arial><a href="#02f"><img src="gamedesign/triangle_purple.png" alt=""></a>
+
+<a href="#02f"><img src="gamedesign/triangle_purple.png" alt=""></a>
 <a name="02f1">&nbsp;</a>
 <b><font color=purple>[1].</font> TELEPORTERS:</b>
 <br>
@@ -13295,14 +13306,16 @@ Gizmos.DrawWireSphere(transform.position, stopDistance);<br>
 <font face=arial><font face=arial>&nbsp; &nbsp; &nbsp; &nbsp; </font></font><b>2). </b>When the script has compiled, <b>apply</b> it to the Teleporter object.<br>
 <font face=arial><font face=arial>&nbsp; &nbsp; &nbsp; &nbsp; </font></font><b>3).</b> <b>Open </b> the script in your editor, and copy and paste the content below. 
 <br>
-<font face=arial><font face=arial>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</font></font>Save and return to Unity to compile.<br>
+<font face=arial><font face=arial>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</font></font>Save and return to Unity to compile.
+
 <br>
-</font>
+<br>
 <center>
-<font face="arial"><i>TeleporterBasic.cs script:</i><br>
-</font>
-<table width=100% cellpadding=10 border=1 bgcolor=#f7f7f7><tr>
-<td><font face=arial><font color=#3ab050><b>using</b></font> System.Collections.Generic;<br>
+<i>TeleporterBasic.cs script:</i>
+</center>
+
+<div class="blockScript">
+<font color=#3ab050><b>using</b></font> System.Collections.Generic;<br>
     <font color=#3ab050><b>using</b></font> System.Collections;<br>
     <font color=#3ab050><b>using</b></font> UnityEngine;<br>
     <br>
@@ -13345,49 +13358,63 @@ Gizmos.DrawWireSphere(transform.position, stopDistance);<br>
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;} <br>
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;} <br>
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  newPosition = closestTarget.position; <br>
-&nbsp; &nbsp; &nbsp;  } <br>
-} <br>
+&nbsp; &nbsp; &nbsp;  } 
+<br>
+} 
+<br>
 <br>
 <font color=gray>// &quot;find nearest&quot; adapted from:</font><br>
-<font color=gray>// https://forum.unity.com/threads/clean-est-way-to-find-nearest-object-of-many-c.44315/</font></font></td>
-</tr></table>
-</center>
-<br><br>
-<font face=arial><b>c. Create a Prefab of your Teleporter:</b><br>
-<font face=arial><font face=arial>&nbsp; &nbsp; &nbsp;</font></font><b>1).</b> <b>Make it a Prefab:</b> Drag Teleporter to the Project panel to make it a Prefab. <br>
-<font face=arial><font face=arial>&nbsp; &nbsp; &nbsp;</font></font><b>2).</b> <b>Make copies:</b> In the Hierarchy, duplicate the Teleporter. 
+<font color=gray>// https://forum.unity.com/threads/clean-est-way-to-find-nearest-object-of-many-c.44315/
 <br>
-<font face=arial><font face=arial>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </font></font>Move the copy away from the original. 
+</div>
+
+
 <br><br>
-<b>d. Test the Mechanic: </b><br>
-<font face=arial><font face=arial>&nbsp; &nbsp; &nbsp;</font></font>Drag a copy of a working Player prefab into the Scene. 
-<br>
-<font face=arial><font face=arial>&nbsp; &nbsp; &nbsp;</font></font>Hit Play and try teleporting between Teleporters. <br><br>
+<b>c. Create a Prefab of your Teleporter:</b>
+<ol>
+<li> <b>Make it a Prefab:</b> Drag Teleporter to the Project panel to make it a Prefab. 
+<li> <b>Make copies:</b> In the Hierarchy, duplicate the Teleporter. 
+<li> Move the copy away from the original.
+</ol><br>
+<b>d. Test the Mechanic: </b>
+    <ol>
+    <li>
+    Drag a copy of a working Player prefab into the Scene. 
+    <li>
+    Hit Play and try teleporting between Teleporters. 
+    </ol>
+</ol><br>
 <br><br>
 <b><font color=purple><em>TELEPORTER OPTION 2.</em></font></b> 
 <br>Color-Specific  Script to Jump to Nearest Teleporter  of the Same Color:
 <br>
 (Continues from the process above)
+
+
 <br>
 <br>
-<b>e. Replace the Script:</b><br>
-<font face=arial><font face=arial>&nbsp; &nbsp; &nbsp; &nbsp; </font></font><b>1).</b> <b>RightClick </b> the Project panel: create &gt; C# script. 
+<b>e. Replace the Script:</b>
+<ol>
+<li> <b>RightClick </b> the Project panel: create &gt; C# script. 
 <br>
-<font face=arial><font face=arial>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</font></font>Name it &quot;<b>TeleportByColor</b>&quot;, hit [Enter] to commit.<br>
-<font face=arial><font face=arial>&nbsp; &nbsp; &nbsp; &nbsp; </font></font><b>2). </b>DoubleClick the Teleport Prefab to open it in Scene view. 
+Name it &quot;<b>TeleportByColor</b>&quot;, hit [Enter] to commit.<br>
+<li> DoubleClick the Teleport Prefab to open it in Scene view. 
 <br>
-<font face=arial><font face=arial>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; </font></font> RightClick the TeleportBasic script to choose &quot;<b>Remove Component</b>&quot;. 
+RightClick the TeleportBasic script to choose &quot;<b>Remove Component</b>&quot;. 
 <br>
-<font face=arial><font face=arial>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;</font></font><b>Apply</b> the new TeleportByColor script to the Teleporter object.<br>
-<font face=arial><font face=arial>&nbsp; &nbsp; &nbsp; &nbsp; </font></font><b>3).</b> <b>Open </b> the script in your IDE, and copy and paste the content below. 
+<b>Apply</b> the new TeleportByColor script to the Teleporter object.<br>
+<li> <b>Open </b> the script in your IDE, and copy and paste the content below. 
 <br>
-<font face=arial><font face=arial>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</font></font>Save and return to Unity to compile.<br><br>
-</font>
+Save and return to Unity to compile.
+</ol>
+
+<br><br>
+
 <center>
-  <font face="arial"><i>TeleportByColor.cs script:</i><br>
-    </font>
-<table width=100% cellpadding=10 border=1 bgcolor=#f7f7f7><tr>
-<td><font face=arial>
+<i>TeleportByColor.cs script:</i><br>
+</center>
+
+<div class="blockScript">
 <font color=#3ab050><b>using</b></font> System.Collections.Generic;<br>
 <font color=#3ab050><b>using</b></font> System.Collections;<br>
 <font color=#3ab050><b>using</b></font> UnityEngine;<br>
@@ -13486,64 +13513,66 @@ Transform closestTarget = <b><font color="#365f91">null</font></b>; <br>
 } 
 <br>
 <br>
-</font></td>
-    </tr>
-  </table>
-</center>
-<font face=arial><br>
-<br>
-<font face=arial><b>c. Create multiple Teleporter colors:</b><br>
-<font face=arial><font face=arial>&nbsp; &nbsp;</font></font><b>1).</b> <b>Duplicate the Teleporters:</b> 
-<br>
-<font face=arial><font face=arial><font face=arial><font face=arial>&nbsp; &nbsp; &nbsp; &nbsp;</font></font></font></font>In the Hierarchy, <font face=arial>duplicate the Teleporter multiple times 
-<br>
-<font face=arial><font face=arial>&nbsp; &nbsp; &nbsp; &nbsp;</font></font>and move them away from each other</font>. <br>
-<font face=arial><font face=arial>&nbsp; &nbsp;</font></font><b>2).</b> <b>Create Color Groups:</b> 
-<br>
-<font face=arial><font face=arial>&nbsp; &nbsp; &nbsp; &nbsp;</font></font>Select two or more teleporters to make them a part of the same color group: 
-<br>
-<font face=arial><font face=arial><font face=arial><font face=arial>&nbsp; &nbsp; &nbsp; &nbsp;</font></font></font></font>(a) change the sprite color of the child art 
+</div>
 
 <br>
-<font face=arial><font face=arial>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</font></font>(Example: hit the color rectangle and choose a red)<br>
-<font face=arial><font face=arial><font face=arial><font face=arial>&nbsp; &nbsp; &nbsp; &nbsp;</font></font></font></font>(b) rename  parent objects for the color 
 <br>
-<font face=arial><font face=arial><font face=arial>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</font></font></font>(Example, call Red teleporters TeleporterR1, TeleporterR2, etc) 
+<b>c. Create multiple Teleporter colors:</b>
+<ol>
+<li> <b>Duplicate the Teleporters:</b> 
 <br>
-<font face=arial><font face=arial><font face=arial><font face=arial>&nbsp; &nbsp; &nbsp; &nbsp;</font></font></font></font>(c) in the TeleportByColor script slot set the name of the color  
+In the Hierarchy, <font face=arial>duplicate the Teleporter multiple times 
 <br>
-<font face=arial><font face=arial><font face=arial>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</font></font></font>(Example: &quot;red&quot;)<br>
-</font><br>
-When you hit [Play], the Player will teleport to the nearest teleporter of the same color!<br>
+and move them away from each other</font>. 
+
+<br>
+<li> <b>Create Color Groups:</b> 
+<br>
+Select two or more teleporters to make them a part of the same color group: 
+    <ol type="a">
+    <li> change the sprite color of the child art 
+    <br>
+    (Example: hit the color rectangle and choose a red)<br>
+    <li> rename  parent objects for the color 
+    <br>
+    (Example, call Red teleporters TeleporterR1, TeleporterR2, etc) 
+    <br>
+    <li> in the TeleportByColor script slot set the name of the color  
+    <br>
+    (Example: &quot;red&quot;)
+    </ol>
+</ol>
+
+ When you hit [Play], the Player will teleport to the nearest teleporter of the same color!<br>
 <br><br>
 
 </font>
 
 <center>
 <img src="gamedesign/bullet.png" alt=""><img src="gamedesign/bullet.png" alt=""><img src="gamedesign/bullet.png" alt="">
-</center><br>
-<font face=arial><a href="#02f"><img src="gamedesign/triangle_purple.png" alt=""></a>
+</center>
+
+<br>
+<a href="#02f"><img src="gamedesign/triangle_purple.png" alt=""></a>
 <a name="02f2">&nbsp;</a> 
 <b><font color=purple>[2].</font> Grappling Hook / Hookshot</b>
 <br>
 (See this more advanced version: 
-<a href="https://youtu.be/dnNCVcVS6uw?si=lKIaaK-q7bIuTcGR" target=hookshot1>better grappling hook, 10 minutes</a>)<b>:</b><br>
+<a href="https://youtu.be/dnNCVcVS6uw?si=lKIaaK-q7bIuTcGR" target=hookshot1>better grappling hook, 10 minutes</a>)<b>:</b>
+<br>
 A Grappling hook is usually for a Platformer, but can be  in a top-down game as well. <br>
  These videos use a Unity Line-Renderer
 to represent the rope. 
 <br>
-Encourage Player agency by allowing them to move and jump while 
-
-rope-hanging.
+Encourage Player agency by allowing them to move and jump while rope-hanging.
 
 <br><br>
 <strong>VERSION 1:</strong> Basic Grappler (source <a href="https://youtu.be/P-UscoFwaE4?si=YCQ5QCBksL7tfdSH" target=hookshot2>video</a>, modified)<br>
 <a href="gamedesign/Unity2D/grapple1.png" target=grapple1><img src="gamedesign/Unity2D/grapple1_thumb.png" height=250 align=right></a>
-<strong>1. Create</strong> the <strong>Player</strong> object:<br>
-<img src="gamedesign/bullet.png" alt=""> Create an empty game object. In Inspector name it &quot;Player&quot;, Reset Transforms. 
-<br>
-<img src="gamedesign/bullet.png" alt=""> RightClick Player to create a Sprite (like a circle). Name it &quot;player_art&quot;.<br>
-<img src="gamedesign/bullet.png" alt=""> Add 4 components to the parent Player object:<br>
+<strong>1. Create</strong> the <strong>Player</strong> object:
+<li> Create an empty game object. In Inspector name it &quot;Player&quot;, Reset Transforms. 
+<li> RightClick Player to create a Sprite (like a circle). Name it &quot;player_art&quot;.
+<li> Add 4 components to the parent Player object:<br>
  &nbsp; &nbsp; &nbsp;&nbsp; [Add Component] &gt; <strong>Circle Collider2D</strong><br>
 &nbsp; &nbsp; &nbsp;&nbsp; [Add Component] &gt; <strong>Rigidbdy2D</strong><br>
 &nbsp; &nbsp; &nbsp;&nbsp; Add Component] &gt; <strong>Line Renderer</strong><br>
@@ -13554,27 +13583,31 @@ rope-hanging.
 <br><br><br><br>
 <br><br><br><br>
 <a href="gamedesign/Unity2D/grapple2.png" target=grapple1><img src="gamedesign/Unity2D/grapple2_thumb.png" height=250 align=right></a>
-<strong>2. Create</strong> a new <strong>Unlit Particle Material</strong> and add it to the Line Renderer<br>
+<strong>2. Create</strong> a new <strong>Unlit Particle Material</strong> and add it to the Line Renderer
+<ol type="a">
+<li> In the Project panel, right-click to create a new <strong>Material</strong>. Name it &quot;<strong>line_m</strong>&quot;.
+<li> In the Inspector, set the <strong>shader</strong> to <strong>Particles &gt; Unlit</strong>.
+<li> Set color = <strong>black</strong>. 
+<li> Select the Player. In the Inspector find  <strong>Line Renderer &gt; Materials</strong> and <strong>drag</strong> this new material into the <strong>Element 0</strong> material slot. 
+<li> In the graph, lower the thickness (red line) from 1 down to 0.2.
+</ol>
 
-<img src="gamedesign/bullet.png" alt=""> In the Project panel, right-click to create a new <strong>Material</strong>. Name it &quot;<strong>line_m</strong>&quot;.<br>
-<img src="gamedesign/bullet.png" alt=""> In the Inspector, set the <strong>shader</strong> to <strong>Particles &gt; Unlit</strong>.
-<br>
-<img src="gamedesign/bullet.png" alt=""> Set color = <strong>black</strong>. <br>
 
-<img src="gamedesign/bullet.png" alt=""> Select the Player. In the Inspector find  <strong>Line Renderer &gt; Materials</strong> and <strong>drag</strong> this new material into the <strong>Element 0</strong> material slot. <br>
-<img src="gamedesign/bullet.png" alt=""> In the graph, lower the thickness (red line) from 1 down to 0.2.<br><br><br>
 <br><br><br><br>
-<strong>3. Create</strong> a new C# script, name it &quot;Grappler.cs&quot;.<br>
-<img src="gamedesign/bullet.png" alt=""> Add the content below, save. Return to Unity and compile.<br>
-<img src="gamedesign/bullet.png" alt=""> Add the script to the Player.<br>
+<strong>3. Create</strong> a new C# script, name it &quot;Grappler.cs&quot;.
+<ol type="a">
+<li> Add the content below, save. Return to Unity and compile.
+<li> Add the script to the Player.
 <br>
-</font>
+
+
+</ol>
 <center>
-  <font face="arial"><i>Grappler.cs script:</i><br>
-    </font>
-  <table width=100% cellpadding=10 border=1 bgcolor=#f7f7f7>
-    <tr>
-      <td><font face=arial> <font color=#3ab050><b>using</b></font> System.Collections.Generic;<br>
+<i>Grappler.cs script:</i>
+</center>
+
+<div class="blockScript">
+ <font color=#3ab050><b>using</b></font> System.Collections.Generic;<br>
         <font color=#3ab050><b>using</b></font> System.Collections;<br>
         <font color=#3ab050><b>using</b></font> UnityEngine;<br>
         <br>
@@ -13662,11 +13695,7 @@ rope-hanging.
 &nbsp; &nbsp; &nbsp;} <br>
 } 
 <br><br>
-</font></td>
-</tr></table>
-</center>
-
-<font face=arial>
+</div>
 
 <br>
 <img src="gamedesign/Unity2D/grapple3.png" align=right>
@@ -13679,23 +13708,19 @@ It may be helpful to add a ground object sprite, and to make the player bouncy w
 
 <strong>4.</strong> Want your swinging player to <strong>only grapple onto particular objects</strong>? <br>
 The Grapple.cs script already includes a CanGrapple() function to test the click.
+<li> To activate it: find the two commented-out lines in the Update() function, and un-comment them:
+
 <br>
-<img src="gamedesign/bullet.png" alt=""> To activate it: find the two commented-out lines in the Update() function, and un-comment them:</font><font face="arial"><br>
-    </font>
-  <center>
-    <table width=60% cellpadding=10 border=1 bgcolor=#f7f7f7>
-      <tr>
-      <td><font face=arial><font face=arial>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;</font><font color=gray>//if (CanGrapple()){</font><br>
+<div class="blockScript">
+&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;</font><font color=gray>//if (CanGrapple()){</font><br>
         <br>
-        <font face=arial><font face=arial>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;</font></font><font color=gray>//}</font></font></td>
-    </tr>
-</table>
-</center>
-<font face=arial>&nbsp;</font><font face=arial> <br>
-<img src="gamedesign/bullet.png" alt=""> Select any object to add a <strong>new Layer</strong> called "<strong>grapple</strong>". 
-<br>
-<img src="gamedesign/bullet.png" alt=""> Select  Player. In Inspector assign "grapple" to the Grapple.cs LayerMask script <strong>slot</strong>. <br>
-<img src="gamedesign/bullet.png" alt=""> Finally, create <strong>new sprites</strong> at the top of the camera area. In the Inspector <strong>[Add Component]</strong> &gt; <strong>BoxCollider2D</strong>. Assign the <strong>grapple Layer</strong>.
+        <font face=arial><font face=arial>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;</font></font><font color=gray>//}
+</div>
+
+
+<li> Select any object to add a <strong>new Layer</strong> called "<strong>grapple</strong>". 
+<li> Select  Player. In Inspector assign "grapple" to the Grapple.cs LayerMask script <strong>slot</strong>. 
+<li> Finally, create <strong>new sprites</strong> at the top of the camera area. In the Inspector <strong>[Add Component]</strong> &gt; <strong>BoxCollider2D</strong>. Assign the <strong>grapple Layer</strong>.
 
 
 <br><br><br><br>
@@ -13703,19 +13728,16 @@ The Grapple.cs script already includes a CanGrapple() function to test the click
  Now, clicking on empty air
 will not activate the grappling line, but clicking on the sprites with the grapple layer will work.
 
-</font>
-
 <br><br><br>
 <br><br><br>
 <br><br><br>
 <br>
-<font face=arial><br>
-</font>
+<br>
 <center>
   <img src="gamedesign/bullet.png" alt=""><img src="gamedesign/bullet.png" alt=""><img src="gamedesign/bullet.png" alt="">
 </center>
 <br>
-<font face=arial>
+
 <a href="#02f"><img src="gamedesign/triangle_purple.png" alt=""></a> 
 <a name="02f3">&nbsp;</a> <b><font color=purple>[3].</font> VEHICLE MOTION, TOP-DOWN</b> 
 <br>
@@ -13730,30 +13752,27 @@ The movement is very different than a person's, with evident accelertion and dec
     <li><font face="arial">Set art <strong>Order in Layer =
       100</strong>. </font>
     </ol>
-<font face=arial><br>
+
+<br>
 <strong>2. ADD THE CAR CONTROLLER SCRIPT:</strong><br>
 <ol type="a">
   <li> Create a new <strong>C# script</strong>, named &quot;<strong>CarController_TopDown</strong>.cs&quot;.  
   <li>Add the content below, and <strong>Save</strong>. In Unity, compile and apply to the Car.  
 </ol>
 <br>
-</font>
 
 <center>
-  <font face="arial"><i>CarController_TopDown.cs script:</i><br>
-    </font>
-  <table width=100% cellpadding=10 border=1 bgcolor=#f7f7f7>
-    <tr>
-      <td><font face=arial> <font color=#3ab050><b>using</b></font> System.Collections.Generic;<br>
+<i>CarController_TopDown.cs script:</i><br>
+</center>
+
+<div class="blockScript">
+ <font color=#3ab050><b>using</b></font> System.Collections.Generic;<br>
         <font color=#3ab050><b>using</b></font> System.Collections;<br>
         <font color=#3ab050><b>using</b></font> UnityEngine;<br>
         <br>
         <font color=gray>//This script goes onto the Player object</font><br>
         <font color=#31849b><b>public class </b></font> <b><font color="#365f91">CarController_TopDown</font></b> <font color=#365f91><b> : MonoBehaviour</b></font> {
-        
-        
-    
-    
+
     <br><br>
 	&nbsp;&nbsp; &nbsp;[Header("Car settings")]
     <br>&nbsp;&nbsp; &nbsp;<font color=#31849b><b>public float</b></font> accelerationFactor = <font color=#ed6c0a><b>10.0f</b></font>; 
@@ -13856,9 +13875,6 @@ The movement is very different than a person's, with evident accelertion and dec
 <br>
 &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;carRb2D.MoveRotation(rotationAngle);
 
-
-
-
 &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;<br>
 &nbsp; &nbsp; &nbsp;}<br>
 <br>
@@ -13876,12 +13892,10 @@ The movement is very different than a person's, with evident accelertion and dec
 &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;steeringInput = inputVector.x; <br> 
 &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;accelerationInput = inputVector.y;<br>
 &nbsp; &nbsp; &nbsp;}<br>
-        } <br>
-        <br>
-      </font></td>
-    </tr>
-  </table>
-</center>
+        }
+<br>
+<br>
+</div>
 <br>
 
 <br><br>
@@ -14185,7 +14199,7 @@ Consider a Dash that moves the player at much greater speeds over short distance
 <table width=800 cellpadding=10 border=0><tr>
 <td valign=top>
   <center>
-    <font face="arial"><a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a><font size=+2><font color=purple><b>[2G]:</b></font> <b>GAME FEEL: VFX / SFX</b></font>
+<a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a><font size=+2><font color=purple><b>[2G]:</b></font> <b>GAME FEEL: VFX / SFX</b></font>
 <br>
 <a href="#02g1">Power-Up VXF</a> &nbsp;| &nbsp; <a href="#02g6">Audio SFX</a>
 
@@ -14197,11 +14211,10 @@ Consider a Dash that moves the player at much greater speeds over short distance
 <a href="#02g9">Damage Vignette</a> &nbsp; | &nbsp; 
 <a href="#02g10">Scene Wavey Effect</a>
  
- </font>
 </center>
-  <font face=arial>
+
   
-<br><br><br>
+<br><br>
 
 <center>
 <b>COLLISION EFFECTS:</b>
@@ -14229,7 +14242,7 @@ In the Inspector name it &quot;<b>BounceBox</b>&quot; and set Order In Layer = 1
 <b>c.</b> <b>Make it bouncy:</b> RightClick the Project panel to create a <b>2D &gt; Physic Material2D</b>.<br>
 <img src="gamedesign/bullet.png" alt=""> In the Inspector: Set <b>bounciness</b> to 0.7 and <b>friction</b> to 0.1.<br>
 <img src="gamedesign/bullet.png" alt=""> Drag the PhysicMaterial2D onto the BounceBox so it is added to the Collider &quot;Material&quot; slot.
-</font>
+
   
   
   
@@ -14245,8 +14258,13 @@ In the Inspector name it &quot;<b>BounceBox</b>&quot; and set Order In Layer = 1
 
 
 <a href="gamedesign/Unity2D/PowerUp_VFX_back.png" target=pvfx1><img src="gamedesign/Unity2D/PowerUp_VFX_back.png" alt="" border=1 align=right></a>
-<font face=arial>
-<b><font face=arial><b><font face=arial><b><font face=arial><b><font face=arial><b><font face=arial><b><font face=arial><b><font face=arial><a href="#02g"><img src="gamedesign/triangle_purple.png" alt=""></a></font></b></font></b></font></b></font></b></font></b></font></b></font><a name="02g1">&nbsp;</a>OPTION 1. Power Up VFX on the Player:</b><br>
+
+
+<a href="#02g"><img src="gamedesign/triangle_purple.png" alt=""></a>
+<a name="02g1">&nbsp;</a>
+<b>OPTION 1. Power Up VFX on the Player:</b>
+
+<br>
 
 <br><b>a.</b> Download and import these player VFX spritesheets (or make your own):<br>  
 
@@ -14266,13 +14284,16 @@ In the Inspector name it &quot;<b>BounceBox</b>&quot; and set Order In Layer = 1
 <b>e.</b> Open the Window &gt; Animator &gt; Animator. Select PowerUp_VFX_Front and hit <b>[Create]</b>, name the clip powerUpFront_anim. Drag all 16 frames from that Spritesheet into the timeline, on 3s starting at frame 10: <br>
 10, 13, 16, 19, 22, 25, 28, 31, 34, 37, 40, 43, 46, 49, 52, 55.<br>
 Repeat for PowerUp_VFX_Back, frames 15-60 (so the back and front move at separate times)<br><br>
-<b>f.</b> Create a new C# script named &quot;PlayerVFX.cs&quot;. Add the following code, Save, and drag this script onto the Player. Drag each of the child VFX images into the powerUp script slots.<br><br>
-</font>
+<b>f.</b> Create a new C# script named &quot;PlayerVFX.cs&quot;. Add the following code, Save, and drag this script onto the Player. Drag each of the child VFX images into the powerUp script slots.
+
+<br><br>
+
 <center>
 <font face="arial"><i>PlayerVFX.cs script:</i><br>
-</font>
-<table width=100% cellpadding=10 border=1 bgcolor=#f7f7f7><tr>
-<td><font face=arial><font color=#3ab050><b>using</b></font> System.Collections.Generic;<br>
+</center>
+
+<div class="blockScript">
+<font color=#3ab050><b>using</b></font> System.Collections.Generic;<br>
 <font color=#3ab050><b>using</b></font> System.Collections;<br>
 <font color=#3ab050><b>using</b></font> UnityEngine;<br>
 <br>
@@ -14296,9 +14317,8 @@ Repeat for PowerUp_VFX_Back, frames 15-60 (so the back and front move at separat
 <font face="arial"><font face="arial">&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; </font></font>powerUp2.SetActive(<font color=#0070c0><b><font color="#365f91" face="arial">false</font></b></font>); <br>
 &nbsp; &nbsp; &nbsp; &nbsp; }
 <br><br>}
-<br><br>
-</font></td></tr></table>
-</center>
+<br>
+</div>
 
 
 <br><br><br>
@@ -14309,51 +14329,53 @@ Repeat for PowerUp_VFX_Back, frames 15-60 (so the back and front move at separat
 </center>
 <br><br><br>
 
-<font face=arial> <a href="#02g"><img src="gamedesign/triangle_purple.png" alt=""></a> <a name="02g6">&nbsp;</a><b>ADDING AUDIO (SFX):</b> <br>
-Audio effects are one of the most powerful ways to make gameplay interaction meaningful and impactful! <br>
+
+<a href="#02g"><img src="gamedesign/triangle_purple.png" alt=""></a> <a name="02g6">&nbsp;</a><b>ADDING AUDIO (SFX):</b> <br>
+Audio effects are one of the most powerful ways to make gameplay interaction meaningful and impactful! 
+
 <br>
-<b>To add a sound effect to an object:</b><br>
+<br>
+<b>To add a sound effect to an object:</b>
+<br>
 <b>a). Drag an audio clip onto the object in the Hierarchy</b> (.WAV for short sounds, .MP3 for longer music). <br>
-This adds an <b>AudioSource Component</b> to the object with the clip loaded. <br>
+This adds an <b>AudioSource Component</b> to the object with the clip loaded. 
+
+<br>
 <br>
 <b>b).</b> The AudioSource component has a bool "<b>Play on Awake</b>" turned on by default. <br>
 This bool causes audio clips to play immediately when the Scene starts. <br>
-<b>Turn off Play on Awake</b> for all AudioSources except ambient music that you DO want to play immediately. <br>
+<b>Turn off Play on Awake</b> for all AudioSources except ambient music that you DO want to play immediately. 
+
+<br>
 <br>
 <b>c).</b> Next, add a script to play the audio when desired (or add  to an existing script): <b> <br>
-</b>Start with a public variable of type AudioSource at the top of the script:<br>
-</font> 
-<center>
-  <table width=90% cellpadding=10 border=1 bgcolor=#f7f7f7>
-    <tr>
-      <td><font face=arial>&nbsp; &nbsp; &nbsp;&nbsp; <b>public AudioSource jumpSFX;</b></font></td>
-    </tr>
-  </table>
-</center>
-<font face=arial><br>
+</b>Start with a public variable of type AudioSource at the top of the script:
+<br>
+
+
+<div class="blockScript">
+&nbsp; &nbsp; &nbsp;&nbsp; <b>public AudioSource jumpSFX;</b>
+</div>
+
+
+<br>
 Then put the Play() command where you want the sound to be activated, typically paired with a VFX, like inside a Input.GetButtonDown() condition:<br>
-</font>
-<center>
-  <table width=90% cellpadding=10 border=1 bgcolor=#f7f7f7>
-    <tr>
-      <td><font face=arial>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; <br>
+
+<div class="blockScript">
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; <br>
         &nbsp; &nbsp; &nbsp;&nbsp;if (Input.GetButtonDown(&quot;Jump&quot;){<br>
         &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; <b>jumpSFX.Play();</b><br>
         &nbsp; &nbsp; &nbsp;&nbsp; }<br>
-      </font></td>
-    </tr>
-  </table>
-</center>
-<font face=arial><br>
+      </div>
+
+<br>
 <b>To make a looping sound, like footsteps, and not get a clicking sound when you play:</b><br>
 An audio called by an Update() function will happen every frame by default, getting 1 frame into the clip before it is re-started. To solve this we put the AudioSource.Play(); command inside of an if-condition that checks to see if the clip is <em>not</em> already playing (not = !). <br>
 <br>
 Here is code from the playerMove.cs script Update() function in this tutorial, with Audio parts set bold:<br>
-</font>
-<center>
-  <table width=90% cellpadding=10 border=1 bgcolor=#f7f7f7>
-    <tr>
-      <td><font face=arial>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;if (Input.GetAxis("Horizontal") != 0){<br>
+
+<div class="blockScript">
+&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;if (Input.GetAxis("Horizontal") != 0){<br>
         &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; animator.SetBool (&quot;Walk&quot;, true);<br>
         &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; <b>if (!WalkSFX.isPlaying){</b><br>
         &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; <b>WalkSFX.Play();</b><br>
@@ -14361,11 +14383,11 @@ Here is code from the playerMove.cs script Update() function in this tutorial, w
         &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; } else {<br>
         &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; animator.SetBool (&quot;Walk&quot;, false);<br>
         &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; <b>WalkSFX.Stop();</b><br>
-        &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; }</font></td>
-    </tr>
-  </table>
-</center>
-<font face=arial><br>
+        &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; }
+</div>
+
+
+<br>
 <b>In order to play a sound NOT intended to loop</b>, like an impact or an explosion, put the AudioSource.Play(); command in a function that is called only once, like an OnTriggerEnter2D. <br>
 Pair it with a visual effect: Instantiate a Particle System or sprite animation, change color, add screenshake, etc: <br>
 <br>
@@ -14374,12 +14396,12 @@ Pair it with a visual effect: Instantiate a Particle System or sprite animation,
 The below script uses a Coroutine to create a delay. The script is applied to an Empty Game Object, the art is a child of this GO, and on impact with the Player both the Collider and art Renderer are turned off before the Coroutine is called. This makes the pickup seem to disapear before it is actually destroyed, so the audio has time to play:
 
 <br><br>
-</font>
 <center>
-  <font face=arial><i>myPickup.cs script: </i></font>
-  <table width=90% cellpadding=10 border=1 bgcolor=#f7f7f7>
-    <tr>
-      <td><font face=arial><font color=#3ab050><b>using</b></font> System.Collections.Generic;<br>
+<i>myPickup.cs script: </i>
+</center>
+
+<div class="blockScript">
+<font color=#3ab050><b>using</b></font> System.Collections.Generic;<br>
         <font color=#3ab050><b>using</b></font> System.Collections;<br>
         <font color=#3ab050><b>using</b></font> UnityEngine;<br>
         <br>
@@ -14400,12 +14422,12 @@ The below script uses a Coroutine to create a delay. The script is applied to an
         &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; <font face=arial><font color=#0070c0><font face=arial><font face=arial><font face=arial><font color=#365f91><b>yield return new </b></font></font></font></font></font></font>WaitForSeconds(destroyDelay);<br>
         &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; Destroy(gameObject);<br>
         &nbsp; &nbsp; &nbsp;&nbsp; }<br>
-        }</font></td>
-    </tr>
-  </table>
-</center>
+        }</div>
+        
+        
+        
 <br>
-<font face=arial><b>To Play Multiple sound clips from the same object </b>(like the Player): <br>
+<b>To Play Multiple sound clips from the same object </b>(like the Player): <br>
 <b>1.</b> Select the object and <b>[Add Component] </b>Audio &gt;<b> AudioSource</b>, 1 for each clip as you want added (only one clip can just be dragged onto the object to make an AudioSource; after that, instead of making a new Component, it just replaces the clip already there, so the Components need to be added manually).
 
 <br><br>
@@ -14423,38 +14445,54 @@ The below script uses a Coroutine to create a delay. The script is applied to an
 <b>d). Add the Mixer:</b> 
 <br>
 The <strong>Pause Menu tutorial</strong> includes a section on Volume Control and creating an Audio Mixer for your game. <br>
-Load this Mixer into the Mixer slot of every AudioSource, to put that sound clip under the Mixer's control.<br>
+Load this Mixer into the Mixer slot of every AudioSource, to put that sound clip under the Mixer's control.
+
 <br>
 <br>
 <br>
-<b>EXTRA: </b>This cool <a href="https://youtu.be/8pFlnyfRfRc" target=sound>video tutorial</a> offers a system for keeping all game sounds on one &quot;SoundManager&quot; object, and calling those sounds as needed from other scripts. It also includes an example of using Switch Case. <br>
-</font><font face=arial><br>
 <br>
-</font>
+<b>EXTRA: </b>This cool <a href="https://youtu.be/8pFlnyfRfRc" target=sound>video tutorial</a> offers a system for keeping all game sounds on one &quot;SoundManager&quot; object, and calling those sounds as needed from other scripts. It also includes an example of using Switch Case. 
+
+<br>
+<br>
+<br>
 <center>
   <img src="gamedesign/bullet.png" alt=""> &nbsp; <img src="gamedesign/bullet.png" alt=""> &nbsp; <img src="gamedesign/bullet.png" alt="">
 </center>
+
+
 <br>
-<font face=arial><br>
-<font face=arial><b><font face=arial><b><font face=arial><b><font face=arial><b><font face=arial><b><font face=arial><b><font face=arial><b><font face=arial><a href="#02g"><img src="gamedesign/triangle_purple.png" alt=""></a></font></b></font></b></font></b></font></b></font></b></font></b></font><a name="02g3">&nbsp;</a>PLAY A SOUND and raise the pitch with each impact: a SHEPARD SCALE: </b> <br>
-<b>a.</b> Download this <a href="gamedesign/Unity2D/PianoC.wav"><b>sound file</b></a> (piano middle C), drag into Project and onto the Player. <br>
 <br>
-<b>b.</b> Inspector: Turn off <b>Play on Awake</b>, set <b>Volume</b> = 0.5. <br>
+
+<a href="#02g"><img src="gamedesign/triangle_purple.png" alt=""></a>
+<a name="02g3">&nbsp;</a>
+<b>PLAY A SOUND and raise the pitch with each impact: a SHEPARD SCALE: </b> 
+
+<br>
+<b>a.</b> Download this <a href="gamedesign/Unity2D/PianoC.wav"><b>sound file</b></a> (piano middle C), drag into Project and onto the Player. 
+
+<br>
+<br>
+<b>b.</b> Inspector: Turn off <b>Play on Awake</b>, set <b>Volume</b> = 0.5. 
+
+<br>
 <br>
 <b>c.</b> Create a new <b>C# script</b> called &quot;<b>ImpactSounds.cs</b>&quot;, add it to the Player. <br>
 This script creates a &quot;Shepard tone&quot;: an increasing pitch with each hit. <br>
-Hit <b>[Play]</b> to test, turn off Play to edit. </font> <br>
+Hit <b>[Play]</b> to test, turn off Play to edit. 
+
 <br>
-</font>
+<br>
 <center>
-  <font face=arial><em>ImpactSounds.cs</em> (sound file needs to be on cube)</font>
-  <table width=90% cellpadding=10 border=1 bgcolor=#f7f7f7>
-    <tr>
-      <td><font face=arial><font color=#3ab050><b>using</b></font> System.Collections;<br>
+<em>ImpactSounds.cs</em> (sound file needs to be on cube)
+</center>
+
+<div class="blockScript">
+<font color=#3ab050><b>using</b></font> System.Collections;<br>
         <font color=#3ab050><b>using</b></font> System.Collections.Generic;<br>
         <font color=#3ab050><b>using</b></font> UnityEngine;<br>
         <br>
-        <font face=arial><font face=arial><font face=arial><font color=#31849b><b>public class</b></font></font></font></font></font> <font face=arial><font color=#0070c0><font face=arial><font face=arial><font face=arial><font color=#365f91><b>ImpactSounds : MonoBehaviour</b></font></font></font></font></font> {<br>
+        <font face=arial><font face=arial><font face=arial><font color=#31849b><b>public class</b></font></font></font></font><font face=arial><font color=#0070c0><font face=arial><font face=arial><font face=arial><font color=#365f91><b>ImpactSounds : MonoBehaviour</b></font></font></font></font></font> {<br>
           <br>
           &nbsp; &nbsp; &nbsp;&nbsp; <font face=arial><font color=#3ab050><b>private</b></font></font> <font face=arial><font color=#3ab050><b>float</b></font></font> hits = <b><font color="#ed6c0a">0</font></b>;<br>
           &nbsp; &nbsp; &nbsp;&nbsp; <font face=arial><font color=#3ab050><b>private</b></font></font> <b><font color=#31849b>AudioSource</font></b> audioClip; 
@@ -14493,31 +14531,36 @@ Hit <b>[Play]</b> to test, turn off Play to edit. </font> <br>
           &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; }<br>
           &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; }<br>
           &nbsp; &nbsp; &nbsp;&nbsp; }<br>
-          }</font></td>
-    </tr>
-  </table>
-</center>
-<font face=arial><br>
+          }
+</div>
+
 <br>
-</font>
+<br>
+
 <center>
   <img src="gamedesign/bullet.png" alt=""> &nbsp; <img src="gamedesign/bullet.png" alt=""> &nbsp; <img src="gamedesign/bullet.png" alt="">
 </center>
-<br>
-<font face=arial><br>
-<font face=arial><a href="#02g"><img src="gamedesign/triangle_purple.png" alt=""></a></font>
-<a name="02g2">&nbsp;</a></b><b>CHANGE COLOR:</b><br>
-<b>a.</b> Create a new <b>C# script</b> called &quot;<b>ImpactColorChange.cs</b>&quot; with the content below. 
-<br><br>
-<b>b.</b> Add the script to   the Player.<br><br>
- <b>c.</b> Hit <b>[Play]</b> to test, turn off Play to edit.<br>
-</font>
 
+<br>
+<br>
+<a href="#02g"><img src="gamedesign/triangle_purple.png" alt=""></a>
+<a name="02g2">&nbsp;</a><b>CHANGE COLOR:</b>
+
+<br>
+<b>a.</b> Create a new <b>C# script</b> called &quot;<b>ImpactColorChange.cs</b>&quot; with the content below.
+
+ 
+<br><br>
+<b>b.</b> Add the script to the Player.
+
+<br><br>
+<b>c.</b> Hit <b>[Play]</b> to test, turn off Play to edit.<br>
 <center>
-<font face=arial>ImpactColorChange.cs </font>
-<table width=90% cellpadding=10 border=1 bgcolor=#f7f7f7>
-  <tr>
-    <td><font face=arial> <font color=#3ab050><b>using</b></font> System.Collections; <br>
+  <em>ImpactColorChange.cs</em> 
+</center>
+
+<div class="blockScript">
+<font color=#3ab050><b>using</b></font> System.Collections; <br>
       <font color=#3ab050><b>using</b></font> System.Collections.Generic; <br>
       <font color=#3ab050><b>using</b></font> UnityEngine; <br>
       <br>
@@ -14553,10 +14596,8 @@ Hit <b>[Play]</b> to test, turn off Play to edit. </font> <br>
       &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; squareRenderer.color = <font color=#3ab050><b>new</b></font> <b><font color=#31849b>Color</font></b>(r,g,b); <br>
       &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; } <br>
       &nbsp; &nbsp; &nbsp;&nbsp; } <br>
-      } </font></td>
-  </tr>
-</table>
-</center>
+      } 
+</div>
 
 <font face=arial>This is a random color generator. For a simple color change on an attack impact, set the color to a specific Vector3, and then in a CoRoutine add a delay and then set it back to white (2.5f, 2.5f, 2.5f)</font>.
 
@@ -14566,10 +14607,12 @@ Hit <b>[Play]</b> to test, turn off Play to edit. </font> <br>
 <center>
   <img src="gamedesign/bullet.png" alt=""> &nbsp; <img src="gamedesign/bullet.png" alt=""> &nbsp; <img src="gamedesign/bullet.png" alt="">
 </center>
+
 <br>
 <br><br>
 <font face=arial><b><font face=arial><b><font face=arial><b><font face=arial><b><font face=arial><b><font face=arial><b><font face=arial><b><font face=arial><a href="#02g"><img src="gamedesign/triangle_purple.png" alt=""></a></font></b></font></b></font></b></font></b></font></b></font></b></font><a name="02g4">&nbsp;</a>INSTANTIATE (SPAWN) A PARTICLE EFFECT: </b><br>
- <a href="gamedesign/Unity2D/ParticleSettings.png" target=PSettings><img src="gamedesign/Unity2D/ParticleSettings_sm.png" alt="" height=500 align=right border=1></a> <b>a.</b> Download this <a href="gamedesign/Unity2D/ParticleSmokeSmall.png"><b>smoke texture</b></a> or this <a href="gamedesign/Unity2D/EmptyPixels32.png" target=sprite><b> Empty PNG</b></a>, drag into Project. 
+ <a href="gamedesign/Unity2D/ParticleSettings.png" target=PSettings><img src="gamedesign/Unity2D/ParticleSettings_sm.png" alt="" height=500 align=right border=1></a> <b>a.</b> Download this <a href="gamedesign/Unity2D/ParticleSmokeSmall.png"><b>smoke texture</b></a> or this <a href="gamedesign/Unity2D/EmptyPixels32.png" target=sprite><b> Empty PNG</b></a>, drag into Project.
+  
 <ul>
 	<li> RightClick Project panel to create <b>Material</b>, name it ParticleSmoke. 
 	<li> Hit Albedo hotspot and choose this ParticleSmokeSmall.png. 
@@ -14577,21 +14620,22 @@ Hit <b>[Play]</b> to test, turn off Play to edit. </font> <br>
 </ul>
 <b>b.</b> Create a new GameObject &gt; Effect &gt; <b>ParticleSystem</b>. 
 </font><ul> 
-	<li> <font face="arial"><b>EMISSION:</b> Set Rate Over Time = 0, add a single Burst [+]. 
-	</font><li> <font face="arial"><b>SHAPE:</b> Shape = Sphere.  
-	</font><li> <font face="arial"><b>RENDERER </b>(bottom)<b>:</b> Set Material to ParticleSmoke Material. 
-	</font><li> <font face="arial"><b>MAIN SETTINGS</b> (<i>click image to the right for image</i>)<b>:</b> 
-</font><ul>
-<li><font face="arial"> Duration = 3. (Eventually, turn off Looping). </font>
-<li>Start Lifetime: right-triangle switch: &quot;Random Between two Constants&quot;, 1 and 2. </li>
-<li>Start Speed: right-triangle switch: &quot;Random Between two Constants&quot;, 0 and 0.1.</li>
-<li><font face="arial">Start Size = 1
-</font></ul>
-	<li> <font face="arial"><b>VELOCITY OVER LIFETIME:</b> Turn on. Set Radial = 0.5. 
-	</font><li> <font face="arial"><b>COLOR OVER LIFETIME:</b> Turn on. Click white rectangle to access <br>
+	<li> <b>EMISSION:</b> Set Rate Over Time = 0, add a single Burst [+]. 
+	<li> <b>SHAPE:</b> Shape = Sphere.  
+	<li> <b>RENDERER </b>(bottom)<b>:</b> Set Material to ParticleSmoke Material. 
+	<li> <b>MAIN SETTINGS</b> (<i>click image to the right for image</i>)<b>:</b> 
+
+<ul>
+<li> Duration = 3. (Eventually, turn off Looping).
+<li> Start Lifetime: right-triangle switch: &quot;Random Between two Constants&quot;, 1 and 2. </li>
+<li> Start Speed: right-triangle switch: &quot;Random Between two Constants&quot;, 0 and 0.1.</li>
+<li> Start Size = 1
+</ul>
+	<li> <b>VELOCITY OVER LIFETIME:</b> Turn on. Set Radial = 0.5.
+    <li> <b>COLOR OVER LIFETIME:</b> Turn on. Click white rectangle to access <br>
  &nbsp; &nbsp;color and opacity bar. Set bottom tabs (color) to brown and black. <br>
- &nbsp; &nbsp;Set top right tab to Alpha=0. Move the right-side tabs to Location=50&#37;. 
-</font></ul><font face=arial> 
+ &nbsp; &nbsp;Set top right tab to Alpha=0. Move the right-side tabs to Location=50&#37;.
+</ul>
  
  <br>
  
@@ -14601,17 +14645,22 @@ Hit <b>[Play]</b> to test, turn off Play to edit. </font> <br>
  </center>
  <br>
  <b>c.</b> Drag the Particle Effect to the Project panel to make a <b>Prefab</b>.<br>
- <img src="gamedesign/bullet.png" alt=""> <b>Delete</b> the Particle Effect from the Hierarchy.
+ <li> <b>Delete</b> the Particle Effect from the Hierarchy.
  
 <br><br>
-<b>d.</b> Create a new <b>C# script</b> called &quot;<b>ImpactParticles.cs</b>&quot; to the Player.<br>
- <img src="gamedesign/bullet.png" alt=""> Add the Particle Prefab to <b>script slot</b>.<br>
- <img src="gamedesign/bullet.png" alt=""> Hit <b>[Play]</b> to test, turn off Play to continue editing.</font>
+<b>d.</b> Create a new <b>C# script</b> called &quot;<b>ImpactParticles.cs</b>&quot; to the Player.
+<ol>
+ <li> Add the Particle Prefab to <b>script slot</b>.<br>
+ <li> Hit <b>[Play]</b> to test, turn off Play to continue editing.
+</ol>
+
 <center>
 <br>
-<font face=arial><i>ImpactParticles.cs</i> (drag Particles Prefab into script slot)</font>
-<table width=90% cellpadding=10 border=1 bgcolor=#f7f7f7><tr>
-<td><font face=arial><font color=#3ab050><b>using</b></font> System.Collections;<br>
+<i>ImpactParticles.cs</i> (drag Particles Prefab into script slot)
+</center>
+
+<div class="blockScript">
+<font color=#3ab050><b>using</b></font> System.Collections;<br>
         <font color=#3ab050><b>using</b></font> System.Collections.Generic;<br>
         <font color=#3ab050><b>using</b></font> UnityEngine;<br>
         <br>
@@ -14633,8 +14682,8 @@ Hit <b>[Play]</b> to test, turn off Play to edit. </font> <br>
 &nbsp; &nbsp; &nbsp;&nbsp; IEnumerator destroyParticles(GameObject pSys){<br>
 &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; <font face=arial><font color=#0070c0><font face=arial><font face=arial><font face=arial><font color=#365f91><b>yield return new </b></font></font></font></font></font></font> WaitForSeconds(<b><font color="#ed6c0a">4f</font></b>);<br>
 &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; Destroy(pSys);<br>
-&nbsp; &nbsp; &nbsp;&nbsp; }<br>}<br></font></td></tr></table>
-</center>
+&nbsp; &nbsp; &nbsp;&nbsp; }<br>}<br>
+</div>
 
 
 A particle system can be added to a jump lift off or landing to emphasize the motion, to any melee or projectile impact. 
@@ -14677,20 +14726,22 @@ This is an exmple of a particle system wth art that needs a clear direction.
 
 <li>Start Size = 0.8
 </ul>
-<li><font face=arial><b>EMISSION:</b> Set Rate over Time = 0, add a single Burst [+]. </font>
-<li><font face=arial><b>SHAPE</b></font>: Set Shape = Circle
+<li> <b>EMISSION:</b> Set Rate over Time = 0, add a single Burst [+]. 
+<li> <b>SHAPE</b>: Set Shape = Circle
 <li><strong>COLOR OVER LIFETIME:</strong> Set bottom color tabs as desired. Set top right opacity tab to black (to fully fade away)
 <li><strong>SIZE OVER LIFETIME:</strong> Click the curve icon to see the curve at the bottom of the Inspector (may need to lift the bottom panel to see it). Try a curve that goes from 1 to 0. If choosing Random Between Two Curves, set the other to 0.5 to 0.
 <li><strong>RENDERING:</strong> Set RenderMode to <strong>Stretched Billboard</strong>. This is what makes the water droplet point in the direction the particle is moving!
   </ul><br>
 <li> Create a new C# script named "<strong>VFX_DestroyMe</strong>.cs". Add content below, save, add to PS_Splash.
-<br>
 
+
+<br>
 <center>
-  <font face="arial"><i>VFX_DestroyMe.cs</i></font>
-  <table width="90%" cellpadding="10" border="1" bgcolor="#f7f7f7">
-    <tr>
-      <td><font face="arial"><font color="#3ab050"><b>using</b></font> System.Collections;<br />
+<i>VFX_DestroyMe.cs</i>
+</center>
+
+<div class="blockScript">
+<font color="#3ab050"><b>using</b></font> System.Collections;<br />
         <font color="#3ab050"><b>using</b></font> System.Collections.Generic;<br />
         <font color="#3ab050"><b>using</b></font> UnityEngine;<br />
         <br />
@@ -14707,10 +14758,9 @@ This is an exmple of a particle system wth art that needs a clear direction.
         &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; Destroy(gameObject);<br />
         &nbsp; &nbsp; &nbsp;&nbsp; }<br />
         }<br />
-      </font></td>
-    </tr>
-  </table><br>  
-</center>
+</div>
+
+
 <li> <strong>Drag</strong> the PS_Splash Particle System into the Prefabs folder to make it a <strong>Prefab</strong>, and delete it from the Scene. It can now be added to a script slot, to be instantiated as needed, like on a projectile impact. 
 </ol>
 <br>
@@ -14718,21 +14768,30 @@ This is an exmple of a particle system wth art that needs a clear direction.
 <center>
   <img src="gamedesign/bullet.png" alt=""> &nbsp; <img src="gamedesign/bullet.png" alt=""> &nbsp; <img src="gamedesign/bullet.png" alt="">
 </center>
+
 <br>
 <br>
-<font face=arial>
 
 <a href="#02g"><img src="gamedesign/triangle_purple.png" alt=""></a>
 <a name="02g5">&nbsp;</a><b>ADD SCREEN SHAKE (CAMERA SHAKE, </b>
-<a href="https://youtu.be/9A9yj8KnM8c" target=shake>source</a><b>):</b><br><b>a.</b> Create a new GameObject &gt; <b>Empty Game Object.</b><br>In the Inspector, name it &quot;<b>CameraShaker</b>&quot; and reset Transforms.<br><br>
-<b>b.</b> Select your MainCamera. Set Position Transforms to (0,0, -10).<br>Drag MainCamera onto CameraShaker to make it a <b>child</b>.<br>
-Remove any CameraFollow.cs script from MainCamera and add it to CameraShaker.<br><br>
-<b>c.</b> Create a new <b>C# script</b> called &quot;<b>CameraShake.cs</b>&quot; with the following content. Drag this script onto your CameraShaker. Hit <b>[Play]</b> to test: hit [p] on your keyboard to see the shake.</font><br><br>
+<a href="https://youtu.be/9A9yj8KnM8c" target=shake>source</a><b>):</b><br><b>a.</b> Create a new GameObject &gt; <b>Empty Game Object.</b><br>In the Inspector, name it &quot;<b>CameraShaker</b>&quot; and reset Transforms.
 
+<br><br>
+<b>b.</b> Select your MainCamera. Set Position Transforms to (0,0, -10).<br>Drag MainCamera onto CameraShaker to make it a <b>child</b>.
+<br>
+Remove any CameraFollow.cs script from MainCamera and add it to CameraShaker.
+
+<br><br>
+<b>c.</b> Create a new <b>C# script</b> called &quot;<b>CameraShake.cs</b>&quot; with the following content. Drag this script onto your CameraShaker. Hit <b>[Play]</b> to test: hit [p] on your keyboard to see the shake.
+
+
+<br><br>
 <center>
-<font face=arial><i>CameraShake.cs</i></font>
-<table width=90% cellpadding=10 border=1 bgcolor=#f7f7f7><tr>
-<td><font face=arial><font color=#3ab050><b>using</b></font> System.Collections;
+<i>CameraShake.cs</i>
+</center>
+
+<div class="blockScript">
+<font color=#3ab050><b>using</b></font> System.Collections;
 <br><font color=#3ab050><b>using</b></font> System.Collections.Generic;
 <br><font color=#3ab050><b>using</b></font> UnityEngine;
 <br><br>
@@ -14777,19 +14836,18 @@ Remove any CameraFollow.cs script from MainCamera and add it to CameraShaker.<br
 <font face=arial><font face="arial">&nbsp; &nbsp; &nbsp;&nbsp; </font></font>}<br>
 <br>}
 <br><br>
-  </font></td>
-</tr></table>
-</center>
+  </div>
 
 <br><br>
-<font face=arial>
-<b>d.</b> To use this shake-effect as <b>response to in-game interactions</b>, like an impacting enemy attack, simply call the co-routine from the other script. The first float is the duration and the second is the maginitude (the distance the shake travels). For small getting-hit shake, try 0.1f and 0.2f. For a big impact, go up to 0.5f: <br>
+<b>d.</b> To use this shake-effect as <b>response to in-game interactions</b>, like an impacting enemy attack, simply call the co-routine from the other script. The first float is the duration and the second is the maginitude (the distance the shake travels). For small getting-hit shake, try 0.1f and 0.2f. For a big impact, go up to 0.5f: 
+
 <br>
-</font>
+<br>
 <center>
-<font face=arial><i>add the bold-faced lines to the desired script: </i></font>
-<table width=90% cellpadding=10 border=1 bgcolor=#f7f7f7><tr>
-<td><font face=arial>
+<i>add the bold-faced lines to the desired script: </i>
+</center>
+
+<div class="blockScript">
 &nbsp; &nbsp; &nbsp;&nbsp; <font color=#31849b><b>public</b></font> <b>CameraShake cameraShake;
 </b>
 <br>
@@ -14802,23 +14860,22 @@ Remove any CameraFollow.cs script from MainCamera and add it to CameraShaker.<br
 &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; <b>cameraShake.ShakeCamera(0.15f, 0.3f);</b>
 <br>&nbsp; &nbsp; &nbsp;&nbsp; }
 <br>}
-</font></td>
-</tr></table>
-</center>
+</div>
 
 <br>
-<font face=arial>
-<em><strong>NOTE:</strong></em> this code does not work for shaking the UI, because the Camnvas follows the camera, so shaking the camera will not be visible on the UI. To shake the UI, see notes below under UI animations. </font>
+<em><strong>NOTE:</strong></em> this code does not work for shaking the UI, because the Camnvas follows the camera, so shaking the camera will not be visible on the UI. To shake the UI, see notes below under UI animations.
 
 <br><br><br>
-
-
 <center>
   <img src="gamedesign/bullet.png" alt=""> &nbsp; <img src="gamedesign/bullet.png" alt=""> &nbsp; <img src="gamedesign/bullet.png" alt="">
 </center>
+
 <br>
-<font face=arial><br><br>
-<a href="#02g"><img src="gamedesign/triangle_purple.png" alt=""></a> <a name="02g7">&nbsp;</a><b>USER INTERFACE ANIMATION: TRANSITIONS WITH TWEEN:</b> <br>
+<br><br>
+<a href="#02g"><img src="gamedesign/triangle_purple.png" alt=""></a> 
+<a name="02g7">&nbsp;</a>
+<b>USER INTERFACE ANIMATION: TRANSITIONS WITH TWEEN:</b> 
+<br>
 Your <b>interface</b> can be juicy, too! Open a menu by scaling horizontally, have buttons appear progressively, etc. Use code to &quot;Tween&quot; the motion using a library like LeanTween (free) or DoTween. 
 
 <br><br>
@@ -14828,25 +14885,41 @@ Short code to animate small, impactful transforms or color changes!<br><br>
 Also, try this <a href="https://youtu.be/Ll3yujn9GVQ" target=tween1>video</a>
 
 and  tutorials on LeanTween <a href="https://youtu.be/3lnViPYBHxU" target=tween2>installation</a> and <a href="https://youtu.be/SzJ7GUJTcP8" target=tween3>easing</a> (for more controlled motion).
+
+
 <br><br>
-<em><strong>STEPS: </strong></em><br>
-<strong>1.</strong> In your <strong>MainMenu</strong> Scene, create a <strong>UI &gt; Button-TextMeshPro</strong> named &quot;<strong>Button_MENU</strong>&quot;<br>
-Size <strong>300 x 80</strong>, and decide Normal / Highlight <strong>colors</strong>. Set child <strong>Text</strong>: <strong>size=45</strong>, <strong>bold</strong>.<br>
-Make into a <strong>Prefab</strong>, then duplicate for <strong>3</strong> total buttons: &quot;<strong>Button_Play</strong>&quot;, &quot;<strong>Button_Credits</strong>&quot;, &quot;<strong>Button_Quit</strong>&quot;.<br>
-<strong>Arrange</strong> in the Canvas as desired. Set the <strong>text</strong> content for each, and add <strong>OnClick</strong> functionality.<br>
+<em><strong>STEPS: </strong></em>
 <br>
-<strong>2.</strong> Create a new <strong>C# script</strong> using one of the tween scripts below. <br>
+<strong>1.</strong> In your <strong>MainMenu</strong> Scene, create a <strong>UI &gt; Button-TextMeshPro</strong> named &quot;<strong>Button_MENU</strong>&quot;
+<ol type="a">
+<li> Size <strong>300 x 80</strong>, and decide Normal / Highlight <strong>colors</strong>. 
+<li> Set child <strong>Text</strong>: <strong>size=45</strong>, <strong>bold</strong>.
+<li> Make into a <strong>Prefab</strong>, then duplicate for <strong>3</strong> total buttons: &quot;<strong>Button_Play</strong>&quot;, &quot;<strong>Button_Credits</strong>&quot;, &quot;<strong>Button_Quit</strong>&quot;.
+<li>
+<strong>Arrange</strong> in the Canvas as desired. Set the <strong>text</strong> content for each, and add <strong>OnClick</strong> functionality.
+</ol>
+
+<br>
+<br>
+<strong>2.</strong> Create a new <strong>C# script</strong> using one of the tween scripts below.
+<ol>
+<li>
 Add the script to all three buttons. 
+<li>
+For each button, click the choice of button (isButton1, isButton2, or isButton3)
+</ol>
+
 <br>
-For each button, click the choice of button (isButton1, isButton2, or isButton3)<br>
 <br>
-ButtonsTween_AlphaScale.cs: Use  to make  buttons appear one by one (fade and scale in with a bounce).<br>
+ButtonsTween_AlphaScale.cs: Use this script to make buttons appear one by one (fade and scale in with a bounce).
+
 <br>
-</font>
+<br>
 <center>
-  <font face=arial><i>ButtonsTween_AlphaScale.cs</i></font>
-<table width=90% cellpadding=10 border=1 bgcolor=#f7f7f7><tr>
-<td><font face=arial>
+<i>ButtonsTween_AlphaScale.cs</i>
+</center>
+  
+<div class="blockScript">
 <font color=#3ab050><b>using</b></font> System.Collections;<br><font color=#3ab050><b>using</b></font> System.Collections.Generic;<br><font color=#3ab050><b>using</b></font> UnityEngine;<br><font color=#3ab050><b>using</b></font> UnityEngine.UI;<br><font color=#3ab050><b>using</b></font> TMPro;<br>
 <br>
 <font color=#31849b><b>public class</b></font>
@@ -14905,19 +14978,20 @@ ButtonsTween_AlphaScale.cs: Use  to make  buttons appear one by one (fade and sc
 &nbsp; &nbsp; &nbsp;&nbsp;  &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;  elapsed += Time.deltaTime;<br>
 &nbsp; &nbsp; &nbsp;&nbsp;  &nbsp; &nbsp; &nbsp;&nbsp;  }<br>
 &nbsp; &nbsp; &nbsp;&nbsp;  }<br>
-}</font></td>
-    </tr>
-  </table>
-</center>
+}
+</div>
+
 <br>
-<font face=arial>ButtonsTween_AlphaMove.cs: Use this script to fade-in and move the buttons into position:<br>
+ButtonsTween_AlphaMove.cs: Use this script to fade-in and move the buttons into position:
 <br>
-</font>
+<br>
+
+
 <center>
-  <font face=arial><i>ButtonsTween_AlphaMove.cs</i></font>
-  <table width=90% cellpadding=10 border=1 bgcolor=#f7f7f7>
-    <tr>
-      <td><font face=arial><font color=#3ab050><b>using</b></font> System.Collections;<br>
+<i>ButtonsTween_AlphaMove.cs</i>
+</center>  
+<div class="blockScript">  
+<font color=#3ab050><b>using</b></font> System.Collections;<br>
           <font color=#3ab050><b>using</b></font> System.Collections.Generic;<br>
           <font color=#3ab050><b>using</b></font> UnityEngine;<br>
           <font color=#3ab050><b>using</b></font> UnityEngine.UI;<br>
@@ -14989,24 +15063,21 @@ ButtonsTween_AlphaScale.cs: Use  to make  buttons appear one by one (fade and sc
 &nbsp; &nbsp; &nbsp;&nbsp;  &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;   elapsedMove += (Time.deltaTime /<b><font color="#ed6c0a"> 10f</font></b>);<br>
 &nbsp; &nbsp; &nbsp;&nbsp;  &nbsp; &nbsp; &nbsp;&nbsp;  }<br>
 &nbsp; &nbsp; &nbsp;&nbsp;  }<br>
-}</font></td>
-    </tr>
-  </table>
+}
+</div>
 
 
 <br><br>
-<table width=650>
-  <tr>
-<td colspan=2><font face=arial>
+
 Animation Curves can be adjusted in Unity directly, by clicking on the curve in the Inspector. Right click to add a control point on the curve. Select a control point to adjust tangents.
 
 <br><br>
-Or, edit the scale bounce script to include this specific <b>scale curve</b> (copy one of the curve scripts below, then in Unity right-click the curve and hit &quot;paste&quot;):
+Or, edit the scale bounce script to include a specific curve: c
+Copy one of the curve scripts below, then in Unity right-click the curve and hit &quot;paste&quot;):
 
-<br></font></td>
-</tr><tr>
-<td width=50>&nbsp; </td>
-<td><font face=arial>
+<br><br> 
+<b>scale curve</b>
+<div style="text-align:left; padding:20; border:2">
 UnityEditor.AnimationCurveWrapperJSON:{"curve":{"serializedVersion":"2",
 "m_Curve":
 [{"serializedVersion":"3",
@@ -15038,13 +15109,13 @@ UnityEditor.AnimationCurveWrapperJSON:{"curve":{"serializedVersion":"2",
 "outWeight":0.0}],
 "m_PreInfinity":2,
 "m_PostInfinity":2,
-"m_RotationOrder":4}}</font></td></tr>
-<tr><td colspan=2><font face=arial>
-<br>
-And this for the <strong>opacity curve:</strong></font></td>
-</tr><tr>
-<td width=50>&nbsp; </td>
-<td><font face=arial>
+"m_RotationOrder":4}}
+</div>
+
+
+<br><br><br>
+<strong>opacity curve:</strong>
+<div style="text-align:left; padding:20; border:2">
 curve:UnityEditor.AnimationCurveWrapperJSON:{"curve":{"serializedVersion":"2",
 "m_Curve":
 [{"serializedVersion":"3",
@@ -15077,13 +15148,9 @@ curve:UnityEditor.AnimationCurveWrapperJSON:{"curve":{"serializedVersion":"2",
 "m_PreInfinity":2,
 "m_PostInfinity":2,
 "m_RotationOrder":4}}
-</font></td></tr></table>
+</div>
 
-</center>
 
-<font face=arial>
-
-<br><br>
 <br><br>
 Are you slamming your buttons into the screen, and want a bit of shake? 
 
@@ -15099,12 +15166,12 @@ Create a new script called UI_Shake.cs.
 <br>Add this script to the backgroud image of the canvas. 
 <br>
 <br>
-</font>
 <center>
-  <font face=arial><i>UI_Shake.cs</i></font>
-  <table width=90% cellpadding=10 border=1 bgcolor=#f7f7f7>
-    <tr>
-      <td><font face=arial><font color=#3ab050><b>using</b></font> System.Collections;<br>
+  <i>UI_Shake.cs</i>
+</center>
+
+<div class="blockScript">
+<font color=#3ab050><b>using</b></font> System.Collections;<br>
         <font color=#3ab050><b>using</b></font> System.Collections.Generic;<br>
         <font color=#3ab050><b>using</b></font> UnityEngine;<br>
         <font color=#3ab050><b>using</b></font> UnityEngine.UI;<br>
@@ -15160,23 +15227,24 @@ Create a new script called UI_Shake.cs.
 <br>
 &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;transform.position = origPos;
 <br>
-&nbsp; &nbsp; &nbsp;&nbsp;}
-    
+&nbsp; &nbsp; &nbsp;&nbsp;}    
 <br>
-}</font></td>
-</tr>
-</table>
-</center>
-<font face=arial><br>
+}
+</div>
+
+
 <br>
-To activate the UI_Shake script, add the following lines and functions to whichever ButtonsTween_ script you are using, above. There are also lines for a sound effect!<br>
 <br>
-</font>
+To activate the UI_Shake script, add the following lines and functions to whichever ButtonsTween_ script you are using, above. There are also lines for a sound effect!
+
+<br>
+<br>
 <center>
-  <font face=arial><i>ADD bold-faced content to ButtonsTween_AlphaScale.cs OR _AlphaMove.cs script</i></font>
-  <table width=90% cellpadding=10 border=1 bgcolor=#f7f7f7>
-    <tr>
-      <td><font face=arial><font color=gray>//(1. Add these Effects variables to the to of the script:)</font>
+<i>ADD bold-faced content to ButtonsTween_AlphaScale.cs OR _AlphaMove.cs script</i>
+</center>
+  
+<div class="blockScript">  
+  <font color=gray>//(1. Add these Effects variables to the to of the script:)</font>
 <br>
 &nbsp; &nbsp; &nbsp;&nbsp; <font color=#31849b><b>public </b></font><strong>AudioSource scrapeSFX;
 </strong><br>
@@ -15229,18 +15297,17 @@ To activate the UI_Shake script, add the following lines and functions to whiche
 <br>
 &nbsp; &nbsp; &nbsp;&nbsp; <font color=#31849b><b> </b></font>}
 <br>
-      </font></td>
-</tr></table>
-</center>
-<font face=arial>&nbsp;</font><font face=arial><br>
+</div>
+
+
 <br>
 <br>
-</font>
+<br>
 <center>
   <img src="gamedesign/bullet.png" alt=""> &nbsp; <img src="gamedesign/bullet.png" alt=""> &nbsp; <img src="gamedesign/bullet.png" alt="">
 </center>
 <br>
-<font face=arial><br>
+<br>
 <br>
 <a href="#02g"><img src="gamedesign/triangle_purple.png" alt=""></a> <a name="02g8">&nbsp;</a><b>SCREEN FADE (FADE TO BLACK):</b> <br>
 Has your player died? Fade to black! Are they awakening from a dream? Fade to white!
@@ -15253,13 +15320,13 @@ Create a new GameObject > 2D > Sprite > Rectangle. In the Inspector name it "fad
 <br>Create a new script &quot;ScreenFadeOutIn.cs&quot; and add to the GameHandler.
 <br>Drag the FadeBlack object into the fadeBlack script slot.
 <br>
-</font>
+
 
 <center>
-  <font face=arial><i>ScreenFadeOutIn.cs script: </i></font>
-  <table width=90% cellpadding=10 border=1 bgcolor=#f7f7f7>
-    <tr>
-      <td><font face=arial><font color=#3ab050><b>using</b></font> System.Collections.Generic;<br>
+<i>ScreenFadeOutIn.cs script: </i>
+</center>
+<div class="blockScript">
+<font color=#3ab050><b>using</b></font> System.Collections.Generic;<br>
         <font color=#3ab050><b>using</b></font> System.Collections;<br>
         <font color=#3ab050><b>using</b></font> UnityEngine;<br>
         <font color=#3ab050><b>using</b></font> UnityEngine.UI;<br>
@@ -15311,18 +15378,15 @@ Create a new GameObject > 2D > Sprite > Rectangle. In the Inspector name it "fad
 &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; fadeBlack.SetActive(<font face=arial><font color=#0070c0><font face=arial><font face=arial><font face=arial><font color=#365f91><b>true</b></font></font></font></font></font></font>);<br>
 &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; <font color=gray>//Debug.Log(&quot;End Scene Fading&quot;);</font><br>
 &nbsp; &nbsp; &nbsp;&nbsp; }<br>
-        }</font></td>
-    </tr>
-  </table>
-  </center>
+        }
+</div>
   
 <br>
-<font face=arial><i>add to GameHandler.cs script (on player death, for instance): </i></font>
-<table width=90% cellpadding=10 border=1 bgcolor=#f7f7f7>
-  <tr>
-    <td><font face=arial>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; gameObject.GetComponent&lt;ScreenFadeOutIn&gt;().FadeOut();</font></td>
-  </tr>
-</table>
+<i>add to GameHandler.cs script (on player death, for instance):</i>
+
+<div class="blockScript">
+&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; gameObject.GetComponent&lt;ScreenFadeOutIn&gt;().FadeOut();
+    </div>
 
 
 <br><br><br>
@@ -15336,18 +15400,21 @@ Create a new GameObject > 2D > Sprite > Rectangle. In the Inspector name it "fad
 <a href="#02g"><img src="gamedesign/triangle_purple.png" alt=""></a> 
 <a name="02g9">&nbsp;</a>
 
-<font face=arial>
 <b>VIGNETTE (To show player damage):</b> 
 
 <br>
 Want to add to your player getting hurt? Consider a sudden vignette that appears and then fades away. A vignette is a border around the screen
 
-that enhances a sense of claustrophobia to imply the limited vision when we are injured. It is applied as an image on the canvas, and controlled by the GameHandler (which also controlls player health, so the vignette can represent player gettgin hurt and /or declining health).<br>
+that enhances a sense of claustrophobia to imply the limited vision when we are injured. It is applied as an image on the canvas, and controlled by the GameHandler (which also controlls player health, so the vignette can represent player gettgin hurt and /or declining health).
+
+<br>
 <br>
 1). In your art tool, create a white border image, or download one of thse provided. 
-<br>
-  <img src="gamedesign/bullet.png" alt=""> These two examples are each 1800x1000, intended for a Canvas sized 1280x720. <br>
-  <img src="gamedesign/bullet.png" alt=""> We use extra larger images than the 1280x720 canvas to allow room to shrink.
+<ol type="a">
+<li> These two examples are each 1800x1000, intended for a Canvas sized 1280x720. 
+<li> We use extra larger images than the 1280x720 canvas to allow room to shrink.
+</ol>
+
   <center>
 <a href="gamedesign/Unity2D/Vignette1.png" target=vin1><img src="gamedesign/Unity2D/Vignette1.png" width=350></a>
 &nbsp; 
@@ -15358,28 +15425,29 @@ that enhances a sense of claustrophobia to imply the limited vision when we are 
 <br>
 <br>
 2). In Unity, create the Vignette object: 
-<br>
-<img src="gamedesign/bullet.png" alt=""> Right-click the Canvas to create a <strong>UI > Image</strong>. <br>
-  <img src="gamedesign/bullet.png" alt=""> In the Inspector, name it &quot;<strong>VignetteBorder</strong>&quot; and set the Image <strong>size</strong> = 1280 x 720. <br>
-  <img src="gamedesign/bullet.png" alt=""> Import the Vignette PNG and assign it to the Image source property. <br>
-  <img src="gamedesign/bullet.png" alt=""> Move the Image up in the Canvas so that it is above the rest of the UI 
+<ol type="a">
+<li> Right-click the Canvas to create a <strong>UI > Image</strong>. 
+<li> In the Inspector, name it &quot;<strong>VignetteBorder</strong>&quot; and set the Image <strong>size</strong> = 1280 x 720. 
+  <li> Import the Vignette PNG and assign it to the Image source property. 
+  <li> Move the Image up in the Canvas so that it is above the rest of the UI 
 <br>
 (so the rest of the UI will appear above it).
+</ol>
 
 <br><br>
 3) Create a new script called Vignette.cs  containing the following content. 
-<br>
-<img src="gamedesign/bullet.png" alt=""> Apply this script to the GameHandler object that manages player health. <br>
-<img src="gamedesign/bullet.png" alt=""> Drag the VignetteBorder Image into  &quot;theVignette&quot; GameObject slot
+<ol type="a">
+<li> Apply this script to the GameHandler object that manages player health. 
+<li> Drag the VignetteBorder Image into  &quot;theVignette&quot; GameObject slot
+</ol>
 
 <br>
 <br>
-</font>
 <center>
-  <font face=arial><i>Vignette.cs script</i><i>: </i></font>
-  <table width=90% cellpadding=10 border=1 bgcolor=#f7f7f7><tr>
-<td><font face=arial>
+<i>Vignette.cs script</i><i>: </i>
+</center>  
 
+<div class="blockScript">
 <font color=#3ab050><b>using</b></font> System.Collections.Generic;<br>
 <font color=#3ab050><b>using</b></font> System.Collections;<br>
 <font color=#3ab050><b>using</b></font> UnityEngine;<br>
@@ -15388,14 +15456,11 @@ that enhances a sense of claustrophobia to imply the limited vision when we are 
 <font color=#31849b><b>public class</b></font> <font face=arial><font color=#0070c0><font face=arial><font face=arial><font face=arial><font color=#365f91><b>Vignette : MonoBehaviour</b></font></font></font></font></font></font>{<br>
 &nbsp;<br>
 &nbsp; &nbsp;<font color=#31849b><b>public</b></font> GameObject theVignette;
-        
-        
-        
+     
 <br>
 &nbsp; &nbsp;<font color=#31849b><b>private bool</b></font> timeToFadeAway = <font face=arial><font color=#0070c0><font face=arial><font face=arial><font face=arial><font color=#365f91><b>false</b></font></font></font></font></font></font>;<br>
 &nbsp; &nbsp;<font color=#31849b><b>private float</b></font> fadeAlpha = <b><font color="#ed6c0a">1f</font></b>;<br>
 &nbsp; &nbsp;<font color=#31849b><b>private Color</b></font> vignetteColor;
-
 
 <br>
 <br>
@@ -15430,21 +15495,23 @@ that enhances a sense of claustrophobia to imply the limited vision when we are 
 &nbsp; &nbsp; &nbsp;&nbsp;  theVignette.SetActive(<font face=arial><font color=#0070c0><font face=arial><font face=arial><font face=arial><font color=#365f91><b>false</b></font></font></font></font></font></font>);<br>
 &nbsp; &nbsp; &nbsp;&nbsp;  fadeAlpha = <b><font color="#ed6c0a">1f</font></b>;<br>
 &nbsp; &nbsp;} <br>
-        }</font></td>
-    </tr>
-  </table>
-</center>
-<font face=arial><br>
+        }
+</div>
+
 <br>
 <br>
-4) Add this line to the GameHandler PlayerGetHit() function: <br>
 <br>
-</font>
+4) Add this line to the GameHandler PlayerGetHit() function: 
+
+<br>
+<br>
+
 <center>
-  <font face=arial>Add just the bold-faced line to the<i> GameHandler.cs script: </i></font>
-  <table width=90% cellpadding=10 border=1 bgcolor=#f7f7f7>
-    <tr>
-      <td><font face=arial>&nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>void</b></font> playerGetHit(int damage){<br>
+Add just the bold-faced line to the<i> GameHandler.cs script: </i>
+</center>
+
+<div class="blockScript">  
+  &nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>void</b></font> playerGetHit(int damage){<br>
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=#3ab050><b>if</b></font><b><font color="#31849b"> </font></b>(isDefending == <font color=#365f91><b>false</b></font>){<br>
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; playerHealth -= damage; <br>
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (playerHealth >=<font color=#e36c0a><b>0</b></font>){ <br>
@@ -15452,9 +15519,6 @@ that enhances a sense of claustrophobia to imply the limited vision when we are 
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; } <br>
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#3ab050><b>if</b></font> (damage > <font color=#e36c0a><b>0</b></font>){
 <br>
-
-
-
 
  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=gray>//play GetHit animation</font>: <br>
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; player.GetComponent&lt;PlayerHurt&gt;().playerHit();
@@ -15474,97 +15538,107 @@ that enhances a sense of claustrophobia to imply the limited vision when we are 
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; updateStatsDisplay();<br>
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; playerDies();<br>
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br>
-&nbsp; &nbsp; &nbsp; } <br>
-<br>
-<br>
-        <br>
-      </font></td>
-    </tr>
-  </table>
-</center>
-<font face=arial><br>
+&nbsp; &nbsp; &nbsp; } 
+
 <br>
 <br>
 <br>
 <br>
-</font>
+</div>
+
+
+<br>
+<br>
 <center>
   <img src="gamedesign/bullet.png" alt=""> &nbsp; <img src="gamedesign/bullet.png" alt=""> &nbsp; <img src="gamedesign/bullet.png" alt="">
 </center>
 <br>
 <br>
+<a href="#02g"><img src="gamedesign/triangle_purple.png" alt=""></a> <a name="02g10">&nbsp;</a>
+<b><em>SHADER EFFECT:</em></b> <b>FRAGMENT SHADER WAVE:</b>
 <br>
-<a href="#02g"><img src="gamedesign/triangle_purple.png" alt=""></a> <a name="02g10">&nbsp;</a><font face=arial><b><em>SHADER EFFECT:</em></b> <b>FRAGMENT SHADER WAVE:</b><br>
 (SOURCES: <a href="https://youtu.be/yG4dYBfeC0g?si=V-eodowPY6l1dL5E" target=frag1><strong>Wave</strong></a> effect using Shader Script | <a href="https://youtu.be/dFDAwT5iozo?si=-_AjFqAqdjPyQCoC" target=frag2><strong>Explosion</strong></a> effect using Shader Graph) <br>
-Create a displacement distortion effect for transitions! <br>
+Create a displacement distortion effect for transitions! 
+
 <br>
-<em><strong>IMPORTANT NOTES:</strong></em> <br>
-<img src="gamedesign/bullet.png" alt=""> This  code using <strong>OnRenderImage()</strong> is for the default<strong> Built-In Renderer</strong> only. <br>
-<img src="gamedesign/bullet.png" alt=""> To use the <strong>Universal Render Pipeline</strong> (URP), follow the steps in the pinned comment in <a href="https://www.youtube.com/watch?v=yG4dYBfeC0g" target=URP>this video</a> (has to do with changing the <a href="https://docs.unity3d.com/2020.1/Documentation/ScriptReference/Graphics.Blit.html" trget=blit>Graphics.Blit</a> functionality).<br>
-<img src="gamedesign/bullet.png" alt=""> This wave effect will impact Scene content for both 2D and 3D games, but NOT anything in the Canvas / UI.<br>
 <br>
-<b>a) Create the Material and the Unlit Shader:</b><br>
-&nbsp;<img src="gamedesign/bullet.png" alt=""> Right-click the project panel to create a new Material, name it &quot;<strong>WaveEffect_m</strong>&quot;. <br>
-&nbsp;<img src="gamedesign/bullet.png" alt=""> Right-click  to create a new Shader &gt; Unit Shader, named &quot;<strong>WaveEffect_sh</strong>&quot;.<br>
+<em><strong>IMPORTANT NOTES:</strong></em> 
+<li> This  code using <strong>OnRenderImage()</strong> is for the default<strong> Built-In Renderer</strong> only. 
+<li> To use the <strong>Universal Render Pipeline</strong> (URP), follow the steps in the pinned comment in <a href="https://www.youtube.com/watch?v=yG4dYBfeC0g" target=URP>this video</a> (has to do with changing the <a href="https://docs.unity3d.com/2020.1/Documentation/ScriptReference/Graphics.Blit.html" trget=blit>Graphics.Blit</a> functionality).
+<li> This wave effect will impact Scene content for both 2D and 3D games, but NOT anything in the Canvas / UI.
+
+<br>
+<br>
+<b>a) Create the Material and the Unlit Shader:</b>
+<ol>
+<li> Right-click the project panel to create a new Material, name it &quot;<strong>WaveEffect_m</strong>&quot;. 
+<li> Right-click  to create a new Shader &gt; Unit Shader, named &quot;<strong>WaveEffect_sh</strong>&quot;.
+</ol>
+
+<br>
 <br>
 <b>b) Add code to the Shader script:</b> <br>
 Double-click the WaveEffect_sh shader to edit the code in your editor.<br>
-Add these 3 sections, save and return to Unity:<br>
-&nbsp;<img src="gamedesign/bullet.png" alt=""> <strong>[1].</strong> Around line 34, right before the <strong>v2f vert(appdata v)</strong> method, add 3 variables <br>
-(semicolons at the end of each):</font>  <br>
-  <center>
-    <table width=98% cellpadding=10 border=1>
-      <tr>
-      <td bgcolor=#efefef><font face=arial>&nbsp; &nbsp;&nbsp; &nbsp;<strong>float _frequency; </strong><br>
+Add these 3 sections, save and return to Unity:
+<li> <strong>[1].</strong> Around line 34, right before the <strong>v2f vert(appdata v)</strong> method, add 3 variables 
+<br>
+(semicolons at the end of each):
+<br>
+
+<div class="blockScript">
+&nbsp; &nbsp;&nbsp; &nbsp;<strong>float _frequency; </strong><br>
 &nbsp; &nbsp;&nbsp; &nbsp;<strong>float _shift; </strong><br>
-&nbsp; &nbsp;&nbsp; &nbsp;<strong>float _amplitude;</strong></font></td>
-    </tr>
-</table>
-</center>
-<font face=arial> <br>
+&nbsp; &nbsp;&nbsp; &nbsp;<strong>float _amplitude;</strong>
+</div>
+
 <br>
-&nbsp;<img src="gamedesign/bullet.png" alt=""> <strong>[2].</strong> Towards the top, in the <strong>Properties()</strong> method (that displays values we can change in the Inspector), set these 3 values 
-      (no simicolons at the end of each):</font>  <br>
-  <center>
-    <table width=98% cellpadding=10 border=1>
-      <tr>
-      <td bgcolor=#efefef><font face=arial>&nbsp; &nbsp;&nbsp; &nbsp;<strong>_frequency(&quot;Frequency&quot;, float) = 4</strong><br>
+<br>
+<li> <strong>[2].</strong> Towards the top, in the <strong>Properties()</strong> method (that displays values we can change in the Inspector), set these 3 values 
+      (no simicolons at the end of each):
+      <br>
+
+<div class="blockScript">
+&nbsp; &nbsp;&nbsp; &nbsp;<strong>_frequency(&quot;Frequency&quot;, float) = 4</strong><br>
 &nbsp; &nbsp;&nbsp; &nbsp;<strong>_shift(&quot;Shift&quot;, float) = 0</strong><br>
-&nbsp; &nbsp;&nbsp; &nbsp;<strong>_amp(&quot;Amplitude&quot;, float) = 0.05</strong></font></td>
-    </tr>
-</table>
-</center>
-<font face=arial>&nbsp; </font><font face=arial><br>
+&nbsp; &nbsp;&nbsp; &nbsp;<strong>_amp(&quot;Amplitude&quot;, float) = 0.05</strong>
+</div>
+
+
 <br>
-&nbsp;<img src="gamedesign/bullet.png" alt=""> <strong>[3].</strong> Inside the fagment shader method at  bottom: <strong>fixed4 frag(v2f i) : SV_Target</strong> define pi  and add the commands that will shift the visuals (with simicolons):</font>  <br>
-  <center>
-    <table width=98% cellpadding=10 border=1>
-      <tr>
-      <td bgcolor=#efefef><font face=arial>&nbsp; &nbsp;&nbsp; &nbsp;<strong>const float pi = 3.14159</strong>;<br>
+<br>
+<li> <strong>[3].</strong> Inside the fagment shader method at  bottom: <strong>fixed4 frag(v2f i) : SV_Target</strong> define pi  and add the commands that will shift the visuals (with simicolons):
+<br>
+
+<div class="blockScript">
+&nbsp; &nbsp;&nbsp; &nbsp;<strong>const float pi = 3.14159</strong>;<br>
 &nbsp; &nbsp;&nbsp; &nbsp;<strong>float y_new = i.uv.y + sin(_frequency * 2 * pi * i.uv.x + _shift) * _amp;</strong><br>
-&nbsp; &nbsp;&nbsp; &nbsp;<strong>i.uv.y = y_new;</strong></font></td>
-    </tr>
-</table>
-</center>
-<font face=arial>&nbsp; </font><font face=arial><br>
+&nbsp; &nbsp;&nbsp; &nbsp;<strong>i.uv.y = y_new;</strong>
+</div>
+
+
 <br>
-(naturally,  for a horizontal wave effect set all these values to .x instead of .y)<br>
 <br>
-<b>c) Add a  C# script to apply the Shader:</b> <br>
-<img src="gamedesign/bullet.png" alt=""> <strong>Create</strong> a new script &quot;<em>WaveEffect.cs</em>&quot;. Add the content below, save, and return to Unity to compile.<br>
-<img src="gamedesign/bullet.png" alt=""> <strong>Add</strong> the WaveEffect script to the <strong>Camera</strong> in your Scene. <br>
-<img src="gamedesign/bullet.png" alt=""> With the Camera selected, <strong>drag</strong> the WaveEffect_m Material from the Project panel into the waveEffectMaterial <strong>slot</strong> in the Inspector. <br>
+(naturally,  for a horizontal wave effect set all these values to .x instead of .y)
+
 <br>
-</font>
+<br>
+<b>c) Add a  C# script to apply the Shader:</b> 
+<ol>
+<li> <strong>Create</strong> a new script &quot;<em>WaveEffect.cs</em>&quot;. Add the content below, save, and return to Unity to compile.
+<li> <strong>Add</strong> the WaveEffect script to the <strong>Camera</strong> in your Scene. 
+<li> With the Camera selected, <strong>drag</strong> the WaveEffect_m Material from the Project panel into the waveEffectMaterial <strong>slot</strong> in the Inspector. 
+</ol>
+<br>
 <center>
-  <font face=arial><em>WaveEffect.cs</em>:</font> <br>
-  <table width=98% cellpadding=10 border=1>
-    <tr>
-      <td bgcolor=#efefef><font face=arial> <font color=#31849b><b>using</b></font> UnityEngine;<br>
+  <em>WaveEffect.cs</em>:
+</center>
+
+<div class="blockScript">
+ <font color=#31849b><b>using</b></font> UnityEngine;<br>
         <font color=#31849b><b>using</b></font> System.Collections;<br>
         <font color=#31849b><b>using</b></font> System.Collections.Generic;<br>
         <br>
-        <font color=#31849b><b>public class</b></font></font><font color=#365f91 face="arial"><b> WaveEffect :</b></font><font face=arial><font color=#365f91><b> MonoBehaviour</b></font></font> <font face=arial>{<br>
+        <font color=#31849b><b>public class</b></font><font color=#365f91 face="arial"><b> WaveEffect :</b></font><font face=arial><font color=#365f91><b> MonoBehaviour</b></font></font> <font face=arial>{<br>
           <br>
           &nbsp; &nbsp; &nbsp;<font color=#31849b><b>public</b></font> <b><font color=#31849b>Material</font></b> waveEffectMaterial<b>;</b><br>
           &nbsp; &nbsp; &nbsp;<font color=#31849b><b>private</b></font> <b><font color=#31849b>bool </font></b>waveActive = </font><font color=#365f91 face="arial"><b>false</b></font><font face=arial><b>;</b><br>
@@ -15666,26 +15740,30 @@ Add these 3 sections, save and return to Unity:<br>
                 &nbsp; &nbsp; &nbsp; &nbsp;<font face=arial>&nbsp; &nbsp; </font><font color=gray>//enabled = false</font>;<br>
                 &nbsp; &nbsp;&nbsp; &nbsp;&nbsp;}<br>
                 &nbsp; &nbsp;}<br>
-                }</font></td>
-    </tr>
-  </table>
-</center>
+                }
+</div>
+
 <br>
-<font face=arial><br>
-<b>d) FOR QUICK TESTING: Add a   C# script to activate the WaveEffect script:</b> <br>
-<img src="gamedesign/bullet.png" alt=""> Create a new script &quot;<em>WaveEffectManager.cs</em>&quot;. Add the content below, save, and return to Unity to compile. <br>
-<img src="gamedesign/bullet.png" alt=""> Add this script to  Camera object..<br>
-</font><br>
+<br>
+<b>d) FOR QUICK TESTING: Add a   C# script to activate the WaveEffect script:</b> 
+<ol>
+<li> Create a new script &quot;<em>WaveEffectManager.cs</em>&quot;. Add the content below, save, and return to Unity to compile. 
+<li> Add this script to  Camera object.
+</ol>
+
+<br>
+<br>
 <center>
-  <font face=arial><em>WaveEffectManager.cs</em>:</font> <br>
-  <table width=98% cellpadding=10 border=1>
-    <tr>
-      <td bgcolor=#efefef><font face=arial> <font color=#31849b><b>using</b></font> UnityEngine;<br>
+<em>WaveEffectManager.cs</em>:
+</center>
+
+<div class="blockScript">
+<font color=#31849b><b>using</b></font> UnityEngine;<br>
         <font color=#31849b><b>using</b></font> System.Collections;<br>
         <font color=#31849b><b>using</b></font> System.Collections.Generic;<br>
         <font color=#31849b><b>using</b></font> UnityEngine.InputSystem;<br>
         <br>
-        <font color=#31849b><b>public class</b></font></font><font color=#365f91 face="arial"><b> WaveEffectManager :</b></font><font face=arial><font color=#365f91><b> MonoBehaviour</b></font></font> <font face=arial>{<br>
+        <font color=#31849b><b>public class</b></font><font color=#365f91 face="arial"><b> WaveEffectManager :</b></font><font face=arial><font color=#365f91><b> MonoBehaviour</b></font></font> <font face=arial>{<br>
           <br>
           &nbsp; &nbsp; &nbsp;<font color=#31849b><b>public</b></font> WaveEffect waveEffect<b>;</b><br>
           &nbsp; &nbsp; &nbsp;<font color=gray>//private Keyboard theKeyboard;</font><br>
@@ -15721,15 +15799,14 @@ Add these 3 sections, save and return to Unity:<br>
                 &nbsp; &nbsp; <font color=#31849b><b>private void</b></font> WaveOff(){<br>
                 <font face=arial>&nbsp; &nbsp; &nbsp; &nbsp;</font>waveEffect.StopWave();<br>
                 &nbsp; &nbsp;}<br>
-                }</font></td>
-    </tr>
-  </table>
-</center>
-<font face=arial><br>
+                }
+</div>
+
+<br>
 Hit <strong>[Play]</strong> to test.<br>
 Hit <strong>[spacebar]</strong> to activate the effect, and again to stop it. 
 <br><br>
-</font></td></tr></table>
+</td></tr></table>
 </div></td></tr></table>
 <br>
 
@@ -15755,22 +15832,32 @@ Hit <strong>[spacebar]</strong> to activate the effect, and again to stop it.
 </center>
 <br><br>
 
-<font face="arial">
-<font face=arial><a href="#02h"><img src="gamedesign/triangle_purple.png" alt=""></a> <a name="02h1">&nbsp;</a></font>
 
-<b>DISPLAY TIMER</b><br><b>SUMMARY. </b>A timer on a level can be <b>explicit</b> (displayed on a text objet in the HUD) or <b>implied</b> (drive the motion of walls closing in on the player). We run the timer in the FixedUpdate() function in order to get reliable results across machines.<br>
+<a href="#02h"><img src="gamedesign/triangle_purple.png" alt=""></a> 
+<a name="02h1">&nbsp;</a>
+
+<b>DISPLAY TIMER</b><br><b>SUMMARY. </b>A timer on a level can be <b>explicit</b> (displayed on a text objet in the HUD) or <b>implied</b> (drive the motion of walls closing in on the player). We run the timer in the FixedUpdate() function in order to get reliable results across machines.
+
 <br>
-<b>a.</b> Create a <b>UI &gt;</b> <strong>Text - TextMeshPro</strong> object. In the Inspector name it &quot;<b>textTimer</b>&quot;, set position and size of the text object at the top (try width=160 and height=80). Set font larger (try 40), bold-faced, and align=centered. Set text field = &quot;??&quot;.</font><br>
 <br>
-<font face=arial><b>b.</b> Create a new <b>C# script</b> called &quot;<b>GameTimer.cs</b>&quot; with the following content.<br>
+<b>a.</b> Create a <b>UI &gt;</b> <strong>Text - TextMeshPro</strong> object. In the Inspector name it &quot;<b>textTimer</b>&quot;, set position and size of the text object at the top (try width=160 and height=80). Set font larger (try 40), bold-faced, and align=centered. Set text field = &quot;??&quot;.
+
+
+<br>
+<br>
+<b>b.</b> Create a new <b>C# script</b> called &quot;<b>GameTimer.cs</b>&quot; with the following content.<br>
 Drag this script onto the GameHandler.<br>
-Drag the textTimer Text object into the timerText <b>script slot</b>.</font><br>
+Drag the textTimer Text object into the timerText <b>script slot</b>.
+
+
+<br>
+<br>
 <center>
-<font face="arial"><i>GameTimer.cs script:</i><br>
-</font>
-<table width=100% cellpadding=10 border=1 bgcolor=#f7f7f7>
-<tr>
-<td><font face=arial><font color=#3ab050><b>using</b></font> System.Collections.Generic;<br>
+<i>GameTimer.cs script:</i>
+</center>
+
+<div class="blockScript">
+<font color=#3ab050><b>using</b></font> System.Collections.Generic;<br>
 <font color=#3ab050><b>using</b></font> System.Collections;<br>
 <font color=#3ab050><b>using</b></font> UnityEngine;<br />
 <font color="#3ab050"><b>using</b></font> UnityEngine.UI;<br />
@@ -15785,23 +15872,23 @@ Drag the textTimer Text object into the timerText <b>script slot</b>.</font><br>
 &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; <font color=#3ab050><b>if</b></font> (theTimer &gt;= <font color=#e36c0a><b>1f</b></font>){<br>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; timer +=<font color=#e36c0a><b>1</b></font>;<br>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; theTimer = <font color=#e36c0a><b>0</b></font>;<br>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; UpdateTimer();<br>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; }<br>&nbsp; &nbsp; &nbsp;&nbsp;}<br><br>
 &nbsp; &nbsp; &nbsp;&nbsp;<font face=arial><font color=#31849b><b>public void</b></font></font> UpdateTimer(){<br>
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; timeText.text = <font color=#e36c0a><b>&quot;&quot;</b></font> + timer;<br>&nbsp; &nbsp; &nbsp;&nbsp;}<br>
-}</font></td>
-</tr>
-</table>
-</center>
-<font face=arial>
+}
+</div>
 
 <br><br>
 <br>
-<font face=arial><a href="#02h"><img src="gamedesign/triangle_purple.png" alt=""></a> <a name="02h2">&nbsp;</a></font><b>
-TRIGGERED TIMER<br>What if you want a timer for an action?</b><br>
-Let's say you want a timer that only activates when a player does a thing (in this case, hit the number 8 on the keyboard, but it could be used for when hitting a collider, etc).</font><br>
+<a href="#02h"><img src="gamedesign/triangle_purple.png" alt=""></a> <a name="02h2">&nbsp;</a>
+<b>TRIGGERED TIMER<br>What if you want a timer for an action?</b>
+<br>
+Let's say you want a timer that only activates when a player does a thing (in this case, hit the number 8 on the keyboard, but it could be used for when hitting a collider, etc).
+
+<br>
 <center>
-  <font face="arial"><i>DelayedAction1.cs script:</i><br>
-    </font>
-  <table width=100% cellpadding=10 border=1 bgcolor=#f7f7f7>
-    <tr>
-      <td><font face=arial><font color=#3ab050><b>using</b></font> System.Collections.Generic;<br>
+<i>DelayedAction1.cs script:</i><
+/center>
+
+<div class="blockScript">
+<font color=#3ab050><b>using</b></font> System.Collections.Generic;<br>
         <font color=#3ab050><b>using</b></font> System.Collections;<br>
         <font color=#3ab050><b>using</b></font> UnityEngine;<br>
         <br>
@@ -15836,32 +15923,32 @@ Let's say you want a timer that only activates when a player does a thing (in th
         &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;doTheThing =<b> <font face=arial><font color=#0070c0><b>false</b></font></font></b>;<br>
         &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;} <br>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; }<br>
         &nbsp; &nbsp; &nbsp;&nbsp; }<br>
-        }</font></td>
-    </tr>
-  </table>
-</center>
-<font face=arial> 
+        }
+</div> 
 
 <br><br>
 <b>PIE CHART TIMER: Want to display remaining time graphically as a depleting circle? </b><br>
 <b>1.</b> In the Canvas create a <b>UI &gt; Image</b>, set it to the <b>knob</b> sprite and a dark color. Name it "<b>TimerBG</b>".
+
+
 <br>
 <b>2.</b> Duplicate the circle <b>[Ctrl/Cmd]+[d]</b>, name it "<b>TimerCharge</b>". 
-<br>
-<font face="arial"><font face="arial">&nbsp; &nbsp; &nbsp;&nbsp; </font></font>Set size = 90 x 90 and choose a light color. 
-<br>
-<font face="arial"><font face="arial">&nbsp; &nbsp; &nbsp;&nbsp; </font></font>Drag onto TimerBG to make it a child. <br>
-<font face="arial"><font face="arial">&nbsp; &nbsp; &nbsp;&nbsp; </font></font>Change <b>Image Type</b> of TimerCharge from simple to &quot;<b>Filled</b>&quot;.
+<ol>
+<li> Set size = 90 x 90 and choose a light color. 
+<li> Drag onto TimerBG to make it a child. 
+<li> Change <b>Image Type</b> of TimerCharge from simple to &quot;<b>Filled</b>&quot;.
+</ol>
 
 <br><br>
-<b>3.</b> Add the script below to the GameHandler, and drag TimerCharge into the empty script slot. <br><br>
-</font>
+<b>3.</b> Add the script below to the GameHandler, and drag TimerCharge into the empty script slot. 
+
+<br><br>
 <center>
-  <font face="arial"><i>CircleTimer.cs script:</i><br>
-    </font>
-  <table width=100% cellpadding=10 border=1 bgcolor=#f7f7f7>
-    <tr>
-      <td><font face=arial><font color=#3ab050><b>using</b></font> System.Collections.Generic;<br>
+<i>CircleTimer.cs script:</i>
+</center>
+
+<div class="blockScript">
+<font color=#3ab050><b>using</b></font> System.Collections.Generic;<br>
         <font color=#3ab050><b>using</b></font> System.Collections;<br>
         <font color=#3ab050><b>using</b></font> UnityEngine;<br>
         
@@ -15916,20 +16003,23 @@ Let's say you want a timer that only activates when a player does a thing (in th
 <br>
 <font face=arial>&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; </font><font color=gray>//other commands when turnign on timer can go here.</font><br>
 &nbsp; &nbsp; &nbsp;&nbsp; }<br>}
-</font></td>
-</tr></table>
-</center>
- <font face=arial><br>
-<br><br>
-<font face=arial><a href="#02h"><img src="gamedesign/triangle_purple.png" alt=""></a> <a name="02h3">&nbsp;</a></font>
-<b>SIMPLE DELAY: COROUTINE</b><br><b>What if you just want to delay an action?</b> 
-<br>Of course, if you do not need to display the increments of a countdown, the easiest way to delay a command for a specfic time is to simply use a <b>CoRoutine</b>. </font><br>
-<center>
-<font face="arial"><i>DelayedAction2.cs script:</i></font>
+</div>
+
+
 <br>
-  <table width=100% cellpadding=10 border=1 bgcolor=#f7f7f7>
-    <tr>
-      <td><font face=arial><font color=#3ab050><b>using</b></font> System.Collections.Generic;<br>
+<br><br>
+<a href="#02h"><img src="gamedesign/triangle_purple.png" alt=""></a> 
+<a name="02h3">&nbsp;</a>
+<b>SIMPLE DELAY: COROUTINE</b><br><b>What if you just want to delay an action?</b> 
+<br>Of course, if you do not need to display the increments of a countdown, the easiest way to delay a command for a specfic time is to simply use a <b>CoRoutine</b>.
+
+<br>
+<center>
+<i>DelayedAction2.cs script:</i>
+</center>
+
+<div class="blockScript">
+<font color=#3ab050><b>using</b></font> System.Collections.Generic;<br>
         <font color=#3ab050><b>using</b></font> System.Collections;<br>
         <font color=#3ab050><b>using</b></font> UnityEngine;<br>
         <br>
@@ -15948,22 +16038,22 @@ Let's say you want a timer that only activates when a player does a thing (in th
         &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;Debug.Log(<font color=#e36c0a><b>&quot;I do the thing!&quot;</b></font>);  
 &nbsp; &nbsp; &nbsp; <font color=gray>//can be replaced with the desired commands</font><br>
         &nbsp; &nbsp; &nbsp;&nbsp;}<br>
-        }</font></td>
-    </tr>
-  </table>
-</center>
+        }
+</div>
  
 <br><br><br>
-<font face=arial>
 <a href="#02h"><img src="gamedesign/triangle_purple.png" alt=""></a> <a name="02h4">&nbsp;</a>
 <b>RECHARGE SYSTEM:</b>
 <br>
-Does your player have a power that they can only use for limited amounts of time, and then must wait for it to recharge, like a shield, flashlight, etc? Use a double timer!</font><br>
-<center>
-<font face="arial"><i>RechargeTimer.cs script:</i></font>
+Does your player have a power that they can only use for limited amounts of time, and then must wait for it to recharge, like a shield, flashlight, etc? Use a double timer!
 <br>
-<table width=100% cellpadding=10 border=1 bgcolor=#f7f7f7><tr>
-      <td><font face=arial><font color=#3ab050><b>using</b></font> System.Collections.Generic;<br>
+
+<center>
+<i>RechargeTimer.cs script:</i>
+</center>
+
+<div class="blockScript">
+<font color=#3ab050><b>using</b></font> System.Collections.Generic;<br>
         <font color=#3ab050><b>using</b></font> System.Collections;<br>
         <font color=#3ab050><b>using</b></font> UnityEngine;<br>
         <br>
@@ -15995,11 +16085,9 @@ Does your player have a power that they can only use for limited amounts of time
 &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;Debug.Log(<font color=#e36c0a><b>&quot;energy up: &quot;</b></font> + energyTimer); <font face=arial>&nbsp;</font><font color=gray>//replace with the desired ability display</font><br>
 &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; }<br>
 &nbsp; &nbsp; &nbsp;&nbsp; }<br>
-        }</font></td>
-    </tr>
-  </table>
-</center>
-<font face=arial> 
+        }
+        </div>
+ 
 <br><br>
 <b>OR:</b> Want a display in the HUD to visualize the decrease and increase in the charge value? <br>
 <br>
@@ -16009,12 +16097,15 @@ In the Inspector name it "ChargeCircleBG", set width and height = 120, set Sourc
 
 <br><br>
 <b>2.</b> <b>Duplicate</b> ChargeCircleBG. In Inspector name duplicate "<b>ChargeCicle</b>", set width and height = <b>90</b>, set color = <b>white</b>. Drag ChargeCircle onto Charge CircleBG to make it a <b>child</b>. <br><br>
-<b>3.</b> Create a new C# script "<b>RechargeTimer2.cs</b>". Add the following content, save, and in Unity drag onto the ChargeCircleBG object. Drag ChargeCicle into the <b>Display script slot</b>. </font><br>
+<b>3.</b> Create a new C# script "<b>RechargeTimer2.cs</b>". Add the following content, save, and in Unity drag onto the ChargeCircleBG object. Drag ChargeCicle into the <b>Display script slot</b>. </font>
+
+<br>
 <center>
-  <font face="arial"><i>RechargeTimer2.cs script:</i></font> <br>
-  <table width=100% cellpadding=10 border=1 bgcolor=#f7f7f7>
-    <tr>
-      <td><font face=arial><font color=#3ab050><b>using</b></font> System.Collections.Generic;<br>
+<i>RechargeTimer2.cs script:</i>
+</center>
+
+<div class="blockScript">
+<font color=#3ab050><b>using</b></font> System.Collections.Generic;<br>
         <font color=#3ab050><b>using</b></font> System.Collections;<br>
         <font color=#3ab050><b>using</b></font> UnityEngine;<br>
         <font color=#3ab050><b>using</b></font> UnityEngine.UI;<br><br>
@@ -16091,13 +16182,12 @@ In the Inspector name it "ChargeCircleBG", set width and height = 120, set Sourc
 <font face="arial"><font face="arial">&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; </font></font>}<br>
 <font face="arial"><font face="arial">&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; </font></font>}<br>
 &nbsp; &nbsp; &nbsp; &nbsp; }<br>
-        }</font></td>
-    </tr>
-  </table>
-</center>
- <font face=arial><br>
+        }
+</div>
+
 <br>
-</font></td></tr></table>
+<br>
+</td></tr></table>
 </div></td>
 </tr></table>
 <br>
@@ -16118,27 +16208,35 @@ In the Inspector name it "ChargeCircleBG", set width and height = 120, set Sourc
 <a href="#02i2">Player Notepad</a>
 </font>
 <br>
-</center><font face=arial>
+</center>
 
 <br>
-<font face=arial><a href="#02i"><img src="gamedesign/triangle_purple.png" alt=""></a> <a name="02i1">&nbsp;</a></font><font size=+1><b>DRAG AND DROP</b></font><br>
+<a href="#02i"><img src="gamedesign/triangle_purple.png" alt=""></a> 
+<a name="02i1">&nbsp;</a></font>
+<font size=+1><b>DRAG AND DROP</b></font><br>
 <em><b>SUMMARY:</b></em> Are you making an exploration game, and want the player to grab elements for their inventory, or move them out of the way?
 or do you want players to use their mouse to build a home or character from multipel sprites? You need drag and drop!<br><br>
-<b>OPTION 1: 2D SPRITE MOUSE DRAG AND DROP</b> (<a href="https://youtu.be/We1ab6yHrwI" target=drag>source video</a>)<br>
+<b>OPTION 1: 2D SPRITE MOUSE DRAG AND DROP</b> 
+(<a href="https://youtu.be/We1ab6yHrwI" target=drag>source video</a>)<br>
 Want players to customize their character in game? 
 <br>Or move scenery around? 
 Or make a puzzle?
 <br>
-Start with Drag and Drop.</font><br><br>
-<b><font face=arial>a.</font></b><font face=arial> Add <b>GameObject &gt; 2D Objects &gt; Sprite</b> objects to the Hierarchy, set position Z = 0. Add art as desired.<br><br>
+Start with Drag and Drop.
+
+<br><br>
+<b>a.</b> Add <b>GameObject &gt; 2D Objects &gt; Sprite</b> objects to the Hierarchy, set position Z = 0. Add art as desired.<br><br>
 <b>b.</b> For each Sprite <b>[Add Component]</b> Physics2D &gt; <b>BoxCollider2D</b>, set to <b>isTrigger</b> (to detect OnMouseOver actions).<br><br> 
-<b>c.</b> Add a new <b>C# script</b> named &quot;<b>DragAndDrop.cs</b>&quot;, with the following content. Add to all of these objects.</font><br>
+<b>c.</b> Add a new <b>C# script</b> named &quot;<b>DragAndDrop.cs</b>&quot;, with the following content. Add to all of these objects.
+
+<br>
 <br>
 <center>
-<font face=arial><em>DragAndDrop.cs</em></font>
-<br>
-<table width=750 cellpadding=10 border=1  bgcolor=#f7f7f7><tr>
-<td><font face=arial><font color=#3ab050><b>using</b></font> System.Collections.Generic;<br>
+<em>DragAndDrop.cs</em>
+</center>
+
+<div class="blockScript">
+<font color=#3ab050><b>using</b></font> System.Collections.Generic;<br>
   <font color=#3ab050><b>using</b></font> System.Collections;<br>
   <font color=#3ab050><b>using</b></font> UnityEngine;<br><br>
 <font color=#31849b><b>public class</b></font> <font color=#365f91><b>DragAndDrop</b></font> : <font color=#365f91><b>MonoBehaviour</b></font> {<br>
@@ -16162,10 +16260,9 @@ Start with Drag and Drop.</font><br><br>
 <font face="arial">&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; </font>}<br>
 <font face="arial">&nbsp; &nbsp; &nbsp;&nbsp; </font>}<br>
 <br>
-}</font></td></tr></table>
-</center>
+}</div>
 
-<font face=arial>
+<br><br>
 To take this further, try adding tags and other scripts to individual objects that create specific interactions when they collide with specific others.
 
 <br>
@@ -16175,8 +16272,8 @@ This system is for 2D images  in the UI Canvas system (for enhancing inventory s
 
 <br><br>
 <b>a.</b> Create two UI &gt; Images. 
-<br>
-<font face="arial">&nbsp;&nbsp;&nbsp; </font>Name them &quot;InventoryBox&quot; and &quot;PickUp&quot;. 
+<li>
+Name them &quot;InventoryBox&quot; and &quot;PickUp&quot;. 
 
 <br><br>
 <b>b. </b>Select Pickup,<b> [Add Component</b>] Layout &gt; <b>Canvas Group</b> (gives control of transparency and raycasting).
@@ -16184,17 +16281,18 @@ This system is for 2D images  in the UI Canvas system (for enhancing inventory s
 <br><br>
 <b>c.</b> Create a new <b>C# script</b> named &quot;<b>UI_DragDrop.cs</b>&quot;, with the following content. 
 
+<ol>
+<li>Save and drag onto PickUp.
 <br>
-<font face="arial">&nbsp;&nbsp; &nbsp;</font>Save and drag onto PickUp.
-<br>
-<font face="arial">&nbsp;&nbsp; &nbsp;</font>This script creates events for the many stages of clicking on, dragging, and clicking off something, each of which can contain commands.
-<br></font>
+<li>This script creates events for the many stages of clicking on, dragging, and clicking off something, each of which can contain commands.
+</ol>
 
 <center>
-<font face=arial><em>UI_DragDrop.cs</em></font>
-<br>
-<table width=750 cellpadding=10 border=1 bgcolor=#f7f7f7><tr>
-<td><font face=arial><font color=#3ab050><b>using</b></font> System.Collections.Generic;<br>
+<em>UI_DragDrop.cs</em>
+</center>
+
+<div class="blockScript">
+<font color=#3ab050><b>using</b></font> System.Collections.Generic;<br>
 <font color=#3ab050><b>using</b></font> System.Collections;<br>
 <font color=#3ab050><b>using </b></font>UnityEngine;<font color=#3ab050><b><br>using </b></font>UnityEngine.UI;<br>
 <font color=#3ab050><b>using</b></font> UnityEngine.EventSystems;<br><br>
@@ -16228,12 +16326,14 @@ This system is for 2D images  in the UI Canvas system (for enhancing inventory s
 <br>
 <font face=arial><font face="arial">&nbsp; &nbsp; &nbsp;&nbsp; </font></font><font color=#31849b><b>public void</b></font> OnDrop(PointerEventData eventData){<br>
 <font face="arial">&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; </font>throw <font color=#31849b><b>new</b></font> System.NotImplementedException();<br>
-<font face="arial">&nbsp; &nbsp; &nbsp;&nbsp; </font>}<br>
+&nbsp; &nbsp; &nbsp;&nbsp; }<br>
 <br>
-}</font></td></tr></table>
-</center>
+}
+</div>
+
+
 <br>
-<font face=arial><b>d.</b> Create a new C# script named UI_ItemSlot, with the following content. Save and drag onto the InventoryBox. This script snaps the dropped item to the Box center. Addional commands can be added under the if-condition to send messages to the GameHandler about the object that has been slotted. 
+<b>d.</b> Create a new C# script named UI_ItemSlot, with the following content. Save and drag onto the InventoryBox. This script snaps the dropped item to the Box center. Addional commands can be added under the if-condition to send messages to the GameHandler about the object that has been slotted. 
 
 <br>
 <br>
@@ -16264,51 +16364,93 @@ This system is for 2D images  in the UI Canvas system (for enhancing inventory s
 
 <br><br><br><br>
 <a href="#02i"><img src="gamedesign/triangle_purple.png" alt=""></a> 
-<a name="02i1b">&nbsp;</a><font face=arial><font size=+1><b>DRAG-AND-DROP PUZZLE EXAMPLES</b></font> 
+<a name="02i1b">&nbsp;</a>
+<font size=+1><b>DRAG-AND-DROP PUZZLE EXAMPLES</b>
 
 <br><br>
 <a href="gamedesign/Unity2D/SandwichDemo.png" target=sand><img src="gamedesign/Unity2D/SandwichDemo_thumb.png" align=right></a>
 Full 
 <a href="gamedesign/Unity2D/SandwichPuzzle_WorkingPackage.UnityPackage" target=up1><b>Sandwich-Making Puzzle</b></a> 
-using in-scene Drag-and-Drop (added Sp 2023).<br>
-6 recipes chosen at random, color-change feedback. To open and view:<br>
-&nbsp; &nbsp; <img src="gamedesign/bullet.png" alt=""> <b>Download</b> the <a href="gamedesign/Unity2D/SandwichPuzzle_WorkingPackage.UnityPackage" target=up1><b>.UnityPackage</b></a>.<br>
-&nbsp; &nbsp; <img src="gamedesign/bullet.png" alt=""> In Unity, RightClick the Project panel, choose <b>Import Package</b>.<br>
-&nbsp; &nbsp; <img src="gamedesign/bullet.png" alt=""> A window will open showing the package contents. Hit <b>[OK]</b> to import all.<br>
- &nbsp; &nbsp; <img src="gamedesign/bullet.png" alt=""> Open the <b>SandwichWork folder</b>. Find the <b>SANDWHICH_SYSTEM Prefab</b>.<br>
- &nbsp; &nbsp; <img src="gamedesign/bullet.png" alt=""> Drag this Prefab into a new Scene and hit <b>[Play]</b>.<br>
+using in-scene Drag-and-Drop (added Sp 2023).
+<br>
+6 recipes chosen at random, color-change feedback. To open and view:
+<ol type="a">
+<li> <b>Download</b> the <a href="gamedesign/Unity2D/SandwichPuzzle_WorkingPackage.UnityPackage" target=up1><b>.UnityPackage</b></a>.
+<li> In Unity, RightClick the Project panel, choose <b>Import Package</b>.
+<li> A window will open showing the package contents. Hit <b>[OK]</b> to import all.
+<li> Open the <b>SandwichWork folder</b>. Find the <b>SANDWHICH_SYSTEM Prefab</b>.
+ <li> Drag this Prefab into a new Scene and hit <b>[Play]</b>.
+</ol> 
+ 
  <br>
-<br><br>
+ <br>
 <font face=arial><a href="#02i"><img src="gamedesign/triangle_purple.png" alt=""></a> <a name="02i2">&nbsp;</a></font><font size=+1><b>SIMPLE CANVAS NOTEPAD</b></font> <br>
 <em><b>SUMMARY:</b></em> Are you making an exploration game, and want the player to take notes along the way?
 <br>
-Here is a simple system that lets the the player continuously add to a static string.<br>
-</font><br>
-<b><font face=arial>a.</font></b><font face=arial> Select your Canvas and create a UI &gt; <b>Image</b>.<br>Name it Notepad and choose color and location.<br>It needs to be big enough to hold a few elements: try 200x120.<br>
+Here is a simple system that lets the the player continuously add to a static string.
+
 <br>
-<b>b.</b> Create a UI &gt; <b>Input Field</b>.<br>
-<font face="arial">&nbsp;&nbsp;&nbsp; </font>Parent  InputField to Notepad: in the Hierarchy, drag the InputField onto Notepad to make it a child. <br>
-<font face="arial">&nbsp;&nbsp;&nbsp; </font>In the Scene, postion the Input Field near the top of the Notepad image, leaving ample space below. 
 <br>
-<font face="arial">&nbsp;&nbsp;&nbsp; </font>In the Hierarchy click the InputField triangle to view its children.<br>
-<font face="arial">&nbsp;&nbsp;&nbsp; </font>Select <b>Placeholder</b>. In Inspector change default text to &quot;Enter a note&quot; and set Font Size = 30.<br>
-<font face="arial">&nbsp;&nbsp;&nbsp; </font>Select <b>Text</b> and in Inspector set font = 30 also.<br>
-<font face="arial">&nbsp;&nbsp;&nbsp; </font>Finally, in the Hierarchy move Text <em>above</em> Placeholder.<br><br>
-<b>c. </b>Create a GameObject &gt;<strong> UI &gt; Button - TextMesh Pro.</strong><br>
-<font face="arial">&nbsp;&nbsp;&nbsp; </font>Move and scale to locate next to the Input Field.<br>
-<font face="arial">&nbsp;&nbsp;&nbsp; </font>Select its Text and change font to 30 and text to &quot;Enter&quot; or just &quot;&gt;&gt;&quot;.<br><br>
-<b>d. </b>Create a GameObject &gt; UI &gt;<b>Text .</b><br>
-<font face="arial">&nbsp;&nbsp;&nbsp; </font>Set Rect to fill the space below the Input Field and Button.<br>
-<font face="arial">&nbsp;&nbsp;&nbsp; </font>In the Inspector name it TextNotes. Set Font Size = 30.<br>
+<b>a.</b> Select your Canvas and create a UI &gt; <b>Image</b>.
+<ol>
+<li>Name it Notepad and choose color and location.
+<li>It needs to be big enough to hold a few elements: try 200x120.
+</ol>
+
 <br>
-<b>e.</b> Add a new <b>C# script</b> named &quot;<b>Notepad.cs</b>&quot;, with the following content.<br>
-<font face="arial">&nbsp;&nbsp;&nbsp; </font><b>Add</b> the scipt to the Notepad image object.<br>
-<font face="arial">&nbsp;&nbsp;&nbsp; </font>Populate the inputField and textDisplay <b>script slots</b> with the objecst from the Hierarchy.<br>
-<font face="arial">&nbsp;&nbsp;&nbsp; </font>Select the button, add an <b>OnClick event</b> [+].<br>
-<font face="arial">&nbsp;&nbsp;&nbsp; </font>Drag the Notepad object into [None] and add this function: Notepad &gt; <b>UpdateNotes()</b>.</font><br>
-<font face=arial><br>
-<b>f.</b> Drag the Notepad object into the Project panel to make it a <b>Prefab</b>.<br>
-<font face="arial">&nbsp;&nbsp;&nbsp; </font>Add this prefab to the Canvas in all  scenes in your game.<br><br>
+<br>
+<b>b.</b> Create a UI &gt; <b>Input Field</b>.
+<ol>
+<li>
+Parent  InputField to Notepad: in the Hierarchy, drag the InputField onto Notepad to make it a child. 
+<li>
+In the Scene, postion the Input Field near the top of the Notepad image, leaving ample space below. 
+<li>
+In the Hierarchy click the InputField triangle to view its children.
+<li>
+Select <b>Placeholder</b>. In Inspector change default text to &quot;Enter a note&quot; and set Font Size = 30.
+<li>
+Select <b>Text</b> and in Inspector set font = 30 also.<br>
+Finally, in the Hierarchy move Text <em>above</em> Placeholder.
+</ol>
+
+<br><br>
+<b>c. </b>Create a GameObject &gt;<strong> UI &gt; Button - TextMesh Pro.</strong>
+<ol>
+<li>
+Move and scale to locate next to the Input Field.
+<li>
+Select its Text and change font to 30 and text to &quot;Enter&quot; or just &quot;&gt;&gt;&quot;.
+</ol>
+
+<br><br>
+<b>d. </b>Create a GameObject &gt; UI &gt;<b>Text .</b>
+<ol>
+<li>Set Rect to fill the space below the Input Field and Button.
+<li>
+In the Inspector name it TextNotes. Set Font Size = 30.
+</ol>
+
+<br>
+<br>
+<b>e.</b> Add a new <b>C# script</b> named &quot;<b>Notepad.cs</b>&quot;, with the following content.
+<ol>
+<li>
+<b>Add</b> the scipt to the Notepad image object.
+<li>
+Populate the inputField and textDisplay <b>script slots</b> with the objecst from the Hierarchy.<li>
+Select the button, add an <b>OnClick event</b> [+].
+<li>
+Drag the Notepad object into [None] and add this function: Notepad &gt; <b>UpdateNotes()</b>.
+</ol>
+
+<br>
+<br>
+<b>f.</b> Drag the Notepad object into the Project panel to make it a <b>Prefab</b>.
+<li>Add this prefab to the Canvas in all scenes in your game.
+
+
+<br><br>
 <b>G.</b> Optionally, add a function / button in your PauseMenu to make the notepad visible or not.
 
 <br>
@@ -16361,9 +16503,10 @@ Here is a simple system that lets the the player continuously add to a static st
 <td valign=top>
 
 <center>
-<font face="arial"><a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a>
+<a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a>
 <font size=+2><font color=purple><b>[2J]:</b></font> 
-<b>AUDIO</b></font></font><font face="arial"><br>
+<b>AUDIO</b></font>
+<br>
 <strong>PLAYER:</strong> <a href="#02j1">Multiple Audio Files</a> &nbsp; | &nbsp;
 <a href="#02j2">Footstep Variation</a>
 <br>
@@ -16373,8 +16516,7 @@ Here is a simple system that lets the the player continuously add to a static st
 <a href="#02j5">Spatial Audio</a> and 
 <a href="#filters">Filter Effects</a>
 
-</font>
-</center><font face="arial">
+</center>
 
 <br>
 Sound Effects (<b>SFX</b>) are best imported into Unity as <b>.WAV</b> (music is best as <b>.MP3</b>).<br>
@@ -16385,83 +16527,82 @@ Sounds can be easily triggered through player Input, OnCollision or OnTrigger in
 
 <br><br>
 We will primarily use these functions:<br>
-<img src="gamedesign/bullet.png" alt=""> <b>AudioSource.Play()</b> &nbsp; &nbsp; 
+<li> <b>AudioSource.Play()</b> &nbsp; &nbsp; 
 is used to play a clip. Given an AudioSource crySFX, then crySFX.Play().<br>
-<img src="gamedesign/bullet.png" alt=""> <b>AudioSource.Stop()</b> &nbsp; &nbsp;used to stop a clip. Helpful to stop looping clips, like care sounds.<br>
-<img src="gamedesign/bullet.png" alt=""> <b>AudioSource.isPlaying()</b> &nbsp; &nbsp; 
+<li> <b>AudioSource.Stop()</b> &nbsp; &nbsp;used to stop a clip. Helpful to stop looping clips, like care sounds.<br>
+<li> <b>AudioSource.isPlaying()</b> &nbsp; &nbsp; 
 
 check to see if a clip is playing before playing it. Avoids the &quot;click&quot; of constantly restarting a sound of a highly repeated action, like footsteps.<br>
 
-<br><br><br><br>
-<font face=arial><a href="#02j"><img src="gamedesign/triangle_purple.png" alt=""></a> <a name="02j1">&nbsp;</a></font><font size=+1><b>PLAYER: Multiple Audio Files for Distinct Actions</b></font><br>
+<br><br><br>
+<a href="#02j"><img src="gamedesign/triangle_purple.png" alt=""></a> <a name="02j1">&nbsp;</a>
+<font size=+1><b>PLAYER: Multiple Audio Files for Distinct Actions</b></font><br>
 <em><b>SUMMARY:</b></em> Player Actions are better with (subtle) sounds! 
 <br>
 Want separate audio to signify an attack, getting hurt, a jump, etc?
 
 
 <br>Add all the sound clips to the Player as separate AudioSource Components and trigger them in the Player scripts.<br><br>
-<b>a. CREATE YOUR SOUNDS:</b><br>
-<img src="gamedesign/bullet.png" alt=""> Prepare your sounds as <strong>.WAV</strong> (if recording on a phone, use an online converter). <br>
-<img src="gamedesign/bullet.png" alt=""> Edit to remove empty time before and after each sound (<strong>Audacity</strong> recommended).<br>
-<img src="gamedesign/bullet.png" alt=""> Save each clip with short names: SFX_playerJump, SFX_playerAttack, etc. <br> 
-<img src="gamedesign/bullet.png" alt=""> Import the files into the Unity Project panel, into a folder called Audio.<br>
+<b>a. CREATE YOUR SOUNDS:</b>
+<ol>
+<li> Prepare your sounds as <strong>.WAV</strong> (if recording on a phone, use an online converter). <br>
+<li> Edit to remove empty time before and after each sound (<strong>Audacity</strong> recommended).<br>
+<li> Save each clip with short names: SFX_playerJump, SFX_playerAttack, etc. <br> 
+<li> Import the files into the Unity Project panel, into a folder called Audio.
+</ol>
+
 <br>
-<b>b. ADD AUDIOSOURCE TO PLAYER IN A CHILD OBJECT:</b><br>
-<img src="gamedesign/bullet.png" alt=""> Open the <b>Player prefab</b>. 
 <br>
-<img src="gamedesign/bullet.png" alt=""> RightClick the parent object to create a new child <strong>Empty Game Object</strong>. <br>
-<img src="gamedesign/bullet.png" alt=""> Name it "<strong>AUDIO</strong>" (all caps, because it is meant to be a folder).
+<b>b. ADD AUDIOSOURCE TO PLAYER IN A CHILD OBJECT:</b>
+<ol>
+<li> Open the <b>Player prefab</b>. 
 <br>
-<img src="gamedesign/bullet.png" alt=""> RightClick AUDIO to create a new<strong> Empty Game Object</strong> named for the sound it will hold (example: "<strong>SFX_Punch</strong>").
+<li> RightClick the parent object to create a new child <strong>Empty Game Object</strong>. <br>
+<li> Name it "<strong>AUDIO</strong>" (all caps, because it is meant to be a folder).
 <br>
-<img src="gamedesign/bullet.png" alt=""> With this object selected, in the Inspector <b>[Add Component] Audio Source</b>. <br>
-<img src="gamedesign/bullet.png" alt=""> Drag a sound effect into the <b>Audio Clip</b> script slot. <br>
-<img src="gamedesign/bullet.png" alt=""> Turn off "<b>Play on Awake</b>", set <b>Volume</b> down to about <b>40%</b>. <br>
-<img src="gamedesign/bullet.png" alt=""> If it exists, add your Music Mixer to the <b>Output</b> slot (see Pause Menu steps). 
+<li> RightClick AUDIO to create a new<strong> Empty Game Object</strong> named for the sound it will hold (example: "<strong>SFX_Punch</strong>").
+<br>
+<li> With this object selected, in the Inspector <b>[Add Component] Audio Source</b>. <br>
+<li> Drag a sound effect into the <b>Audio Clip</b> script slot. <br>
+<li> Turn off "<b>Play on Awake</b>", set <b>Volume</b> down to about <b>40%</b>. <br>
+<li> If it exists, add your Music Mixer to the <b>Output</b> slot (see Pause Menu steps). 
+</ol>
 
 <br><br>
 <b>c. DUPLICATE THE AUDIOSOURCE OBJECT:</b><br>
 Create a new  child object for each desired sound effect, changing the object name and Audio Clip for each: 
+<ol>
+<li> Select the  child object with the AudioSource component and hit <strong>[Ctrl/Cmd]+[d]</strong> to duplcate. 
 <br>
-<img src="gamedesign/bullet.png" alt=""> Select the  child object with the AudioSource component and hit <strong>[Ctrl/Cmd]+[d]</strong> to duplcate. 
-<br>
-<img src="gamedesign/bullet.png" alt=""> Rename and add the new .WAV clip. <br>
-<img src="gamedesign/bullet.png" alt=""> Repeat for all player sound effects.<br>
+<li> Rename and add the new .WAV clip. <br>
+<li> Repeat for all player sound effects.
+</ol>
+
 <br>
 <br>
 <b>d. ADD TO SCRIPTS:</b><br>
-In the Player scripts, add a class variable for each relevant sound effect:</font><br>
-    <center>
-      <table width=750 cellpadding=10 border=1  bgcolor=#f7f7f7>
-        <tr>
-        <td><font face=arial><font face=arial>&nbsp; &nbsp; &nbsp; &nbsp; </font><font color=#31849b><b>public</b></font> AudioSource jumpSFX;</font></td>
-      </tr>
-  </table>
-  </center>
-  <font face=arial><br>
-  
+In the Player scripts, add a class variable for each relevant sound effect:<br>
+
+<div class="blockScript">
+&nbsp; &nbsp; &nbsp; &nbsp;<font color=#31849b><b>public</b></font> AudioSource jumpSFX;
+</div>
+
+<br>
+<br>  
 In the function that triggers action, like jumping, add the command:<br>
-  </font>
-  <center>
-    <table width=750 cellpadding=10 border=1  bgcolor=#f7f7f7>
-      <tr>
-        <td><font face=arial><font face=arial>&nbsp; &nbsp; &nbsp; &nbsp; <font face=arial>&nbsp; &nbsp; &nbsp; &nbsp; </font></font>jumpSFX.Play();</font></td>
-      </tr>
-    </table>
-</center>
-  <font face="arial"><br>
+<div class="blockScript">
+&nbsp; &nbsp; &nbsp; &nbsp; <font face=arial>&nbsp; &nbsp; &nbsp; &nbsp; </font>jumpSFX.Play();
+</div>
+
+<br><br>
 For an action that will be repeated a lot, to prevent sounds oevrlapping, add a condition:<br>
-  </font>
-  <center>
-    <table width=750 cellpadding=10 border=1  bgcolor=#f7f7f7>
-      <tr>
-        <td><font face="arial">&nbsp; &nbsp; &nbsp; &nbsp; <font face=arial>&nbsp; &nbsp; &nbsp; &nbsp; </font>if (jumpSFX.isPlaying == </font><font color=#365f91 face="arial"><b>false</b></font><font face="arial">){<br>
+<div class="blockScript">
+  &nbsp; &nbsp; &nbsp; &nbsp; <font face=arial>&nbsp; &nbsp; &nbsp; &nbsp; </font>if (jumpSFX.isPlaying == <font color=#365f91 face="arial"><b>false</b></font><font face="arial">){<br>
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font face=arial>&nbsp; &nbsp; &nbsp; &nbsp; </font>jumpSFX.Play();<br>
-&nbsp; &nbsp; &nbsp; &nbsp; <font face=arial>&nbsp; &nbsp; &nbsp; &nbsp; </font>}</font></td>
-      </tr>
-    </table>
-  </center>
-  <font face="arial"><br>
+&nbsp; &nbsp; &nbsp; &nbsp; <font face=arial>&nbsp; &nbsp; &nbsp; &nbsp; </font>}
+</div>
+
+<br>
 <b>e. DRAG THE AUDIOSOURCE COMPONENTS UP INTO THE SCRIPT SLOTS<br>
 </b>
 Drag each AudioSource components (selecting them by their header bar) into the script slots. 
@@ -16471,14 +16612,18 @@ Identify them by the Audio clip. Hit [Play] and perform the actions to hear the 
 <br>
 <br>
 <br>
-<font face=arial><a href="#02j"><img src="gamedesign/triangle_purple.png" alt=""></a> <a name="02j2">&nbsp;</a></font><font size=+1><b>Player Footstep Variation:</b></font><br>
+<a href="#02j"><img src="gamedesign/triangle_purple.png" alt=""></a> 
+<a name="02j2">&nbsp;</a>
+<font size=+1><b>Player Footstep Variation:</b></font>
+<br>
 The same footstep sound with every move can get tiresome on the ears. <br>
-Try creating 4-6 separate footstep MP3s with subtle differences. Apply them to the player on separate objects as explained above, and randomize which one is played when the player is moving:</font><br>
-              <br>
-              <center>
-                <font face=arial><em>add to the Player Move script:</em></font><br>
-<table width=750 cellpadding=10 border=1  bgcolor=#f7f7f7><tr>
-<td><font face=arial>
+Try creating 4-6 separate footstep MP3s with subtle differences. Apply them to the player on separate objects as explained above, and randomize which one is played when the player is moving:<br>
+<br>
+<center>
+	<em>add to the Player Move script:</em>
+</center>
+
+<div class="blockScript">
 <br>
 <font color=gray>//1. Add these variables to the top of the class</font>
 <br>
@@ -16501,10 +16646,10 @@ Try creating 4-6 separate footstep MP3s with subtle differences. Apply them to t
 <font face="arial"><font face="arial">&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; </font>StepToPlay</font> = SFX_Steps[<font face="arial">StepNum</font>];<br>
 &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;			StepToPlay.Play();<br>&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;		}<br>&nbsp; &nbsp; &nbsp;&nbsp;	}<br>	
 <br>&nbsp; &nbsp; &nbsp;&nbsp;	<font face="arial"><font color=#31849b><b>public void</b></font></font> StopSteps(){<br>
-&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;		<font face="arial"><font face="arial"><font color=#3ab050><b>if</b></font></font></font> ((StepToPlay != null) && (StepToPlay.isPlaying)){<br>&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;			StepToPlay.Stop();<br>&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;		}<br>&nbsp; &nbsp; &nbsp;&nbsp;	}<br><br>
-</font></font></td>
-</tr></table>
-</center>
+&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;		<font face="arial"><font face="arial"><font color=#3ab050><b>if</b></font></font></font> ((StepToPlay != null) && (StepToPlay.isPlaying)){<br>&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;			StepToPlay.Stop();<br>&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;		}<br>&nbsp; &nbsp; &nbsp;&nbsp;	}
+
+<br><br>
+</div>
 
 
 <br><br><br>
@@ -16516,23 +16661,27 @@ Try creating 4-6 separate footstep MP3s with subtle differences. Apply them to t
 </center>
 
 <br><br>
-<font face=arial><a href="#02j"><img src="gamedesign/triangle_purple.png" alt=""></a> <a name="AudioManager">&nbsp;</a> <font size=+1><b>CREATE AN AUDIOMANAGER PREFAB FOR MUSIC</b></font> <br>
+<a href="#02j"><img src="gamedesign/triangle_purple.png" alt=""></a> <a name="AudioManager">&nbsp;</a> <font size=+1><b>CREATE AN AUDIOMANAGER PREFAB FOR MUSIC</b></font> <br>
 <em><b>SUMMARY:</b></em> For music and ambient audio, create an object that can play in all Scenes. <br>
 <br>
 Music and ambient  audio should be assigned to child objects of a GameObject Prefab, the AudioManager: <br>
 <strong>1.</strong> Make the AudioManger object: 
-<br>
-<img src="gamedesign/bullet.png" alt=""> Right-click the Hierarchy panel to create a new <strong>Empty Game Object</strong>. <br>
-<img src="gamedesign/bullet.png" alt=""> In the Inspector name it "<strong>AudioManager</strong>".
+<ol type="a">
+<li> Right-click the Hierarchy panel to create a new <strong>Empty Game Object</strong>. <br>
+<li> In the Inspector name it "<strong>AudioManager</strong>".
 <br> 
-<img src="gamedesign/bullet.png" alt=""> Reset Transforms. <br><br>
+<li> Reset Transforms. 
+</ol>
+
+<br><br>
 <strong>2.</strong> Make a child for the AudioSource: 
-<br>
-<img src="gamedesign/bullet.png" alt=""> Right-click the AudioManager to create a <strong>child Empty Game Object</strong>.<br>
-<img src="gamedesign/bullet.png" alt=""> <strong>Name</strong> the child (for example, "Music1"). <br>
-<img src="gamedesign/bullet.png" alt=""> In the Inspector, <strong>[Add Component] > Audio Source</strong>. <br>
-<img src="gamedesign/bullet.png" alt=""> Leave on "<strong>Play on Awake</strong>", turn on "<strong>Loop</strong>". <br>
-<img src="gamedesign/bullet.png" alt=""> Drag in your music .MP3 (MP3 is better than WAV for long sound files, 1-3 minutes). 
+<ol type="a">
+<li> Right-click the AudioManager to create a <strong>child Empty Game Object</strong>.<br>
+<li> <strong>Name</strong> the child (for example, "Music1"). <br>
+<li> In the Inspector, <strong>[Add Component] > Audio Source</strong>. <br>
+<li> Leave on "<strong>Play on Awake</strong>", turn on "<strong>Loop</strong>". <br>
+<li> Drag in your music .MP3 (MP3 is better than WAV for long sound files, 1-3 minutes). 
+</ol>
 
 <br><br>
 <strong>3.</strong> <strong>Duplicate</strong> the child for other sound files (and manage which are on or off) 
@@ -16544,7 +16693,7 @@ Music and ambient  audio should be assigned to child objects of a GameObject Pre
 <br>
 <a href="#02j"><img src="gamedesign/triangle_purple.png" alt=""></a> <a name="02j4">&nbsp;</a>
 <font size=+1><b>PLAY MUSIC AT A SPECIFIC TIMESTAMP</b></font><br>
-<em><b>SUMMARY:</b></em> Interrupt music and resume at the same part (<a href="https://youtu.be/5Rylvx4z3TU" target=music>source</a>).</font><br>
+<em><b>SUMMARY:</b></em> Interrupt music and resume at the same part (<a href="https://youtu.be/5Rylvx4z3TU" target=music>source</a>).<br>
 
 
 <br>
@@ -16553,13 +16702,14 @@ Music and ambient  audio should be assigned to child objects of a GameObject Pre
 </font>
 <center>
   <font face=arial><em>AudioInterrupt.cs:</em></font><br>
-  <table width=750 cellpadding=10 border=1  bgcolor=#f7f7f7>
-    <tr>
-      <td><font face=arial> <font face=arial><font color=#31849b><b>using</b></font> UnityEngine;</font><br>
+</center>
+
+<div class="blockScript">
+<font color=#31849b><b>using</b></font> UnityEngine;<br>
         <font color=#31849b><b>using</b></font> System.Collections;<br>
         <font color=#31849b><b>using</b></font> System.Collections.Generic;<br>
         <br>
-        <font color=#31849b><b>public class</b></font></font><font color=#365f91 face="arial"><b> AudioInterrupt :</b></font><font face=arial><font color=#365f91><b> MonoBehaviour</b></font></font> <font face=arial>{<br>
+        <font color=#31849b><b>public class</b></font><font color=#365f91 face="arial"><b> AudioInterrupt :</b></font><font face=arial><font color=#365f91><b> MonoBehaviour</b></font></font> <font face=arial>{<br>
           <br>
           &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font> <b><font color=#31849b>AudioSource </font></b>audioSource;<br>
           &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>private</b></font> <b><font color=#31849b>float </font></b>stopTimestamp = <font face="arial"><b><font color="#ed6c0a">12.5f</font></b></font>;<br>
@@ -16599,13 +16749,12 @@ Music and ambient  audio should be assigned to child objects of a GameObject Pre
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; audioSource.Play();<br>
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br>
 &nbsp; &nbsp; &nbsp; &nbsp; }<br>
-              }<br>
-              <br>
-            </font></td>
-    </tr>
-  </table>
-</center>
-<font face=arial><br>
+              }
+<br>
+<br>
+</div>
+
+<br>
 <br>
 <br>
 <font face=arial><a href="#02j"><img src="gamedesign/triangle_purple.png" alt=""></a> <a name="02j3">&nbsp;</a></font><font size=+1><b>MUSIC MANAGER: CONTINUOUS PLAY</b></font> <br>
@@ -16623,21 +16772,22 @@ One option is to make this AudioManager keep track of the music time stamp when 
 
 <br><br>
 Add a new Tag "AudioManager" to the tag manager and apply it to the AudioManager.
-<br>Add the following script to the AudioManager Prefab: <br>
+<br>Add the following script to the AudioManager Prefab: 
+
 <br>
-</font>
+<br>
 <center>
   <font face=arial><em>AudioManager.cs:</em></font> <br>
-  <table width=750 cellpadding=10 border=1  bgcolor=#f7f7f7>
-    <tr>
-      <td><font face=arial> <font face=arial><font color=#31849b><b>using</b></font> UnityEngine;</font><br>
+</center>
+<div class="blockScript">
+<font color=#31849b><b>using</b></font> UnityEngine;<br>
         <font color=#31849b><b>using</b></font> System.Collections;<br>
         <font color=#31849b><b>using</b></font> System.Collections.Generic;
 <br><font color=#31849b><b>using</b></font> UnityEngine.Audio;
 <br><font color=#31849b><b>using</b></font> UnityEngine.SceneManagement;
 <br>
 <br>
-        <font color=#31849b><b>public class</b></font></font><font color=#365f91 face="arial"><b> AudioManager :</b></font><font face=arial><font color=#365f91><b> MonoBehaviour</b></font></font> <font face=arial>{<br>
+        <font color=#31849b><b>public class</b></font><font color=#365f91 face="arial"><b> AudioManager :</b></font><font face=arial><font color=#365f91><b> MonoBehaviour</b></font></font> <font face=arial>{<br>
           <br>
           &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>public </b></font>AudioSource MenuMusic;<br>
 &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>p</b></font><font face=arial><font color=#31849b><b>ublic </b></font></font>AudioSource GameMusic1;<br>
@@ -16688,35 +16838,27 @@ Add a new Tag "AudioManager" to the tag manager and apply it to the AudioManager
 &nbsp; &nbsp; &nbsp; &nbsp; } <br>
           } <br>
           <br>
-        </font></td>
-    </tr>
-  </table>
-</center>
-<font face=arial><br>
+        </div>
+
+<br>
 <br>
 <b>b.</b> To optionally set the timestamp externally, add these lines to a door or button script: <br>
-</font><br>
-  <center>
-    <table width=750 cellpadding=10 border=1  bgcolor=#f7f7f7>
-      <tr>
-      <td><font face=arial>
-      
+<br>
+
+<div class="blockScript"> 
 <br> 
-<font face="arial"><font color="#3ab050"><b>if</b></font></font>(GameObject.FindWithTag("AudioManager") != null){
+<font color="#3ab050"><b>if</b></font>(GameObject.FindWithTag("AudioManager") != null){
 <br>
 &nbsp; &nbsp; &nbsp; &nbsp; GameObject.FindWithTag("AudioManager").GetComponent &lt;AudioManager&gt;().SetTimeStamp();
-<br>}
-      
-      <br>
-        <br>
-        </font></td>
-    </tr>
-</table>
-</center>
-<font face=arial><br>
+<br>}   
 <br>
 <br>
-</font><font face=arial><br><br>
+</div>
+        
+<br>
+<br>
+<br>
+<br><br>
 <strong>OPTION 2: SINGLETON (learn more about <a href="https://youtu.be/yhlyoQ2F-NM?si=6ScoSxLExmD7zkUS" target=sing>singletons</a>):</strong>
 <br>
 One option is to make this AudioManager a singleton: an object that is not destroyed between levels. 
@@ -16724,17 +16866,15 @@ One option is to make this AudioManager a singleton: an object that is not destr
 <b>a.</b> Use &quot;DontDestroyOnLoad()&quot; to preserve the object with the music (<a href="https://youtu.be/82Mn8v55nr0" target=music>source</a>). 
 <br>Add the following script to the Audio Manager
 <br><br>
-</font>
-
 <center>
-  <font face=arial><em>BGSoundScript.cs:</em></font> <br>
-  <table width=750 cellpadding=10 border=1  bgcolor=#f7f7f7>
-    <tr>
-      <td><font face=arial> <font face=arial><font color=#31849b><b>using</b></font> UnityEngine;</font><br>
+  <em>BGSoundScript.cs:</em>
+</center>
+<div class="blockScript">
+<font color=#31849b><b>using</b></font> UnityEngine;<br>
           <font color=#31849b><b>using</b></font> System.Collections;<br>
           <font color=#31849b><b>using</b></font> System.Collections.Generic;<br>
           <br>
-          <font color=#31849b><b>public class</b></font></font><font color=#365f91 face="arial"><b> BGSoundScript :</b></font><font face=arial><font color=#365f91><b> MonoBehaviour</b></font></font> <font face=arial>{<br>
+          <font color=#31849b><b>public class</b></font><font color=#365f91 face="arial"><b> BGSoundScript :</b></font><font face=arial><font color=#365f91><b> MonoBehaviour</b></font></font> <font face=arial>{<br>
           <br>
 &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>private</b></font> <b><font color=#31849b>static </font></b>BGSoundScript instance = null;<br>
 <br>
@@ -16753,64 +16893,50 @@ One option is to make this AudioManager a singleton: an object that is not destr
 &nbsp; &nbsp; &nbsp; &nbsp; } <br>
 } <br>
 <br>
-</font></td>
-    </tr>
-  </table>
-</center>
-<font face=arial><br>
+</div>
+<br>
 <br>
 <b>b.</b> To pause this music, create a script with this command:
 <br>
 <br>
-</font>
 <center>
   <font face=arial><em>StopMusic.cs:</em></font> <br>
-  <table width=750 cellpadding=10 border=1  bgcolor=#f7f7f7>
-    <tr>
-      <td><font face=arial> <font face=arial><font color=#31849b><b>using</b></font> UnityEngine;</font><br>
+</center>
+<div class="blockScript">
+<font color=#31849b><b>using</b></font> UnityEngine;<br>
         <font color=#31849b><b>using</b></font> System.Collections;<br>
         <font color=#31849b><b>using</b></font> System.Collections.Generic;<br>
         <br>
-        <font color=#31849b><b>public class</b></font></font><font color=#365f91 face="arial"><b> StopMusic :</b></font><font face=arial><font color=#365f91><b> MonoBehaviour</b></font></font> <font face=arial>{<br>
+        <font color=#31849b><b>public class</b></font><font color=#365f91 face="arial"><b> StopMusic :</b></font> <font color=#365f91><b> MonoBehaviour</b></font> {<br>
           <br>
           &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>void</b></font> Start() {<br>
           &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; BGSoundScript.Instance.gameObject.GetComponent&lt;AudioSource&gt;().Pause();<br>
           &nbsp; &nbsp; &nbsp; &nbsp; }<br>
               } <br>
               <br>
-            </font></td>
-    </tr>
-  </table>
-</center>
-<font face=arial><br>
-<br>
-<br>
-<br>
-</font>
+            </div><br>
+            <br>
 <center>
   <img src="gamedesign/bullet.png" alt=""> &nbsp; <img src="gamedesign/bullet.png" alt=""> &nbsp; <img src="gamedesign/bullet.png" alt="">
 </center>
-<font face=arial><br>
-<font face=arial><a href="#02j"><img src="gamedesign/triangle_purple.png" alt=""></a> <a name="02j5">&nbsp;</a></font><font size=+1><b>OTHER OBJECTS: SPATIAL AUDIO</b></font> (<a href="https://answers.unity.com/questions/1156354/play-sound-within-limited-region.html" target=music5>source</a>)<br>
-<em><b>SUMMARY:</b></em> Audio Source Components on objects in the game can be set to only be audible within a certain distance. A noisy drill in the street or a radio on a table  feels more believable and interesting to the player when it changes volume by distance!<br>
-</font><br>
-<b><font face=arial>a.</font></b><font face=arial> In the <strong>Audio Source</strong> Component of the object, set <strong>Spatial Audio</strong> from 2D to <strong>3D</strong> (even for a 2D game).<br>
 <br>
-<b>b<font face=arial>.</font></b><font face=arial> Set <strong>Max Distance</strong> range down from the default 500 (covers entire Scene) to something much smaller, like 20.
+<a href="#02j"><img src="gamedesign/triangle_purple.png" alt=""></a> <a name="02j5">&nbsp;</a> <font size=+1><b>OTHER OBJECTS: SPATIAL AUDIO</b></font> (<a href="https://answers.unity.com/questions/1156354/play-sound-within-limited-region.html" target=music5>source</a>)<br>
+<em><b>SUMMARY:</b></em> Audio Source Components on objects in the game can be set to only be audible within a certain distance. A noisy drill in the street or a radio on a table  feels more believable and interesting to the player when it changes volume by distance!<br>
+<br>
+<b>a.</b> In the <strong>Audio Source</strong> Component of the object, set <strong>Spatial Audio</strong> from 2D to <strong>3D</strong> (even for a 2D game).<br>
+<br>
+<b>b.</b> Set <strong>Max Distance</strong> range down from the default 500 (covers entire Scene) to something much smaller, like 20.
 
 <br><br>
 <strong>c.</strong> Playtest and adjust the Max Distance range as needed!
 
-<br><br><br>
-Volume can also be set directly in a script <font face=arial>(set value 0-to-1)</font>:</font></font><br>
-  <center>
-    <table width=750 cellpadding=10 border=1  bgcolor=#f7f7f7>
-      <tr>
-      <td><font face=arial>&nbsp; &nbsp; &nbsp; &nbsp;<font face=arial>AudioSource.volume = 1;</font></font></td>
-    </tr>
-</table>
-</center>
-<font face=arial>
+<br><br>
+Volume can also be set directly in a script(set value 0-to-1):
+<br>
+
+<div class="blockScript">
+    &nbsp; &nbsp; &nbsp; &nbsp; AudioSource.volume = 1;
+</div>
 <br><br><br><br>
 
 <center>
@@ -16962,22 +17088,23 @@ Each panel should be a full screen: <b>1280 x 720</b>, <b>72 ppi</b>.<br>
 &nbsp; <img src="gamedesign/bullet.png" alt=""> In the Inspector, hit <b>[+]</b> in the <b>array</b> for as many Panels you want (remember arrays start at index 0).<br>
 &nbsp; &nbsp;&nbsp; <b>Drag</b> the Panel objects into the new slots.<br>
 &nbsp; <img src="gamedesign/bullet.png" alt=""> <b>Drag</b> button_Back into the script slot.<br>
-&nbsp; <img src="gamedesign/bullet.png" alt=""> For each of the three comic navigation buttons, drag MainCamera into the OnClick None slot, and choose the correct function to add ( <em>PanelNext()</em>, <em>PanelBack()</em>, <em>PanelSkip()</em> ). <br>
-              </font><br>
-              <center>
-                <font face=arial><em> OpeningComicNavigation.cs script:</em></font> <br>
+&nbsp; <img src="gamedesign/bullet.png" alt=""> For each of the three comic navigation buttons, drag MainCamera into the OnClick None slot, and choose the correct function to add ( <em>PanelNext()</em>, <em>PanelBack()</em>, <em>PanelSkip()</em> ). 
 
-<table width=750 cellpadding=10 border=1 bgcolor=#f7f7f7><tr>
-<td><font face=arial>
-
-<font face=arial><font color=#31849b><b>using</b></font></font> System.Collections; <br> 
-<font face=arial><font color=#31849b><b>using</b></font></font> System.Collections.Generic; <br> 
-<font face=arial><font color=#31849b><b>using </b></font></font>UnityEngine; <br> 
-<font face=arial><font color=#31849b><b>using </b></font></font>UnityEngine.UI; <br> 
-<font face=arial><font color=#31849b><b>using</b></font></font> UnityEngine.SceneManagement; <br>
 <br>
-<font color=#31849b><b>public class</b></font></font><font color=#365f91 face="arial"><b> OpeningComicNavigation :</b></font><font face=arial><font color=#365f91><b> MonoBehaviour</b></font> {
-<br> <font color=gray>//this script goes onto the MainCamera in a scene with a series of comic panels</font>
+<br>
+<center>
+	<em> OpeningComicNavigation.cs script:</em>
+</center>
+<div class="blockScript">
+<font color=#31849b><b>using</b></font> System.Collections; <br> 
+<font color=#31849b><b>using</b></font> System.Collections.Generic; <br> 
+<font color=#31849b><b>using </b></font>UnityEngine; <br> 
+<font color=#31849b><b>using </b></font>UnityEngine.UI; <br> 
+<font color=#31849b><b>using</b></font> UnityEngine.SceneManagement; <br>
+<br>
+<font color=#31849b><b>public class</b></font><font color=#365f91 face="arial"><b> OpeningComicNavigation :</b></font><font face=arial><font color=#365f91><b> MonoBehaviour</b></font> {
+<br> 
+<font color=gray>//this script goes onto the MainCamera in a scene with a series of comic panels</font>
 <br>
 <br> 
 &nbsp; &nbsp; &nbsp; &nbsp; 
@@ -17069,11 +17196,9 @@ Each panel should be a full screen: <b>1280 x 720</b>, <b>72 ppi</b>.<br>
 <br>
 }
 
-</font></td>
-</tr>
-</table>
+</div>
 
-</center>
+
 <br>
 
 <center>
