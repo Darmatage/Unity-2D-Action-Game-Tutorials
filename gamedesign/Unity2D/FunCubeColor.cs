@@ -1,0 +1,40 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class FunCubeColor : MonoBehaviour {
+
+	private float hits = 0;
+
+	private float r ;  // red color, 0-1
+	private float g ;  // green color, 0-1
+	private float b ;  // blue color, 0-1
+
+	void OnCollisionEnter(Collision other){
+
+		//if the impact has enough force
+		if (other.relativeVelocity.magnitude > 5) {
+
+			//increment hits #
+			hits += 1;
+
+			//randomize colors, but go from warm to cool 
+			if (hits <= 4) {
+				r = Random.Range (0.3f, 1f);
+				g = Random.Range (0.1f, 0.5f);
+				b = Random.Range (0f, 0.2f);
+			}
+			if (hits > 4) {
+				r = Random.Range (0f, 0.3f);
+				g = Random.Range (0f, 0.3f);
+				b = Random.Range (0.3f, 1f);
+			}
+			//print ("rgb = " + r + " " + g + " " + b);
+
+			Renderer cubeRenderer = GetComponent<Renderer>();
+			cubeRenderer.material.color = new Color(r,g,b);
+			//print ("material = " + cubeRenderer.material.color);
+		}
+	}
+
+}
