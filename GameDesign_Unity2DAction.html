@@ -761,12 +761,11 @@ Your game will need many of the  tutorials and scripts on this page, <em>but not
 Add each mechanic <em><b>thoughtfully</b></em>: follow all the steps described, and only add the scripts needed for the feature you are implementing. Some scripts, like the GameHandler, will need to be updated
 
 when adding other scripts. This is because the GameHandler is meant to hold the Player State, and other scripts may want to refer to or update that State.<br>
-</font>
+
 <center>
-<font face="arial"><i>ScriptName.cs script:</i><br>
-</font>
-<table width=100% cellpadding=10 border=1 bgcolor=#f7f7f7><tr>
-<td><font face=arial>
+<i>ScriptName.cs script:</i>
+</center>
+<div class="blockScript">
  Lighter blocks like this one contain the code for each script in this tutorial. 
 <br><br>
 The <b>Class name</b> should always match the <b>script file name</b>. <br>
@@ -774,11 +773,10 @@ Create a new C# Script in Unity named for the provided script, DoubleClick to op
 <br>
 Don't be afrad to modify these scripts to get functionality specific to your intended game mechanics; 
 <br>
-the original is always waiting here for you if you want to change back!</font></td>
-</tr></table>
-</center>
+the original is always waiting here for you if you want to change back!
+</div>
 
-<font face="arial">
+
 <br><br>
 Some scripts in these tutorials depend on other scripts here to function. 
 <br>
@@ -878,22 +876,12 @@ Be sure all code references to Rigidbody and Colliders are <strong>2D</strong>: 
 <br>
 <a name="01a">&nbsp;</a>
 <br>
-<!--
-<table width=850 cellpadding=10 border=0><tr>
-<td>
--->
 <button class="accordion1">
-<a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a>
-<b> [1A]:</b> <b>PLATFORMER ENVIRONMENT</b>
+<a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a> 
+<b>[1A]:</b> <b>PLATFORMER ENVIRONMENT</b>
 </button>
 
 <div class="panel">
-
-<!--
-<table width=800 cellpadding=10 border=0><tr>
-<td valign=top>
--->
-
 
 <center>
 <font size=+2 face="arial"><font color=purple><b><a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a>[1A]:</b></font> <b>PLATFORMER ENVIRONMENT:</b></font>
@@ -1010,7 +998,7 @@ Consider cutting windows or alleys out of these big PNGs to allow <b>parallax</b
 
 
 <br><br><br>
-<a href="#01a"><img src="gamedesign/triangle_purple.png" alt=""></a><a name="01a3">&nbsp;</a></font><font size=+2><b>OPTION 3: Tiling Sprites: &quot;lay track&quot; to follow player</b></font><br>
+<a href="#01a"><img src="gamedesign/triangle_purple.png" alt=""></a><a name="01a3">&nbsp;</a><font size=+2><b>OPTION 3: Tiling Sprites: &quot;lay track&quot; to follow player</b></font><br>
 <b>Platformer</b> game backgrounds can be built with large, square, tiling PNG paintings instead of tiny images in Tilemap Grids. Lay these tiling images in a row, and as the player travels from left to right, the left-most background image gets put at the right end, so the background seems infinite!<b><br>
 </b><br>
 <b>[Version A] Simple, Single-Layer Shift</b> (<a href="https://youtu.be/WU5N_LKo8_Y" target=vid7>Source</a>)
