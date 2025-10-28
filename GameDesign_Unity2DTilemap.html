@@ -1,0 +1,1826 @@
+<html>
+<head>
+<title>Unity2D Tilemapping Tutorial</title>
+</head>
+
+<body text=#222222 link=#1e6669 vlink=#7700aa alink=#1088bb>
+
+<center>
+<table width=850 cellpadding=10 border=0>
+<tr>
+  <td valign=top><font face=arial>
+<a href="GameDesign_Unity.html"><img src="gamedesign/UnityLogo60.png" alt="" align=right></a><font size=+2><b>UNITY 2D - Tilemaps, 2D Characters, and Pixel Art</b></font>
+<br>
+
+This tutorial covers <a href="#tileTop">Unity's Tilemap system</a> for 2D projects (started 2017), 
+<br>
+<a href="#charTop">2D Character animation</a> (both pixel and smooth-drawn styles), 
+and how to <a href="#pixelTop">make Pixel art</a>.<br>
+<strong><em>Are you new to photoshop?</em></strong> Watch this short 
+<a href="https://youtu.be/-D46lZPcfwM" target=psd><strong>Intro to Photoshop video</strong></a></font><br><br>
+
+<table width=100% cellpadding=10><tr>
+<td width=43% bgcolor=#ebf3f5 valign=top><font face=arial><b>TILEMAPS for 2D Backgrounds:</b>
+
+<br><br>
+<em><strong>CREATING ART:</strong></em> 
+<br>
+&nbsp;&nbsp; &nbsp;<img src="gamedesign/bullet.png" alt=""> &nbsp;<a href="#art1"><b>Power of Two, 72ppi</b></a>
+
+<br>
+&nbsp;&nbsp; &nbsp;<img src="gamedesign/bullet.png" alt=""> &nbsp;<a href="#art2"><b>Iteration </b></a> and <a href="#art2"><b>software</b></a> 
+
+<br>
+&nbsp;&nbsp; &nbsp;<img src="gamedesign/bullet.png" alt="">&nbsp; Use <a href="#multimap"><b>Multiple small tilemaps</b></a> 
+<br>&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; (easier for RuleTiles)
+
+
+<br><br>
+ <em><strong>UNITY IMPLEMENTATION:</strong></em> 
+ <br>
+ &nbsp;&nbsp; &nbsp;<img src="gamedesign/bullet.png" alt=""> &nbsp;<a href="#tilemap"><b>Tilemapping</b></a>: slices &amp; palettes<br>
+&nbsp; &nbsp;&nbsp;<img src="gamedesign/bullet.png" alt=""> &nbsp;<a href="#rule"><b>Rule Tiles</b></a> for faster painting!<br>
+&nbsp; &nbsp;&nbsp;<img src="gamedesign/bullet.png" alt=""> &nbsp;<a href="#animTile"><b>Animated</b></a> Tiles (lava, etc) <br>
+&nbsp; &nbsp; <img src="gamedesign/bullet.png" alt=""> &nbsp;<a href="#iso"><b>Isometric</b></a> instead of rectangular<br>
+&nbsp; &nbsp; <img src="gamedesign/bullet.png" alt=""> &nbsp;<a href="#errors"><b>Common Errors</b></a> (gap fixes)
+
+<br><br><br>
+</font></td>
+<td width=57% bgcolor=#f5f2f8 valign=top><font face=arial><b>2D CHARACTER ART / ANIMATION:</b> 
+
+<br><br>
+    <em><strong>CREATING ART:</strong></em> 
+<br>&nbsp; &nbsp; 
+<img src="gamedesign/bullet.png" alt=""> &nbsp;Player Animation <b><a href="#player">Spritesheet</a></b> 
+
+<br><br>
+    <em><strong>UNITY IMPLEMENTATION:</strong></em>
+<br>&nbsp; &nbsp; <img src="gamedesign/bullet.png" alt=""> &nbsp;Player <b><a href="#playerUnity">Unity Steps</a></b> 
+<br>&nbsp; &nbsp; 
+<img src="gamedesign/bullet.png" alt=""> &nbsp;C# Script for <a href="#move"><b>Movement</b></a>
+<br>&nbsp; &nbsp; <img src="gamedesign/bullet.png" alt=""> &nbsp;<b>VFX:</b> <a href="#VFX"><b>Explosions</b></a>
+<br>&nbsp; &nbsp; <img src="gamedesign/bullet.png" alt=""> &nbsp;<b>Camera:</b> <a href="#follow"><b>Follow Within Set Limits</b></a> </font></td>
+</tr>
+<tr>
+<td bgcolor=#eef5e9 valign=top><font face=arial><b>PHOTOSHOP PIXEL ART:</b><br>
+&nbsp; <img src="gamedesign/bullet.png" alt=""> &nbsp;<em><strong>STEPS:</strong></em> <a href="#PixelArt"><b>Making Pixel Art</b></a>
+
+<br><br>
+&nbsp; <img src="gamedesign/bullet.png" alt=""> &nbsp;Re-using <a href="#white"><b>White Shapes</b></a><br>
+&nbsp; <img src="gamedesign/bullet.png" alt=""> &nbsp;<a href="#anim"><b>Animated</b></a> sprites (waterfall)<br>
+&nbsp; <img src="gamedesign/bullet.png" alt=""> &nbsp;<a href="#best"><b>Photoshop</b></a> for Pixel Art <br>
+&nbsp; <img src="gamedesign/bullet.png" alt=""> &nbsp;Pixel Art <a href="#best2"><b>Best Practices</b></a>
+</font></td>
+<td colspan=2 bgcolor=#f3f3cf valign=top><font face=arial>
+<strong>UNIVERSAL RENDER PIPELINE (URP):</strong>
+<br>
+Want expressive lighting in your 2D game?
+
+<br>Try these video tutorials and docs to add URP to your project:<br>
+&nbsp;&nbsp;<img src="gamedesign/bullet.png" alt=""> &nbsp;<a href="https://youtu.be/ACyqpLh4jrs" target=urp1>Intro  URP setup</a>: <strong>expressive 2D lights</strong> (5 min) <br>
+&nbsp;&nbsp;<img src="gamedesign/bullet.png" alt=""> &nbsp;Unity <a href="https://docs.unity3d.com/Packages/com.unity.render-pipelines.universal@11.0/manual/Lights-2D-intro.html" target=urp2>Documentation</a> for URP <br>
+&nbsp;&nbsp;<img src="gamedesign/bullet.png" alt=""> &nbsp;Use <strong>URP for VFX:</strong> <a href="https://blog.unity.com/engine-platform/popular-visual-effects-recipes-with-universal-render-pipeline" target=URP3>Post Processing Filters</a>
+</font></td>
+</tr>
+</table>
+
+<br><br>
+
+<center>
+<table width=100% cellpadding=10><tr>
+  <td><font face=arial>
+<b>KEY REQUIREMENTS of 2D Game Art: </b>
+<br>
+<b>1.</b> All art MUST be <b>PNGs, 72 ppi / dpi</b>, without exceptions!
+<br>
+<img src="gamedesign/bullet.png" alt=""> <strong>ENVIRONMENT TILEMAPS </strong>PSD files<strong>:</strong>
+<br> 
+&nbsp; &nbsp; &nbsp; <b><a href="gamedesign/Unity2D/Tilemap_256x256.psd" target=psd1>256x256 Tilemap</a></b>,
+each tile is 16x16 pixels.
+<br> 
+&nbsp; &nbsp; &nbsp; <b><a href="gamedesign/Unity2D/Tilemap_512x512.psd" target=psd1>512x512 Tilemap</a></b>,
+each tile is 32x32 pixels.
+<br> 
+&nbsp; &nbsp; &nbsp; <b><a href="gamedesign/Unity2D/Tilemap_1024x1024.psd" target=psd3>1024x1024 Tilemap</a></b>,
+each tile is 64x64 pixels. <br><br>
+<img src="gamedesign/bullet.png" alt=""> <strong>CHARACTER ANIMATION </strong>PSD files<strong>:</strong> 
+<br>
+&nbsp; &nbsp; &nbsp; <a href="gamedesign/Unity2D/CharacterSpritesheet_256x256.psd" target=sheet3psd><b>256x256 Spritesheet</b></a>, each pose is 64 x 64 pixels. <br>
+&nbsp; &nbsp; &nbsp; <a href="gamedesign/Unity2D/CharacterSpritesheet_512x512.psd" target=sheet3psd><b>512 x 512 Spritesheet</b></a>, each pose is 128 x 128 pixels. <br>
+&nbsp; &nbsp; &nbsp; <a href="gamedesign/Unity2D/CharacterSpritesheet_1024x1024.psd" target=sheet3psd><b>1024x1024 Spritesheet</b></a>, each pose is 256 x 256 pixels. <br>
+<br>
+<b>2. </b>All PNGs SHOULD be <b>power-of-two square</b>, <b><em>especially</em></b> enironment <b>tilemaps</b> &amp; <b>character</b> spritesheets.<br>
+The exceptions are UI buttons (can be sized for exact button size) and fixed backgrounds, like for a Main Menu(1280x720).<br>
+<br>
+
+<b>3.</b> <b>Character Keyframes / Spritesheet: </b>Only draw one horizontal direction,  left OR right. 
+<br>
+The code will flip the character art when it &quot;turns&quot;. Don't waste valuable spritesheet space on flips!<br><br>
+The following tutorials<b> assumes you are making a UNITY 2D project. </b>
+<br>
+A Unity 3D project does not include key packages for this Unity 2D tutorial. <br>
+If you are creating a 3D project and want a 2D Tilemap scene in it: 
+<br>
+&nbsp; &nbsp; <img src="gamedesign/bullet.png" alt=""> &nbsp;Open the <b>Window > Package Manager</b> to install the Sprite Editor and Tilemap packages. <br>
+&nbsp; &nbsp; <img src="gamedesign/bullet.png" alt=""> &nbsp;Set every imported PNG from Texture Type = Default to <b>Sprite (2D and UI)</b>. <br>
+&nbsp; &nbsp; <img src="gamedesign/bullet.png" alt=""> &nbsp;Set Main Camera to <b>Orthographic</b>, all of which is the default in a 2D Project).</font></td></tr></table>
+
+</td></tr></table><br>
+<a name="tileTop">&nbsp;</a>
+
+<br>
+<table width=800  cellpadding=10 border=0 bgcolor=#d8e8f5><tr>
+<td align=center>
+<font size="+2" face="arial">
+<b>CREATING TILEMAP BACKGROUNDS:</b>
+</font></td>
+</tr>
+</table>
+
+
+<table width=800 cellpadding=10 border=0 bgcolor=#ebf3f5><tr>
+<td colspan=2><font face=arial>
+
+<b>A Tilemap requires three parts:</b><br>
+<b>PART 1:</b> The <b>Art</b> in the Project panel<br>
+<b>PART 2:</b> The <b>Tilemap</b> in the Scene<br>
+<b>PART 3:</b> The <b>Palette</b> in the Tile Palette<br><br>
+Once these elements are in place:<br>
+<b>PART 4: Multiple Tilemap Layers</b> can be created with varied scripts and 
+<br>collision Components that only effect the art painted into those Tilemaps.<br>
+<br></font></td>
+</tr><tr>
+  <td valign=top>
+<font face=arial>
+<font face=arial><a name="art1">&nbsp;</a> <a href="gamedesign/Unity2D/tilemapping_inspectorB.png"></a> <br>
+<font color=purple><b></b></font></font><font color=purple><b>PART 1: The Art in the Project Panel:</b></font><br><br>
+<a href="gamedesign/Unity2D/JasonWiser_TilemapB.png" target=pixelArt2><img src="gamedesign/Unity2D/JasonWiser_TilemapB.png" align=right></a>
+
+<em><b>ENVIRONMENT TILEMAP:</b></em> 
+<br>
+Your <b>Tilemap.png</b> can include any  intended background elements for a level, as long as they can be organized as rectangles of equal size.
+
+<br><br><br><br>
+<br><br>
+The <b>file</b> must be <b>power-of-two square. </b>
+<br>
+Large maps are laid out in a <b>grid</b> of <b>16 x 16 squares</b> that are each ALSO <b>power-of-two</b>
+square:<br>
+<img src="gamedesign/bullet.png" alt=""> <b><a href="gamedesign/Unity2D/Tilemap_256x256.psd" target=psd1>256x256 Tilemap</a></b>
+each tile 16x16 pixels<br>
+<img src="gamedesign/bullet.png" alt=""> <b><a href="gamedesign/Unity2D/Tilemap_512x512.psd" target=psd1>512x512 Tilemap</a></b> each tile 32x32 pixels
+<br>
+<img src="gamedesign/bullet.png" alt=""> <b><a href="gamedesign/Unity2D/Tilemap_1024x1024.psd" target=psd3>1024x1024 Tilemap</a></b>
+
+
+ each  64x64 pixels<br>
+ <br><br>
+<em><b>NOTE:</b></em> You CAN  use multiple PNGs to make the art for one level.<br>
+Different game levels typically get at least some different tilemaps (to show distinct places).<br>
+<br><br>
+<em><b>SIZING: Pixel Art vs Other Painted Styles:</b></em><br>
+Tilemaps can work with any style of art.<br><br>
+<table width=80 align=right><tr>
+<td align=center><img src="gamedesign/Unity2D/tile16.png" width=32 image-rendering: crisp-edges !important;>
+<br><font face=arial>16 x 16</font></td>
+</tr></table>
+
+<b>Pixel art</b> lends itself to smaller tiles:<br>
+<b>16 x 16</b> pixels per square (see this <b><a href="gamedesign/Unity2D/Tilemap_256x256.psd" target=psd1>256x256 PSD</a></b> file), set in Unity as <b>16 pixels per unit</b> 
+<br>
+(with Compression = none and Filter Mode = Point (no filter) so the pixels are crisp and unblurred).<br><br>
+<table width=80 align=right><tr>
+<td align=center><img src="gamedesign/Unity2D/tile32.png" width=32>
+<br>
+<font face=arial>32 x 32</font></td>
+</tr></table>
+<b>Painterly styles</b> read better at a higher resolution:<br>
+<b>32 x 32</b> pixels per square (see this <b><a href="gamedesign/Unity2D/Tilemap_512x512.psd" target=psd1>512x512 PSD</a></b> file), set in Unity as <b>32 pixels per unit</b> 
+<br>(leave Compression and Filter Mode at defaults).<br><br>
+<table width=80 align=right><tr>
+<td align=center><img src="gamedesign/Unity2D/tile64.png" width=32>
+<br>
+<font face=arial>64 x 64</font></td>
+</tr></table>
+In this <b><a href="gamedesign/Unity2D/Tilemap_1024x1024.psd" target=psd3>1024x1024 PSD</a></b> file  each unit is <b>64 x 64</b>.<br>
+<br>
+For each of these choices the art in unity increases resolution but not size: they are all still <b>one unit</b> in Unity by setting the <b>Pixels Per Unit</b> in the Inspector.<br><br>
+<br>
+<br><br>
+<a href="gamedesign/Unity2D/Platformer_Standalone_Rock_256.png" target=pixelArt2><img src="gamedesign/Unity2D/Platformer_Standalone_Rock_256.png" alt="" width=128 align=right></a><strong>ADDING STAND-ALONE SPRITES: </strong>You can combine Tilemap work with big sprites. Want a large setpiece rock in your scene? Add it to the hierarchy as a separate sprite and set the Order in Layer to display correctly behind or in front of the player and colliders.<br></font></td>
+<td valign=top align=center><font face=arial>
+<a href="gamedesign/Unity2D/JasonWiser_TilemapA.png" target=pixelArt2><img src="gamedesign/Unity2D/JasonWiser_TilemapA.png"></a>
+
+<br><br>
+<a href="gamedesign/Unity2D/JasonWiser_TilemapSwamp.png" target=pixelArt2b><img src="gamedesign/Unity2D/JasonWiser_TilemapSwamp.png"></a>
+
+<br><br>
+<a href="gamedesign/Unity2D/JasonWiser_Tilemap_Example512.png" target=pixelArt2e><img src="gamedesign/Unity2D/JasonWiser_Tilemap_Example512.png" width=256></a>
+<br><a href="gamedesign/Unity2D/JasonWiser_Tilemap_Example512_work.psd" target=pixelArt2e2><em>PSD file</em></a>
+
+<br><br>
+
+<a href="gamedesign/Unity2D/Tilemap_Platformer_Prehistoric_1024.png" target=pixelArt2c><img src="gamedesign/Unity2D/Tilemap_Platformer_Prehistoric_1024.png" width=256></a>
+
+<br>
+<table width=280 cellpadding=2><tr>
+  <td valign=top><font face=arial>
+  <em>Before spending time painting any details, lay out your Tilemap in gray shapes, to test out tiling connections. </em></font></td><td valign=top>
+<a href="gamedesign/Unity2D/Tilemap_Platformer_Prehistoric_1024_grays.png" target=pixelArt2d><img src="gamedesign/Unity2D/Tilemap_Platformer_Prehistoric_1024_grays.png" width=128></a>
+</td></tr></table>
+
+<br>
+</font></td>
+</tr><tr>
+<td colspan=2><font face=arial>
+<a href="gamedesign/Unity2D/Tilemap_Platformer_City_1024.png" target=pixelArt2e><img src="gamedesign/Unity2D/Tilemap_Platformer_City_1024.png" width=256 align=right></a>
+
+<a name="art2">&nbsp;</a> <a href="gamedesign/Unity2D/tilemapping_inspectorB.png"></a> <br>
+<b>NOTE #1: HOW TO ITERATE TILEMAP SPRITESHEETS:</b><br>
+It is OK to make your spritesheet art in stages. 
+
+<br>
+Fill some unit squares with art, save a PNG and import that asset into Unity. Just make sure <b>ALL  UNUSED SQUARES have a DOT</b> so Unity knows to reserve that space for future art (and not recalculate tile numbers).<br>
+<br>
+<b></b>When you revise the map later to fill more squares, <b>save the new PNG over the old one in the project folder</b>, to auto-populate everywhere it was used (RightClick the asset in Unity to open the folder on your computer, and overwrite the image there, not directly in Unity).<br>
+<br>
+<b>IMPORTANT:</b> AGAIN, from the very first PNG export, you must  DOT  every unused square to ensure those squares generate placeholder tiles in Unity (so the sprite-order is preserved when you add more art later).<br><br><br>
+</font></td>
+</tr><tr>
+<td colspan=2><font face=arial><b>NOTE #2: PIXEL ART VS SMOOTH-DRAWN STYLES</b><br><br>
+<table width=400 cellpading=2 align=right><tr>
+<td align=center><font face=arial><strong>256 x 256</strong><br>
+</font></td>
+<td align=center><font face=arial><strong>1024 x 1024</strong></font></td>
+</tr><tr>
+<td align=center valign=top>
+<a href="gamedesign/Unity2D/JasonWiser_PipesTilemap_256.png" target=bad><img src="gamedesign/Unity2D/JasonWiser_PipesTilemap_256.png" border=1></a>
+</td><td align=center>
+<a href="gamedesign/Unity2D/JasonWiser_PipesTilemap_1024.png" target=good><img src="gamedesign/Unity2D/JasonWiser_PipesTilemap_1024.png" width=350 border=1></a>
+</td>
+</tr></table>
+
+Note these two tilemaps for an underground space full of pipes.<br><br>Image #1 is 256 x 256, with art drawn as sharp pixels (16 pixels per square).<br><br>
+Image #2 is 1024 x 1024, with art drawn in smooth, hi- res (64 pixels per square).<br><br>
+</font></td>
+</tr><tr>
+<td colspan=2><font face=arial><b>NOTE #3: WHAT  ART SOFTWARE CAN I USE?</b><br><br>
+<table width=400 cellpading=2 align=right><tr>
+<td align=center><font face=arial><strong>Bad File</strong><br>
+698x480, not on grid,
+<br>
+not power-of-two square
+</font></td>
+<td align=center><font face=arial><strong>Good File</strong><br>512x512, on grid, 
+<br>
+dots in empty spaces
+</font></td>
+</tr><tr>
+<td align=center>
+<a href="gamedesign/Unity2D/Tilemap_BadFile.png" target=bad><img src="gamedesign/Unity2D/Tilemap_BadFile.png" height=150 border=1></a>
+</td><td align=center>
+<a href="gamedesign/Unity2D/Tilemap_GoodFile.png" target=good><img src="gamedesign/Unity2D/Tilemap_GoodFile.png" height=150 border=1></a>
+</td>
+</tr></table>
+
+  You can use any software you want, BUT the final art must be a <strong>PNG</strong>, <b>72ppi, square, </b> and <b>sized power-of-two</b>. Tilemaps and Animation spritesheets must also follow a <strong>grid</strong> where each sprite fits into a space of equal size.<br>
+<br>
+The teacher uses <b>Photoshop</b> for all examples shown on this tutorial.<br><br>
+Students who prefer <b>Procreate</b> are encouraged to  start by importing one of these provided PSD files, and working from there to be sure the file meets all of these requirements:<br>
+<b><a href="gamedesign/Unity2D/Tilemap_256x256.psd" target=psd1>256 x 256 .PSD</a></b>, 
+ <b><a href="gamedesign/Unity2D/Tilemap_512x512.psd" target=psd1>512 x 512 .PSD</a></b>,  <b><a href="gamedesign/Unity2D/Tilemap_1024x1024.psd" target=psd3>1024 x 1024 .PSD</a></b>.
+<br>
+Please also note:  If a PNG exported from Procreate isn't working properly in Adobe programs like Photoshop (or in Unity), the iPad "Photos" app may be altering the image transparency when saving, causing the issues. The solution is to export your PNG directly to "Files" instead of saving it to your photo library on the iPad.<br><br>
+</font></td></tr></table><br>
+
+<table width=800 cellpadding=10 border=0 bgcolor=#f2e5d8><tr>
+<td colspan=2><font face=arial>
+<a name="multimap">&nbsp;</a><br>
+
+<strong>USING MULTIPLE SIMPLER MAPS:</strong>
+<br>
+Instead of painting all of the art in a single Tilemap, we can separate each texture type into its own tilemap. 
+This can be conceptually easier to understand, and is also helpful for making faster <a href="#rule"><b>RuleTiles</b></a> (which make painting levels much easier / faster). 
+
+<br><br>
+
+<table width=100% ellpadding=10><tr>
+<td width=200 valign=top><font face=arial>
+Let's start with a 1024 x 1024 Photoshop file and a <a href="gamedesign/Unity2D/Tilemap_MultiMap_4x4_1024.psd" target=multiPSD><strong>4 x 4 grid</strong></a>, 
+where each square is 256 x 256.
+
+<br>
+<br>
+
+This is 16 tiles total, the minimum needed for a basic set of overlay images.
+
+<br><br>
+</font></td>
+<td width=550 valign=top align=center><font face=arial>
+<a href="gamedesign/Unity2D/Ground_tilemap_1grid.png" target=new><img src="gamedesign/Unity2D/Ground_tilemap_1grid.png" width=256 border=1></a>
+<br><br>
+</font></td>
+</tr><tr>
+
+<td valign=top><font face=arial>
+<strong>TILEMAP 1: Background Layer</strong>
+
+<br><br>
+Here is an image for the background. 
+<br>
+<br>
+In this example, for a game about digging in the ground, we have 4 quadrants, each progressively darker for lower strata of earth, 4 tiles in each quadrant.
+
+<br>
+<br>
+<br><br>
+</font></td>
+<td valign=top align=center><font face=arial>
+<nobr>
+<a href="gamedesign/Unity2D/Ground_tilemap_2background.png" target=new><img src="gamedesign/Unity2D/Ground_tilemap_2background.png" width=256 border=1></a>
+&nbsp;
+<a href="gamedesign/Unity2D/Ground_tilemap_2background_lines.png" target=new><img src="gamedesign/Unity2D/Ground_tilemap_2background_lines.png" width=256 border=1></a>
+</nobr>
+
+<br><br>
+</font></td>
+</tr><tr>
+
+<td valign=top><font face=arial>
+For the layers of art that will be laid over this background, we want:
+<br>
+<br>
+ a grid of 3 x 3 for the outer sides and corners (upper-left)
+<br>
+<br>
+a column of inner corners (far right), 
+<br><br>
+a few alternative center tiles, to add variety.
+
+<br><br><br>
+<br>
+</font></td>
+<td valign=top align=center><font face=arial>
+<img src="gamedesign/Unity2D/Ground_tilemap_3template_lines.png" width=512 border=1>
+<br><br>
+</font></td>
+</tr><tr>
+
+<td valign=top><font face=arial>
+<strong>TILEMAP 2 and 3: Collider Layers</strong>
+
+<br><br>
+Here for example are layers for darker earth and grey stone. These are meant to be added to Tilemap layers with colliders.<br>
+<br>
+</font></td>
+<td valign=top align=center><font face=arial>
+<nobr>
+<a href="gamedesign/Unity2D/Ground_tilemap_4dirt.png" target=new><img src="gamedesign/Unity2D/Ground_tilemap_4dirt.png" width=256 border=1></a>
+&nbsp;
+<a href="gamedesign/Unity2D/Ground_tilemap_5rocks.png" target=new><img src="gamedesign/Unity2D/Ground_tilemap_5rocks.png" width=256 border=1></a>
+</nobr>
+<br><br>
+</font></td>
+</tr><tr>
+
+<td valign=top><font face=arial>
+<strong>TILEMAP 4: Foreground Layer</strong> <br>
+<br>
+Finally, here is a layer of roots to dsplay in the foreground over the everything, including the player, to add to the sense of depth.<br>
+<br>
+</font></td>
+<td valign=top align=center><font face=arial>
+<a href="gamedesign/Unity2D/Ground_tilemap_6roots.png" target=new><img src="gamedesign/Unity2D/Ground_tilemap_6roots.png" width=256 border=1></a>
+<br><br>
+</font></td>
+</tr><tr>
+
+<td valign=top><font face=arial>
+All four of these tilemaps can be added to the same <strong>Tile Pallette</strong> in Unity. <br><br><br><br>
+Of course, you CAN compile all of these layers into a single PNG image (2048 x 2048 pixels, 8 x 8 tiles), as seen here (but it is fine to import them separately, as logn as they are named usefully):<br>
+<br>
+</font></td>
+<td valign=top align=center><font face=arial>
+<a href="gamedesign/Unity2D/Ground_tilemap_7all.png" target=new><img src="gamedesign/Unity2D/Ground_tilemap_7all.png" width=512 border=1></a>
+<br><br>
+</font></td>
+</tr></table>
+<br></font></td>
+</tr></table><br>
+<table width=800 cellpadding=10 border=0 bgcolor=#ebf3f5><tr>
+<td><font face=arial>
+<a name="tilemap">&nbsp;</a> <a href="gamedesign/Unity2D/tilemapping_inspectorB.png"></a>
+<br>
+
+<font color=purple><b>PART 2: Adding a Tilemap into a Scene:</b></font><br>
+<br>
+<b>Create a Tilemap:</b> <font face=arial>(<a href="https://youtu.be/zA8wa-L5xek" target=follow>video source</a>)</font><br>
+<b>2.1. </b>In a <b>Unity 2D Project</b>, create a <b>folder</b> called &quot;<b>Tilemaps</b>&quot;:<br><br><br>
+<b>2.2. Drag</b> or import the <b>Tilemap.png</b> image into the Project &gt; <b>Assets</b> folder. 
+In the <b>Inspector</b> set:
+<br>
+&nbsp; &nbsp;Texture Type = <b>Sprite</b> (2D and UI)<br>
+&nbsp; &nbsp;<b>Pixels Per Unit</b> = <b>16</b> (or <b>32</b>, or <b>64</b>, or <strong>256</strong> depending 
+on your chosen file size)<br>
+&nbsp; &nbsp; Sprite Mode = <b>Multiple</b><br> 
+&nbsp; &nbsp; Filter Mode from Bilinear to <b>Point</b> (no filter)<br>
+&nbsp; &nbsp; Compression = None<br> 
+&nbsp; &nbsp; Hit <b>[Apply]</b>.<br> You will see transparency activate in the image because it is a Sprite, and you can now use the sprite editor because it is set to Multiple.
+<br><br><br><br>
+</font></td><td align=center><font face=arial><font size=2><i>Click for bigger images</i></font>
+<br><a href="gamedesign/Unity2D/tilemapping_inspectorB.png"><img src="gamedesign/Unity2D/tilemapping_inspectorB_thumb.png" alt="" align=right></a></font></td>
+</tr><tr>
+<td valign=top><font face=arial><b>2.3.</b> Open the <b>[Sprite Editor]</b>: 
+<br>
+&nbsp; &nbsp; Hit <b>Slice</b> to open the slice options<br>
+&nbsp; &nbsp; Change type to <b>Grid by Cell Size</b><br>
+&nbsp; &nbsp; Set Pixel Size =<b>16</b> x <b>16</b> (or <b>32 x 32</b>, or <b>64 x 64</b>, depending)<br>
+&nbsp; &nbsp; Hit the <b>[Slice]</b> button and then hit <b>[Apply]</b>.<br>
+Close the Sprite Editor.
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+</font><font face=arial><b>2.4. </b>In the Hierarchy create a GameObject &gt; <b>2D Object &gt; Tilemap</b>. 
+<br>
+This creates a <b>Grid</b> Object with the Tilemap object parented below (just like UI Text or Image under Canvas). <br>
+Rename Tilemap "<b>Ground_TM</b>." <br>
+<br>
+<b>NOTE #2:</b> The <b>position</b> of all Tilemaps in the Hierarchy should always be <b>(0,0,0)</b>, so they line up with each other!<br>
+<br>
+<br>
+</font><font face=arial><br>
+  </font><font face=arial><br>
+  </font></td>
+<td valign=top align=center><font face=arial>
+<a href="gamedesign/Unity2D/tilemapping_process01.png" target=new1><img src="gamedesign/Unity2D/tilemapping_process01thumb.png" alt=""></a>
+<br></font><font face=arial><img src="gamedesign/Unity2D/tilemapping_process03.png" alt=""></font></td>
+</tr><tr>
+<td valign=top><font face=arial><font color=purple><b>PART 3: The Palette in the TilePalette:</b></font>
+<br><br>
+<strong>3.1.</strong> In the Project Panel &gt; Assets &gt; Art folder: 
+<br>
+Create a  folder named "<strong>Tilemaps_Bits</strong>".
+<br>
+This is the folder for the hundreds of little tilemap squares that will be created by the Tile Pallete process. 
+<br>
+We don't want these pieces to be in the same folder as our actual Tilemap art, or anything else we care to find. 
+<br>Hide the bits in the Tilemap_Bits folder!
+
+<br>
+<br>
+<b>3.2. </b>Open the <b>Window </b>menu<b> &gt; 2D &gt; Tile Palette</b>. 
+<br>
+Hit the "<b>Create New Palette</b>" drop-down on the left. 
+<br>
+Name it "<b>Ground</b>". &nbsp;
+<br>
+Hit <b>[Create]</b>, and choose the "<b>Tilemaps_Bits</b>" folder in your Assets folder to hold it.
+<br>
+<br>
+<b>3.3. Drag</b> your Tilemap.png image into the work area of the Tile Palette panel. 
+<br>
+When prompted save it into the Tilemaps_Bits folder, to hide the bits there. 
+<br>Wait until data is generated.  
+<br>
+Optionally dock the panel next to the Project and Console. 
+<br><br><br></font></td>
+<td valign=top align=center><font face=arial><a href="gamedesign/Unity2D/tilemapping_process05.png" target=new2><img src="gamedesign/Unity2D/tilemapping_process05thumb.png" alt=""></a><br><br></font></td>
+</tr><tr>
+<td valign=top><font face=arial><b>3.4. Select</b> a square in the Pallette. 
+<br>
+The brush <b>Paint</b> function is selected automatically. 
+<br>In the Hierarchy select your Tilemap layer and click and drag in the Scene viewport to "paint" that square into the Ground tilemap. 
+<br><b>[Alt]+[MiddleMouse]</b> to pan the Tile Palette. 
+
+<br><br>
+<b>3.5. </b>To <b>drag-fill</b> in a larger area quickly, try the square icon for <b>BoxFill</b>. We can also trace a shape and then fill the inside with the paint bucket icon for <b>FloodFill</b>.<br>
+<br>
+Try starting with a space about 4x the size of the play-screen rectangle (indicated as a light rectangle in the Scene view). Add walk-able areas: draw the grass and then add the paths.
+
+<br><br>
+<br><br>
+</font></td>
+<td valign=top align=center><font face=arial><a href="gamedesign/Unity2D/tilemapping_process06.png" target=new3><img src="gamedesign/Unity2D/tilemapping_process06thumb.png" alt=""></a>
+<br>
+</font></td>
+</tr><tr>
+<td valign=top><font face=arial><font color=purple><b>PART 4: Multiple Tilemap Layers for Colliders and Scripts:</b></font>
+
+<br><br>
+<b>4.1.</b> For collide-able elements, create a <b>new Tilemap</b> Layer: 
+<br>
+With your <b>Grid</b> selected in the Hierarchy, RightClick the Grid and choose <b>2D Object &gt; Tilemap</b>. <br>
+In the Inspector rename it &quot;<b>Colliders_TM</b>.&quot; 
+<br>
+Under <b>Tilemap Renderer &gt; Additional Settings</b> set <b>Order in Layer = 10</b>. <br>
+<br>
+<b>4.2. </b>To draw on the new Tilemap layer, change the <b>Active Tilemap</b> at the top of the Tile Palette panel. <br>
+<br>
+<b>4.3. To bring a multiple-tile object into the scene</b> (like a house): select the entire house in the Palette, then use the  <b>brush Paint</b> tool to draw it in the scene. 
+<br><br>
+<br><br>
+</font></td>
+<td valign=top align=center><font face=arial>
+<img src="gamedesign/Unity2D/tilemapping_process04.png" alt="">
+<br><br>
+<img src="gamedesign/Unity2D/tilemapping_inspector_thumb1.png" alt="">
+<br>
+</font></td>
+</tr><tr>
+<td valign=top><font face=arial><b>4.4. To add collision to your Collider layer</b>:
+<br>
+With the Collider_TM Tilemap layer selected, <b>add three Components: </b></font>    
+<br><br>
+<font face=arial><img src="gamedesign/bullet.png" alt="" width="17"> <b>Tilemap Collider 2D</b>. 
+<br>This creates a collider around each tile in the Collision Tilemap (works, but wasteful). To optimize this, apply two more Components:</font>
+
+<br><br>
+<font face=arial><img src="gamedesign/bullet.png" alt=""> <b>Rigidbody2D</b> 
+<br>
+Set <b>Body Type = Static</b>
+<br>
+(NOTE: an OnTrigger interaction, like blocking bullets, may need  Body Type = Kinematic).<br>
+<br><br>
+<img src="gamedesign/bullet.png" alt=""> <b>Composite Collider 2D </b>
+<br>
+Change <b>Geometry Type</b> from Outlines to <b>Polygons</b>.
+<br>
+<br>
+<br>
+<img src="gamedesign/bullet.png" alt=""> Back up in the Tilemap Collider 2D, set <strong>Composite Operation = Merge</strong> 
+<br>(in versions before Unity 6, instead enable "
+<a href="gamedesign/Unity2D/tilemapping_inspector.png" target=tmInsp>Used by Composite</a>".) 
+          
+<br><br>
+NOTE: The default Composite Collider Geometry Type, &quot;<b>Outlines</b>&quot;, is fine for a slower game, where the intent is to prevent the player and other objects from passing through at modest speeds. But in a fast-paced game  &quot;Outlines&quot; may allow the player to pass inside the colider. So we change the <b>Geometry Type</b> from Outline to <b>Polygons</b>.<br>
+</font><font face=arial><br>
+  <br>
+  <a href="gamedesign/Unity2D/tilemapping_process08.png" target=new3><img src="gamedesign/Unity2D/tilemapping_process08thumb.png" alt="" align=right></a>
+
+<br><br><br><br>
+<br><br><br><br>
+<br><br><br><br>
+</font></td>
+  <td valign=top align=center>
+  <a href="gamedesign/Unity2D/tilemapping_inspector_unity6.png" target=tmInsp><img src="gamedesign/Unity2D/tilemapping_inspector_unity6.png" alt="inspector collider settings" style="width:280px"></a>
+  
+  
+  
+  
+  </td>
+</tr><tr>
+<td valign=top><font face=arial><b>NOTE #3: 
+COLLIDER SHAPES</b>:<br>
+<b>Colliders are performant only if they are on  simple shapes. </b><br>
+A big wavy  shape like a hillside is fine, but avoid  making small details into colliders, like spindly tree branches.<br>
+<b>Make use of multiple layers where you can:</b> For a tree, put the lower trunk that is meant to be collidable in the colliding layer, and the rest of the tree  in a non-collidable background layer. <br>
+<br><br>
+<b>NOTE #4: LAVA OR SPIKES:<br>
+Want a layer to damage the player on contact? </b><br>
+<img src="gamedesign/bullet.png" alt=""> Add the same 3 Collisions Components (TilemapCollider2D, Rigidbody2D, CompositeCollider2D).<br>
+<img src="gamedesign/bullet.png" alt=""> Set CompositeCollider2D:  <b>isTrigger</b>, BodyType=<b>Polygons</b>.  
+<br>
+<img src="gamedesign/bullet.png" alt=""> Add a script with an <b>OnTriggerStay2D()</b> that sends damage to the Player in the GameHandler (like DamageSlow.cs or DamageInstant.cs, in our 2D Action tutorial).<br>
+<br>
+<br>
+<b>NOTE #5: ONE-SIDED PLATFORMER:<br>
+Want the Player to be able to jump up through a platform? </b><br>
+<img src="gamedesign/bullet.png" alt=""> To the Tilemap with Colliders [add Component]: <strong>Platform Effector 2D</strong>.<br>
+<img src="gamedesign/bullet.png" alt=""> In the CompositeCollider2D: turn on &quot;<strong>Used by Effector</strong>&quot;<br>
+<br>
+<b>IMPORTANT:</b> If we set a Tilemap Composite collider to &quot;<b>isTrigger</b>&quot; = true, then Outlines MUST be changed to &quot;<b>Polygons</b>&quot; to use </font><font face=arial> internal collision detection  (OnTriggerStay2D).</font><font face=arial><br>
+<br>
+</font></td>
+<td><font face=arial>&nbsp;
+ 
+</font></td>
+</tr>
+</table>
+
+<!-- rule tiles --><br>
+
+<table width=800 cellpadding=10 border=0 bgcolor=#f2e5d8><tr>
+<td colspan=2><font face=arial>
+<a name="rule">&nbsp;</a><br>
+    <font face=arial><a href="#TOP"><img src="comicsDesign/ArrowUp.png" alt=""></a></font> 
+<font color=purple><b>CREATING A RULE TILE FOR FASTER UNITY LEVEL PAINTING</b></font> 
+<br>(source <a href="https://youtu.be/Ky0sV9pua-E" target=tm5>video</a>, <a href="https://youtu.be/dd4KrKCa3Yg" target=tm6>02</a>)<br>
+A <strong>Rule Tile</strong> allows us to set up a helpful system of intelligent art edges to quickly paint levels in Unity.<br><br>
+<strong>Check that &quot;Tilemap Extras&quot; is installed:</strong><br>
+&nbsp; &nbsp; &nbsp;In Unity 2021 and above, open the <strong>Window > Package Manager</strong>. <br>
+&nbsp; &nbsp; &nbsp;With the top selection set to <strong>Unity &gt; Registry</strong>, search for <strong>Tilemap Extras</strong>.<br>
+&nbsp; &nbsp; &nbsp;If not yet installed, hit <strong>[Install]</strong>.<br>
+<br>
+
+<a href="gamedesign/Unity2D/Tilemap_RuleTile.png" target=ruletile><img src="gamedesign/Unity2D/Tilemap_RuleTile.png" align=right border=0 width=150></a>
+
+Start with a <b>4x4 spritesheet</b> that contains at least <strong>13 tiles:</strong><br>
+&nbsp; &nbsp; &nbsp;a <b>3x3 grid</b> square for all <b>convex tiles,</b> and <b>4 concave tiles</b>.
+<br>
+&nbsp; &nbsp; &nbsp;Here to the right is a pixel art example: 64x64, each tile 16x16, <br>
+&nbsp; &nbsp; &nbsp;The same process can be done with a more painterly image: 1024x1024, each tile 254 x 254.
+
+<br>
+<br>
+<b>1.</b> Set spritesheet parameters in the Inspector for pixel art, as usual:</font><font face=arial><br>
+&nbsp; &nbsp; <b>Pixels Per Unit</b> = 16<br>
+&nbsp; &nbsp; Sprite Mode to <b>Multiple</b><br>
+&nbsp; &nbsp;  Filter Mode from Bilinear to <b>Point</b> (no filter)<br>
+&nbsp; &nbsp; Compression = None<br>
+&nbsp; &nbsp;&nbsp;Hit <b>[Apply]</b></font><br>
+<br>
+<font face=arial><b>2.</b> Open the <b>[Sprite Editor]</b> as usual:<br>
+&nbsp; &nbsp; &nbsp;Hit <b>Slice</b> to open the slice options<br>
+&nbsp; &nbsp;&nbsp; Change type to <b>Grid by Cell Size</b><br>
+&nbsp; &nbsp;&nbsp; Set Pixel Size (for pixel art) =<b>16</b> x <b>16</b><br>
+&nbsp; &nbsp;&nbsp; Hit the <b>[Slice]</b> button and then hit <b>[Apply]</b><br>
+Close the Sprite Editor.
+
+<br>
+<br>
+<br>
+<a href="gamedesign/Unity2D/RuleTile01.png" target=croc><img src="gamedesign/Unity2D/RuleTile01_thumb.png" alt="" align=right></a>
+<b>3. Create a Rule Tile<br>
+<em>(This is the only step different from regular Tilemapping)</em>:</b><br>
+&nbsp; &nbsp;<b>a)</b> In the Project panel Assets folder, RightClick to choose: 
+<br>
+&nbsp; &nbsp; &nbsp;&nbsp; <strong>Create &gt; 2D &gt; Tiles &gt; Rule Tile.</strong><br><br>
+&nbsp;&nbsp; <b>b)</b> Name  for intended material (like &quot;<b>RT_Road</b>&quot; for road art).
+
+
+
+<br><br><br><br>
+<br><br><br><br>
+
+<a href="gamedesign/Unity2D/RuleTile02.png" target=croc><img src="gamedesign/Unity2D/RuleTile02_thumb.png" alt="" align=right></a>
+&nbsp; &nbsp;<b>c)</b> In the <b>Inspector:</b><br> 
+&nbsp; &nbsp;<img src="gamedesign/bullet.png" alt=""> <b>Drag</b> a tile sprite from the Project to the top <b>gray block, to represent the RuleTile</b> as the Default Sprite.<br>
+&nbsp; &nbsp;<img src="gamedesign/bullet.png" alt=""> Set the &quot;Number of Tiling Rules&quot; = 13 (for 13 blocks)<br>
+&nbsp; &nbsp;<img src="gamedesign/bullet.png" alt=""> <b>Drag</b> a tile sprite from the Project into each &quot;None (Sprite)&quot; <b>gray blocks</b>:<br>
+&nbsp; &nbsp; &nbsp;&nbsp;Start with the 4 convex corners.<br>
+&nbsp; &nbsp; &nbsp;&nbsp;Then the 4 convex sides.<br>
+&nbsp; &nbsp; &nbsp;&nbsp;Then the 4 concave corners.<br>
+&nbsp; &nbsp; &nbsp;&nbsp;Finally the center block of the 3x3.<br>
+&nbsp; &nbsp; &nbsp;&nbsp;(always end with the center piece).
+
+<br><br>
+&nbsp; &nbsp;<img src="gamedesign/bullet.png" alt=""> In the <b>middle grid</b>, set  arrows and Xs to define this tile's placement:<br>
+&nbsp; &nbsp; &nbsp;A <b>red X</b> goes on the closed sides of the tile art (where there are no other tiles from this RuleTile).<br>
+&nbsp; &nbsp; &nbsp;A <b>green arrow</b> goes on any open sides (where it is meant to connect to other tiles in the Rule Tile).<br><br>
+&nbsp; &nbsp; <b>d)</b> The order of the added tiles matters a bit: 
+<br>put the center tile at the bottom (to make it lowest priority).
+
+
+
+
+<br>
+<br><br>
+<br><br><br>
+<br><br><br>
+<a href="gamedesign/Unity2D/RuleTile03.png" target=croc><img src="gamedesign/Unity2D/RuleTile03_thumb.png" alt="" width=300 height=270 align=right></a><b>4. Add a Tile Palette </b>to hold your Rule Tile:<br>
+&nbsp; &nbsp;<b>a)</b> Open <b>Window </b>menu<b> &gt; 2D &gt; Tile Palette</b><br><br>
+&nbsp; &nbsp;<b>b)</b> Hit &quot;<b>Create New Palette</b>&quot;, enter a name like &quot;<b>Road_Palette</b>&quot;, and hit <b>[Create]</b>.<br>
+<br>
+<b></b>&nbsp; &nbsp;<b>c)</b> When Unity asks for a <b>folder</b> to place it in, choose (or create new) your Tilemaps_Bits folder under Assets.<br><br>
+&nbsp; &nbsp;<b>d) Drag</b> the Rule Tile object into the new Tile Palette (in the example to the right, both the source tilemap AND the RuleTile were dragged into the Palette. 
+<br>The RuleTile is the single square on the left).<br><br><br>
+<b>5. Create the Scene Tilemap</b> layer for your art:<br>
+&nbsp; &nbsp;<b>a)</b> In the Hierarchy, select your <b>Grid</b> (if one exists).<br><br>
+&nbsp; &nbsp;<b>b)</b> GameObject &gt; 2D Object &gt; <b>Tilemap</b> (rectangular).<br><br>
+&nbsp; &nbsp;<b>c)</b> With this Tilemap active in the TilePallette: <b>
+<br>
+</b>&nbsp; &nbsp;&nbsp; &nbsp;<b>Select</b> the RuleTile square in the TilePalette and <b>paint</b>.<br><br>
+&nbsp; &nbsp; &nbsp;  The tiles will <b>dynamically switch</b> as needed to fit the desired connections to each other, according to the rules you established with the green arrows and red Xs.<br>
+<br>
+<br>
+<em><b>Want to delve further?</b></em> 
+<br>See this video for c</font><font face=arial>reating a <b>custom</b> rule tile script with a <a href="https://youtu.be/WjTW5mh1ISI" target=rule2><b>scriptable object</b></a>.<br>
+<br>
+<br>
+</font></td>
+</tr>
+</table>
+
+<!-- animated tiles --><br>
+
+<table width=800 cellpdding=10 border=0 bgcolor=#d8e8f5>
+<tr>
+<td><font face=arial><a name="animTile">&nbsp;</a><br>
+    <font face=arial><a href="#TOP"><img src="comicsDesign/ArrowUp.png" alt=""></a></font> 
+    <font color=purple><b>CREATING AN ANIMATED TILE FOR WATER, LAVA, etc</b></font> (source <a href="https://youtu.be/65IrtBEZeVs" target=tm5>video</a>)<br>
+An <strong>Animated Tile</strong> allows us to set up an image that will play through multiple tiles to create animation. <br>
+<br>
+<strong>Check that &quot;Tilemap Extras&quot; is installed:</strong><br>
+&nbsp; &nbsp; &nbsp; &nbsp; In Unity 2021 and above, open the <strong>Window > Package Manager</strong>. <br>
+&nbsp; &nbsp; &nbsp; &nbsp; With the top selection set to <strong>Unity &gt; Registry</strong>, search for <strong>Tilemap Extras</strong>.<br>
+&nbsp; &nbsp; &nbsp; &nbsp; if not yet installed, hit <strong>[Install]</strong>.<br>
+<br>
+<a href="gamedesign/Unity2D/Tilemap_AnimatedTile.png" target=animtile><img src="gamedesign/Unity2D/Tilemap_AnimatedTile.png" alt="" align=right border=1></a>
+
+We start with a <b>spritesheet</b> that contains at least 4 tiles 
+<br>(this example has 3 quadrants of 4 frames each, 
+<br>and 4 frames, LowerRight, meant for static background): 
+
+<br>
+<br>
+<b>1.</b> Set parameters on the spritesheet in the inspector, as above:</font><font face=arial><br>
+&nbsp; &nbsp; &nbsp; &nbsp; <b>Pixels Per Unit</b> = 16<br>
+&nbsp; &nbsp; &nbsp; &nbsp; Sprite Mode to <b>Multiple</b><br>
+&nbsp; &nbsp; &nbsp; &nbsp;  Filter Mode from Bilinear to <b>Point</b> (no filter)<br>
+&nbsp; &nbsp; &nbsp; &nbsp; Compression = None<br>
+&nbsp; &nbsp; &nbsp; &nbsp;  Hit <b>[Apply]</b></font><br>
+<br>
+<a href="gamedesign/Unity2D/AnimatedTile01.png" target=animTile><img src="gamedesign/Unity2D/AnimatedTile01_thumb.png" alt="" align=right></a>
+
+<font face=arial><b>2.</b> Open the <b>[Sprite Editor]</b>:<br>
+&nbsp; &nbsp; &nbsp; &nbsp; Hit <b>Slice</b> to open the slice options<br>
+&nbsp; &nbsp; &nbsp; &nbsp; Change type to <b>Grid by Cell Size</b><br>
+&nbsp; &nbsp; &nbsp; &nbsp; Set Pixel Size =<b>16</b> x <b>16</b><br>
+&nbsp; &nbsp; &nbsp; &nbsp; Hit the <b>[Slice]</b> button and then hit <b>[Apply]</b>
+
+
+<br>
+
+
+
+Close the Sprite Editor.<br>
+<br>
+<a href="gamedesign/Unity2D/RuleTile01.png" target=croc></a>
+<b>3. Create an Animated Tile<br>
+<em>(This is the only step that is different than regular Tilemapping)</em>:</b><br>
+&nbsp; &nbsp; &nbsp; &nbsp; <b>a)</b> In the Project panel Assets folder, create a new folder.
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  RightClick the new folder to choose: 
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <strong>Create &gt; 2D &gt; Tiles &gt; Animated Tile.</strong><br>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; <b>b)</b> Name it for the intended material (like &quot;<b>AT_Lava1</b>&quot; for lava art).<br>
+<a href="gamedesign/Unity2D/AnimatedTile02.png" target=animTile><img src="gamedesign/Unity2D/AnimatedTile02_thumb.png" alt="" align=right></a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; <b>c)</b> In the <b>Inspector:</b>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Set the number of Animated Sprites at top to the desired frames.<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>Drag</b> all  frames into the top boxes, in desired order.
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; To get more frames between poses, add more copies of the frame.
+
+
+
+<br><br><br>
+<b>4. Add a Tile Palette </b>to hold your Animated Tile:<br>
+&nbsp; &nbsp; &nbsp; &nbsp; <b>a)</b> Open <b>Window </b>menu<b> &gt; 2D &gt; Tile Palette</b><br><br>
+&nbsp; &nbsp; &nbsp; &nbsp; <b>b)</b> Hit &quot;<b>Create New Palette</b>&quot;, enter a name like &quot;<b>Lava_Palette</b>&quot;, 
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;and hit <b>[Create]</b>.<br>
+<br>
+<b></b>&nbsp; &nbsp; &nbsp; &nbsp; <b>c)</b> When Unity asks for a <b>folder</b> to place it in: 
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; choose (or create new) your Tilemaps folder under Assets.<br><br>
+&nbsp; &nbsp; &nbsp; &nbsp; <b>d) Drag</b> the Animated Tile object into the new Tile Palette.<br><br><br>
+<b>5. Create the Scene Tilemap</b> layer for your art:<br>
+&nbsp; &nbsp; &nbsp; &nbsp; <b>a)</b> In the Hierarchy, select your <b>Grid</b> (if one exists).<br><br>
+&nbsp; &nbsp; &nbsp; &nbsp; <b>b)</b> GameObject &gt; 2D Object &gt; <b>Tilemap</b> (rectangular).<br><br>
+&nbsp; &nbsp; &nbsp; &nbsp; <b>c)</b> With this Tilemap active in the TilePallette, <b>select</b> the Animated Tile in the TilePalette and <b>paint</b>.<br><br>
+&nbsp; &nbsp; &nbsp; &nbsp; Hit <strong>[Play]</strong> in Unity to see the Animated Tile animate. 
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; To change the speed, see the setings in the Animated Tile object itself.<br>
+<br>
+<br>
+<em><b>Want to delve further?</b></em> This page uses 
+<a href="https://medium.com/nerd-for-tech/animated-tiles-unity-a9fa47103296" target=multiple>multiple Animated Tiles</a> for a waterfall</font><font face=arial>.<br>
+Also, see shaders using the Universal Rendere Pipeline:
+<a href="https://youtu.be/ym1K3of3pys" target=URPvid1>vid1</a>, 
+<a href="https://youtu.be/P_71wmNuBxw" target=URPvid2>vid2</a>
+
+<br>
+<br>
+</font></td>
+</tr></table>
+<br>
+<table width=800 cellpadding=10 bgcolor=#ebf3f5>
+  <tr>
+    <td valign=top><font face=arial> <font face=arial><a name="iso">&nbsp;</a> <a href="gamedesign/Unity2D/tilemapping_inspectorB.png"></a> <br>
+      <font color=purple><b></b></font></font><font color=purple><b>To make an Isometric game with a diamond Tilemap grid:</b></font> <br>
+      <br>
+      <b>In Photoshop: </b><br>
+      Create a new file in Photoshop for your spritesheet: <br>
+      &nbsp; &nbsp; &nbsp;<b>512 x 512, 72ppi</b><br>
+      Each piece of art is: <br>
+      &nbsp; &nbsp; &nbsp;<b>128 x 64</b> (for just the top diamond "Surface")<br>
+      &nbsp; &nbsp; &nbsp;<em>or</em> <b>128 x 96</b> (to show depth below the surface art)<br>
+      &nbsp; &nbsp; &nbsp;<em>or</em> <b>128 x 128</b> (if you want a LOT of depth)<br>
+      Choose one size per spriteshet-- no mixing and matching in a single image.<br>
+      <br>
+      <b>In Unity:</b> <br>
+      <b>a)</b> <b>Import</b> your art, set <b>properties</b> in the <b>Inspector</b>: <br>
+      &nbsp; &nbsp; &nbsp;Texture Type = <b>Sprite (2D and UI)</b><br>
+      &nbsp; &nbsp; &nbsp;Pixels Per Unit = <b>128</b> (must match tile width)<br>
+      &nbsp; &nbsp; &nbsp;Sprite Mode = <b>Multiple</b> <br>
+      &nbsp; &nbsp; &nbsp;Filter Mode from Bilinear to <b>Point</b> (no filter) <br>
+      &nbsp; &nbsp; &nbsp;Compression = <b>None</b><br>
+      &nbsp; &nbsp; &nbsp;Hit <b>[Apply]</b> <br>
+      <br>
+      <b>b)</b> Open the <b>[Sprite Editor]</b>:<br>
+      &nbsp; &nbsp; &nbsp;Hit <b>Slice</b> to open the slice options<br>
+      &nbsp; &nbsp; &nbsp;Change type = <b>Grid by Cell Size</b><br>
+      &nbsp; &nbsp; &nbsp;Set Pixel Size =<b>128</b> x <b>96</b> (or your chosen size)<br>
+      &nbsp; &nbsp; &nbsp;Hit the <b>[Slice]</b> button and then hit <b>[Apply]</b><br>
+      &nbsp; &nbsp;<b>Close</b> the Sprite Editor.<br>
+      <br>
+      <b>c)</b> Create a <b>folder</b> called &quot;<b>Tiles</b>&quot; to hold the Pallete files.<br>
+      <br>
+      <b>d)</b> In the Hierarchy, create a <b>Tilemap</b> Grid object as Isometric:<br>
+      &nbsp; &nbsp; &nbsp;<img src="gamedesign/bullet.png" alt=""> RightClick the Hierarchy to create:<br>
+      &nbsp; &nbsp; &nbsp; &nbsp;<b>2D Object > Tilepmap > Isometric</b>.<br>
+      <br>
+      <b>e)</b> Open the Tile Palette window, and Create a New Palette as Isometric, set to Manual:<br>
+      &nbsp; &nbsp; &nbsp;<img src="gamedesign/bullet.png" alt=""> <b>Window > 2D > Tile Palette</b><br>
+      &nbsp; &nbsp; &nbsp;<img src="gamedesign/bullet.png" alt=""> <b>Create New Palette:</b><br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  Grid = <b>Isometric</b><br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  Cell Size <b>Manual</b> (1, 0.5, 1)<br>
+      &nbsp; &nbsp; &nbsp;<img src="gamedesign/bullet.png" alt=""> Hit <b>[Create]</b>, assign to the Tiles folder.<br>
+      <br>
+      <b>f) Drag</b> the sliced spritesheet art into the new Tile Palette, assign slices to the Tiles folder.<br>
+      <br>
+      <b>g)</b> <b>Paint</b> the tiles into the isometric Tilemap<br>
+      <br>
+      </font> </font>
+    <td>    
+    <td valign=top><font face=arial>
+      <table>
+        <tr>
+          <td valign=top>&nbsp;</td>
+          <td valign=bottom align=center><img src="gamedesign/Unity2D/TileIsometric_128x64_b.png" alt=""><br>
+            128 x 64</td>
+        <tr>      
+        <tr>
+          <td valign=bottom align=center><img src="gamedesign/Unity2D/TileIsometric_128x96_a.png" alt=""><br>
+            128 x 96</td>
+          <td valign=bottom align=center><img src="gamedesign/Unity2D/TileIsometric_128x128_c.png" alt=""><br>
+            128 x 128</td>
+        </tr>
+      </table>
+      <br>
+      <br>
+      <br>
+      <a href="gamedesign/Unity2D/TileIsometric_Tilemap.png" target=tm><img src="gamedesign/Unity2D/TileIsometric_Tilemap_thumb.png" alt=""></a><br>
+      <br>
+      <br>
+      <img src="gamedesign/Unity2D/TileIsometric_TilePalette.png" alt=""> <br>
+    </font></td>
+  </tr>
+</table>
+</td>
+</tr>
+</table>
+<br>
+
+<!-- common errors -->
+
+<table width=800 cellpadding=10 border=0 bgcolor=#ebf3f5><tr>
+<td colspan=2><font face=arial>
+<a name="errors"><font face="arial">&nbsp;</font></a> <br>
+<a href="#TOP"><font face="arial"><img src="comicsDesign/ArrowUp.png" alt=""></font></a> <b><font face="arial" color=purple>COMMON PROBLEMS / ERRORS:</font></b> <br>
+<br>
+<b><font face="arial">a). Objects appearing in Scene but not in the Game view? </font></b> <br>
+An issue with 2D games is managing the <b><font face="arial">Display Order</font></b> of elements. For <b><font face="arial">Tilemaps</font></b> and regular <b><font face="arial">Sprite</font></b> objects, look in the Inspector to find <b><font face="arial">Sprite Renderer &gt; Additional Settings &gt; Order in Layer. </font></b>The lower the number, the further back it appears. <br>
+<br>
+Also, be sure to check that your<b><font face="arial"> object Z-position is not behind the Camera!</font></b> <br>
+A 2D game <b><font face="arial">Camera</font></b> is typically Position <b><font face="arial">z = -10</font></b>. All of your <b><font face="arial">2D objects</font></b> must  be <b><font face="arial">Position Z = 0</font></b>. <br>
+<br>
+(As opposed to a Canvas, where the higher an image is located in the Hierarhcy the further back it appears.) <br>
+<br>
+<br>
+</font>
+<table width=100%>
+  <tr>
+    <td valign=top><font face=arial><br>
+      <b>b). GETTING GAPS / TEARS IN YOUR TILEMAPS?</b><b>:</b><br>
+      <br>
+      <br>
+      <b>Apply a Material with Pixel Snap: </b><br>
+      Try this <b><a href="https://www.youtube.com/watch?v=kbx528-lnoU&t=59s" target=pixelsnap>1 minute tutorial</a></b> on creating a new <b>Sprites &gt; Default</b> Material with <b>Pixel Snap</b> turned on, and applying to all Tilemap layers. <br>
+      <br>
+      <br>
+      <b>You can also try Quality and Grid Settings: </b><br>
+      <b><em>PART 1: </em></b>Edit &gt; Project Settings &gt; Quality. <br>
+      Be sure Texture Quality is Full Res, and Anisotropic Textures and Anti-Aliasing are Disabled. <br>
+      <br>
+      <b><em>PART 2: </em></b>Then, select the <b>Grid</b> object and in the Inspector set <b>Cell Gap</b> for <b>X</b> and <b>Y</b> to the tiny, negative<b> -0.0001</b>. <br>
+    </font></td>
+    <td valign=top align=center><font face=arial><br>
+      <a href="gamedesign/Unity2D/tilemappingQuality.png" target=tmInsp><img src="gamedesign/Unity2D/tilemappingQuality_thumb.png" alt=""></a><br>
+      <br>
+      <a href="gamedesign/Unity2D/tilemappingQualityCellGap.png" target=tmInsp><img src="gamedesign/Unity2D/tilemappingQualityCellGap_thumb.png" alt=""></a><br>
+      <br>
+    </font></td>
+  </tr>
+</table>
+<br>
+<br>
+<font face="arial">
+<b>c). Script not compiling?</b> Check the console for errors and line numbers! 
+<br>
+<img src="gamedesign/bullet.png" alt=""> Most errors are about forgetting to end a line with a semicolon: <b>;</b><br>
+<img src="gamedesign/bullet.png" alt=""> or forgetting to have the right number and placement of nesting brackets: <b>{ }</b><br>
+<img src="gamedesign/bullet.png" alt=""> When you create a script, be sure the <b>Class name</b> at the top of the script matches the <b>script name</b>. <br>
+<img src="gamedesign/bullet.png" alt=""> Also, be sure <b>all script slots are filled</b>, either directly in the Inspector or dynamically in the script. <br><br></font></td>
+</tr>
+
+<tr>
+<td><font face="arial"><b>Additional Unity Tilemapping Resources: </b>
+    <li>Exciting uses and VFX with TileMaps on <a href="https://www.reddit.com/r/Unity2D/comments/8e0lt4/grid_movement_using_tilemaps/" target=red1>Reddit</a>         
+</font>
+<li><font face="arial">Making an <a href="https://youtu.be/cAfBQT8q9Ek" target=tm7>Animated Waterfall</a> (Shader Graph)</font>
+<li><font face="arial"><a href="https://www.youtube.com/watch?v=fmNtibNWPhc" target=tilemaps><b>Tile Mapping</b></a> for <a href="https://www.youtube.com/watch?v=ryISV_nH8qw" target=tilemaps2>top-down</a> or <a href="https://www.youtube.com/watch?v=2DsKCJsEzSA" target=iso>isometric</a> layouts. </font>
+<li><font face="arial">Making <a href="https://www.youtube.com/watch?v=aaEEujLtsr8" target=tileset>tilesets</a> in Photoshop.</font>
+<li><font face="arial">Using a <a href="https://youtu.be/UqhK6GpCgrM" target=tm6>Prefab Brush</a></font> <br>
+<br>
+</td>
+</tr></table>
+<br><br>
+
+<img src="gamedesign/bullet.png" alt=""> &nbsp;
+<img src="gamedesign/bullet.png" alt=""> &nbsp;
+<img src="gamedesign/bullet.png" alt=""> &nbsp;
+<img src="gamedesign/bullet.png" alt="">
+
+<br>
+<br>
+<font face=arial><a name="charTop">&nbsp;</a></font><br>
+<table width=800 cellpadding=5 bgcolor=#f5f2f8><tr>
+<td colspan=2 bgcolor=#efe8f6><center>
+  <font size="+2" face="arial"><b>CREATING A 2D CHARACTER:</b></font>
+</center></td>
+</tr><tr>
+
+
+<td width=500 valign=top><font face=arial><a name="player">&nbsp;</a>
+<br><a href="#TOP"><img src="comicsDesign/ArrowUp.png" alt=""></a> <b>PLAYER CREATION</b>: 
+<font face=arial>(<a href="https://youtu.be/Vfq13LRggwk" target=follow>video source</a>)</font>
+
+<p>Want to dive deeper into 2D animation for games? Watch this <a href="https://youtu.be/PKZJmHrG4Yw?si=xe06DnbLTJ8UwcJa" target=gdc>GDC video</a>  
+
+<p>
+<a href="gamedesign/Unity2D/InvPlayer.png" target=croc><img src="gamedesign/Unity2D/InvPlayer.png" alt="" width=64 height=64 align=right></a>Create a <b>Character.png</b> sprite (single pose) or an entire spritesheet (grid of poses, 
+with overall file sized power-of-two-square, and each pose fits into an equally spaced division):
+<br>
+<img src="gamedesign/bullet.png" alt=""> <a href="gamedesign/Unity2D/CharacterSpritesheet_256x256.psd" target=sheet3psd><b><em>256 x 256 spritesheet</em></b></a>: each pose 64x64
+<br>
+<img src="gamedesign/bullet.png" alt=""> <a href="gamedesign/Unity2D/CharacterSpritesheet_512x512.psd" target=sheet3psd><b><em>512 x 512 spritesheet</em></b></a>: each pose 128x128 <br>
+<img src="gamedesign/bullet.png" alt=""> <a href="gamedesign/Unity2D/CharacterSpritesheet_1024x1024.psd" target=sheet3psd><b><em>1024 x 1024 spritesheet</em></b></a>: each pose 256x256 
+
+<br><br>
+These two pixel art examples are 128 x 128, 
+<br>
+and each pose is sized 32 x 32:<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+<a href="gamedesign/Unity2D/CharacterSpritesheet.png" target=sheet2a><img src="gamedesign/Unity2D/CharacterSpritesheet.png" alt=""></a>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+<a href="gamedesign/Unity2D/SwampKid_spritesheet.png" target=sheet2b><img src="gamedesign/Unity2D/SwampKid_spritesheet.png" alt=""></a>
+
+<br><br>
+<center>
+<table width=90% cellpadding=5><tr>
+<td valign=top><font face=arial>
+<br>This image of a mouse-player is <a href="gamedesign/Unity2D/CharacterSpritesheet_256x256.psd" target=sheet3psd><b><em>256x256</em></b></a>. <br><br>
+Each character pose fits in a square 64 x 64.
+<br><br>
+The dots at the bottom make sure  all spaces get a sprite when sliced in Unity, so  the image can be updated without needing to be re-sliced.
+<br>
+</font></td><td valign=top>
+<a href="gamedesign/Unity2D/JasonWiser_PlayerMouse_Spritesheet.png" target=sheet2b><img src="gamedesign/Unity2D/JasonWiser_PlayerMouse_Spritesheet.png" width=256></a>
+</td>
+</tr></table>
+</center>
+
+<br>
+<br>
+<b>ART CREATION STEPS:</b><br>
+(all sizes are for the pixel art characters above)<b><br><br>
+</b><b>1.</b> For each <b>character pose</b> create a sprite sized <b>64x64, 72ppi</b> (for pixel art). Be sure the design and each pose has strong contrast with the background: lighter and/or more saturated colors, and darker outlines.
+<br>
+<em><b>ONLY DRAW ONE DIRECTION</b></em> for a platformer. Code will flip the image for movement in the other direction!<br><br>
+<b>2.</b> <b>Export</b> each frame as a PNG, transparent background. 
+
+<br>
+<br>
+<b>3. Add each frame to a single spritesheet</b> 
+<br>
+For pixel art: 
+<a href="gamedesign/Unity2D/CharacterSpritesheet_256x256.psd" target=sheet3psd><b><em>256x256</em></b></a>, each<b> 64x64</b>, up to 16 poses.
+<br>
+For painterly art:
+<em><a href="gamedesign/Unity2D/CharacterSpritesheet_1024x1024.psd" target=sheet3psd><b>1024x1024</b></a></em>, each <b>256x256</b>, also up to 16 poses.
+
+<br><br>
+Note that in the Zombie <b>1024x1024</b> example to the right:<br>
+&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;  each pose is <b>128 x 256</b>, for up to 32 poses.<br>
+<br>
+To quickly compile a spritesheet from multiple PNGs try
+this free site:
+<br>
+<a href="https://www.codeandweb.com/tp-online/index.html" target=tpo><b>Texture Packer Online</b></a><br>
+&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;1. Hit <b>[Clear]</b> and <b>[Add Sprites]</b>.<br>
+&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;2. Select  all PNGs and hit <b>[Open]</b>.<br>
+&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;3. Set <b>Layout</b> to <b>Compact</b> and <b>Padding = 0</b>.<br>
+&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;4. Hit Download <b>[.png]</b> and done!
+
+<br><br><br><br>
+</font></td>
+<td valign=top align=center>
+<font face=arial>
+Here are spritesheets for <br>
+higher-resolution, 
+<br>painterly character art:
+<br>
+Files = 1024 x 1024<em> <br>
+<br>
+<strong>Player sample</strong>, side orientation <br>
+Each pose = <strong>256 x 256</strong><br>
+(click for larger image):</em> <br>
+<a href="gamedesign/Unity2D/JasonWiser_PlayerSpritesheet_1024.png" target=sheet3png><img src="gamedesign/Unity2D/JasonWiser_PlayerSpritesheet_1024.png" alt="" width=256></a> 
+<br>
+<em>This image includes: <br>
+<strong>Idle</strong>(3 frames), <strong>Jump</strong>(1), <strong>Walk</strong>(6), <strong>Defend</strong>(1), <strong>Hurt</strong>(1), <strong>Attack</strong>(3), <strong>Dead</strong>(1)<br>
+Download this <a href="gamedesign/Unity2D/JasonWiser_PlayerSpritesheet_1024.psd" target=sheet3psd><b>1024x024 PSD</b></a> template file<br>
+<br>
+<br>
+<strong>Enemy Zombie</strong>, forward-facing. <br>
+Each pose = <strong>128 x 256</strong><br>(click for larger image):</em> <br>
+<a href="gamedesign/Unity2D/Zombie_1024.png" target=sheet2><img src="gamedesign/Unity2D/Zombie_1024.png" width=256></a>
+
+<br><br><br>
+<strong><em>Enemy Bacteria</em></strong> spritesheet: <br> 
+Each pose = <strong>256 x 256</strong>
+<br><em>(click for larger image):</em> <br>
+<a href="gamedesign/Unity2D/JasonWiser_EnemyBacteria_spritehseet.png"><img src="gamedesign/Unity2D/JasonWiser_EnemyBacteria_spritehseet.png" width=256></a>
+
+</font></td>
+</tr>
+  <td valign=top><font face=arial>
+  <a name="playerUnity">&nbsp;</a> <br>
+  <a href="#TOP"></a><b>UNITY STEPS:</b><br><br>
+  <b>1.  SPRITE SETTINGS:</b><br>
+  <img src="gamedesign/bullet.png" alt=""> Drag / Import your character spritesheet into  the Project panel. <br>
+  <img src="gamedesign/bullet.png" alt=""> In  the Inspector, set these parameters:<br>
+&nbsp; &nbsp; &nbsp;<b>Pixels Per Unit</b> = 16<br>
+&nbsp; &nbsp; &nbsp;<b>Sprite Mode</b> = Multiple<br>
+&nbsp; &nbsp; &nbsp;<b>Filter Mode</b> = Point<br>
+&nbsp; &nbsp; &nbsp;<b>Compression</b> = none<br>
+&nbsp; &nbsp; &nbsp;Hit <b>[Apply]</b><br>
+<br>
+<br>
+<b>2. SLICE:</b><br>
+<img src="gamedesign/bullet.png" alt=""> Hit <b>[Sprite Editor]</b> to open the Sprite Editor panel.<br>
+<img src="gamedesign/bullet.png" alt=""> Hit &quot;<b>Slice</b>&quot; (upper left), choose <b>Grid by Cell Count</b>, enter <b>Columns</b> and <b>Rows</b> (for the provided sheet, set it to 4x4).<br>
+<img src="gamedesign/bullet.png" alt=""> Hit <b>[Apply] </b>(upper right).<br>
+<br>
+<br><br></font></td>
+<td valign=top><font face=arial>
+
+<br><br>
+<a href="gamedesign/Unity2D/Character2D_slice.png" target=slice><img src="gamedesign/Unity2D/Character2D_slice_thumb.png" alt="" align=right></a><br><br></font></td>
+<tr>
+<td valign=top><font face=arial><em><b>3. PLAYER ART:</b></em><br>
+<img src="gamedesign/bullet.png" alt=""> In  Project panel open  Spritesheet arrow  to see  new sprite objects. <b>
+<br>
+</b><img src="gamedesign/bullet.png" alt=""> <b>Drag</b> the first image into the Hierarchy.<br>
+<img src="gamedesign/bullet.png" alt=""> In Inspector rename it &quot;<b>PlayerArt</b>.&quot;<br>
+<img src="gamedesign/bullet.png" alt=""> To make PlayerArt visible above  Tilemap: set <b>Order in Layer = 100</b>. 
+<br>
+<img src="gamedesign/bullet.png" alt=""> Reset Transforms to position at 0,0, 0.<br>
+<br>
+<br>
+
+<b><em>4. CREATE EMPTY PARENT:</em></b><br>
+<img src="gamedesign/bullet.png" alt=""> Create a <b>GameObject &gt; Empty GameObject</b>, name it &quot;<b>Player</b>&quot;. 
+
+<br>
+<img src="gamedesign/bullet.png" alt=""> Reset Transforms to position at 0,0, 0.<br>
+<img src="gamedesign/bullet.png" alt=""> <b>Drag PlayerArt onto Player</b> to make it a child of Player. 
+<br>
+<img src="gamedesign/bullet.png" alt=""> In Inspector add <b>tag</b> "<b>Player</b>."<br>
+<br>
+<br>
+<em><b>5. ANIMATION:</b></em><br>
+<b>CREATE CLIPS: </b>With  PlayerArt selected in the Hierarchy, go to <b>Window > Animation > Animation</b>.<br>
+<b>a)</b> Create <b>clips</b> for <b>player_idle</b>,  <b>player_walk, player_attack, player_gethit, </b>and <b>player_dead</b><br>(create new clips in the rolldown under the initial clip name, upper-left).<br><br>
+<b>b)</b> <b>Drag</b> your frames into the Timeline for each clip (downclick the triangle on the left to view the frames as art).<br>
+Looping animations like a 2-sprite idle should be 3 keyframes in the timeline (Repeat the first pose at the end. Try 0, 15, and 30).<br>
+<br>
+<br><br>
+</font></td><td valign=bottom>
+<a href="gamedesign/Unity2D/Character2D_Animation.png" target=anim><img src="gamedesign/Unity2D/Character2D_Animation_thumb.png" alt="" align=right></a>
+</td>
+</tr><tr>
+<td valign=top><font face=arial>
+
+<b>6. </b> <b>SET UP  STATE MACHINE:</b><br>
+Doubleclick the Animator in  Project to open the Mecanim State Machine. <br>
+<b>a) </b>Make sure the player_idle clip is the <b>default</b> (orange: if it is not, rightclick it to set as default).<br><br>
+<b>b) </b>Create <b>transitions</b>: rightclick player_idle, choose [Make Transition],  drag to player_walk and leftclick to complete. 
+<br>Create another transtion in the reverse direction. 
+
+<br>For Attack, GetHit, and dead, make transitions from [Any State] to them, and from Attack and GetHit  to Idle (Dead is a dead-end). 
+
+<br><br>
+<b>c) </b>To the left of the state machine open the <b>Parameters</b> tab: 
+<br>&nbsp; &nbsp; &nbsp; &nbsp; Add a <b>Bool Parameter </b>called "<b>Walk</b>." Select the clip transitions to and from player_walk and in the Inspector add the condition &quot;Walk&quot; (idle-&gt; walk = True, walk -&gt; idle = False. Turn off &quot;Has Exit Time,&quot; above). 
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; Also create <b>Trigger parameters</b> called <b>&quot;Attack&quot;</b> and <b>&quot;Hurt</b>.&quot; 
+<br><b>NOTE:</b> This tutorial just uses the one walking animation, but a <b>Blend Tree</b> can be used to manage multiple walking clips for walking in different directions. 
+
+<br>
+<br>
+<br>
+<b><em>7. PHYSICS:</em></b> Add to the Player Game Object: 
+<br>
+<img src="gamedesign/bullet.png" alt=""> Component <b>Physics2D &gt; BoxCollider2D.</b> Adjust collider size and position so it is just around the <b>bottom half</b>.<br>
+<img src="gamedesign/bullet.png" alt=""> Component <b>Physics2D &gt; Rigidbody2D.</b> 
+<br>Set Constraints &gt; Freeze Rotation Z. 
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; If this game is a <b>sidescroller</b>, leave Gravity on. 
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; If this is a <b>top-down</b> game, set <b>Gravity = 0</b>. 
+<br>
+<br>
+<br><br>
+</font></td><td valign=top>
+<a href="gamedesign/Unity2D/Character2D_StateMachine.png" target=state><img src="gamedesign/Unity2D/Character2D_StateMachine_thumb.png" alt="" align=right></a>
+</td>
+</tr><tr>
+<td colspan=2 valign=top2 bgcolor=#efe8f6><font face=arial>
+<a name="move">&nbsp;</a>
+<br><br>
+<b><em>8. PLAYER MOVEMENT SCRIPT:</em></b> 
+<br>
+Create a new C# script, name it &quot;<b>PlayerMovement</b>.cs&quot;. 
+<br>Apply to the parent game object.<br><br>
+</font>
+
+<center>
+<font face="arial"><em>PlayerMove.cs (for a single animation parameter, &quot;moving&quot;)</em>: </font>        
+<table width=98% cellpadding=10 border=1 bgcolor=#f7f7f7><tr>
+<td><font face=arial><font color=#3ab050><b>using</b></font> System.Collections;<br>
+              <font color=#3ab050><b>using</b></font> System.Collections.Generic;<br>
+              <font color=#3ab050><b>using</b></font> UnityEngine;<br>
+              <br>
+              <font color=#3ab050><b>public class</b></font></font> <font color=#31849b face="arial"><b>PlayerMove</b> : <b>MonoBehaviour</b></font><font face="arial"> {<br>
+                <br>
+                &nbsp; &nbsp; &nbsp; &nbsp;<font color=#31849b><b>public</b></font> <font color=#31849b><b>float</b></font> speed = 3f; <font color=#aaaaaa>// player movement speed</font><br>
+                &nbsp; &nbsp; &nbsp; &nbsp;<font color=#31849b><b>private</b></font> <font color=#31849b><b>Vector3</b></font> change; <font color=#aaaaaa>// player movement direction<br></font>&nbsp; &nbsp; &nbsp; &nbsp;<font color=#31849b><b>private</b></font> <font color=#31849b><b>Rigidbody2D</b></font> rb2d;<br>
+                &nbsp; &nbsp; &nbsp; &nbsp;<font color=#31849b><b>private</b></font> <font color=#31849b><b>Animator</b></font> anim;
+                <br>&nbsp; &nbsp; &nbsp; &nbsp;<font color=#31849b><b>private</b></font> Renderer rend; <br> 
+&nbsp; &nbsp; &nbsp; &nbsp;<font color=#31849b><b>private</b></font> bool isAlive = <font color=#31849b><b>true</b></font>; <br>
+&nbsp; &nbsp; &nbsp; &nbsp;<font color=gray>//public AudioSource audioWalk;</font><br>
+&nbsp; &nbsp; &nbsp; &nbsp;<font color=gray>//public AudioSource audioPunch;</font><br><br> 
+&nbsp; &nbsp; &nbsp; &nbsp;<b><font color=#31849b>void</font></b> Start () {
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;anim = GetComponentInChildren&lt;Animator&gt;();
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;rend = GetComponentInChildren&lt;Renderer&gt; ();<br>
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;<font color=#3ab050><b>if</b></font> (gameObject.GetComponent&lt;<font color=#31849b><b>Rigidbody2D</b></font>&gt;() != null) {<br>
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;rb2d = GetComponent&lt;<font color=#31849b><b>Rigidbody2D</b></font>&gt;();<br>
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;}<br>
+&nbsp; &nbsp; &nbsp; &nbsp;}<br><br>
+&nbsp; &nbsp; &nbsp; &nbsp;<b><font color=#31849b>void</font></b> Update() {<br>
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;<font color=#3ab050><b>if</b></font> (isAlive == <font color=#31849b><b>true</b></font>){<br>
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;change = Vector3.zero;<br>
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;change.x = Input.GetAxisRaw(<b><font color=#ed6c0a>&quot;Horizontal&quot;</font></b>);<br>
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;change.y = Input.GetAxisRaw(<b><font color=#ed6c0a>&quot;Vertical&quot;</font></b>);<br>
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;UpdateAnimationAndMove();<br><br>
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;<font color=#3ab050><b>if</b></font> (Input.GetAxis (<b><font color=#ed6c0a>&quot;Horizontal&quot;</font></b>) &gt; <b><font color=#ed6c0a>0</font></b>){<br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;Vector3 newScale = transform.localScale;<br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;newScale.x = 1.0f;<br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;transform.localScale = newScale;<br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;}<br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=#3ab050><b>else if</b></font> (Input.GetAxis (<b><font color=#ed6c0a>&quot;Horizontal&quot;</font></b>) &lt; <b><font color=#ed6c0a>0</font></b>){<br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; Vector3 newScale =transform.localScale;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; newScale.x = <b><font color=#ed6c0a>-1.0f</font></b>;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;transform.localScale = newScale;<br>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;}<br><br>
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;<font color=#3ab050><b>if</b></font> (Input.GetKeyDown(KeyCode.Space)){<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; anim.SetTrigger(<b><font color=#ed6c0a>&quot;Attack&quot;</font></b>);<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;}<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;} <font color=gray>//else {playerDie();}</font><br>&nbsp; &nbsp; &nbsp; &nbsp;}<br>                
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp;<b><font color=#31849b>void</font></b> UpdateAnimationAndMove() {<br>
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;<font color=#3ab050><b>if</b></font> (isAlive == true){<br>
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;<font color=#3ab050><b>if</b></font> (change!=Vector3.zero) {<br>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;rb2d.MovePosition(transform.position + change * speed * Time.deltaTime);<br>
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;anim.SetBool(<b><font color=#ed6c0a>&quot;Walk&quot;</font></b>, <font color=#31849b><b>true</b></font>);
+
+<br>							
+<font face="arial">&nbsp; &nbsp; &nbsp; &nbsp;</font>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;<font color=gray>//if (!audioWalk.isPlaying){ audioWalk.Play(); }</font><br>
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;} <font color=#3ab050><b>else</b></font> {<br>
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;anim.SetBool(<b><font color=#ed6c0a>&quot;Walk&quot;</font></b>, <font color=#31849b><b>false</b></font>);
+
+
+<br>
+<font face="arial">&nbsp; &nbsp; &nbsp; &nbsp;</font>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;<font color=gray>//audioWalk.Stop();</font><br>
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;}<br>
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;}<br>
+&nbsp; &nbsp; &nbsp; &nbsp;}<br><br>
+&nbsp; &nbsp; &nbsp; &nbsp;<font color=#31849b><b>public</b></font> <b><font color=#31849b>void</font></b> playerHit(){<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#3ab050><b>if</b></font> (isAlive == <font color=#31849b><b>true</b></font>){<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;anim.SetTrigger(<b><font color=#ed6c0a>&quot;Hurt&quot;</font></b>);<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;StopCoroutine(ChangeColor());<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;StartCoroutine(ChangeColor());<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br>&nbsp; &nbsp; &nbsp; &nbsp; }<br><br>&nbsp; &nbsp; &nbsp; &nbsp;<font color=#31849b><b>public void</b></font> playerDie(){<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; anim.SetTrigger(&quot;Dead&quot;);<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#3ab050><b>if</b></font> (isAlive == <font color=#31849b><b>false</b></font>) {<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=gray>//Debug.Log(&quot;I'm already dead&quot;);</font><br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#3ab050><b>else</b></font> <font color=#3ab050><b>if</b></font> (isAlive == <font color=#31849b><b>true</b></font>) {<br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; isAlive = <font color=#31849b><b>false</b></font>;<br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; gameObject.GetComponent&lt;Collider2D&gt;().enabled = <font color=#31849b><b>false</b></font>;<br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=gray>//gameObject.GetComponent&lt;Rigidbody2D&gt;().isKinematic = true;</font>
+
+<br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br> &nbsp; &nbsp; &nbsp; &nbsp; }<br><br>&nbsp; &nbsp; &nbsp; &nbsp; IEnumerator ChangeColor(){
+<br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=gray>// color values are R, G, B, and alpha, each 0-255 divided by 100</font> <br> 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; rend.material.color = new Color(<b><font color=#ed6c0a>2.0f</font></b>, <b><font color=#ed6c0a>1.0f</font></b>, <b><font color=#ed6c0a>0.0f</font></b>, <b><font color=#ed6c0a>0.5f</font></b>); <br> 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#3ab050><b>yield return new</b></font> WaitForSeconds(<b><font color=#ed6c0a>0.5f</font></b>); <br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; rend.material.color = Color.white;
+<br> &nbsp; &nbsp; &nbsp; &nbsp; }
+<br>}
+
+<br><br></font></td>
+</tr></table>
+</center>
+<font face="arial">
+<br>
+<em><b>NOTE:</b></em> This script depends on a "<b>GameHandler</b>" to hold the Centralized State: all health and other stats. 
+<br>
+When any enemy or environment hazard does damage to the player, it goes through this object: an Empty Game Object with a GameHandler script and a GameHandler tag.<br>
+<br>
+<br>
+<b>9. </b>RightClick the Project panel to create a new <b>Physic Material 2D</b>.<br>
+<img src="gamedesign/bullet.png" alt=""> Name it &quot;<b>PlayerSlippery</b>.&quot;&nbsp;<br>
+<img src="gamedesign/bullet.png" alt=""> In the Inspector set <b>Friction</b> = 0.1.<br>
+<img src="gamedesign/bullet.png" alt=""> Select the Player and Drag it into the <b>Collider Material slot</b>.<br><br><br>
+</font></td></tr>
+<tr>
+  <td colspan=2><font face=arial>
+<a name="VFX">&nbsp;</a><br>
+<b>EXPLOSIONS: ANIMATING A VISUAL EFFECT:</b><br>
+  </font>
+<table width=250 border=0 align=right>
+<tr>
+ <td valign=top align=center>
+<a href="gamedesign/Unity2D/ExplosionSpritesheet.png" target=croc><img src="gamedesign/Unity2D/ExplosionSpritesheet.png" alt="" width=64 height=64 border=0></a>
+</td><td align=center>
+<a href="gamedesign/Unity2D/SwampGoop_spritesheet.png" target=sheet2><img src="gamedesign/Unity2D/SwampGoop_spritesheet.png" alt=""></a>
+</td>
+</tr></table>
+    <font face=arial><a href="gamedesign/Unity2D/VFX_explosion1.png" target=png></a>
+<br>
+<b>1. </b>Create a <b>VFX spritesheet</b> and export as a PNG: 64x64, each image 32x32 (or download <a href="gamedesign/Unity2D/VFX_explosion1.png" target=png><b>this</b></a>):<br>
+<br>
+<br>
+<b>2. Import</b> the PNG into Unity: <br>
+Select the  Project panel Assets folder, RightClick, hit &quot;Import New Asset&quot;, and choose your file.
+
+<br><br><br>
+<a href="gamedesign/unity2D/unityScripting3a.png" target=image><img src="gamedesign/unity2D/unityScripting3athumb.png" alt="" align=right></a><b>3.</b> Select the PNG in the Project panel. <br>
+In the Inspector set the following and hit <b>[Apply]</b>:<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<b>Sprite Mode</b> = Multiple<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<b>Pixels Per Unit</b> = 16<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<b>Filter Mode</b> = Point (no filter)<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<b>Compression</b> = None<br>
+<br>
+<br>
+<a href="gamedesign/unity2D/unityScripting3b.png" target=image><img src="gamedesign/unity2D/unityScripting3bthumb.png" alt="" align=right></a><b>4.</b> Press <b>[Sprite Editor]</b> button in the Inspector to open the editor. <br>
+<img src="gamedesign/bullet.png" alt=""> Open the Slice button.<br>
+<img src="gamedesign/bullet.png" alt=""> Set Slice &gt; Type= <b>Grid by Cell Count</b>: 2 x 2.<br>
+<img src="gamedesign/bullet.png" alt=""> Hit <b>[Apply]</b>.<br>
+<br>
+<br>
+<b>5. Drag</b> the first new image into the Hierarchy. In the Inspector name it &quot;<b>Boom</b>&quot; and set <b>Order in Layer</b> = <b>105</b>.<br>
+<br>
+<br>
+<b>6.</b> Create a folder under Project panel &gt; Assets &gt; Media called &quot;Animation&quot;.<br>
+<br>
+<br>
+<b>7.</b> Open <b>Window &gt;  Animation &gt; Animation</b>. <br>
+With Boom selected hit the <b>[Create]</b> button at the center. <br>
+Choose the new  Animation folder, and name the new clip &ldquo;<b>boom_anim</b>&rdquo;. <br>
+Hit <b>[OK]</b>. <br>
+<br>
+<br>
+<a href="gamedesign/unity2D/unityScripting3c.png" target=image><img src="gamedesign/unity2D/unityScripting3cthumb.png" alt="" align=right></a><b>8.</b> <b>Drag all 4 sprites</b> into the timeline top. <br>
+<img src="gamedesign/bullet.png" alt=""> <b>Spread</b> the keyframes out between frames 1-30. <br>
+<img src="gamedesign/bullet.png" alt=""> <b>Drag</b> the last sprite in a second time and place it at the end, for a total of 5 images set to frames 1, 10, 20, 30, 40. <br>
+<img src="gamedesign/bullet.png" alt=""> Hit the Animation <b>Play</b> triangle to see the Scene copy animate. <br>
+<img src="gamedesign/bullet.png" alt=""> <b>Adjust</b> timing as you desire. <br>
+<img src="gamedesign/bullet.png" alt=""> <b>Close</b> the Animation panel. <br>
+<br>
+<br>
+<b>9. Make it into a prefab:</b> Drag the Boom object from the Hierarchy into the Project panel. <br>
+Delete the original from the Hierarchy.<br>
+<br>
+<br>
+<b>10. Instantiate with a script:</b> <br>
+Normally this explosion would be activated for a gameplay purpose. 
+<br>
+To create a bullet impact, for example, the script to create the effect would be applied to the projectile. 
+<br>
+Here we will ceate a simple script to "instantiate" (generate) an explosion VFX on a keypress:<br><br>
+<b>a) Create an Empty Game Object.</b> In the Inpector name it &quot;Boomer&quot; and reset Transforms.
+
+
+<br><br>
+<b>b)</b> Create a new <b>C# script</b>, name it &quot;<b>Boomer</b>.cs&quot;. Add the following, save, return to Unity to comile, and apply ti to the Boomer Game Object. <br>
+<br>
+<b>c)</b> <b>Drag</b> the BoomVFX Prefab from the Project panel into the Boomer script &quot;Hit VFX&quot; <b>slot</b> in the Inspector.<br>
+<br>
+    </font>
+<center>
+<font face="arial"><i>Boomer.cs script </i><i>:</i></font> <br>
+<table width=100% cellpadding=10 border=1 bgcolor=#f7f7f7><tr>
+<td><font face=arial> <font color=#3ab050><b>using</b></font> System.Collections.Generic;
+<br><font color=#3ab050><b>using</b></font> System.Collections;
+<br><font color=#3ab050><b>using</b></font> UnityEngine;
+<br><br>
+<font face=arial><font color=#31849b><b>public class </b></font></font><font color=#0070c0><b>Boomer :</b> <b>MonoBehaviour</b></font> {<br>
+            <br>
+            &nbsp; &nbsp; &nbsp;<font color=#31849b><b>public</b></font> GameObject hitVFX; <br>
+            <br>
+            &nbsp; &nbsp; &nbsp;<font color=#31849b><b>void</b></font> Update(){<br>
+            &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;if (<font color=#0070c0><b>Input</b></font>.GetKeyDown(<font color=#e36c0a><b>&quot;space&quot;</b></font>)){<br>
+            &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;<font color=#31849b><b></b></font>Boom();
+            <br>
+            &nbsp; &nbsp; &nbsp;<font color=#31849b><b></b></font>&nbsp; &nbsp; &nbsp;<font color=#31849b><b></b></font>}<br>
+            &nbsp; &nbsp; &nbsp;}<br>
+            <br>
+            &nbsp; &nbsp; &nbsp;<font color=#31849b><b>void</b></font> Boom(){<br>
+            &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;GameObject boomFX = Instantiate(hitVFX, transform.position, Quaternion.identity);<br>
+            &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;StartCoroutine(DestroyVFX(boomFX));<br>
+            &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;}<br>
+            &nbsp; &nbsp; &nbsp;}<br>
+            <br>
+            &nbsp; &nbsp; &nbsp;IEnumerator DestroyVFX(GameObject theEffect){<br>
+              &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;<b><font color=#31849b>yield return new</font></b> WaitForSeconds(<font color=#e36c0a><b>0.5f</b></font>);<br>
+                &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;Destroy(theEffect);<br>
+                &nbsp; &nbsp; &nbsp;}<br>
+            }</font></td>
+        </tr>
+      </table>
+    </center>
+    <font face="arial">&nbsp; </font><font face=arial><br>
+Hit <b>[Play]</b> and then hit <b>[Spacebar]</b> to see the VFX animation!<br>
+<br>
+<br>
+
+    </font></td>
+</tr><tr>
+
+<td colspan=2 bgcolor=#efe8f6><font face=arial>
+<a name="follow">&nbsp;</a><br>
+<b>CAMERA: FOLLOW WITHIN SET LIMITS:</b><br>
+<b>VERSION 1:</b> The quickest way to get the camera to follow the player is to simply Set the <b>Main Camera</b> Position X and Y to 0 and drag it onto the Player to make it a child. 
+<br>
+This is a quick but undesirable solution: it is jittery and unbounded (without limits, it allows us to see beyond the edges of the world, and breaks the immersion). 
+<br>
+Hit <b>Play</b> and walk the character around to test collisions! 
+
+<br><br>
+<b>VERSION 2: Add a script for a Smooth, Bounded Camera:</b>
+<br>
+For a camera that follows the player but does not show outside the play area, <b>unparent</b> the Main Camera from the player and apply <b>CameraMoveBounded.cs</b> script. 
+  
+<br>
+<br>
+In the  Inspector,<b> drag</b> the Player into the "target" script slot and enter the <b><font face="arial">Max</font></b> and <b><font face="arial">Min</font></b> position X and Y values for the UpperRight and LowerLeft corners of the space. The easiest way to get these values is to move the Camera to those corners and copy Transform values. <br>
+If the original space was 2x the game screen size, try max = 2 x 10 and min = -10 x -2. <br>
+<br>
+<em><font face="arial"><b>NOTE:</b></font></em> LERP takes 3 arguments: current position, destination, and speed. CLAMP limits the range of a value between two other values.<br><br>
+<center>
+<em>CameraMoveBounded.cs</em>:
+<table width=750 cellpadding=10 border=1>
+  <tr>
+    <td bgcolor=#f7f7f7><font face=arial><font color=#3ab050><b>using</b></font> System.Collections;<br>
+      <font color=#3ab050><b>using</b></font> System.Collections.Generic;<br>
+      <font color=#3ab050><b>using</b></font> UnityEngine;<br>
+      <br>
+      <font color=#3ab050><b>public class</b></font></font> <font color=#31849b face="arial"><b>CameraMoveBounded : MonoBehaviour</b></font><font face="arial"> {<br>
+        <br>
+        &nbsp; &nbsp; &nbsp; &nbsp;<font color=#31849b><b>public</b></font> <font color=#31849b><b>Transform</b></font> target; <font color=#aaaaaa>// the player</font><br>
+        &nbsp; &nbsp; &nbsp; &nbsp;<font color=#31849b><b>public</b></font> <font color=#31849b><b>float</b></font> smoothing = 0.6f; <font color=#aaaaaa>// how quickly  camera moves to player</font><br>
+        &nbsp; &nbsp; &nbsp; &nbsp;<font color=#31849b><b>public</b></font> <font color=#31849b><b>Vector2</b></font> minPosition; <font color=#aaaaaa>// X and Y values for&nbsp;lower left corner of play area</font><br>
+        &nbsp; &nbsp; &nbsp; &nbsp;<font color=#31849b><b>public</b></font> <font color=#31849b><b>Vector2</b></font> maxPosition; <font color=#aaaaaa>// X and Y values for upper right corner</font><br>
+        <br>
+        &nbsp; &nbsp; &nbsp; &nbsp;<b><font color=#31849b>void</font></b> Update () {<br>
+        &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;<font color=#3ab050><b>if</b></font> (transform.position != target.position){<font color=#31849b><b> <br>
+          </b></font><font face="arial">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;</font><font color=#31849b><b>Vector3</b></font> targPos = new Vector3(target.position.x, target.position.y, transform.position.z);<br>
+        &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;targPos.x=Mathf.Clamp(targPos.x, minPosition.x, maxPosition.x);<br>
+        &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;targPos.y=Mathf.Clamp(targPos.y, minPosition.y, maxPosition.y);<br>
+        &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;transform.position = Vector3.Lerp(transform.position, targPos, smoothing);<br>
+        &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;}<br>
+        &nbsp; &nbsp; &nbsp; &nbsp;}<br>
+        }</font></td>
+  </tr>
+</table>
+<br><br>
+
+</center>
+</font></td>
+
+</tr></table>
+<br><br>
+
+<img src="gamedesign/bullet.png" alt=""> &nbsp;
+<img src="gamedesign/bullet.png" alt=""> &nbsp;
+<img src="gamedesign/bullet.png" alt=""> &nbsp;
+<img src="gamedesign/bullet.png" alt="">
+
+<br><br>
+<a name="pixelTop">&nbsp;</a><br>
+<table width=800 bgcolor=#eef5e9>
+<tr>
+  <td align=center colspan=2 bgcolor=#e6f0df><font face=arial>
+  <center>
+  <font size="+2" face="arial"><b>CREATING PIXEL ART:</b></font>
+</center></font></td></tr><tr>
+<td><a name="PixelArt">&nbsp;</a><br>
+
+<table width=100% cellpadding=5><tr>
+<td valign=top>
+
+<table width=100% cellpadding=0><tr>
+<td width=50% valign=top><font face=arial>
+<a href="#TOP"><img src="comicsDesign/ArrowUp.png" alt=""></a>
+<b>CREATING PIXEL ART IN PHOTOSHOP:</b>
+<br>
+<b>Photoshop notes</b>
+(<a href="https://youtu.be/rLdA4Amea7Y" target=follow>video source</a>). 
+</font></td>
+<td width=50% align=center valign=top><font face=arial>
+<em><b>Don't have Photoshop yet? </b></em><br>
+Try the web PS emulator<a href="https://www.photopea.com/" target=PSDp> <b>PhotoPea.com</b></a> 
+<br>(good for pixel art, saves files to  download folder).
+</font></td>
+</tr></table>
+
+</td>
+</tr></table>
+</font>
+
+<table width=100% cellpadding=5><tr><td with=90% valign=top><font face="arial">
+<b>STEP 1: File Prep:</b>
+<li>Create a  <b>PSD file</b>, <font face="arial"><b>72ppi</b></font>, power-of-2 square (<a href="gamedesign/Unity2D/PixelArt_256x256.psd" target=psd><b>256x256</b></a>),  (<a href="gamedesign/Unity2D/PixelArt_Tree.psd" target=tree><b>64x64</b></a>)</font>
+      <li><font face="arial">Create a <b>smaller PSD file</b> for the SIZE you want your objects to be. For example, <b>environment tiles</b> should be <b>16x16</b>, but <b>characters</b> may be <b>32x32</b> or <b>64x64</b>, and <b>trees</b> may be <b>128x128</b> (and need a bigger master file, like 512x512). Hit <b>[Ctrl/Cmd] + [i] </b>to invert the layer into black and copy the black square into your larger file.</font>
+<li><font face="arial">Create a Layers <b>folder</b>, set <b>opacity = 20%</b> and name it &quot;<b>Grid</b>&quot;. Drag the black square into it and duplicate the black square (<b>[Ctrl/Cmd]+[j]</b> or <b>[alt]+clickdrag</b>) to create enough copies to make a perfect checker board (check that every square touches corners with the ones below). This povides the size for each object you make of this type.</font>
+<li><font face="arial">Create 3 <b>layers</b> above the Grid: <b>pixels_roughs</b>, <b>pixels_colors</b> and <b>pixels_inks</b>.<br>
+  <b><br>
+  STEP 2: Set up your Brush (Pencil) &amp; Eraser (Block):</b>
+<li>Hold down the <b>Brush</b> tool to choose the <b>Pencil</b> tool, and set the brush size small (<b>[ </b>and<b> ]</b>).</font>
+<li><font face="arial">For the <b>Eraser</b> tool, at top change <b>Mode</b> from Brush to <b>Block</b> so it also erases fully with every click. With the paint bucket tool, disable anti-alias at the top. <a href="https://color.adobe.com/create" target=color>Color.Adobe.com</a> for choosing color combinations.<br><br>
+<b>STEP 3: Draw Roughs:</b><br>
+<li>Click the Pencil, set size = 1 pixel and color = black.<li>In  <b>pixels_roughs</b> layer, over upper-left most grid-square, draw your art. Stay loose, use reference, and have fun! This is just to lay down shapes and proportions. You will be re-doing the inks in another layer, so don't sweat details.<li>Set this layer opacity = 30%.<br>
+<br>
+<b>STEP 4: "Final" Inks:</b><br>
+<li>Set draw color to a color (dark but not black: you can change the color to match the area, so a tree trunk can have dark-brown inks and leaves can have dark-green inks).<li>In the <b>pixels_inks</b> layer, draw more-final inks. Use the roughs as  guidelines.
+<li>Choose a light source (usually above and a bit to the left) and make the inks thicker in the opposite direction to represent shadows.<li>Decide where you want the outline to be a full corner and where you want to remove the corner pixel (appears lighter/thinner).<li>Hide the pixels_roughs layer.<br><br>
+<b>STEP 5: Colors:</b><br></font>
+<li><font face="arial">Set draw color to a lighter shade and increase the size of the pencil-brush for easier painting.</font><li><font face="arial"> In the <b>pixels_colors</b> layer (below <b>pixels_inks</b>), paint your flat fill colorsfor all areas. While you can use many colors, in most cases fewer colors can fel more impactful.<br><br>
+<b>STEP 6: Animate:</b><br></font>
+<li><font face="arial">In the grid-squares to the right, draw new poses for the objects you wish to be animated.</font><li><font face="arial"> Characters should show big changes in the poses (entirely new drawings), but objecst like trees can move with much more subtlety (copy over the art and just change some pixels in the leaves to imply a light breeze).<br></font></td>
+<td width=10% valign=top align=center><font face="arial">
+<br><a href="gamedesign/Unity2D/PixelArt_256x256.psd" target=psd><img src="gamedesign/Unity2D/pixelartSteps1.png" alt="" width=200 border=1></a>
+<br><br><img src="gamedesign/unity2D/pixelart4.png" alt="" width=250>
+<br><br><img src="gamedesign/unity2D/pixelart5.png" alt="" width=250> 
+<br><br><img src="gamedesign/Unity2D/pixelartSteps2.png" alt="" width=200>
+<br><br><img src="gamedesign/Unity2D/pixelartSteps3.png" alt="" width=200>
+<br><br><img src="gamedesign/Unity2D/pixelartSteps4.png" alt="" width=200>
+<br><br>
+</font></td>
+</tr><tr>
+<td valign=top><font face=arial><a name="white">&nbsp;</a><br>
+    <font face=arial><a href="#TOP"><img src="comicsDesign/ArrowUp.png" alt=""></a></font> <b>Re-using White Assets</b><br>
+An efficient use of  PNG sprite art is to design it with white fills and a dark outline, and then to adjust the color in the Sprite Renderer. In this way, the same asset can be used for multiple purposes, and can advertise its difference of purpose and meaning through these varied colors.<br><br>
+So, this same slime monster asset can be colored green for one type of enemy  behavior and yellow for another, etc. We can also access this color property in the Renderer with a script to change  color when it is hit, to indicate damage.<br><center><img src="gamedesign/Unity2D/MonsterColors.png"></center>
+
+<br>
+This technique can also be used with pickups like gems, or door switches, etc to make the same asset easy to re-use for multiple purposes.<br><br>
+<br></font></td>
+<td valign=top><font face=arial><br>
+<a href="gamedesign/Unity2D/MonsterColors01.png"><img src="gamedesign/Unity2D/MonsterColors01_thumb.png" alt=""></a><br>
+<br></font></td>
+</tr><tr>
+<td colspan=2>&nbsp;</td>
+</tr><tr>
+<td valign=top bgcolor=#e6f0df><font face=arial><a name="anim">&nbsp;</a><br>
+    <font face=arial><a href="#TOP"><img src="comicsDesign/ArrowUp.png" alt=""></a></font> <b>Animating Environment Elements (WaterFall)</b><br>
+     Look for ways to add life to your environments with animated sprites. Consider machinery with turning gears, fans, or pistons, flags or laundry blowing in the wind, dripping or running water, or anything else that can loop.<br><br>
+<b>1.</b> Paint the assets as a spritesheet, or download this <a href="gamedesign/Unity2D/WaterfallSpritesheet.png" target=waterfall><b>example</b></a>:<br><br>
+<b>2.</b> Import into the Unity Project &gt; Assets folder.<br>
+In <b>Inspector</b> set <b>SpriteMode</b> = <b>Multiple</b> and Hit <b>[Apply]</b>.<br><br>
+<b>3.</b> Open the <b>[Spite Editor]</b>, hit the slice menu slice. 
+<br>Choose <b>Grid By Cell Count</b> and set <b>c</b> and <b>r</b> values (in this example, c = 4 and r = 1). Hit slice and hit <b>[Apply]</b>.<br>
+<br>
+<b>4.</b> In the Inspector, open the twirly by the spritesheet to view all frames. Drag the first into the Hierarchy.<br>
+<br>
+<b>5.</b> In the Inspector name the frame &quot;Waterfall_art&quot; and set Order in Layer to display in front of any background content (like 20).<br>
+<br>
+<b>6.</b> With Waterfall_art selected open the <b>Window &gt; Animation &gt; Animation</b> window, and hit <b>[Create]</b>. Set the name of the clip to &quot;<b>waterfall_anim</b>&quot;.<br>
+<br>
+<b>7.</b> Drag all waterfall frames into the timeline, and then drag the first one again to place at the end.<br>
+<br>
+<b>8.</b> Select all frames in the Timeline and drag the right-side bar to stretch their timing to fill <b>30 frames</b>.<br>Hit <b>[Play]</b> in the Animation panel to test.<br>
+<br>
+Any looping background element can be animated in this way: a flag, window curtain, or laundry blowing on a clothesline, etc. 
+
+<br><br>
+<b>To create a delay</b> (like window shutters that only occasionally open and swing in the breeze) create a <b>BOOKEND</b> in the Timeline: two identical frames separated by time. In the case of an animation that goes from 0-30 like our waterfall, the final frame could be copied to 1.00 (60) or 2.00 (120), depending on the desired pause-length.<br><br>
+<br></font></td>
+<td valign=top bgcolor=#e6f0df><font face=arial>
+<a href="gamedesign/Unity2D/WaterfallSpritesheet.png" target=waterfall><img src="gamedesign/Unity2D/WaterfallSpritesheet_thumb.png" alt=""></a>
+
+<br>
+<a href="gamedesign/Unity2D/Waterfall_step1.png" target=waterfall1><img src="gamedesign/Unity2D/Waterfall_step1_thumb.png" alt=""></a>
+
+<br>
+<a href="gamedesign/Unity2D/Waterfall_step2.png" target=waterfall2><img src="gamedesign/Unity2D/Waterfall_step2_thumb.png" alt=""></a>
+
+<br><br>
+<em>Here is a rough, high-resolution example <br>
+of a tree growth spritesheet (click for larger image):</em> <a href="gamedesign/Unity2D/TreeGrow_1024.png" target=waterfall><img src="gamedesign/Unity2D/TreeGrow_1024.png" width=256></a><br>
+<br></font></td>
+</tr><tr>
+<td colspan=2 bgcolor=#e6f0df>&nbsp;</td>
+</tr>
+
+<tr>
+<td valign=top><font face=arial>
+
+<a name="best">&nbsp;</a><br>
+  <font face=arial><a href="#TOP"><img src="comicsDesign/ArrowUp.png" alt=""></a></font> <em><b>GOOD PRACTICES IN PHOTOSHOP: </b></em>
+  </font>
+  <li><font face="arial">Window &gt; Arrange &gt; <b>New Window for [file name]</b> for a separate window to view the whole while you work on a part.
+</font>
+<li><font face="arial">To scale up an Image Size without anti-aliasing: change Resampling to <b>Nearest neighbor</b>, and retain sharp edges. <br>
+<br><em><b>GRIDS: </b></em></font>
+    <font face="arial"><br><img src="gamedesign/bullet.png" alt=""> View &gt; Show &gt; Grid. </font>
+    <font face="arial"><br><img src="gamedesign/bullet.png" alt=""> View &gt; Show &gt; turn off "Pixel Grid." </font>
+    <font face="arial"><br><img src="gamedesign/bullet.png" alt=""> <b>Edit &gt; Preferences &gt; Guide, Grid &amp; Slices</b>:
+      Set Gridlines Every 1 Pixels, Subdivisions 1 (so the pixels are not further subdivided). </font>
+    <font face="arial"><br>
+<img src="gamedesign/bullet.png" alt="">
+<b>Edit &gt; Preferences &gt; General</b>: change Image Interpolation from "Bicubic" (which supports antialiasing) to "<b>Nearest Neighbor</b>". 
+<br>Hit [OK] to close. </font>
+  <font face="arial"><br>
+  <br>
+  <b>In UNITY: </b>Select the PNG in the Project panel and in the Inspector set <b>Filter Mode</b> to "<b>Point (no filter)</b>" and compression = none to  prevent anti-aliasing when zoomed-in (<a href="https://youtu.be/R44hZgtqMI8" target=follow>video source</a>).
+  
+  <br><br>
+  For <b>CHARACTERS</b> try size 64x64. Be sure the design and each pose has strong contrast with the background: lighter and/or more saturated colors and darker outlines. Export each frame as a PNG. To quickly compile a spritesheet from multiple PNGs use
+  the free website <a href="https://www.codeandweb.com/tp-online/index.html" target=tpo><b>Texture Packer Online</b></a>:
+  <br>&nbsp; &nbsp; &nbsp;1. Hit <b>[Clear]</b> and <b>[Add Sprites]</b>. 
+  <br>&nbsp; &nbsp; &nbsp;2. Select  all PNGs and hit <b>[Open]</b>.
+  <br>&nbsp; &nbsp; &nbsp;3. Set <b>Layout</b> to <b>Compact</b> and <b>Padding = 0</b>. <br>&nbsp; &nbsp; &nbsp;4. Hit Download <b>[.png]</b> and done!
+  
+  <br>
+  <br>
+</font></td>
+<td valign=top><font face=arial><br>
+    <img src="gamedesign/Unity2D/pixelart1b.png" alt="" width=300> <br>
+    <img src="gamedesign/unity2D/pixelart2b.png" alt="" width=300> <br>
+    <img src="gamedesign/unity2D/pixelart3b.png" alt="" width=300><br>
+<br></font></td>
+</tr></table>
+  
+<font face="arial">
+<a name="best2">&nbsp;</a><br>
+<b>Pixel Art Best Practices Advice</b> (video sources: 
+<a href="https://youtu.be/p1t0keLufMw" target=follow>01</a> | 
+<a href="https://youtu.be/R44hZgtqMI8" target=follow>02</a> | 
+<a href="https://www.raywenderlich.com/2888-introduction-to-pixel-art-for-games" target=follow>03</a> | 
+<a href="https://derekyu.com/makegames/pixelart.html" target=follow>04</a>
+) :
+
+<br><br>
+<img src="gamedesign/bullet.png" alt=""> For each main color, make darker &amp; lighter versions for shadow &amp; highlights (<b>shift hue</b> as well as value).
+
+<br><br> 
+<img src="gamedesign/bullet.png" alt=""> "<b>Symmetry in shape, asymmetry in color</b>"
+
+<br><br> 
+<img src="gamedesign/bullet.png" alt=""> Pixel Art is about <b>doing a lot with as little as possible</b>. What do you need to make the object or character recognizable? Which part of a character needs to be emphasized for the gameplay? <br><br> 
+<img src="gamedesign/bullet.png" alt=""> <b>Plan out the relative sizes of objects</b>, and make their pixel detail consistent. A pixel art reference image to see the sizes of characters and other elements helps to keep the team on the same page.
+
+<br><br> 
+<img src="gamedesign/bullet.png" alt=""> If scaling up a piece of pixel art for promotional purposes, <b>only scale on multiples of 100</b>, so the art is not distorted (at 150%, would need to fit 2 pixels into a space of 3).
+
+<br><br> 
+<img src="gamedesign/bullet.png" alt=""> Usually, we want <b>consistent line thickness</b> (1-2 pixels, usually 1).
+
+<br><br> 
+<img src="gamedesign/bullet.png" alt=""> <b>Avoid "pillow shading"</b> -- choose a direction for the light and be consistent.
+
+<br><br> 
+<img src="gamedesign/bullet.png" alt=""> <b>Avoid banding,</b> where all levels of light get equal thickness. Instead, give most to the light and dark areas, with a thin band of penumbra in the middle (if any). Only shade where needed (avoid blurriness of overshading).
+
+<br><br> 
+<img src="gamedesign/bullet.png" alt=""> <b>No gradients: </b>Use Flat colors with variation.
+
+<br><br> 
+<img src="gamedesign/bullet.png" alt=""> <b>"Dithering"</b> is the loose pixels on a surface to break up the form. Use them sparingly to represent the texture of the surface, like wood grain or variations on stone.
+</font>
+
+<br><br>
+<font face="arial"> <img src="gamedesign/bullet.png" alt=""> <b>ANGLE:</b> typically, all architecture faces the screen tilted downwards, so we see the front and the top but not the sides. <br><br>
+<br><b>For designing your Tilemap.PNG: </b>
+<br>
+"<b>Base</b>" ("Background") tiles should fill the square and not include opacity; Grass will typically be one tiling square, through more could be added for variety. A dirt path would be built out of 9 squares: four sides that can tile in one direction (vertically or horizontally), corners, and a center image that tiles in all directions (<em><b>NOTE:</b></em> A <a href="https://youtu.be/Ky0sV9pua-E" target=tm5><b>Rule Tile</b></a> makes easier painting of roads/pipes/ etc.: using the 2D Extras pack template to auto-choose the correct tiles when drawing. Video sources: <a href="https://youtu.be/ybVUs3nHHKg" target=follow>01</a> | <a href="https://youtu.be/6JXAAsVIVbs" target=follow>02</a>).
+  
+  <br><br>
+  "<b>Standing</b>" objects like bushes, trees, and architecture include opacity so we can see base tiles through them. They are built from the same units, so a horizontal fence might be one 16x16 square unit, while a tall tree or statue might be two units vertically, and a house might be nine or more units in a square.
+  
+<br><br><br></font></td></tr></table>
+  
+<br><br><br><br>
+
+<table width=800 cellpadding=10 border=0><tr>
+<td colspan=2 align=center><font face=arial>
+<br>
+<em>Tutorial by Jason Wiser, Madwomb.com. 
+<br>See more Unity tutorials at <a href="http://www.Madwomb.com/Unity" target=unityLearn>http://www.Madwomb.com/Unity</a> </em>
+
+<br><br>
+</font></td>
+</tr></table>
+
+<br><br><br><br>
+
+</center>
+
+</body>
+</html>
+
+
+
+<!--
+<table width=800 cellpadding=10><tr><td valign=top bgcolor=#f2f2e9><font face=arial>  
+<a name="dialogue">&nbsp;</a>
+<center>
+<font size=+2><b>DIALOGUE TEXT DISPLAY:</b></font>
+</center>
+</font>
+
+<br><font face=arial>
+<b>BASIC SIGN  OR NPC TEXT DISPLAY:</b>
+<br><b>Posted Sign</b> (<a href="https://youtu.be/1NCvpZDtTMI?t=98" target=follow>video source</a>)
+</font>
+<br>
+<li><font face=arial> Add sign object art to Hierarchy. Name &quot;Sign.&quot;</font>
+<li><font face=arial> Add <b>Physics 2D &gt; BoxCollider2D</b> twice, change second one to <b>isTrigger</b>, and extend collider downward, for the place the player can stand to view the sign. Add Sign to a new <b>Sorting Layer </b>called "Signs" and move this above the "Player" Sortign Layer so it displays below.</font>
+<li><font face=arial> <b>GameObject &gt; UI &gt; Image</b> to make a Canvas and an Image. Zoom out in Scene view to extend the image to <b>fit</b> the bottom third of the Canvas. Rename &quot;<b>DialogueBox</b>&quot; and set <b>anchor</b> to the center.
+<br>(NOTE: we can replace with a sprite cut into 9 units, for the sides to stretch leaving the corners unstretched, for a word bubble, by moving the green lines in the sprite editor).</font>
+<li><font face=arial> Add &nbsp;a <b>UI &gt; Text</b> object parented to the Dialogue Box image. In Scene view extend to <b>fit</b> the Dialogue Box. <b>Font size 30</b> and color <b>black</b>.
+<br><br>Create a new C# script <b>signDisplay.cs</b>, add to Sign object, add DialogueBox and Text to the script slots, and add intended text to display (like "Abandon All Hope Ye Who Enter Here" or "Parking Lot Ahead"):
+</font>
+  
+<br><br>
+<center>
+<font face="arial"><em>signDisplay.cs:</em></font>
+<table width=90% cellpadding=10 border=1><tr>
+<td><font face=arial><font color=#3ab050><b>using</b></font> System.Collections;
+<br><font color=#3ab050><b>using</b></font> System.Collections.Generic;
+<br><font color=#3ab050><b>using</b></font> UnityEngine;
+<br><font color=#3ab050><b>using</b></font> UnityEngine.UI;
+<br><br>
+          
+          <font color=#3ab050><b>public class</b></font></font> <font color=#31849b face="arial"><b>signDisplay</b> : <b>MonoBehaviour</b></font><font face="arial"> {<br><br>
+  &nbsp; &nbsp; &nbsp; &nbsp;<font color=#31849b><b>public</b></font> <font color=#31849b><b>GameObject</b></font> dialogueBox;<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;<font color=#31849b><b>public</b></font> <font color=#31849b><b>Text</b></font> dialogueText;<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;<font color=#31849b><b>public</b></font> <font color=#31849b><b>string</b></font> dialogue;<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;<font color=#31849b><b>public</b></font> <font color=#31849b><b>bool</b></font> playerInRange;<br>
+  <br>
+            &nbsp; &nbsp; &nbsp; &nbsp;<b><font color=#31849b>void</font></b> Update () {<br>
+            &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=#3ab050><b>if</b></font> (Input.GetKeyDown(KeyCode.Space) &amp;&amp; playerInRange){<br>
+  &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (dialogue.activeInHierarchy){<br>
+  &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;dialogueBox.SetActive(false);<br>
+  &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; } <font color=#3ab050><b>else</b></font> {<br>
+  &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;dialogueBox.SetActive(true);<br>
+  &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;dialogueText.text = dialogue;<br>
+  &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br>
+  &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;}<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;}<br>
+            <br>
+            &nbsp; &nbsp; &nbsp;&nbsp; <font color=#31849b><b>private</b></font> <b><font color=#31849b>void</font></b> OnTriggerEnter2D(<font color=#31849b><b>Collider2D</b></font> other){<br>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; <font color=#3ab050><b>if</b></font> (other.ObjectTag(<font color=#ed6c0a><b>&quot;Player&quot;</b></font>)) {<br>
+            &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; playerInRange = true;<br>
+            &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  <font color=#aaaaaa> //Debug.Log(&quot;Player in range&quot;);</font><br>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;}<br>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<br>
+            &nbsp; &nbsp; &nbsp;&nbsp; <font color=#31849b><b>private</b></font> <b><font color=#31849b>void</font></b> OnTriggerExit2D(<font color=#31849b><b>Collider2D</b></font> other){<br>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; <font color=#3ab050><b>if</b></font> (other.ObjectTag(<font color=#ed6c0a><b>&quot;Player&quot;</b></font>)) {<br>
+  &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; playerInRange = false;<br>
+  &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; dialogueBox.SetActive(false);<br>
+  &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#aaaaaa> //Debug.Log(&quot;Player left range&quot;);</font><br>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;}<br>
+}
+</font></td>
+</tr>
+</table>
+</center>
+<br><br>
+</font></td></tr></table>
+-->
+
+<!--
+
+<center>
+<font size=+2 face="arial"><b>PLAYER MELEE FIGHTING</b></font>
+</center><font face=arial><b>MELEE:</b>
+(<a href=="" target=shoot>Source Video</a>)
+<img src="gamedesign/Unity2D/sdfsdf.png" width=256 align=right border=1>
+<br>
+Your character animation frames can be  a single <b>spritesheet</b>. Select a spritesheet in the  Project and in the Inspector set it from Single to <b>Multiple</b>, hit <b>[Apply]</b>, and <b>Slice</b> to get a file for each image (in Project hit  the spritesheet triangle  to view all). <br>
+<br>
+Apply
+<a href="GameDesign/Unity2D/PlayerShooting.cs" target=unity><b>PlayerMelee.cs</b></a> script to the <b>Player</b>. In Inspector drag the FirePoint from the Hierarchy to the script slot, and the Projectile prefab from the Project into the Script slot. PLAYTEST! 
+<br><br>
+<em><b>Create an Impact Prefab:</b></em>
+<br>
+<b>Drag</b> the impact sprite  into the Hierarchy, name it &quot;Impact,&quot; set Order in Layer = 14.
+<li>Drag the Impact into the Project to make a <b>Prefab</b> and <b>delete</b> it from the Hierarchy.</font>
+<li><font face="arial"> Finally, <b>drag the Impact Prefab</b> to the Effect script slot.
+
+<br>
+<br>
+To make our Player vulnerable to enemies, add the <a href="GameDesign/Unity2D/PlayerHit.cs" target=unity><b>PlayerHit.cs</b></a> script, and drag the Impact prefab into the script slot.
+</font>
+
+<br>
+<br>
+<center>
+  <font size=+2 face="arial"><b>FRIENDLY NPCs</b></font>
+</center>
+<font face="arial">Artificial Intelligence for NPCs in games is not typically advanced learning algorythms, but instead a <b>simple list of responses to specific conditions in the game</b>. For example, consider an enemy that shoots at the player. It moves towards the player until it reaches a specified distance, and retreats if the player gets too close. All of these are responses to one piece of data: the distance from the player. We can capture that data and test against it in the Update() function to decide what the enemy will do.<br><em><b>NOTE:</b></em> These 3 Enemy types/scripts work equally well on 3D games, with Physics modifications:
+
+<br><br>
+<img src="gamedesign/Unity2D/dfgdf" align=right width=256 border=1>
+<b>NPC #1: <font color=purple>2D PATHFINDING</font></b> 
+(<a href="https://www.youtube.com/watch?v=jvtFUfJ6CP8" target=vid>source video</a>)<br>
+This NPC follows a particular path. It an be used for villagers moving about their day or a patrolling guard.<br><br>
+<b>Add NPCpath sprite</b> to Hierarchy. </font>
+<li><font face="arial">Set &quot;Order in Layer&quot; = 4, apply <b>tag</b> &quot;enemy&quot; (create if needed). </font>
+<font face="arial">
+<li>Reset Transforms (0,0,0). 
+<li>Add <b>Physics2D &gt; Rigidbody2D</b>, set <b>Mass = 3</b> and <b>Gravity Scale = 0</b>.
+<li>Add <b>Physics2D &gt; Collider2D</b> (box or circle, set size).
+<li>Apply <a href="GameDesign/Unity2D/EnemyMoveHit.cs" target=unity><b>xxxxx.cs</b></a>.
+<li>Drag to the Project to make a <b>Prefab</b> and <b>delete</b> from the Hierarchy. 
+
+<br><br>
+<img src="gamedesign/Unity2D/dfgdf" align=right width=256 border=1>
+<b>NPC #2:<font color="purple">DIALOGUE</font></b> 
+(<a href="https://www.youtube.com/watch?v=jvtFUfJ6CP8" target=vid>source video</a>)<br>
+This enemy follows the player. If it reaches the player it causes damage and disappears. It takes a specified amount of bullet damage before being removed.<br><br>
+<b>Add NPCdialogue sprite</b> to Hierarchy. </font>
+<li><font face="arial">Set &quot;Order in Layer&quot; = 4, apply <b>tag</b> &quot;enemy&quot; (create if needed). </font>
+<font face="arial">
+<li>Reset Transforms (0,0,0). 
+<li>Add <b>Physics2D &gt; Rigidbody2D</b>, set <b>Mass = 3</b> and <b>Gravity Scale = 0</b>.
+<li>Add <b>Physics2D &gt; Collider2D</b> (box or circle, set size).
+<li>Apply <a href="GameDesign/Unity2D/EnemyMoveHit.cs" target=unity><b>xxxxx.cs</b></a>.
+<li>Drag to the Project to make a <b>Prefab</b> and <b>delete</b> from the Hierarchy. 
+
+
+<br><br><br><br><br><br>
+<center>
+    <font size=+2 face="arial"><b>INVENTORY SYSTEM</b></font>
+  </center>
+An inventory lets us store objectives the Player needs to collect to win, or items for later use (keys, health potions, alternate weapons, etc).
+    
+<br><br>
+<b>SETTING UP  INVENTORY UI:</b> (<a href="https://youtu.be/-xB4xEmGtCY" target=ui1>source video</a>)
+Select the <b>Canvas</b> object in Hierarchy, rename &quot;<b>HUD</b>.&quot;
+<li><b>PANEL: </b>Create a <b>UI &gt; Panel</b> for the inventory background. Align to the bottom-center, size (hit Anchor Preset, choose Center, then width=270 x height=60) and for the Source Image choose a basic button sprite and set to a semi-transparent gray. Name the Panel "<b>Inventory</b>."
+  
+<li><b>SLOT: </b>Make a <b>UI &gt; Image</b>. parent beneath &quot;Inventory,&quot; size 50x50, dark color, name it &quot;<b>Slot</b>.&quot; This will be the background for trhe slot (children appear atop parents).<li><b>BORDER:</b> <b>Duplicate</b> the first image ([Cmd/Ctrl]+[d]), <b>parent</b> below Slot, and name &quot;<b>Border</b>.&quot; Size 50x50, import a PNG with a thin border. Open the [Sprite Editor] and set all borders = 4 so it will scale well. Assign this sprite as Source Image, set color to white. 
+Add component <b>UI &gt; Button</b>, and assign a  <b>Highlight</b> <b>Color</b>. Play to see rollover effect.<br>
+<li><b>ITEM IMAGE: </b>Create a new image, parent below Border, and name &quot;<b>ItemImage</b>.&quot; Import an inventory item sprite as the Source Image and size to fit. 
+<li>Create more slots: duplicate Slot. Select its ItemImage, set Source Image to &quot;None,&quot; and disable the Image component. 
+<li>Select the Inventory Panel, add component <b>Layout &gt; Horizontal Layout Group</b>. Set Child Alignmment to middle-center. Now, when Slots are duplicated, they space themseves evenly on the Panel.<br>
+  <br>
+  <b>INVENTORY SCRIPTS: </b>
+(<a href="https://youtu.be/Hj7AZkyojdo" target=ui1>source video</a>)
+<li>Create a <b>new Empty GO</b>, name it &quot;<b>InventoryManager</b>.&quot; Apply the <a href="GameDesign/Unity2D/InventoryManager.cs" target=unity><b>InventoryManager.cs</b></a> script (list of inventory items, manages events for item Add and Remove). 
+Also add <a href="GameDesign/Unity2D/InventoryItem.cs" target=unity><b>InventoryItem.cs</b></a> to the project, to define the Interface referenced by Inventory.cs.
+<li> Apply <a href="GameDesign/Unity2D/InventoryPlayer.cs" target=unity><b>InventoryPlayer.cs</b></a> script to Player (to call  Inventory.cs when a pick-up-able item is touched), and <b>drag the Inventory GO</b> into the script slot.
+<li> Apply <a href="GameDesign/Unity2D/InventoryHUD.cs" target=unity><b>InventoryHUD.cs</b></a> script to the Canvas HUD (to make the UI changes).
+<li> Add and modify a <a href="GameDesign/Unity2D/InventoryObject.cs" target=unity><b>InventoryObject.cs</b></a> script to each object we want to be pick-up-able.
+</font>
+
+-->
+
+<!-- old
+
+<br><br><br><br>
+<b>PLAYER MOVEMENT</b> 
+(<a href="https://youtu.be/7KiK0Aqtmzc" target=betterJump>Better Jumping source video</a>):
+<li>moving: 
+<a href="https://youtu.be/dwcT-Dch0bA" target="_blank">https://youtu.be/dwcT-Dch0bA</a> 
+<li>jumping: <a href="https://youtu.be/j111eKN8sJw" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://youtu.be/j111eKN8sJw&source=gmail&ust=1579200963392000&usg=AFQjCNEV64Dr0QlIoVbqFFLAGEyF2_MWQQ">https://youtu.be/j111eKN8sJw</a> 
+<li>wall jumping: <a href="https://youtu.be/STyY26a_dPY" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://youtu.be/STyY26a_dPY&source=gmail&ust=1579200962787000&usg=AFQjCNEMpytesWvBLc8Mh6wEIvJHRiiF7A">https://youtu.be/STyY26a_dPY</a> <br> 
+  Add Character sprite to Hierarchy 
+  
+<br><br>
+Introduction to LERP for smooth transitions: <br>
+<img src="gamedesign/bullet.png" alt=""> LERP <a href="https://youtu.be/cD-mXwSCvWc" target=LERP1><b>Basics</b></a>: object motion, light intensity, color <br>
+<img src="gamedesign/bullet.png" alt=""> <a href="https://youtu.be/MFQhpwc6cKE" target=LERP2><b>Smooth</b></a> LERP Camera Following. <br>
+<img src="gamedesign/bullet.png" alt=""> Example <a href="gamedesign/CameraControlLERP.txt" target=LERP3><b>LERP code</b></a>. 
+<br><br><br>
+
+<img src="gamedesign/bullet.png" alt=""> <a href="https://www.youtube.com/watch?v=QkisHNmcK7Y" target=parallax><b>Parallax Scrolling</b></a> alternative script design 
+
+(Manage the <a href="https://answers.unity.com/questions/743148/display-quad-over-sprites.html" target=sort>sorting order</a> between sprites and quads). 
+
+-->
