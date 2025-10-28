@@ -594,16 +594,18 @@ iframe {
 <div class="centerPage">
 <!-- HOME SCREEN DOM CONTENT -->
 
-
-<table width=800 cellpadding=10 border=0><tr>
-<td valign=top>
+<div id="SiteRow_top">
 <a name=theTop>&nbsp;</a> 
-<a href="http://www.madwomb.com/tutorials/GameDesign_Unity.html"><img src="gamedesign/UnityLogo60.png" alt="" align=right></a><font size=+2><b>UNITY 2D Action Tutorial: Platformer and Top-Down Gameplay</b></font><br>
+<a href="http://www.madwomb.com/tutorials/GameDesign_Unity.html"><img src="gamedesign/UnityLogo60.png" alt="Go to Unity Menu" align=right></a>
+
+<font size=+2><b>UNITY 2D Action Tutorial: <br>Platformer and Top-Down Gameplay</b></font><br>
 This tutorial covers 22 modules for Unity Action 2D Games: <b><font color=purple>Platformers</font> </b>and<b><font color=#dc0bdc> Top-Down / Isometric</font></b>. This includes <b>Player and Vehicle Movement</b>, <b>Battling</b>, helpful and enemy <b>NPCs</b>, Interactive Environments and <b>Hazards</b>, <b>Inventory</b> and <b>Pause</b> menus, <b>Audio</b> and <b>Game Feel</b>.<br>
-Peruse each section menu to get inspired! <a href="#explain">Read about how to work in teams</a>! You are not expected to use all of these tutorials in your game: pick and choose the ones that work for your design. Most of these scripts can easily be adapted for 3D games.</font></td></tr></table>
+Peruse each section menu to get inspired! <a href="#explain">Read about how to work in teams</a>! You are not expected to use all of these tutorials in your game: pick and choose the ones that work for your design. Most of these scripts can easily be adapted for 3D games.
+</div>
 
 <br>
 
+<center>
 <table width=800 border=0><tr><td valign=top>
 
 <table width=400 cellpadding=5 bgcolor=#f3e7e7>
@@ -701,8 +703,122 @@ Melee, Shooting, Patrol </b></font></td>
 
 </td></tr>
 </table>
+</center>
 
-<!-- END Index -->
+      <!--  
+<a name=index>&nbsp;</a>
+<br>
+    
+<div id="siteTop3" class="sectionHeader" style="text-align:center">
+	<h2 style="padding-bottom: 10px;">TUTORIAL PARTS</h2>
+</div>
+    
+<div id="siteTop4" style="margin: auto">
+	<div class="w3-row-padding" style="max-width: 90%;">
+		<div class="w3-half">
+        
+	<div style="width:100%; background-color:#f7d3d3; text-align:center; padding:5px">
+	<span class=topic>PART 1:</span> <a href="#01">BASIC PLATFORMER SET-UP</a>
+	</div>
+    
+	
+<span class=topic>[1A]:</span> <a href="#01a">Environment</a>: Tilemapping vs Parallax 
+	
+<br>
+<span class=topic>[1B]:</span> <a href="#01b">Platformer Player</a> Movement (with gravity) 
+    
+<br><span class=topic>[1C]:</span> <a href="#01c">Top-Down Player</a> Move / Setting</font>                    
+<br>
+<span class=topic>[1D]:</span> <b><a href="#01d">Camera Follow</a>: </b>LERP <br>                   
+<span class=topic>[1E]:</span> <b><a href="#01e">GameHandler</a>: </b>Player State, Score/Health UI</font>
+
+<br>
+<span class=topic>[1F]:</span> <b><a href="#01f">Battle</a>: </b>Melee, Shoot, Projectiles, Defense </font>
+
+<br>
+<span class=topic>[1G]:</span> <a href="#01g">Frame Scenes:</a>MainMenu</a>, Win / Lose 
+
+<br>
+<span class=topic>[1H]:</span> Menus: <b><a href="#01h">Pause</a>, <a href="#01h">Shop</a>, </b>and <b><a href="#01h">MiniMap</a></b></font>
+
+<br>
+<span class=topic>[1I]:</span> Level Changes: Switches and<b> <a href="#01i">Doors</a></b></font>
+
+<br>
+<span class=topic>[1J]:</span> Custom Controller Inputs, and Multi-Player: <b><a href="#01j">Local Inputs</a> vs Netcode</b> </b> </font>
+
+<br>
+<span class=topic>[1k]:</span> Read / Write to a <b><a href="#01k">JSON file</a></b></font><br>
+	</div>
+                
+	<div class="w3-half">
+    
+    <div style="width:100%; background-color:#ddeeff; text-align:center; padding:5px">
+    <font color="purple"><b>PART 2:</b></font> <a href="#02">ADVANCED SETTINGS</a>
+    </div>
+                       
+      <span class=topic>[2A]:</span> <a href="#02a"><b>Pickups</b></a><b> / <a href="#02a">Inventory</a>, boosts, keys, </b><b>random</b></font>
+      
+      <br>
+      <span class=topic>[2B]:</span> <b><a href="#02b">Respawn</a>,  Checkpoints, Lives, <font color="#dc0bdc">Map Doors</font></b></font>
+      
+      <br>
+      <font color="#dc0bdc"><b>[2C]:</b></font><b> <a href="#02c">Interactive</a> Environments and <a href="#02c">Hazards</a></b></font>
+      
+      <br>
+      <span class=topic>[2D]:</span> <b>NPC <a href="#02d">Enemy</a>: Melee, Shooting, Patrol </b></font>
+
+<br>
+<span class=topic>[2E]:</span> <b>NPC <a href="#02e">Friendly</a>: Dialogue, Flocking</b></font>
+
+<br>
+<span class=topic>[2F]:</span> <b><a href="#02f">More Moves:</a> Teleport, Hookshot, Vehicle Motion, Flying, Dash, webGL button controller</b></font>
+
+<br>
+<span class=topic>[2G]:</span> <b><a href="#02g">Game Feel</a> (Feedback VFX / SFX</b>) </font>
+
+<br>
+<span class=topic>[2H]:</span> <b>Adding a <a href="#02h">Timer</a> or a Recharge system</b></font>
+
+<br>
+<span class=topic>[2I]:</span> <b>Adding <a href="#02i">Drag and Drop</a></b><b> and a Notepad</b></font>
+
+<br>
+<span class=topic>[2J]:</span> <b>Adding Music and <a href="#02j">Audio Events</a></b><b>&nbsp;</b></font>
+
+<br>
+<span class=topic>[2K]:</span> <b>Intro Animation (add an <a href="#02k">Opening Comic</a>)</b></font><br>
+      </div>
+    </div>
+            
+            <br><br>
+            
+
+	<div class="w3-row-padding">
+	<center>
+	<em>See past narrative game projects from</em> 
+	<a href="GameDesign_MassArt_PastProjects.html" target="MassArt">MassArt</a> <em>and</em> 
+	<a href="GameDesign_Harvard_PastProjects.html" target="Harvard">Harvard</a>
+	</center>
+	</div> 
+            
+                  
+	<div class="w3-row-padding">
+	<center>
+		<br>
+		<button class="accordionAllButton" id="toggleWeeks">
+		Open / Close All Topics
+		</button>
+		<br>
+	</center>
+	</div>
+    
+    </div>
+-->
+        
+
+<!-- END of top area -->
+
 
 
 <!-- START Intro -->
@@ -711,11 +827,9 @@ Melee, Shooting, Patrol </b></font></td>
 <a name="explain">&nbsp;</a>
 <br>
 
-
-<button class="accordion2"><a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a>
-<font face="arial">
+<button class="accordion2">
+<a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a>
 <b>HOW TO USE THESE TUTORIALS and WORK IN TEAMS</b> &nbsp; &nbsp; &nbsp; &nbsp; <em><b>[Click Here To Expand]</b></em>
-</font>
 </button>
 
 <div class="panel">
@@ -901,18 +1015,26 @@ Be sure all code references to Rigidbody and Colliders are <strong>2D</strong>: 
 <br>
 Start by considering the <b>collide-able</b> objects and the <b>non-collidable</b> objects.
 
-<br><br>In a side-oriented <b>PLATFORMER</b>:<br>
+<br><br>In a side-oriented <b>PLATFORMER</b>:
+<ol>
 <li> The collide-able objects are surfaces the Player can jump on and the walls that stop their progress. <br>
 <li> These are usually best made with a Timemap spritesheet. Tilemap layers can also be used for hazards like damage-spikes or lava.<br> 
-<il> The non-collideable objects are images in the background and the foreground that the player moves past, which can be made with more tilemap layers OR with large individual sprites. <br><br>
-In a <b>TOP-DOWN</b> game:<br>
+<il> The non-collideable objects are images in the background and the foreground that the player moves past, which can be made with more tilemap layers OR with large individual sprites. 
+</ol>
+
+<br>
+In a <b>TOP-DOWN</b> game:
+<ol>
 <li> The collide-able objects are the shapes that block player movement. 
 <br>
 <il> Non-collideable spaces are the background the player walks on and foreground objects they walk beneath. 
 <br>
 <li> These are all best made with Timemap Spritesheets painted into Unity Tilemap layers. 
 <br>
-<li> Additional Tilemap layers can be used for hazards like damage-spikes.<br><br>
+<li> Additional Tilemap layers can be used for hazards like damage-spikes.
+</ol>
+
+<br><br>
 <b>ORDER IN LAYER:</b><br>
 Set all  Scene content to <b>Z-Position = 0, </b>except the <b>Camera</b>, with should be <b>Z = -10</b>.<br>
 The display order (what is in front, what is in back) is controlled by the <b>Order In Layer</b> setting in the Inspector (look under SpriteRenderer for each image). The higher numbers appear in front (set Player = 100).<br>
