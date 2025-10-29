@@ -1,0 +1,308 @@
+<html>
+<head>
+<title>Unity2D SideScroller Tutorial</title>
+</head>
+
+<body text=#222222 link=#1e6669 vlink=#7700aa alink=#1088bb>
+
+<center>
+<table width=750 cellpadding=10 border=0>
+<tr>
+  <td valign=top><font face=arial>
+
+<font face=arial><a href="GameDesign_Unity.html"><img src="gamedesign/UnityLogo60.png" alt="" align=right></a></font><font size=+2><b>UNITY - VFX</b></font>
+<br>
+This page covers some useful VFX tutorials to support Game Feel for Player Feedback.<br><br>
+</font><center>
+<font size=+2 face="arial"><b>PARTICLE EFFECTS:</b></font>
+</center>
+<font face=arial>Particles are a great way to create an atmospheric envionment: steam, blowing leaves, weather effects like rain or snow). Or to show responses to player actions by instantiating an effect (assigned to a GameObject variable, then destroy that variable to end the effect): rocket thrust, sparks, impact explosions. <br>
+Consider Mirza's excellent video series on <a href="https://youtu.be/scotjA8xySs" target=mirza>Unity Particles</a><br><br>
+Particles are typically <strong> 2D PNG images of white shapes</strong> displayed on "cards" that always face the camera. The PNG is added to a Material to add to the Particle System. Their final size and color (and all behaviors) are managed using a Particle System, so the PNG itself can simply be a 256 x 256 white image on an empty background. 
+<br>
+SPARKS/GLOW: For a &quot;glow&quot; effect in the particle system, create a PNG with a blur glow around it.<br>
+In Photoshop, create a new file 256x256, 72 ppi. 
+Create a white shape, duplicate [Ctrl/Cmd]+[j]. 
+<br>
+Apply to the duplicate Filter &gt; Blur &gt; Gaussian Blur, radius 10. 
+DoubleClick its layer, add an Outer Glow.<br>
+<br><br>
+<a name="sparks">&nbsp;</a>
+<br>
+<b>SPARKS </b>(<a href="https://youtu.be/HV3g--GyEW0" target=audio>source video</a>)<b>: </b></font><font face=arial>
+<br>
+<strong><em>PART 1:</em></strong> PARTICLE SYSTEM: <br>
+     <b>a. </b><b>GameObject</b> &gt; VFX &gt; Particles. In Inspector name it &quot;particles_Sparks&quot;.
+<br>
+<b>b.</b> Change these particle settings in the Inspector:<br> 
+&nbsp; &nbsp; &nbsp;<strong>Top</strong> Parameters: 
+<br>
+&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;Set <strong>Start Size</strong> to &quot;<strong>Random Between Two Constants</strong>&quot; (click right triangle),  <strong>0.25</strong> and <strong>0.5</strong>. 
+<br>
+&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;Set <strong>Start Lifetime</strong> to &quot;<strong>Random Between Two Constants</strong>&quot;, values<strong> 1</strong> and <strong>2</strong>.<br>
+&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;Set <strong>Start Speed</strong> to &quot;<strong>Random Between Two Constants</strong>&quot;, values <strong>5</strong> and <strong>10</strong>.
+<br>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;Set <strong>Gravity Modifier</strong> up from 0 to <strong>1</strong>. <br>
+&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;Change <strong>Start Color</strong> to a bright yellow-orange. <br> 
+&nbsp; &nbsp; &nbsp;<strong>Shape</strong> (near top): Leave as default Cone. Set <strong>Angle</strong> to 30 and set <strong>Radius</strong> down to <strong>0.1</strong>.<br>
+&nbsp; &nbsp; &nbsp;<strong>Emmission</strong> (near Top): Set <strong>Rate Over Time</strong> up to <strong>50</strong>.
+<br>
+&nbsp; &nbsp; &nbsp;<strong>Color Over Lifetime:</strong> Turn on. Click rectangle to set bottom right tab to red. Leave bottom left tab white, click near it to duplicate and drag to middle (to stay white longer). The red multiplies over original color, to shift red towards end of particle's life.
+
+Top tabs set Opacity: add two middle ones, and enter 0, 180, 200, 0.<br>
+&nbsp; &nbsp; &nbsp;<strong>Collision</strong> (middle bottom): 
+<br>
+&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;Turn this parameter on, change Type from Planes to &quot;<strong>World</strong>&quot;. <br>
+&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;Set <strong>Dampen</strong> = <strong>0.5</strong> and <strong>Bounce</strong> = <strong>0.5</strong>.<br> 
+&nbsp; &nbsp; &nbsp;<strong>Renderer</strong> (near bottom): <br>
+&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;Change Render Mode from Billboard to &quot;<strong>Stretched Billboard</strong>&quot;. <br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Set <strong>Length Scale</strong> down from 2 to <strong>1</strong> and <strong>Speed Scale</strong> up from 0 to <strong>0.01</strong>.&nbsp; &nbsp; &nbsp; 
+<br><br>
+<em><strong>PART 2:</strong></em> Material:<br>
+<b>a.</b> <strong>Download</strong> this image <a href="gamedesign/Unity2D/particle_spark.png" target=sparkArt>particle_spark.png</a>.
+bring this image into your Project: RightClick your Project &gt; Assets panel to choose <strong>Import New Asset</strong>. In the Inspector set <br>
+<b>b.</b> Create a new <strong>Material</strong>, name it <strong>particlesSpark_m</strong>. Drag onto the particle system (appears in Renderer). <br>
+<b>c. Change Material settings: </b>With partucleSpark_m selected, in the Inspector (at top), change <strong>Shader</strong> from Standard to <strong>Particles &gt; Standard Surface</strong>. Add the PNG to the <strong>Albedo</strong> slot and set <strong>Rendering Mode</strong> from Opaque to <strong>Additive</strong>. Turn on <strong>Soft Particles</strong> (so the particles fade when hitting surfaces. Learn more <a href="https://docs.unity3d.com/Manual/shader-StandardParticleShaders.html" target=particlesLearn>here</a>.).
+<br>
+<br>
+<em><strong>PART 3:</strong></em> LIGHTS<br>
+<strong>a.</strong> Create GameObject &gt; Lights &gt; Point Light. Name it &quot;LightTemplate.&quot; Set <strong>Range</strong> = <strong>2</strong>, <strong>Intensity</strong> = <strong>0.2</strong>.<br>
+<strong>b.</strong> Select the Particle System, and find the Lights rolldown. Turn it on. <br>
+<strong>c. </strong>Drag the LightTemplate into the Light slot. Set these values: <br>
+&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;<strong>Ratio = 0.25</strong>
+<br>
+&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;<strong>Range Multiplier = 1.5</strong>
+<br>
+&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;<strong>Intensity Multiplier = 10</strong>
+<br>
+&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;<strong>Maximum Lights = 20</strong>. 
+<br><br><br><br>
+<a name="parallax">&nbsp;</a>
+<br>
+<b>EXAMPLE2.</b> (<a href="https://youtu.be/zit45k6CUMk" target=it>source</a>)
+<br>
+<b>a. </b><b>GameObject</b> &gt; VFX &gt; Particles. In Inspector name it &quot;particles_xxxx&quot;. <br>
+<b>b.</b> sdfsfage. <br>
+<b>c.</b> Wsdfgss. <br>
+<b>d.</b> Isdfd. <br>
+<b>e.</b> Tdgfd). <br>
+<b>f.</b> Drdgdgarchy. <br>
+<b>g.</b> Idfgdgeds. <br>
+<b>h.</b> Clesdfgden. <br>
+<br>
+<strong>Csdfsf:</strong> dfs.
+
+<br><br>
+<a name="parallax">&nbsp;</a> <br>
+<b>EXAMPLE3.</b> (<a href="https://youtu.be/zit45k6CUMk" target=it>source</a>) <br>
+<b>a. </b><b>GameObject</b> &gt; VFX &gt; Particles. In Inspector name it &quot;particles_xxxxxx&quot;. <br>
+<b>b.</b> sdfsfage. <br>
+<b>c.</b> Wsdfgss. <br>
+<b>d.</b> Isdfd. <br>
+<b>e.</b> Tdgfd). <br>
+<b>f.</b> Drdgdgarchy. <br>
+<b>g.</b> Idfgdgeds. <br>
+<b>h.</b> Clesdfgden. <br>
+<br></font><font face=arial><strong>Csdfsf:</strong> dfs. <br>
+<br>
+
+  <br><br>
+  <a name="parallax">&nbsp;</a> <br>
+  <b>USE CODE TO INSTANTIATE PARTICLES</b><br>
+  Particles as feedback usually appear when objects collide, in an OnCollisionEnter() or OnTriggerEnter().
+  In this simple example we will simply uise the keyboard key [P] to Instantiate (create) them.<br>
+  <b>a. </b>Create a <strong>GameObject &gt; VFX &gt; Particles</strong>. In Inspector name it &quot;<strong>particlesTest</strong>&quot;.<br>
+  <b>b.</b> Optionally turn on &quot;Prewarm&quot; for continuous motion (no time to grow).<br>
+  <b>c. </b>Drag particlesTest into the Project panel, to make it a <strong>Prefab</strong>. Delete the original from the Hierarchy.<br>
+  <b>d.</b> Create a <strong>GameObject &gt; Empty Game Object</strong>. Name &quot;<strong>particlesMaker</strong>.&quot; Reset Transforms.<br>
+  <b>e.</b> Add this script to particlesMaker, and drag the particlesTest prefab into the script slot. <br>
+  <br>Hit play to test. Increase the value of particleDuration to watch the partcles run longer.<br>
+</font><font face=arial><br>
+<em>ParticleMaker.cs</em></font><br>
+
+    <table width=750 cellpadding=10 border=1>
+      <tr>
+        <td><font face=arial><font color=#31849b><b>using </b></font>System.Collections;<br>
+          <font color=#31849b><b>using </b></font>System.Collections.Generic;<br>
+          <font color=#31849b><b>using </b></font>UnityEngine;<br>
+          <br>
+          <font color=#31849b><b>public class</b></font> <font color=#365f91><b>ParticleMaker</b></font> : <font color=#365f91><b>MonoBehaviour</b></font> {<br>
+          <br>
+          <font face="arial">&nbsp; &nbsp; &nbsp;&nbsp; </font><font color=#31849b><b>public</b></font> GameObject particlePrefab;<br>	
+          <font face="arial">&nbsp; &nbsp; &nbsp;&nbsp; </font><font color=#31849b><b>public</b></font> float particleDuration = <font color=#ed6c0a><b>0.5f</b></font>;<br>
+          <br>
+<font face="arial">&nbsp; &nbsp; &nbsp;&nbsp; </font><font color=#31849b><b>void</b></font> Update() {<br>		
+&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; <font color=#3ab050><b>if</b></font> (Input.GetKeyDown(KeyCode.P)){<br>			
+&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<font face="arial">&nbsp; &nbsp; &nbsp;&nbsp; </font>GameObject aParticles = Instantiate(particlesPrefab, transform.position, transform.rotation);<br>				
+&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<font face="arial">&nbsp; &nbsp; &nbsp;&nbsp; </font>StartCoroutine(destroyParticles(aParticles)); <br>			
+&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; }
+<br> &nbsp; &nbsp; &nbsp;&nbsp; } 
+<br>
+<br> &nbsp; &nbsp; &nbsp;&nbsp; 	IEnumerator destroyParticles(GameObject particles){
+<br> 
+&nbsp; &nbsp; &nbsp;&nbsp; 		<font face="arial">&nbsp; &nbsp; &nbsp;&nbsp; <font color=#3ab050><b>yield return new</b></font></font> WaitForSeconds(particleDuration); <br> &nbsp; &nbsp; &nbsp;&nbsp; 		<font face="arial">&nbsp; &nbsp; &nbsp;&nbsp; </font>Destroy(particles); <br> 
+&nbsp; &nbsp; &nbsp;&nbsp; 	}<br><br>}
+</font></td>
+</tr></table>
+    <font face="arial"><br><br><br><br> 
+</font>
+
+<table width=100% border=0><tr>
+<td width=20%>&nbsp;</td>
+<td width=80%><font face="arial">
+        <em><strong>TO MODIFY SCRIPTS IN MONODEVELOP:</strong></em>
+        <br>
+      </font></td>
+    </tr>
+  </table>
+<font face=arial><li>
+  <table width=100% border=0>
+    <tr>
+      <td width=80%><font face="arial"><li><font face="arial">DoubleClick  script to open in your editor.
+        </font><li><font face="arial">For  the Manual (to get help): Select a word or line of code and hit [Ctrl]+[&lsquo;].
+          </font><li>Comment-out  selected lines: [Ctrl]+[alt]+[c] (turn gray, not  read by engine).
+            <font face="arial"><li>To deactivate  Code Completion: Tools &gt; General &gt; Enable Code Completion.
+  </font></font></td></tr></table>
+  
+    </font></td></tr></table>
+
+<!--
+<img src="gamedesign/Unity2D/sdfsdff.png">
+-->
+
+<table width=750 cellpadding=10 border=0>
+<tr>
+	<td colspan=2>
+
+<!-- start of bottom code -->
+
+<!--
+
+<center>
+<font size=+2 face="arial"><b>PLAYER MELEE FIGHTING</b></font>
+</center><font face=arial><b>MELEE:</b>
+(<a href=="" target=shoot>Source Video</a>)
+<img src="gamedesign/Unity2D/sdfsdf.png" width=256 align=right border=1>
+<br>
+Your character animation frames can be  a single <strong>spritesheet</strong>. Select a spritesheet in the  Project and in the Inspector set it from Single to <strong>Multiple</strong>, hit <strong>[Apply]</strong>, and <strong>Slice</strong> to get a file for each image (in Project hit  the spritesheet triangle  to view all). <br>
+<br>
+Apply
+<a href="GameDesign/Unity2D/PlayerShooting.cs" target=unity><b>PlayerMelee.cs</b></a> script to the <strong>Player</strong>. In Inspector drag the FirePoint from the Hierarchy to the script slot, and the Projectile prefab from the Project into the Script slot. PLAYTEST! 
+<br><br>
+<em><strong>Create an Impact Prefab:</strong></em>
+<br>
+<strong>Drag</strong> the impact sprite  into the Hierarchy, name it &quot;Impact,&quot; set Order in Layer = 14.
+<li>Drag the Impact into the Project to make a <strong>Prefab</strong> and <strong>delete</strong> it from the Hierarchy.</font>
+<li><font face="arial"> Finally, <b>drag the Impact Prefab</b> to the Effect script slot.
+
+<br>
+<br>
+To make our Player vulnerable to enemies, add the <a href="GameDesign/Unity2D/PlayerHit.cs" target=unity><b>PlayerHit.cs</b></a> script, and drag the Impact prefab into the script slot.
+</font>
+
+<br>
+<br>
+<center>
+  <font size=+2 face="arial"><b>FRIENDLY NPCs</b></font>
+</center>
+<font face="arial">Artificial Intelligence for NPCs in games is not typically advanced learning algorythms, but instead a <strong>simple list of responses to specific conditions in the game</strong>. For example, consider an enemy that shoots at the player. It moves towards the player until it reaches a specified distance, and retreats if the player gets too close. All of these are responses to one piece of data: the distance from the player. We can capture that data and test against it in the Update() function to decide what the enemy will do.<br><em><strong>NOTE:</strong></em> These 3 Enemy types/scripts work equally well on 3D games, with Physics modifications:
+
+<br><br>
+<img src="gamedesign/Unity2D/dfgdf" align=right width=256 border=1>
+<b>NPC #1: <font color=purple>2D PATHFINDING</font></b> 
+(<a href="https://www.youtube.com/watch?v=jvtFUfJ6CP8" target=vid>source video</a>)<br>
+This NPC follows a particular path. It an be used for villagers moving about their day or a patrolling guard.<br><br>
+<strong>Add NPCpath sprite</strong> to Hierarchy. </font>
+<li><font face="arial">Set &quot;Order in Layer&quot; = 4, apply <strong>tag</strong> &quot;enemy&quot; (create if needed). </font>
+<font face="arial">
+<li>Reset Transforms (0,0,0). 
+<li>Add <b>Physics2D &gt; Rigidbody2D</b>, set <strong>Mass = 3</strong> and <strong>Gravity Scale = 0</strong>.
+<li>Add <b>Physics2D &gt; Collider2D</b> (box or circle, set size).
+<li>Apply <a href="GameDesign/Unity2D/EnemyMoveHit.cs" target=unity><b>xxxxx.cs</b></a>.
+<li>Drag to the Project to make a <strong>Prefab</strong> and <strong>delete</strong> from the Hierarchy. 
+
+<br><br>
+<img src="gamedesign/Unity2D/dfgdf" align=right width=256 border=1>
+<b>NPC #2:<font color="purple">DIALOGUE</font></b> 
+(<a href="https://www.youtube.com/watch?v=jvtFUfJ6CP8" target=vid>source video</a>)<br>
+This enemy follows the player. If it reaches the player it causes damage and disappears. It takes a specified amount of bullet damage before being removed.<br><br>
+<strong>Add NPCdialogue sprite</strong> to Hierarchy. </font>
+<li><font face="arial">Set &quot;Order in Layer&quot; = 4, apply <strong>tag</strong> &quot;enemy&quot; (create if needed). </font>
+<font face="arial">
+<li>Reset Transforms (0,0,0). 
+<li>Add <b>Physics2D &gt; Rigidbody2D</b>, set <strong>Mass = 3</strong> and <strong>Gravity Scale = 0</strong>.
+<li>Add <b>Physics2D &gt; Collider2D</b> (box or circle, set size).
+<li>Apply <a href="GameDesign/Unity2D/EnemyMoveHit.cs" target=unity><b>xxxxx.cs</b></a>.
+<li>Drag to the Project to make a <strong>Prefab</strong> and <strong>delete</strong> from the Hierarchy. 
+
+
+<br><br><br><br><br><br>
+<center>
+    <font size=+2 face="arial"><b>INVENTORY SYSTEM</b></font>
+  </center>
+An inventory lets us store objectives the Player needs to collect to win, or items for later use (keys, health potions, alternate weapons, etc).
+    
+<br><br>
+<strong>SETTING UP  INVENTORY UI:</strong> (<a href="https://youtu.be/-xB4xEmGtCY" target=ui1>source video</a>)
+Select the <strong>Canvas</strong> object in Hierarchy, rename &quot;<strong>HUD</strong>.&quot;
+<li><strong>PANEL: </strong>Create a <strong>UI &gt; Panel</strong> for the inventory background. Align to the bottom-center, size (hit Anchor Preset, choose Center, then width=270 x height=60) and for the Source Image choose a basic button sprite and set to a semi-transparent gray. Name the Panel "<strong>Inventory</strong>."
+  
+<li><strong>SLOT: </strong>Make a <strong>UI &gt; Image</strong>. parent beneath &quot;Inventory,&quot; size 50x50, dark color, name it &quot;<strong>Slot</strong>.&quot; This will be the background for trhe slot (children appear atop parents).<li><strong>BORDER:</strong> <strong>Duplicate</strong> the first image ([Cmd/Ctrl]+[d]), <strong>parent</strong> below Slot, and name &quot;<strong>Border</strong>.&quot; Size 50x50, import a PNG with a thin border. Open the [Sprite Editor] and set all borders = 4 so it will scale well. Assign this sprite as Source Image, set color to white. 
+Add component <strong>UI &gt; Button</strong>, and assign a  <strong>Highlight</strong> <strong>Color</strong>. Play to see rollover effect.<br>
+<li><strong>ITEM IMAGE: </strong>Create a new image, parent below Border, and name &quot;<strong>ItemImage</strong>.&quot; Import an inventory item sprite as the Source Image and size to fit. 
+<li>Create more slots: duplicate Slot. Select its ItemImage, set Source Image to &quot;None,&quot; and disable the Image component. 
+<li>Select the Inventory Panel, add component <strong>Layout &gt; Horizontal Layout Group</strong>. Set Child Alignmment to middle-center. Now, when Slots are duplicated, they space themseves evenly on the Panel.<br>
+  <br>
+  <strong>INVENTORY SCRIPTS: </strong>
+(<a href="https://youtu.be/Hj7AZkyojdo" target=ui1>source video</a>)
+<li>Create a <strong>new Empty GO</strong>, name it &quot;<strong>InventoryManager</strong>.&quot; Apply the <a href="GameDesign/Unity2D/InventoryManager.cs" target=unity><b>InventoryManager.cs</b></a> script (list of inventory items, manages events for item Add and Remove). 
+Also add <a href="GameDesign/Unity2D/InventoryItem.cs" target=unity><b>InventoryItem.cs</b></a> to the project, to define the Interface referenced by Inventory.cs.
+<li> Apply <a href="GameDesign/Unity2D/InventoryPlayer.cs" target=unity><b>InventoryPlayer.cs</b></a> script to Player (to call  Inventory.cs when a pick-up-able item is touched), and <strong>drag the Inventory GO</strong> into the script slot.
+<li> Apply <a href="GameDesign/Unity2D/InventoryHUD.cs" target=unity><b>InventoryHUD.cs</b></a> script to the Canvas HUD (to make the UI changes).
+<li> Add and modify a <a href="GameDesign/Unity2D/InventoryObject.cs" target=unity><b>InventoryObject.cs</b></a> script to each object we want to be pick-up-able.
+</font>
+
+-->
+
+<!-- end of bottom code -->
+
+<br>
+<font face=arial>
+    <br><br>
+<i>Tutorial by Jason Wiser, Madwomb.com</i>
+<br>
+</font>
+</td></tr></table>
+
+<br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br>
+
+<!-- old
+
+<br><br><br><br>
+<b>PLAYER MOVEMENT</b> 
+(<a href="https://youtu.be/7KiK0Aqtmzc" target=betterJump>Better Jumping source video</a>):
+<li>moving: 
+<a href="https://youtu.be/dwcT-Dch0bA" target="_blank">https://youtu.be/dwcT-Dch0bA</a> 
+<li>jumping: <a href="https://youtu.be/j111eKN8sJw" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://youtu.be/j111eKN8sJw&source=gmail&ust=1579200963392000&usg=AFQjCNEV64Dr0QlIoVbqFFLAGEyF2_MWQQ">https://youtu.be/j111eKN8sJw</a> 
+<li>wall jumping: <a href="https://youtu.be/STyY26a_dPY" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://youtu.be/STyY26a_dPY&source=gmail&ust=1579200962787000&usg=AFQjCNEMpytesWvBLc8Mh6wEIvJHRiiF7A">https://youtu.be/STyY26a_dPY</a> <br> 
+  Add Character sprite to Hierarchy 
+  
+<br><br>
+Introduction to LERP for smooth transitions: <br>
+<img src="gamedesign/bullet.png" alt=""> LERP <a href="https://youtu.be/cD-mXwSCvWc" target=LERP1><strong>Basics</strong></a>: object motion, light intensity, color <br>
+<img src="gamedesign/bullet.png" alt=""> <a href="https://youtu.be/MFQhpwc6cKE" target=LERP2><strong>Smooth</strong></a> LERP Camera Following. <br>
+<img src="gamedesign/bullet.png" alt=""> Example <a href="gamedesign/CameraControlLERP.txt" target=LERP3><strong>LERP code</strong></a>. 
+<br><br><br>
+
+<img src="gamedesign/bullet.png" alt=""> <a href="https://www.youtube.com/watch?v=QkisHNmcK7Y" target=parallax><strong>Parallax Scrolling</strong></a> alternative script design 
+
+(Manage the <a href="https://answers.unity.com/questions/743148/display-quad-over-sprites.html" target=sort>sorting order</a> between sprites and quads). 
+
+-->
+
+
+</center>
+
+</body>
+</html>

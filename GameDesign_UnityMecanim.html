@@ -1,0 +1,155 @@
+<html>
+<head>
+<title>Unity3D Intro Tutorial</title>
+</head>
+
+<body text=#222222 link=#1e6669 vlink=#7700aa alink=#1088bb>
+
+<center>
+<table width=800 cellpadding=10 border=0>
+<tr>
+  <td valign=top><font face=arial>
+<font face=arial><a href="GameDesign_Unity.html"><img src="gamedesign/UnityLogo60.png" alt="" align=right></a></font><font size=+2><b>UNITY - Introduction to Unity Animation Pipeline</b></font>
+<br>Given a 3D animated  &ldquo;Meeple&rdquo; exported as an FBX mesh and PNG texture, import into Unity. 
+<br>Make  Meeple playable with a Mecanim State Machine.
+
+<br> &nbsp; &nbsp; &nbsp; &nbsp; <font color=purple><b>PART A:</b></font> <a href="#partA">Import files into Unity</a>
+<br> &nbsp; &nbsp; &nbsp; &nbsp; <font color=purple><b>PART B:</b></font> <a href="#partB">Build the Scene</a>
+<br> &nbsp; &nbsp; &nbsp; &nbsp; <font color=purple><b>PART C:</b></font> <a href="#partC">Build the State Machine</a>
+<br> &nbsp; &nbsp; &nbsp; &nbsp; <font color=purple><b>PART D:</b></font> <a href="#partD">Add Player Script</a>
+
+</font>
+
+<br>
+
+<font size=+2 face="arial">
+<center>
+<b>UNITY TUTORIAL #3:<br>
+Mecanim: Animation Controllers and State Machines</b>
+</center>
+</font>
+
+<table width=800 cellpadding=10 cellspacing=0 border=0><tr>
+	<td width=400><img src="../space.png" width=400 height=1></td>
+	<td width=400><img src="../space.png" width=400 height=1></td>
+</tr><tr>
+	<td colspan=2 align=center><img src="gamedesign/UnityTerrain/MecanimProject.png" width=800 height=550></td>
+</tr>
+</table>
+
+<br><br>
+
+<table cellpadding=10 border=0><tr>
+<td valign=top><font face=arial>
+<b>IMPORT ANIMATED 3D  CHARACTER INTO UNITY:</b>
+<br><br>
+<a name="partA">&nbsp;</a>
+<br><b><font color=purple>PART A:</font> Import FBX and PNG files into Unity:</b><br>
+<br>
+1. Create a new 3D Unity Project. In the Project window drag the provided Meeple
+<a href="gamedesignHarvard/Meeple.fbx" target=meeple1><b>FBX</b></a> and texture <a href="gamedesignHarvard/MeepleGoldKnight_JasonWiser.png" target=meeple1><b>PNG</b></a> file into the Assets folder.<br><br>2. Select the FBX in the  Project and in the Inspector choose the top &ldquo;<strong>Model</strong>&rdquo; tab. If texture was not  automatically applied to the FBX, scroll down the Inspector and drag the PNG  texture onto the available slot.<br><br>
+3. Still in the Inspector,  open the &quot;<strong>Animations</strong>&quot; tab. Under &ldquo;<strong>Clips</strong>&rdquo; hit the [+] button three times. Name the  three new clips Idle, Walk, and Animation. Set their ranges to match the frames  in the Maya file (you may need to turn off &quot;clamp ranges&quot; first):<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>Idle:</b>10-40<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>Walk: </b>50-70<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>Jump:</b> 80-100<br><br>4. With each of Idle and Walk  selected turn on Loop Time.<br><br>5. Scroll down to hit  [Apply].<br>The clips are added to Meeple FBX in the Project.<br><br><br><br><br>
+<p align=right>
+<img src="gamedesign/UnityTerrain/mecanim1a_InspectorClips.png" alt="">
+</p></font></td>
+<td><img src="gamedesign/UnityTerrain/mecanim1b_InspectorClips.png"></td></tr></table>
+
+<center>
+<table width=600><tr><td><font face=arial>
+<br><a name="partB">&nbsp;</a>
+<br><b><font color=purple>PART B:</font> Build the Scene:</b>
+<br>
+1. Add a ground: GameObject  &gt; 3D Object &gt; Cube. Inspector: Scale = 7 / 0.3 / 8.
+<br>
+<br>
+2. Add Meeple to  the Hierarchy, to locate it at the Scene origin.
+<br><br>
+3. Add GameObject  &gt; Light &gt; <strong>Directional Light</strong>. In the Inspector set Shadow Type = Hard.
+<br><br>
+4. Rotate the  Camera to face and frame the Meeple. Rotate the Directional light toward the Meeple front.
+<br><br>
+5. <b>Add an Empty GameObject</b>, leave it located at the Scene origin. Name it <strong>MeepleGO</strong> and <b>parent the Meeple (mesh) to MeepleGO (empty game object</b>) by dragging the Meeple mesh onto the empty game object in the Hierarchy<b>.</b>
+<br><br>
+6. Select the parent <strong>MeepleGO</strong> in  the Hierarchy. 
+<br>In Inspector add <strong>Components</strong>: 
+<li>Physics &gt; <strong>Rigidbody</strong> (Constraints: Freeze  Rotations)
+<li>Physics &gt; <b>Box Collider</b> (Collider Size = 0.1 / 0.2 / 0.05, Center = 0 / 0.1 / 0).
+</font></td></tr></table>
+</center>
+
+<br><center><img src="gamedesign/UnityTerrain/mecanim2_Hierarchy.png"></center>
+
+<center>
+<table width=600><tr><td><font face=arial>
+<br><br><a name="partC">&nbsp;</a>
+<br><font color=purple><b>PART C: </b></font><b>Build the State Machine:</b><br>
+1. Create <b>Animator Controller:</b> RightClick in  Project, Create &gt; New Animation Controller. 
+<br>Name it <b>MeepleAnimator.</b> 
+<br>Select the Meeple (mesh child) and in the Inspector  <b>drag  MeepleAnimator into the Animator slot.</b>
+<br><br>
+2. DoubleClick the MeepleAnimator in the Project to open the <b>State  Machine</b> (the Animator Tab).
+<br><br>
+3. Drag the three <b>Animation</b> <b>Clips </b>from the Project into the Animator tab. 
+<br>RightClick the Idle clip to Set as Default State (turns orange).
+<br><br>
+4. Add <b>Transitions:</b> RightClick a Clip in the State  Machine, choose &ldquo;Make Transition,&rdquo; click on target clip. 
+<br>Make four such transitions:  
+<li>Idle -&gt; to -&gt; Walk<li>Walk -&gt; to -&gt; Idle<li>Any State -&gt; to -&gt; Jump<li>Jump -&gt; to -&gt; Idle<br><br>
+  5. Add <b>Parameters:</b> In the neighboring Parameters panel hit [+] to make two Parameters: 
+  <li> a Boolean called  &ldquo;walk&rdquo;</font><li><font face="arial"> a Trigger called &ldquo;jump&rdquo;<br>
+NOTE: These are the hooks that the script will activate, so keep them lowercase to be the same as in the code, below.
+<br>
+<br>
+6. Select each  transition arrow and set <b>Conditions</b> in  the Inspector:<br>
+&nbsp; &nbsp; &nbsp; a. To [Any State -&gt; to -&gt; Jump] add the &quot;jump&quot; Trigger<br>
+&nbsp; &nbsp; &nbsp; b. To [Idle -&gt; to -&gt; Walk]  add the &quot;walk&quot; Boolean (set to true)<br>
+&nbsp; &nbsp; &nbsp; c. To [Walk -&gt; to -&gt; Idle]  add the &quot;walk&quot; Boolean (set to false)<br>
+Turn off  &quot;<b>Has Exit Time</b>&quot; for the walk transitions so that animation starts right away (leave Has Exit Time on for Jump)
+</font></td></tr></table>
+</center>
+
+<br><center><img src="gamedesign/UnityTerrain/mecanim3_Conditions.png"></center>
+
+
+<center>
+<table width=600><tr><td><font face=arial>
+<br><a name="partD">&nbsp;</a>
+<br><font color=purple><b>PART D: </b></font><b>Add Player Script to the &quot;MeepleGO&quot; Empty G.O. (Meeple&rsquo;s Parent):</b><br>
+1. RightClick Project to  <strong>Create &gt; C# Script</strong>, name <strong>PlayerMove.cs</strong>, <strong>drag and drop onto the parent MeepleGO</strong> in the Hierarchy (NOT to the child Meeple).<br><br>
+2. Open the script in your IDE, copy and paste the following script into it (add any recent Unity namespaces). Note this script includes references to the child's <strong><em>Animator</em></strong> and the parent's (self's) <strong><em>RigidBody</em></strong>, and statements to activate our <em><strong>walk</strong></em> and <em><strong>jump</strong></em> Conditions:<br><br>
+<b>Player.CS C# script for WASD movement and Spacebar jumping:</b><br>
+</font></td></tr></table>
+</center>
+
+<center>
+<table width=700 cellpadding=10 border=1><tr>
+<td><font face=arial>
+<font color=#31849b><b>using</b></font> UnityEngine;<br><font color=#31849b><b>using</b></font> System.Collections;<br><br>
+<font color=#31849b><b>public class</b></font> <font color=#365f91><b>PlayerMove</b></font> :  <font color=#365f91><b>MonoBehaviour</b></font> {<br>
+&nbsp; &nbsp; &nbsp; <font color=#365f91><b>public float</b></font> speed = <font color=#e36c0a><b>100f</b></font>;<br>&nbsp; &nbsp; &nbsp; <font color=#365f91><b>Animator</b></font> anim;<br>&nbsp; &nbsp; &nbsp; <font color=#365f91><b>Rigidbody</b></font> rigidbody;<br>
+&nbsp; &nbsp; &nbsp; <font color=#365f91><b>public float</b></font> JumpSpeed = <font color=#e36c0a><b>25f</b></font>;<br><br>&nbsp; &nbsp; &nbsp; void  Start(){<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; anim  = gameObject.GetComponentInChildren&lt;<font color=#365f91><b>Animator</b></font>&gt;();<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; rigidbody  =gameObject.GetComponent&lt;Rigidbody&gt;();<br>
+&nbsp; &nbsp; &nbsp; }<br>
+<br>&nbsp; &nbsp; &nbsp; void  FixedUpdate(){<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>if</b></font> (<font color=#31849b>Input</font>.<font color=#af1b1b>GetAxis</font>(<font color=#af1b1b>&quot;Vertical&quot;</font>)&nbsp;<font color=#008000>&gt;</font>&nbsp;0)  {<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; rigidbody.velocity  += transform.forward * speed;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; anim.SetBool  (<font color=#e36c0a><b>&quot;walk&quot;</b></font>, <font color=#365f91><b>true</b></font>);<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; } <font color=#31849b><b>else if</b></font> (<font color=#31849b>Input</font>.<font color=#af1b1b>GetAxis</font>(<font color=#af1b1b>&quot;Vertical&quot;</font>)&nbsp;<font color=#008000>&lt;</font>&nbsp;0)  {<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; rigidbody.velocity  += transform.forward *<font color=#e36c0a><b> -1</b></font> * speed;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; anim.SetBool  (<font color=#e36c0a><b>&quot;walk&quot;</b></font>,<font color=#365f91><b>true</b></font>);<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; } <font color=#31849b><b>else if</b></font> (<font color=#31849b>Input</font>.<font color=#af1b1b>GetAxis</font>(<font color=#af1b1b>&quot;Horizontal&quot;</font>)&nbsp;<font color=#008000>&gt;</font>&nbsp;0)  {<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; rigidbody.velocity  += transform.right * <font color=#e36c0a><b>-1</b></font> * speed;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; anim.SetBool  (<font color=#e36c0a><b>&quot;walk&quot;</b></font>,<font color=#365f91><b>true</b></font>);<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; } <font color=#31849b><b>else if</b></font> (<font color=#31849b>Input</font>.<font color=#af1b1b>GetAxis</font>(<font color=#af1b1b>&quot;Horizontal&quot;</font>)&nbsp;<font color="#008000">&lt;</font>&nbsp;0)  {<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; rigidbody.velocity  += transform.right * speed;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; anim.SetBool  (<font color=#e36c0a><b>&quot;walk&quot;</b></font>,<font color=#365f91><b>true</b></font>);<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; } <font color=#31849b><b>else if</b></font> (<font color=#365f91><b>Input</b></font>.GetKey(<font color=#e36c0a><b>&quot;space&quot;</b></font>)){<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; anim.SetTrigger(<font color=#e36c0a><b>&quot;jump&quot;</b></font>);<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; rigidbody.AddForce (<font color=#365f91><b>Vector3</b></font>.up  * JumpSpeed);<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; } <font color=#31849b><b>else</b></font> {<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; anim.SetBool  (<font color=#e36c0a><b>&quot;walk&quot;</b></font>,  false);<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; rigidbody.velocity  = new <font color=#365f91><b>Vector3</b></font>(0,rigidbody.velocity.y,0);<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br>&nbsp; &nbsp; &nbsp; }<br>
+}</font></td></tr></table>
+    </center>
+
+
+<center>
+<table width=600><tr><td><font face=arial>
+<br><br><b>Save and Play!</b> [W] [A] [S] [D] to move, [Space] to jump.<br><br>
+<b>NOTE 1:</b> If the animation does not play, be sure you dragged the &quot;MeepleAnimator&quot; Animation Controller from  the Project onto the Meeple mesh in Hierarchy (child) and the Player Script onto the MeepleGO (parent).<br>
+<br>
+<b>NOTE 2:</b> Rather than hard-coding motion to specific keys, we use the <strong>AXIS Inputs</strong> so that motion can use the keys or other controllers. <br>
+To see the input options go to <strong>Edit menu &gt; Project Settings &gt; Inputs</strong>. <br>Learn more about Input scripting <a href="http://unity3d.com/support/documentation/ScriptReference/30_search.html?q=Input" target=unityDocsInp><strong>here</strong></a></font></td></tr></table>
+</center>
+<font face="arial"><br><br><center><img src="gamedesign/UnityTerrain/mecanim4_Play.png"></center></font>
+
+<font face="arial"><br><br><i>Tutorial by Jason Wiser, <a href="http://www.Madwomb.com" target=mw>Madwomb.com</a> </i>
+<br></font></td></tr>
+</table>
+</center>
+
+</body>
+</html>

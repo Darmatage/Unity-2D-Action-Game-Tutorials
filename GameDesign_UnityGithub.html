@@ -1,0 +1,1445 @@
+<html>
+<head>
+<title>GitHub and Unity - Intro Tutorial</title>
+<link rel="stylesheet" href="w3.css">
+
+<style type="text/css">
+
+body,html{
+	margin-left: 0px; 
+	margin-top: 0px; 
+	margin-right: 0px; 
+	margin-bottom: 0px;
+
+	font-size: 16px;
+	font-family: "Arial", "Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", "Helvetica",  "sans-serif";
+	color: #444;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.centerTab{
+	margin: auto;
+}
+
+.centerPage{
+	display:block;
+	/*width:90%;*/
+	max-width: 700px;
+	margin: 0 auto;
+}
+
+.centerPageMedium{
+	margin: auto;
+	width:90%;
+	max-width: 900px;
+}
+
+.centerPageWide{
+	margin: auto;
+	width:90%;
+	max-width: 900px;
+}
+
+.panelWideTextShorter{
+	display:block;
+	width:90%;
+	max-width: 900px;
+	margin: 0 auto;
+}
+
+.homework{
+	color: #228822;
+}
+
+
+/* SECTION 1: WEEKLY MATERIALS */
+	
+	#SiteRow_top{
+		/*background:#aaa;*/
+		width: 90%;
+		margin: auto;
+	}
+	
+	/* logo and course title */
+	#siteTop1{
+		vertical-align: top;
+	}
+	
+	/* quotes and syllabus */
+	#siteTop2{
+		vertical-align: top;
+	}
+	
+	/* course description */
+	#siteTop3{
+		vertical-align: top;
+	}
+	
+	/* weekly breakdown links */
+	#siteTop4{
+		background: #eee;
+	}
+
+
+/* SECTION 2: WEEKLY MATERIALS */
+	
+	/* blue-backed category header */
+	.sectionHeader{
+		background: #b7d7f5;
+		/*text-align:center;*/
+		margin-bottom: -10px;
+	}
+	
+	.sectionHeader h1{
+		text-align:center;
+	}
+	
+	.sectionHeader div{
+		margin-top: -10px;
+	}
+
+	
+/* A WEEK UNIT */
+	.week{
+		background: #eee;
+	}
+	
+	/* week title */
+	.weekTitle h2{
+		padding: 10px;
+		text-align:center;
+	}
+	
+	/* core week materials */
+	#weekArea1{
+		/*background:#ebe5d6;*/
+	}
+	
+	/* code samples */
+	.blockScript{
+		border: 3px solid #66aa66;
+  		border-color: #66aa66;
+  		border-collapse: collapse;
+		border-radius: 10px;
+  		background: #efefef;
+		padding: 10px;
+		text-align:left;
+		margin:auto;
+		width: 90%;
+	}
+	
+	.blockScript2{
+		/*
+		border: 3px solid #66aa66;
+  		border-color: #66aa66;
+  		border-collapse: collapse;
+		border-radius: 10px;
+		*/
+  		background: #efefef;
+		padding: 10px;
+		text-align:left;
+		height: 100%;
+		/*min-width: 320px;*/
+		/*
+		margin:auto;
+		width: 90%;
+		*/
+	}
+	
+	/* note call-outs */
+	.blockNote{
+		border: 3px solid #777;
+  		border-color: #777;
+  		border-collapse: collapse;
+		background:#f1f1e1;
+		padding: 10px;
+	}
+	
+	#studentSamples{
+		background:#eee;
+		padding: 10px;
+		text-align: center;
+	}
+	
+	#sectionBooks{
+		/*text-align:center;*/
+	}
+
+/* PROJECTS */
+#section_Projects{
+	background: #eee;
+}
+
+/* RESOURCES */
+#section_Resources{
+	background: #eee;
+}
+
+/* course description */
+	#FAQ{
+		vertical-align: top;
+		background: #eee;
+	}
+	
+	#Text_Column{
+		width:80%;
+		vertical-align: top;
+		margin:auto;
+	}
+	
+	#Text_Column_schedule{
+		max-width:600px;
+		min-width:200px;
+		vertical-align: top;
+		margin:auto;
+		padding: 10px;
+	}
+
+/* COPYRIGHT */
+#section_copyright{
+	text-align:center;
+	/* right elements move under left elements */
+	/* clear: left; */
+}
+
+/* modifiying the w3 */
+	.w3-half{
+		padding-left: 7px;
+		padding-right: 7px;
+	}
+	
+	.AccordionArrow{
+		float: right;
+	}
+	
+
+/* FONTS: */
+	#text_CourseTitle{
+		font-size: 28px;
+		line-height:1.25;
+		/* use number instead of bold, in hundreds*/
+		font-weight: 600;
+		color: #555;
+		text-align:left;
+	}
+	
+	h1{
+		font-size: 30px;
+		font-weight: 600;
+		color: #444;
+		/*text-align:center;*/
+		margin-top: 10px;
+	}
+	
+	h2{
+		font-size: 22px;
+		font-weight: 600;
+		color: #444;
+		/*text-align:left;*/
+		padding-top: 15px;
+		padding-bottom: 0px;
+		line-height:1;
+	}
+	
+	/*
+	.sectionHeader +h2 {
+		text-align:center;
+		margin-bottom:0;
+		padding-bottom:15px;
+	}
+	*/
+	
+	/* change paragraphs after h2: */
+	h2 +p{
+		margin-top: -10px;
+	}
+	
+	h3{
+		font-size: 19px;
+		font-weight: 500;
+		color: #444;
+		text-align:left;
+		padding-top: 15px;
+		padding-bottom: 0px;
+	}
+	
+	h3 +p{
+		margin-top: -10px;
+	}
+	
+	/*
+	h3 +ul{
+		margin-top: -10px;
+	}
+	*/
+	ul{
+		margin-top: -10px;
+	}
+
+	#text_label{
+		font-size: 14px;
+		color: #444;
+		text-align: center;
+		margin: auto;
+		margin-top: 10px;
+	}
+	
+	.topic{
+		color: purple;
+		font-weight: 500;
+	}
+	
+/* RULE: pseudoelements change all tags / linked text */
+	a{
+		color:#1e6669;
+		font-weight: 600;
+		text-decoration: none;
+	}
+	
+	a:active{
+		color:#1088bb;
+		font-weight: 600;
+	}
+	
+	/*
+	a:visited{
+		color:#7700aa;
+	}
+	*/
+	
+	a:hover{
+		color:#7700aa;
+		font-weight: 600;
+		text-decoration: underline;
+	}
+	
+	a:focus {
+		outline: 3px solid blue;
+		font-weight: 600; 
+	}
+	
+	input:focus, textarea:focus, button:focus {
+		outline: 3px solid blue;
+	}
+	
+	a.myButton{
+		background-color:#1e6669;
+		padding: 8px;
+		border: #000 solid 1px;
+		display: inline-block;
+		border-radius:5px;
+		font-size:18px;
+		color:#fff;
+		text-transform:uppercase;
+	}
+	
+	a.myButton:hover{
+		background-color:#fff;
+		color:#1e6669;
+		text-decoration: none;
+	}
+	
+	.accordionAllButton{
+		background-color:#1e6669;
+		padding: 8px;
+		border: #000 solid 1px;
+		display: inline-block;
+		border-radius:5px;
+		font-size:14px;
+		color:#fff;
+		text-transform:uppercase;
+		margin-top: 15px;
+		margin-bottom: 15px;
+	}
+	
+	.accordionAllButton:hover {  
+		background-color:#fff;
+		color:#1e6669;
+		text-decoration: none;
+		cursor: pointer;
+	}
+	
+	.video{
+		max-width:100%; 
+		max-height:100%;
+		margin-bottom: 10px;
+	}
+	
+	.table_callout {
+		border: 3px solid #fff;
+		border-color: #fff;
+		/*border-collapse: collapse;
+		background-color: #efefef;*/
+		border-radius: 10px;
+	}	
+	
+	.table_callout td, .table_callout th {
+    	border: 1px solid #fff;
+	}
+	
+	
+	/*	
+	.toggleBox{
+		background-image: url("IntroMaya/AccordionArrow_up.png");
+		background-position: right;
+		width:100%;
+	}	
+	
+	.toggleBox.open{
+		background-image: url("IntroMaya/AccordionArrow_down_outline.png");
+	}
+	*/
+	
+	li::marker {
+  		/*color: #4f91cd;
+		Darker, for better contrast:
+		*/
+		color: #18467c;
+	}
+	
+	.UpArrow:hover{
+    	filter: invert(1) drop-shadow(1px 1px 1px #555);
+	}
+</style>
+
+<!-- VIDEO LAZY LOADING: CSS -->
+<style>
+img {
+	height: auto;
+	max-width: 100%;
+}
+
+iframe {
+	aspect-ratio: 16 / 9;
+}
+
+.thirdVideo{
+	width:200px;
+}
+
+/* lazy loading: overlay play-SVG */
+.img-overlay-wrap {
+  position: relative;
+  display: inline-block; /* <= shrinks container to image size */
+  transition: transform 150ms ease-in-out;
+}
+
+.img-overlay-wrap img { /* <= optional, for responsiveness */
+   display: block;
+   max-width: 100%;
+   height: auto;
+}
+
+.img-overlay-wrap svg {
+  position: absolute;
+  /*width:100%;*/
+  width:50%;
+  height:auto;
+  top: 0;
+  left: 0;
+  margin:auto;
+}
+
+.img-overlay-wrap path:hover {
+  /*transform: rotate( 15deg );*/
+  /*width:60%;*/
+  fill:white;
+}
+
+.w3-half1 {		padding-left: 7px;
+		padding-right: 7px;
+}
+
+</style>
+
+<!-- grey accordion: active/open header and backgrounds -->
+<style>
+.panel { 
+	max-width: 900px;
+	width: 90%;
+	padding: 0 18px;
+	background-color: #eee;  
+	overflow: hidden;  
+	transition: max-height 0.2s ease-out;
+	text-align:left;
+	margin: auto;
+}
+/*.panel { padding: 0 18px;  background-color: #eee;  max-height: 0; overflow: hidden;  transition: max-height 0.2s ease-out;}*/
+
+.panelBG1{
+	background:#ebe5d6;
+}
+
+/* green */
+.panelBG_green{
+	background:#d0e2d0;
+	/*d9ebd9*/
+}
+
+
+/* dark blue */
+.panelBG_bluedark{
+	background:#d4e5e5;
+}
+
+/* blue */
+.panelBG_blue{
+	background:#d7ebef;
+	/* e9e9fa */
+}
+
+/* pale green blue */
+.panelBG_bluepale{
+	background:#d6ebea;
+	/* edf7f7 */
+}
+
+/* purple */
+.panelBG_purple{
+	background:#e9e9fa;
+}
+
+/* purple dark */
+.panelBG_purpledark{
+	background:#dbdbf8;
+}
+
+/* pink */
+.panelBG_pink{
+	background:#ede3e4;
+	/*ead6d8*/
+}
+
+
+
+.accordion{
+	/*margin: auto; */
+	width:90%; 
+	max-width: 900px;
+	
+	margin-top: 15px;
+	text-align: left;
+	
+	display:block;
+	margin: 0 auto;
+}
+
+
+</style>
+
+<!-- red accordian -->
+<style>
+.accolordion1 { background-color: #e9dede; color: #444; cursor: pointer; padding: 18px;  border: none;  text-align: left;  outline: none; font-size: 16px; font-family: arial; transition: 0.4s; }
+.accolordion1:hover { background-color: #dec5c5;}
+.accolordion1:focus { background-color: #dec5c5; outline: 0px solid #fff;}
+.accolordion1:after { content: '\002B';  color: #e9dede;  font-weight: bold;  float: right;  margin-left: 5px;}
+.accolordion1 .active { background-color: #e9dede;}
+.active:after {  content: "\2212"; }
+.accolordion1 .panel { padding: 0 18px;  background-color: #e9dede;  max-height: 0; overflow: hidden;  transition: max-height 0.2s ease-out;}
+</style>
+
+<!-- blue accordian d1e2e5 e0e7e8-->
+<style>
+.accolordion2 { background-color: #d1e2e5;  color: #444;  cursor: pointer;  padding: 18px; border: none;  text-align: left;  outline: none;  font-size: 16px; font-family: arial; transition: 0.4s;}
+.accolordion2:hover { background-color: #b3d2d8;}
+.accolordion2:focus { background-color: #b3d2d8; outline: 0px solid #fff;}
+.accolordion2:after { content: '\002B';  color: #d1e2e5;  font-weight: bold;  float: right;  margin-left: 5px;}
+.accolordion2 .active { background-color: #d1e2e5;}
+.active:after {  content: "\2212";}
+.accolordion2 .panel { padding: 0 18px;  background-color: #d1e2e5;  max-height: 0; overflow: hidden;  transition: max-height 0.2s ease-out;}
+</style>
+
+<!-- yellow accordian -->
+<style>
+.accolordion3 { background-color: #eeecdd; color: #444; cursor: pointer;  padding: 18px; border: none; text-align: left; outline: none; font-size: 16px; font-family: arial; transition: 0.4s;}
+.accolordion3:hover { background-color: #e0dbb8;}
+.accolordion3:focus { background-color: #e0dbb8; outline: 0px solid #fff;}
+.accolordion3:after { content: '\002B';  color: #eeecdd;  font-weight: bold;  float: right;  margin-left: 5px;}
+.accolordion3 .active { background-color: #eeecdd;}
+.active:after {  content: "\2212";}
+.accolordion3 .panel { padding: 0 18px;  background-color: #eeecdd;  max-height: 0; overflow: hidden;  transition: max-height 0.2s ease-out;}
+</style>
+
+<!-- purple accordian e7d9e7 e7d5e7-->
+<style>
+.accolordion4 { background-color: #e7d9e7; color: #444; cursor: pointer;  padding: 18px; border: none; text-align: left; outline: none; font-size: 16px; font-family: arial; transition: 0.4s;}
+.accolordion4:hover { background-color: #dbbbdb;}
+.accolordion4:focus { background-color: #dbbbdb; outline: 0px solid #fff;}
+.accolordion4:after { content: '\002B';  color: #e7d9e7;  font-weight: bold;  float: right;  margin-left: 5px;}
+.accolordion4 .active { background-color: #e7d9e7;}
+.active:after { content: "\2212";}
+.accolordion4 .panel { padding: 0 18px;  background-color: #e7d9e7;  max-height: 0; overflow: hidden;  transition: max-height 0.2s ease-out;}
+</style>
+
+<!-- green accordian d5f0de cbecd6 -->
+<style>
+.accolordion5 { background-color: #d5f0de; color: #444; cursor: pointer;  padding: 18px; border: none;  text-align: left; outline: none; font-size: 16px; font-family: arial; transition: 0.4s;}
+.accolordion5:hover { background-color: #bce2c9;}
+.accolordion5:focus { background-color: #bce2c9; outline: 0px solid #fff;}
+.accolordion5:after { content: '\002B';  color: #d5f0de;  font-weight: bold;  float: right;  margin-left: 5px;}
+.accolordion5 .active { background-color: #d5f0de;}
+.active:after { content: "\2212";}
+.accolordion5 .panel { padding: 0 18px;  background-color: #d5f0de;  max-height: 0; overflow: hidden;  transition: max-height 0.2s ease-out;}
+</style>
+
+</head>
+
+<body text=#222222 link=#1e6669 vlink=#7700aa alink=#1088bb>
+
+<center>
+<table width=700 cellpadding=10 border=0>
+<tr>
+  <td valign=top>
+
+  <a href="GameDesign_Unity.html"><img src="gamedesign/UnityLogo60.png" alt="" align=right></a>
+  <a name=TOP>&nbsp;</a>
+
+
+<font size=+2 face=arial><b>UNITY - Github for Unity Collaboration</b></font>
+<p>
+<font face=arial>
+Teams use VERSIONING software to both keep track of changes and share work on project. Github, using the Github Desktop client, is a free and effective versioning tool, if used properly (Source <a href="https://youtu.be/qpXxcvS-g3g" target=vid>video</a>). </font>
+
+
+<center>
+<table width=100% cellpadding=20>
+<tr>
+  <td width=50% valign=top bgcolor=#eef5ee>
+	<strong>Getting Started:</strong><br>
+	<font color=purple><b>[A]:</b></font> <strong>ONE</strong> person per team: Github Repo 
+    <a href="#01">Set-Up</a> 
+
+      <p>
+      <font color=purple><b>[B]:</b></font> <strong>EVERYONE:</strong> 
+      <a href="#02">Local Clone Set-Up</a>
+      </td>
+</tr>
+<tr>
+
+	<td bgcolor=#d4e8ee>
+    <font color=purple><b>[C]:</b></font> <strong>Every Day you work on the game:</strong>
+    
+        <table width=100% cellpadding=20><tr>
+          <td valign=top bgcolor=#f5eeee>
+        <a href="#03">The GitHub Repo Update Process</a>
+        <br>
+        Steps for how to PULL your teammates' changes and PUSH your changes!
+        
+        </td></tr></table>
+	</td>
+</tr>
+<tr>
+
+    <td width=50% valign=top bgcolor=#f2e9e2><font color=purple><b>[D]:</b></font> Working with GitHub <a href="#04">Branches</a> (or not!)
+</tr><tr>
+
+    <td valign=top bgcolor=#eeeef5><font color=purple><b>[E]:</b></font> Resolving GitHub <a href="#05">Conflicts</a> 
+    and <a href="#05b">safely removing</a> the repo</td>
+</tr><tr>
+	<td bgcolor=#eef5ee>
+    <font color=purple><b>[F]:</b></font> ADVANCED: <a href="#06">Learn More</a> About GitHub, including linked Discord pushes and automatic Unity WebGL builds!
+    </td>
+</tr></table>
+</center>
+
+
+<p>
+<div style="width:100%;  padding:20px">
+<h2>TERMS:</h2>
+<p>
+  "<b>Repo</b>" = Repository; the online folder holding your team project, hosted by GitHub.com.<br>
+
+  
+  <p> "<b>Clone/Local Repo</b>" = The repository copy located on your computer, updated with Github Desktop Client app.<br>
+
+    
+  <p> "<b>Fetch</b>" = In GitHub Desktop, <em>refresh</em> the History list to see what changes have been made. 
+    <br>
+
+    
+  <p> "<b>Pull</b>" = Copy all recent changes to your local repository.<br>
+
+    
+  <p> "<b>Summary/Commit</b>" = Type a description of the changes you mde and hit Commit to prepare to upload..
+    <br>
+
+    
+  <p> "<b>Push</b>" = Upload the changes you made to the online team repo, so others can see them with Fetch and Pull them to their own machines.<br>
+
+    
+  <p>&quot;<b>Conflict</b>&quot; = When a changed file  on a local copy of an object/script/Scene in the game cannot be <em>Pushed</em> because someone else has <em>Pushed</em> a  different copy since the last time the first person <em>Pulled</em> (downloaded teammate changes). This is usually resolved by  the first person documenting and deleting their work (&quot;<b>Discard</b>&quot; that item in their change list in Github), Pulling the version already  on GitHub, and reproducing their own work in the new copy of the file. 
+    <br>
+
+    
+  <p> &quot;<b>Revert / Undo</b>&quot; = Don't do this in our team projects this semester. Ever, ever, ever. Contact us for alternatives!
+    <br>
+
+  
+  <p> &quot;<b>Stash</b>&quot; = Don't do this either. It create worse problems with Unity. Avoid by pulling before you Commit, and dscarding any conflicting files.
+<br>
+</div>
+
+<!-- end of TERMS -->
+
+<p>
+
+
+<!-- Start of Sign up and install -->
+<div style="background-color:#eef5ee; width:100%; padding:20px">
+
+<a name="01">&nbsp;</a> 
+        <br>
+        <b><font face=arial><a href="#TOP"><img src="comicsDesign/ArrowUp.png" alt=""></a></font><font color=purple> [A]:</font> BASIC GITHUB REPOSITORY <font color=#8888ee>SET-UP</font></b> (OnGitHub.com):
+        
+<p>
+<h3>1. EVERYONE on the team: Sign-up on <a href="https://github.com/" target=gh>GITHUB.COM</a> and choose a USERNAME:</h3>
+<br>
+<p> 
+Go to <a href="https://github.com/" target=gh><b>Github.com</b></a> to make an <b>account login:</b> 
+<ul>
+<li>Enter your <strong>email</strong>, a <strong>password</strong>, and a <strong>username</strong> (a username that includes your actual name is usually more convenient for the team)<em>.</em> 
+<li><em><strong>Keep careful track of this login information!</strong></em>
+<li> 
+  Share your <b>username</b> with your teammates and teacher. 
+<li>Jason's username is <em>Darmatage</em>.
+</ul>
+  
+  <br><br>
+<h3>2. ONE PERSON per team: CREATE the REPO  on <a href="https://github.com/" target=gh>GITHUB.COM</a>:
+</h3>
+<ol type="a">
+  <li>On GitHub.com, hit the <b>[Start a Project]</b> button or <b>[New] </b>button (upper left).
+
+<p>
+<li>Choose a repository <b>name</b> (no spaces).<font face="arial">Add a <b>GitIgnore</b> and choose <strong>Unity</strong> (will need to be replaced) before hitting <b>[Create Repository]</b>. 
+  
+  
+  <p>
+  <li><strong>Before uploading your initial Unity project</strong>, <strong>REPLACE</strong> the GitIgnore on your computer with this <a href="gamedesign/GitIgnore_UnityCorrectPaths.zip" target=gitig1>GITIGNORE,</a> to be sure only core project assets get shared (and computer-specific settings are ignored, so Mac and PC computers can work well together).
+
+
+    <p>
+<li>Add your teammates to this repository: Choose the <b>Settings</b> tab and In left-Menu, click &quot;<b>Manage Access</b>&quot;.
+Hit <b>[Invite a Collaborator]</b> to add your teammates' GitHub usernames to this repository (sends them an invitation email from your username).
+</ol>
+
+<br>
+</div>
+
+<!-- end of 1: Sign Up -->
+
+<p>
+
+
+<!-- Start of GitHub set up -->
+<div style="background-color:#eef5ee; width:100%; padding:20px">    
+    <a name="02">&nbsp;</a> <a href="#TOP"></a><br>
+      <b><a href="#TOP"><img src="comicsDesign/ArrowUp.png" alt=""></a><font color=purple> [B]:</font> LOCAL PROJECT <font color=#8888ee>SET-UP</font></b> (on everyone's computer):
+
+<p>
+<h3 style="color:purple">1. Download the Github Client</h3>:       
+      <p>Go to <a href="https://desktop.github.com/" target=desktop>desktop.Github.com</a> and download the Github Desktop client installer.       
+      <p>Hit Run.       
+      <p>When prompted, enter the<strong> same email and password</strong> as for the GitHub account you created (File &gt; Options to reset the login if needed).
+      <p>
+<a href="gamedesign/GitHub/GitHub01.png" target=new><img src="gamedesign/GitHub/GitHub01.png" alt="1" style="width:100%, height:auto"></a>
+      
+<br><br>
+<p>
+<h3 style="color:purple">2. FIND the INVITE in your EMAIL </h3>
+<p>Team members who were not the GitHub Repo creator:
+<ol type="a">
+<li>In another brower tab, open GitHub.com to be sure you are logged in. 
+<li>Hit <b>[View invitation]</b> (only opens the right page if you are signed into GitHub) 
+<li>Hit <b>[Accept invitation]</b>. 
+</ol>
+
+<p><em>Please do not try to access the repo with just the URL: you need the personalized invite!</em>
+  
+<br><br>
+<h3 style="color:purple">3. Create a final location folder </h3>
+<p>Where do you want your local copy of the team repository to be located? 
+<p>The teacher likes the Desktop, and names the folder &quot;UNITY&quot; inside of a folder &quot;GameDesign&quot;. 
+  The folder MUST be on your computer-- not a portable drive or the cloud.<p>NOTE: Once you start putting GitHub repoprojets in this folder, it should NOT be moved or renamed, or the connection to the repo will be broken.
+  <p>
+<a href="gamedesign/GitHub/GitHub02.png" target=new><img src="gamedesign/GitHub/GitHub02.png" alt="2" style="width:100%, height:auto"></a><br>
+  <h3 style="color:purple">4. In GitHub Desktop: </h3>
+<p><strong>Click the Middle Option: Clone Repository</strong> 
+  (or Current Repository &gt; Add &gt; Clone Repository)<br>
+  The repository should be available on your list of GitHub project/s.
+  
+<p> 
+<a href="gamedesign/GitHub/GitHub03.png" target=new><img src="gamedesign/GitHub/GitHub03.png" alt="3" style="width:100%, height:auto"></a> 
+ 
+<p>
+<strong>NOTE:</strong> If the repo is not visible in GitHub Desktop, you can go to GitHub.com, enter the repository, click the green [Code] button and click &quot;Open with Github Desktop&quot; (or copy the URL from the GitHub site by clicking 
+[Clone or Download]). 
+
+<a href="gamedesign/GitHub/GitHub_AddFromSite.png" target=new><img src="gamedesign/GitHub/GitHub_AddFromSite.png" alt="4" style="width:100%, height:auto"></a>
+
+<p>
+Choose your <strong>Github folder location</strong> and hit <strong>[OK]</strong> to create the repo folder there (It will have the repo name as entered on theGitHub site). 
+<p>This folder is now linked through the Desktop client to Github! <br><br>
+  
+  <a href="gamedesign/GitHub/GitHub04.png" target=new><img src="gamedesign/GitHub/GitHub04.png" alt="5" style="width:100%, height:auto"></a>
+  
+
+<br><br>
+<h3 style="color:purple">5. <em>ONE PERSON PER TEAM</em>: CREATE THE INITIAL UNITY PROJECT: </h3>
+
+<p>
+<b>a. </b>Create the new, initial <strong>Unity Project</strong> as a Project folder inside of your GitHub Repository Folder.<font face="arial"><b>b. RECOMMENDED: Open Edit > Project Settings > Editor: </b>
+<ul>
+<br>
+Version Control: Set &quot;Mode&quot; to <b>Visible Meta Files</b>. 
+<br>
+Asset Serialization: Set &quot;Mode&quot; to <b>Force Text</b>.
+</ul>
+  </font>
+
+<p><font face="arial">c. Upload this new Unty project to the team repo through GitHub Desktop.
+
+</font>
+<font face=arial><p>
+
+<a href="gamedesign/GitHub/GitHub05.png" target=new><img src="gamedesign/GitHub/GitHub05.png" alt="5" style="width:100%, height:auto"></a>
+
+<br><br>
+</div>
+
+<!-- end of github set up -->
+
+<br><br>
+
+<!-- start of big to do block -->
+<table width=100% cellpadding=20><tr><td bgcolor=#d4e8ee align=center>
+<font face=arial color=#444466><b>Primary GitHub work to UPDATE the project every day:</b></font>
+<br>
+<br>
+
+<table width=100% bgcolor=#eef5ee cellpadding=10>
+<tr>
+  <td bgcolor=#f5eeee valign=top>
+  <a name="03">&nbsp;</a> 
+  <br>
+  <a href="#TOP"><img src="comicsDesign/ArrowUp.png" alt=""></a>
+  <b><font color=purple> [C]:</font> PROJECT UPDATE PROCESS :</b>
+  
+<p><h3 style="color:purple">(1). <em>GITHUB:</em> <strong>Fetch</strong> / <strong>Pull</strong> Teammate Changes </h3><img src="gamedesign/GitHub/GitHub_fetch.png">
+
+<br><br>
+<p><b>ALWAYS START BY FETCH / PULLING:</b>
+<br>
+Before doing any work on the project, hit <b>[Fetch origin]</b> in Github Desktop to find changes uploaded by your teammates, and then hit <b>[Pull origin]</b> to copy those changes to the local repository folder on your computer.
+<p>
+<a href="gamedesign/GitHub/GitHub08.png" target=new><img src="gamedesign/GitHub/GitHub_pull.png" alt="pull" style="width:100%, height:auto"></a>
+
+<br>
+<h3 style="color:purple">(2) <em>UNITY:</em> Make Your <strong>Changes</strong> </h3>
+    <p><b>COMMUNICATE AND MAKE YOUR CHANGES:</b><br>
+      Alert your team about which Unity Scene you will work on, then get to work. 
+      Different team members can work on different scenes at the same time, but not the same one.
+      Only one person can work on a specific Scene file at time. If two people make changes to the same file,  a merge conflict will be created when they try to push, and one of those people will need to <strong>discard</strong> their changes. <br>
+      <br>
+      To create content for a Scene that someone else is using, create content in an untitled or temporary scene and drag it into the Project panel Assets folder to turn it into a <strong>Prefab</strong>. Upload the Prefab and it can be aded to the desired Scenes. 
+      
+      <br>    
+    <h3 style="color:purple">(3). <em>GITHUB PUSH STEPS:</em> </h3>
+  <ol type="a">
+    <li><font face="arial"> Type a concise <strong>Summary</strong> to document changes</font>
+    <li><font face="arial"><strong>Fetch / Pull</strong> again (to discard Conflict items). <br>
+      </font>    
+    <li><font face="arial"><b>Commit</b> your changes. This does NOT share!<br>
+      </font>
+    <li> <font face="arial"><strong>Push</strong> to actually share. </font>
+    </ol>
+  <p><font face=arial> </font><font face=arial><b>HOW TO UPLOAD YOUR CHANGES:</b>
+    
+    <br><br>
+    <strong>IN UNITY:</strong> When  you are done making changes: <br>
+    hit <b>File &gt; Save</b> (to save the current Unity Scene)
+
+<center>
+  <em><strong>AND</strong></em>
+</center> 
+<b>
+ File &gt; Save Project</b> (to save project-level changes like Prefabs, folders, animation work, Tags, or Build Settings).<br>
+<br>
+<strong>IN GITHUB DESKTOP:</strong> You will then see your <b>Changes</b> listed in the GitHub Desktop client to be shared with your teammates.
+
+<br>
+<ol type="a">
+<li> Type  a short <b>Summary</b> of  changes  (Always include a Summary, and be sure it describes the key updates / additions).
+<br>
+<a href="gamedesign/GitHub/GitHub06.png" target=new><img src="gamedesign/GitHub/GitHub_commit.png" alt="summary" style="width:100%, height:auto"></a>
+
+<p>
+<li><b> Fetch / Pull</b> again, to be sure there are no Conflicts between your work and new changes made by your teammates. It is easiest to fix conflicts BEFORE you Commit: right-click the duplicate item/s in your list and Discard. <strong>Do not agree to Stash</strong> -- that will make the problem worse.<br>
+<br>
+<li> Hit  the blue <b>[Commit to Master]</b> button  (lower left) to commit your changes to your local  copy of GitHub, to be <em><strong>ready</strong></em> to publish.<br><br>
+<li> Hit  the blue<b> [Push origin] </b>button to  publish your changes to the GitHub repository. Your changes are now available to  your teammates, who need to &ldquo;pull&rdquo; those changes to make them part of their own  local copy of the project.
+<br>
+<a href="gamedesign/GitHub/GitHub07.png" target=new><img src="gamedesign/GitHub/GitHub_push02.png"></a>
+</ol><br>
+<br>
+<h3 style="color:purple">Communicating and Working Sequentially:</h3>
+  <p><b><em>REMEMBER:</em></b> GitHub and Unity <b> cannot merge two copies of the same Scene  file</b> (game level), so only <strong>one person</strong> should ever be working on a particular  <strong>Scene</strong> at a time.</p>
+  <p><font face=arial>If two people want to work on the same Scene, they need to do  so <em><strong>sequentially: </strong></em></font></p>
+  <font face=arial>
+<p>
+  <strong>(Step 1):</strong> Team Member A:
+<ol type="a">
+  <li>Team  Member A <strong>Pulls</strong> the recent changes to the project in GitHub. 
+    <li>Team Member A  then <b>works</b> on the Scene in Unity and  saves their changes: <b>File &gt; Save  Project</b>.
+      <li>In GitHub they <b>Summarize</b>, <strong>Pull again,</strong> <b>Commit</b> and <b>Push</b> their  changes in GitHub.
+        <li>Finally,  they <strong>alert the team</strong> that the Scene is released for someone else to change.
+</ol>
+  
+<p>
+<strong>(Step 2):</strong> Team Member B
+<ol type="a">
+<li>Team  Member B <b>Pulls</b> the recent changes to  the project.
+<li>They <b>work</b> on the Scene in Unity and  save their changes: <b>File &gt; Save  Project</b>.
+<li>They <b>Summarize</b>, <b>Pull again, Commit</b> and <b>Push</b> their  changes in <b>GitHub</b>. 
+<li>Finally,  they <strong>alert the team</strong> that the Scene is released for someone else to change, etc.
+</ol><br> 
+<p>
+Individual Scene  files must be carefully &ldquo;owned&rdquo; by one person at a time, to prevent conficts: only one person can make changes to a specific Scene at a time (like a game level, called Level1, or main menu, called MainMenu). 
+<p>BUT, <b><em>everyone  else can still make other changes</em> to the project at the same time</b>!
+<p>This including creating <b>Prefabs</b> for the player or NPC characters,  environment objects, scripts and visual effects or sound effects. 
+<p>Create your own YourName_Work Scene file to safely build these game elements and drag them into the Project panel to make a Prefab.  These Prefabs can be pushed to GitHub for all to see and use. The person currently &quot;owning&quot; Level1 can drag those Prefabs in there for the class build!<br>
+  <br>
+<h3 style="color:purple">CONFLICT NOTE:</h3> 
+<p>If the Pull (after the Summary) yields a <strong>Conflict</strong> from someone else's Push: 
+<ol type="a">
+<li><strong>Read</strong> the error to identify the files in conflict (someone else pushed on those items since you last pulled).
+<li><strong>Select</strong> the problem-items in your Changes list. 
+<li>Right-click and <strong>Discard</strong> those items of yours. 
+<li>Then hit <strong>Pull again</strong>, and it should work (contact us if it does not!). 
+<li>This loses the work you did on those items, but you can <strong>do it again</strong> on the newly pulled versions.    
+</ol>
+
+<br>
+</td></tr>
+</table>
+
+<br></td></tr></table>
+<!-- end big to do block -->
+
+
+<br>
+<br>
+
+
+<!--
+<table width=100% bgcolor=#f2e9e2 cellpadding=10>
+  <tr>
+    <td colspan=2>
+-->
+<!-- START Branches -->
+<div style="background-color:#f2e9e2; width:100%; padding:20px">     
+    
+    <a name="04">&nbsp;</a> <a href="#TOP"></a><br>
+      <b><font face=arial><a href="#TOP"><img src="comicsDesign/ArrowUp.png" alt=""></a></font><font color=purple> [D]:</font> WORKING WITH BRANCHES:</b>
+      <br>
+      GitHub Branches serve an important purpose in traditional software projects. Branches allow individual programmers to work on a copy of the project, isolating their changes to test that their work functions before sharing it with the team.
+      
+      <br>
+      <br>
+      <strong>HOWEVER,</strong> for this Game Design course, <strong>you are encouraged to NOT use GitHub Branches</strong> for regular weekly work. Unlike a traditional software project, most things in Unity are Scenes, art assets, or Prefabs, which do not merge like Scripts.  Branches in Unity can easily lead to GitHub conflicts, where two people tried to make objects with the same name.
+      
+      <br>
+      <br>
+      You are encouraged instead to do all work on the <strong>default Main branch</strong>, primarily in <strong>separate Scenes</strong> named for your name, and to <strong>communicate</strong> every day about what you are working on to  make sure you do not create duplicate assets. One person should &quot;own&quot; the actual Level Scene at a time. <strong>Most important of all:</strong> Test your work to be sure there are no compile errors, and <strong>PUSH YOUR WORK EVERY DAY</strong>. If you spend a week not pushing, you can expect conflicts. <br>
+      <br><br>
+      <b>All that said, if you are deeply concerned</b> that the changes you will make could negatively affect the Main project, but still want to test them out with your team, you can choose to make a  branch off of Main.<br>
+      <br>
+      <b>GitHub Branches</b> contain a separate copy of the project (as it existed when the branching occurred). 
+      When we &quot;Switch&quot; between branches in GitHub desktop, our actual Unity project only shows the files for the active branch!
+
+<br><br><br>
+
+<h3 style="color:purple">[BRANCHING A] TO CREATE A NEW BRANCH FOR YOUR WORK:</h3>
+<ol>
+    <li>Click the <b>middle &quot;Current Branch&quot; tab</b>.<br>
+    <li>Towards the top of the rolldown, choose <b>[New Branch]</b>.<br>
+    <li>In the box that opens, <b>name</b> the Branch (I suggest naming it your name, written as <b>YourName</b>, in humpCap notation).<br>
+<li>Hit <b>[Create Branch]</b>.
+</ol>
+
+
+<br>
+<p>
+<a href="gamedesign/GitHub/GitHubBranch1.png" target=new><img src="gamedesign/GitHub/GitHubBranch1.png" alt="Branching A" style="width:100%, height:auto"></a><h3 style="color:purple">[BRANCHING B] WORK IN YOUR BRANCH:</h3>
+      <p>
+When you choose a branch to make it active in GitHub, it is also active on your computer and in Unity. Github swaps out which files are currently available on you machine based on your active branch. You can switch to any branch to see the version of the project there!<br>
+<br>
+Try to be careful to only change your intended files in your separate branch. If you change them in both your separate branch and in the Main branch, you will get a Conflict when you try to Merge them that will result in changes needing to be discarded from one of them.
+
+<br>
+      <h3 style="color:purple">[BRANCHING C] TO MERGE YOUR BRANCH WORK BACK INTO MAIN:</h3>
+We can easily copy (&quot;Merge&quot;) the work in your branch back into Main.
+<ol>
+<li><b>Switch to the Main Branch</b> (click the middle &quot;Current Branch&quot; tab and click on Main to make it the Current Branch).<br>
+<li> Open the middle tab again, and at the bottom of the rolldown click <b>[Choose a Branch to Merge into Main]</b>.<br>
+<li> In the box that open, select your branch (the one you want to Merge) and hit <b>[Merge origin/YourName into Main]</b>.
+</ol>
+<b>NOTE: </b>The original, separate Branch is preserved in this process, so it can continue to be used for changes or as a backup copy of your work!
+<br><br>
+<a href="gamedesign/GitHub/GitHubBranch1.png" target=new><img src="gamedesign/GitHub/GitHubBranch1.png" alt="branching C" style="width:100%, height:auto"></a>
+
+<br><br>
+<h3 style="color:purple">[BRANCHING D] DO NOT REVERT, do not hit [UNDO]</h3>
+Get stuck on something? Ask for help. Reverting in a separate branch can cause all sorts of problems, just like reverting in Main. The [Undo] button is worse. We have many other <a href="#05">tools</a> to fix conflicts or other problems. Contact us for help.
+<br><br><br>
+</div>
+<!-- END Branches -->
+
+<p>
+<!--
+<table width=100% bgcolor=#eeeef5 cellpadding=10><tr>
+<td colspan=2>
+-->
+
+<!-- START Conflicts  -->
+
+<div style="background-color:#eeeef5; width:100%; padding:20px">
+<a name="05">&nbsp;</a> <br>
+      <b><a href="#TOP"><img src="comicsDesign/ArrowUp.png" alt=""></a><font color=purple> [E]:</font> RESOLVING A GITHUB &quot;CONFLICT&quot;:</b><br><b>Accidents happen</b>. Someone may not  remember to save their changes or Push those changes on GitHub, and then  someone else may dutifully Pull, not get any changes (because they were not  uploaded), and then work on that scene, not realizing they are creating a  <strong>Conflict</strong>: a situation where there are two copies of the same file on GitHub and  one needs to be discarded from the Repository.<br><br>
+      <b>Communication is key:</b> use an active  text chain, Discord channel, or other tools to alert your team when you want to make changes  to a Scene, and again when you are releasing it for others to work on. Be good  about saving your project and Pushing your changes every day you  work, ideally more often.<br>
+      <br>
+      <b>If there is a  conflict in GitHub:</b> The person who did less work, or more disposable work, should document their key changes (write  down a description of changes in order to reproduce them), Discard the changes from  their local repository, and Pull their teammate&rsquo;s version to their machine,  effectively moving forward with their teammate&rsquo;s version. They can then repeat  their changes on that &quot;clean&quot; version of the file.<br>
+      <br>
+<b><em>1. MOST IMPORTANT THING ABOUT CONFLICTS: </em></b>Ask us for help if  they arise!<br>
+<br>
+<p> <em><strong>NOTE:</strong></em> Are you using the <strong>Command Line</strong> to acces Git? <br>
+  Learn more about solutions to problems with Git <a href="https://ohshitgit.com/" target=ohshtgit>here</a>.  
+  <font face=arial><br>
+    <br>
+    <b>2.</b> <b>DO NOT REVERT</b>. <font color=purple><strong>ALSO:</strong></font> <strong>DO NOT HIT THE &quot;UNDO&quot; BUTTON BELOW COMMIT.</strong><br>
+    Revert (or the Undo button) causes major loss of data, expecially if you Merge the Main repo into your branch, and then revert or &quot;undo&quot;-- you are undoing not just the Merge, but all of yoiur teammates'  work since the last time you merged! ACK!<br>
+    </font>
+  
+  <center>
+  <font face="arial"><b>DON'T REVERT<br>
+    DON'T HIT &quot;UNDO&quot;.</b></font><br>
+  <font face="arial"><b>ESPECIALLY, DO NOT REVERT OR UNDO IN A <em>BRANCH</em>.
+    
+  <br>Also, do not agree to Stash.
+    
+  </b></font>
+  </center>
+  
+<font face=arial>
+<br>
+<strong>WHAT SHOULD I DO INSTEAD, if the project is super-broken?</strong>
+<br>
+OPTION 1: USE A BRANCH: If the entire project is broken for everyone, you can Branch off of an older version in the History, and then over-write Main with that Branch.
+
+
+<p>
+OPTION 2: <strong>If the project is only broken on your computer</strong>, do not Push that brokenness to everyone else! Ask the teacher for help right away. As a last resort, it may be better to fix local, big problems by <strong>replacing your entire local copy of the repository:</strong>
+<ol>
+<li> <strong>Remove</strong> your local copy of the repository from <strong>GitHub</strong>.<br>
+<li> <strong>Remove</strong> this project from <strong>Unity Hub</strong>.<br>
+<li> <strong>Rename</strong> this project [OldName]_old. It still exists, but neither GitHubDesktop nor Unity Hub can see it. Itn be deleted later.<br>
+<li> Make a <strong>new folder</strong> for the team repo.<br>
+<li> In GitHub,  <strong>clone</strong> the project into this new folder.<br>
+<li> In Unity Hub, <strong>[Add]</strong> this new copy of the team project.<br>
+You now have a clean start!
+</ol>
+<p>
+  OPTION 3: <em><strong>BUT</strong></em>, if your team agrees it is time to Revert (ugh), here are the steps:
+<p>
+<a href="gamedesign/GitHub/GitHub09.png" target=new><img src="gamedesign/GitHub/GitHub09.png" alt="revert" style="width:100%, height:auto"></a>
+
+
+<p>
+<b>TO REVERT: </b>To rollback a commit that was already pushed to the shared  repository: 
+</font><ol>  
+  <li><font face="arial">Go to the <b>History tab </b>in  the GitHub Desktop.
+  </font>
+  <li><font face="arial"><strong>RightClick</strong> on the Commit you want to rollback (in the left column;  this is why Summary names are so important!) </font><li><font face="arial">Select <b>Revert this commit</b>.
+  </font><li><font face="arial">Then <b>Push  Origin</b> to upload your changes to the shared repo.
+</font></ol><font face=arial>
+
+<br>
+<p>
+  <b><em>NOTE:</em></b> When you revert  multiple commits, it's best to revert in order from newest to oldest. If you  revert commits in a different order, you may see merge conflicts. See this explanation: <a href="https://help.github.com/en/desktop/contributing-to-projects/reverting-a-commit">https://help.github.com/en/desktop/contributing-to-projects/reverting-a-commit</a>
+  
+  <br><br>
+<center>
+  <img src="gamedesign/bullet.png" alt="bulletpoint" /> <img src="gamedesign/bullet.png" alt="bulletpoint" /> <img src="gamedesign/bullet.png" alt="bulletpoint" />
+</center>
+<br>
+<h3>HERE ARE SOME OTHER WAYS TO HANDLE PROBLEMS: </h3>
+  
+  <br><br>
+<p>
+<font color=#b94c11><b>PROBLEM A:</b></font> If  you try to Push changes without Fetching/Pulling more recent changes first, you&rsquo;ll get  an alert: '<b>Newer commits on remote</b>'.
+<p>
+
+<a href="gamedesign/GitHub/GitHub10.png" target=new><img src="gamedesign/GitHub/GitHub10.png" alt="push /fetch error" style="width:100%, height:auto"></a>
+
+<br>
+<p>
+   Hit <b>[Fetch]</b> to refresh the change history, then <b>[Pull origin]</b> to get the latest changes  before <b>Push origin</b> to upload your  changes.
+   
+<p>   
+<img src="gamedesign/GitHub/GitHub11.png" alt="fetch" style="width:100%, height:auto"></a>   
+
+<br><br>
+<center>
+  <img src="gamedesign/bullet.png" alt="bulletpoint" /> <img src="gamedesign/bullet.png" alt="bulletpoint" /> <img src="gamedesign/bullet.png" alt="bulletpoint" />
+</center>
+<br>
+<p>
+<font color=#b94c11><b>PROBLEM B:</b></font> If there are conflicts because you both changed the same lines of code  or assets, then you&rsquo;ll get this pop up (see image):
+
+<br>
+<br>
+<strong>[B1]:</strong> You&rsquo;ll  have to &quot;resolve&quot; the conflicts before you can Merge. Click on each conflict to  resolve each one (see below), then <b>[Commit merge]</b>.
+<p>
+<a href="gamedesign/GitHub/GitHub12.png" target=new><img src="gamedesign/GitHub/GitHub12.png" alt="conflicts" style="width:100%, height:auto"></a>
+<br>
+<p>
+<b>[B2]: To resolve the  conflict, you must decide which change to keep.</b>
+<p>
+<a href="gamedesign/GitHub/GitHub13.png" target=new><img src="gamedesign/GitHub/GitHub13.png" alt="error" style="width:100%, height:auto"></a> 
+
+<br><p>
+In this case, 2  team members both changed the layer order for the background assets. 
+<p>One put  the sprite at 35 and the other put it at 45. 
+<p>Decide which one to keep and  accept that one: Click the little triangle on the far right of the &quot;Resolve Conflcts&quot; box and choose either '<b>Accept  Current Change</b>' (the edit your TEAMMATE already pushed to the repo) or '<b>Accept Incoming Change</b>' (the edit YOU  made and are tried to upload after).  In  some rare cases you may want to '<b>Accept  Both Changes'</b>.<br><br><br>
+  <strong>[B3]:</strong> When  all conflicts are resolved, you can hit <b>[Commit merge]</b>.
+  <p>
+  <a href="gamedesign/GitHub/GitHub14.png" target=new><img src="gamedesign/GitHub/GitHub14.png" alt="commitmerge" style="width:100%, height:auto"></a>
+
+
+<br>
+  <p>
+<strong>[B4]:</strong> Then hit <b>[Push origin]</b> to upload your changes to the team online GitHub repository.
+  <p>
+<a href="gamedesign/GitHub/GitHub15.png" target=new><img src="gamedesign/GitHub/GitHub15.png" alt="push" style="width:100%, height:auto"></a>
+
+
+<br>
+<br>
+  <center>
+    <img src="gamedesign/bullet.png" alt="bulletpoint" /> <img src="gamedesign/bullet.png" alt="bulletpoint" /> <img src="gamedesign/bullet.png" alt="bulletpoint" />
+  </center>
+  <br>  
+  <p>
+<font color=#b94c11><b>PROBLEM C: </b></font><strong>Discard vs Ignore</strong><br>
+Have changes showed up in your Change list that you KNOW should not be pushed? You can <strong>Discard</strong> those changes by selecting them and right-clicking on them and choosing the top option, Discard. The changes will be undone on your computer.<br>
+<br>
+Please do not choose the Ignore options-- they add ignore restrictions to your project GitIgnore file.
+<p>
+<a href="gamedesign/GitHub/GitHub_DiscardvsIgnore.png" target=new><img src="gamedesign/GitHub/GitHub_DiscardvsIgnore.png" alt="ignore vs discard" style="width:100%, height:auto"></a> 
+
+<br>
+<br><br>
+<center>
+<img src="gamedesign/bullet.png" alt="bulletpoint" />
+<img src="gamedesign/bullet.png" alt="bulletpoint" />
+<img src="gamedesign/bullet.png" alt="bulletpoint" />
+</center>
+<br>
+<p>
+  <font color=#b94c11><b>PROBLEM D:</b></font>
+  <b>Changing a Git ID, or fixing  &quot;Author Unknown&quot; Error:</b><br><br>If you get the &quot;Author Unknown&quot; error, or want to change your Git ID for commits, go to:<br><br>&nbsp; &nbsp; <b>File menu &gt; Options</b> (PC) or<br>&nbsp; &nbsp; <b>Github Desktop menu &gt; Preferences</b> (Mac)<br><br>
+  and choose the Git tab on the left to set your username and email to the same ones as your GitHub.com account.
+  
+<p>
+<a href="gamedesign/GitHub/GitHubUsernameError.png" target=new><img src="gamedesign/GitHub/GitHubUsernameError.png" alt="ID error" style="width:100%, height:auto"></a>
+
+<br>
+<p>
+<a href="gamedesign/GitHub/GitHubUsername.png" target=new><img src="gamedesign/GitHub/GitHubUsername.png" alt="ID fix" style="width:100%, height:auto"></a>
+
+</div>
+<!-- END Conflicts  -->
+
+<p>
+<!--
+<table width=100% bgcolor=#eeeef5 cellpadding=10><tr>
+<td colspan=2><p><br>
+-->
+
+<!-- START Conflicts 2: Fire  -->
+<div style="background-color:#eeeef5; width:100%; padding:20px">
+<a name="05b">&nbsp;</a> 
+<br>
+<a href="#TOP"><img src="comicsDesign/ArrowUp.png" alt=""></a>
+<b> HOW TO DISCONNECT and REMOVE the Repo from your Computer, then Re-CLONE:</b>
+
+<br><p>
+  <font color=#b94c11><b>PROBLEM E:</b></font><strong> Everything On My Computer Is On Fire</strong><br>
+  Does your local copy seem to be in terrible shape, but the team's Main repo on Github.com is still fine? It may be time for the LAST RESORT: to <strong>disconnect</strong> and then <strong>remove </strong>the repo from your computer and <strong>re-clone the repository</strong> to a new location on your computer, and move forward from there. Also,<strong> when the project is over</strong>, you can use this system to safely remove the Repo and free 1-2 gigs of space on your computer.
+  
+  
+<br>
+<h3 style="color:purple">[A] Remove your bad repo:</h3>
+  <ol>
+    <li><strong>First, make sure Unity and Photoshop are turned off</strong>, as well as your scipting IDE (<strong>VSCode</strong>, etc): anything that speaks to the files in your Unity project.
+
+	<p>
+	<li><strong>Open GitHub Desktop</strong>. Click on  "<strong>Current Repository</strong>" button (upper-left) to see your projects. RightClick your old team repo and choose the bottom <strong>REMOVE</strong> option, to <strong>disconnect</strong> your copy from the team repo. You can optinally <font face=arial><strong>select</strong> "<strong>Also move this repository to the Recycle Bin</strong>", before hitting the <strong>[Remove]</strong> button. 
+    
+    <p>
+    <li> <strong>Unity Hub:</strong> find the old team game in the list and <strong>REMOVE</strong> it (click the 3 dots on the right-side).
+    
+    <p>
+    <li>You can now delete the old repo folder, if you did notlredy send it to the recyle bin. Empty the recyle bin!
+</ol>
+    
+    
+  <p> <strong>NOTE:</strong> If you get a failure in this process (usually if a program is still speaking to files in the repo folder), you can use GitHub to Remove WITHOUT moving the files to the recycle bin, and when GitHub is done, move the folder to the recycle bin manually.
+  
+  
+  <br>
+    <p>
+    Naturally, <strong>do NOT delete the project files manually first</strong>, and then push those changes to the repo, or it will erase the project for everyone. 
+    
+    <br>
+    <h3 style="color:purple">[B] Re-Clone the repo to get a clean copy:</h3>
+  <ol>
+    <li> <strong>On your computer GitHub folder</strong> (or wherever you put your old game), create a new folder called &quot;<strong>YourGameName_v02</strong>&quot;. 
+    
+    <p>
+    <li><strong>In GitHub Desktop</strong> <strong>clone the repo into this new folder</strong>. The project may be nested one folder deeper than your previous clone -- that is fine. 
+    
+    <p>
+    <li><strong>In Unity Hub</strong>, <strong>add the new project:</strong> click <strong>[Add]</strong> and navigate to inside the project folder (you should see Assets, etc but not click on it).<br>
+    </ol>
+  <p>
+  <strong>NOTE: </strong>The new Repo copy does not include ancillary folders like "library", due to the correct .GitIgnore file being included to exclude them. Those folders will be created on your machine when you run the new game in Unity for the first time, but will never get pushed to the repo, which is correct. 
+  <br>
+  </div>
+<!-- END Conflits 2: Fire  -->
+<p>
+    
+    
+<!-- START Advanced  -->
+<div style="background-color:#eef5ee; width:100%; padding:20px">    
+    <a name="06">&nbsp;</a>
+    <br>
+        <b><a href="#TOP"><img src="comicsDesign/ArrowUp.png" alt=""></a>
+        <font color=purple> [F]:</font>TAKE YOUR GIT WORK FURTHER:</b><br>
+        <br>
+<strong>Github Desktop </strong>is a decent tool for beginners, but it lacks finesse. For a lot more control over the flow of branches in your project, consider downloading and using <a href="https://github.com/FredrikNoren/ungit" target=ungit>UnGit</a>.
+      
+<br><br>
+To <strong>improve your understanding of Git and Branching</strong>, explore these visual tutorials:<br>
+<a href="https://learngitbranching.js.org/" target=learnGit>https://LearnGitBranching.js.org/</a>
+
+<br><br>
+<center><a href="#top"><img src="gamedesign/bullet.png" alt=""><img src="gamedesign/bullet.png" alt=""><img src="gamedesign/bullet.png" alt=""></a>
+</center>
+
+<br><br>Want to motivate your team to greater heights of GitHub glory?<br>
+<b>Integrate GitHub into your team DISCORD channel</b> with <a href="https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks" target=discord>Discord Webhooks</a>,<br>so that each new post can be announced there.
+
+<br><br>
+<center>
+<a href="#top"><img src="gamedesign/bullet.png" alt=""><img src="gamedesign/bullet.png" alt=""><img src="gamedesign/bullet.png" alt=""></a>     
+</center>
+
+<br>
+<p>
+<strong>Use GitHub to host a WebGL build and automatically update with every Commit:</strong><br>These set-up notes come from  <a href="https://github.com/AmoghSubhedar/des315Phong" target=notes>Amogh Subhedar</a>:<br><br>
+<strong>1. </strong>In GitHUb Desktop, make a <strong>new branch</strong>, and name it "<strong>builds</strong>". 
+<br>
+(ideally, this branches off the very first commit, to have less to delete in step 2)<br><br>
+<strong>2.</strong> <strong>Delete</strong> all Unity project content and folders in that new branch (NEVER merge back :) ).
+
+
+<br>
+<p>
+<strong>3.</strong> Create the first WebGL build to get the index.html file:
+<ol type="a">
+<li> Make an initial <a href="GameDesign_Unity.html#build" target=webGL>WebGL build</a> from your Unity project (html file, build folder, template folder). 
+<br>
+<li> <strong>Add ONLY the index.HTML file to the builds</strong> branch (at top, next to the GitIgnore file). 
+<br>
+<li><strong>Publish</strong> (push) this new &quot;builds&quot; branch.
+</ol>
+
+
+<br>
+<p>
+<strong>4.</strong> Choose the Builds branch:
+<ol type="a">
+<li> Go to <strong>GitHub.com</strong> to open your project.
+<li> Open the <strong>Settings</strong> tab, and on the left column click to open &quot;<strong>Pages</strong>&quot;.<br>
+<li> Click &quot;<strong>None</strong>&quot; to choose the &quot;<strong>builds</strong>&quot; branch for the webpage.<br>
+<li> Hit <strong>[Save]</strong> (Game code continues in Main, but now webpage gets the default root of &quot;builds&quot;).
+</ol>
+
+<br>
+<p>
+<strong>5.</strong> <strong>Create a "workflow" file</strong> in main branch:
+<ol type="a">
+<li> On the GitHub.com site Main branch, open the <strong>Actions</strong> tab.<br>
+<li> Hit &quot;New Workflow&quot; (upper left) and then "<strong>Set up a workflow by yourself</strong>" (near top).<br>
+<li> Name it <strong>mainBuildMaker.yml</strong>.
+</ol>
+
+
+<p><br>
+  <br>
+  <strong>6.</strong> Adding the correct mainBuildMaker.yml script:
+<ol type="a">
+
+<li> <strong>Replace</strong> the content of <strong>mainBuildMaker.yml</strong> with this <a href="gamedesign/GitHub/mainBuildMaker.yml" target=yml>script</a>.
+
+<br><br>
+<li> <strong>Customize the script:</strong> 
+<ol>
+  <li>Near the top  of this script <strong>under env, change 2 items</strong>:
+  <br>
+  <strong>UNITY_VERSION : </strong>set the correct Unity version,
+  <br>
+  <strong>PROJECT_PATH  : </strong>set to your Unity project name (the folder that holds the assets, etc ).<li>
+  (<em><strong>NOTE:</strong></em> for <strong>UNITY_LICENSE : </strong>leave the  year as 2019)
+  <li>
+  Be sure that the version of 
+  <a href="https://github.com/marketplace/actions/unity-builder" target=UB>Unity Builder</a> is correct (change the final version # if needed):
+  <br>
+  line 32: uses: game-ci/unity-builder@v2.0-alpha-<strong>14</strong>
+</ol>
+  
+<br>
+<li> Hit <strong>[Start Committ]</strong>. In the window that opens, hit <strong>[Commit Changes]</strong> (yes, this goes to Main).<br>
+  <br>
+  To <strong>edit</strong> this <strong>.yml </strong>file again <strong>later</strong>:<br>
+  Go to the Main Branch &gt; Code tab,  open <strong>.gitHub/Workflows</strong>, and hit the <strong>pencil</strong> / edit button.
+  
+</ol>  
+  
+  <p>
+  <em><strong>NOTE:</strong></em> This script calls two 3rd party GitHub plugins: 
+  <strong>Unity Builder</strong> and <strong>Git Auto Commit </strong>
+  <ul>
+  <li>
+  (No need to install anything-- they exist in GitHub's ecosystem).
+  <li>
+  <a href="https://github.com/marketplace/actions/unity-builder" target=UB>Unity Builder</a> creates a new Build folder and TemplateData folder.
+  <li>
+  <strong>Git Auto Commit</strong> makes this happen after each commit.
+  </ul>
+  
+  
+  
+  <br><br>
+</p>
+<p>
+  <strong>7.</strong> <strong>Add a license file</strong> for the builds: Use this <a href="https://game.ci/docs/github/activation" target=yml2><b>process</b></a> to generate the license file with your Unity license (see here for how to find and download the <a href="https://docs.github.com/en/actions/managing-workflow-runs/downloading-workflow-artifacts" target=art>GitHub Artifact</a> file):
+  
+<ol type="a">
+<li> Create a new custom workflow called <strong>activation.yml</strong> (as in step 5 above). 
+
+<br><br>
+<li> Replace the content of <strong>activation.yml</strong> with this <a href="gamedesign/GitHub/activation.yml" target=yml><strong>script</strong></a>.
+
+<br><br>
+<li> Manually Run this file: 
+<ol>
+<li> Click <strong>Actions</strong> tab (top). 
+<li> Click &quot;<strong>Acquire Activation file</strong>&quot; (left).<br>
+<li> Click <strong>[Run Workflow]</strong> (right)
+</ol>
+
+<br>
+<li> When run is done, RightClick the new &quot;<strong>Acquire Activation file</strong>&quot; link (bottom) to &quot;<strong>Save Link As</strong>&quot;.
+
+<p>
+<li> Save the <strong>.ZIP</strong> file to your desktop and extract the <strong>Unity_v20xx.x.xxxx.alf</strong> file.
+
+<br><br>
+<li> Go to <a href="https://license.unity3d.com/manual" target=license>license.unity3d.com/manual</a>:
+<ol>
+<li> Upload the <strong>Unity_v20xx.x.xxxx.alf</strong> file.<br>
+<li> Choose (1) Personal edition, (2) Less than $100k, and then click <strong>[Download license file]</strong>
+<li> Find the license  in <strong>downloads</strong> (<strong>Unity_v20XX.x.ulf</strong>). It's OK to not match your Unity version.
+</ol>
+
+<br>
+<li> Add the license as a GitHub &quot;<strong>Secret</strong>&quot; (encrypted environment variable): 
+<ol>
+<li>Back in Github.com, open your repo &gt; Settings &gt; <strong>Secrets</strong> &gt; Actions.
+<li>
+Click <strong>[New Repository Secret]</strong> to create a new one. 
+<li>
+Set the <strong>Name</strong> to the same as in the yml file: <strong>UNITY_LICENSE_2019</strong>
+<li>
+Under <strong>Value</strong> paste in the content of your license <strong>.ULF</strong> file (can be opened in notepad). 
+<li>
+Click <strong>[Add Secret]</strong>.
+</ol>
+
+</ol>
+<!-- End of step7-->
+
+<br><br><br>
+<strong>IMPORTANT FIX NOTES:</strong> 
+<br>
+<strong>[A]</strong> Make sure the project <strong>.GitIgnore</strong> file has <strong>[Bb]uild and [Bb]uilds commented # out</strong>, in both the <strong>build (!)</strong> AND <strong>main (?)</strong> branch, or the build will not push!<br>
+<br>
+<strong>[B]</strong>
+
+<strong>Unity Build Settings: Choose WebGL, click <strong>[Switch Platform]</strong>.</strong> 
+<br>
+<strong>IMPORTANT:</strong> Hit <a href="http://madwomb.com/tutorials/gamedesign/Unity2D/webGLfix2020.png" target="fix2">[Player Settings]</a> and under "<strong>Publishing Settings</strong>" set <strong>Compression Format</strong> from the default Brotli or Gzip to "<strong>Disabled</strong>". This should <a href="https://youtu.be/DpWjB2GYFqQ" target="fix"><strong>fix</strong></a> any WebGL issues in GitHub pages, but here are more <a href="https://youtu.be/YlFimhxdA1Q" target=fix2><strong>fixes</strong></a>. <em><strong>NOTE:</strong></em> if the build keeps saying the compression is an issue after removing all compression, try emptying the WebBuilds folder once to make way for clean replacements.<br>
+<br>
+<strong>[C] After step 7</strong> has fully processed your first build, you will need to <strong>edit your index.HTML</strong> file (the one you initially comitted) to direct each url to the folder containing your build and the build file names (likely &quot;<strong>WebBuild</strong>&quot;):<br>
+<!--(in the Editor 2019 verison, in <strong>line 12</strong> the .json should be <strong>WebBuild.json</strong>).--> 
+
+<p>
+<em>Around lines 7-8:</em>
+<ul>
+&lt;link rel=&quot;shortcut icon&quot; href=&quot;<strong>WebBuild</strong>/TemplateData/favicon.ico&quot;&gt;<br>
+&lt;link rel=&quot;stylesheet&quot; href=&quot;<strong>WebBuild</strong>/TemplateData/style.css&quot;&gt;<br>
+<em>Around lines 71-76:</em><br>
+var buildUrl = &quot;<strong>WebBuild/</strong>Build&quot;;<br>
+var loaderUrl = buildUrl + &quot;/<strong>WebBuild</strong>.loader.js&quot;;<br>
+var config = {<br>
+dataUrl: buildUrl + &quot;/<strong>WebBuild</strong>.data&quot;,<br>
+frameworkUrl: buildUrl + &quot;/<strong>WebBuild</strong>.framework.js&quot;,<br>
+codeUrl: buildUrl + &quot;/<strong>WebBuild</strong>.wasm&quot;,
+</ul>
+
+
+<br><br>
+<p>
+<strong>MAINTENANCE: </strong>
+<br>
+The <strong>library</strong> image that is cached after the first build will stay the "starting point" for future builds, meaning each new day of changes needs to be fully re-calculated for each new build. 
+This is OK, but not ideal <br>
+You can update this <strong>library</strong> image every few days of production, to support faster builds: <br>
+    <ul>
+<li>In the mainBuildMaker.yml file, change the word after <strong>key</strong> in this line (CachedLibraryWeek2, etc): 
+<br><br>
+	<ul>
+    29: key: CachedLibrary 
+    </ul>
+    </ul>
+<br>
+<br>
+</div>
+<!-- END Advanced  -->
+
+<br><br>
+<font face="arial"><i>Tutorials prepared by Jason Wiser, <a href="http://www.Madwomb.com" target=mw>Madwomb.com</a>, with Marianne Chiarella</i><br>
+</font>
+
+</td></tr>
+</table>
+
+</center>
+
+</body>
+</html>

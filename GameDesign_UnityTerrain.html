@@ -1,0 +1,523 @@
+<html>
+<head>
+<title>Unity3D Terrain Steps</title>
+</head>
+
+<body text=#222222 link=#1e6669 vlink=#7700aa alink=#1088bb>
+
+<center>
+<table width=820 cellpadding=10 border=0 bgcolor=#eeeeee>
+<tr>
+  <td><font face=arial>
+<a href="GameDesign_Unity.html"><img src="gamedesign/UnityLogo60.png" alt="" align=right></a>
+<font size=+2><b>UNITY TERRAIN</b></font>
+<br>
+This tutorial covers the basic steps for creating a 3D Terrain in Unity.
+<br> 
+&nbsp; &nbsp; &nbsp; &nbsp; <a href="#01">Create Terrain</a> &nbsp; | &nbsp; 
+<a href="#04">Sculpt Hills, Plateaus</a> &nbsp; | &nbsp; 
+<a href="#05">Add Textures</a> &nbsp; | &nbsp; 
+<a href="#06">Trees / Foliage</a> &nbsp; | &nbsp; 
+<a href="#07">Play as FPS</a><br>
+At the bottom see these enhancement tutorials:<br>
+&nbsp; &nbsp; &nbsp; &nbsp;<a href="#animtexture">Animating a texture to move along a surface</a> (water, lava, etc) &nbsp; | &nbsp; <a href="#flickerlights">Flickering lights</a> (fire, water caustics)<br>
+<br>
+<center>
+We will use these assets. You can click-download them now to save to your desktop, or when the tutorial asks:<br>
+<table width=90% cellpadding=5 border=0><tr>
+<td width=150><img src="MotionGraphics/spacer.png" width=150 height=1></td>
+<td width=100><img src="MotionGraphics/spacer.png" width=100 height=1></td>
+<td width=100><img src="MotionGraphics/spacer.png" width=100 height=1></td>
+<td width=100><img src="MotionGraphics/spacer.png" width=100 height=1></td>
+<td width=5 rowspan=2><img src="MotionGraphics/spacer.png" width=5 height=1></td>
+<td width=130><img src="MotionGraphics/spacer.png" width=130 height=1></td>
+<td width=5 rowspan=2><img src="MotionGraphics/spacer.png" width=5 height=1></td>
+<td width=130><img src="MotionGraphics/spacer.png" width=130 height=1></td>
+</tr><tr>
+<td align=left valign=center bgcolor=#d2d2ee><font face=arial><strong>Three tiling textures</strong>, for giving color and definition to your Terrain surface:</font></td>
+<td bgcolor=#d2d2ee><a href="gamedesign/UnityTerrain/tex1_grass.png" target=t1><img src="gamedesign/UnityTerrain/tex1_grass.png" width=100></a></td>
+<td bgcolor=#d2d2ee><a href="gamedesign/UnityTerrain/tex2_earth.png" target=t2><img src="gamedesign/UnityTerrain/tex2_earth.png" width=100></a></td>
+<td bgcolor=#d2d2ee><a href="gamedesign/UnityTerrain/tex3_stone.png" target=t3><img src="gamedesign/UnityTerrain/tex3_stone.png" width=100></a></td>
+
+<td align=center valign=center bgcolor=#dadad2><font face=arial>A <em><strong>Trees</strong></em> Unity Package, to add foliage to your Terrain:</font><br>
+  <a href="gamedesign/UnityTerrain/TerrainTrees.unitypackage" target=t1><strong><font face="arial">TREES</font> Package</strong></a></td>
+<td align=center valign=center bgcolor=#eae2ea>
+<font face=arial>A  <em><strong>First Person Player</strong></em> Unity Package, to play in your Terrain:</font><br>
+<a href="AdvancedMaya/FPScontroller.unitypackage" target=t1><strong>FPS Package</strong></a>
+</td>
+</tr></table>
+</center>
+
+<br>
+<a name=01>&nbsp;</a>
+<br>
+<b>[STEP 1]: CREATE THE TERRAIN OBJECT:</b><br>
+In Unity create a Terrain object: <b>GameObject &gt; 3D Objects &gt; Terrain</b><br>
+<img src="gamedesign/UnityTerrain/UnityTerrain00.png">
+
+<br><br><br>
+<b>[STEP 2]: SET TERRAIN SIZE:</b><br>Set the initial size and resolution of the Terrain, to get the desired level of scultping detail.
+<br>
+<table align=center width=90% cellpadding=10 border=0><tr>
+  <td valign=top><font face=arial>
+<img src="gamedesign/UnityTerrain/TerrainButtons_5.png" align=right>  
+<br><br> 
+<img src="gamedesign/bullet.png" alt=""> In Hierarchy select theTerrain. In the Inspector we see the controls and settings for the Terrain. 
+<br>
+<img src="gamedesign/bullet.png" alt=""> Click the far right button (#5). It displays a little <strong>Gear</strong> icon over mountains, for main settings. <br>
+<img src="gamedesign/bullet.png" alt=""> Under Resolution: set <b>Terrain Width and Length = 100</b> 
+<br>(so we pack the same amount of detail into a much smaller space). 
+</font></td></tr></table>
+<img src="gamedesign/UnityTerrain/UnityTerrain01.png">
+
+
+<br><br><br>
+<b>
+[STEP 3]: SET SCENE LIGHTING:</b><br>Adjust the lighting to make it easier to see your Terrain sculpting.<br>
+<table align=center width=90% cellpadding=10 border=0><tr>
+  <td valign=top><font face=arial>
+<img src="gamedesign/bullet.png" alt=""> In the Hierarchy, select the default <strong>Directional Light</strong>.<br>
+<img src="gamedesign/bullet.png" alt=""> In the Inspector change the color to a slightlydarker yellow or blue, so the Terrain is easier to see.
+</font></td></tr></table>
+<img src="gamedesign/UnityTerrain/UnityTerrain02.png">
+
+
+<br><br><br>
+<em><strong>OVERVIEW:</strong></em><br>
+<img src="gamedesign/UnityTerrain/TerrainButtons_1-4.png" alt="" align=right>The first four buttons in the Terrain Inspector settings are for manipulating your Terrain. <br>
+The first button allows us to add more terrain patches connected to the first. 
+
+<br>
+The second button includes all of the sculpting and painting options (see steps 4 an 5, below). <br>
+The third and fourth are for tree and foliage placement (see step 6, below).
+
+<br><br>
+<br>
+<br><br>
+<img src="gamedesign/UnityTerrain/TerrainButtons_2.png" alt="" align=right>Here are the options under the <em><strong>second</strong></em> button, for <strong>sculpting</strong> and <strong>painting</strong>, covered in the tutorials below (click each to see full image):
+<br>
+<a href="gamedesign/UnityTerrain/TerrainInspector_2.png"><img src="gamedesign/UnityTerrain/TerrainInspector_2_thumb.png"></a>
+<a href="gamedesign/UnityTerrain/TerrainInspector_2a_raise.png"><img src="gamedesign/UnityTerrain/TerrainInspector_2a_raise_thumb.png"></a>
+<a href="gamedesign/UnityTerrain/TerrainInspector_2b_holes.png"><img src="gamedesign/UnityTerrain/TerrainInspector_2b_holes_thumb.png"></a>
+<a href="gamedesign/UnityTerrain/TerrainInspector_2c_paint.png"><img src="gamedesign/UnityTerrain/TerrainInspector_2c_paint_thumb.png"></a>
+<a href="gamedesign/UnityTerrain/TerrainInspector_2d_height.png"><img src="gamedesign/UnityTerrain/TerrainInspector_2d_height_thumb.png"></a>
+<a href="gamedesign/UnityTerrain/TerrainInspector_2e_smooth.png"><img src="gamedesign/UnityTerrain/TerrainInspector_2e_smooth_thumb.png"></a>
+<a href="gamedesign/UnityTerrain/TerrainInspector_2f_stamp.png"><img src="gamedesign/UnityTerrain/TerrainInspector_2f_stamp_thumb.png"></a>
+
+<br></font></td></tr></table>
+
+<br>
+<a name=04>&nbsp;</a>
+<br>
+
+<table width=820 cellpadding=10 border=0 bgcolor=#eeeeff><tr><td><font face=arial>
+<font color=purple><b>[STEP 4]: SCULPTING:</b></font><br>
+With the Terrain object selected in the Hierarchy:<br>
+
+<table align=center width=90% cellpadding=10 border=0><tr>
+  <td valign=top><font face=arial>
+<b><font face=arial><img src="gamedesign/UnityTerrain/TerrainButtons_2.png" alt="" align=right></font><font color=purple>a. Sculpt</font> the Hills and Valleys:</b><br>
+Use  &quot;<strong>Raise or Lower Terrain</strong>&quot; to sculpt hills.<br>
+<img src="gamedesign/bullet.png" alt=""> In the Inspector: click the <strong>2nd</strong> Terrain button. 
+<br><img src="gamedesign/bullet.png" alt=""> Click the rolldown to choose &quot;<strong>Raise or Lower Terrain</strong>&quot;.
+<br>
+<img src="gamedesign/bullet.png" alt=""> Under &quot;<strong>Brushes</strong>&quot; set <strong>Size = 30</strong> and <strong>Opacity = 3</strong> (way down, for much slower changes). 
+<br><br>
+<img src="gamedesign/bullet.png" alt=""> In the Scene view, Zoom out to see more of your Terrain <strong>[Alt] + RightMouse-Click-drag.</strong><br>
+<img src="gamedesign/bullet.png" alt=""> <b>LeftClick-drag</b> (draw) on the selected Terrain in the Scene view to raise geometry.<br>
+<img src="gamedesign/bullet.png" alt=""> To lower the geometry (valleys) hold <b>[Shift]+LeftClick-drag</b>.
+
+<br><br>
+<img src="gamedesign/bullet.png" alt=""> In the Inspector, adjust the <b>Opacity</b> parameter for the selected tool for <strong>slower or faster changes</strong>.<br>
+<img src="gamedesign/bullet.png" alt=""> Change your <b>Brush Shape</b> or <b>Size</b> to draw with other patterns and create rougher areas.</font></td></tr></table>
+<img src="gamedesign/UnityTerrain/UnityTerrain03.png">
+
+<br><br>
+<table align=center width=90% cellpadding=10 border=0><tr>
+  <td valign=top><font face=arial>
+<b><font color=purple>b. Sculpt</font> the Flats:<br>
+</b>Use &quot;Set Height&quot; to create flat areas (better for gameplay spaces):<br>
+<img src="gamedesign/bullet.png" alt=""> In the Inspector, click the rolldown to choose &quot;<strong>Set Height</strong>&quot; and see its parameters.
+
+<br><br>
+<img src="gamedesign/bullet.png" alt=""> Move  mouse to desired height. 
+Hold <b>[Shift]</b> to choose it (see new height value set in  Inspector).<br>
+<img src="gamedesign/bullet.png" alt=""> Draw (LeftClick-drag) your flattened plateau.<br>
+<img src="gamedesign/bullet.png" alt=""> Alternatively, just set the <b>Height</b> in the Inspector settings for the Flatten tool.<br><br>
+<em><b>NOTE:</b></em> To Sculpt valleys or rivers lower than the default height, change the default height at start using the Flatten tool: set <strong>Height = 50</strong>, hit <strong>[Flatten]</strong>. Then start sculpting up and down from there!</font></td></tr></table>
+<img src="gamedesign/UnityTerrain/UnityTerrain04.png">
+
+<br><br>
+<table align=center width=90% cellpadding=10 border=0><tr>
+  <td valign=top><font face=arial>
+<b><font color=purple>c. Sculpt</font> the Smoothness:</b><br>
+Use  Smooth Height to smooth any rough cliff edges.<br>
+<img src="gamedesign/bullet.png" alt=""> In the Inspector, click the rolldown to choose &quot;Smooth Height&quot; and see its parameters.
+<br>
+<img src="gamedesign/bullet.png" alt=""> Increase Brush Size and Opacity.
+<br>
+<img src="gamedesign/bullet.png" alt=""> LeftClick-drag on rough areas of the Terrain in the Scene to smooth them out.
+<br>
+<img src="gamedesign/bullet.png" alt=""> Increase Opacity significantly to see faster results.
+</font></td></tr></table>
+<img src="gamedesign/UnityTerrain/UnityTerrain05.png">
+
+<br>
+<br>
+<br>
+Two sculpting tools not covered in this tutorial are <em><strong>Paint Holes</strong></em> and <em><strong>Stamp Terrain</strong></em>. <br><br>
+<strong>PAINT HOLES</strong> allows us to draw hole sin the Terrain. This is ideal for adding buildings to the Scene with levels below the Terrain level, so players can move down into the building without being blocked by the terrain collider. <br><br>
+<strong>STAMP TERRAIN</strong> allows us to add more granular, 3D sculpted surface detail from an image. <br>
+<br></font></td></tr></table>
+
+<br>
+<a name=05>&nbsp;</a>
+<br>
+
+<table width=820 cellpadding=10 border=0 bgcolor=#efeaea><tr><td><font face=arial>
+<font face=arial><b><font face=arial><img src="gamedesign/UnityTerrain/TerrainButtons_2.png" alt="" align=right></font></b></font><font color=green><b>[STEP 5]: TEXTURES:</b></font><br>
+Use  Paint Texture to add layers of tiling color and bump maps to the Terrain surface.
+
+<br><br>
+</font>
+
+<center>
+<table width=90% cellpadding=10 border=0><tr>
+<td valign=top>
+<table align=right><tr>
+<td><font face="arial"><a href="gamedesign/UnityTerrain/tex1_grass.png" target=t1><img src="gamedesign/UnityTerrain/tex1_grass.png" alt="" width=50></a></font></td>
+<td><font face="arial"><a href="gamedesign/UnityTerrain/tex2_earth.png" target=t2><img src="gamedesign/UnityTerrain/tex2_earth.png" alt="" width=50></a></font></td>
+<td><font face="arial"><a href="gamedesign/UnityTerrain/tex3_stone.png" target=t3><img src="gamedesign/UnityTerrain/tex3_stone.png" alt="" width=50></a></font></td>
+</tr>
+</table>
+<font face="arial"><b><font color=green>a.</font> Add <font color=green>Texture</font> PNGs to your project:</b>
+<br><img src="gamedesign/bullet.png" alt=""> If you have not already done so, please <strong>download</strong> these 3 simple tiling PNGs (click each, save to your desktop). 
+<br><img src="gamedesign/bullet.png" alt=""> <strong>Import</strong> all 3 images into the Unity Project panel (drag in, or RightClick &gt; Import New Asset).</font></td>
+</tr></table>
+<img src="gamedesign/UnityTerrain/UnityTerrain06.png" alt=""> 
+</center>
+
+<font face=arial>
+
+<br><br>
+<center>
+<table width=90% cellpadding=10 border=0><tr>
+  <td valign=top><font face=arial><b><font color=green>b.</font> Open Paint <font color=green>Textures</font>:</b>
+  <br>
+  <img src="gamedesign/bullet.png" alt=""> Re-select the Terrain in the Hierarchy.
+  <br><img src="gamedesign/bullet.png" alt=""> In the Inspector, click the rolldown to choose &quot;Paint Texture&quot; and see its parameters. 
+
+<br><br>
+When we start, we have no textures to paint. We need to add them.
+<br><img src="gamedesign/bullet.png" alt=""> Hit the <b>[Edit Terrain Layers]</b> button.
+<br><img src="gamedesign/bullet.png" alt=""> Choose the <b>&quot;Add texture&quot;</b> option.
+</font></td></tr></table>
+<img src="gamedesign/UnityTerrain/UnityTerrain07.png">
+</center>
+
+<br>
+<center>
+<table width=90% cellpadding=10 border=0><tr>
+<td valign=top><font face=arial>
+<b><font color=green>c.</font> Add the first <font color=green>Texture</font> PNG:</b><br><br>
+<img src="gamedesign/bullet.png" alt=""> 
+In the &quot;<strong>Select Texture2D</strong>&quot; wndow that opens, type in the top search bar &quot;<strong>tex</strong>&quot; to more easily see our three imported images.
+
+<br><br>
+<img src="gamedesign/bullet.png" alt=""> 
+Select the first image (green tex1_grass). 
+
+<br><br>
+<img src="gamedesign/bullet.png" alt=""> Close this window, and the new texture layer is automatically applied to the entire Terrain. <br>
+<strong></strong><br>
+  </font></td>
+<td><img src="gamedesign/UnityTerrain/UnityTerrain08.png"></td>
+</tr></table>
+<img src="gamedesign/UnityTerrain/UnityTerrain09.png">
+</center>
+      
+<br><br>
+<table align=center width=90% cellpadding=10 border=0><tr>
+  <td valign=top><font face=arial>
+  <b><font color=green>d.</font> Add the other two <font color=green>Texture</font> layers:</b><br>
+    Repeat for the earth and stone textures. For each:<br>
+    <img src="gamedesign/bullet.png" alt=""> Hit <strong>[Edit Terrain Layer]</strong> button.<br>
+    <img src="gamedesign/bullet.png" alt=""> Choose <strong>Create  Layer</strong>.<br>
+    <img src="gamedesign/bullet.png" alt=""> Select the image from the &quot;Select Texture2D window.</font></td></tr></table>
+
+<!--
+<img src="gamedesign/UnityTerrain/UnityTerrain10b.png">
+-->
+<img src="gamedesign/UnityTerrain/UnityTerrain10.png" alt="">
+
+
+<br><br>
+
+<center>
+<table width=90% cellpadding=10 border=0><tr>
+  <td valign=top><font face=arial>
+  <b><font color=green>e.</font> Paint the other <font color=green>Textures</font> to create a more complex Terrain surface:</b><br>
+  <img src="gamedesign/bullet.png" alt=""> Select the 2nd or 3rd texture layer in the Inspector. 
+<br><img src="gamedesign/bullet.png" alt=""> LeftClick-drag on the Terrain, to <strong>paint</strong> over the first texture. 
+<br>
+<img src="gamedesign/bullet.png" alt=""> 
+Reduce Brush Size to draw smaller lines, and to create blending set Opacity low. Also try other brush shapes.
+
+<br><br>
+<img src="gamedesign/bullet.png" alt="">  To &quot;<strong>erase</strong>&quot;, simply draw over the areas you want to change (like the grass over stone walkway in the image below). 
+<br><br>
+<em><b>STYLE SUGGESTIONS:</b></em> Try to use Texture to both: 
+<br>&nbsp; &nbsp; <b>(a) emphasize your sculpted forms</b> (hill sides a texture,  tops another, valleys/ rivers another, etc) 
+<br>&nbsp; &nbsp; <b>(b) spotlight gameplay relevant spaces</b> (ancient stone path, old stone or wood  foundation, etc) 
+</font></td></tr></table>
+<img src="gamedesign/UnityTerrain/UnityTerrain11.png">
+</center>
+
+
+<br><br>
+<center>
+<table width=90% cellpadding=10 border=0><tr>
+  <td valign=top><font face=arial>
+  <b><font color=green>f.</font> Change <font color=green>Texture</font> Tiling Size:</b>
+
+<br><img src="gamedesign/bullet.png" alt=""> <strong>Select</strong> a texture layer. Click the <strong>triangle</strong> below to open the layer rolldown and view its properties. <br>
+<img src="gamedesign/bullet.png" alt=""> Towards the bottom find <strong>Tiling Settings</strong> and adjust the <strong>X and Y Tiling</strong> to make the texture details bigger or smaller (decrease from 2 to <strong>0.5</strong> to make the details smaller). <br>
+<img src="gamedesign/bullet.png" alt=""> Note the other cool properties that can be adjusted to get more detailed or realistic textures, including adding a <strong>bump</strong> map (drag a bump into the Normal Map slot) and adjusting <strong>specularity</strong>. </font></td></tr></table>
+<img src="gamedesign/UnityTerrain/UnityTerrain12.png">
+</center>
+</font></td></tr></table>
+
+<br>
+<a name=06>&nbsp;</a>
+<br>
+
+<table width=820 cellpadding=10 border=0 bgcolor=#eaefea><tr><td><font face=arial>
+<font face=arial><font face=arial><b><font face=arial><img src="gamedesign/UnityTerrain/TerrainButtons_3.png" alt="" align=right></font></b></font></font><font color=darkred><b>[STEP 6]: Add trees or other foliage / rocks.</b></font>
+<br>
+The third button is for placing &quot;Trees&quot; -- repeated 3D assets that automatically hug the Terrain slopes.
+
+<table align=center width=90% cellpadding=10 border=0><tr>
+  <td valign=top><font face=arial>
+<font color=darkred><strong>a.</strong></font><strong> Add <font color=darkred>Tree</font> objects to your Project panel: </strong><br>
+<img src="gamedesign/bullet.png" alt=""> <strong>Download</strong> this <a href="gamedesign/UnityTerrain/TerrainTrees.unitypackage" target=t1><strong><font face="arial">TREES</font> Unity Package</strong></a> and save it to your desktop.
+<br>
+<img src="gamedesign/bullet.png" alt=""> <strong>Import</strong> the package into Unity: 
+<br>
+&nbsp; &nbsp; In a Project panel empty area, RightClick &gt; <strong>Import Package</strong> and click <strong>Custom Package</strong>. <br>
+&nbsp; &nbsp; Select <strong>TerrainTrees</strong>. The Package opens to show the contents. Hit <strong>[Import]</strong> to Import all. <br>
+<br>
+Now added to your project: a <strong>PNG</strong>, Unity <strong>Material</strong>, tree <strong>FBX</strong>, and a <strong>Prefab</strong> called <strong>TreeA_prefab</strong>.</font></td></tr></table><img src="gamedesign/UnityTerrain/UnityTerrain13.png">
+
+
+<br><br>
+
+<table align=center width=90% cellpadding=10 border=0><tr>
+  <td valign=top><font face=arial><b><font face=arial><font face=arial><font face=arial><b><font face=arial><img src="gamedesign/UnityTerrain/TerrainButtons_3.png" alt="" align=right></font></b></font></font></font><font color=darkred>b.</font> Add a <font color=darkred>Tree</font> to the Terrain options</b><strong>:</strong>
+      <strong>Open [Edit Trees]</strong><br>
+<img src="gamedesign/bullet.png" alt=""> Re-select the <strong>Terrain</strong> in the Hierarchy.<br>
+<img src="gamedesign/bullet.png" alt=""> In the Inspector, select the <strong>third</strong> Terrain tool button to see Tree parameters. <br>
+<img src="gamedesign/bullet.png" alt=""> Hit the <strong>[Edit Trees]</strong> button.</font></td></tr></table><img src="gamedesign/UnityTerrain/UnityTerrain14.png">
+
+
+      
+<br>
+<br>
+</font>
+      <table align=center width=90% cellpadding=10 border=0>
+        <tr>
+          <td valign=top><font face=arial><b><b><img src="gamedesign/UnityTerrain/TerrainButtons_3.png" alt="" align=right></b><font color=darkred>c.</font> Add a <font color=darkred>Tree</font> to the Terrain options: Add a Tree Prefab</b><br>
+            <img src="gamedesign/bullet.png" alt=""> In the &quot;<strong>Add Tree</strong>&quot; window that opens, click the <strong>hotspot</strong>. <br>
+            <img src="gamedesign/bullet.png" alt=""> In the &quot;<strong>Select GameObject</strong>&quot; window that opens, choose <strong>TreeA_Prefab.</strong> <br>
+            <img src="gamedesign/bullet.png" alt=""> Back in the &quot;<strong>Add Tree</strong>&quot; window, the Prefab is loaded. Hit <strong>[Add]</strong> to confirm. </font></td>
+        </tr>
+      </table>
+      <img src="gamedesign/UnityTerrain/UnityTerrain15.png" alt=""> <br>
+      <font face=arial><br>
+      <table align=center width=90% cellpadding=10 border=0>
+        <tr>
+  <td valign=top><font face=arial>
+  <b><font color=darkred>d.</font> Set the<font color=darkred>Tree</font></b><strong> Parameters, and Paint Tree Objects onto the Terrain:</strong><br>
+  <img src="gamedesign/bullet.png" alt=""> In the <strong>Inspector</strong>, under Settings, reduce <strong>Brush Size</strong>, and increase <strong>Density</strong>, 
+  <br>
+  <img src="gamedesign/bullet.png" alt=""> Extend the range of Tree Height for more variety (set the range to the left for smaller trees overall). <br>
+  <img src="gamedesign/bullet.png" alt=""> In the <strong>Scene</strong>, LeftClick-drag on the Terrain to <strong>draw</strong> trees. 
+  <br>
+  <img src="gamedesign/bullet.png" alt=""> Hold <strong>[Shift]</strong> and click on a tree to remove it. 
+    
+  <br><br>
+  <em><strong>NOTE:</strong></em> This system is more performant than simply dragging the meshes into the Hierarchy and placing them manually, but don't overdo it with hundreds of trees, or expect slow-down or crashes. </font></td></tr></table>
+<img src="gamedesign/UnityTerrain/UnityTerrain16.png">
+      </font></td></tr></table>
+
+<br>
+<a name=07>&nbsp;</a>
+<br>
+
+<table width=820 cellpadding=10 border=0 bgcolor=#eaeaea><tr><td><font face=arial>
+<b>[STEP 7]: Add an FPS Controller, and Play!</b>
+<br>
+Add a First Person Controller prefab: <br> 
+<img src="gamedesign/bullet.png" alt=""> Click this link to download our basic <a href="AdvancedMaya/FPScontroller.unitypackage" target=t1><strong>FPS Unity Package</strong></a> and save it to your desktop. <br> 
+<img src="gamedesign/bullet.png" alt=""> In the Unity project panel, rightclick to choose <strong>Import Package</strong>, select this package. <br> 
+<img src="gamedesign/bullet.png" alt=""> Find the FPS Prefab here: <br> 
+<img src="gamedesign/bullet.png" alt=""> Drag it into the Scene where you want to play, lift it above the Terrain in that area.<br>(so the player does not start below ground and fall).
+
+<br><br>Hit <strong>[Play]</strong> to walk around your new Terrain 
+<br>(WASD to move, Space to Jump, camera controled by mouse). 
+<br>
+<img src="gamedesign/UnityTerrain/UnityTerrain18.png">
+  
+<br><br>
+<strong>Multiple Terrain Objects: </strong><br>
+<em><strong>PLEASE NOTE: </strong></em>You are not limited to a single terrain object. 
+<br>A cave is best made with at least two terrains, one flipped upside down to point downwards. <br>
+Larger project frequently use multiple terrains for performance, so the entire landscape does not need to be loaded at once, or processed in every frame. Just be mindful of the seams between landscapes: for polished projects, strive to pyut elements there to hide the seam (architecture, fallen logs, bushes, etc).
+<br><br><br>
+
+</font></td></tr>
+</table>
+
+<br><br>
+
+<table width=820 cellpadding=10 border=0 bgcolor=#dddddd><tr><td><font face=arial>
+<b>ENVIRONMENT ENHANCEMENTS</b> (<a href="https://youtu.be/Y-BmcEZgKR0" target=source>source</a>):
+<br><br>
+
+<a name="animtexture">&nbsp;</a>
+
+<br>
+<b>MOVING SURFACE TEXTURE</b> (for water, lava, etc)
+<br><br>
+<b>1. MATERIAL:</b> RightClick the Project panel to <b>Create > Material</b>. <br>
+Apply your tiling 2D texture art to the Material "<b>Albedo</b>" slot.
+<br>
+Consider making a <b>Normal</b> map and <b>Height</b> map using <a href="http://www.crazybump.com/" target=crazybump>CrazyBump</a>, to applying those also for greater depth.
+<br>
+<b>Drag</b> the material onto an object in the Hierarchy (the mesh that is meant to be water, lava, etc) <br><br>
+<b>2. SCRIPT:</b> Create a new C# script, name it &quot;<b>MoveTexture</b>.cs&quot;. <br>
+Apply to the 3D object in the Hierarchy with the Material you want to move.<br>
+<br>
+</font>
+  <center>
+    <font face="arial"><em>MoveTexture.cs (for a single animation parameter, &quot;moving&quot;)</em>: </font>
+    <table width=98% cellpadding=10 border=1 bgcolor=#f7f7f7>
+      <tr>
+        <td><font face=arial><font color=#3ab050><b>using</b></font> System.Collections;<br>
+          <font color=#3ab050><b>using</b></font> System.Collections.Generic;<br>
+          <font color=#3ab050><b>using</b></font> UnityEngine;<br>
+          <br>
+          <font color=#3ab050><b>public class</b></font><b><font color="#0070c0"> MoveTexture : MonoBehaviour</font></b> {<br>
+            <br>
+            &nbsp; &nbsp; &nbsp; &nbsp;<font color=#31849b><b>public</b></font> <font color=#31849b><b>float</b></font> scrollSpeed = <b><font color=#ed6c0a>0.1f</font></b>;<br>
+            &nbsp; &nbsp; &nbsp; &nbsp;<font color=#31849b><b>Renderer</b></font> rend;<font color=#aaaaaa><br>
+              </font><br>
+            &nbsp; &nbsp; &nbsp; &nbsp;<b><font color=#31849b>void</font></b> Start () {<br>
+            &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;rend = GetComponent&lt;Renderer&gt;();<br>
+            &nbsp; &nbsp; &nbsp; &nbsp;}<br>
+            <br>
+            &nbsp; &nbsp; &nbsp; &nbsp;<b><font color=#31849b>void</font></b> Update() {<br>
+            &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;<font color=#31849b><b>float</b></font> moveThis = Time.time * scrollSpeed;<br>
+            &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;rend.material.SetTextureOffset(&quot;_MainTex&quot;, <font color=#31849b><b>new Vector2</b></font>(<b><font color=#ed6c0a>0</font></b>, moveThis)); 
+            <br>
+            <font face=arial>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;</font><font color=#aaaaaa>//swap x and y to move in the other axis: (moveThis, 0)</font><br>
+            &nbsp; &nbsp; &nbsp; &nbsp;}<br>
+            <br>
+            }</font></td>
+      </tr>
+    </table>
+  </center>
+  <font face=arial><br>
+  Try experimenting with this 
+  <a href="gamedesign/UnityTerrain/lava_NickRossi_color.jpg" target=lava1>color</a> and this 
+  <a href="gamedesign/UnityTerrain/lava_NickRossi_specular.jpg" target=lava1>specular / bump</a> map.
+  
+
+<br><br><br><br>
+<a name="flickerlights">&nbsp;</a>
+
+<br>
+<b>FLICKERING LIGHTS</b><br>
+
+Create a new C# script, name it &quot;<b>FlickeringLights</b>.cs&quot;. <br>
+Apply to the light you want to flicker (or allow it to generate its own light source):<br>
+<br>
+</font>
+
+<center>
+<font face="arial"><em>FlickeringLights.cs 
+(<a href="https://gist.github.com/sinbad/4a9ded6b00cf6063c36a4837b15df969" target=flickerscript>source</a>)
+</em>: </font>
+
+<table width=98% cellpadding=10 border=1 bgcolor=#f7f7f7><tr>
+<td><font face=arial><font color=#3ab050><b>using</b></font> System.Collections;<br>
+<font color=#3ab050><b>using</b></font> System.Collections.Generic;<br>
+<font color=#3ab050><b>using</b></font> UnityEngine;<br>
+<br>
+<font color=#3ab050><b>public class</b></font></font> <font face="arial"><b><font color="#0070c0">FlickeringLights : MonoBehaviour</font></b></font><font face="arial"> {
+<br><br>
+&nbsp; &nbsp; &nbsp; &nbsp;<font color=#31849b><b>public</b></font> <font color=#31849b><b>new</b></font> Light lightf; <font color=#aaaaaa>// set this to null if you want the script to be applied to a light in your Scene</font>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp;<font color=#31849b><b>private</b></font> <font color=#31849b><b>float</b></font> minIntensity = <b><font color=#ed6c0a>0</font></b><b><font color=#ed6c0a>f</font></b>;<font color=#aaaaaa><br>
+              </font>&nbsp; &nbsp; &nbsp; &nbsp;<font color=#31849b><b>private</b></font> <font color=#31849b><b>float</b></font> maxIntensity =<b><font color=#ed6c0a>1f</font></b>;<font color=#aaaaaa><br>
+              </font>&nbsp; &nbsp; &nbsp; &nbsp;<font color=#31849b><b>private static float</b></font> sharedFlicker;  <br> 
+              &nbsp; &nbsp; &nbsp; &nbsp;[Range (<b><font color=#ed6c0a>1</font></b>, <b><font color=#ed6c0a>50</font></b>)] <br>
+            &nbsp; &nbsp; &nbsp; &nbsp;<font color=#31849b><b>public int</b></font> smoothing =<b><font color=#ed6c0a>5</font></b>; <br>
+             &nbsp; &nbsp; &nbsp; &nbsp;Queue&lt;float&gt; smoothQueue;<br>
+&nbsp; &nbsp; &nbsp; &nbsp;<font color=#31849b><b>float</b></font> lastSum =<b><font color=#ed6c0a> 0</font></b>; <br>
+            <br>
+            &nbsp; &nbsp; &nbsp; &nbsp;<b><font color=#31849b>public void</font></b> Reset () { 
+            
+<br> 
+<font face="arial">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;</font><font color=#aaaaaa>//Reset randomness and start again</font> <br>
+            &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;smoothQueue.Clear(); <br>
+            &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;rend = GetComponentInChildren&lt;Renderer&gt; ();<br>
+            &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;lastSum = <b><font color=#ed6c0a>0</font></b>;<br>
+            &nbsp; &nbsp; &nbsp; &nbsp;}<br>
+             <br>
+&nbsp; &nbsp; &nbsp;<b><font color=#31849b>void</font></b> Start () { <br>
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;smoothQueue = new Queue&lt;float(smoothing); <br>
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;rend = GetComponentInChildren&lt;Renderer&gt; ();<br>
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;<font color=#3ab050><b>if</b></font> (light == <b><font color="#0070c0">null</font></b>) {<br>
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;light = GetComponent&lt;<font color=#31849b><b>Light</b></font>&gt;();<br>
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;}<br>
+&nbsp; &nbsp; &nbsp; &nbsp;}<br>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp;<b><font color=#31849b>void</font></b> Update() {<br>
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;<font color=#3ab050><b>if</b></font> (light ==<b><font color="#0070c0"> null</font></b>){ return;}<br>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;<font color=#3ab050><b>while</b></font> (smoothQueue.Count &gt;= smoothing){<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;lastSum -= smoothQueue.Dequeue();<br>
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;}<br>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;<font color=#31849b><b>float</b></font> newVal = Random.Range(minIntensity, maxIntensity);<br>
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;smoothQueue.Enqueue(newVal);<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; lastSum += newVal;<br>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; light.intensity = lastSum / (float)smoothQueue.Count;<br>
+&nbsp; &nbsp; &nbsp; &nbsp;}<br>
+&nbsp;<br>
+            }</font></td>
+      </tr>
+    </table>
+  </center>
+  <font face="arial"> <br>
+  </font><font face=arial><br>
+
+<br><br>
+
+  </font></td>
+</tr></table>
+
+
+<table width=800 cellpadding=5><tr>
+<td align=center><font face=arial>
+<em>Tutorial by Jason Wiser, Madwomb.com </em><br><br> 
+Last updated January 2023
+</font></td>
+</tr></table>
+
+
+</center>
+
+</body>
+</html>

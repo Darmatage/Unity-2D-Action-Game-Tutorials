@@ -1,0 +1,281 @@
+<html>
+<head>
+<title>Unity Interface Tutorial</title>
+</head>
+
+<body text=#222222 link=#1e6669 vlink=#7700aa alink=#1088bb>
+
+<center>
+<table width=1110 cellpadding=10 border=0>
+<tr>
+  <td valign=top><font face=arial>
+<a href="GameDesign_Unity.html"><img src="gamedesign/UnityLogo60.png" align=right></a>
+<font size=+2><b>UNITY - Intro to the Main Panels</b></font>
+<br>
+This page covers an introduction to the key Unity panel names and locations. 
+<br><a name=theTop>&nbsp;</a></font></td>
+</tr></table>
+
+<br>
+<table width=1110 cellpadding=10 border=0 bgcolor=#edf7ed><tr>
+<td>
+<center>
+<font face="arial"><strong>Welcome to the Unity interface!</strong>
+<br><br>
+This is a tour of the <strong>6 key interface panels: </strong><br>
+(1) The <a href="#project"><strong>Project</strong></a>, 
+(2) the <a href="#console"><strong>Console</strong></a>, 
+(3) the <a href="#inspector"><strong>Inspector</strong></a>, 
+<br>(4) the <a href="#hierarchy"><strong>Hierarchy</strong></a>, 
+(5) the <a href="#scene"><strong>Scene</strong></a> view, and 
+(6) the <a href="#game"><strong>Game</strong></a> view. <br>
+</font></center><font face=arial>
+
+<br>
+Note that all of these panels are identified with a <strong>name tab</strong>.<strong><br>Look around</strong> and <strong>find</strong> each of them.<br>
+<br>
+Only the <strong>Top Menus</strong> do not have a name tab, but you may recognize some of them from other programs:<br><strong>File</strong> menu (to save a Scene or the entire Project), <strong>Edit</strong> menu, <strong>Help</strong> menu, etc.<br><br>
+
+<img src="gamedesign/Unity2D/IntroUnityPanels01.png">
+<br>
+The above <strong>layout</strong> is the default layout for Unity. <br>All of these panels can be re-arranged by clicking on the name-tab and dragging it to a new location. 
+<br>
+
+<br>
+If you lose a panel, or want the original arrangement, click on the "<strong>Layout</strong>" rolldown in the UpperRight corner of the interface. 
+<br>
+Then choose one of the options (the original layout is called "<strong>default</strong>").
+
+<br>
+<br></font></td>
+</tr></table>
+
+<br>
+<table width=1110 cellpadding=10 border=0 bgcolor=#e9e9fa><tr>
+<td><font face=arial>
+<a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a>
+<a name="project">&nbsp;</a>
+<br>
+<b>(1)</b> The <strong>Project</strong> panel is found along the bottom. <br>
+  This is where we store all asset files for all levels in the game, including <strong>Art</strong> (PNGs or FBX), <strong>Audio</strong> (WAV or MP3), and <strong>Scripts</strong> (C#). <br>
+  <br>
+Note the Project panel is divided into <strong>two parts</strong>: <br>
+The left-hand <strong>Stack</strong>  shows the folder structure of the Project<br>
+The larger <strong>Contents</strong> area on the right shows any files stored in the folder that is selected in the Stack<br><br>
+<img src="gamedesign/Unity2D/IntroUnityPanels02.png">
+<br><br>
+There are <strong>two ways to add content</strong> to the Project > Assets folder: 
+<br><img src="gamedesign/bullet.png" alt=""> RightClick the empty space on the right-hand side
+<br><img src="gamedesign/bullet.png" alt=""> Drag assets into that empty space. <br>
+
+<br>To create <strong>folders to organize</strong> your assets:
+<br>1. RightClick the Project &gt; Assets empty Content area
+<br>2. Choose &quot;Create&quot; at the top to open the Create options
+<br>3. Choose &quot;Folder&quot;.<br><br>
+
+<img src="gamedesign/Unity2D/IntroUnityPanels03.png">
+<br>
+Most Unity projects are best orgnized with 4 main folders:
+<br><img src="gamedesign/bullet.png" alt=""> <strong>Scripts</strong> (for all C# scripts)
+<br><img src="gamedesign/bullet.png" alt=""> <strong>Scenes</strong> (for all game levels and start and end menu screens)
+<br><img src="gamedesign/bullet.png" alt=""> <strong>Media</strong> (for Art and Audio folders)
+<br><img src="gamedesign/bullet.png" alt=""> <strong>Prefabs</strong> (for special objects that can be instanced throughout the project, like the Player).<br><br>
+<img src="gamedesign/Unity2D/IntroUnityPanels04.png">
+
+<br><br>
+<center>
+Note the handy slider in the Bottom-Right corner of the Project Contents area. 
+<br>
+<img src="gamedesign/Unity2D/IntroUnityPanels05b.png">
+<br>
+Slide this all the way to the left to see contents listed as text, and slide all the way to the right to see contents diplayed as large icons.
+</center><br>
+<img src="gamedesign/Unity2D/IntroUnityPanels05.png">
+<br><br>
+Files do not have to go into these folders to work, but it helps to keep the project organized, especially when it is a team project.
+
+<br><br>
+<strong>META FILES: </strong><br>
+If a Project asset file is already used in a Scene and you <em>move</em> the file to a different Project folder, Unity still knows where it is because of the "meta" file that is automatically created for every asset.
+This also works if you <em>rename</em> a file: the meta file keeps track!
+<br>.META files are invisible in Unity by default, but can be seen if you open the Assets folder directly on your computer.
+<br><br></font></td>
+</tr></table>
+
+<br>
+<table width=1110 cellpadding=10 border=0 bgcolor=#edf7ed><tr>
+<td><font face=arial>
+<a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a>
+<a name="console">&nbsp;</a><br>
+<b>(2)</b> The <strong>Console</strong> panel shares the same space as the Project panel: click the tab directly to the right to view it. <br>
+The Console shows error messages with scripts so they can be fixed. 
+<br>
+It is also wher we can send &quot;Debug.Log()&quot; messages to help us understand how our code is functioning.<br><br><br>
+<img src="gamedesign/Unity2D/IntroUnityPanels06.png">
+<br><br>
+Here I am creating a script by RightClicking in the project &gt; Assets &gt; Scripts folder and choosing Create &gt; C# script.
+<br>
+I then entered a name for the script and  
+
+ opened it in my scripting program, and made an error so we could see what that looks like in the Console:<br><br><br>
+<img src="gamedesign/Unity2D/IntroUnityPanels07.png">
+<br><br>
+Errors as specfic as this are <strong>AWESOME</strong> because they tell us what is wrong, so they are <strong>easy to fix! </strong><br><br>
+In this case, on <strong>line #12</strong> of &quot;FirstScript.cs&quot; I am missing a <strong>semicolon. </strong>
+<br>All commands must end with a semicolon, and it is common mistake to leave on out. <br>
+If I make this fix in the scripting program, Save, and return to Unity, I can expect this error to go away.<br><br></font></td>
+</tr></table>
+
+<br>
+<table width=1110 cellpadding=10 border=0 bgcolor=#e9e9fa><tr>
+<td><font face=arial>
+<a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a>
+<a name="inspector">&nbsp;</a><br>
+<b>(3)</b> The <strong>Inspector</strong> is the column on the right.<br>
+This is where we set parameters for any selected Project panel asset/s or Hierarchy object/s.<br><br>
+To understand how it works, let's import an asset:<br>
+1. RightClick the empty space of the Project &gt; Assets &gt; Media &gt; Art folder to choose "<strong>Import New Asset</strong>".<br>
+2. Browse your harddrive to find and select the file (in this case, a PNG image of a sassy <a href="gamedesign/Unity2D/TreeGame_TreeGoofy.png"><strong>tree</strong></a>).<br><br>
+<img src="gamedesign/Unity2D/IntroUnityPanels08.png">
+<br><br>
+Once the asset is in the Project panel, select it to see its default paramters in the <strong>Inspector</strong> on the right. <br><br>
+In this case, as a piece of Pixel art, the paramters should be set to the following:<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<strong>Pixels Per Unit =</strong> (from 100 to) <strong>16</strong><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<strong>Filter Mode = </strong>(from Bilinear to)<strong> Point (no filter)</strong><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<strong>Compression = </strong>(from Normal Quality to) <strong>None</strong><br>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Finally, click <b>[Apply]</b> (towards the bottom).<br><br>
+<img src="gamedesign/Unity2D/IntroUnityPanels09.png">
+<br><br>
+<b>NOTE:</b> Different Inspector settings are available for the <strong>Project panel's source asset</strong> and the <strong>Hierarchy's object copy</strong>.<br>
+<br></font></td>
+</tr></table>
+
+<br>
+<table width=1110 cellpadding=10 border=0 bgcolor=#edf7ed>
+<tr>
+  <td><font face=arial>
+
+
+<a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a><a name="hierarchy">&nbsp;</a><br>
+<strong>(4)</strong> The <strong>Hierarchy</strong> is the column on the left. <br>
+It is a list of all the contents of the open Scene.
+<br><br>By default, the only content of a 2D Game Scene is the default Main Camera.
+<br><br>
+Let's create an Empty Game Object. We can do this one of three ways: 
+<br>
+<img src="gamedesign/bullet.png" alt=""> Click the <strong>GameObject menu</strong> at the top to choose "<strong>Create Empty</strong>"
+<br>
+<img src="gamedesign/bullet.png" alt=""> <strong>RightClick</strong> in the Hierarchy to choose "<strong>Create Empty</strong>"
+<br>
+<img src="gamedesign/bullet.png" alt=""> Hit <strong>[Ctrl/Cmd]+[Shift]+[n]</strong>. <br><br>
+<img src="gamedesign/Unity2D/IntroUnityPanels10.png">
+<br>
+<br>
+<strong>Select</strong> the new Empty Game Object. <br>
+Look in the <strong>Inspector</strong>, and see it is just a <strong>Transform</strong>: a node to hold Posiiton, Rotation, and Scale information. 
+<br>
+Set the Position values to 0, 0, 0 (center of the game world space)
+
+<br><br>
+To make this Game Object into something more, we could add <strong>Components</strong> to it: Physics or any custom scripts to manage desired behaviors.<br>
+<br>
+A Camera in Unity is actually just a Game Object with Camera Components applied to it! 
+<br>
+Everything in Unity is just Game Objects with Components!<br><br>
+<img src="gamedesign/Unity2D/IntroUnityPanels10b.png" alt="">
+<br><br>
+To start making this Empty Game Object more interesting, we can make it into the parent object of the tree art:
+<br>
+1. <strong>Select</strong> GameObject and in the top of the Inspector <strong>rename</strong> it &quot;<strong>Tree</strong>&quot;<br>
+2. <strong>Drag</strong> the <strong>tree art</strong> asset from the <strong>Project</strong> panel into the <strong>Hierarchy</strong>. <br>
+3. In the <strong>Inspector</strong> rename it &quot;<strong>tree_art</strong>&quot; and set <strong>Position</strong> values to <strong>0,0,0</strong> (you can also hit the 3 little dots to the right and choose &quot;<strong>Reset Transforms</strong>&quot;).<br>
+4. In the <strong>Hierarchy</strong>, drag tree_art onto Tree to make it a child of Tree (see image below). <br>
+<br>
+All art in Unity should be put into a Scene this way: as an empty Game Object parent to hold script components (Physics, etc) and a child Art object to hold animation.<br>
+<br></font></td>
+</tr></table>
+
+<br>
+<table width=1110 cellpadding=10 border=0 bgcolor=#e9e9fa>
+<tr>
+  <td><font face=arial>
+<a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a><a name="scene">&nbsp;</a><br>
+<strong>(5)</strong> The <strong>Scene</strong> view is where we adjust the Position and other Transforms of our Game Objects.<br>
+While Objects should only ever be <em><strong>selected</strong></em> in the <strong>Hierarchy</strong>, they can be <em><strong>Transformed</strong></em> (Moved, Rotated, and Scaled) in the <strong>Scene</strong> view. <br><br>
+The buttons for Move, Rotate and Scale
+
+are in the upper left corner of the interface, and can also be accessed with these keyboard shortcuts:
+<br>
+Move <strong>[w] </strong> <img src="gamedesign/Unity2D/IntroUnityPanels_move.png">, 
+Rotate <strong>[e] </strong> <img src="gamedesign/Unity2D/IntroUnityPanels_rotate.png">, 
+Scale <strong>[r]</strong> <img src="gamedesign/Unity2D/IntroUnityPanels_scale.png">
+<br>
+<br>
+Also in the upper left corner is a <strong>hand icon</strong> <img src="gamedesign/Unity2D/IntroUnityPanels_pan.png"> for <strong>panning</strong> in the scene. 
+<br>The <strong>shortcut</strong> for <strong>panning</strong> a Unity scene is to <strong>click-and-hold</strong> the <strong>middle mouse button</strong>. <br>
+To <strong>zoom</strong> in and out of your Scene, use your <strong>middle mouse button</strong> as a <strong>scrollwheel</strong>.<br><br>
+<img src="gamedesign/Unity2D/IntroUnityPanels11.png">
+
+<br><br>
+In a 2D game, <strong>absolutely every Object except for the Camera MUST be set to Position Z = 0</strong>.
+
+<br>This is true for all parents and all children. <br>
+The <strong>Camera</strong> should be set to <strong>Position Z = -10</strong>, always. <br>If collisions are not working in game, check that all non-camera objects are set to Position Z = 0.
+
+<br>
+<br>
+A quick way to find out if any objects are NOT set to posZ=0 is to temporarily turn off the "2D" button at the top of the Scene view, and Orbit around: 
+<br>
+<strong>[Alt/Option]</strong>+MiddleMouse Click and Drag. In 3D mode there is also a world-orbit gizmo in the UpperRight corner of the Scene, to choose view sides (click a color cone).<br>
+<strong><br>
+</strong>Also useful in 3D is the Display Mode rolldown (directly below the name tab). 
+<br>
+The default "<strong>Shaded</strong>" is what we typcally want, but in some circumstances it is helpful to switch to "<strong>wireframe</strong>" mode. 
+
+<br><br>
+  </font></td>
+</tr></table>
+
+<br>
+<table width=1110 cellpadding=10 border=0 bgcolor=#edf7ed>
+<tr>
+  <td><font face=arial>
+<a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a><a name="game">&nbsp;</a><br>
+<strong>(6)</strong> The <strong>Game</strong> view is where we can see the actual apearance of our assets in the game.
+<br>
+Find the &quot;Free Aspect&quot; rolldown, click it to view options, and choose <strong>16:9 Aspect</strong> (good for a standard PC 1280x720 game)<br>
+<br>The Game view is entered automatically if we hit <strong>[Play]</strong> (top center of the interface).
+
+<br><br>
+In Play mode we can still switch back and forth between Scene and Game views, and still select assets in the Hierarchy to change their properties in the Inspector, BUT, any changes in a  Scene made during Play mode are reversed
+
+
+when we turn off Play (by design).<br><br>
+<img src="gamedesign/Unity2D/IntroUnityPanels12.png">
+<br><br>
+ <strong>THAT'S IT! <br>
+ </strong><br>
+You now know enough about the interface to get started. 
+<br><br>
+Head over to our first tutorial on <a href="GameDesign_UnityScripting.html"><strong>basic C# scripting in Unity</strong></a> to learn how to add scripts and to make your first 2D game!<br><br></font></td>
+</tr></table>
+
+
+<br><br>
+<table width=700><tr><td align=center><font face="arial">
+<br><em>Tutorial by Jason Wiser, Madwomb.com.</em>
+<br>The instructional content of this page is &copy; 2015-2022 Jason Wiser. <em><br>
+See more Unity tutorials at 
+<a href="http://www.Madwomb.com/Unity" target=unityLearn>http://www.Madwomb.com/Unity</a>
+</em>
+<br></font></td>
+</tr></table>
+
+
+</center>
+
+<br><br>
+
+</body>
+</html>

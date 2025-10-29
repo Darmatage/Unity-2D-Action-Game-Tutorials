@@ -1,0 +1,1030 @@
+<html>
+<head>
+<title>Intro Python Tutorial</title>
+</head>
+
+<body text=#222222 link=#1e6669 vlink=#7700aa alink=#1088bb>
+
+<center>
+<table width=850 cellpadding=10 border=0>
+<tr>
+  <td valign=top>
+<a name=top>&nbsp;</a>
+<br>
+<center>
+<table width=100% height=50 cellpadding=0 bgcolor=#bbbbbb><tr>
+<td align=center><font face=arial> <b>PYTHON PAGES:</b> &nbsp; &nbsp; 
+<a href="GameDesignAdvanced_PythonStart.html"><font color=#efefef><b>PYTHON START</b></font></a> &nbsp; | &nbsp; 
+<a href="GameDesignAdvanced_PythonAdventure1.html"><font color=#efefef><b>PYTHON TEXT ADVENTURES</b></font></a> &nbsp; | &nbsp; 
+<font color=#dedede><b><em>PYTHON CONCEPTS</em></b></font>
+</font></td>
+</tr></table>
+
+<font face=arial><br>
+<font size=+2><b>PYTHON -  Notes and Concepts</b></font><br>
+<a href="#structure">Structure</a> &nbsp; | &nbsp; 
+<a href="#operators">Operators</a> &nbsp; | &nbsp;
+<a href="#ifthen">If-Then</a> &nbsp; | &nbsp; 
+<a href="#strings">Strings &amp; Functions</a> &nbsp; | &nbsp; 
+<a href="#data">Data Structures</a> &nbsp; | &nbsp; 
+<a href="#loops">Loops</a> &nbsp; | &nbsp;
+<a href="#modules">Modules</a> &nbsp; | &nbsp;  
+<a href="#class">Classes</a><br>
+PYGAME:
+<a href="#gameloop">GameLoop</a> &nbsp; | &nbsp; 
+<a href="#modes">Modes &amp; Events</a> &nbsp; | &nbsp; 
+<a href="#image">Image Loading</a> &nbsp; | &nbsp; 
+<a href="#sprites">Sprites</a> &nbsp; | &nbsp; 
+<a href="#physics">Physics</a> &nbsp; | &nbsp; 
+<a href="#collision">Collision</a>
+    </font>
+</center>    
+
+<br><br>
+
+<table width=100% cellpadding=5><tr>
+<td width=35% valign=top><font face=arial><b>Python  Overview</b>
+<li>General purpose, high-level, open source programming language
+<li>Commonly dubbed as a scripting language
+<li>Very flexible and agile
+<li>Invented by Guido van Rossum, Python's Benevolent Dictator for Life (BDFL), formerly  at Google, now retired<li>Name is based off of Monty Python<br><br>
+<b>Why  Python?</b>
+<li>Platform-independent and portable
+<li>Versatility; what you can do: system utilities, games, Internet scripts, rapid prototypes, database access, image processing, web applications
+<li>Generally very fast (near the speed of C)
+<li>Excellent community support
+<li>Truly open source
+<li>&gt;&gt;&gt; import this
+<br><br>
+<b>This Programming Language is</b>
+<li> Interpreted<li> Supports Object-Oriented Programming
+<li> Dynamically typed (i.e., variable can refer to a value of any type)
+<li> Automatic memory management<li> Supports functional programming<li> Embedding and extending in C<br><br>
+<b>Environment</b>
+<li>We will use Python 3.7.x in this class
+<li><a href="http://wiki.python.org/moin/IntegratedDevelopmentEnvironments" target="_blank">List of Python IDEs</a>
+</font></td>
+<td width=60% valign=top><font face=arial>
+<b>The Zen of Python (by Tim Peters)</b>
+<li>Beautiful is better than ugly.
+<li>Explicit is better than implicit.
+<li>Simple is better than complex.
+<li>Complex is better than complicated.
+<li>Flat is better than nested.
+<li>Sparse is better than dense.
+<li>Readability counts.
+<li>Special cases aren't special enough  to break the rules.
+<li>Although practicality beats purity.
+<li>Errors should never pass silently.
+<li>Unless explicitly silenced.
+<li>In the face of ambiguity, refuse the  temptation to guess.
+<li>There should be one-- and preferably  only one --obvious way to do it.
+<li>Although that way may not be obvious  at first unless you're Dutch.
+<li>Now is better than never.<li>Although never is often better than  *right* now.
+<li>If the implementation is hard to  explain, it's a bad idea.
+<li>If the implementation is easy to  explain, it may be a good idea.<li>Namespaces  are one honking great idea -- let's do more of those!
+
+<br><br>
+<table width=100% cellpadding=5 bgcolor=#eeeeee><tr><td width=50% valign=top><font face=arial>
+<b>Python in Business</b>
+<li>Google App Engine
+<li>BitTorrent
+<li>Software for One Laptop Per Child XO
+<li>Google
+<li>YouTube
+<li>Web applications and web servers
+<li>System administration
+<li>Scripting language for  Blender, Maya, and more
+<li><a href="http://www.reddit.com/" target="_blank">Reddit</a>
+</font></td><td width=50% valign=top><font face=arial>
+<b>Python  in Games</b>
+<li>Civilization IV
+<li>Battlefield 2
+<li>EVE Online
+<li>Disney's Pirates of the Caribbean Online (MMORPG)
+<li><a href="http://www.pygame.org/" target="_blank">Pygame</a>
+<li><a href="http://wiki.python.org/moin/PythonGames" target="_blank">More...</a>
+</font></td></tr></table>
+
+</font></td></tr></table>
+
+<br><br>
+
+<font face=arial><a name="structure">&nbsp;</a></font>
+<a href="#top"><img src="gamedesignAdvanced/PythonIcon_sm.png"></a>
+<font face=arial><b>THE STRUCTURE OF A PYTHON PROGRAM</b></font>
+<table width=100% cellpadding=5><tr>
+<td width=40% valign=top><font face=arial>
+<b>Preliminaries:</b>
+<br>For experienced programmers, some of the &quot;usual gang&quot; of stuff will look a bit different.
+<li>File extension: <strong>.py </strong>
+<li>Conformity is important in Python
+<li>Code blocks - code is <b>structured by whitespaces or tabs</b> (<a href="https://youtu.be/cowtgmZuai0" target=tabspaces>so no more flame wars on style</a>). No more curly braces ({})
+<li>Any line that ends with a <strong>colon (:)</strong> will tell the       Python compiler that the next line should be a sub-code block
+<li>Use <strong># for a comment</strong>, not // or /* */ 
+<li>No semicolon (;) at the end of statements
+</font></td><td width=60% valign=top><font face=arial>
+<b>Interpreter</b>
+<li>Very much like the Unix / Linux shell, Command Prompt
+<li>On executing the interpreter by itself (i.e., Python), it reads and executes commands interactively. The <strong>prompt: &gt;&gt;&gt;
+</strong>
+<li>On executing the interpreter with a file as standard input, it reads and executes a script from that file. We will primarily use this option.
+<li><a href="http://docs.python.org/library/functions.html" target="_blank">List of built-in functions (python.org)</a>
+<li><strong>Example:</strong> len(&quot;hownowbrowncow&quot;) returns the length of the string       &quot;hownowbrowncow&quot; (14)
+<li>To make your Python script an executable (e.g., shell script) on a Unix / Linux system, add the line to the top of your script:
+<br><b>#! /usr/bin/env python</b>
+<br>and change the file's permission to: 
+<br><b>755</b> or <b>chmod 755 YOUR_SCRIPT</b>
+</font></td></tr></table>
+
+<br><center>
+<table width=700 cellpadding=10 border=1><tr><td><font face=arial>#  pyguess.py
+<br>from  random import randint
+<br><br>min  = 1<br>max  = 100<br>secret  = randint(min, max)<br>print(&quot;Welcome!&quot;)<br>guess  = 0<br>numGuesses  = 0<br>while  guess != secret:<br>&nbsp; &nbsp; &nbsp; guess = 0<br>&nbsp; &nbsp; &nbsp; while guess &lt; min or guess &gt; max:<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  g = input(&quot;Guess the number  between &quot; + str(min) + &quot; and &quot; + str(max) + &quot; (inclusive):  &quot;)<br> 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; guess = int(g)<br> 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if guess &lt; min or guess &gt;  max:<br> 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; print &quot;You bozo,  your guess does not count.  Try  again.&quot;<br> 
+&nbsp; &nbsp; &nbsp; numGuesses = numGuesses + 1 # Anything  interesting?<br> 
+&nbsp; &nbsp; &nbsp; if guess == secret:<br> 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; print(&quot;You win!  It took you &quot; + str(numGuesses) + &quot;  guesses.&quot;)<br> 
+&nbsp; &nbsp; &nbsp; else:<br> 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if guess &gt; secret:<br> 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; print(&quot;Too  high&quot;)<br> 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; else:<br> 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; print(&quot;Too  low&quot;)<br> 
+print(&quot;Game  over!&quot;)</font></td></tr></table>
+</center>
+
+
+<br><br>
+<a name="operators">&nbsp;</a>
+<a href="#top"><img src="gamedesignAdvanced/PythonIcon_sm.png" alt=""></a>
+<br>
+<table width=100% cellpadding=5 bgcolor=#eeeeee>
+  <tr>
+<td width=40% valign=top><font face=arial>
+<b>OPERATORS</b>
+<br><br><b>Arithmetic  Operators</b>
+<li>The usual gang: +, -, *, /, %
+<li>** -       exponent
+<li>// -       floor division<br>
+<b>Truth  and Booleans: </b>True, False
+
+<br><br>
+<b>Comparison  Operators</b>
+<li>The usual: &lt;, &gt;, &gt;=, &lt;=, ==, != (or &lt;&gt;)
+
+<br><br>
+<b>Logical  Operators: </b>not, and, or
+
+<br><br>
+<b>Operator  Precedence </b>See list: <a href="http://docs.python.org/reference/expressions.html" target="_blank">http://docs.python.org/reference/expressions.html</a></font>
+</td>
+<td width=60% valign=top><font face=arial>
+<br><br>
+<b>Assignment  Operators</b>
+<li>The usual: =, += (e.g., c += a is equivalent to c = c + a), 
+<br>&nbsp; &nbsp; &nbsp; -=, *=, /=, %=
+<li>**= - c**a is equivalent to c = c ** a
+<li>//= 
+<li>No increment or decrement operators (++ or --)
+<br><br><b>Variables</b>
+ can be re-assigned at any time to different types of data; very flexible. These are all legal:
+<li>foo = 1
+<li>foo = &quot;1&quot;
+<li>foo = '1'
+<li>foo = 1.1</font></td>
+</tr></table>
+
+
+<br><br>
+<font face=arial><a name="ifthen">&nbsp;</a></font><a href="#top"><img src="gamedesignAdvanced/PythonIcon_sm.png" alt=""></a>
+<br>
+<table width=100% cellpadding=5><tr>
+<td width=60% valign=top><font face=arial>
+<b>Control Flow</b> (if-then)
+<br>
+No parentheses around conditional statement
+(see guessing game, above). Python does NOT have a switch statement.
+<br>
+<br>&nbsp; &nbsp; &nbsp; if  <font color=#999999>STATEMENT</font>:
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; . . .<br>
+&nbsp; &nbsp; &nbsp; else:
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; . . .<br>
+<br>
+&nbsp; &nbsp; &nbsp; if  <font color=#999999>STATEMENT</font>:
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; . . .<br>
+&nbsp; &nbsp; &nbsp; elif  <font color=#999999>STATEMENT</font>:
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; . . .<br>
+&nbsp; &nbsp; &nbsp; else:
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; . . .<br></font></td>
+<td><img src="gamedesign/space.png" with=10 height=1></td>
+<td width=40% valign=top><font face=arial>
+<br>
+</font>
+  <center>
+    <table width=270 cellpadding=5 border=1>
+      <tr>
+        <td><font face=arial> a = 10 <br>
+b = 11 <br>
+c = 10 <br>
+if a ==b: <br>
+&nbsp; &nbsp; &nbsp; print ('First condition is true') <br>
+elif a == c: <br>
+&nbsp; &nbsp; &nbsp; print('Second condition is true') <br>
+else: <br>
+&nbsp; &nbsp; &nbsp; print('Truth is a lie. Woe is us') </font></td>
+      </tr>
+    </table>
+  </center>
+  <font face=arial><br><br>
+<em><strong>result:</strong></em> Second condition is true
+  </font></td>
+</tr>
+</table>
+
+<br><br>
+<font face=arial><a name="strings">&nbsp;</a></font><a href="#top"><img src="gamedesignAdvanced/PythonIcon_sm.png" alt=""></a><br>
+<table width=100% cellpadding=5 bgcolor=#eeeeee><tr>
+<td width=50% valign=top><font face=arial>
+<b>STRINGS</b>
+can be enclosed in single quotes or double quotes. The difference?
+<br>
+<table width=100% cellpadding=5><tr><td width=50% valign=top><font face=arial>
+&gt;&gt;&gt; 'spam eggs'
+<br>'spam eggs'
+
+<br><br>&gt;&gt;&gt; 'doesn\'t'
+<br>&quot;doesn't&quot;
+
+<br><br>&gt;&gt;&gt; &quot;doesn't&quot;
+<br>&quot;doesn't&quot;
+</font></td><td width=50% valign=top><font face=arial>
+&gt;&gt;&gt; '&quot;Yes,&quot; he  said.'
+<br>'&quot;Yes,&quot; he said.'
+
+<br><br>&gt;&gt;&gt;  &quot;\&quot;Yes,\&quot; he said.&quot;
+<br>'&quot;Yes,&quot; he said.'
+
+<br><br>&gt;&gt;&gt; '&quot;Isn\'t,&quot;  she said.'
+<br>'&quot;Isn\'t,&quot; she said.'
+</font></td>
+</tr></table>
+
+<br>Can span multiple lines via newline character \n in double-quoted string
+
+<br><br>
+<strong>String concatenation:</strong> by + or * (repeat). 
+<br><strong>Examples:</strong>
+<li>str = 'The' + 'Fonz' 
+<br>&nbsp; &nbsp;  # str will become 'TheFonz'
+<li>str = 'TheFonz' * 5 
+<br>&nbsp; &nbsp;  # str will become 'TheFonzTheFonzTheFonzTheFonz'
+
+<br><br>
+Can be subscripted (indexed); like in C, the first character of a string has subscript (index) [0]
+<br>&quot;Slicing&quot; examples (for s = &quot;Hello&quot;):
+<li>s[4] is 'o'
+<li>s[1:] is 'llo' #all charaters after index 1
+<li>s[-4] is 'e' # 4th character from the end
+<li>s[:-3] is 'He' # all charaters before 3 from the end
+
+<br><br>List of string methods: <a href="http://docs.python.org/library/stdtypes.html#string-methods" target="_blank">http://docs.python.org/library/stdtypes.html#string-methods</a> 
+    
+<br></font></td>
+<td><img src="gamedesign/space.png" height=1 with=10></td>
+<td width=50% valign=top><font face=arial>
+<b>pass Statement </b>Does nothing in the function, class or loop. With <strong>pass</strong>, we indicate a "null" block. <strong>Pass</strong> can be placed on the same line, or on a separate line. Commonly used as a placeholder for unemplimented code.
+
+<br><br>
+<center>
+<table cellpadding=5 border =1><tr><td><font face=arial>
+for letter in 'Python':
+<br> if letter == 'h':
+<br>&nbsp; &nbsp; &nbsp; pass
+<br>&nbsp; &nbsp; &nbsp; print 'This is pass block'
+<br>print 'Current Letter:', letter
+</font></td></tr></table>
+</center>
+
+<br>
+<b>FUNCTIONS</b>
+<li>Starts with keyword def
+<li>Parenthesized list of formal parameters; arguments are passed using call-by-value
+<li>Documentation string (or docstring) - the first statement of function body that describes the purpose of the function. This is optional but is excellent practice. Enclosed with three quotes: &quot;&quot;&quot;
+<li>The return statement returns with a value from a function
+
+<br><br>
+<b><i>Example,</i></b> fibonacci.py:
+<br>
+<center>
+<table width=400 cellpadding=5 border=1><tr>
+<td><font face=arial>def fibonacci (n): 
+<br>&nbsp; &nbsp; &nbsp;&quot;&quot;&quot; Returns  Fibonacci num for given integer n &quot;&quot;&quot; 
+<br>&nbsp; &nbsp; &nbsp; if  n == 0:
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return  0
+<br>&nbsp; &nbsp; &nbsp; elif  n == 1:
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return  1
+<br>&nbsp; &nbsp; &nbsp; else:
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return  fibonacci(n-2) + fibonacci(n-1)
+<br>n = 25<br>for i in range(n):
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; result  = fibonacci(i)
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; print &quot;The fibonacci num for &quot;, i, &quot; is &quot;, result
+</font></td>
+</tr></table>
+  
+</center>
+</font></td>
+</tr></table>
+
+<br><br>
+<a name="data">&nbsp;</a><a href="#top"><img src="gamedesignAdvanced/PythonIcon_sm.png" alt=""></a><br>
+
+<table width=100% cellpadding=5><tr>
+<td colspan=3><font face=arial>
+<b>DATA STRUCTURES: LISTS, TUPLES, DICTIONARIES</b>
+</font></td>
+</tr><tr>
+<td width=50% valign=top><font face=arial>
+<strong>LIST:</strong> A sequence of objects, written within square brackets [ ] (a.k.a., an array) <br><br>
+<i><b>LIST EXAMPLE:</b></i> jacksons = ['Michael', 'Janet', 'Jermaine', 'LaToya']
+<li>indexing starts at 0
+<li>jacksons[2] returns the third element in the list (Jermaine)<br>
+<li>NOTE: The assignment operator = does not make a copy of a list, but just a pointer in memory to it.
+<li>Like slicing a string, you can also slice a list.
+<li> <a href="http://docs.python.org/tutorial/datastructures.html" target="_blank"><strong>List Methods</strong></a> 
+
+<br><br><br><br>
+<b>TUPLE:</b> A sequence of  objects, like lists, with two differences: 
+<li> Tuples <b>cannot be changed</b>: We cannot add, remove, or change items once the sequence is created.
+<li> Tuples use parentheses ( ) instead of curly-brackets.   
+
+<br><br>
+
+<br></font></td>
+<td><img src="gamedesign/space.png" alt="" height=1 with=10></td>
+<td width=50% valign=top><font face=arial>
+
+<b> DICTIONARY:</b> Written within curly braces { }. 
+<li> Also known as a hash or an associative array. 
+<li> Assign a value to a key which can be a string or an integer index
+</font>
+  <li><font face="arial">Pairs of values separated </font>  
+  <li><font face="arial"><a href="http://docs.python.org/library/stdtypes.html#typesmapping" target="_blank"><strong>Dictionary Methods</strong></a><br><br> 
+    <i><b>DICTIONARY EXAMPLE 1:</b></i> 
+  <br>emails = {'TheRock':'therock@knowyourrole.com', 'William Bonney':'billythekid@yahoo.com', 'Homer Simpson':'hoj@fox.com'} 
+    
+    <br><br> 
+    <b><i>DICTIONARY EXAMPLE 2:</i></b> dict.py:
+    
+    </font>
+    <center>
+      <table width=450 cellpadding=5 border=1><tr>
+        <td><font face=arial>
+          bob = {'name': 'Bob Wu', 'age':  42, 'pay': 300, 'job': 'Developer'}
+          <br>
+          sue = {'name': 'Sue Lee', 'age':  45, 'pay': 400, 'job': 'Musician'}
+          <br>
+          jay = dict(name='Jay Weis',  age=48, pay=1000, job='Coach')
+          <br>
+          database = {}
+          <br>database['bob'] = bob
+          <br>database['sue'] = sue
+          <br>
+          database['jay'] = jay
+          <br>
+          if __name__ == '__main__':
+          <br>&nbsp; &nbsp; &nbsp; for  entry in database:
+          <br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; print  entry, ' =&gt; ', database[entry]
+          </font></td>
+        </tr></table>
+    </center>
+    
+  <font face="arial"><br><b><i>EXAMPLE 4:</i></b>
+<br>cats = {}
+<br>cats['fat'] = 'Garfield'</font></td>
+</tr></table>
+
+
+<br><br>
+<a name="loops">&nbsp;</a>
+<a href="#top"><img src="gamedesignAdvanced/PythonIcon_sm.png" alt=""></a><br>
+<table width=100% cellpadding=5 bgcolor=#eeeeee><tr>
+<td width=55% valign=top><font face="arial"><b>LOOPS</b><br>
+<strong>while</strong> (see guessing game example above) <br>
+<strong>for</strong> - does not iterate over an arithmetic progression of numbers but instead iterates over the items of any sequence (e.g., list). Use the &quot;<strong>in</strong>&quot; keyword to test if an element is in a set / list. 
+There is no explicit do-while in Python.<br><br>Two ways: 
+<br>
+</font>
+
+<center>
+<table width=400 cellpadding=5 border=1><tr>
+<td><font face="arial">for i in range(10): # go through numbers from 0-9 
+<br>&nbsp; &nbsp; &nbsp; list = [0, 1, 2, 3, 4, 5, 6, 7, 8,  9] 
+<br>&nbsp; &nbsp; &nbsp; for i in list: </font></td>
+</tr></table>
+</center>
+
+<font face="arial">&nbsp;</font><font face="arial"><br>
+  <strong><em>EXAMPLE:</em></strong>
+<br>for key in emails: 
+<br>&nbsp; &nbsp; &nbsp; print  k + &quot; =&gt; &quot; + emails[k] 
+<br><br><b>INPUT / OUTPUT</b> 
+<br>print (duh!)
+<br>For C buffs, format string lives! Use %. Example: 
+<br>&nbsp; &nbsp; &nbsp; import math
+<br>&nbsp; &nbsp; &nbsp; print 'The value of PI is  approximately %5.3f.' % math.pi
+<br>input()
+<br>raw_input()
+</font></td>
+<td><img src="gamedesign/space.png" alt="" height=1 with=10></td>
+<td width=45% valign=top><font face="arial"><br>
+<strong>FILE  INPUT / OUTPUT</strong> open() function - Opens a file for reading, returns a file handle (pointer to the first line of the file) Call the close() method on the file handle to close reading of the file at the end 
+<br><br>
+<b><em>EXAMPLE 1:</em></b> (reading):
+<br>
+</font>
+  <center>
+<table width=300 cellpadding=5 border=1><tr>
+<td><font face="arial">&nbsp; &nbsp; &nbsp; f = open('foo.txt', 'r') 
+<br>&nbsp; &nbsp; &nbsp; for line in f: 
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; print  line 
+<br>&nbsp; &nbsp; &nbsp; f.close() </font></td>
+</tr></table>
+  </center>
+  <font face="arial">&nbsp;</font><font face="arial"><br>
+<li><strong>File permissions:</strong> 'r' = read, 'w' = write, 'a' = append, 'r+' = read-write 
+<li>On Windows, 'b' appended to the mode opens the file in binary mode 
+<li><strong>f.readline()</strong> - Reads a single line from file 
+<li><strong>f.write()</strong> - Write to file <br><br><em><strong>EXAMPLE 2:</strong></em> (writing; what is the output?)
+<br># What is the output?
+<br>&nbsp; &nbsp; &nbsp;f = open('test.txt', 'w')
+<br>&nbsp; &nbsp; &nbsp;f.write(&quot;Hi!&quot;)
+<br>&nbsp; &nbsp; &nbsp;f.write(&quot;Ho!&quot;)
+<br>&nbsp; &nbsp; &nbsp;f.close()
+</font></td>
+</tr></table>
+
+<br><br>
+<a name="modules">&nbsp;</a> <a href="#top"><img src="gamedesignAdvanced/PythonIcon_sm.png" alt=""></a><br>
+<table width=100% cellpadding=5><tr>
+<td width=55% valign=top><font face="arial">
+    
+<strong>MODULES</strong>
+<li>The purpose of a module: a way to put Python definitions and statements in a file and use them in a script or in an interactive instance of the interpreter
+<li>Allows for code reusability
+<li>Import a module in a script or the interpreter via <b>import</b>
+<li>Use the module's name followed by a dot <b>(.)</b> to access module's functions
+<li><b>from</b> keyword  loads a Python module into the current namespace, so that you can refer to it without the need to mention the module name again (i.e., no &quot;dot&quot; notation)
+<li>The <b>dir()</b> function lists the names a module defines
+
+<br>
+<br><i><b>EXAMPLE 1</b></i>, urltest.py: <br>&nbsp; &nbsp; &nbsp; import urllib2
+<br>&nbsp; &nbsp; &nbsp; page = urllib2.urlopen(&quot;http://madwomb.com&quot;).readlines()
+<br>&nbsp; &nbsp; &nbsp; print page
+  
+<br><br><b><i>EXAMPLE 2: </i></b><a href="http://docs.python.org/library/urllib.html" target="_blank">urllib</a> and <a href="http://docs.python.org/library/urllib2.html" target="_blank">urllib2</a>
+<br><b><i>EXAMPLE 3:</i></b> <a href="http://docs.python.org/library/os.html" target="_blank">os</a>
+<br><i><b>EXAMPLE 4:</b></i> <a href="http://docs.python.org/library/math.html" target="_blank">math</a>
+<br><b><em>EXAMPLE 5:</em></b> <a href="http://docs.python.org/library/pickle.html" target="_blank">pickle</a> (very powerful)
+<br><b><em>EXAMPLE 6</em></b> <a href="http://docs.python.org/library/random.html" target="_blank">random</a>:<br>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; import random
+  <br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; randnum  = random.randint(1, 100)
+  <br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; print  randnum
+<br></font></td>
+<td><img src="gamedesign/space.png" alt="" height=1 with=10></td>
+<td width=45% valign=top><font face="arial">
+<br><b>TESTING  MODULE</b>
+<li>if __name__ == &quot;__main__&quot;:
+<li>Modules are objects, and all modules have a built-in attribute __name__
+<li>If you import the module, then __name__ is the module's filename, without a directory path or file extension
+<li>If you run the module directly as a standalone program, then __name__ will be a special default value __main__ 
+
+<br><br>
+<i><b>EXAMPL</b></i><em><strong>E 2,</strong></em> maintest.py: <br>
+&nbsp; &nbsp; &nbsp; def square(x):
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Self explanatory &quot;&quot;&quot;
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return  x * x
+<br>&nbsp; &nbsp; &nbsp; if __name__ == '__main__':
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; print  &quot;test: square(42) == &quot;, square(42)
+<br>&nbsp; &nbsp; &nbsp; else:
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; print &quot;Someone else is using me!&quot;
+</font></td>
+  </tr>
+</table>
+
+<br><br>
+<a name="loops">&nbsp;</a> <a href="#top"><img src="gamedesignAdvanced/PythonIcon_sm.png" alt=""></a><br>
+
+<table width=100% cellpadding=5 bgcolor=#eeeeee><tr>
+<td width=50% valign=top><font face=arial><strong>OBJECTS</strong>
+<br><br>
+<li>Everything in Python is an object.
+<li>An object is a thing obeying a<strong> set of conditions</strong>.
+<li>A condition can assert the existence of a<strong> piece of data</strong> or a <strong>function</strong> inside the object. Data and functions that must be present are called <strong>members</strong>.
+<li>An <strong>instance</strong> of an object is one of the things obeying the conditions.<li>A <strong>description</strong> of an object (with all conditions specified) is called a <strong>class</strong>. This is nothing more than a list of things that must be defined before you have an object.
+<li>The <strong>superclass</strong> (or base class)  defines &quot;generic&quot; instance variables and methods that apply in many cases</font></td>
+<td><img src="gamedesign/space.png" alt="" height=1 with=10></td>
+<td width=50% valign=top><font face="arial">
+<br><br>
+<li>The <b>subclass</b> (or derived class)  specializes, extends, or inherits from a superclass need not give new implementations for the general methods, for it inherits them by adding conditions (functions and data). It should only define those specialized methods for this particular subclass.<li>We list an object <b>hierarchy</b> with the most general (most super) classes at the top, and the most specific (most subordinate) class at the bottom (&quot;is a&quot; relationship).
+<li><b>Polymorphism</b> is the ability of an object variable to take different forms. <b>Overloading</b> is a type of polymorphism. <b>Example: + operator</b>.</font></td>
+  </tr>
+</table>
+
+<br><br>
+<a name="class">&nbsp;</a> <a href="#top"><img src="gamedesignAdvanced/PythonIcon_sm.png" alt=""></a><br>
+<table width=100% cellpadding=5><tr>
+<td width=55% valign=top><font face=arial>
+<b>CLASSES</b>
+<br><br><li><b>class</b> ClassName: 
+<li>Class instantiation uses function notatation. 
+<br><b><i>EXAMPLE:</i></b> x = MyClass() 
+<br><br>
+<li><b>def __init__(self):</b> the constructor, run when the class is instantiated. You can have multiple parameters for the <b>__init__</b> method
+<li><b>def __del__(self)</b> the destructor (hardly needed)
+<li>All class methods shall have <b>self</b> as first parameter
+<li>When you call a method of an ancestor class from <b>within</b> your class, you must include the <b>self</b> argument
+<li>When you call your class method from <b>outside</b>, you do not specify anything for the <b>self</b> argument; you skip it entirely, and Python automatically adds the instance reference for you
+<li>No &quot;new&quot; to create a class.
+<li>Classes can (and should) have doc strings too.
+<li>To access a member of the class (method or data attribute), use &quot;dot notation&quot; 
+<b>(.)</b>
+
+<br><br>
+<b><i>EXAMPLE 1:</i></b>
+
+
+<center>
+<table width=300 cellpadding=5 border=1><tr>
+        <td><font face="arial">
+        &nbsp; &nbsp; &nbsp; class Foo: <br>
+        &nbsp; &nbsp; &nbsp; &quot;&quot;&quot;  My first class &quot;&quot;&quot; <br>
+        &nbsp; &nbsp; &nbsp; def  __init__(self): <br>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; print  &quot;Hi!&quot; <br>
+        <br>
+        &nbsp; &nbsp; &nbsp; def  setx (self, x): <br>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; self.x  = x <br>
+        <br>
+        &nbsp; &nbsp; &nbsp;  def  bar (self): <br>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; print  self.x <br>
+        <br>
+        &nbsp; &nbsp; &nbsp; if __name__ == &quot;__main__&quot;: <br>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; f  = Foo() <br>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; f.setx(20) <br>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; f.bar <br><br>
+        </font></td>
+      </tr>
+    </table>
+  </center>
+
+<br># What is the output (and why)?<br>
+    
+    
+  </font></td>
+    <td><img src="gamedesign/space.png" alt="" height=1 with=10></td>
+    <td width=45% valign=top><font face="arial"> 
+<li>Inheritance is easy: 
+<br>class DerivedClassName(BaseClassName):
+
+<br><br>
+<li>Example: class Square(Shape):
+
+<br><br>
+<li>Unlike many other languages, <strong>multiple inheritance is supported in Python</strong>. In layperson terms, a child or subclass can have more than one parent. <br><br>
+<li>Traditional<strong> &quot;private&quot; variables in a class for information hiding do not exist in Python.</strong> Instead, use the Python convention to put an underscore<strong> (_)</strong> prefix to an object variable name to denote it as &quot;private&quot;
+
+<br>
+<br><em><strong>EXAMPLE 2:</strong></em> 
+<br>
+<center>
+  <table width=300 cellpadding=5 border=1>
+    <tr>
+      <td>&nbsp; &nbsp; &nbsp; class Dog: <br>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &quot;&quot;&quot; Dog dog dog! &quot;&quot;&quot; <br>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; def  __init__(self): <br>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &quot;&quot;&quot;  Initializer &quot;&quot;&quot; <br>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; print  &quot;A dog is born...&quot; <br>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; self.name  = &quot;Fido&quot; <br>
+        <br>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; def  setName (self, n): <br>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; self.name  = n <br>
+        <br>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; def  bark(self): <br>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; print  self.name + &quot; says Arf!&quot; <br>
+        <br>
+        &nbsp; &nbsp; &nbsp; if __name__ == &quot;__main__&quot;: <br>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; brian  = Dog() <br>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; brian.setName(&quot;Brian&quot;) <br>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; for  i in range(5): <br>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; brian.bark() <br>
+        <br>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; lily  = Dog() <br>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; lily.setName(&quot;Lily&quot;) <br>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; lily.bark() <br>
+        <br>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; stu  = Dog() <br>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; stu.bark() </td>
+    </tr>
+  </table>
+</center>
+</font></td>
+</tr></table>
+
+<a name="gameloop">&nbsp;</a><br><br>
+<center>
+  <font face=arial><b><a href="#top"><img src="gamedesignAdvanced/PythonIcon_sm.png" alt=""></a> PYGAME FOR GAME DEVELOPMENT</b></font>
+</center>
+<table width=100% cellpadding=5 bgcolor=#eeeeee>
+  <tr>
+  <td width=45% valign=top><font face=arial>
+<strong>PYGAME</strong> is a set of Python module, created circa 2000. It is highly portable and includes support for graphics, OpenGL, UI, mouse, keyboard, joystick, fonts, time, sound, etc. It is fairly low level for writing games.
+<li>	Pygame is built on top of the <strong>Simple DirectMedia Layer</strong> (SDL), a cross-platform open source multimedia library.
+</font><li> <font face="arial"><a href="http://pygame.org/docs/ref/pygame.html" target=ref><b>Official Pygame Reference</b></a><br><br><br>
+<strong>INITIALIZING PYGAME:</strong></font><font face=arial><li> import pygame, sys, os<li> from pygame.locals import *<li> pygame.init()<br><br>
+<br><b>IMPLEMENTING THE GAME LOOP</b>
+<li> As simple as a while loop that runs forever
+<br></font></td>
+<td width=55% valign=top><font face="arial"><strong>THE GAME LOOP</strong><br>
+<li> The key to a game's operation
+<li> Responsible for keeping track of the current frame and for requesting periodic screen updates
+<li> Inputs or none, the game loop must run<li> The pseudocode / idea:<br> 
+<br>&nbsp; &nbsp; &nbsp; while (game is running) {
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; while (isPaused && isRunning) {
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; sleep(someInterval);
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	  }
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	  updateState();
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	  processInputs();
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	  updateAI();
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	  updatePhysicsAndCollisions();
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	  updateAnimations();
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	  playSounds();
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	  updateVideo();
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	  drawGraphics();
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	  ...<br>&nbsp; &nbsp; &nbsp; }
+<br>
+
+</font></td>
+</tr></table>
+
+<br><br>
+<a name="modes">&nbsp;</a><a href="#top"><img src="gamedesignAdvanced/PythonIcon_sm.png" alt=""></a><br>
+<table width=100% cellpadding=5 bgcolor=#eeeeee><tr>
+<td width=50% valign=top><font face=arial> 
+<b>SETTING UP THE DISPLAY</b>
+<li> window = pygame.display.set_mode ((SOME_SCREEN_WIDTH, SOME_SCREEN_HEIGHT))<li> pygame.display.set_caption ('SOME WINDOW TITLE')
+<li> screen = pygame.display.get_surface( )<li> <a href="http://www.pygame.org/docs/ref/display.html" target=display>Methods and reference</a><br><br><br> <b>PYGAME SURFACE</b> 
+<br> A drawing area, equivalent to a canvas in Java. 
+<br> See <a href="http://pygame.org/docs/ref/surface.html" target="refs">methods and reference</a> 
+
+<br><br><br> <b>SCREEN MODES</b>
+<li> <strong>pygame.FULLSCREEN</strong> - full screen
+<li> <strong>pygame.HWSURFACE</strong> - Hardware accelerated, only in <strong>FULLSCREEN</strong>
+<li> <strong>pygame.OPENGL</strong> - Enable OpenGL
+<li> <strong>pygame.RESIZABLE</strong> - You can resize the display window
+<li> <strong>pygame.NOFRAME</strong> - Display window has no border or controls
+<li> <b>pygame.DOUBLEBUF</b> - double buffering support; recommended for <b>HWSURFACE</b> or <b>OPENGL</b> 
+<br></font></td>
+<td width=50% valign=top><font face="arial"><b>EVENT HANDLING</b>
+      <li> Reacting to user activity (particularly the mouse and keyboard)
+      <li> pygame.event.get() - Get events from the queue
+      <li> Event types:
+        <table width=430 cellpadding=5>
+          <tr>
+            <td><img src="gamedesign/space.png" alt="" width=10 height=1></td>
+            <td width=50% valign=top><font face=arial>
+              <li> QUIT
+              <li> ACTIVEEVENT
+              <li> KEYUP
+              <li> KEYDOWN
+              <li> MOUSEBUTTONUP
+              <li> MOUSEBUTTONDOWN
+              <li> MOUSEMOTION
+              <li> JOYAXISMOTION
+              </font></td>
+            <td width=50% valign=top><font face=arial>
+              <li> JOYHATMOTION
+              <li> JOYBALLMOTION
+              <li> JOYBUTTONUP
+              <li> JOYBUTTONDOWN
+              <li> VIDEORESIZE
+              <li> VIDEOEXPOSE
+              <li> USEREVENT
+              </font></td>
+          </tr>
+        </table>
+        <br>
+      <li> <b>Handling keyboard events</b> <br>
+        &nbsp; &nbsp; &nbsp; if event.type == KEYDOWN: # or use KEYUP <br>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; # Get the key pressed via event.key <br>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; print event.key <br>
+        <br>
+      <li> <strong>Handling mouse events</strong> <br>
+        &nbsp; &nbsp; &nbsp; if event.type == MOUSEBUTTONDOWN: <br>
+        &nbsp; &nbsp; &nbsp; # or use MOUSEBUTTONUP or MOUSEMOTION <br>
+        &nbsp; &nbsp; &nbsp;  # Get the location of the mouse pointer via pygame.mouse.get_loc() <br>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; print pygame.mouse.get_loc() <br>
+        <br>
+      <li> List of <a href="http://www.pygame.org/docs/ref/key.html" target=keys>keycodes and key methods</a>
+      <li> List of <a href="http://www.pygame.org/docs/ref/mouse.html" target=mouse>mouse methods</a><br>
+      </font></td>
+  </tr>
+</table>
+
+<br><br>
+<a name="image">&nbsp;</a><a href="#top"><img src="gamedesignAdvanced/PythonIcon_sm.png" alt=""></a><br>
+
+<table width=100% cellpadding=5><tr>
+<td width=50% valign=top><font face=arial><b>IMAGE LOADING</b>
+<li><b>pygame.image.load( )</b> to load image<li> <b>pygame.image.load( ).convert( )</b> or <b>pygame.image.load( ).convert_alpha( )</b> are better options to load an image: convert an image to best pixel and color format<li> <b>screen.blit( )</b> to draw image (and provide x-y location to draw the image)
+<li> <b>pygame.display.flip( )</b> to update the entire surface</font></td>
+<td width=50% valign=top><font face="arial">
+<br><b>EXAMPLE:</b><br>&nbsp; &nbsp; &nbsp; img = pygame.image.load("krusty.jpg")<br>&nbsp; &nbsp; &nbsp; screen.blit(img, (10, 10))<br>&nbsp; &nbsp; &nbsp; pygame.display.flip( )<br><br> 
+<li>In the above example, .py file and krusty.jpg must be in the same folder.
+<li>You can also specify path to image.
+<li> In addition, the background is black color</font></td>
+</tr></table>
+
+
+<br><br>
+<a name="sprites">&nbsp;</a>
+<a href="#top"><img src="gamedesignAdvanced/PythonIcon_sm.png" alt=""></a><br>
+
+<table width=100% cellpadding=5 bgcolor=#eeeeee><tr><td colspan=2 align=center>
+<font face=arial><b>SPRITES AND ANIMATION</b></font></td></tr>
+<tr><td width=50% valign=top><font face=arial>
+<b>DRAWING</b>
+<li> screen.blit()
+<li> Change background color or clear the background: 
+<br>&nbsp; &nbsp; &nbsp; background = pygame.Surface(screen.get_size())
+<br>&nbsp; &nbsp; &nbsp;  background = background.convert()
+<br>&nbsp; &nbsp; &nbsp;  background.fill((255, 0, 0))
+<br>&nbsp; &nbsp; &nbsp;  screen.blit(background, (0, 0))
+<li> Or simply do:<br>
+&nbsp; &nbsp; &nbsp;  screen.fill( )<br>
+<br>
+<b>FONT AND DRAWING STRINGS</b>
+<li> font = pygame.font.Font(). The constructor takes in a truetype font file or None which will use the default Pygame font, and font size
+<li> text = font.render(). The render() method takes in three arguments: the text string, a flag (0 or 1) to use antialiased text, and RGB color tuple
+<li> Draw the text onto surface via background.blit()
+<li> <a href="http://www.pygame.org/docs/ref/font.html" target=ref>Documentation</a>
+</font><li> <font face="arial"><em><strong>EXAMPLE:</strong></em><br>&nbsp; &nbsp; &nbsp; font = pygame.font.Font(None, 28)
+<br>&nbsp; &nbsp; &nbsp; text = font.render("Score: 1000", 1, (0, 0, 0))
+<br>&nbsp; &nbsp; &nbsp; screen.blit(text, (10, 10))
+
+<br><br>
+<b>SOUND</b>
+</font>
+<font face=arial>
+<li> sound = pygame.mixer.Sound( )
+<li> Like images, <b>Sound()</b> takes in one parameter: sound file name
+<li> <b>sound.play( )</b>
+<li> Sound types supported: .ogg, .wav. mp3
+<li> Like images, sounds must be in the same folder as the .py file. You can also specify path to sound.
+<li> Example:<br>&nbsp; &nbsp; &nbsp; boing_sound = pygame.mixer.Sound("boing.wav")
+<br>
+&nbsp; &nbsp; &nbsp; boing_sound.play( )<br></font></td>
+<td width=50% valign=top><font face="arial">
+<strong>EXCEPTION HANDLING</strong>
+<li> Exceptions are errors detected during execution
+<li> For example, what if an image or sound file could not be found?
+If an image cannot be loaded, the game will hang.</font>
+<li> <font face="arial"><b>try except</b> block (The Java equivalent is "<b>try catch</b>")
+
+<br><br>
+<br> <em><strong>EXAMPLE 1,</strong></em> bad input:<br>&nbsp; &nbsp; &nbsp; try:<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; x = int(raw_input("Please enter a number: "))
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; break<br>&nbsp; &nbsp; &nbsp; except ValueError:<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; print "Oops!  Not a valid number.  Try again..."<br><br>
+<br> <em><strong>EXAMPLE 2,</strong></em> the proper way to load an image:<br>&nbsp; &nbsp; &nbsp; def load_image(image_name):<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; try:<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; image = pygame.image.load(image_name)
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; except pygame.error, message:<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; print "Cannot load image: " + image_name
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; raise SystemExit, message<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return image.convert_alpha( )<br><br>
+<br> <em><strong>EXAMPLE 3,</strong></em> the proper way to load a sound: 
+<br>&nbsp; &nbsp; &nbsp; def load_sound(sound_name):<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; try:<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; sound = pygame.mixer.Sound(sound_name)
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; except pygame.error, message:
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; print "Cannot load sound: " + sound_name
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; raise SystemExit, message
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return sound<br></font></td></tr></table>
+<br>
+<table width=100% cellpadding=5 bgcolor=#eeeeee><tr>
+<td width=50% valign=top><font face=arial>
+<strong>SPRITES</strong>
+<li> Sprites are any object that appears on the screen
+<li> Overlayed on background
+<li> Can be an image or drawing 
+<br>&nbsp; &nbsp; &nbsp; Can be motionless (dull)
+<br>&nbsp; &nbsp; &nbsp; Can be animated: move around the screen randomly
+<br>&nbsp; &nbsp; &nbsp; Even better: can respond to the environment
+
+<br><br>
+<li> Hopefully, your sprite images have transparent pixels
+<li> We have already did most of the work for creating a sprite. Relatively easy:<br>&nbsp; &nbsp; &nbsp; Keep track of the x and y coordinates
+<br>
+&nbsp; &nbsp; &nbsp; Images should be optimized (transparent background)
+<br>
+&nbsp; &nbsp; &nbsp; Draw the sprite
+<br>&nbsp; &nbsp; &nbsp; Update the sprite (e.g., coordinates, speed)
+<br>&nbsp; &nbsp; &nbsp; Keep track of it's state (e.g., hidden/shown)
+
+<br><br>
+<strong>PYGAME'S SPRITE CLASS</strong>
+<li> Base class: pygame.sprite.Sprite
+<li> <a href="http://www.pygame.org/docs/ref/sprite.html" target=docs>Documentation</a> 
+<li> All sprites must have an update() method and a draw() method. These function is typically called once per frame!
+<li> Several different kind of sprite classes: pygame.sprite.Sprite (simple) pygame.sprite.DirtySprite (advanced)
+<li> Very lightweight
+<li> Contains collision detection methods (more later)
+<li> To use the <strong>pygame.sprite.Sprite</strong> base class: 
+<br>&nbsp; &nbsp; &nbsp; class MySprite(pygame.sprite.Sprite):
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; def __init__(self):
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; pygame.sprite.Sprite.__init__(self) 
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; #call Sprite initializer
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ...<br>
+
+<br>
+<strong>HANDLING FRAMES PER SECOND (FPS)</strong>
+<li> A frame is 1 pass through the update-render-sleep loop
+<li> Theoretically, the loop's execution speed should be about the same on all platforms 
+<br> On a slow machine => too slow => unplayable game
+<br> On a fast machine => too fast => unplayable game
+<li> Compute the estimated required delay between frames based on the current time. Keep track of the starting time.
+<li> There are many ways to optimize the FPS and thread sleeping times. The rule of thumb is that anything 30 updates per second or faster is good enough and looks smooth to the average person
+
+
+<br><br>
+<strong>THE TIMER IN PYGAME</strong>
+<li> Times in Pygame are represented in milliseconds (1/1000 seconds)
+<li> <strong>clock = pygame.time.Clock( )</strong><li> <strong>clock.tick( ).</strong> This is to be called once per frame. 
+<li>Important: the required parameter to tick( ) function is a framerate.<br><br> <em><strong>EXAMPLE</strong></em> (30 FPS):<br>
+  &nbsp; &nbsp; &nbsp; clock = pygame.time.Clock( )<br>
+&nbsp; &nbsp; &nbsp; clock.tick(30)</font></td>
+    <td width=50% valign=top><font face="arial">
+<strong>EXAMPLE:</strong> SimpleSprite
+<br>
+<br>class SimpleSprite(pygame.sprite.Sprite):
+<br>&nbsp; &nbsp; &nbsp; ''' A simple sprite that bounces off the walls '''
+<br>
+<br>&nbsp; &nbsp; &nbsp; def load_image(self, image_name):
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ''' The proper way to load an image '''
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; try:
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; image = pygame.image.load(image_name)
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; except pygame.error, message:
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; print "Cannot load image: " + image_name
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; raise SystemExit, message
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  return image.convert_alpha()
+
+<br><br>&nbsp; &nbsp; &nbsp;  def __init__(self, screen, img_filename, init_x, init_y, init_x_speed, init_y_speed):
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ''' Pass surface to sprite for updating / drawing '''
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; pygame.sprite.Sprite.__init__(self) #call Sprite intializer
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; self.screen = screen
+
+<br><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; # Load the image
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; self.image = self.load_image(img_filename)
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; self.rect = self.image.get_rect() 
+<br># Set the rect attribute for the sprite (absolutely necessary for collision detection)
+
+<br><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; # Get the image's width and height
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; self.image_w, self.image_h = self.image.get_size()
+
+<br><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; # Set the (x, y)
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; self.x = init_x
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; self.y = init_y
+
+<br><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; # Set the default speed (dx, dy)
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; self.dx = init_x_speed
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; self.dy = init_y_speed
+
+<br><br>&nbsp; &nbsp; &nbsp; def update(self):
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ''' Move the sprite; bounce off the walls '''
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if ((self.x + self.dx) <= 0):
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; self.dx = self.dx * -1
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if ((self.x + self.dx) >= self.screen.get_size()[0]):
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; self.dx = self.dx * -1
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if ((self.y + self.dy) <= 0):
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; self.dy = self.dy * -1
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if ((self.y + self.dy) >= self.screen.get_size()[1]):
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; self.dy = self.dy * -1
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; self.x = self.x + self.dx
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; self.y = self.y + self.dy
+  
+<br><br>  
+&nbsp; &nbsp; &nbsp; def draw(self): <br>    
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ''' Draw the sprite on the screen ''' <br>    
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; draw_pos = self.image.get_rect().move(self.x - self.image_w / 2, self.y - self.image_h / 2) 
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; self.screen.blit(self.image, draw_pos) <br></font></td></tr></table>
+
+<br><br>
+
+<a name="physics">&nbsp;</a><a href="#top"><img src="gamedesignAdvanced/PythonIcon_sm.png" alt=""></a><br>
+<table width=100% cellpadding=5><tr>
+<td width=45% valign=top><font face=arial><b>PHYSICS</b>
+
+<br><br>
+<b>BASIC PHYSICS: PRELIMINARIES</b>
+<li> Assume fixed discrete simulation (constant time step)
+<li> Approximation is good enough.
+Keep it simple.
+<li> Pygame offers a 2D coordinate system (no 3D)
+<li> For any formula (e.g., forces or mass), look it up.
+<li> Use the metric system (e.g., meters, meters per sec)<br><br>
+<strong>POSITION AND VELOCITY</strong>
+<li> Question: Where is the object at time t?
+<li> Velocity - "The rate of change of position along a straight line with respect to time"
+<li> Remember, speed and velocity are not the same: velocity is a vector quantity (has direction) while speed is a scalar quantity
+<li> Given variables: object_x, object_y, speed, angle
+<li> Calculation (in your game loop):<br>&nbsp; &nbsp; &nbsp; scale_x = cos(angle)<br>&nbsp; &nbsp; &nbsp; scale_y = sin(angle)<br>&nbsp; &nbsp; &nbsp; velocity_x = (speed * scale_x)<br>&nbsp; &nbsp; &nbsp; velocity_y = (speed * scale_y)<br>&nbsp; &nbsp; &nbsp; object_x = object_x + velocity_x<br>&nbsp; &nbsp; &nbsp; object_y = object_y + velocity_y<br><br>
+<strong>PROJECTILES</strong>
+<li> See 
+<a href="https://youtu.be/_gDOz7E6HVM" target=vid1>video 1</a> and 
+<a href="https://youtu.be/Y4xlUNfrvow" target=vid2>video 2</a>
+
+<br><br>
+</font></td>
+<td width=55% valign=top><font face="arial"> 
+
+<strong>ACCELERATION</strong>
+<li> Acceleration  is "The rate of change of velocity with respect to time"
+<li> When an object moves along at a certain velocity, an amount of acceleration is continuously added to the velocity.
+<li> Given variables: object_x, object_y, speed, acceleration, angle<li> Calculation (in your game loop):<br>&nbsp; &nbsp; &nbsp; scale_x = cos(angle)<br>&nbsp; &nbsp; &nbsp; scale_y = sin(angle)<br>&nbsp; &nbsp; &nbsp; speed = speed + acceleration<br>&nbsp; &nbsp; &nbsp; velocity_x = (speed * scale_x)<br>&nbsp; &nbsp; &nbsp; velocity_y = (speed * scale_y)<br>&nbsp; &nbsp; &nbsp; object_x = object_x + velocity_x<br>&nbsp; &nbsp; &nbsp; object_y = object_y + velocity_y<br><br>
+<strong>GRAVITY</strong>
+<li> Downwards acceleration<li> Earth's gravity constant = 9.81 meters per second squared
+<li> In a game, gravity constant depends on frame rate and effect<li> Given variables: object_x, object_y<li> Calculation (in your game loop; assume object is moving): 
+<br>&nbsp; &nbsp; &nbsp; velocity_y = velocity_y - gravity<br>
+&nbsp; &nbsp; &nbsp; (If  object has not yet hit ground) object_y = object_y + velocity_y<br>
+&nbsp; &nbsp; &nbsp; object_x = object_x + velocity_x<li> Where useful: a character jumping in a sidescroller, projectiles
+
+</font></td></tr></table>
+
+<br><br>
+<a name="collision">&nbsp;</a><a href="#top"><img src="gamedesignAdvanced/PythonIcon_sm.png" alt=""></a>
+
+<br>
+<table width=100% cellpadding=5><tr>
+<td width=50% valign=top><font face="arial">
+    
+<b>COLLISION DETECTION:</b> <br>
+      <br>
+      <strong>BOUNDING BOX METHOD</strong> has a problem: irregularly shaped objects (thus wasted space). However, empirically, less space is wasted using the bounding box method over bounding sphere method. <br>
+      <br>
+      <b>Collision test, two methods:</b> <br>
+      <strong>1.	if</strong> (object.x >= box.min_x and object.x <= box.max_x and object.y >= box.min_y and object.y <= box.max_y) then collision occurred. 
+      Use this same approach for mouse picking: when handling mouse events, check to see if the object was picked via x-y coordinates. <br>
+      <br>
+      <strong>2.	Use Pygame's sprite collision methods: </strong>pygame.sprite.collide_rect(), pygame.sprite.collide_circle() <br>
+      &nbsp; &nbsp; &nbsp; Each method returns either True or False <br>
+      &nbsp; &nbsp; &nbsp; Ideally used for detecting object collisions  (e.g., cars) <br>
+      &nbsp; &nbsp; &nbsp; Each method takes in two sprites (must extend one of Pygame's sprite base classes). Sprites must have rect attribute and set the location of the bounding box. That is: <br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; self.x = x<br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; self.y = y<br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; self.rect = self.image.get_rect()<br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; self.image_w, self.image_h = self.image.get_size() <br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; self.rect.move(self.x, self.y)<br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; self.rect.topleft = (self.x, self.y)<br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; self.rect.bottomright = (self.x + self.image_w, self.y + self.image_h)<br>
+      Each time you move a sprite, you also have to change the location (including the topleft and bottomright) of the bounding box. <a href="http://www.pygame.org/docs/ref/sprite.html" target=moredet>More details</a>    
+    
+</font></td>
+    <td width=50% valign=top><font face="arial"><br>
+      <br>
+      <em><strong> EXAMPLE: </strong></em><br>
+      &nbsp; &nbsp; &nbsp; sprite1 = SimpleSprite(...) <br>
+      &nbsp; &nbsp; &nbsp; sprite2 = SimpleSprite(...) <br>
+      &nbsp; &nbsp; &nbsp; if pygame.sprite.collide_rect(sprite1, sprite2): <br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; # Do something <br>
+      <br>
+      <strong>RESPONSE: </strong>
+      <li> Different objects respond differently to collisions
+      <li> Most collisions will resemble exactly that of balls in the game of pool (elastic collision)
+          </font>
+      <li> <font face="arial"><strong>Angle of incidence</strong> is the angle between the ball movement vector and the plane of the rail that it strikes when the ball moving in a straight line collides with it. Remember, when the ball hits the rail, it will bounce away from the rail at the same angle that it strikes the rail. In other words, the angle of reflection = angle of incidence </font>
+      
+      <li><font face="arial"><strong> Calculation:</strong><br>
+        &nbsp; &nbsp; &nbsp; if (ballPoint.x + ballSpeed.x) <= plane.x: <br>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  ballSpeed.x = (ballSpeed.x * -1) <br>
+        &nbsp; &nbsp; &nbsp; if (ballPoint.x + ballSpeed.x) >= plane.width: <br>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ballSpeed.x = (ballSpeed.x * -1) <br>
+        &nbsp; &nbsp; &nbsp; if (ballPoint.y + ballSpeed.y) <= plane.y: <br>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ballSpeed.y = (ballSpeed.y * -1) <br>
+        &nbsp; &nbsp; &nbsp; if (ballPoint.y + ballSpeed.y) >= plane.height: <br>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ballSpeed.y = (ballSpeed.y * -1) <br>
+        <br>
+        Why does the above work? Think back to high school algebra and geometry... </font></td>
+  </tr>
+</table>
+
+<br><br>
+<font face=arial><i>Notes by Ken Bowen</i></font>
+<br>
+</font></td></tr></table>
+</center>
+
+</body>
+</html>

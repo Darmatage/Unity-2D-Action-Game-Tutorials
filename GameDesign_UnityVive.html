@@ -1,0 +1,271 @@
+<html>
+<head>
+<title>Unity3D Terrain Steps</title>
+</head>
+<body text=#222222 link=#1e6669 vlink=#7700aa alink=#1088bb>
+
+<center>
+
+<table width=700 cellpadding=10 border=0>
+<tr>
+  <td valign=top><font face=arial>
+<font size=+2><b>UNITY VR: HTC VIVE</b></font>
+<br><center>
+<font face=arial>
+<a href="#01">Maya for VR</a> &nbsp; | &nbsp; 
+<a href="#02">VIVE Setup</a> &nbsp; | &nbsp;
+[A] <a href="#a">SteamVR app</a> &nbsp; | &nbsp;
+[B] <a href="#b">Project Set-up</a>&nbsp;
+<br>
+[C] <a href="#c">Pick-Ups</a> &nbsp; | &nbsp;
+[D] <a href="#d">Teleportation</a> &nbsp; | &nbsp;
+[E] <a href="#e">Target Practice</a> &nbsp; | &nbsp;
+[F] <a href="#f">Create a Hinged Door</a> &nbsp;
+</font><br>
+</center>
+This tutorial covers the basic steps for creating a Unity Project to explore key HTC VIVE features.
+<br>
+<em><strong>Download  these files:</strong></em></font><font face="arial">Sample <a href="AdvancedMaya/JasonWiser_VR_roomDemo.zip" target=VRspace><b>3D Room Files</b></a> (FBXs and PNGs) and Target Practice <a href="AdvancedMaya/SFX_Ding.wav" target=ding><b>Ding Audio</b></a> and <a href="AdvancedMaya/TargetDetect.cs" target=ding><b>Script</b></a>.
+</font>
+
+<br>
+<a name="01">&nbsp;</a><br>
+<table width=100%><tr><td valign=top><font face=arial>
+<b>MAKING 3D MODELS FOR UNITY AND VR:</b>
+<br><br>
+<img src="gamedesign/vr/vive18.png" border=0 align=right>
+<li>Set your Maya file to <b>Meters</b>: click the little running-man icon in the lower-right corner. Click &quot;<strong>Settings</strong>&quot; in the left column and under <strong>Working Units</strong> set Linear from centimeter to Meter. Hit [Save], and now when we create a new cube it is 1x1x1 meters (Unity assumes a player characetr is about 2 meters tall).<br><br>
+<li>
+<strong>Create a scene</strong> in Maya (a  typical living room is about 7x7 meters). Use Extruded meshes (avoid unwelded  Combines). 
+<br><strong>Name</strong> each  object in the Channel Box.<br><br>
+<strong>Keep polygon counts low:</strong> try  to have no objects exceed 1k tri polys. To view polygons, open Display &gt;  Heads UP Display &gt; PolyCount, and  note the triangles  (&ldquo;tris&rdquo;)  for selected objects.<br><br>
+<li><strong>Texture</strong> all objects:  Create at least a solid color .PNG. In the Hypershade, create a Blinn material for each texture.   (Unity does not use Maya &quot;Arnold&quot; materials).<br><br>
+<li><strong>File &gt; Export Selection</strong> each  object as an FBX file, naming  the file for the object.<br><br>
+<em><strong>NOTE: </strong></em>Normally we export objects from world center, but in this case if we  export each object in  their original arrangements around the space, we can easily reproduce that  arrangement in Unity  by dragging the objects from the Project panel into the Hierarchy.<br>
+<br>
+<strong><em>Kitboxing</em></strong> refers to the 3D game practice of making objects that are meant to be re-used  in many scenes, and such objects should be exported from Maya&rsquo;s world center,  after Freezing Transforms.</font></td>
+<td valign=top align=right>
+<img src="gamedesign/vr/vive19.png" alt="" border=0>
+<br>
+<img src="gamedesign/vr/vive15.png" border=0>
+</tr><tr>
+<td align=right><img src="gamedesign/vr/vive16.png" alt="" border=0>&nbsp;</td>
+<td><img src="gamedesign/vr/vive17.png" alt="" border=0></td>
+</tr>
+</table>
+<a name="02">&nbsp;</a><br>
+<table width=100% cellpadding=0><tr>
+<td width=50% valign=top><font face=arial><strong>TO SET UP THE HTC VIVE: </strong><br>
+1. Take all VIVE parts and tripods out of the packages.
+<br><br>
+2. Plug the <strong>hand controllers </strong>into the <strong>micro-USB chargers</strong> to be sure they are powered (2 hours to go from empty to full).
+<br><br>
+3. Open and raise the <strong>tripods</strong> to their fullest height. Be sure all fasteners are tight. <br><br>
+4. Attach VIVE <strong>gyroscopes</strong> to tripods. Connect  power cords. Position tripods at opposite corners of a rectangular play area and clear all obstruction from this area. Position  gyroscopes to <strong>face each other</strong> (Lights turn green when calibrated).
+<br><br>
+</font></td>
+<td valign=top><font face=arial>
+<br>
+5. Attach  <strong>Headset wires</strong> to <strong>Hub</strong> (orange side: power, USB, and HDMI) and then connect the <strong>Hub HDMI</strong> (blue side) to the computer. Leave headset to rest on the floor in  play area middle.
+<br><br>
+6. When it is time to play, take the hand-controllers off the chargers, press the  on-buttons (below touchpads) and place them on the floor by the headset.
+<br><br>
+7. To get hologram walls to shwo safe play boundaries, define the play area with <strong>Room Scale Setup.</strong> NOTE: The VIVE will often work without running room setup, but doing so is safer (hologram walls) and generally makes the VIVE run more reliably.<br>
+</font></td>
+</tr><tr>
+<td valign=top><font face=arial>
+Open the SteamVR app menu and choose 
+&quot;Run Room Setup&quot;<br><img src="gamedesign/vr/RoomScaleVR_0.png" alt="" border=0>
+</font></td>
+<td valign=top><font face=arial>Click the [ROOM-SCALE] button.
+<br>
+<img src="gamedesign/vr/RoomScaleVR_1.png" alt="" border=0></font></td>
+</tr><tr>
+<td valign=top><font face=arial>
+<br>Be sure headset and activated hand-controlelrs are placed on the floor in the middle of the play area. Hit [NEXT]
+<br>
+<img src="gamedesign/vr/RoomScaleVR_2.png" alt="" border=0></font></td>
+<td valign=top><font face=arial>
+<br><br>
+Hit [CALIBRATE FLOOR], and then [NEXT].<br>
+<img src="gamedesign/vr/RoomScaleVR_3.png" alt="" border=0></font></td>
+</tr><tr>
+<td valign=top><font face=arial>
+<br>Pick up controllers, stand in a corner of play area, hold down the triggers (underside) and walk the perimeter of the intended play space. If the space is too small this will fail.
+Try again!<br>
+<img src="gamedesign/vr/RoomScaleVR_45.png" alt="" border=0></font></td>
+<td valign=top><font face=arial>
+<br>
+The minimum spec are 6'x6', but larger rectangles tend to work better.
+If the space is sufficient, it will turn into a green quad. We can hit [NEXT]
+and Setup is complete! <br>
+<img src="gamedesign/vr/RoomScaleVR_6.png" alt="" border=0></font></td>
+</tr>
+</table>
+<a name="a">&nbsp;</a><br>
+<table width=100% cellpadding=0><tr><td valign=top><font face=arial>
+  <b><font color=purple>[PART A]</font> GETTING THE VIVE HARDWARE READY</b>
+  <br>To run Unity with a VIVE, first install <strong>SteamVR</strong> on  the computer. <br>1.Download  the <strong>Steam  App</strong>: <a href="http://bit.ly/2JcrjFK">http://bit.ly/2JcrjFK</a>.
+  <br>2.Mouse  over  &ldquo;Library,&rdquo; find SteamVR.
+  <br>3.RightClick and  choose <strong>Install  Game</strong>. <br><br>This is the software that runs the VIVE  hardware from the computer (syncs up the Base Stations/ Sonar/ etc),  and it will only install on machines with a graphics card powerful enough to  run the VIVE.
+  <br><br><strong><em>NOTE:</em></strong>  For  more information see the InteractionSystem.pdf in Assets &gt; SteamVR &gt;  InteractionSystem  downloaded with the SteamVR2 API from the Unity Asset Store.
+  <br><a href="http://store.steampowered.com/steamvr" target=steam1>Setup HTC Vive Environment</a> &nbsp; | &nbsp; 
+  <a href="https://help.steampowered.com/en/#headset-install" target=steam2>Setup your room space</a>
+  </font></td><td>
+    <img src="gamedesign/vr/vive0.png" border=0></td></tr></table>
+
+<a name="b">&nbsp;</a><br>
+<font face=arial>
+<strong><font color=purple>[PART  B]</font> STARTING THE STEAMVR INTERACTION SYSTEM</strong>
+<br>
+    1.Create a new 3D project in Unity.
+    <br>
+    2. Open <strong>Window &gt;  General &gt; Asset Store</strong> or [Ctrl/Cmd]+[9]. <br>3. Search for &ldquo;Steam&rdquo; to find <strong>SteamVR Plugin</strong>.  Download/<strong>import</strong> all  components. <br>4. When prompted by a pop-up from the SteamVR  system, always <strong>Accept All</strong>. 
+</font>    
+    
+    
+<br>
+<table width=100% cellpadding=0><tr><td valign=top>
+  <img src="gamedesign/vr/vive1.png" border=0>
+  </td><td valign=top>
+    <img src="gamedesign/vr/vive2.png" border=0>
+</td></tr></table>
+
+<font face=arial>
+<br>5. Open the new   &ldquo;<strong>SteamVR</strong>&rdquo; folder  in your Project.  Drag <strong>SteamVR  &gt; InteractionSystem  &gt; Core &gt; Prefabs &gt; [Player]</strong> into  the Hierarchy. It has a camera, controllers, and inputs for pickups and  teleportation. You can hide or replace hand meshes.
+<br>6. <strong>Delete MainCamera</strong> from  the Hierarchy.
+<br>7. Add a <strong>GameObjects  &gt; 3D Objects &gt; Cube</strong> (20, 0.1, 20) as a platform beneath [Player].<br>
+<center>
+<img src="gamedesign/vr/vive3.png" alt="" border=0>
+</center>
+<br><br>
+</font>
+
+<table width=100% cellpadding=0><tr>
+<td valign=top><font face=arial><br>8.Hit the <b>Play</b> button. Because it is this project&rsquo;s  first time  playing we MUST  say &ldquo;yes&rdquo; to  some popups:
+
+<br><br>&nbsp; &nbsp; a) The 1st asks to <b>Generate  Actions for SteamVR Input</b>. 
+<br>&nbsp; &nbsp; &nbsp; &nbsp; Select  <b>[Yes]</b>! 
+<br><br>&nbsp; &nbsp; b) The 2nd says the project is missing <b>actions.json</b>.
+<br>&nbsp; &nbsp; &nbsp; &nbsp; Select  <b>[Yes]</b> to  generate a .json. 
+<br><br>&nbsp; &nbsp; c) 3rd is the <b>SteamVR  Input dialog</b>. 
+<br>&nbsp; &nbsp; &nbsp; &nbsp; The Action Sets should be set to &quot;<b>Default</b>.&quot;  
+<br>&nbsp; &nbsp; &nbsp; &nbsp; Click  <b>[Save  and Generate]</b>,  close <b>[x]</b>, <br>&nbsp; &nbsp; &nbsp; &nbsp; and <strong>File  &gt; Save  the Project</strong>. <br><br>
+We also start seeing the window for  <strong>Valve.VR.SteamVR_UnitySettyingsWindow</strong> which will appear frequently, and always just needs us to click <strong>Accept All</strong>. <br>
+(after which we will get an affirmative message)<br><br>
+<i><b>TESTING  TIME!</b></i> Turn  on controllers (button below touchpad), don headset. Look/walk around and see  your controllers. Be careful to stay within the hologram walls that show space limits. 
+<br><center><img src="gamedesign/vr/viveHands1.png" border=0></center></font></td>
+<td align=right><font face="arial"><img src="gamedesign/vr/vive4.png" border=0> 
+<br><img src="gamedesign/vr/vive5.png" border=0></font></td>
+</tr></table>
+<a name="c">&nbsp;</a><br>
+<table width=100% cellpadding=0><tr><td valign=top><font face=arial>
+<strong><font color=purple>[PART  C]</font> PICKING THINGS UP WITH VIVE IN UNITY</strong>
+<br>
+1. Note the book object on the table object. Select the book. 
+<br><br>
+2. <strong>Add Component &gt; Physics &gt; BoxCollider</strong> and <strong>Rigidbody</strong> to  the book for physics properties. <br><br>
+3. Drag this script onto the book: <strong>Assets  &gt; SteamVR  &gt; InteractionSystem  &gt; Core &gt; Scripts &gt; [Throwable]</strong>.  This adds 3 Components to this object, each with interesting parameters you  can adjust: <br>
+&quot;<strong>Interactable</strong>,&quot; &quot;<strong>Velocity  Estimator</strong>,&quot; and
+ &quot;<strong>Throwable</strong>&quot;.
+<br><br>4. Duplicate this book object (<strong>[Ctrl/Cmd]</strong>+<strong>[d]</strong>) for around 8 copies. Move the book copuies to make sure none of them intersect.
+
+<br><br><img src="gamedesign/vr/vive6.png" border=0 align=right><em><strong>TESTING  TIME!</strong></em> <br>Start the scene, don headset. Move VIVE controllers near Cubes to highlight  them in yellow. Squeeze triggers to pick them up. Pass cubes hand to hand, toss  and catch. 
+</font></td><td valign=top><img src="gamedesign/vr/vive7.png" border=0></td>
+</tr></table><a name="d">&nbsp;</a><br>
+<table width=100% cellpadding=0><tr><td valign=top><font face=arial>
+<strong><font color=purple>[PART  D]</font> TELEPORTATION</strong>
+<br>To avoid nausea, player movement should  be handled  with teleporting or  actual walking.  The  Player prefab already has Teleportation Inputs ready; we just need to add  Teleporting to the scene:
+
+
+
+<br><br>1.Drag <b>SteamVR  &gt; InteractionSystem  &gt; Teleport &gt; Prefabs &gt; Teleporting</b> into the Hierarchy to set up teleport  logic. 
+
+
+<br><br>
+2.To make the floor a teleport-able area:  
+<li><b>duplicate</b> the floor (<b>[Ctrl/Cmd]</b>+<b>[d]</b>)
+<li><b>move</b> copy just above the original floor 
+<li>Apply (drag onto  it) <b>SteamVR  &gt; InteractionSystem  &gt; Teleport  &gt;  Scripts &gt; TeleportArea</b>.
+
+
+<br><br>3.To create specific teleport spots: drag into  the scene <b>Teleport  &gt;  Prefabs &gt; TeleportPoint</b> and  lift up until the white bottom circle is visible.<br><br>
+
+<img src="gamedesign/vr/viveHands2.png" border=0>
+
+<br><br>
+<em><b>TESTING  TIME! </b></em>Start the scene and don your headset. Press the touchpad  to see a laser-arc emit from your  controller  top  to target  a location, and release to teleport.<br>
+</font></td><td valign=top><font face=arial><img src="gamedesign/vr/vive8.png" alt="" border=0>
+<br><img src="gamedesign/vr/vive9.png" alt="" border=0></font></td></tr></table><a name="e">&nbsp;</a><br>
+<table width=100% cellpadding=0><tr><td><font face=arial>
+<strong><font color=purple>[PART  E]</font> TARGET PRACTICE</strong>
+<br>
+1. <strong>Import</strong> the  Target Practice files from the course site: <a href="AdvancedMaya/SFX_Ding.wav" target=ding><b>Ding Audio</b></a> and the <a href="AdvancedMaya/TargetDetect.cs" target=ding1><b>TargetDetect.cs</b></a> script. <br><br>
+2. In the provided 3D file there is a framed picture mesh next to the door. Select this object in the Hierarchy.<br><br>
+3. <strong>Add Component &gt; Physics &gt; Box Collider</strong> to  this picture object <strong>TWICE</strong>. <br><br>
+4. Set one BoxCollider to  <strong>IsTrigger</strong>,  to  register impact for scoring/audio. <strong>Move the isTrigger box collider forward</strong> a bit, relative to the mesh.<br><br>
+5. Drag the <a href="AdvancedMaya/SFX_Ding.wav" target=ding><b>Ding Audio</b></a> file onto the  picture object in the Hierarchy.  This adds an <strong>AudioSource</strong> Component to the object. In the Hierarchy <strong>turn off &quot;Play  on Awake&quot;. </strong><br><br>
+6. Select a book object. In the  Inspector create a <strong>Tag</strong> called &quot;<strong>BeanBag</strong>&quot;. Add this Tag to all the  books.
+<br><br>
+7. Apply the <a href="AdvancedMaya/TargetDetect.cs" target=ding1><b>TargetDetect.cs</b></a> script to  the picture object (drag from Project panel to framed picture object).
+<br><br>
+<em><strong>TESTING  TIME!</strong></em> Raise speaker volume, start scene, don headset. Pick up and throw cubes at  the target. When you hit the target you should hear the &ldquo;Ding&rdquo; sound clip play!
+</font></td><td width=30% valign=top><br><br> 
+</td></tr></table><a name="f">&nbsp;</a><br>
+<table width=100% cellpadding=0><tr>
+<td valign=top><font face=arial>
+<strong><font color=purple>[PART  F]</font> CREATE A HINGED DOOR</strong>
+<br>
+1.Import  the Doorframe and a Door.  Drag into the  Hierarchy and position as desired. 
+<br><br>2.To the <em><strong>Doorframe</strong>:</em> Add <strong>Component  &gt; Physics &gt; Box Collider</strong> and <strong>RigidBody</strong>. <br>
+Set the <em><strong>Doorframe</strong></em> Rigidbody to <strong>IsKinematic</strong> so  it does  not move. <br><br>
+3.To the <em><strong>Door</strong>:</em> Add three Physics Components 
+<br>
+Add Component &gt; Physics &gt;<strong> Box  Collider</strong><br>
+Add Component &gt; Physics &gt; <strong>RigidBody</strong><br>
+Add Component &gt; Physics &gt; <strong>Hinge  Joint</strong>. <br><br>
+4.On the <em><strong>Door</strong></em> Hinge Joint:
+<li>Find the &quot;<strong>Connected Body</strong>&quot;  slot. Drag the <em><strong>Doorframe</strong></em> object from Hierarchy  into  that slot (will only work if Doorframe has a RigidBody and IsKinematic).
+<li>The Hinge Axis starts in a corner. Set <strong>Axis =  0,1,0</strong> (for a side-hinge), and set X, Y, and Z positions. 
+<li>Turn on <strong>Limits</strong> and  set <strong>Max =  120</strong> and <strong>Min =  -120</strong>. 
+
+<br><br>
+<em><strong>TESTING  TIME!</strong></em> The  door will not react to controllers  alone,  but if you pick up an object and hold it or throw it at the door, the door will swing  on its hinge. 
+<br><br>  
+</font></td><td width=300 valign=top align=right><img src="gamedesign/vr/vive10.png" alt="" border=0>
+<br><br><img src="gamedesign/vr/vive14.png" alt="" border=0></td></tr>
+<tr><td colspan=2 align=center>
+<img src="gamedesign/vr/vive11.png" alt="" border=0>
+<img src="gamedesign/vr/vive12.png" alt="" border=0>
+<img src="gamedesign/vr/vive13.png" alt="" border=0>
+</td></tr>
+</table>
+
+<br>
+</td></tr>
+</table>
+
+<br>
+<table width=600 cellpadding=10 border=0>
+  <tr><td><font face=arial>
+<strong>FURTHER VIVE TOPICS  TO EXPLORE:</strong> Thumb-pad interactions, Shooting enemies, Arc-based projectiles,  Nausea management, Spatial and audio tracking, Getting footage into the VIVE,  importing API (for Google Earth, etc), creating collider interaction and art  for the player body—head, arms, feet. Level building with all of these  mechanics. Adding snap-orientation to pickup:
+<br><a href="https://www.raywenderlich.com/159552/advanced-vr-mechanics-unity-htc-vive-part-1">raywenderlich.com Advanced VR Mechanics Unity HTC Vive part1</a>
+
+<br><br>
+<center>
+Planning to make a VR game? 
+<br>
+Play  the VIVE <b>Lab</b> games, to get a sense of what is possible!
+<br><img src="gamedesign/vr/viveLab.jpg">
+</center>
+
+<br><br>This tutorial created with Taylor Ampatiellos and Marianne Chiarella,
+based on <a href="https://www.raywenderlich.com/9189-htc-vive-tutorial-for-unity" target=vive>these notes</a>.
+
+<br><br><em>Jason Wiser, Madwomb.com</em>
+<br></font></td></tr>
+</table>
+</center>
+
+</body>
+</html>

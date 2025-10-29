@@ -1,0 +1,629 @@
+<html>
+<head>
+<title>Unity2D SideScroller Tutorial</title>
+</head>
+
+<body text=#222222 link=#1e6669 vlink=#7700aa alink=#1088bb>
+
+<center>
+<table width=750 cellpadding=10 border=0>
+<tr>
+  <td valign=top><font face=arial>
+
+<font face=arial><a href="GameDesign_Unity.html"><img src="gamedesign/UnityLogo60.png" alt="" align=right></a></font><font size=+2><b>UNITY  - Multi-player</b></font>
+</font>
+<br>
+
+<table width=100% border=0 cellpadding=0><tr>
+<td width=50% valign=top>
+<font face=arial>
+Multiplayer games offer opportunties to drive engagement with competitive or cooperative play. There are multiple ways to handle netwroked multiplayer games, including Unity's new (2022) <strong>Netcode for GameObjects</strong> system (good for 2-4 player games) and the 3rd party <strong>Darkrift2</strong> (good for much larger multiplayer projects, like MMOs). <br><br>
+This tutorial explains <strong>MIRROR</strong>, which is a free 3rd party package for Unity that handles peer-to-peer networking, ideal for 2 player games. 
+</font>
+</td>
+<td width=5% valign=top>&nbsp;</td>
+<td width=45% valign=top><font face=arial>
+<center><strong>USING MIRROR</strong></center>
+<a href="#summary"><b>SUMMARY</b></a>
+<br>
+<b>STEPS 1: <a href="#basic">Basic Set-Up</a></b>
+<br>
+&nbsp; &nbsp; [0]. <a href="#basic0">Import the Mirror Package</a>
+<br>
+&nbsp; &nbsp; [1]. <a href="#basic1">Create the Network Manager</a>
+<br>
+&nbsp; &nbsp; [2]. <a href="#basic2">Create the Player Prefab</a>
+<br>
+&nbsp; &nbsp; [3]. <a href="#basic3">Create A Moveable Object</a>
+<br>
+&nbsp; &nbsp; [4]. <a href="#test1">Build Test #1</a>
+<br>
+<br>
+<b>STEPS 2: <a href="#persist">Persistant Objects</a></b>
+<br>
+&nbsp; &nbsp; Part 1: <a href="#persist1">Player Manager Spawn Tokens</a>
+<br>
+&nbsp; &nbsp; Part 2: <a href="#persist2">Button to deal tokens</a>
+<br>
+&nbsp; &nbsp; Part 3: <a href="#persist3">Commands and Remote Calls</a>
+<br> 
+&nbsp; &nbsp; <a href="#test1">Build Test #2</a>
+</font></td></tr></table>
+
+<br>
+<font face=arial><a name="summary">&nbsp;</a></font><br>
+  
+    <center>
+      <font size=+2 face="arial"><b>SUMMARY:</b></font>
+    </center>
+    <font face=arial><br>
+
+Mirror is a Unity Package that includes a <strong>set of scripts</strong> for <strong>hosting</strong> and <strong>client management</strong>, and for <strong>syncing game objects</strong> between host and client. Every Game Object to be synced over the network needs a <strong>Network Identity component</strong>.
+<br>The Scene needs a <strong>NetworkManager</strong> with a list of <strong>Spawnable Prefabs</strong> (each with a Network ID) that will be shared between host and client (so the server can access those objects at runtime). <br>
+<strong>Some KEY CONCEPTS:
+</strong><br>
+<img src="gamedesign/bullet.png" alt=""> <strong>Network Callbacks</strong> (to get the host to recognize objects?) <br>
+<img src="gamedesign/bullet.png" alt=""> <strong>Commands:</strong> Something a client will request of the server (for the server to perform an action) <br>
+<img src="gamedesign/bullet.png" alt=""> <strong>Remote Procedure Calls</strong> (ClientRPC): When the server requests something of all clients, or a specific client (for the client/s to perform an action). <br><br>
+Mirror offers <strong>peer-to-peer networking</strong>: a Host-Client relationship, where the host acts as a client AND server (not a Server-Client relationship, with an independant server).<br><br><br>
+<a name="basic">&nbsp;</a><br>
+
+</font><center>
+  <font size=+2 face="arial"><b>STEPS 1: BASIC SET-UP:</b></font>
+</center>
+<font face=arial><a name="basic0">&nbsp;</a>
+<br>
+<b>Basic Card Game Set-Up</b>
+  (<a href="https://youtu.be/YTs1Kvyxpuc" target=follow>Video Source</a>)
+
+<br><br>
+<strong>[0]. </strong><b>Import the Mirror Package:</b>
+<br>
+Go to <strong>Asset Store</strong> to download / Update / Import the <strong>Mirror</strong> Networking package. <br>
+Also see Mirror-Networking.com site for the Mirror 
+<a href="https://mirror-networking.gitbook.io/docs/" target=mirror1>documentation</a>
+
+
+
+<br><br>
+<a name="basic1">&nbsp;</a><br>
+<strong>[1]. </strong><b><strong>Create the NETWORK MANAGER</strong>:</b> 
+<br>
+&nbsp; &nbsp; 
+<strong>a.</strong> In the Hierarchy, right-click to create an <strong>Empty GameObject</strong>. 
+<br>&nbsp; &nbsp; 
+<strong>b.</strong> In the Inspector name it "<strong>NetworkManager</strong>".
+<br>&nbsp; &nbsp; 
+<strong>c.</strong> Click <strong>[Add Component]</strong> to add a <strong>NetworkManager</strong> (note good blue or black "Mirror" icon).
+<br>&nbsp; &nbsp; &nbsp; &nbsp; 
+This auto-adds the <strong>TelepathyTransport</strong> script. 
+<br>&nbsp; &nbsp; 
+<strong>d.</strong> Click <strong>[Add Component]</strong> to add a <strong>NetworkManagerHUD</strong> 
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; 
+This provides  display buttons to choose Host vs Client in the upper left after hitting [Play]. 
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; (newer version adds KcpTransport?).
+
+
+<br><br>
+<a name="basic2">&nbsp;</a><br>
+<strong>[2]. </strong><b><strong>Create a PLAYER PREFAB</strong>:</b>
+<!--
+<br>Even in a card game, when there will not be an actual visible character, the Player prefab is important for organizing distinct player actions.
+-->
+
+<br>
+&nbsp; &nbsp;
+<strong>a.</strong> In the Hierarchy, right-click to create another <strong>Empty GameObject</strong>.<br>
+&nbsp; &nbsp; <strong>b.</strong> In the Inspector name it "<strong>PlayerManager</strong>". 
+<br>
+&nbsp; &nbsp;
+<strong>c.</strong> Click <strong>[Add Component]</strong> to add <strong>NetworkIdentity</strong>. <br>
+&nbsp; &nbsp;
+<strong>d.</strong> <strong>Drag</strong> PlayerManager into the Project panel to make it a <strong>Prefab</strong>. Delete it from the Hierarchy. <br>
+&nbsp; &nbsp;
+<strong>e.</strong> Select the <strong>NetworkManager</strong> object and drag the <strong>PlayerManager</strong> from the Project panel into the "Player Prefab" script slot.
+<br>
+&nbsp; &nbsp;
+<strong>f. In the Project panel, rightclick in the Assets folder to create</strong> a new C# script named "PlayerManager". Add the content below.
+<br>
+&nbsp; &nbsp;<strong>g.</strong> Open the PlayerManager Prefab (double-click in the Project panel), and add this new script. 
+
+<br>
+</font><font face="arial"><br>
+</font>
+<center>
+  <table width=700 border=1 cellpadding=10 bgcolor=#dddddd>
+    <tr>
+      <td><font face="arial"><strong><em>MIRROR SCRIPT NOTE:</em></strong><br>
+For all scripts that use Mirror: 
+<br>
+&nbsp; &nbsp;&nbsp; &nbsp;Add namespace "using Mirror;" 
+<br>
+&nbsp; &nbsp;&nbsp; &nbsp;Change MonoBehaviour to "NetworkBehaviour": </font></td>
+    </tr>
+  </table>
+</center>
+<br>
+<center>
+<font face="arial"><i><b>PlayerManager.cs</b></i>:</font>
+<table width=95% cellpadding=10 border=1><tr>
+<td><font face=arial> 
+<font color=#3ab050><b>using</b></font> System.Collections;
+<br>
+<font color=#3ab050><b>using</b></font> System.Collections.Generic;
+<br>
+<font color=#3ab050><b>using</b></font> UnityEngine;
+<br>
+<font color=#3ab050><b>using</b></font> Mirror;
+
+<br><br>
+<font color=#3ab050><b>public class</b></font></font> 
+
+<font color=#31849b face="arial"><strong>PlayerManager : NetworkBehaviour</strong></font>
+<font face="arial"> { 
+<br><br>
+&nbsp; &nbsp;<font color=#31849b><b>private override void</b></font> OnStartServer(){<br>
+&nbsp; &nbsp; &nbsp; &nbsp;base.OnStartServer();<br>
+&nbsp; &nbsp; &nbsp; &nbsp;Debug.Log(<b><font color=#ed6c0a>&quot;Server Started!&quot;</font></b>);
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp;
+<font color=gray>
+//this displays in the Console when we hit the Host button to get things started</font>
+        
+<br>&nbsp; &nbsp; }
+          
+<br><br>
+}</font></td>
+</tr>
+</table>
+</center>
+
+<br>
+<font face=arial><a name="basic3">&nbsp;</a>
+<br>
+
+<b>[3]. Create a Persistant / Moveable Object Prefab</b>(a token)<b>:</b> 
+<br>
+&nbsp; &nbsp; <strong>a.</strong> In the Hierarchy, right-click to create another <strong>Empty GameObject</strong>. <br>
+&nbsp; &nbsp; <strong>b.</strong> In the Inspector name it "<strong>objectToken</strong>" (or Vehicle, or Flag, or NPC, or any  object meant to move. 
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; In this example, the Token is a card for a card game).
+<br>
+&nbsp; &nbsp; <strong>c.</strong> Hit <strong>[Add Component]</strong> to add a <strong>NetworkTransform</strong> (this will also auto-add a NetworkIdentity).
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; (For a card game: Add the DragDrop.cs script, see below.) <br>
+&nbsp; &nbsp; <strong>d.</strong> <strong>Drag</strong> objectToken into the Project panel to make it a <strong>Prefab</strong>, then <strong>delete</strong> it from the Hierarchy. <br>
+&nbsp; &nbsp; <strong>e.</strong> Select the <strong>NetworkManager</strong>. In the Hierarchy:<br>&nbsp; &nbsp; &nbsp; &nbsp;
+Under <strong>Registered Spawnable Prefabs</strong> hit <strong>[+]</strong> to add a slot.<br>&nbsp; &nbsp; &nbsp; &nbsp;
+<strong>Drag</strong> the objectToken Prefab from the Project panel into this new slot. <br>
+<em><strong>NOTE:</strong></em>  <br>
+&nbsp; &nbsp; <img src="gamedesign/bullet.png" alt=""> For the server to spawn objects across the clients, and access these objects at runtime, 
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; add a <strong>Registered Spawnable Prefabs</strong> slot for each. 
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; Repeat for as many unique objects you want to spawn. 
+
+<br><br>
+<strong>Save</strong> the Scene and hit <strong>[Play]</strong> to test.<br>
+&nbsp; &nbsp; <img src="gamedesign/bullet.png" alt=""> Note the HUD content in the upper-left corner.<br>
+&nbsp; &nbsp; <img src="gamedesign/bullet.png" alt=""> Click the top button to start the Host/Client, and note the message in the Console.<br><br>
+<strong>Drag and Drop script for playing card tokens:</strong>
+<br>
+&nbsp; &nbsp; <strong>a.</strong> <strong>Select</strong> objectToken. <br>
+&nbsp; &nbsp; <strong>b.</strong> In the Inspector click <strong>[Add Component]</strong> to add <strong>Event Trigger</strong>. 
+<br>
+&nbsp; &nbsp; <strong>c.</strong> Add two new Events of types <strong>BeginDrag</strong> and <strong>EndDrag</strong>. <br>
+&nbsp; &nbsp; <strong>d.</strong> Hit <strong>[+]</strong> under each.<br>
+&nbsp; &nbsp; <strong>e.</strong> RightClick the Project panel to create a new C# script named &quot;<strong>DragDrop.cs</strong>&quot;. <br>
+&nbsp; &nbsp;<strong> f. </strong>DoubleClick the script to <strong>open</strong> it in your IDE and <strong>copy</strong> in the content below. <strong>Save</strong>. <br>
+&nbsp; &nbsp; <strong>g.</strong> In Unity: <strong>drag</strong> the script onto objectToken, and then <strong>drag</strong> up into the 2 "None" slots of Event Trigger.
+<br>
+&nbsp; &nbsp; <strong>h.</strong> Set the first Event function to DragDrop &gt; <strong>StartDrag</strong> and the second to DragDrop &gt; <strong>EndDrag</strong>. <br><br>
+</font>
+
+<center>
+<font face="arial"><i><b>DragDrop.cs</b></i>:</font>
+<table width=95% cellpadding=10 border=1><tr>
+<td><font face=arial> <font color=#3ab050><b>using</b></font> System.Collections;<br>
+<font color=#3ab050><b>using</b></font> System.Collections.Generic;<br>
+<font color=#3ab050><b>using</b></font> UnityEngine;<br>
+<br>
+<font color=#3ab050><b>public class</b></font></font> 
+<font color=#31849b face="arial"><strong>DragDrop : MonoBehaviour</strong></font> 
+<font face="arial"> {<br><br>
+&nbsp; &nbsp;<font color=#31849b><b>public</b></font> GameObject myCanvas;<br>
+&nbsp; &nbsp;<font color=#31849b><b>private bool</b></font> isDragging = <font color=#0070c0><b>false</b></font>;<br><br>
+&nbsp; &nbsp;<font color=#31849b><b>private void</b></font> Awake(){<br>
+&nbsp; &nbsp;&nbsp; &nbsp;myCanvas = GameObject.Find("Main Canvas");<br>
+&nbsp; &nbsp;}<br><br>
+&nbsp; &nbsp;<font color=#31849b><b>void</b></font> Update(){<br>
+&nbsp; &nbsp;&nbsp; &nbsp;<font color=#3ab050><b>if</b></font> (isDragging){<br>
+&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;transform.position = new <font color=#0070c0><b>Vector2</b></font>(Input.mousePosition.x, Input.mousePosition.y);<br>
+&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;transform.SetParent(myCanvas.transform, <font color=#0070c0><b>true</b></font>);<br>
+&nbsp; &nbsp;&nbsp; &nbsp;}<br>
+&nbsp; &nbsp;}<br><br>
+&nbsp; &nbsp;<font color=#31849b><b>public void</b></font> StartDrag(){<br>
+     &nbsp; &nbsp;&nbsp; &nbsp;isDragging = <font color=#0070c0><b>true</b></font>;<br>
+&nbsp; &nbsp;}<br><br>
+&nbsp; &nbsp;<font color=#31849b><b>public void</b></font> EndDrag(){<br>
+     &nbsp; &nbsp;&nbsp; &nbsp;isDragging = <font color=#0070c0><b>false</b></font>;<br>
+&nbsp; &nbsp;}<br>
+          <br>
+          }</font></td>
+    </tr>
+  </table>
+</center>
+<br>
+<font face=arial><a name="test1">&nbsp;</a><br>
+<strong>[4]. </strong><b><strong>Build a Client to Test the Game #1</strong>:</b> 
+<br>
+&nbsp; &nbsp; <strong>a.</strong> Open <strong>File > Build Settings</strong>. 
+<br>
+&nbsp; &nbsp; <strong>b.</strong> Drag your Scene to the "<strong>Scenes in Build</strong>" list at the top of Build Settings.
+<br>
+&nbsp; &nbsp; <strong>c.</strong> Hit <strong>[Build and Run]</strong> and make/choose a <strong>folder</strong> for the build content. <br>
+&nbsp; &nbsp; <strong>d.</strong> Hit <strong>[Alt]+[Tab]</strong> on our keyboard to get back to the Unity Editor. 
+<br>Hit <strong>[Play]</strong> in the Editor, and now you have two copies of the game running on the same machine! <br>
+&nbsp; &nbsp; <strong>e.</strong> In Editor Game view, click the top button <strong>[Host (Server + Client)]</strong> (in the upper-left corner networking HUD) to make it the Host. In the Built game, hit <strong>[Client]</strong> (second row, first button). <br><br>
+
+<br>
+<br>
+<a name="persist">&nbsp;</a><br>
+</font>
+<center>
+  <font size=+2 face="arial"><b> STEPS 2: PERSISTANT OBJECTS:</b></font>
+</center>
+<font face=arial>&nbsp;</font><font face=arial><br>
+<strong>[5] </strong><b><strong>Generate your moveable objects</strong>:</b> 
+<br>
+<a name="persist1">&nbsp;</a><br>
+<strong><em>PART 1: </em>Add a Canvas and Modify the PlayerManager script to spawn tokens:<em><br>
+</em></strong>&nbsp; &nbsp; <strong>a.</strong> In the Hierarchy, RightClick to Create a <strong>UI > Canvas</strong>, name it "<strong>MainCanvas</strong>." <br>
+&nbsp; &nbsp; <strong>b.</strong> Edit your PlayerManager script to spawn the moveable objects when called.<br>
+&nbsp; &nbsp; <strong>c.</strong> Once the script is edited, open the PlayerManager Prefab (double-click in the Project panel). 
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; Find the TokenThing script slot, and drag in the objectToken Prefab.</font><br>
+<br>
+
+<center>
+  <font face="arial"><i>edit <b>PlayerManager.cs</b></i>:</font>
+  <table width=95% cellpadding=10 border=1>
+        <tr>
+          <td><font face="arial"><font color=#3ab050><b>using</b></font> System.Collections;<br>
+              <font color=#3ab050><b>using</b></font> System.Collections.Generic;<br>
+              <font color=#3ab050><b>using</b></font> UnityEngine;<br>
+              <font color=#3ab050><b>using</b></font> Mirror;<br>
+              <br>
+              <font color=#3ab050><b>public class</b></font></font> <font color=#31849b face="arial"><strong>PlayerManager : NetworkBehaviour</strong></font> <font face="arial"> {<br>
+              <br>
+&nbsp; &nbsp;<font color=#31849b><b>private override void</b></font> OnStartServer(){<br>
+&nbsp; &nbsp; &nbsp; &nbsp;base.OnStartServer();<br>
+&nbsp; &nbsp; &nbsp; &nbsp;Debug.Log(<b><font color=#ed6c0a>&quot;Server Started!&quot;</font></b>);<br>
+&nbsp; &nbsp; &nbsp; &nbsp; <font color=gray> // This displays in the Console when we hit the Host button to get things started</font><br>
+&nbsp; &nbsp; }<br><br>
+&nbsp; &nbsp;<font color=gray>// Make the cards! Generates 6 cards</font><br>
+&nbsp; &nbsp;<font color=#31849b><b>public void</b></font> CreateTokenThings(){<br>
+     &nbsp; &nbsp;&nbsp; &nbsp;<font color=#3ab050><b>for</b></font> (<font color=#31849b><b>int</b></font> i=<b><font color=#ed6c0a>0</font></b>; i < <b><font color=#ed6c0a>6</font></b>; i++){<br>
+&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;myCanvas = GameObject.Find(<b><font color=#ed6c0a>&quot;MainCanvas&quot;</font></b>);<br>
+&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;GameObject myToken = Instantiate(TokenThing, new <font color=#0070c0><b>Vector2</b></font>((<b><font color=#ed6c0a>-400</font></b> + (i * <b><font color=#ed6c0a>150</font></b>)), <b><font color=#ed6c0a>-400</font></b>), Quaternion.identity);<br>
+          &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;myToken.GetComponent&lt;Transform&gt;().SetParent(myCanvas.transform, <font color=#0070c0><b>false</b></font>);<br>
+     &nbsp; &nbsp;&nbsp; &nbsp;}<br>
+&nbsp; &nbsp;}<br><br>
+}</font></td>
+        </tr>
+      </table>
+    </center>
+
+<font face=arial>
+<br>
+<a name="persist2">&nbsp;</a><br>
+<em><strong>PART 2:</strong></em><strong>
+Create a Button and script to call the PlayerManager to make the tokens:</strong><br>
+&nbsp; &nbsp; <strong>a.</strong> Create a  <strong>UI > Button</strong> for dealing tokens. In Inspector name it "<strong>ButtonDealCards</strong>".
+<br>
+&nbsp; &nbsp; <strong>b.</strong> Create a new C# script named &quot;<strong>DrawTokens.cs</strong>&quot;.<br>
+&nbsp; &nbsp; &nbsp; &nbsp; Add the content below and Save.<br>
+&nbsp; &nbsp; &nbsp; &nbsp; Add this script to the Button: drag the script onto the button.  
+<br>
+&nbsp; &nbsp; <strong>c.</strong> Create an <strong>OnClick</strong> event on the Button by hitting the <strong>[+]</strong>. 
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; Drag the DrawTokens.cs script Component up into the new &quot;None&quot; slot. <br>
+&nbsp; &nbsp; &nbsp; &nbsp; Set the function = ButtonDealCards &gt; OnThisClick(). <br>
+&nbsp; &nbsp; <strong>c.</strong> Click [Add Component] to add both <strong>NetworkTransform</strong> and <strong>NetworkIdentity</strong>. <br>
+&nbsp; &nbsp; <strong>d.</strong> <strong>Drag</strong> ButtonDealCards to the Project panel to make it a <strong>Prefab</strong>, do <strong>NOT delete</strong> it from the scene. Select the NetworkManager, add a new slot [+] for Registered Spawnable Prefabs and add this Button. <br>
+<br>
+    </font>
+    <center>
+      <font face="arial"><i><b>DrawTokens.cs</b></i>:</font>
+      <table width=90% cellpadding=10 border=1>
+        <tr>
+          <td><font face=arial> <font color=#3ab050><b>using</b></font> System.Collections;<br>
+            <font color=#3ab050><b>using</b></font> System.Collections.Generic;<br>
+            <font color=#3ab050><b>using</b></font> UnityEngine;<br>
+             <font color=#3ab050><b>using</b></font> Mirror;<br>
+             <br>
+            <font color=#3ab050><b>public class</b></font></font> <font color=#31849b face="arial"><strong>DrawTokens : MonoBehaviour</strong></font><font face="arial"> { 
+
+<br>
+<br>
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font> PlayerManager myPlayerManager; 
+
+<br>
+<br>
+<font face="arial">&nbsp; &nbsp; </font><font color=gray>//make tokens</font>
+<br>
+&nbsp; &nbsp; <font color=#31849b><b>public void</b></font> OnThisClick() { 
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; NetworkIdentity netID = NetworkClient.connection.identity; <br>
+&nbsp; &nbsp; &nbsp; &nbsp; myPlayerManager = netID.GetComponent&lt;PlayerManager&gt;();
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; myPlayerManager.CreateTokenThings(); <br>
+&nbsp; &nbsp; } <br>
+}<br></font></td>
+</tr>
+</table>
+</center>
+    <font face="arial"><br>
+</font>
+<center>
+  <table width=700 border=1 cellpadding=10 bgcolor=#dddddd>
+    <tr>
+      <td><font face="arial"><strong><em> SCRIPT NOTES: </em></strong><br>
+        If this were NOT a networked game, we could <strong>find the PlayerManager</strong> object like this: <br>
+        &nbsp; &nbsp; myPlayerManager = GameObject.Find("PlayerManager").GetComponent&lt;PlayerManager&gt;(); <br>
+        <br>
+        BUT, because it is networked with Mirror, we need the <strong>Network Identity</strong>: <br>
+        &nbsp; &nbsp; NetworkIdentity netID = NetworkClient.connection.identity; <br>
+        &nbsp; &nbsp; myPlayerManager = netID.GetComponent&lt;PlayerManager&gt;(); <br>
+        <br>
+        OR, to put it in one line: <br>
+        &nbsp; &nbsp; myPlayerManager =  NetworkClient.connection.identity.GetComponent&lt;PlayerManager&gt;(); <br>
+        <br>
+        For Networked games, we put this command when  needed in the action function, rather than in the Start() function. </font></td>
+    </tr>
+  </table>
+</center>
+<font face="arial"><br></font><font face=arial><br>
+<a name="persist3">&nbsp;</a><br>
+<em><strong>PART 3: </strong></em><strong>Add Commands and Remote Procedure Calls to the PlayerManager script:</strong><br> 
+Edit the PlayerManager script some more to choose what functions are   handled by the server instead of the client. <strong>Commands</strong> are for clients   to make requests of the server, and <strong>Remote Procedure Calls</strong> (ClientRpc Calls) are what the server asks the clients to do (including itself, as a client): <br>
+<br>
+</font>
+<center>
+  <font face="arial"><i>edit <b>PlayerManager.cs</b></i>:</font>
+  <table width=90% cellpadding=10 border=1>
+    <tr>
+      <td><font face=arial> <font color=#3ab050><b>using</b></font> System.Collections;<br>
+        <font color=#3ab050><b>using</b></font> System.Collections.Generic;<br>
+        <font color=#3ab050><b>using</b></font> UnityEngine;<font face=arial><br>
+        <font color=#3ab050><b>using</b></font> UnityEngine.UI;<br>
+        <font color=#3ab050><b></b></font></font><font color=#3ab050><b>using</b></font> Mirror;<br>
+        <br>
+        <font color=#3ab050><b>public class</b></font></font> <font color=#31849b face="arial"><strong>PlayerManager : NetworkBehaviour</strong></font><font face="arial"> { <br>
+          <br>
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font> GameObject TokenThing; <br>
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font> GameObject myCanvas; <br>
+<br>
+          &nbsp; &nbsp;<font color=#31849b><b>private override void</b></font> OnStartServer(){<br>
+&nbsp; &nbsp; &nbsp; &nbsp;base.OnStartServer();<br>
+&nbsp; &nbsp; &nbsp; &nbsp;Debug.Log(<b><font color=#ed6c0a>&quot;Server Started!&quot;</font></b>);<br>
+&nbsp; &nbsp; &nbsp; &nbsp; <font color=gray> // This displays in the Console when we hit the Host button to get things started</font><br>
+&nbsp; &nbsp; }<br>
+<br>
+&nbsp; &nbsp;<font color=gray>// Make the cards! Generates 6 cards</font>
+<br>
+&nbsp; &nbsp;<font color=gray>// Command allows a client to make a request of the server (including itself)</font><br>
+&nbsp; &nbsp;<font color=#31849b><b></b></font>[Command]<br>
+&nbsp; &nbsp;<font color=#31849b><b>public void</b></font> CmdCreateTokenThings(){<br>
+&nbsp; &nbsp;&nbsp; &nbsp;<font color=#3ab050><b>for</b></font> (<font color=#31849b><b>int</b></font> i=<b><font color=#ed6c0a>0</font></b>; i < <b><font color=#ed6c0a>6</font></b>; i++){<br>
+&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;GameObject myToken = Instantiate(TokenThing, new <font color=#0070c0><b>Vector2</b></font>((<b><font color=#ed6c0a>-400</font></b> + (i * <b><font color=#ed6c0a>150</font></b>)), <b><font color=#ed6c0a>-400</font></b>), Quaternion.identity);<br>
+&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;NetworkServer.Spawn(myToken, connectionToClient);
+<br>
+&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;RpcShowTokens(myToken); <br>
+&nbsp; &nbsp;&nbsp; &nbsp;}<br>
+&nbsp; &nbsp;}<br>
+<br>
+&nbsp; &nbsp;<font color=gray>// ClientRpc is the server making request of all clients (in this case to show tokens)</font><br>
+&nbsp; &nbsp;[ClientRpc]<br>
+&nbsp; &nbsp;<font color=#31849b><b>public void</b></font> RpcShowTokens(GameObject tokenToShow){<br>
+&nbsp; &nbsp;<font color=#31849b><b></b></font>&nbsp; &nbsp;<font color=#31849b><b></b></font>myCanvas = GameObject.Find(<b><font color=#ed6c0a>&quot;MainCanvas&quot;</font></b>);<br>
+&nbsp; &nbsp;&nbsp; &nbsp;tokenToShow.GetComponent&lt;Transform&gt;().SetParent(myCanvas.transform, <font color=#0070c0><b>false</b></font>);<br>
+<br>
+&nbsp; &nbsp;<font color=#31849b><b></b></font>&nbsp; &nbsp;<font color=#31849b><b></b></font><font color=gray>//extra bit, just to see "Authority" in action:</font>
+<br>     
+&nbsp; &nbsp;&nbsp; &nbsp;if (hasAuthority){ <br>          
+&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;Debug.Log(<b><font color=#ed6c0a>&quot;I have authority!&quot;</font></b>); <br>     
+&nbsp; &nbsp;&nbsp; &nbsp;} <br>     
+&nbsp; &nbsp;&nbsp; &nbsp;else { <br>          
+&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;Debug.Log(<b><font color=#ed6c0a>&quot;I don't have authority!&quot;</font></b>); <br>          
+&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;tokenToShow.GetComponent&lt;Image&gt;().color = Color.magenta;
+<br>     
+&nbsp; &nbsp;&nbsp; &nbsp;}<br>
+&nbsp; &nbsp;<font color=#31849b><b></b></font>}<br><br>
+}</font></td>
+    </tr>
+  </table>
+</center>
+
+<br>
+<font face="arial"><br>
+</font>
+<center>
+<table width=700 border=1 cellpadding=10 bgcolor=#dddddd><tr>
+<td><font face="arial">
+<strong><em> SCRIPT NOTES: </em></strong>
+<br>
+
+<br> 
+<img src="gamedesign/bullet.png" alt=""> Mirror commands to the server must be prefaced with [Command] and named CmdName().
+
+<br>
+&nbsp; &nbsp;The result is the Server handles this method, not the local Client. 
+
+<br><br> 
+<img src="gamedesign/bullet.png" alt=""> Add the <strong>NetworkServer.Spawn</strong> command to make the local instantiation visible across all clients (the other computer). <br><br> 
+<img src="gamedesign/bullet.png" alt=""> Mirror commands to the clients must be prefaced with <strong>[ClientRpc]</strong> and named <strong>Rpc</strong>Name<strong>()</strong>. <br>
+&nbsp; &nbsp;The result is  all Clients do as requested in that function.<br><br> 
+<img src="gamedesign/bullet.png" alt=""> Since <strong>one Client is also the Server</strong>, it responds to both: 
+<br>
+&nbsp; &nbsp;It commands itself with [Command] and does as the Server (itself) requests  with [ClientRpc]. <br><br> 
+<img src="gamedesign/bullet.png" alt=""> "Authority" is the concept of whether a given client should have control.
+<br>
+</font></td>
+</tr></table>
+</center>
+<font face="arial">
+<br><br>
+<a name="test2">&nbsp;</a>
+<br>
+<strong>TEST YOUR GAME #2:</strong><br>
+<img src="gamedesign/bullet.png" alt=""> Build and Run (<strong>[Ctrl / Cmd] + [b]</strong>). 
+<br>
+<img src="gamedesign/bullet.png" alt=""> Hit <strong>[Alt]+[Tab]</strong> on our keyboard to get back to the Unity Editor, hit <strong>[Play]</strong>. <br>
+<img src="gamedesign/bullet.png" alt=""> Set Editor Game window to Host, set Build to Client. <br>
+<img src="gamedesign/bullet.png" alt=""> Deal cards and observe one screen display the tokens in magenta
+
+
+<br>
+<br>
+<br>
+<em><strong>Future Learning: </strong></em><br>
+<img src="gamedesign/bullet.png" alt=""> Use <strong>TargetRpc</strong> for sending requests to <strong>specific</strong> clients, rather than ALL clients. <br>
+<img src="gamedesign/bullet.png" alt=""> Mirror Documentation: <a href="https://mirror-networking.gitbook.io/docs/" target=mirror2>https://mirror-networking.gitbook.io/docs/</a><br>
+<img src="gamedesign/bullet.png" alt=""> Rocket Ship Combat game (text Tutorial): <a href="https://gamedevacademy.org/how-to-create-a-multiplayer-game-in-unity/" target=mirror3>https://gamedevacademy.org/how-to-create-a-multiplayer-game-in-unity/</a>
+
+<br><br>
+</font></td></tr></table>
+
+
+<table width=750 cellpadding=10 border=0>
+<tr>
+	<td colspan=2>
+
+<!-- start of bottom code -->
+<!--
+
+<center>
+<font size=+2 face="arial"><b>PLAYER MELEE FIGHTING</b></font>
+</center><font face=arial><b>MELEE:</b>
+(<a href=="" target=shoot>Source Video</a>)
+<img src="gamedesign/Unity2D/sdfsdf.png" width=256 align=right border=1>
+<br>
+Your character animation frames can be  a single <b>spritesheet</b>. Select a spritesheet in the  Project and in the Inspector set it from Single to <b>Multiple</b>, hit <b>[Apply]</b>, and <b>Slice</b> to get a file for each image (in Project hit  the spritesheet triangle  to view all). <br>
+<br>
+Apply
+<a href="GameDesign/Unity2D/PlayerShooting.cs" target=unity><b>PlayerMelee.cs</b></a> script to the <b>Player</b>. In Inspector drag the FirePoint from the Hierarchy to the script slot, and the Projectile prefab from the Project into the Script slot. PLAYTEST! 
+<br><br>
+<em><b>Create an Impact Prefab:</b></em>
+<br>
+<b>Drag</b> the impact sprite  into the Hierarchy, name it &quot;Impact,&quot; set Order in Layer = 14.
+<li>Drag the Impact into the Project to make a <b>Prefab</b> and <b>delete</b> it from the Hierarchy.</font>
+<li><font face="arial"> Finally, <b>drag the Impact Prefab</b> to the Effect script slot.
+
+<br>
+<br>
+To make our Player vulnerable to enemies, add the <a href="GameDesign/Unity2D/PlayerHit.cs" target=unity><b>PlayerHit.cs</b></a> script, and drag the Impact prefab into the script slot.
+</font>
+
+<br>
+<br>
+<center>
+  <font size=+2 face="arial"><b>FRIENDLY NPCs</b></font>
+</center>
+<font face="arial">Artificial Intelligence for NPCs in games is not typically advanced learning algorythms, but instead a <b>simple list of responses to specific conditions in the game</b>. For example, consider an enemy that shoots at the player. It moves towards the player until it reaches a specified distance, and retreats if the player gets too close. All of these are responses to one piece of data: the distance from the player. We can capture that data and test against it in the Update() function to decide what the enemy will do.<br><em><b>NOTE:</b></em> These 3 Enemy types/scripts work equally well on 3D games, with Physics modifications:
+
+<br><br>
+<img src="gamedesign/Unity2D/dfgdf" align=right width=256 border=1>
+<b>NPC #1: <font color=purple>2D PATHFINDING</font></b> 
+(<a href="https://www.youtube.com/watch?v=jvtFUfJ6CP8" target=vid>source video</a>)<br>
+This NPC follows a particular path. It an be used for villagers moving about their day or a patrolling guard.<br><br>
+<b>Add NPCpath sprite</b> to Hierarchy. </font>
+<li><font face="arial">Set &quot;Order in Layer&quot; = 4, apply <b>tag</b> &quot;enemy&quot; (create if needed). </font>
+<font face="arial">
+<li>Reset Transforms (0,0,0). 
+<li>Add <b>Physics2D &gt; Rigidbody2D</b>, set <b>Mass = 3</b> and <b>Gravity Scale = 0</b>.
+<li>Add <b>Physics2D &gt; Collider2D</b> (box or circle, set size).
+<li>Apply <a href="GameDesign/Unity2D/EnemyMoveHit.cs" target=unity><b>xxxxx.cs</b></a>.
+<li>Drag to the Project to make a <b>Prefab</b> and <b>delete</b> from the Hierarchy. 
+
+<br><br>
+<img src="gamedesign/Unity2D/dfgdf" align=right width=256 border=1>
+<b>NPC #2:<font color="purple">DIALOGUE</font></b> 
+(<a href="https://www.youtube.com/watch?v=jvtFUfJ6CP8" target=vid>source video</a>)<br>
+This enemy follows the player. If it reaches the player it causes damage and disappears. It takes a specified amount of bullet damage before being removed.<br><br>
+<b>Add NPCdialogue sprite</b> to Hierarchy. </font>
+<li><font face="arial">Set &quot;Order in Layer&quot; = 4, apply <b>tag</b> &quot;enemy&quot; (create if needed). </font>
+<font face="arial">
+<li>Reset Transforms (0,0,0). 
+<li>Add <b>Physics2D &gt; Rigidbody2D</b>, set <b>Mass = 3</b> and <b>Gravity Scale = 0</b>.
+<li>Add <b>Physics2D &gt; Collider2D</b> (box or circle, set size).
+<li>Apply <a href="GameDesign/Unity2D/EnemyMoveHit.cs" target=unity><b>xxxxx.cs</b></a>.
+<li>Drag to the Project to make a <b>Prefab</b> and <b>delete</b> from the Hierarchy. 
+
+
+<br><br><br><br><br><br>
+<center>
+    <font size=+2 face="arial"><b>INVENTORY SYSTEM</b></font>
+  </center>
+An inventory lets us store objectives the Player needs to collect to win, or items for later use (keys, health potions, alternate weapons, etc).
+    
+<br><br>
+<b>SETTING UP  INVENTORY UI:</b> (<a href="https://youtu.be/-xB4xEmGtCY" target=ui1>source video</a>)
+Select the <b>Canvas</b> object in Hierarchy, rename &quot;<b>HUD</b>.&quot;
+<li><b>PANEL: </b>Create a <b>UI &gt; Panel</b> for the inventory background. Align to the bottom-center, size (hit Anchor Preset, choose Center, then width=270 x height=60) and for the Source Image choose a basic button sprite and set to a semi-transparent gray. Name the Panel "<b>Inventory</b>."
+  
+<li><b>SLOT: </b>Make a <b>UI &gt; Image</b>. parent beneath &quot;Inventory,&quot; size 50x50, dark color, name it &quot;<b>Slot</b>.&quot; This will be the background for trhe slot (children appear atop parents).<li><b>BORDER:</b> <b>Duplicate</b> the first image ([Cmd/Ctrl]+[d]), <b>parent</b> below Slot, and name &quot;<b>Border</b>.&quot; Size 50x50, import a PNG with a thin border. Open the [Sprite Editor] and set all borders = 4 so it will scale well. Assign this sprite as Source Image, set color to white. 
+Add component <b>UI &gt; Button</b>, and assign a  <b>Highlight</b> <b>Color</b>. Play to see rollover effect.<br>
+<li><b>ITEM IMAGE: </b>Create a new image, parent below Border, and name &quot;<b>ItemImage</b>.&quot; Import an inventory item sprite as the Source Image and size to fit. 
+<li>Create more slots: duplicate Slot. Select its ItemImage, set Source Image to &quot;None,&quot; and disable the Image component. 
+<li>Select the Inventory Panel, add component <b>Layout &gt; Horizontal Layout Group</b>. Set Child Alignmment to middle-center. Now, when Slots are duplicated, they space themseves evenly on the Panel.<br>
+  <br>
+  <b>INVENTORY SCRIPTS: </b>
+(<a href="https://youtu.be/Hj7AZkyojdo" target=ui1>source video</a>)
+<li>Create a <b>new Empty GO</b>, name it &quot;<b>InventoryManager</b>.&quot; Apply the <a href="GameDesign/Unity2D/InventoryManager.cs" target=unity><b>InventoryManager.cs</b></a> script (list of inventory items, manages events for item Add and Remove). 
+Also add <a href="GameDesign/Unity2D/InventoryItem.cs" target=unity><b>InventoryItem.cs</b></a> to the project, to define the Interface referenced by Inventory.cs.
+<li> Apply <a href="GameDesign/Unity2D/InventoryPlayer.cs" target=unity><b>InventoryPlayer.cs</b></a> script to Player (to call  Inventory.cs when a pick-up-able item is touched), and <b>drag the Inventory GO</b> into the script slot.
+<li> Apply <a href="GameDesign/Unity2D/InventoryHUD.cs" target=unity><b>InventoryHUD.cs</b></a> script to the Canvas HUD (to make the UI changes).
+<li> Add and modify a <a href="GameDesign/Unity2D/InventoryObject.cs" target=unity><b>InventoryObject.cs</b></a> script to each object we want to be pick-up-able.
+</font>
+
+-->
+
+<!-- end of bottom code -->
+
+<br>
+<font face=arial><br>
+<i>Text Tutorial by Jason Wiser, Madwomb.com</i></font></td></tr></table><br>
+<br><br>
+
+<!-- old
+
+<br><br><br><br>
+<b>PLAYER MOVEMENT</b> 
+(<a href="https://youtu.be/7KiK0Aqtmzc" target=betterJump>Better Jumping source video</a>):
+<li>moving: 
+<a href="https://youtu.be/dwcT-Dch0bA" target="_blank">https://youtu.be/dwcT-Dch0bA</a> 
+<li>jumping: <a href="https://youtu.be/j111eKN8sJw" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://youtu.be/j111eKN8sJw&source=gmail&ust=1579200963392000&usg=AFQjCNEV64Dr0QlIoVbqFFLAGEyF2_MWQQ">https://youtu.be/j111eKN8sJw</a> 
+<li>wall jumping: <a href="https://youtu.be/STyY26a_dPY" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://youtu.be/STyY26a_dPY&source=gmail&ust=1579200962787000&usg=AFQjCNEMpytesWvBLc8Mh6wEIvJHRiiF7A">https://youtu.be/STyY26a_dPY</a> <br> 
+  Add Character sprite to Hierarchy 
+  
+<br><br>
+Introduction to LERP for smooth transitions: <br>
+<img src="gamedesign/bullet.png" alt=""> LERP <a href="https://youtu.be/cD-mXwSCvWc" target=LERP1><b>Basics</b></a>: object motion, light intensity, color <br>
+<img src="gamedesign/bullet.png" alt=""> <a href="https://youtu.be/MFQhpwc6cKE" target=LERP2><b>Smooth</b></a> LERP Camera Following. <br>
+<img src="gamedesign/bullet.png" alt=""> Example <a href="gamedesign/CameraControlLERP.txt" target=LERP3><b>LERP code</b></a>. 
+<br><br><br>
+
+<img src="gamedesign/bullet.png" alt=""> <a href="https://www.youtube.com/watch?v=QkisHNmcK7Y" target=parallax><b>Parallax Scrolling</b></a> alternative script design 
+
+(Manage the <a href="https://answers.unity.com/questions/743148/display-quad-over-sprites.html" target=sort>sorting order</a> between sprites and quads). 
+
+-->
+
+
+</center>
+
+</body>
+</html>

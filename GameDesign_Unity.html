@@ -1,0 +1,2382 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">-->
+<link rel="stylesheet" href="w3.css">
+
+<title>Unity Learning</title>
+
+<style type="text/css">
+
+body,html{
+	margin-left: 0px; 
+	margin-top: 0px; 
+	margin-right: 0px; 
+	margin-bottom: 0px;
+
+	font-size: 16px;
+	font-family: "Arial", "Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", "Helvetica",  "sans-serif";
+	color: #444;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.centerTab{
+	margin: auto;
+}
+
+.centerPage{
+	display:block;
+	/*width:90%;*/
+	max-width: 850px;
+	margin: 0 auto;
+}
+
+.centerPageMedium{
+	margin: auto;
+	width:90%;
+	max-width: 900px;
+}
+
+.centerPageWide{
+	margin: auto;
+	width:90%;
+	max-width: 900px;
+}
+
+.panelWideTextShorter{
+	display:block;
+	width:90%;
+	max-width: 900px;
+	margin: 0 auto;
+}
+
+.homework{
+	color: #228822;
+}
+
+
+/* SECTION 1: WEEKLY MATERIALS */
+	
+	#SiteRow_top{
+		/*background:#aaa;*/
+		width: 90%;
+		margin: auto;
+	}
+	
+	/* logo and course title */
+	#siteTop1{
+		vertical-align: top;
+	}
+	
+	/* quotes and syllabus */
+	#siteTop2{
+		vertical-align: top;
+	}
+	
+	/* course description */
+	#siteTop3{
+		vertical-align: top;
+	}
+	
+	/* weekly breakdown links */
+	#siteTop4{
+		background: #eee;
+	}
+
+
+/* SECTION 2: WEEKLY MATERIALS */
+	
+	/* blue-backed category header */
+	.sectionHeader{
+		background: #b7d7f5;
+		/*text-align:center;*/
+		margin-bottom: -10px;
+	}
+	
+	.sectionHeader h1{
+		text-align:center;
+	}
+	
+	.sectionHeader div{
+		margin-top: -10px;
+	}
+
+	
+/* A WEEK UNIT */
+	.week{
+		background: #eee;
+	}
+	
+	/* week title */
+	.weekTitle h2{
+		padding: 10px;
+		text-align:center;
+	}
+	
+	/* core week materials */
+	#weekArea1{
+		/*background:#ebe5d6;*/
+	}
+	
+	/* code samples */
+	.blockScript{
+		border: 3px solid #66aa66;
+  		border-color: #66aa66;
+  		border-collapse: collapse;
+		border-radius: 10px;
+  		background: #efefef;
+		padding: 10px;
+		text-align:left;
+		margin:auto;
+		width: 90%;
+	}
+	
+	.blockScript2{
+		/*
+		border: 3px solid #66aa66;
+  		border-color: #66aa66;
+  		border-collapse: collapse;
+		border-radius: 10px;
+		*/
+  		background: #efefef;
+		padding: 10px;
+		text-align:left;
+		height: 100%;
+		/*min-width: 320px;*/
+		/*
+		margin:auto;
+		width: 90%;
+		*/
+	}
+	
+	/* note call-outs */
+	.blockNote{
+		border: 3px solid #777;
+  		border-color: #777;
+  		border-collapse: collapse;
+		background:#f1f1e1;
+		padding: 10px;
+	}
+	
+	#studentSamples{
+		background:#eee;
+		padding: 10px;
+		text-align: center;
+	}
+	
+	#sectionBooks{
+		/*text-align:center;*/
+	}
+
+/* PROJECTS */
+#section_Projects{
+	background: #eee;
+}
+
+/* RESOURCES */
+#section_Resources{
+	background: #eee;
+}
+
+/* course description */
+	#FAQ{
+		vertical-align: top;
+		background: #eee;
+	}
+	
+	#Text_Column{
+		width:80%;
+		vertical-align: top;
+		margin:auto;
+	}
+	
+	#Text_Column_schedule{
+		max-width:600px;
+		min-width:200px;
+		vertical-align: top;
+		margin:auto;
+		padding: 10px;
+	}
+
+/* COPYRIGHT */
+#section_copyright{
+	text-align:center;
+	/* right elements move under left elements */
+	/* clear: left; */
+}
+
+/* modifiying the w3 */
+	.w3-half{
+		padding-left: 7px;
+		padding-right: 7px;
+	}
+	
+	.AccordionArrow{
+		float: right;
+	}
+	
+
+/* FONTS: */
+	#text_CourseTitle{
+		font-size: 28px;
+		line-height:1.25;
+		/* use number instead of bold, in hundreds*/
+		font-weight: 600;
+		color: #555;
+		text-align:left;
+	}
+	
+	h1{
+		font-size: 30px;
+		font-weight: 600;
+		color: #444;
+		/*text-align:center;*/
+		margin-top: 10px;
+	}
+	
+	h2{
+		font-size: 22px;
+		font-weight: 600;
+		color: #444;
+		/*text-align:left;*/
+		padding-top: 15px;
+		padding-bottom: 0px;
+		line-height:1;
+	}
+	
+	/*
+	.sectionHeader +h2 {
+		text-align:center;
+		margin-bottom:0;
+		padding-bottom:15px;
+	}
+	*/
+	
+	/* change paragraphs after h2: */
+	h2 +p{
+		margin-top: -10px;
+	}
+	
+	h3{
+		font-size: 19px;
+		font-weight: 500;
+		color: #444;
+		text-align:left;
+		padding-top: 15px;
+		padding-bottom: 0px;
+	}
+	
+	h3 +p{
+		margin-top: -10px;
+	}
+	
+	/*
+	h3 +ul{
+		margin-top: -10px;
+	}
+	*/
+	ul{
+		margin-top: -10px;
+	}
+
+	#text_label{
+		font-size: 14px;
+		color: #444;
+		text-align: center;
+		margin: auto;
+		margin-top: 10px;
+	}
+	
+	.topic{
+		color: purple;
+		font-weight: 500;
+	}
+	
+/* RULE: pseudoelements change all tags / linked text */
+	a{
+		color:#1e6669;
+		font-weight: 600;
+		text-decoration: none;
+	}
+	
+	a:active{
+		color:#1088bb;
+		font-weight: 600;
+	}
+	
+	/*
+	a:visited{
+		color:#7700aa;
+	}
+	*/
+	
+	a:hover{
+		color:#7700aa;
+		font-weight: 600;
+		text-decoration: underline;
+	}
+	
+	a:focus {
+		outline: 3px solid blue;
+		font-weight: 600; 
+	}
+	
+	input:focus, textarea:focus, button:focus {
+		outline: 3px solid blue;
+	}
+	
+	a.myButton{
+		background-color:#1e6669;
+		padding: 8px;
+		border: #000 solid 1px;
+		display: inline-block;
+		border-radius:5px;
+		font-size:18px;
+		color:#fff;
+		text-transform:uppercase;
+	}
+	
+	a.myButton:hover{
+		background-color:#fff;
+		color:#1e6669;
+		text-decoration: none;
+	}
+	
+	.accordionAllButton{
+		background-color:#1e6669;
+		padding: 8px;
+		border: #000 solid 1px;
+		display: inline-block;
+		border-radius:5px;
+		font-size:14px;
+		color:#fff;
+		text-transform:uppercase;
+		margin-top: 15px;
+		margin-bottom: 15px;
+	}
+	
+	.accordionAllButton:hover {  
+		background-color:#fff;
+		color:#1e6669;
+		text-decoration: none;
+		cursor: pointer;
+	}
+	
+	.video{
+		max-width:100%; 
+		max-height:100%;
+		margin-bottom: 10px;
+	}
+	
+	.table_callout {
+		border: 3px solid #fff;
+		border-color: #fff;
+		/*border-collapse: collapse;
+		background-color: #efefef;*/
+		border-radius: 10px;
+	}	
+	
+	.table_callout td, .table_callout th {
+    	border: 1px solid #fff;
+	}
+	
+	
+	/*	
+	.toggleBox{
+		background-image: url("IntroMaya/AccordionArrow_up.png");
+		background-position: right;
+		width:100%;
+	}	
+	
+	.toggleBox.open{
+		background-image: url("IntroMaya/AccordionArrow_down_outline.png");
+	}
+	*/
+	
+	li::marker {
+  		/*color: #4f91cd;
+		Darker, for better contrast:
+		*/
+		color: #18467c;
+	}
+	
+	.UpArrow:hover{
+    	filter: invert(1) drop-shadow(1px 1px 1px #555);
+	}
+</style>
+
+<!-- VIDEO LAZY LOADING: CSS -->
+<style>
+img {
+	height: auto;
+	max-width: 100%;
+}
+
+iframe {
+	aspect-ratio: 16 / 9;
+}
+
+.thirdVideo{
+	width:200px;
+}
+
+/* lazy loading: overlay play-SVG */
+.img-overlay-wrap {
+  position: relative;
+  display: inline-block; /* <= shrinks container to image size */
+  transition: transform 150ms ease-in-out;
+}
+
+.img-overlay-wrap img { /* <= optional, for responsiveness */
+   display: block;
+   max-width: 100%;
+   height: auto;
+}
+
+.img-overlay-wrap svg {
+  position: absolute;
+  /*width:100%;*/
+  width:50%;
+  height:auto;
+  top: 0;
+  left: 0;
+  margin:auto;
+}
+
+.img-overlay-wrap path:hover {
+  /*transform: rotate( 15deg );*/
+  /*width:60%;*/
+  fill:white;
+}
+
+.w3-half1 {		padding-left: 7px;
+		padding-right: 7px;
+}
+
+</style>
+
+<!-- grey accordion: active/open header and backgrounds -->
+<style>
+.panel { 
+	max-width: 850px;
+	width: 90%;
+	padding: 20px;
+	background-color: #eee;  
+	overflow: hidden;  
+	transition: max-height 0.2s ease-out;
+	text-align:left;
+	margin: auto;
+}
+/*.panel { padding: 0 18px;  background-color: #eee;  max-height: 0; overflow: hidden;  transition: max-height 0.2s ease-out;}*/
+
+.panelBG1{
+	background:#ebe5d6;
+}
+
+/* green */
+.panelBG_green{
+	background:#d0e2d0;
+	/*d9ebd9*/
+}
+
+
+/* dark blue */
+.panelBG_bluedark{
+	background:#d4e5e5;
+}
+
+/* blue */
+.panelBG_blue{
+	background:#d7ebef;
+	/* e9e9fa */
+}
+
+/* pale green blue */
+.panelBG_bluepale{
+	background:#d6ebea;
+	/* edf7f7 */
+}
+
+/* purple */
+.panelBG_purple{
+	background:#e9e9fa;
+}
+
+/* purple dark */
+.panelBG_purpledark{
+	background:#dbdbf8;
+}
+
+/* pink */
+.panelBG_pink{
+	background:#ede3e4;
+	/*ead6d8*/
+}
+
+
+
+.accordion{
+	/*margin: auto; */
+	width:90%; 
+	max-width: 900px;
+	
+	margin-top: 15px;
+	text-align: left;
+	
+	display:block;
+	margin: 0 auto;
+}
+
+
+</style>
+
+<!-- red accordian -->
+
+<style>
+.accolordion1 { background-color: #e7e7f5; color: #444; cursor: pointer; padding: 18px; border: none;  text-align: left;  outline: none; font-size: 16px; font-family: arial; transition: 0.4s; }
+.accolordion1:hover { background-color: #dec5c5;}
+.accolordion1:focus { background-color: #dec5c5; outline: 0px solid #fff;}
+.accolordion1:after { content: '\002B';  color: #e9dede;  font-weight: bold;  float: right;  margin-left: 5px;}
+.accolordion1 .active { background-color: #e7e7f5;}
+.active:after {  content: "\2212"; }
+.accolordion1 .panel { padding: 0 18px;  background-color: #e7e7f5;  max-height: 0; overflow: hidden;  transition: max-height 0.2s ease-out;}
+</style>
+
+<style></style>
+
+<!-- blue accordian d1e2e5 e0e7e8-->
+<style>
+.accolordion2 { background-color: #d1e2e5;  color: #444;  cursor: pointer;  padding: 18px; border: none;  text-align: left;  outline: none;  font-size: 16px; font-family: arial; transition: 0.4s;}
+.accolordion2:hover { background-color: #b3d2d8;}
+.accolordion2:focus { background-color: #b3d2d8; outline: 0px solid #fff;}
+.accolordion2:after { content: '\002B';  color: #d1e2e5;  font-weight: bold;  float: right;  margin-left: 5px;}
+.accolordion2 .active { background-color: #d1e2e5;}
+.active:after {  content: "\2212";}
+.accolordion2 .panel { padding: 0 18px;  background-color: #d1e2e5;  max-height: 0; overflow: hidden;  transition: max-height 0.2s ease-out;}
+</style>
+
+<!-- yellow accordian -->
+<style>
+.accolordion3 { background-color: #eeecdd; color: #444; cursor: pointer;  padding: 18px; border: none; text-align: left; outline: none; font-size: 16px; font-family: arial; transition: 0.4s;}
+.accolordion3:hover { background-color: #e0dbb8;}
+.accolordion3:focus { background-color: #e0dbb8; outline: 0px solid #fff;}
+.accolordion3:after { content: '\002B';  color: #eeecdd;  font-weight: bold;  float: right;  margin-left: 5px;}
+.accolordion3 .active { background-color: #eeecdd;}
+.active:after {  content: "\2212";}
+.accolordion3 .panel { padding: 0 18px;  background-color: #eeecdd;  max-height: 0; overflow: hidden;  transition: max-height 0.2s ease-out;}
+</style>
+
+<!-- purple accordian e7d9e7 e7d5e7-->
+<style>
+.accolordion4 { background-color: #e7d9e7; color: #444; cursor: pointer;  padding: 18px; border: none; text-align: left; outline: none; font-size: 16px; font-family: arial; transition: 0.4s;}
+.accolordion4:hover { background-color: #dbbbdb;}
+.accolordion4:focus { background-color: #dbbbdb; outline: 0px solid #fff;}
+.accolordion4:after { content: '\002B';  color: #e7d9e7;  font-weight: bold;  float: right;  margin-left: 5px;}
+.accolordion4 .active { background-color: #e7d9e7;}
+.active:after { content: "\2212";}
+.accolordion4 .panel { padding: 0 18px;  background-color: #e7d9e7;  max-height: 0; overflow: hidden;  transition: max-height 0.2s ease-out;}
+</style>
+
+<!-- green accordian d5f0de cbecd6 -->
+<style>
+.accolordion5 { background-color: #d5f0de; color: #444; cursor: pointer;  padding: 18px; border: none;  text-align: left; outline: none; font-size: 16px; font-family: arial; transition: 0.4s;}
+.accolordion5:hover { background-color: #bce2c9;}
+.accolordion5:focus { background-color: #bce2c9; outline: 0px solid #fff;}
+.accolordion5:after { content: '\002B';  color: #d5f0de;  font-weight: bold;  float: right;  margin-left: 5px;}
+.accolordion5 .active { background-color: #d5f0de;}
+.active:after { content: "\2212";}
+.accolordion5 .panel { padding: 0 18px;  background-color: #d5f0de;  max-height: 0; overflow: hidden;  transition: max-height 0.2s ease-out;}
+</style>
+
+
+
+
+<script language="JavaScript1.2" type="text/javascript">
+<!--
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+//-->
+</script>
+
+
+
+</head>
+
+<body text=#222222 link=#1e6669 vlink=#7700aa alink=#1088bb onLoad="MM_preloadImages('gamedesign/Unity2D/UI_Buttons_ARVR2.png','gamedesign/Unity2D/UI_Buttons_Scripting2.png','gamedesign/Unity2D/UI_Buttons_Narrative2.png','gamedesign/Unity2D/UI_Buttons_Action2.png','gamedesign/Unity2D/UI_Buttons_Art2D2.png')">
+
+<div class="centerPage">
+<a name=TOP>&nbsp;</a>
+<!-- start HEADER -->
+
+<div style="width:90%; max-width:850px; margin: auto; padding:10px">
+
+<a href="GameDesign_Unity.html"><img src="gamedesign/UnityLogo60.png" alt="Unity Logo" align=right></a>
+
+<h1>UNITY - LEARNING RESOURCES HUB</h1>
+
+This is a directory of Unity resources for my courses. Please start by following our <a href="#b">Course Tutorials</a> below, then seek more answers on YouTube, the official <a href="https://docs.unity.com/" target=unity1>Unity Documentation</a>, and 
+<a href="https://learn.unity.com/" target=unity1>Learning Center</a>.
+
+</div>
+
+<!-- end HEADER -->
+
+
+<!-- Start INDEX -->
+<div class="w3-row-padding" style="background-color:#f5eeee; width:90%; max-width:850px; margin: auto; padding:10px 0">
+
+<div class="w3-row-padding">
+<div class="w3-half">
+
+<div class="w3-row-padding" style="background-color:#efebdd; padding:10px; width:95%">
+<font color=purple><b>[A]:</b></font> <a href="#a">INSTALL Unity Hub</a> and <a href="#a">Game Editor</a>
+</div>
+    
+<div class="w3-row-padding" style="padding:10px; width:95%">
+<font color=purple><b>[B]:</b></font> <a href="#b">MAIN UNITY  TUTORIALS:</a> 2D and 3D
+</div>    
+
+<div class="w3-row-padding" style="background-color:#dff9ee; padding:10px; width:95%">
+<font color=purple><b>[C]:</b></font> <a href="#c">VR / AR</a>, <a href="#c">Multiplayer</a>, and more
+</div>
+    
+<div class="w3-row-padding" style="background-color:#e9f4fe; padding:10px; width:95%"> 
+    <font color=purple><b>[D]:</b></font> Exporting <a href="#build">Builds</a>
+</div>
+
+</div>
+<div class="w3-half">
+
+<div class="w3-row-padding" style="padding:10px; width:95%">
+    <font color=purple><b>[E]:</b></font> <a href="#code">C# Scripting in Unity</a>
+</div>
+
+<div class="w3-row-padding" style="background-color:#e9f4fe; padding:10px; width:95%">
+Learn to use <b><a href="GameDesign_UnityGitHub.html" target=git>GitHub</a></b> on this separate page.
+</div>
+    
+<div class="w3-row-padding" style="background-color:#f3f2df; padding:10px; width:95%">
+<font color=purple><b>[F]:</b></font> <a href="#art">Game Art in Unity</a> and <a href="#particles">particles</a>
+</div>
+    
+<div class="w3-row-padding" style="padding:10px; width:95%">
+<font color=purple><b>[G]:</b></font> <a href="#ctrl">Controller Hardware</a>
+</div>
+
+</div>
+</div>
+</div>
+
+<!-- End INDEX -->
+
+<br>
+
+<!-- Start of INSTALLATION NOTES-->
+
+    <button class="accordion accordion1 accolordion3">
+    <a name="a">&nbsp;</a>
+    <b><font color=purple>[A]:</font> INSTALL UNITY</b> 
+<em>(click here to open this rolldown)</em>
+<span class="AccordionArrow"><img src="IntroMaya/AccordionArrow_up.png" class="arrow" alt="Accordion Twirly"></span>
+    </button>
+
+<div class="panel">
+
+<!--
+<table width=100% bgcolor=#e7e7f5 cellpadding=10><tr>
+<td width=55% valign=top><font face=arial>
+-->
+
+<br>
+The Unity Game Engine is FREE for learning and publishing projects that earn less than $100k. 
+
+<br>
+<p>
+<b>1.</b> Start by <a href="https://id.unity.com/account/new" target=unityid>creating a Unity ID</a> for a free license.
+
+<br>
+<br>
+<p>
+<b>2.</b> <b>Download</b> and install the <a href="https://unity3d.com/get-unity/download" target=download>Unity HUB</a>.
+<p>
+<em>When prompted:</em>
+<ul>
+<li><b>Sign in</b> using your unity ID, and accept a <strong>personal licence</strong>.
+<li>Please <b>do NOT install the Editor</b> they recommend: hit <strong>Skip</strong>. 
+<li>If you encounter a <b>security issue on a Mac</b>, try this <a href="https://youtu.be/WiYmUXVOlgI" target=mac><strong>solution</strong></a>.
+</ul>
+
+<br>
+<p>
+<a href="gamedesign/UnityEditor_Install_From_Archive_Instructions_2022.png" target=UnityEditor><img src="gamedesign/UnityEditor_Install_From_Archive_Instructions_2022.png" width=150 align=right></a>
+
+<b>3.</b> <b>Download</b> and install  our <b>Unity Editor</b> version from the <a href="https://unity3d.com/get-unity/download/archive" target=archive>Unity Archive</a> 
+(we will use this version this term: <a href="https://unity.com/releases/editor/whats-new/6000.0.42" target=2025><strong>6000.0.42f1</strong></a>, direct <a href="unityhub://6000.0.42f1/feb9a7235030" target=link>install link</a>, about 4-6 gigs): 
+<ul>
+<li>Find the correct version, click the blue <strong>[Unity Hub]</strong> button to install through Unity Hub. 
+
+<li>When prompted in the Hub, turn off Visual Studio and scroll down to turn on <strong>WebGL</strong>, then hit [Install] (20-30 minutes). You can also follow <a href="gamedesign/UnityEditor_Install_From_Archive_Instructions_2022.png" target=UnityEditor>these steps</a>.
+</ul>
+
+<br>
+<p>
+<b>4.</b> <b>Download</b> and install an <b>IDE for coding</b>. 
+<br>
+Visual Studio is offered with the Unity Editor (requires free Microsoft account), or <strong>use any IDE you prefer.</strong> Teacher likes  <a href="https://code.visualstudio.com/download" target=notepad>VS Code</a> (optionally, get the Unity for VS Code 
+<a href="https://code.visualstudio.com/docs/other/unity">extension</a>).
+<!--
+Teacher likes  <a href="https://notepad-plus-plus.org/downloads/" target=notepad><strong>Notepad++</strong></a> 
+(C# support <a href="https://youtu.be/GvBaYscBal0" target=csharp>here</a>)
+-->
+
+<br><br>
+<p>
+<b>5.</b> <b>Create</b> your first SOLO Unity 2D project: 
+<ul>
+<li>Create a <strong>desktop folder</strong> for this course named "<strong>GameDesign</strong>".
+<li>Under the Unity Hub <em><b>Project</b></em> tab: click <b>[New]</b> to create a new Unity game project. 
+<li>Choose Templates, then <strong>2D core</strong>. 
+<br>
+On the right type a name (YourName_Tutorial1) and a location (Desktop <b>GameDesign</b> folder<b>, </b> to keep name path short and local). 
+<li>Hit <strong>[Create]</strong>.<br>
+The new Unity project is created in that folder, and then the Editor opens (in about 15-30 minutes). 
+</ul>
+
+<br>
+<p>
+<b><em>NOTE:</em></b> <b>An Editor can be added manually to Hub:</b> 
+<br>
+Did you install an Editor without going through the Hub? 
+Here is how to add it:
+<ul>
+<li>Open Unity Hub, go to <em><b>Installs</b></em> tab, click <b>[Locate]</b>. 
+<li>Navigate to <b>Program Files &gt; Unity &gt; Editor</b> to select the <b>Unity</b> Application (Or, on a  Mac: open Finder, open Applications > Unity > Hub > Editor > version to select the Application). 
+<li>Hit <b>[OK] </b>to add  the version-square to Unity Hub.<br>
+</ul><br>
+<h3>EDITOR CONSIDERATIONS:</h3> 
+When you work with a team, you need to be on the <strong>same Unity version in order to collaborate</strong>. 
+<br>
+The version of the Editor your team chooses should always be a stable LTS version (to work easily with teacher and TAs, please use the course version).
+
+
+<br>
+<p>
+<h3>MODULES:</h3>
+<p>We will  primarily create games to run on computers (typically <a href="#build">WebGL</a>, which requires a Unity Module, but some projects need PC / Mac builds).
+<ul>
+<li>For Mobile Android Games: in Unity Hub install the Android Module and two sub-modules. Export  game as an APK to load onto the device.
+<li>iOS phones and tablets are a closed system that requires a developer account to share projects. 
+</ul>
+
+<br><p>
+<h3> TEAM PROJECT?</h3> 
+Set-Up <a href="http://madwomb.com/tutorials/GameDesign_UnityGithub.html" target=git1>GITHUB</a><strong>:</strong>
+<ol>
+<li>Create an account at <a href="https://github.com/" target=git2>GitHub.com</a>. <li>Create a new repo with  default Unity .GitIgnore. <li>On GitHub <a href="https://github.com/" target=git></a> <strong>replace the .GitIgnore</strong> with <a href="gamedesign/GitIgnore_UnityCorrectPaths.zip" target=git2>this one</a>.<li>Install <a href="https://desktop.github.com/" target=git3>GitHub Desktop</a> (or  preferred Git tool). 
+<li>Clone  the repo into a folder named GITHUB. <li>Create your new Unity project <strong>INTO this folder</strong>, so the project folder is at the same level as the .GitIgnore (and Assets, etc are one level below).
+</ol>
+
+<br><br><br>
+<b>NOTES FOR MAC USERS:</b>
+<br>
+<ol>
+<li>
+<b><em>Don't Update your MAC OS:</em></b> 
+<br>
+Unity works well on Mac, but takes a while to catch up to new OS. If Unity  works on your system at  the start of a project, please do not update your Mac OS until the project is complete / semester is over.
+
+
+<br><br>
+<li><b><em>Expect Mac Permissions Issues.</em></b> 
+<br>
+Most can be solved with 
+this <a href="https://youtu.be/WiYmUXVOlgI" target=mac>solution</a>.
+<br>
+One obscure but solved issue Unity has with Mac is  permissions can cause the &quot;bokken&quot; error with WebGL builds. See this <a href="gamedesign/unity2D/unity_webGL_BokkenError_fix.doc" target=bokken>fix for bokken</a>.
+</ol>
+
+<br><br>
+</div>
+
+<!-- end of INSTALLATION -->
+
+
+<p align=center>
+<img src="gamedesign/bullet.png" alt=""><img src="gamedesign/bullet.png" alt=""><img src="gamedesign/bullet.png" alt="">
+</p>
+<a name="b">&nbsp;</a>
+
+
+<!-- start of MAIN TUTORIAL LINKS -->
+   
+<div class="w3-row-padding" style="background-color:#f5eeee; text-align:left; padding:20px; width:90%; max-width:850px; margin:auto">
+    <a href="#TOP"><img src="comicsDesign/ArrowUp.png" alt=""></a>
+    <b><font color=purple> [B]: </font> INTRODUCTION TO THE UNITY GAME ENGINE:</b>
+
+<br> 
+<h3>WELCOME TO UNITY:</h3>
+ Below are intro tutorials on the Unity interface, 2D and 3D game development, and art and animaton.
+
+<br>
+ The Unity Editor has two modes: <b>Edit</b> and <b>Play</b> (toggle with <b>[Ctrl]+[P]</b>) <br>
+Any Scene change in Play mode is lost when back in Editor.<b>HINT:</b> Set a Play mode interface color to avoid mistake changes:
+Edit > Preferences > Colors > <b>Playmode Tint</b>
+
+
+<h3>EXPERIENCED CODERS:</h3> 
+ Please note this list of <a href="https://docs.unity3d.com/2020.1/Documentation/Manual/ScriptingImportantClasses.html" target=important>Important Unity Classes</a> (such as built-in management of Time and Random Numbers), so you do not need to make them yourself.
+  
+<br>
+<h3>TUTORIALS:</h3>
+
+<!-- start of main 2D tutorials-->
+
+<div class="w3-row-padding" style="background-color:#f0e6e0; padding:10px">
+
+
+<!-- 1 & 2 -->
+<div class="w3-row-padding">
+	<div class="w3-half">
+
+<a href="GameDesign_UnityScripting.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('tabScripting','','gamedesign/Unity2D/UI_Buttons_Scripting2.png',1);" target=Unity1>
+<img src="gamedesign/Unity2D/UI_Buttons_Scripting.png" alt="BUTTON: C# Scripting Tutorial" name="tabScripting" width="135" height="40" id="tabScripting" border="0">
+</a> 
+<p>
+    <b>1.</b> This <b><font color=#aa00aa>intro to C# scripting</font></b> and Unity Tutorial starts with <a href="GameDesign_UnityScripting.html#1a target=basic">basic scripting</a> and ends with a <a href="GameDesign_UnityScripting.html#02" target=tree>short 2D game</a>: catch randomly falling trees. 
+
+	</div>
+	<div class="w3-half">
+
+    <a href="GameDesign_UnityVisualNovel.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('tabNarrative','','gamedesign/Unity2D/UI_Buttons_Narrative2.png',1);" target=Unity2>
+    <img src="gamedesign/Unity2D/UI_Buttons_Narrative.png" alt="BUTTON: Narrative Tutorial" name="tabNarrative" width="135" height="40" id="tabNarrative" border="0">
+    </a> 
+    
+    <p>
+    <b>2.</b> Create a <b><font color=#aa00aa>Visual Novel</font></b> game with Branching Dialogue. Ths game is created in the Unity Canvas UI system. The <a href="GameDesign_UnityVisualNovel.html" target=TD3>Full  steps</a> include: 
+<ul>
+<li>Project <a href="GameDesign_UnityVisualNovel.html#steps" target=story1>set-up</a>
+
+<li> making the <a href="GameDesign_UnityVisualNovel.html#handler" target=story3>GameHandler</a>
+ 
+<li>making <a href="GameDesign_UnityVisualNovel.html#scenes" target=story4>Frame Scenes:</a> the MainMenu, etc
+
+<li> the <a href="GameDesign_UnityVisualNovel.html#script" target=story2>main Story Script</a>
+
+<li><a href="GameDesign_UnityVisualNovel.html#enhance" target=story5>UI VFX</a>
+</ul>
+
+	</div>
+</div>
+
+
+<!-- 3 & 4 -->
+
+
+<div class="w3-row-padding">
+	<div class="w3-half">
+
+<a href="GameDesign_Unity2DTilemap.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('tabArt1','','gamedesign/Unity2D/UI_Buttons_Art2D2.png',1)" target=UnityArt>
+<img src="gamedesign/Unity2D/UI_Buttons_Art2D.png" alt="BUTTON: 2D Art Tutorial" name="tabArt1" width="135" height="40" id="tabArt1" border="0">
+</a> 
+<p>
+    <b>3.</b> This <b><font color=#aa00aa>2D Unity Art</font></b> tutorial covers:
+<ul>
+<li><a href="GameDesign_Unity2DTilemap.html" target=TD2>Tilemapping</a>,
+<li><a href="GameDesign_Unity2DTilemap.html#move" target=char>2D character motion</a>,
+<li>an intro to <a href="GameDesign_Unity2DTilemap.html#PixelArt" target=pixel>Pixel Art</a>
+</ul>
+
+	</div>
+	<div class="w3-half">
+
+    <a href="GameDesign_Unity2DAction.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('tabAction','','gamedesign/Unity2D/UI_Buttons_Action2.png',1);" target=Unity3>
+    <img src="gamedesign/Unity2D/UI_Buttons_Action.png" alt="BUTTON: Action 2D Tutorial" name="tabAction" width="135" height="40" id="tabAction" border="0">
+    </a> 
+    
+    <p>
+    <b>4.</b> Options for creating a <b><font color=#aa00aa>2D platformer</font> or <font color=#aa00aa>Top-Down</font></b> game. 
+    Modules include: 
+    <a href="GameDesign_Unity2DAction.html#scroll" target=TD3>Backgrounds</a>, 
+    Players for <a href="GameDesign_Unity2DAction.html#1b" target=TD3>Platformers</a> or 
+    <a href="GameDesign_Unity2DAction.html#1c" target=TD3>Top-down</a>, 
+    <a href="GameDesign_Unity2DAction.html#1d" target=TD3>Camera</a> follow, 
+<a href="http://madwomb.com/tutorials/GameDesign_Unity2DAction.html#01e" target=TD4a>GameHandler</a>and 
+<a href="http://madwomb.com/tutorials/GameDesign_Unity2DAction.html#01h" target=TD4b>UI</a>,
+    NPC <a href="GameDesign_Unity2DAction.html#02d" target=NPC1>Enemies</a> and 
+    <a href="GameDesign_Unity2DAction.html#02e" target=NPC1>Friendlies</a>, environment <a href="GameDesign_Unity2DAction.html#02c" target=env1>Hazards</a>, 
+    <a href="GameDesign_Unity2DAction.html#02g" target=env1>Game Feel</a> FX, 
+    and <a href="GameDesign_Unity2DAction.html#02j" target=env1>Audio</a><a href="GameDesign_Unity2DAction.html#02j" target=env1></a>
+
+	</div>
+</div>
+
+
+</div>
+<!-- end of main 2D tutorials-->
+
+<br>
+
+<!-- start of main 3D tutorials-->
+
+<div class="w3-row-padding" style="background-color:#f0e6e0; padding:10px">
+<br>
+
+
+<div class="w3-row-padding">
+	<div class="w3-half">
+
+
+<a href="GameDesign_Unity3Dintro.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('tabArt21','','gamedesign/Unity2D/UI_Buttons_3D2.png',1);" target=Unity4><img src="gamedesign/Unity2D/UI_Buttons_3D.png" alt="" name="tabArt21" width="135" height="40" id="tabArt21" border="0"></a>
+<p>
+<b>5.</b> This <b><font color=#aa00aa>intro 3D Unity</font></b> Tutorial covers the basics of working in 3D spaces.<br>
+<b>SOURCES:</b> <a href="AdvancedMaya/FPScontroller.unitypackage" target=unity>FPS Controller</a>, MP3 <a href="gamedesign/SoundFX.zip" target=SFX>SFX</a>
+
+<br><p>
+<b>6. <a href="GameDesign_UnityMecanim.html" target=gb4><font color=#aa00aa>Mecanim for 3D Character Animation</font></a></b>
+<br>
+<b>SOURCES:</b><a href="gamedesignHarvard/Meeple.fbx" target=1pp>FBX</a>, 
+<a href="gamedesignHarvard/MeepleGoldKnight_JasonWiser.png" target=1pp>Knight</a> &nbsp; / 
+<a href="gamedesignHarvard/MeepleZombie_JasonWiser.png" target=1pp>Zombie</a> PNGs 
+
+<br><br>
+
+<p>
+<b>MORE 3D TUTORIALS:</b>
+<ul>
+<li>3rd-POV <a href="GameDesign_Unity3DCharacter.html" target=player3d>Player Moves</a>, 
+Cinemachine
+<li><a href="https://www.youtube.com/watch?v=0k_2wfgo_6s" target=nav1>Nav Mesh</a> for  NPC paths, 
+<a href="https://www.youtube.com/watch?v=CHV1ymlw-P8" target=nav1>Player Control</a>
+<li>3D <a href="GameDesign_UnityOther.html#pickups" target=other>Pickup-and-deliver</a> an object stack
+<li><a href="GameDesign_UnityOther.html#keygen" target=other>Key Generator</a> for player entry, navigation
+<li>Rocketship <a href="GameDesign_UnityOther.html#tour" target=other>Tour</a>: LERP between points
+<li>NPC <a href="GameDesign_UnityOther.html#dragon" target=other>Dragon</a>: flying / attacking  intervals
+<li><a href="GameDesign_UnityOther.html#lava" target=other>Rising Lava</a>: test relative height
+</ul>
+
+
+	</div>
+	<div class="w3-half">
+
+
+<a href="http://www.Madwomb.com/Blender" target=blend><img src="IntroBlender/Blender_logo_sm2.png"></a>
+<p>
+<b>7.</b> Intro to 3D Game art:  
+<ul>
+<li>Blender <a href="http://www.Madwomb.com/Blender#01">Interface</a>
+<li><a href="http://www.Madwomb.com/Blender#09">Game Asset</a> creation
+<li>Character <a href="http://www.Madwomb.com/Blender#05">Modeling</a>
+<br> and <a href="http://www.Madwomb.com/Blender#06">Rigging</a>
+</ul>
+
+<br><br>
+<a href="GameDesign_UnityTerrain.html" target=terrain><img src="gamedesign/UnityTerrain/Terrain_logo_sm.png"></a>
+<p>
+<b>8.</b> A tutorial on creating 
+<a href="GameDesign_UnityTerrain.html" target=terrain><b><font color=#aa00aa>natural enviroments</font></b></a>
+<br>
+and VFX in Unity: 
+<ul>
+<li><a href="https://youtu.be/MWQv2Bagwgk?t=120" target=terrain>video</a> tutorial
+<li><a href="GameDesign_UnityTerrain.html#animtexture">texture</a> animation 
+<li>flickering <a href="GameDesign_UnityTerrain.html#flickerlights">lights</a>
+</ul>
+
+	</div>
+</div>
+
+
+<br>
+</div>
+
+<!-- end of main 3D tutorials-->
+
+<br>
+</div>
+
+<!-- end of MAIN TUTORIAL LINKS -->
+
+
+
+<br>
+<p align=center>
+<img src="gamedesign/bullet.png" alt=""><img src="gamedesign/bullet.png" alt=""><img src="gamedesign/bullet.png" alt="">
+</p>
+<a name="c">&nbsp;</a>
+
+
+<div class="w3-row-padding" style="background-color:#eef5ee; text-align:left; padding:20px; width:90%; max-width:850px; margin:auto">
+
+<a href="#TOP"><img src="comicsDesign/ArrowUp.png" alt=""></a>
+<b><font color=purple> [C]:</font> OTHER USEFUL UNITY  GAME TUTORIALS:</b>
+
+<!-- AR / VR-->
+<div class="w3-row-padding" style="background-color:#d4ebd3; text-align:left; padding:10px; width:100%">
+
+<div class="w3-row-padding">
+<div class="w3-half">
+
+<a href="GameDesign_UnityAR.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('tabARVR21','','gamedesign/Unity2D/UI_Buttons_ARVR2.png',1)"><img src="gamedesign/Unity2D/UI_Buttons_ARVR.png" alt="" name="tabARVR21" width="135" height="40" id="tabARVR21" border="0"></a>
+
+<br><br>
+<font color=#ab5959><b>VIRTUAL REALITY</b></font> <br>
+Unity can be used to create <b>VR content</b> for mobile or console devices, like <b>Oculus Quest</b> or the <b>HTC Vive</b><li><font color=#ab5959><b>Unity Google Cardboard:</b></font> <a href="GameDesign_UnityCardboard.html" target=VR2>instructions</a>
+<li><font color=#ab5959><b>Unity HTC VIVE VR:</b></font> <a href="GameDesign_UnityVive.html" target=VR2>instructions</a> &nbsp; | &nbsp; 
+<a href="AdvancedMaya/3D2_lessonN_UnityVR.pptx" target=ppt3>Powerpoint</a>
+<br><br>
+</div>
+<div class="w3-half">
+
+<font color=#ab5959><b>AUGMENTED REALITY</b></font>
+
+<br><b>Unity</b> can create <b>AR content</b> for mobile devices. <br>
+The <em><b>VUFORIA</b></em> plugin works with most devices 2015+:
+<li><font color=#ab5959><b>Unity Vuforia AR:</b></font> <a href="GameDesign_UnityAR.html#v1" target=AR1>intro instructions</a>
+<li>Includes the  <a href="GameDesign_UnityAR.html#v2" target=AR1>booknook project</a> 
+
+<br><br>
+<b>Show off your 3D models on the web!</b><br>Modern phones can use <a href="GameDesign_UnityAR.html#web2" target=MV>AR ModelViewer</a>
+<br>All browsers can show <a href="GameDesign_UnityAR.html#web4" target=360>360 Panoramas</a>
+<br><br>
+</div>
+</div>
+
+</div>
+
+
+<!-- Big List of Other Reources -->
+<div class="w3-row-padding" style="text-align:left; padding:10px; width:100%">
+
+<div class="w3-row-padding">
+<div class="w3-half">
+
+<b>Our Original</b> <a href="GameDesign_Unity2Dintro.html" target=gb4>2D Platformer Games Tutorial</a>
+<br>
+including 2D Character <a href="GameDesign_Unity2Dintro.html#part4" target=gb4>Sprite Animation</a>
+<br>
+<b>RESOURCES:</b> 
+<a href="gamedesign/2D_assets.zip" target=gb2>2D Art Assets</a>, 
+<a href="gamedesign/CoinTufts.png" target=gb3>Coin Art</a> PNGs, 
+<a href="gamedesign/CoinPickUp.wav" target=sound>SoundFX</a> MP3s
+
+<p>
+<b>Our original 2D TOP-DOWN GAME</b>
+<ul>
+<li>Setting-Up (multi-layer colliders): <a href="GameDesign_Unity2DTopDown.html#setting" target=TD1>instructions</a></
+<li>Player <a href="GameDesign_Unity2DTopDown.html#move" target=TD2>Move and Mouse-Aiming</a>
+<li><b> Player Battle: </b><a href="GameDesign_Unity2DTopDown.html#shoot" target=TD3>shooting</a> and <a href="GameDesign_Unity2DTopDown.html#melee" target=TD3>melee</a>
+
+<li><b>NPCs: </b><a href="GameDesign_Unity2DTopDown.html#enemyMove" target=TD4>Follow Player</a>, <a href="GameDesign_Unity2DTopDown.html#enemyShoot" target=TD5>Distance Shoot</a>, <a href="GameDesign_Unity2DTopDown.html#enemyGaze" target=TD6>Death Gaze</a>
+<li>Complex AI GOAP videos:  <a href="https://youtu.be/nEnNtiumgII" target=ai1>concept</a> and 
+<a href="https://youtu.be/n6vn7d5R_2c" target=ai2>instructions</a>
+</ul>
+
+<p>
+<b>Multiple Scenes:</b> Use <a href="https://www.youtube.com/watch?v=5x2tDagmFiQ" target=sm>Scene Manager</a> and Build Settings to switch  scenes, and <a href="https://www.youtube.com/watch?v=kwRlfAtcmOE" target=drag>Static Variables</a> on common Game Controller scripts  to transmit values.  <ul>
+<li> Create a <a href="https://youtu.be/zc8ac_qUXQY" target=menu>Menu</a> with an <a href="https://answers.unity.com/questions/8610/how-to-end-a-game-with-esc-button.html" target=quitunity>ESC-quit</a> option
+<li>Making a <a href="https://youtu.be/XOjd_qU2Ido" target=save>Save and Load</a> system. 
+<li><a href="gamedesign/UnityCollabControllersExecutables_BrendanOneill.pptx">Unity Collab and Controller Inputs</a> (.PPTX)
+</ul>
+
+<p>
+<b>Unity Object Animation:</b> 
+<ul>
+<li> <a href="https://youtu.be/AjxkwjYO6nU" target=unityanim1>Door Open</a> 
+(with trigger)
+<li> Fancy <a href="https://youtu.be/CE9VOZivb3I" target=unityanim1>Scene Transitions</a>
+</ul>
+
+<p>
+<b>MORE MOVEMENT TYPES: </b>
+<ul> 
+<li> Make a <a href="https://youtu.be/t4d7i9O917w" target=move1>Flying Character</a> &nbsp; | &nbsp;<a href="https://youtu.be/GnSrqsy-SVI" target=move5>Elevator</a> &nbsp; | &nbsp;<a href="https://youtu.be/q9eMsMDUppU" target=move6>Teleporter</a> 
+<li> Rocket Ship Examples: 3D: <a href="" target=move2a>01</a> <a href="" target=move2b>02</a> <a href="" target=move2c>03</a> and <a href="https://youtu.be/XXfgdEE4S20" target=2d>2D</a> 
+<li> Cars: <a href="https://youtu.be/kvTuYziy_QE" target=move3a>Basic Set-Up</a>, <a href="https://youtu.be/cqATTzJmFDY" target=movec>Arcade</a>, and <a href="https://youtu.be/R4X8dsQeLQs" target=move3b>Vehicle Enter/Exit</a> 
+<li> Hover Car Examples: <a href="https://youtu.be/qsfIXopyYHY" target=move4a>01</a> | <a href="https://youtu.be/r9OEZmbD9q0" target=move4b>02</a> | <a href="https://youtu.be/4dhqxLfxCNU" target=move4c>03</a> | <a href="https://youtu.be/farWMU5zFWc" target=move4d>04</a>
+</ul>
+
+
+<p>
+<b>Space Physics: </b>
+<ul><a href="https://youtu.be/gHeQ8Hr92P4" target=mag>Magnetic</a> Space Walk &nbsp; | &nbsp; <a href="https://youtu.be/Ouu3D_VHx9o" target=grav>Gravity</a> by Brackeys<br>Use <a href="http://www.theappguruz.com/blog/create-effect-like-center-of-gravity-of-planet-in-unity" target=orbit>vector3.cross for orbits</a> &nbsp; | &nbsp; 
+
+Orbital <a href="https://mikhail-szugalew.medium.com/simulating-gravity-in-unity-ae8258a80b6d" target=orbit2>Physics</a>
+<br>
+<a href="https://answers.unity.com/questions/611334/newtonian-physics-in-a-space-game.html" target=newt>Newtonian physics</a> in space &nbsp; | &nbsp; <a href="https://stackoverflow.com/questions/57081083/unity-2d-how-to-make-an-orbital-gravity-like-at-angry-birds-space" target=grav3>Planetary</a> gravity
+<br>
+Swing on a tether with a <a href="https://youtu.be/kPeYALQEvUw"target=joint>2d joint component</a>
+</ul>
+
+<br>
+
+</div>
+<div class="w3-half">
+
+<p><b>Unity tools for 2D backgrounds / games:</b>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=QkisHNmcK7Y" target=parallax>Parallax Scrolling</a> for distance and camera tracking 
+
+<li><a href="https://www.youtube.com/watch?v=fmNtibNWPhc" target=tilemaps>Tile Mapping</a> for <a href="https://www.youtube.com/watch?v=ryISV_nH8qw" target=tilemaps2>top-down</a> or <a href="https://www.youtube.com/watch?v=2DsKCJsEzSA" target=iso>isometric</a> layouts, and making <a href="https://www.youtube.com/watch?v=aaEEujLtsr8" target=tileset>tilesets</a> in Photoshop. Also: 
+<a href="https://youtu.be/Ky0sV9pua-E" target=tm5>Rule Tiles</a>, 
+<a href="https://youtu.be/UqhK6GpCgrM" target=tm6>Prefab Brush</a>, and 
+<a href="https://youtu.be/cAfBQT8q9Ek" target=tm7>Animated Waterfall</a> (Shader Graph) <li>Unity <a href="https://www.youtube.com/watch?v=bMuYUOIAdnc" target=drag>Drag and Drop></a> script <br>
+  <li> BEHAVIOR TREES for AI: 
+        <a href="https://hub.packtpub.com/building-your-own-basic-behavior-tree-tutorial/" target=bt>Text</a>, 
+        videos <a href="https://youtu.be/PuLuwzgYB4g" target=bt1>01</a>, <a href="https://youtu.be/MQEnrwAswr8" target=bt2>02</a>, 
+        <a href="https://youtu.be/lLVq63xfHHo" target=bt3>03</a>
+<li>3D: <a href="https://www.youtube.com/watch?v=0k_2wfgo_6s" target=nav1>Nav Mesh</a> for  pathfinding, AI,
+  <!--<a href="https://www.youtube.com/watch?v=rKGq42FMV8c" target=nav1>AI</a>-->
+and <a href="https://www.youtube.com/watch?v=CHV1ymlw-P8" target=nav1>Player Control</a>
+</ul>
+
+          
+<p>
+Intro to <b>LERP</b> for smooth transitions: 
+<ul>
+<li>LERP <a href="https://youtu.be/cD-mXwSCvWc" target=LERP1>Basics</a>: object motion, light intensity, color 
+<li><a href="https://youtu.be/MFQhpwc6cKE" target=LERP2>Smooth</a> LERP Camera Following. 
+<li>Example <a href="gamedesign/CameraControlLERP.txt" target=LERP3>LERP code</a>. 
+</ul>
+
+<p>
+<strong>More Advanced Coding Concepts:</strong>
+<ul>
+	<li> Learn about <a href="https://learn.unity.com/tutorial/introduction-to-scriptable-objects" target=scriptable>Scriptable Objects</a> 
+  <li>Reasons to 
+  <a href="https://youtu.be/CPKAgyp8cno" target=singletons1>use</a>
+            and
+  <a href="https://youtu.be/mpM0C6quQjs" target=singletons2>not to use</a>
+  <b>Singletons</b>
+  <li>Want inherited Classes? Try <b>Overriding</b> with <a href="https://youtu.be/h0J4gs4DW5A" target=virt>Virtual Functions</a>
+</ul>
+            
+<p>
+<b>UI / CANVAS</b>
+<ul>
+(see more recent tutorials under Action 2D)
+<li>Basic <a href="GameDesign_UnityUI.html#text" target=TD3>Text Update</a> and <font face=arial><a href="GameDesign_UnityUI.html#button" target=TD3>Button</a> Handling
+<br>
+<li> <a href="GameDesign_UnityUI.html#healthbar" target=pause>Healthbar</a> (on HUD vs  character)
+</ul>
+
+<p>
+<b>GAME MANAGEMENT</b>
+<ul>
+<li>Player Scoring / <a href="GameDesign_Unity2DTopDown.html#score" target=TD6>GameHandler</a>
+<li><a href="GameDesign_Unity2DTopDown.html#win" target=TD6>Win and Lose</a> (switch scenes)
+</ul>
+
+<p>
+<strong>SAVING GAME STATE: JSON </strong>
+<ol>
+<li> 
+Intro to <a href="https://youtu.be/4oRVMCRCvN0" target=json1>JSON and Unity</a>
+<li>
+<a href="https://youtu.be/6uMFEM-napE" target=JSON2>Saving</a> to a JSON file 
+<li>
+Using JSON with <a href="https://youtu.be/3g0N__K7Wlo" target=json3>WebGL builds</a> 
+</ol>
+
+<p>
+<b>ARENA / LOCAL MULTI-PLAYER</b>
+<ul>
+<li>Input System for <a href="GameDesign_UnityLocalMultiplayer.html" target=TD6>Local Multi-Player</a>  
+</ul>
+
+</div>
+</div>
+
+</div>
+
+<!-- Multiplayer games: Mirror Networking and Darkrift2 -->
+
+<div class="w3-row-padding" style="background-color:#d4ebd3; text-align:left; padding:10px; width:100%">
+
+<div class="w3-row-padding">
+<div class="w3-half">
+
+<font color=#ab5959><b>PEER TO PEER NETWORKING</b></font> <br>
+Networked games are out-of-scope for our intro course. They require a dedicated programmer to set up and maintain the network code for the team. if you decide to move forward with a networked game, here are  options: 
+
+<br>
+<strong><br>
+UNITY NETCODE:</strong> 
+<p>In 2022 Unity released a new 2-4 player networked game system: <a href="https://unity.com/products/netcode" target=net1><strong>Netcode for Game Objects</strong></a>
+
+<ul>
+<li>Start: Netcode
+<a href="https://docs-multiplayer.unity3d.com/netcode/current/about/index.html" target=netdocs>documentation</a> 
+and tutorial: 
+&quot;<a href="https://docs-multiplayer.unity3d.com/netcode/current/tutorials/helloworld/index.html" target=net2>Hello World</a>&quot; 
+<li>Then explore the <a href="https://docs-multiplayer.unity3d.com/?_ga=2.23565946.1994184551.1678645847-2051411392.1674449289" target=net3>Netcode Learning Hub</a>
+<li> See this example Unity 2D project: &quot;<a href="https://unity.com/demos/galactic-kittens" target=net4>Galactic Kittens</a>&quot;
+</ul>
+
+
+<p>
+<em><strong>WATCH these Code Monkey Videos:</strong></em>
+<ul>
+    <li>Galactic Kittens <a href="https://youtu.be/JIN9BRNMtjI" target=net5>video breakdown</a> (40 min)
+    <li>Try this single <a href="https://docs.google.com/document/d/18lo1JvxH6vabYLAqlG9WpFQDghH_rmEzq5edU8JJVy4/edit#" targetnet=5b>1-hour tutorial</a> for move matching
+    <li>Watch this FREE, full <a href="https://youtu.be/7glCsF9fv3s" target=net6> tutorial course</a> on Unity Network Games (2023, about 6 hours).
+</ul>
+</div>
+<div class="w3-half">
+
+<font color=#ab5959><b> 3RD PARTY  MULTI-PLAYER OPTIONS</b></font> 
+<p>
+    <strong>DARKRIFT2:</strong> For games with 10+ players, consider Darkrift2 for Unity (free). 
+    The  package and materials can be downloadeed from their <a href="https://www.darkriftnetworking.com/darkrift2" target=net4>website</a>.
+<ul>    
+    <li>See this excellent 
+<a href="https://lukestampfli.github.io/EmbeddedFPSExample/guide/introduction.html" target=net3a>Darkrift2 FPS Tutorial</a> and 
+<a href="https://github.com/LukeStampfli/EmbeddedFPSExample" target=net3b>code</a>
+<li>Official Darkrift2 
+<a href="https://www.darkriftnetworking.com/DarkRift2/Docs/2.9.1/" target=net4>documentation</a> (including a 2D tutorial. See links up top).
+</ul>
+
+<p>
+ <strong>PUN2:</strong> For  multiplayer gam,es with more than 4 players, Unity recommends using <a href="https://assetstore.unity.com/packages/tools/network/pun-2-free-119922" target=pun>PUN2</a> (free).<br>See the <a href="https://doc.photonengine.com/pun/current/getting-started/pun-intro" target=docs>documentation</a>.<br>
+<br>
+<strong>MIRROR:</strong> A (relatively) straightforward way to manage a 2-player networked game is to use Mirror for Unity (free). The Mirror package is in the Asset Store
+<ul>
+<li>Steps for using <b>Mirror</b> to make a <a href="https://www.freecodecamp.org/news/learn-unity-multiplayer-basics-with-mirror/" target=net1>Card Game</a>
+
+<li>Official Mirror <a href="https://mirror-networking.com/" target=net2a>site</a> and <a href="https://mirror-networking.gitbook.io/docs/community-guides/video-tutorials" target=net2b>documentation</a>
+</ul>
+
+</div>
+</div>
+
+</div>
+</div>
+
+
+
+<!--  START Build Settings  -->
+
+<p align=center>
+<img src="gamedesign/bullet.png" alt=""><img src="gamedesign/bullet.png" alt=""><img src="gamedesign/bullet.png" alt="">
+</p>
+<a name="build">&nbsp;</a>
+
+<div class="w3-row-padding" style="background-color:#ddeeff; text-align:left; padding:20px; width:90%; max-width:850px; margin:auto">
+<a href="#TOP"><img src="comicsDesign/ArrowUp.png" alt=""></a>
+<b><font color=purple> [D]: </font>EXPORTING BUILDS TO SHARE YOUR GAME:</b>
+
+
+<div class="w3-row-padding" style="background-color:#e9f4fe; padding:10px;"> 
+<p><b>MAKE A WEBGL BUILD TO PLAY ON THE WEB:</b> <br />
+          Submit a web-enabled version of your Unity game, so all you have to do is share a single <a href="https://itch.io/" target="itch">itch.io</a> link playtesters! Best played in the <b>Firefox</b> Browser.
+          
+          See this video for the <a href="https://youtu.be/8iApGVX--B0?si=0RABlGND6dZ0m6LA" webGL>Web Build steps in Unity 6.</a>
+        (but turn on Development Build and use None instead of Brotli compression).<br />
+      <p>
+          To export  a <b>WebGL</b> game build from Unity: 
+          
+          <br />
+      <p>
+          <b>1. </b>In Unity, open <b>File &gt; Build Profiles</b> (NOTE: Pre Unity 6, this was called &quot;Build Settngs&quot;)<br />
+          Make sure all  your <b>Scenes</b> are loaded  into &quot;<strong>Scene List</strong>&quot;, with <b>MainMenu</b> at  top (if any are missing, click <strong>[Open Scene List]</strong> and drag them in from the Scenes folder). <br />
+          <br />
+      <p>
+          <b>2. </b>In the Left-side &quot;<strong>Platforms</strong>&quot; list, <strong>select</strong><b> Web</b>. 
+<br>          
+<div class="w3-row-padding">
+  <div class="w3-half"><b>If WebGL is not yet installed:</b>
+<ol type="a">
+<li> Click the <strong>[Install with Unity Hub]</strong> button <br />
+&nbsp;(Build Profiles right-side, 10-20 minutes). <br />
+&nbsp;This will open the Hub and automatically start the download / install. <br />
+<br />
+<strong>NOTE:</strong> MAC users may need to enable permissions: <br />
+<strong>Preferences &gt; Security/Privacy &gt; General <br />
+click [Open Anyway]</strong><br />
+<br />
+<li> You may want to <strong>Save</strong> your Scene and <strong>Save Project</strong> and <strong>Close</strong> the Unity Editor. <br />
+Once installed, re-open your Project / Unity Editor.<br />
+<br />
+<li> Open <strong>File &gt; Build Profiles </strong> and select <strong>Web</strong>: <br />
+It should now show the <strong>[Switch Platform]</strong> button active top-right.
+</ol>
+<br>
+<br />
+  </div>
+  <div class="w3-half">
+
+<img src="gamedesign/Unity2D/WebGL_Install.png" alt="Intall WebGL" style="width:100%, height=auto">
+<br>
+  </div>
+</div>          
+<p><br>
+  <br />
+  <b>3. </b>Click <b>[Switch Platform]</b> (takes 5-15 minutes to compile the change). 
+  
+  <br />
+  <p>
+  <b>4.</b> Hit <strong>[Add Build Profile]</strong> on middle-left to open the <b>Platform Browser.</b>
+  <ul>
+<li>Hit the <strong>[Add Build Profile] </strong>button in the Platform Browser to actually make the <strong>New Web Profile</strong> (will appear at the bottom of the list on the left). 
+<li>Rightclick this New Web Profile to rename it -- something like &quot;<strong>WebBuild1</strong>&quot;
+<li>Left-click this profile to change it's settings (below)
+</ul>
+  <br />
+  <b>IMPORTANT SETTINGS:</b>
+<ol type="a">
+<li> Turn on &quot;<strong>Development Build</strong>&quot; (this prevents the &quot;lagging&quot; error. If you do not do this, and the build hangs in Unity unfinished, you may want to force-quit Unity, discard the build changes in GitHub, and possibly delete the Library &gt; bee folder for a fresh try).<br />
+<li> Click <b>[Customize Player Settings]</b>: 
+<ul>
+<br>
+<li>
+  Under &quot;<b>Resolution</b>&quot; set  size to <b>1280 x 720</b>
+
+<li>Set <b>Compression Format</b> from  default Brotli to &quot;<b>Disabled</b>&quot;. 
+<p>This should <a href="https://youtu.be/DpWjB2GYFqQ" target="fix">solve</a> itch.io loading issues for Unity 2020+, but here are more <a href="https://youtu.be/YlFimhxdA1Q" target="fix2">fixes</a>. 
+  
+  <br><strong>NOTE:</strong> This <a href="https://youtu.be/8iApGVX--B0?si=0RABlGND6dZ0m6LA" webgl="webGL">video</a> alternatively recommends Brotli be used, and &quot;Decompression Fallback&quot; be enabled.
+</ul>
+<li> At the top-right click <b>[Switch Profie]</b> to confirm these changes and make this profile the active build settings.
+</ol>
+<br />
+  <br />
+  <p> <b>OPTIONAL SETTINGS:</b> 
+<ol type="a">
+    <li> Change the <b>Company Name</b> and <b>Product Name</b>.<br />
+    <li> Create and upload  a <b>custom cursor:</b> </p>
+  <ul><br>
+    <li> PNG, 72ppi, 32x32 or 64x64 <br />
+      </li>
+    <li> Set Texture Type = &quot;Cursor&quot; in the Inspector. </li>
+  </ul>
+  
+</ol>  
+  
+  
+  <br />
+  <br />
+  <p>
+    <b>5.</b> On your Desktop create a new <b>folder</b> named &quot;GameName_build1&quot;.
+    <br />
+    Back in  Unity Build Settings, hit <b>[Build]</b>, and choose the new folder. <ul>
+      <li> The build will take a while: be patient!<br />
+        <li> If you get a &quot;build failed&quot; error on Mac, try this <a href="gamedesign/unity2D/unity_webGL_BokkenError_fix.doc" target="bokken">solution</a>.<br />
+          (Compile errors will cause a build to fail: be sure all scripts function)
+        </ul>
+  
+  <br /><br />
+  <p>
+    <strong>6.</strong> Make a<strong> .ZIP: </strong><br />
+    When the build is done, the folder should contain multiple files and folders. <br />
+    Select the CONTENTS of the folder (NOT the folder itself) and <b>RightClick to make a .ZIP</b>. <br />
+    (on a PC choose Compress To &gt; Zip)
+    
+    <br /><br />
+  <p>
+    <b>7.</b> Create an <a href="https://itch.io/" target="itch">itch.io</a> or <a href="https://simmer.io/" target="simmer">simmer.io</a> account. <br />
+    Be sure to confirm the email address (itch.io will send a message). <br />
+    
+    <br />
+    Create a New itch.io Project:
+  <ul>
+    <li> Add <b>name</b> to the top. <br />
+      <li> Set &quot;Kind of Project&quot; = HTML. <br />
+        <li> Upload .ZIP, choose &quot;Play in Browser&quot;. <br />
+        <li> Set size = <b>1280 x 760</b> (creates some vertical buffer). <br />
+        <li> Enable &quot;Full Screen Button&quot; <br />
+            <b>Play</b> draft, then make public (publish).
+      </ul>
+  <p>
+  <!--  
+    Check out these short video tutorials on exporting WebGL builds:
+  <ul>
+    <b>The basics:</b> <a href="https://youtu.be/fNLpZVNDQqc" target="web1">1 minute explanation</a><br />
+    <b>More details:</b> <a href="https://youtu.be/UuXZnX6cY6A" target="web2">8 minute explanation</a>
+  </ul>      
+-->  
+    
+  <em>
+  <h3>REMINDERS AND FIXES:</h3>
+  </em>
+<ul>  
+  <strong>Q: </strong>Did your Mac computer build fail with the &quot;<b>bokken</b>&quot; error?
+  <br>
+  <strong>A: </strong>This is usually a Permissions issue. Try this <a href="gamedesign/unity2D/unity_webGL_BokkenError_fix.doc" target="bokken">solution</a>.
+  <br />
+  (OR uninstall and reinstall the Unity Editor, restart your computer between each stage).
+  
+  <p>
+    <strong>Q: </strong>Does the game <strong>build sucessfully</strong> in Unity, but in the <strong>itch.io</strong> WebGL browser the <strong>loading bar gets stuck</strong>? <br>
+    <strong>A: </strong>Turn off compresion in the Unity WebGL build settings (change compression from Brotli to None). 
+    
+  <p>
+    <strong>Q: </strong>Is something broken in your uploaded game? <br>
+    <strong>A:</strong> In the <b>Firefox browser</b>, hit <b>[Ctrl/Cmd]+[Shift]+[J]</b> to view the Unity Debug.Log  in itch.io's <a href="https://docs.unity3d.com/Manual/webgl-debugging.html" target="js">JavaScript console</a>
+</ul> 
+
+  <br /><br />
+  <h3>WHAT UNITY FEATURES WORK IN WEBGL?:</h3>
+   
+  <p>
+    The vast majority of <strong>Unity Editor functions  work in WebGL</strong>! 
+    <br />
+    BUT <b>WebGL and itch.io are less forgiving of errors</b> than Unity. 
+  <ul>
+    <li> Make builds early to test that eveything displays and behaves as intended! 
+      <li> Make sure all <b>script slots</b> are properly filled in every Scene object (either directly in the Inspector or in code on runtime), so you have no <b>Null Reference Exceptions</b> (or any other compile errors).
+      </ul>
+  
+  <br>
+  <p>
+    <strong>The very few Unity classes that do NOT work in WebGL include:</strong>
+  <ul>
+    <li> The default <strong>Microphone class</strong> (but there are downloadable assets that work) <br />
+      <li> The<strong> Video Player Game Object </strong>(which is normally used to play MP4 files, but you should create animations  instead using the <a href="http://madwomb.com/tutorials/GameDesign_UnityScripting.html#2e" target="anim">Animation</a> panel or Tweening).
+      </ul>
+  
+  <p>
+
+
+<!--
+<br>
+<p>
+To export <b>WebGL</b> from Unity: 
+<p>
+<b>1. </b>In Unity, open <b>File &gt; Build Settings.</b>
+<br>
+Make sure all  your <b>Scenes</b> are loaded above, <b>MainMenu</b> at  top.
+
+<p>
+<b>2. In the Left-side list of platfotrms, </b>select<b> WebGL</b>. 
+<br>
+<b>If WebGL is not yet installed:</b> <br>
+&nbsp; &nbsp; <b>(a)</b> Click the button in the Build Settings to download the installer. This will open a webpage that will start the download. <br>
+<br>
+&nbsp; &nbsp; <b>(b)</b> Save your Scene / Project and close Unity Editor<br>
+<br>
+&nbsp; &nbsp; <b>(c)</b> Once downloaded, doubleclick to <b>install</b><br>
+(NOTE: if you are on a mac, you will need to enable permisisons: Preferences &gt; Security/Privacy &gt; General, click [Open Anyway]) 
+
+<p>
+&nbsp; &nbsp; <b>(d)</b> Once installed, reopen your Project / Unity Editor. <br>
+Open File &gt; Build Settings and click WebGL: it should now show the &quot;Switch Platform&quot; button at the bottom. <br>
+<br>
+<b>3. </b>Click <b>[Switch Platform]</b> (takes about 15 minutes to compile the change).<br>
+<br>
+<b>4.</b> Hit <a href="gamedesign/Unity2D/webGLfix2020.png" target=fix2><b>[Player Settings]</b></a><b>:</b><br>
+<b>IMPORTANT:</b> <b><br>
+</b>&nbsp; <b>a.</b> Under &quot;<b>Resolution</b>&quot; set  size to <b>1280 x 720</b><br>
+&nbsp; <b>b.</b> Under "<b>Publishing Settings</b>": <br>
+&nbsp; &nbsp;&nbsp;&nbsp; Set <b>Compression Format</b> from  default Brotli to "<b>Disabled</b>". <br>
+This should <a href="https://youtu.be/DpWjB2GYFqQ" target=fix><b>solve</b></a> itch.io loading issues for Unity 2020+, but here are more <a href="https://youtu.be/YlFimhxdA1Q" target=fix2><b>fixes</b></a>. <br>
+<br>
+<b>OPTIONAL:</b> <br>
+&nbsp; <img src="gamedesign/bullet.png" alt=""> Change the <b>Company Name</b> and <b>Product Name</b>.<br>
+&nbsp; <img src="gamedesign/bullet.png" alt=""> Create and upload  a <b>custom cursor</b> (32x32).<br>
+<br>
+<b>5.</b> On your desktop create a new <b>folder</b> &quot;Name_build1&quot;. <br>
+Back in  Unity Build Settings, hit <b>[Build]</b>, point to the new folder. <br>
+&nbsp; <img src="gamedesign/bullet.png" alt=""> The build will take a while: be patient!<br>
+&nbsp; <img src="gamedesign/bullet.png" alt=""> If you get a &quot;build failed&quot; error (on Mac), try this <a href="gamedesign/unity2D/unity_webGL_BokkenError_fix.doc" target=bokken><b>solution</b></a>.<br>
+&nbsp; <img src="gamedesign/bullet.png" alt=""> When done, select the folder and <b>RightClick to make a .ZIP</b>.<br>
+<br>
+<b>6.</b> Create an <a href="https://itch.io/" target=itch><b>itch.io</b></a> or <a href="https://simmer.io/" target=simmer><b>simmer.io</b></a> account. <br>
+Create a New Project:
+
+<br>
+&nbsp; &nbsp;&nbsp;&nbsp; Add <b>name</b> to the top. <br>
+&nbsp; &nbsp;&nbsp;&nbsp; Set &quot;Kind of Project&quot; = HTML.
+<br>
+&nbsp; &nbsp;&nbsp;&nbsp; Upload .ZIP, choose Play in Browser. 
+<br>
+&nbsp; &nbsp;&nbsp;&nbsp; Set size = <b>1280 x 740</b> (creates some vertical buffer). <br>
+<b>Play</b> draft, then make public (publish).<br>
+<br>
+Check out these short video tutorials:<br>
+&nbsp; <b> The basics:</b> <a href="https://youtu.be/fNLpZVNDQqc" target=web1><b>1 minute explanation</b></a><br>
+&nbsp; <b>More details:</b> <a href="https://youtu.be/UuXZnX6cY6A" target=web2><b>8 minute explanation</b></a><br>
+<br>
+<em><b>REMINDERS AND FIXES:</b></em><br>
+Did your Mac computer build fail with the &quot;<b>bokken</b>&quot; error? 
+<li>This is usually a Permissions issue. Try this <a href="gamedesign/unity2D/unity_webGL_BokkenError_fix.doc" target=bokken><b>solution</b></a><b>.</b><br>
+(OR uninstall and reinstall the Unity Editor, restart your computer between each stage).<br>
+<br>
+Does the game build in Unity but in the itch.io browser fail to load? <br>
+&nbsp; <img src="gamedesign/bullet.png" alt=""> Turn off compresion in the Unity WebGL build settings.<br>
+<br>
+Is something broken in your uploaded game? 
+<br>
+&nbsp; <img src="gamedesign/bullet.png" alt=""> In the <b>Firefox browser</b>, hit <b>[Ctrl/Cmd]+[Shift]+[J]</b> to view the Unity Debug.Log  in itch.io's <a href="https://docs.unity3d.com/Manual/webgl-debugging.html" target=js>JavaScript console</a><br>
+<br>
+The vast majority of Unity Editor functions  will work in WebGL, but <b>WebGL is less forgiving of errors</b>. <br>
+&nbsp; <img src="gamedesign/bullet.png" alt=""> Make builds early to test that eveything displays and behaves as intended!<br>
+&nbsp; <img src="gamedesign/bullet.png" alt=""> Make sure all of your <b>script slots</b> are properly filled in every Scene object (either directly in the Inspector or in code on runtime), so you have no <b>Null Reference Exceptions</b>.<br>
+&nbsp; <img src="gamedesign/bullet.png" alt=""> Unity classes that do not work in WebGL include the default Microphone class  (but there are downloadable assets that will work) and the Video Player Game Object (which is normally used to play MP4 files, but you should create animations  instead using the <a href="http://madwomb.com/tutorials/GameDesign_UnityScripting.html#2e" target=anim>Animation</a> panel or Tweening).
+-->
+
+</div>
+
+<div class="w3-row-padding" style="background-color:#ddeeff; padding:10px">
+
+<br><br>
+<b>MAKE  PC / MAC STAND-ALONE BUILDS <br>
+      (</b><a href="https://www.youtube.com/watch?v=7nxKAtxGSn8" target=unityExport><b>video</b></a><b>):</b> Downloadable games require  two "builds" of your Unity project: one for PC and one for Mac. You would need to store these files online for people to download and run on their computers ( WebGL is prefered: no files to download, and only one build). Only Mac computers can make Mac builds. The notes below are from Unity versions before Unity 6:<br>
+<br>
+Here is the process for making stand-alone builds for Mac and PC:<br>
+<b>1. </b>Make sure the <a href="GameDesign_UnityVisualNovel.html#handler" target=handle>GameHandler prefab</a> is in every Scene, so we will be able to hit [esc] to get out of the build as needed.<br>
+<br>
+<b>2. </b>Create <b>two folders</b> on your <b>desktop</b>: <br>
+GameName_PCbuild and GameName_MacBuild.<br>
+<br>
+<b>3. </b>In Unity go to <b>File &gt; Build Settings</b>.<br>
+<br>
+<b>4. </b>Make sure all of your <b>Scenes</b> are loaded into the Build Settings, MainMenu at  the top.<br>
+<br>
+<b>5. </b>On the left choose your <b>Platform</b> (Standalone PC/Mac/Linux) and on the right choose your <b>Target Platform</b> (Win or Mac).<br>
+<em><b>NOTE: </b></em>Windows machines can only do Windows builds. Mac machines can do either.<br>
+<br>
+<b>6. </b>Click the <b>Player Settings</b> button to configure your game settings (game name,company name, game icon, custom pointer, etc). In particular, <a href="gamedesign/Unity2D/BuildSettings_Resize.png" target=resize>make the play window resize-able</a>. Hit <b>[OK]</b>.<br>
+<br>
+<b>7. </b>Click on <b>[Build]</b>. Choose the correct <b>folder</b> (one of the two you made).<br>
+<br>
+<b>8. </b>When the Builds are complete, <b>PLAYTEST THEM</b> to be sure they work! You may want to make fixes and <b>re-build</b> to the same folders in order to hand in functional work.<br>
+<br>
+<b>9. </b>To <b>submit</b> for class review, <b>ZIP up each folder </b>individually and upload both to a single  post for that week's homework.
+
+<br><br><br>    
+<!--    
+    <table bgcolor=#efefef width=95% cellpadding=10 border=1>
+      <tr>
+        <td align=center><font face=arial> <b>Brackeys Tutorial:</b> <br>
+          Here is a more comprehensive look at the <a href="https://www.youtube.com/watch?v=7nxKAtxGSn8&t=715s" target=build><b>entire build process</b></a> for Windows, Mac, and webGL by Brackeys (includes more than we typically need for this course) </font></td>
+      </tr>
+    </table>
+-->    
+    <br>    
+</div>
+
+</div>
+
+<!-- END OF BUILD SETTINGS-->
+
+
+<br>
+<p align=center>
+<img src="gamedesign/bullet.png" alt=""><img src="gamedesign/bullet.png" alt=""><img src="gamedesign/bullet.png" alt="">
+</p>
+<a name="code">&nbsp;</a>
+
+<!-- START Intro Sipting Topics -->
+
+<div class="w3-row-padding" style="background-color:#e4e4e4; text-align:left; padding:20px; width:90%; max-width:850px; margin:auto">
+
+<a href="#TOP"><img src="comicsDesign/ArrowUp.png" alt=""></a> 
+<b><font color=purple>[E]:</font> KEY CODING CONCEPTS FOR UNITY:</b>
+
+
+<br>
+<p>
+
+Learn Unity scripting with this <a href="gamedesign/Unity_IntroToScripting.doc" target=codeExamples>Intro Unity C# Tutorial</a> 
+
+<br><br>
+<p>
+<b>BASIC CONCEPTS:</b>
+<ul>
+<li><b>Everything</b> in Unity is a <b>Game Object</b> with Transforms. 
+<br>We  add <b>Components</b> for Mesh Rendering (to display as an object), 2D or 3D Physics (Colliders and RigidBody), Textures, Effects (like particles), and Custom Scripts.
+  
+  <br><br>
+<li><b>Unity uses C# for all scripting</b>. Instead of one large body of code that references all parts of the game, <b>scripts  in Unity are shorter instructions on individual Game Objects</b>. These modular scripts manage what that Object does and how it responds and communicates with other Game Objects through Colliders, Triggers, and Referenced Variables.
+  
+  <br>
+  <br>
+<li><b>To Create a Script:</b> RightClick in the Project panel to <b>Create &gt; C# Script</b>, and name it (no spaces, use HumpCap). This name is auto-assigned as the Class name in the script, and must be manually changed if the script name is changed. DoubleClick to open and edit in your editor (To assign editor: Edit &gt; Preferences &gt; External Tools). Save and drag onto a Game Object to add it as a Component. A script can be dropped on the Player, an enemy NPC, a pickup, door, projectile, etc. 
+ </ul>
+<br>
+  <b>CENTRALIZED STATES: </b>
+  <br>
+  Typically an Empty Game Object named &quot;GameHandler&quot; is added to every Scene to hold the <b>GameHandler.cs script</b>. This script manages all key stats like player scoring and health, and a reference (in variables) to Canvas Text Objects to update the UI.
+  
+  Keeping all game states in one script (NOT on the character)  makes many things easier, like running a multiplayer game.<br><br>
+  <b>TAGS AND LAYERS:</b> 
+  <br>
+  Every <em>interactive</em> Game Object, especially a Player, should get an indentifying property. At the top of the Inspector we set a Game Object's <b>Tag</b> (unique object) or <b>Layer</b> (category of objects). This allows code to reference the object (like when OnColliderEnter or OnTriggerEnter want to know if they have encountered a specific object). A script can find an object like the Player by its tag: 
+  <br>
+  &nbsp; &nbsp; <b>GameObject. FindWithTag&lt;&quot;Player&quot;&gt;();</b>
+  
+  <br>
+  <br><p><b>VARIABLES:</b> 
+<ul>
+<li>Unity variables allow <b>3 kinds of access</b>: 
+  <br>
+  <b>Public</b> variables are exposed in the Inspector to be adjusted for game testing or variability.<br><b>Private</b> variabls are not exposed in the Inspector.<br>
+  <b>Public Static </b> are variables on the Master Control script that preserves values for next levels, if the same script  exists in all levels.
+  <br>
+<li><b>Numbered Variables can be of types float</b> (must include f at end, like 0.5f) or <b>int</b>.
+<li><b>Text</b> can be of type <b>string</b>.  
+<li><b>States</b> (a property that is on or off) use type <b>bool</b>. 
+<li><b>Variables can themselves be of type GameObject</b>.  This allows an object to be dropped into a Public variable slot in the Inspector, or the code to search for an object with a particular tag or in the same hierarchy, to reference and communicate with in-game. In C#, we first establish the variable and then we can assign a referenced object to that variable.
+<li><b>Variables can also be other Components</b> on the object holding the Script, like a <b>Rigidbody</b> that needs to be accessed to perform motion.
+</ul>
+
+<p>
+  <b>NAMESPACES: </b>
+<br>A Unity C# script starts with references to Unity code libraries, to make our coding work much easier.
+<p>
+The default three Namespaces include:
+<ul>
+<font color=#3ab050><b>using</b></font> <b>UnityEngine;</b><br>
+<font color=#3ab050 face="arial"><b>using</b></font><font face="arial"> <b>System.Collections;</b><br>
+</font><font color=#3ab050 face="arial"><b>using</b></font><font face="arial"> <b>UnityEngine;</b><br>
+</ul>
+
+<p>Some functions reference code not available in these default three, and so we add more Namespaces.
+<p>
+  To allow code that switches Scenes, add: 
+<ul>
+<font color=#3ab050><b>using</b></font> <b>UnityEngine.SceneManagement;</b>
+</ul>
+
+<p>
+To allow code that changes UI, add:
+<ul>
+<font color=#3ab050><b>using</b></font> <b>UnityEngine.UI; </b>
+</ul>
+
+<br><br>
+<b>CLASS:</b>
+<br>
+A class in C# must be named the same as the script name (capitals matter!). This class contains all the variables and functions of the script, and is available to be referenced by other project scripts.
+
+
+<br><br>
+<b>FUNCTIONS:</b>
+<br>C# functions must declare what they return, usually void. 
+
+<br><p>
+There are two functions that run as soon as the Scene loads, and before anything else in a script:
+<ul>
+<li> Use <b>Start()</b> to load reference variables to other objects in the scene, or to run any function that is meant to occur at the beginning (runs after Awake).
+<li> Use <b>Awake()</b> to do the same things, <em> BEFORE</em> Start(). 
+</ul>
+
+<br><p>There are three Update functions for repeated action:
+<ul>
+<li> <b>Update()</b>  is for game changes and player inputs (calls once per gametime frame). 
+<li> <b>Fixed Update()</b> has more reliable interavals for anything  with physics. 
+<li> <b>LateUpdate()</b> is for things we want to happen after Update things. 
+</ul>
+
+<br><p>
+There are two functions to allow an object with a <em>Collider</em> Component to call a function when that Collider intersects an object that also has a Collider. The function typically starts with an if/else comparison test  for a specific tag.
+<ul>
+<li><b>OnCollisionEnter()</b> assigns a variable  type <em><b>Collision</b></em> to which the collided GameObject is assigned, and can then be manipulated.
+<li><b>OnTriggerEnter()</b> is for a GameObject with a collider set to isTrigger in the Inspector. 
+
+This collider will not perform any physics actions (will not stop or bounce other objects) and so is great to identify the presence of another object, like for opening a door or collecting a power-up. 
+<br>It assigns a variable  type <b><em>Collider</em></b>
+to which the collided GameObject is assigned.
+</ul>
+
+
+<br><p>
+To create a <strong>DELAY</strong>, we use a Coroutine. This is a function of type IEnumerator.  
+<ul>
+<li>A <b>Co-Routine</b> function is used for a delay, like to play a sound before destroying an object, or to flash a diffeerent color before changing back to normal.
+</ul>
+
+<br>
+<p>MATH FUNCTIONS:<br>
+<ul>
+<li><b>Mathf</b> for math functions, <b>Time.deltaTime</b> for time. Always end a line with a <b>;</b> and track your <b>{ }</b>. If the code has a problem, Unity alerts us in the bottom <b>Console</b>. 
+</ul>
+
+<br><p>
+  <b>MODULARITY</b> 
+  <ul>
+The expectation in Unity is that each interactive object carry its own script for its interactions.<br>
+<li>Avoid trying to make the ultimate Swiss Army Knife of scripts for your objects.
+<li>I once had a student try to make the same script manage collision interactions for all non-player characters: enemies, doors, and power boosts, all in the same script! This is generally NOT a good idea, for clarity and ease of use; <b>when an interaction and purpose are distinct enough, the object should get a new script.</b>
+<li>All pickups should be one script,  doors should be one separate script, etc.
+<li>Use a <b>bool</b> to identify specific <b>use</b>: a specific pickup object intended for a speed boost can have "isSpeedBoost" <b>enabled</b> in the Inspector, allowing access to if-conditioned parts of functions that boost player speed.
+</ul><br>
+<!-- End Part 1 -->
+
+<!-- Start Part 2 -->
+
+<b>UNITY BUILT-IN CODE CLASSES: </b>
+<br>
+Don't write a method for Random values from scratch!
+<br>
+Before you code, consult this list of <a href="https://docs.unity3d.com/Manual/ScriptingImportantClasses.html" target=classes>built-in classes</a>
+ 
+<br><br>
+<p><b>UNITY RESOURCES</b>
+<ul>
+<li>
+Unity <a href="http://docs.unity3d.com/Manual/" target=unity4>Manual</a>, <a href="http://unity3d.com/community" target=unity4>Forums</a>, <a href="gamedesign/UnityConcepts.doc" target=unity4>Terms/Concepts</a>, 
+        <li>C# <a href="gamedesign/book_MasteringUnityScripting_AlanThorn.pdf" target=unity4>Scripting Textbook PDF</a> 
+        <li>
+        Try Unity's <a href="https://unity3d.com/learn/tutorials" target=unity1>Tutorial Modules</a>: <a href="http://unity3d.com/learn/tutorials/projects/roll-a-ball" target=tut1>Ball-roll</a> and &nbsp;<a href="https://unity3d.com/learn/tutorials/projects/space-shooter-tutorial" target=tut2>Shmup</a>
+
+<br><li>
+      The best way to learn coding practices is to dive into making games in Unity. Try these <a href="https://unity3d.com/learn/tutorials" target=unitylearn>Unity Tutorials</a>. 
+</ul><br>
+<p>
+<b>MORE NOTES: </b><br>
+Unity <a href="gamedesign/UnityPhysicsNotes.doc" target=phys>Physics</a>, AI <a href="gameDesign/AI_ActionLists.doc" target=AI1>Action Lists</a>,  <b>AudioMixer</b> <a href="http://unity3d.com/learn/tutorials/modules/beginner/5-pre-order-beta/audiomixer-and-audiomixer-groups" target=audio>Balance</a>.<br>
+      Unity <a href="gamedesign/Unity_LocalMultiplayerAndNetworking.doc" target=net>Local Muliplayer</a> and <b>Networking</b> </a>
+
+<br>
+       <br>
+      <br>
+      <b>COLLABORATION TOOLS:</b> <br>
+Collaboration needs communication, compromise, and file management. Work together on a <b>naming system</b> for your files, like starting all characters with the prefix &quot;char_.&quot; GitHub is recommended for student or indie game Unity work. See these <a href="GameDesign_UnityGithub.html" target=github>GitHub Instructions</a>.
+
+<ul>
+<li> <b>Never try to merge Unity Scene files</b>. One person at a time must &quot;own&quot; a Unity Scene file, and everyone else must work in other Scenes or make <b> Prefabs</b> in temporary Scene files to send to that one &quot;owner&quot;.
+<li> <b><em>USE THIS:</em></b> A Unity Scene where all major features have already been made into Prefabs allows multple developers to change these underlying Prefabs without causing merge conflicts in the actual Scene!
+<li> <a href="http://madwomb.com/tutorials/GameDesign_UnityGithub.html" target=unity4>GitHub Notes:</a> Typically, software development teams use versioning software to keep their files safe, like <b>GIT</b>. GIT works GREAT with Unity, if you follow the  rule of scene management (1 person works on it at a time) and include a <a href="gamedesign/GitIgnore_UnityCorrectPaths.zip" target=gitig1>GitIgnore script</a> at top to manage the extra Unity files (Library, etc that don't need to be shared and generally cause GIT conflicts).
+<br>
+(Other versioning tools include TurtleSVN,  Perforce, and <a href="https://unity3d.com/unity/features/collaborate" target=colab>Unity's Colab Toolset</a>. The free version of Colab can be used by only 3 teammates at a time, but the seats can be switched to other teammates as needed).
+</ul>
+
+<br><br>
+<b>TO MAKE A  PREFAB:</b><br>
+Prefabs are how we share GameObjects and Features with the scene-owner, and continue to develop them without directly changing the Scene!
+          <!--Rightclick on  objects in the Project window and choose Create Prefab.-->
+          To make a Prefab out of a collection of Scene Objects with specific settings in the Hierarchy:
+<br><b>[a] Create an Empty Game Object</b>, name it &quot;FeaturenameSystem&quot;. In the Inspector, Reset Tranforms. 
+<br><b>[b] Parent</b> the objects you want to Prefab under this Empty GO in the Hierarchy 
+<br>
+<b>[c] Drag</b> the Empty GO to the Project  window to make it a Prefab.
+This Prefab can now be duplicated and added in multiple scenes, all of which will change when the original is modified!
+
+It xcan also be instantiated with a script, like a bullet or an enemy spawn.<br>
+<br>To share a prefab between Unity Projects:
+<br><b>[d] RightClick</b> in the Project window to Package. 
+<br>
+This Packaged Prefab can be emailed  and imported/ unpacked into Unity.
+
+<br><br>
+<a name="mono">&nbsp;</a><em><strong>NOTES ON CODING TOOL (IDE):</strong></em>
+
+<br>
+An IDE helps by color-coding, numbering, and offering tips on your work to help you find and fix errors. <b>Visual Studio</b> can be installed with Unity. 
+          
+The teacher uses VS Code.<br>
+<br>
+You can use any IDE you like. To connect your IDE to Unity (so it auto-opens when DoubleClicking a C# file in the Project panel) go to <b>Edit &gt; Preferences &gt; External Tools</b>, hit Browse, find your IDE under Programs and select  the EXE.
+
+<br><br>
+You can also just use <b>Notepad:</b> 
+<br>RightClick the C# script in the Project panel to show it in your windows browser, and open it with a simple text-editor. Like all Unity assets, it is just a file in your project folder to edit as you choose! 
+
+
+<br><br>
+<b>FIXING A BROKEN SCRIPT:<br>
+</b>A game with a single broken script will not run!  Problems can be identified by reading the error messages in the Unity <b>Console</b> panel. Add <b>Debug.Log(&quot;&quot;);</b>  to your script to help ID problems. Error message include the line number where the error is located: (10, 22) means &quot;line 10, character 22&quot;. 
+<br>
+Sometimes an error in one place causes the appearance of others, so always inspect errors at the top of the Console list and script first. 
+
+<br><p><b>Common mistakes include failing to:</b>
+<ul>
+<li> Name the Class name and Script name indentically.
+<li> Closing a nesting brackett: every { must have its }.
+<li> Name each instance of a specific variable identically
+</ul><br>
+<b>Here is a simple, sample script.</b>
+When aded to a GameObject with a <em>RigidBody</em> Component, that object will move forward in space when we hit Play:
+
+
+<br><br>
+<center>
+  <font face=arial><em>Zoooom.cs</em></font>
+  <table width=100% cellpadding=10 border=1 bgcolor=#eeeeee>
+    <tr>
+      <td><font face=arial><font face=arial><font color=#3ab050><b>using</b></font> System.Collections; <br>
+        <font color=#3ab050><b>using</b></font> System.Collections.Generic; <br>
+        <font color=#3ab050><b>using</b></font> UnityEngine; <br>
+        <br>
+        </font><font color=#3ab050><b>public class</b></font></font> <font color=#31849b face="arial"><b>Zoooom : MonoBehaviour</b></font><font face="arial"> { <br>
+          <br>
+          &nbsp; &nbsp; &nbsp;&nbsp; <font color=#31849b><b>public</b></font></font><font color=#31849b face="arial"><b>float</b></font><font face="arial"> thrust = <font color=#ed6c0a><b>100f</b></font>;<br>
+            &nbsp; &nbsp; &nbsp;&nbsp; <font color=#31849b><b>private</b></font></font><b><font color="#31849b" face="arial">Rigidbody</font></b><font face="arial"> rb;<br>
+              <br>
+              &nbsp; &nbsp; &nbsp; &nbsp;<b><font color=#31849b>void</font></b> Start () { <br>
+              &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; rb = GetComponent  &lt;Rigidbody&gt;(); <br>
+              &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;} <br>
+              <br>
+              &nbsp; &nbsp; &nbsp;&nbsp; <font color=#31849b><b>void</b></font> FixedUpdate() { <br>
+              &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; rb.AddForce(transform.forward * thrust); <br>
+              &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;} <br>
+              &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;} </font></td>
+    </tr>
+  </table>
+</center>
+
+<br>
+<h3>CODE COMMENTING:</h3>
+<p>
+C# uses two backslashes // to indicate text that will not be read by the compiler. Use this for code-comments to identify key parts of you script. 
+
+
+<p>
+<b>DISTINGUISH FUNCTION VS GRAPHICS:</b><br>
+For interactive objects in 3D and 2D games: 
+<ul>
+<li>Create an <b>Empty Game Object</b> named for the intended object. 
+<li><b>Reset</b> Transforms. 
+<li>Make art a <em><b>child</b></em> of the object (also with position=0). 
+<li><b>Apply all Physics and custom script Components to the <em>PARENT</em> Game Object</b>, never to the art child (which should only ever get Rendering and Animator Components).
+</ul>
+
+
+<p>
+<b><em>NOTE1:</em></b> Be careful to only ever select the object by name in the Hierarchy; selecting it in the Scene view will select the art instead, and can move them apart.
+
+<p>
+<em><b>NOTE2: </b></em>Be sure any empty GameObjects used as folders also have Reset Transforms (names in all-caps, put objects of the same type underneath to organize your Scene Hierarchy, like all pickups under PICKUPS).<br>
+
+<br></div>
+
+<!-- END Intro C# Scipting topics -->
+
+</div>
+<!-- END OF CENTER PAGE (move down when ll is converted) -->
+
+<center>
+<table width=850 cellpadding=10 border=0><tr><td>
+
+<br>
+<p align=center>
+<img src="gamedesign/bullet.png" alt=""><img src="gamedesign/bullet.png" alt=""><img src="gamedesign/bullet.png" alt="">
+</p>
+<a name="art">&nbsp;</a>
+<br>
+
+<!-- START Game Art -->
+
+<table width=850 cellpadding=10 border=0><tr>
+<td bgcolor=#f3f2df><center>
+  <font face=arial><b><font face=arial><b><font face=arial><a href="#TOP"><img src="comicsDesign/ArrowUp.png" alt=""></a></font></b></font><font color=purple> [F]:</font></b></font> <font color=#aa00aa face="arial"><b>GAME ART IN UNITY:</b></font>
+  
+<br>  
+<font face="arial"><b>MOST IMPORTANT:</b> Get rough assets in game as fast as possible for feature testing, 
+<br>and over-write those files in the  Project folder to replace them in all places in Unity!</font>
+</center>
+<table width=100% cellpadding=5><tr>
+<td width=50% valign=top><font face="arial"> <font color=#aa3300><b>2D Art PRODUCTION</b></font>
+<br>
+All 2D art for Unity must be <strong>PNGs</strong>, <strong>72 ppi</strong>. <br>
+Most 2D should be <strong>square</strong> and <strong>power-of-two</strong>: <br>
+<strong>256x256</strong>, <strong>512x512</strong>,<strong>1024x1024</strong>, etc 
+
+<br><br>
+<em><strong>2D Tutorial #1:</strong></em> Intro to <a href="https://youtu.be/-D46lZPcfwM" target=psd><strong>Photoshop</strong></a> (short video)<br>
+<em><strong>2D Tutorial #2:</strong></em> Intro to <a href="GameDesign_Unity2DTilemap.html#PixelArt" target=TD2><strong>2D Game Art</strong></a>
+
+
+<br>
+(full tutorial on Unity Tilemaps, character sprite animation, and intro to Pixel Art in Photoshop)
+
+
+<br>
+<p>
+<font color=#aa3300><b>MAKING  GAME ART</b></font><a href="GameDesign_Unity2DTilemap.html#PixelArt" target=TD2></a>
+<ul>
+<li> Color <a href="gamedesign/2D_ColorScripts.png" target=1pp><b>Scripts</b></a><br>
+<li> Intro to digital Art <a href="gamedesignHarvard/DigitalArtAssets_Intro2D-3D.doc" target=dig><b>notes</b></a><br>
+<li> Making Pixel Art and Animation with <a href="gamedesign/PixelArtAnimation_RalfiSalhon.pptx" target=pyxel><b>PyxelEdit</b></a> 
+<br>
+<li> 2D: <a href="https://www.remove.bg/" target=remove>Remove BG</a><br>
+<li> <a href="GameDesign_Unity2DTilemap.html#tilemap" target=TD2>Pixel Art Spritesheets</a><br>
+<li> <a href="https://www.codeandweb.com/tp-online/index.html?layout=horizontal&show-settings=false" target=tp>Texture Packer</a><br>
+<li> <a href="http://blog.studiominiboss.com/pixelart" target=pedro>Pixel Art  by Pedro</a><br>
+<li> <a href="gamedesign/ArtFor3DGames.doc" target=Art3D>Optimized 3D Assets</a>
+</ul>
+
+<br><p>
+<font color=#aa00aa><b>UNITY ANIMATION:</b></font>
+<ul>
+<li> 2D Animation: 
+<a href="http://madwomb.com/tutorials/GameDesign_UnityVisualNovel.html#animation" target=anim1>Backgrounds</a>, 
+        	<a href="GameDesign_UnityScripting.html#2e" target=anim2>Explosions</a>, 
+        	<a href="gamedesign/Unity2D/Lightning_AnimatedTutorial.gif" target=2danim3>Lightning</a><br>
+<li> Object <a href="https://www.youtube.com/watch?time_continue=212&v=ts24UWC0mY4" target=anim1>Animation Tools</a><br>
+<li> Unity Character <a href="https://www.youtube.com/watch?v=_rrcoptdnqE" target=anim2>Mecanim</a> for animation<br>
+<li> Unity Cutscenes: <a href="https://www.youtube.com/watch?v=42QZ3aUDnV0" target=anim3>Timelines</a>
+</ul>
+
+
+<br>
+<br>
+<font color=#aa00aa><b>Unity Lighting:</b></font>
+<ul>
+<li> <a href="https://www.youtube.com/watch?v=hQcZA3dYGxg" target=audio>Blob Shadows</a>
+<li>Lightmap <a href="https://www.youtube.com/watch?v=9S-JNxxBoP4" target=light1>quick</a> / <a href="https://www.youtube.com/watch?v=u5RTVMBWabg" target=light2>full</a>&nbsp; 
+<li>Text <a href="gamedesign/Unity_Lighting_Games.pdf" target=light3>Mini-book</a>
+  
+</ul>
+
+<br><br>
+</font></td>
+<td width=50% valign=top><font face=arial> <font color=#aa3300><b>3D TUTORIALS:</b></font><br>
+Export all 3D meshes as FBX to import into Unity.<br><br>
+<a href="http://www.Madwomb.com/Blender" target=blend><img src="IntroBlender/Blender_logo_sm2.png" alt=""></a> 
+<br>Default units = Meters, just like Unity<br>
+Intro to the <strong>Blender</strong><a href="http://www.Madwomb.com/Blender#01"><b> interface</b></a> and 
+<a href="http://www.Madwomb.com/Blender#09"><b>game asset</b></a> creation.
+
+<br><br><br><br>  
+<a href="https://youtu.be/4aeQMjyd31Y" target=mayaIntro><img src="IntroMaya/Maya_logo_sm2.png"></a>
+<br>
+Default units = Centimeters. 
+Switch to meters.<br>
+<li> <b>Maya </b><b>Intro</b>:
+<!--<a href="https://youtu.be/86ueGhRDswc" target=3D>-->
+<a href="https://youtu.be/4aeQMjyd31Y" target=mayaIntro>UI &amp; Modeling Tools</a> (35min)
+
+<br>
+<p>
+<b>Maya Character Modeling:</b>
+<ul>
+<li><a href="https://youtu.be/86ueGhRDswc" target=3Da>Rough Forms</a> (35 min)<br>
+<li><a href="https://youtu.be/qcaWffqq2h0" target=3Db>Body/Head Details</a> (45min)<br>
+<li><a href="https://youtu.be/IRB8fDrUWx8" target=3Dc>Hair/Accessories</a> (40 min)<br>
+<li><a href="https://youtu.be/_iDNpM29xcE" target=3Dd>Unwrap/Texturing</a> (60 min)
+</ul>
+
+<br><p>
+<strong>Maya </strong><b>Character Rigging:</b>
+<ul>
+<li>Basic: <a href="AdvancedMaya/Rigging_CheatSheets1.png" target=3Dd>Joints</a><br> 
+<li>Advanced:
+<ul> 
+<a href="AdvancedMaya/Rigging_CheatSheets2.png" target=3De>IK/Controls</a><br>
+<a href="AdvancedMaya/Rigging_CheatSheets3.png" target=3Df>Feet/Hands</a><br>
+<a href="AdvancedMaya/Rigging_CheatSheets4.png" target=3Dg>Face/Eyes</a><br><a href="AdvancedMaya/Rigging_Constraints.png" target=3Dh> </a>&nbsp;<a href="AdvancedMaya/Rigging_Constraints.png" target=3Dh>Constraints</a>
+</ul>
+</ul>
+
+</td>
+</tr><tr>
+<td valign=top align=center colspan=2><font face=arial>
+<font color=#aa3300><b>Key Maya 3D Modeling Considerations for  Unity:</b></font>
+
+<br>
+
+<table width=100% cellpadding=5><tr>
+<td valign=top><font face=arial><img src="gamedesign/bullet.png" alt=""> Change your Maya file settings from centimeters to <b>meters</b> to match Unity. <br>
+    <li>Use <b>Unity primitives</b> to support game mechanics at the desired scale: <br>
+    Export meshes FROM Unity as FBX: Unity <b>Window &gt; Package Manager</b>, turn on Preview packages and find / install <b>FBX Exporter</b>, then find under Game Object menu). Import the FBXs into Maya to use as scale reference for more detailed models. <br>
+    <li>All <b>Materials</b> should be <b>Blinn</b> with a <b>PNG</b>. <br>
+    For quick cartoony texturing, apply the same <a href="gamedesign/Unity2D/ColorTexture.png" target=color>grid of colors</a> to all objects, then UV map using quick auto-mapping and in the UV Editor drag desired faces to color squares. <br>
+</font></td>
+<td>&nbsp;</td>
+<td valign=top><font face=arial><img src="gamedesign/bullet.png" alt=""> Each objects should be exported  from Maya <b>world center</b>. Put each object in your file into its own Display Layer so you can see only one at a time (since they will all overlap at center). <br>
+    <li>Before export select models, <b>Modify &gt; Freeze Transforms,</b> and <b>Edit &gt; Delete by Type &gt; History</b>. <br>
+    <li>To export, select the object and open : <b>File &gt; Export Selected</b>. <br>
+    If the object is animated, turn on the Animation &gt; Bake Animation option for your desired frame range. <br>
+</font></td>
+</tr></table></font></td>
+<tr>
+</table>
+
+  <center>
+    <font face="arial"><img src="gamedesign/bullet.png" alt=""><img src="gamedesign/bullet.png" alt=""><img src="gamedesign/bullet.png" alt=""></font>
+  </center>
+  <table width=100% cellpadding=5>
+    <tr>
+      <td width=70% valign=top><center>
+        <font color=#aa00aa face="arial"><b>UNITY SHADER GRAPHS</b></font>
+      </center>
+        <font face="arial"> Unity has a helpful, node-based toolset for creating surface VFX on objects, characters, and environments.
+          <li> Intro <a href="https://www.youtube.com/watch?v=Ar9eIn4z6XE" target=sg1><b>Shader Graphs</b></a>, and a great text on <a href="https://thebookofshaders.com/" target=book>Shader theory</a>
+          <li>Intro <a href="https://youtu.be/kIuE0kUOfLc" target=lwrp><b>Lightweight Rendering</b></a>
+          <li><b>Toon:</b> <a href="https://youtu.be/3SvyJrENsgc" target=sg7>Shader, Post-Processing</a>.
+          <li>Effects: <a href="https://www.youtube.com/watch?v=taMp1g1pBeE" target=sg2><b>Dissolve</b></a>, <a href="https://www.youtube.com/watch?v=IC9g5hlfV6o" target=sg3><b>Snow</b></a>, <a href="https://www.youtube.com/watch?v=KGGB5LFEejg" target=sg4><b>Hologram</b></a>               
+          </font>
+        <li><font face="arial"> Custom Shader Graph Nodes: <a href="https://blogs.unity3d.com/2018/03/27/shader-graph-custom-node-api-using-the-code-function-node/" target=sg8>01</a> | <a href="https://connect.unity.com/p/adding-your-own-hlsl-code-to-shader-graph-the-custom-function-node" target=sg9><b>02</b></a></font>
+        <li><font face="arial">Notes on using <a href="https://www.reddit.com/r/SteamVR/comments/a0o5jp/vive_controllers_material_not_showing_in_unity/" target=lwrp2>Lightweight with VR</a></font>
+        <li><font face="arial">Shader Tutorials: <a href="https://www.patreon.com/posts/tutorial-list-10663597" target=joyce>Joyce</a> and <a href="https://minionsart.github.io/tutorials/" target=minions>Minions</a><a href="http://blog.studiominiboss.com/pixelart" target=pedro></a>
+        
+        <br><br>Great quick tutorial on <a href="https://youtu.be/XCWRH4FIdKg" target=warp>heat distortion effect</a> (warp the image with a <a href="https://www.reddit.com/r/Unity3D/comments/7brk2x/made_a_heat_distortion_effect_in_unity3d/" target=warp2>normal map</a>)
+        
+        <br>
+        </font></td>
+      <td width=30% valign=top><font face=arial> <a href="GameDesign_UnityTerrain.html" target=terrain><font color=#aa00aa><b>Terrain Steps</b></font></a> <li><b><a href="gamedesign/TerrainTextures.zip" target=SFX>PNG Textures </a></b> <br>
+        <b>(click for larger):</b> <br>
+        <a href="gamedesign/terrain_earth.png" target=ter1><img src="gamedesign/terrain_earth.png" alt="" width=30></a> <a href="gamedesign/terrain_grass.png" target=ter2><img src="gamedesign/terrain_grass.png" alt="" width=30></a> <a href="gamedesign/terrain_stone.png" target=ter3><img src="gamedesign/terrain_stone.png" alt="" width=30></a> <br>
+        <b><em>NOTE:</em></b> If Terrain stops responding, try restarting  Unity
+     
+<br><br>   
+UNITY WATER: 
+<br>
+Realistic water <a href="https://blogs.unity3d.com/2011/10/07/top-tips-for-water-in-unity/" target=water>notes</a>
+        
+</font></td>
+</tr></table></td>
+</tr><tr>
+<td>
+
+<br>
+<p align=center>
+<img src="gamedesign/bullet.png" alt=""><img src="gamedesign/bullet.png" alt=""><img src="gamedesign/bullet.png" alt="">
+</p>
+<a name="particles">&nbsp;</a>
+<br></td></tr><tr>  
+<td bgcolor=#f3f2df><center>
+  <font face=arial><b><font face=arial><b><font face=arial><b><font face=arial><a href="#TOP"><img src="comicsDesign/ArrowUp.png" alt=""></a></font></b></font><font color=purple> </font></b></font></b></font> <font color=#aa00aa face="arial"><b>UNITY PARTICLES</b></font> <font face="arial"> <br>
+    Real-Time VFX <a href="https://realtimevfx.com" target=vfx>site</a></font>
+</center>
+  <font face=arial> <br>
+  <a href="gamedesign/UnityParticles.zip" target=particles><img src="gamedesign/UnityParticles.jpg" alt="" width=150 align=right border=5 bordercolor=#aa00aa></a> <b>1.</b> Start with <b>particle art PNG:</b> clear shape or gradient mush over empty background, usually white (with 20-50% opacity) so they can be colored in the particle system (<a href="gamedesign/UnityParticles.zip" target=particles><b>Download</b></a> a zip file with  particle PNGs). <br>
+  <br>
+  <b>2.</b> UNITY: <b>Import</b> textures. Create Material, add to Albedo, RenderingMode = fade. Game Object &gt; Effects &gt; <b>Particle System</b>. <br>
+  <br>
+  <b>3.</b> <b>Put</b> the Material on the Particle System. <br>
+  <br>
+  <b>4.</b> Increase <b>Max Particles</b> (10k).   Emission: rise <b>Rate</b> (100). <br>
+  <br>
+  <b>5.</b> To make a concentrated/round explosion, set <b>Shape to Spherical</b> and under the main controls set <b>Duration</b>, <b>Start Lifespan</b> and <b>Start Speed</b> low (try from 5 to 1). <br>
+  <br>
+  <b>6.</b> Transparency (to fade out or in) is controlled by "<b>Color over Lifetime</b>" in the gradient strip upper tabs. Change the right-top tab from 255 to 0. Change the bottom tabs to transition between colors. <br>
+  <br>
+  <b>NOTE 1:</b> Good particle FX are built from multiple  systems: one each for smoke, sparks, large debris, small debris, etc. Enhance further with UV-animated textured planes. <br>
+  <br>
+  <b>NOTE 2:</b> In code, Particle Systems can be Instantiated or parented under objects and set inactive/active (if  object is being made to disappear, turn off its Renderer rather than deleting  the object to play the entire Particle System).
+  <!--
+      <b>1.</b> Start with <b>particle art PNG: </b>clear shape or gradient mush over empty background, usually white (with 20-50% opacity) so they can be colored in the particle system (see attached examples).<br>
+      <b>2.</b> <b>Import</b> the textures, set them to "<b>Sprites</b>" in Inspector. Create a <b>Particle System</b> (game object).<br>
+      <b>3.</b> <b>Put</b> the texture on the Particle System, then under Materials set Particle Type to "<b>Default</b>" in Inspector to get opacity.<br>
+      <b>4.</b> Increase <b>Max Particles</b> (10,000) and under Emission increase the <b>Rate</b> (100) <br>
+      <b>5.</b> To make a concentrated/round explosion, set <b>Shape to Spherical</b> and under the main controls set <b>Duration</b>, <b>Start Lifespan</b> and <b>Start Speed</b> low (try from 5 to 1) <br>
+      <b>6.</b> The transparency (to fade out or in) is controlled by "<b>Color over Lifetime</b>" in the upper tabs of the gradient strip-- change the final top tab from 255 to 0.
+Change the bottom tabs to transition from one color to another.<br>
+<b>NOTE 1:</b> Most good particle effects are built from multiple particle systems-- one for smoke, one for sparks, one for large debris, one for small debris, etc., and can be combined with animated textures on planes to further enrich the result. <br>
+<b>NOTE 2: </b>In code, Particle Systems can by Instantiated and parented under objects and set inactive/active (if the object is being made to disappear, turn off its Renderer rather than deleting the object to play the entire Particle System). 
+-->
+  <br>
+  <br><center>
+  <a href="gamedesignHarvard/UnityParticles0Intro.doc" target=audio>Intro</a> | <a href="gamedesignHarvard/UnityParticles1CartoonBoom.doc" target=audio>Cartoon Explosion</a> | <a href="gamedesignHarvard/UnityParticles2Fire.doc" target=audio>Fire</a> | <a href="gamedesignHarvard/UnityParticles3Snow.doc" target=audio>Snow</a> | <a href="gamedesignHarvard/UnityParticles4Shoot.doc" target=audio>Shooting</a> | <a href="https://youtu.be/__y100uwVdM" target=audio>Rocketfire</a> | <a href="https://youtu.be/HV3g--GyEW0" target=audio>Sparks</a> 
+</center>
+  <br>
+  <br>
+  <br>
+  <font color=#aa00aa><b>HOW TO INSTANTIATE A PARTICLE SYSTEM: </b></font> <br>
+  <b>1.</b> Turn off Loop and drag the particle effect from the Hierarchy to the Project panel to make a <b>Prefab</b>, and delete it from the Hierarchy. Put/Parent an Empty Game Object in the place you want the particles to appear. <br>
+  <br>
+  <b>2.</b> Create a script, add to the Empty GO or its parent, and add these variable to the top of the script: <br>
+&nbsp; &nbsp; &nbsp; &nbsp; <b>public GameObject particlesPrefab;</b><br>
+&nbsp; &nbsp; &nbsp; &nbsp; <b>public GameObject particleSpawn;</b> <br>
+<br>
+<b>3.</b> Add to your script this line, after the action that is meant to activate the effect: <br>
+&nbsp; &nbsp; &nbsp; &nbsp; <b>GameObject ps = Instantiate(particlesPrefab, particleSpawn.transform.position, Quaternion.identity);</b> <br>
+<br>
+<b>4.</b> Save the script. In the Inspector, populate the script slots:  Drag the particles Prefab into  particlesPrefab, and the Empty GO into particlesSpawn. <br>
+<br>
+<b>5.</b> Consider making the game more performant by deleting old particle systems in a CoRoutine.</font></td>
+</tr></table>
+
+<br>
+<p align=center>
+<img src="gamedesign/bullet.png" alt=""><img src="gamedesign/bullet.png" alt=""><img src="gamedesign/bullet.png" alt="">
+</p>
+<a name="ctrl">&nbsp;</a><br>
+
+<table width=850 cellpadding=10 border=0 bgcolor=#eeeef5>
+<tr><td colspan=3 align=center><font face=arial>
+<b><font color=purple>[G]:</font></b>For in-person classes we have the following hardware available: </font></td></tr>
+<tr>
+    <td width=25% valign=top align=center><font face=arial><b><font face=arial><a href="#TOP"><img src="comicsDesign/ArrowUp.png" alt=""></a></font> WANT TO MAKE A VR, AUGMENTED REALITY, OR ALT-CTRL GAME?</b> <br>
+      <br>
+      <b>VR / AR TUTORIALS:</b> <br>
+      We have 2 Valve <b>HTC VIVEs</b><br>
+      (<a href="https://www.raywenderlich.com/149239/htc-vive-tutorial-unity" target=vr2>Unity Notes</a> and <a href="https://support.oculus.com/help/oculus/170128916778795/" target=VR3>min</a> specs) <br>
+      <a href="gamedesign/VIVE_IntroTutorial.doc" target=vive3>Our VIVE Intro Tutorial</a> &amp;<a href="gamedesign/VIVE_IntroTutorial.zip" target=vive4> Files</a> <br>
+      <img src="gamedesign/peripheral_VIVE2.jpg" alt="" width=200 height=93> <br>
+      <br>
+      </font><font face="arial">Sample <a href="AdvancedMaya/JasonWiser_VR_roomDemo.zip" target=VRspace><b>3D Room Files</b></a><b>:</b> Maya, FBXs, PNGs.
+        Class Tutorial on the <a href="AdvancedMaya/VIVE_Unity_Intro.doc" target=vive1><b>Unity-Vive Pipeline</b></a>: Getting Started, Using the Interaction System, Pick-Up-and-Throw, Teleportation, Target Practice,  Door Hinge.
+        Target Practice <a href="AdvancedMaya/SFX_Ding.wav" target=ding><b>Ding Audio</b></a> and <a href="AdvancedMaya/TargetDetect.cs" target=ding><b>Script</b></a>.<br>
+        </font> <font face=arial><br>
+        </font></td>
+    <td width=25% valign=top align=center><font face=arial><b>XBOX CONTROLLERS:</b><br>
+Unity works with almost any controller by using <b>Input Axis</b>. 
+          USB-enabled Xbox controllers are advised for games needing precise control, like platformers.
+          These controllers usually work automatically on PCs. <br>
+          For Macs, you just need this <a href="https://www.macworld.co.uk/feature/mac/how-use-ps4-or-xbox-one-controller-on-mac-dualshock-4-xb1-on-macos-3626259/" target=xboxmac><b>plugin</b></a>. 
+<br><br>
+Facebook's <b><font face="arial">OCCULUS Quest</font></b>
+<br>
+We have a Rift DK2, <a href="https://cgcookie.com/articles/quick-start-guide-gear-vr-unity" target=VR4><font face="arial"><b>GearVR</b></font></a>
+<br>and Google Cardboard<br>
+</font>
+<center>
+<font face="arial"><img src="gamedesign/peripheral_Occulus_GearVR.jpg" alt="" width=200></font>
+</center>
+<font face="arial">
+<br><b>AUGMENTED REALITY</b>
+<br>AR can be done by loading APK files on Android phones.
+<br><a href="https://www.vuforia.com/" target=ar3>Vuforia</a> (most smart phones)
+<br>Google <a href="https://developers.google.com/ar/develop/unity/getting-started" taregt=ar1>ARcode</a> (S8+)
+<br>Apple <a href="https://developer.apple.com/arkit/" target=ar2>ARkit</a> (iPhone 8+) 
+<br><br><br>
+</font></td>
+<td width=25% valign=top align=center><font face="arial"> 
+<br><b>ALTERNATIVE CONTROLS</b><br>
+</font>
+<table><tr>
+<td><font face=arial> We have an <b>Echo Dot</b> for a voice/ sound-only game, </font></td>
+<td><font face="arial"><img src="gamedesign/peripheral_dot.jpg" alt="" width=100></font></td>
+</tr></table>
+<font face="arial">
+<br><br>and a <b>PS2 EyeToy</b>, <b>Leap</b>,
+<br>and <b>XBOX Kinect</b>, <br>
+for motion-controlled games 
+<br><img src="gamedesign/peripheral_EyeToy_leap.jpg" alt="" width=200>
+<br><img src="gamedesign/peripheral_XboxKinect.jpg" alt="" width=200>
+<br></font></td>
+</tr></table>
+
+<br>
+<p align=center>
+<i>Tutorials prepared from multiple sources by Jason Wiser, <a href="http://www.Madwomb.com" target=mw>Madwomb.com</a></i>
+<br>
+Last Updated October 2025
+</p>
+<br>
+<br>
+</td></tr>
+</table>
+
+</center>
+
+
+<!-- [1] ACCORDIONS: revised legacy system start -->
+
+<script>
+//ACCORDION #1: initialize: set all panels to display = "none"
+	window.onload = function(){
+		var panels = document.getElementsByClassName("panel");
+		//alert("panels length: " + panels.length);
+		var i; 
+		for (i = 0; i < panels.length; i++){
+			panels[i].style.display = "none";
+		}
+	}
+</script>
+
+<script>
+//ACCORDION #2: Toggle All open and closed for text searches. Does not work :(.
+	var allOpen = false;
+	
+	function OpenAllToggle(){ 
+		if(allOpen === false){
+			var panels = document.getElementsByClassName("panel");
+			var i; 
+			for (i = 0; i < panels.length; i++){
+				panels[i].style.display = "block";
+				var accHeader = panels[i].previousElementSibling;
+				var Arrow = accHeader.getElementsByClassName("arrow")[0];
+				Arrow.src = "IntroMaya/AccordionArrow_down_outline.png";
+			}
+			allOpen = true;
+		}
+		else{
+			var panels = document.getElementsByClassName("panel");
+			var i; 
+			for (i = 0; i < panels.length; i++){
+				panels[i].style.display = "none";
+				var accHeader = panels[i].previousElementSibling;
+				var Arrow = accHeader.getElementsByClassName("arrow")[0];
+				Arrow.src = "IntroMaya/AccordionArrow_up.png";
+			}
+			allOpen = false;
+		}
+	}
+	
+	//listen for equal sign (plus symbol):
+	document.addEventListener('keydown', function(event) {
+		if (event.key === '=') { 
+			OpenAllToggle();
+		}
+	});
+	
+	//listen for button click:
+	//const buttonAllWeeks = document.getElementById("toggleWeeks");
+	var buttonAllWeeks = document.getElementsByClassName("accordionAllButton");
+
+	buttonAllWeeks[0].addEventListener("click", function() {
+		//alert("I opened the button");
+    	OpenAllToggle();
+	});
+</script>
+
+
+<script>
+//ACCORDION #3: The Actual accordion Script
+var acc = document.getElementsByClassName("accordion");
+var i;
+//var Arrow1 = document.getElementById("arrow1");
+ 
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+	
+	var Arrow = this.getElementsByClassName("arrow")[0];
+	
+    if (panel.style.display === "block") {
+      panel.style.maxHeight = null;
+	  panel.style.display = "none";
+	  Arrow.src = "IntroMaya/AccordionArrow_up.png";
+    } else {
+	  panel.style.display = "block";
+	  panel.style.maxHeight = panel.scrollHeight + "px";
+	  Arrow.src = "IntroMaya/AccordionArrow_down_outline.png";
+    } 
+  });
+}
+</script>
+
+<script>
+//ACCORDION #4: resize on screen scale:
+
+//resize listener:
+var widths = [0, 600];
+window.onresize = function resizeFn() {
+	//alert("window size = " + window.innerWidth);
+	if (window.innerWidth >= widths[0] && window.innerWidth < widths[1]){
+		ResizeActiveAccordions();
+    }	
+}
+
+//close-and-open active panels
+function ResizeActiveAccordions(){
+	var acc = document.getElementsByClassName("accordion");
+	var i;
+	for (i = 0; i < acc.length; i++) {
+		var panel = acc[i].nextElementSibling;
+		if (panel.style.display === "block") {
+			panel.style.maxHeight = panel.scrollHeight + "px";
+		}
+	}
+}
+</script>
+
+<!-- ACCORDIONS: revised legacy system end -->
+
+
+<!-- [2] VIDEO LAZY LOADING: -->
+<script>
+// Get all of the videos
+let videos = document.querySelectorAll('[data-youtube]');
+
+// Progressively enhance them
+for (let video of videos) {
+
+	// Get the video ID
+	
+	//let idName = video.id;
+	//let idName = "video: " + video.$id;
+	let id = new URL(video.href).searchParams.get('v');
+	let idName = "Play Video";
+	
+	//let theWidth = video.width;
+	//let theHeight = video.height;
+
+	// Add the ID to the data-youtube attribute
+	video.setAttribute('data-youtube', id);
+
+	// Add a role of button
+	video.setAttribute('role', 'button');
+
+	// Add the thumbnail JPG image from YouTube, with overly red play triangle SVG:
+	video.innerHTML =`
+		<div class="img-overlay-wrap">
+		<img alt="${idName}" src="https://img.youtube.com/vi/${id}/maxresdefault.jpg">
+	<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="-5 -5 100 100">
+  		<path d= "M0 0 L0 22 L22 11" stroke="black" stroke-width="0.5" fill="red"/>
+	</svg>
+		</div>
+		<br>
+		${video.textContent}`;
+	
+}
+
+/* Handle click events on the video thumbnails. @param  {Event} event The event object */
+function clickHandler (event) {
+
+	// Get the video link
+	let link = event.target.closest('[data-youtube]');
+	if (!link) return;
+
+	// Prevent the URL from redirecting users
+	event.preventDefault();
+
+	// Get the video ID
+	let id = link.getAttribute('data-youtube');
+
+	// Create the player
+	let player = document.createElement('div');
+	player.innerHTML = `<iframe width="100%" 
+	src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0" 
+	title="YouTube video player" frameborder="0" allowfullscreen class="video"></iframe>`;
+	//player.innerHTML = `<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+
+	// Inject the player into the UI
+	link.replaceWith(player);
+}
+
+// Detect clicks on the video thumbnails
+document.addEventListener('click', clickHandler);
+</script>
+
+</body>
+</html>
+
+
+<!--
+<script>
+var acc = document.getElementsByClassName("accordion1");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight) {
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    } 
+  });
+}
+</script>
+
+-->

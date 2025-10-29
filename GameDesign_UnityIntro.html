@@ -1,0 +1,184 @@
+<html>
+<head>
+<title>Unity Interface Tutorial</title>
+</head>
+
+<body text=#222222 link=#1e6669 vlink=#7700aa alink=#1088bb>
+
+<center>
+<table width=1015 cellpadding=10 border=0>
+<tr>
+  <td valign=top><font face=arial>
+<a href="GameDesign_Unity.html"><img src="gamedesign/UnityLogo60.png" align=right></a>
+<font size=+2><b>UNITY - Intro to Functionality (Super Artist Friendly)</b></font>
+<br>
+This page covers an introduction to soem key Unity functionality to get comfortable. 
+<br><a name=theTop>&nbsp;</a></font></td>
+</tr></table>
+
+<br>
+<table width=1015 cellpadding=10 border=0 bgcolor=#edf7ed><tr>
+<td><font face="arial">
+<center>
+<font size=+2><b>Welcome to  Unity!</b></font>
+
+<br><br>
+Before following this tutorial, please review the <a href="GameDesign_UnityIntroPanels.html" target=panels><strong>Unity Panels</strong></a><br>
+This tutorial is intended to ease non-programmers into  
+<br>
+<font face="arial">Unity functionality,</font> and has three parts: <br>
+(1)  <a href="#art"><b>Adding Art to a Game</b></a>, 
+<br>(2)  <a href="#physics"><b>Adding Physics interactions</b></a>, 
+<br>(3)  <a href="#code"><b>Adding Code Interactions</b></a>. 
+</center>
+
+</font></td>
+</tr></table>
+
+<br><br>
+<table width=1015 cellpadding=10 border=0 bgcolor=#e9e9fa><tr>
+<td><font face=arial><a name="art">&nbsp;</a>
+<br>
+<strong><br>
+
+PART 0:</strong> Get free Unity ID, Install Unity HUB, install the Editor through the Archive: 2022.2.21 <br>
+<strong>Download and install a scripting tool:</strong> an IDE (<a href="https://code.visualstudio.com/download" target=vscode>VS Code</a> recommended) and in a new Unity 2D Project add the IDE as the default External Tool: 
+
+<br><br>
+On a <strong>PC:</strong> Edit > Preferences > External Tools. Next to External Script Editor click the rolldown to choose "Browse". In the window that opens choose Program Files and then search for your IDE to click and add it (For VS Code: C:\Users\{Username}\AppData\Local\Programs\Microsoft VS Code ).
+<br><br>
+On a <strong>MAC:</strong> Unity > Settings > External Tools. Next to External Script Editor click the rolldown to choose "Browse". In the window that opens choose Applications and then search for your IDE to click and add it. 
+
+
+<br>
+<br>
+<br><br>
+  </font></td>
+</tr></table>
+
+<br><br>
+<table width=1015 cellpadding=10 border=0 bgcolor=#edf7ed><tr>
+<td><font face=arial>
+
+<a name="physics">&nbsp;</a>
+<br>
+<br>
+
+<strong>PART 1:</strong> Adding tree art to the game:
+<br><strong>1. Create a new 2D project</strong>, note how the Unity project folders exist outside the program, and can be used to manage /replace placeholder art files in the Assets folder.
+
+
+<br><br><strong>2. Drag a 64 x 64 pixel tree PNG</strong> into the Unity Project > Assets folder. See it appear in the computer folder structure!
+<br><strong>3. Drag the tree art into the Hierarchy</strong>, to add it to the scene. See how small and blurry it is! (relative to the camera rectangle)
+<br><strong>4. Also note the different Inspector parameters</strong> for the tree art when it is selected in the Hierarchy (the copy in the game level) vs selected in the Project panel (the source file). 
+<br>
+<strong>In the Project panel select the source art tree</strong>, and in the Inspector set the <strong>Pixels Per Unit</strong> from 100 to <strong>16</strong>, and hit <strong>[Apply]</strong> to see the Scene view tree grow to a useful size (relative to the camera rectangle). <br>
+<strong>5.</strong> Set Filter Mode from Bilinear to Point (no filter), Compression = None and hit [Apply] to remove the anti-aliasing / blurriness. Now the pixels look sharp! <br>
+<strong>6. Note the difference</strong> between the <strong>Scene</strong> and <strong>Game</strong> view tabs. The Scene view is interactive, the Game view just shows the current state of what the camera sees. <br>
+In the scene view, hold <strong>[space bar] to pan</strong>. If you get lost, select the Camera in the Hierarchy, hover the mouse over the Scene view, and ht <strong>[f] to center / focus</strong>. <br>
+</font></td>
+</tr></table>
+
+<br><br>
+<table width=1015 cellpadding=10 border=0 bgcolor=#e9e9fa><tr>
+<td><p><font face=arial><a name="code">&nbsp;</a>
+<br><br>
+  <strong>PART 2: Examine tree art Components, add Physics2D and a Ground </strong>
+  
+  <br><br>
+  <strong>7.</strong> With the Hierarchy tree art selected, note the Components in the Inspector: the Transforms and the Sprite Renderer. <br>     
+  See how to Move/Rotate/Scale in the Scene and in the Inspector. 
+<br>     See how to Reset Transforms in the Inspector. 
+<br>     See how to change the Color multiplier in the sprite renderer, and then set back to white.
+
+<br>
+<br>
+<strong>8. ADD PHYSICS COMPONENTS: </strong>We want the tree to be able to fall (Gravity) and to stop when it hits things (Collider). Both of these are physics attributes. <br>
+    There are two physics engines. The default Physics folder is NOT what we want today-- it is for 3D! 
+<br>    We want only Physics2D for all physics components in a 2D game.
+<br>    Hit [Add Component] to the bottom of the Inspector to add Physics2D > Box Collider2D, and then again for Physics2D > Rigidbody2D. 
+<br>    Hit [Play] and watch the tree fall (due to the rigidbody, which adds gravity). 
+<br>    Turn off play. 
+<br>    NOTE: any changes made during play mode are lost when turning off play! 
+<br>    This is by design: we don't want destroyed characters to be lost forever, and the side benefit is we can test parameters without fear of messing up the game.
+
+
+<br><br>
+<strong>9. Create a ground:</strong><br>   
+Add a GameObject > 2D Objects > Sprites > Square. Keep it selected.
+<br>   Use the move tool to drag it to the bottom of the camera rectangle: hit [w] or press the move icon in the Scene view, select the green arrow, drag it down.
+<br>   Use the Scale tool to make a wide ground: hit [r], select the red axis line, drag to the right to stretch the square on that axis.
+<br>   With the square still selected, in the Inspector at the top change the name to "ground". At the bottom of the Inspector, hit [Add Component] and add Physics 2D > Box Collider2D.  
+<br>   Also, change the color of the square from white to a darker color: In the Inspector, find Sprite Renderer, and change the color.
+
+<br><br>
+<strong>10. Hit [Play] </strong>to see the tree stop at the box! Turn off Play. <br>    
+To make the tree stop halfway into the box, to create the illusion of 3D:
+<br>    Select the Hierarchy tree. In the Inspector find the Sprite Renderer component and change the Order in Layer = 80. 
+<br>    This is how we make objects appear "in front" -- the higher the order in layer, the more in front, Player characters are usually 100, enemies around 80, background layers around 0-40, etc. 
+ <br>   NOTE: We do NOT change the position Z value-- all objects in a 2D scene must be position Z=0 (except for the Camera, which stays at z=-10 so it can see all the scene content)
+<br>    Select the box, and in the Inspector, in the BoxCollider2D component, click the Edit Collider button to see the dot-controls. Drag the top dot-control down to make the collider half as tall.
+<br>    Hit [Play] again to see the tree stop half-way into the box!
+
+<br><br>
+<strong>11. MAKE THE TREE BOUNCY!: </strong><br>    
+RightClick in the empty area of the Project panel to create a 2D > Physic Material 2D. Rightclick the new Physic Material asset to rename it "pm_BouncyTree".
+<br>    Select pm_BouncyTree and in the Inspector set bounciness = 1. 
+<br>    Drag pm_BouncyTree from the project panel onto the tree art asset in the Inspector. It should now appear in the tree BoxCollider2D component as the Material.
+<br>    Hit [Play] to watch the bounciness!
+
+
+<br>  
+  </font></td>
+</tr></table>
+
+<br>
+<br>
+<table width=1015 cellpadding=10 border=0 bgcolor=#edf7ed>
+  <tr>
+    <td><p><font face=arial><a name="physics">&nbsp;</a></font></p>
+      <p><font face=arial><br>
+        <br>
+      </font></p></td>
+  </tr>
+</table>
+<br>
+<br><br>
+<table width=1015 cellpadding=10 border=0 bgcolor=#edf7ed>
+<tr>
+  <td><font face=arial><br>
+<br>
+    </font>
+    <center>
+      <table width=90% cellpadding=10>
+        <tr>
+          <td valign=top><font face=arial><b>THAT'S IT!<br>
+              </b><br>
+You now know more about the interface to get going wih the C# tutorial.<br>
+<br>
+Head over to our first tutorial on <a href="GameDesign_UnityScripting.html"><b>basic C# scripting in Unity</b></a> to learn how to add scripts and to make your first 2D game!</font></td>
+        </tr>
+      </table>
+    </center>
+    <font face=arial>&nbsp;</font><font face=arial><br>
+    </font></td>
+</tr></table>
+
+
+<br><br>
+<table width=700><tr><td align=center><font face="arial">
+<br><em>Tutorial by Jason Wiser, Madwomb.com.</em>
+<br>The instructional content of this page is &copy; 2015-2024 Jason Wiser. <em><br>
+See more Unity tutorials at 
+<a href="http://www.Madwomb.com/Unity" target=unityLearn>http://www.Madwomb.com/Unity</a>
+</em>
+<br></font></td>
+</tr></table>
+
+
+</center>
+
+<br><br>
+
+</body>
+</html>

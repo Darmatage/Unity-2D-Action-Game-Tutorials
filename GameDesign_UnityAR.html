@@ -1,0 +1,1142 @@
+<html>
+<head>
+<title>Unity3D AR</title>
+
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+<script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
+
+</head>
+
+
+<body text=#222222 link=#1e6669 vlink=#7700aa alink=#1088bb>
+
+<center>
+
+<table width=820 cellpadding=10 border=0><tr>
+<td><font face=arial><font face=arial><a href="GameDesign_Unity.html"><img src="gamedesign/UnityLogo60.png" alt="" align=right></a></font></font><font face=arial size=+2><b>UNITY AUGMENTED REALITY APPLICATIONS</b></font>
+<br>
+<font face=arial>This site offers intro tutorials on making AR projects with Unity with <b>Vuforia for Unity Apps</b>, and with <b>360 Panoramas</b> and recent <b>Apple and Google mobile apps</b> for the <b>web</b>. </font>
+
+<br>
+<br><br>  
+
+<table width=100% cellpadding=5><tr>
+<td width=52% valign=top><font face=arial><b>Vuforia</b> isa free plugin for Unity. It works on the most devices and is relatively simple to implement, so this tutorial focuses on Vuforia and Unity.<br>
+  <br>
+Unity's in-house system, <b>ARfoundation</b>, is a wrap around Google's ARcode (Android 8+) and Apple's ARkit (iOS 11+). It has more features but is more complicated to implement and does not work on older devices.<br><br>
+A mobile web application would  circumvent the need for app distribution.  Vuforia does not yet support webGL; see notes  for Unity's <b>AR Foundation</b>, Apple's <b>ARKit</b>, Android's <b>ARCode</b>, and <b>AR.js</b>. </font></td>
+<td width=48% valign=top align=center><font face=arial>
+
+	<table width=100% cellpadding=5 bgcolor=#effbef><tr>
+<td valign=top align=center bgcolor=#eeeeee colspan=2><font face=arial><b>INDEX:</b></font></td> 
+</tr><tr>
+<td width=30% valign=top align=center bgcolor=#effbef><font face=arial><b>Unity Vuforia Lessons:</b></font></td> 
+<td width=70% valign=top bgcolor=#effbef><font face=arial><nobr>1. <a href="#v1">Basic Image &amp; Model Swap</a></nobr>
+<br> 
+&nbsp; &nbsp; Add <a href="#animMesh">animated meshes</a><br><nobr>2. <a href="#v2">Occlusion / Hidden Worlds</a></nobr>
+<br> &nbsp; &nbsp; Using <a href="#occlusion">DepthMask</a>
+<br><nobr>3. <a href="#v3">Motion, Interactions,</a> and <a href="#export">Export</a></nobr>
+<br> 
+4. Maya <a href="#v4">3D Art Notes</a>
+</font></td>
+</tr><tr>
+<td valign=top align=center bgcolor=#eeeeee><font face=arial><b>AR for the Web:</b></font></td>
+<td valign=top bgcolor=#eeeeee>
+<li> <font face="arial"><em><b>Apple:</b></em> <a href="#web1"><b>USDZ</b></a> &amp; RealityComposer<br>
+</font>
+<li> <font face="arial"><em><b>Android:</b></em> <a href="#web2"><b>gLB</b></a> / ModelViewer.</font><font face=arial>
+<li> <a href="#web4"><b>360 Panoramas</b></a> of 3D renders<li> A-Frame and <a href="#web5">AR.js</a><br></font></td>
+</tr></table>
+
+</font></td>
+</tr></table><br>
+
+<table width=100% cellpadding=5 border=0 bgcolor=#effbef>
+<tr>
+<td valign=top colspan=2><font face=arial><img src="gamedesign/vr/vuforiaLogo.png" align=right><b>VUFORIA</b> allows us to create augmented reality experiences that work on most phones (even older phones that predate ARcode and ARkit). Vuforia was created by Quallcom and fully integrated into Unity in 2017. This tutorial covers  basic steps for creating and building an Augmented Reality Unity Project for viewing through a camera-enabled computer or mobile device. This tutorial works on <a href="gamedesign/vr/InstallUnity2019-2-21f1.png" target=install><b>Unity 2019.4.10</b></a> and more recent versions. 
+<br>
+Make sure the <b>Android </b>or <b>iOS </b> Module is installed in <b>Unity Hub</b> if you want to export a mobile build.<br><br>
+Typical Vuforia AR requires one or more<b> Image Targets</b> placed in the real world to control where holograms are appear. <a href="https://gamedevelopment.tutsplus.com/tutorials/vuforia-tips-and-tricks-on-unity--cms-28744#2" target=tricks>Three rules</a> for each ImageTarget:
+<li><b>Be rich in detail:</b> a simple square or circle is less effective than a block of text, and any black border should be surrounded by a white border.
+<li><b>Have good contrast,</b> with light and dark regions throughout.<li><b>Have no repeating patterns:</b> be unique throughout (consider the text of a poem, or a random group of rocks).
+<br><br></font></td>
+</tr></table>
+<br>
+<center>
+  <img src="gamedesign/bullet.png" alt=""><img src="gamedesign/bullet.png" alt=""><img src="gamedesign/bullet.png" alt="">
+</center>
+<br>
+
+<table width=100% cellpadding=5 border=0 bgcolor=#effbef><tr>
+<td width=70% valign=top><font face=arial>
+<a name="v1">&nbsp;</a><a href="#TOP"><img src="comicsDesign/ArrowUp.png" alt=""></a>
+<br><img src="gamedesign/vr/vuforiaLogoSmall.png" align=left width=35><font color=purple><b>VUFORIA LESSON 1:</b></font> </b>Setting up a Vuforia account, project license and database for a basic test (<em>video sources:</em> <a href="https://youtu.be/MtiUx_szKbI" target=v01>01</a>, 
+<a href="https://www.youtube.com/watch?v=JKgkE-DNGKw" target=v01>02</a>)
+
+<br><br>
+<em>Please note:</em> Vuforia works for Mac or Windows 10+. <br><br>
+<b><font color=purple>PART A:</font> Vuforia Website 
+Preparations</b><br>
+<b>1. SIGN UP:</b> Go to the Vuforia <a href="https://developer.vuforia.com/vui/auth/register">website</a> 
+to create a free account. 
+<br>Remember your username and password!
+<br>
+<strong>Confirm</strong> through email and <strong>login</strong> to Vuforia. 
+<br>
+Click the <b>[My Account]</b> tab for developer resources.<br>
+<br>
+<b>2. LICENSE KEY: 
+<br>
+a) MAKE A KEY:</b>
+<br>
+Click <b>[Licenses] </b>to open the License Manager. 
+<br>Hit <b>[Get Basic]</b> for a free Development key. 
+<br>Name it "FirstAR".
+
+<br><br>
+<b>b) COPY YOUR KEY:</b> 
+<br>Click on the Key name you created in the list. 
+<br>Note the block of text on a gray field.  
+<br><font color=#aa5555><b>Click the gray field to copy your Vuforia License Key </b></font> (you will paste it into your Unity Vuforia Configuration file).
+
+<br><br><br>
+<b>3. MAKE A TARGET</b> (one or more images to reference): 
+<br>
+<b>a) </b>Under <b>[Target Manager]</b> hit <b>[Generate Database]</b>. 
+<br>
+Give it a name, leave it as type = "<b>Device</b>" 
+<br>(stores on your computer, allows varied target types).
+<br>Hit <b>[Create]</b>. 
+
+<br><br>
+<b>b) </b>Click your new "Database" in the list to <strong>enter</strong> it. <br><br>
+<b>c) </b>Hit <b>[Add Target]</b> to upload one or more images 
+<br>(like this <a href="http://www.madwomb.com/tutorials/ARtests/hiro.png" target=hiro>hiro image</a> from the AR.js project). 
+<br>
+Set size to 1 if big (normal), 0.15 if small (units are  meters, like Unity). 
+<br>Hit <b>[Add]</b>.
+
+<br>
+<br>
+<em><b>NOTE:</b></em> You do not need to wait for "processing" to complete, but when it does Vuforia will rate the quality of your image. <br>
+<b></b><br>
+<b>d)</b> Hit <b>[Download Database]</b>. 
+<br>Choose Unity Editor. 
+<br>
+Hit <b>[Download Database]</b> to 
+<font color=#997755><b>copy your Image Target Database to your desktop</b></font>.
+<br><br>
+<br>
+<br>
+<b>4. GET THE PLUGIN PACKAGE FOR UNITY</b><b>:</b><br>
+<b>a)</b> Under the top <b>Downloads</b> tab, download the Unity<em> </em><font color=#997755><b>add-vuforia-package</b></font>. <br>
+<b>b)</b> Move it to your desktop or production folder so you can import it into Unity.
+
+<br><br></font></td>
+<td valign=top align=center><font face=arial>
+<a href="gamedesign/vr/ARVuforia01.png" target=cb1><img src="gamedesign/vr/ARVuforia01thumb.png" border=0 width=250 height=170></a>
+
+<br><br>
+<em>Click for full images</em> <br>
+<br>
+<a href="gamedesign/vr/ARVuforia14.png" target=cb2><img src="gamedesign/vr/ARVuforia14thumb.png" width=250 height=105 border=0></a> 
+<br>
+<br>
+<a href="gamedesign/vr/ARVuforia05.png" target=cb1><img src="gamedesign/vr/ARVuforia05thumb.png" width=250 height=105 border=0></a> 
+<br>
+<br>
+<a href="gamedesign/vr/ARVuforia05b.png" target=cb1><img src="gamedesign/vr/ARVuforia05bthumb.png" width=250 height=105 border=0></a> 
+
+<br></font></td>
+</tr><tr>
+<td valign=top><font face=arial><b><font color=purple>PART B:</font> UNITY Vuforia Activation:</b><br>
+  Open a Unity 3D project (last checked with Unity 2021.1.10):  
+
+<br><br>
+<b>1. INSTALL the Vuforia plugin package</b>: 
+<br>
+RightClick-hold the <strong>Project panel &gt; Assets folder</strong>. <br>
+Choose <b>Import Package &gt; Custom Package</b>, 
+<br> On your computer, find and choose the downloaded <b>add_vuforia_package</b>.<br>
+
+<strong>PLEASE NOTE:</strong> 
+<br>This may generate a console error, but Vuforia should still work!
+<br>
+This only installs Vuforia on this particular project and all of its Scenes. If you create a new Unity project, you would need to install Vuforia there, too, if you want that functionality. <br><br><br>
+<b>2. ADD AN AR-CAMERA TO A SCENE: 
+<br>
+RightClick-hold the Hierarchy</b> of your Scene. 
+<br>Choose <b>Vuforia Engine > ARCamera</b> (hit "Import" or "accept" the license agreement if asked). 
+<br>This step is important-- it creates the Assets > <b>Resources</b> folder!
+<br>
+<b>Delete</b> the default MainCamera, above. <br><br>
+<b>3. </b>Open the  <b>Project &gt; Assets &gt; Resources </b> folder to find the <b> <font color=purple>VuforiaConfiguration</font></b> file. <br><br>
+<b>a) ADD YOUR LICENSE KEY:</b> 
+<br>Select the <b>VuforiaConfiguration</b> file, and look in the Inspector.
+<br>
+Find the App License Key slot. 
+<br><font color=#aa5555><b>Paste your Vuforia License Key</b></font> into it. 
+<br>
+Hit <b>[Add License]</b>.<br><br>
+<b>b) ADD YOUR TARGET IMAGE DATABASE:</b> 
+<br>
+<font color=#997755><b>Import your downloaded Image Target Database Package </b></font>into the Unity Project Assets folder: 
+<br>RightClick in the Assets folder to choose Import Package. 
+
+<br><br>
+To see the imported Target images: 
+<br>Look in <b>Assets > Editor > Vuforia > ImageTargetTextures</b> 
+<br>(will be called filename_scaled).
+
+<br><br>
+This database content is automatically added to the VuforiaConfiguration file: 
+<br>select Assets &gt; Resources &gt; <b>VuforiaConfiguration</b> again to see the Database name listed under &quot;Databases&quot;.<br>
+Multiple databases may be added, each with multiple image targets.<br>
+
+<br>
+<b>CHECK CAMERA SETTING:</b> 
+<br>
+With <b>VuforiaConfiguration</b> selected, scroll down to the bottom of the Inspector  to be sure the camera is set to your computer camera (and not to something like Snap Camera or OBS).
+
+<br><br><br><br>
+</font></td>
+<td valign=top><font face=arial><br>
+<a href="gamedesign/vr/ARVuforia02.png" target=cb1><img src="gamedesign/vr/ARVuforia02thumb.png" width=250 height=105 border=0></a> <br>
+<a href="gamedesign/vr/ARVuforia08.png" target=cb1><img src="gamedesign/vr/ARVuforia08thumb.png" width=250 height=105 border=0></a> <br>
+<a href="gamedesign/vr/ARVuforia03.png" target=cb1><img src="gamedesign/vr/ARVuforia03thumb.png" width=250 height=105 border=0></a> 
+
+<br><br><em><b>OLD UNITY VERSION NOTES:</b></em>
+<li>For <b>Unity</b> <b>2019.2.21:</b> 
+<br><b>Step </b> <b>2. Enable Vuforia</b> in Build Settings: <b>File &gt; Build Settings &gt; PlayerSettings</b>. Find XR Settings at the bottom, turn on Vuforia Augmented Reality. Close out of the Build Settings.(More recent versions of Unity skip this step, or only click on XR Plugin Management to install that).
+<li>For <b>Unity 2019.3</b>, <a href="https://developer.vuforia.com/downloads/sdk" target=sdk>download the SDK</a> first.
+<li>For <b>Unity 2020+</b>, Vuforia is not  included in the Package Manager. The Vuforia website has information for manual installation. 
+</font></td>
+</tr><tr>
+<td valign=top><font face=arial><b><font color=purple>PART C:</font> UNITY AR Content:</b><br>
+<b>1. ADD IMAGE TARGET: </b>
+<br>
+Now that our information is loaded: 
+<br>RightClick in the Hierarchy to create a <b>Vuforia &gt; Image</b>. 
+<br>This will be labelled ImageTarget in the Hierarchy, and will come auto-loaded with your database image!
+
+
+<br>
+We can <b>Rotate</b> this image to get the desired orientation (<b>Rotation X = 90</b> for an upright image), but please make sure all <b>Position = 0</b> and all <b>Scale = 1</b>.<br>
+<br>
+<b>2. ADD 3D SWAP CONTENT:</b> 
+<br>
+Any GameObjects <b>parented to this ImageTarget</b> will appear when the AR app is played! 
+This includes 3D art or VFX, Unity Lights, 2D art or video, and any scripted interactions. <br><br><br>
+<b><em>TO SWAP WITH A 2D IMAGE / VIDEO:</em></b>
+
+<br><br>
+<b>a)</b> RightClick the ImageTarget, create <b>3D Object > Quad</b>.
+
+<br><br>
+<b>b)</b> Rotate and Scale the Quad to match angle and position of the Target Image, as desired.
+
+<br><br>
+<b>c)</b> Import the desired replacement PNG image or <a href="gamedesign/vr/SkateDog.mp4" target=mp4>MP4 video</a> into the Project Assets folder. A PNG can be dropped directly onto the quad.<br>
+To use a video, select the Quad, and in the Inspector  <b>[Add Component] &gt; Video Player</b>, drag the MP4 video from the Assets folder to the VideoPlayer > Video Clip slot. Turn on Loop.<br><br>
+<a name="animMesh">&nbsp;</a> </font></td>
+<td valign=top align=center>
+<font face=arial>&nbsp;
+ 
+</font>
+<font face=arial><a href="gamedesign/vr/ARVuforia09.png" target=cb1><img src="gamedesign/vr/ARVuforia09thumb.png" width=250 height=105 border=0></a> <br>
+<br>
+<a href="gamedesign/vr/ARVuforia15.png" target=cb1><img src="gamedesign/vr/ARVuforia15thumb.png" width=250 height=105 border=0></a>
+
+<br>
+<br>
+<a href="gamedesign/vr/ARVuforia04.png" target=cb1><img src="gamedesign/vr/ARVuforia04thumb.png" width=250 height=105 border=0></a></font></td>
+</tr><tr>
+<td valign=top><font face=arial>
+<b><font color=purple>PART D:</font> <em>TO ADD AN ANIMATED 3D CHARACTER OR OBJECT:</em></b></font>
+<br>
+<font face=arial><b>In Autodesk Maya:</b><br>
+<b>a) </b>Make sure your character or object is located at world center (0,0,0). 
+<br>
+Name all parts. Note that Unity units are meters and default Maya units are centimeters.
+
+<br><br>
+<b>b) </b><b>Animate</b> your textured model using a joint rig or object transforms (for a basic walk cycle, try animating frames 10-40). Set timeslider from 1-to-animation end. <b>NOTE:</b> Blendshapes also work with Unity! Other Maya deformers do not, work in Unity, but can be faked with Bendshape copies of the animated deformer stages. <br><br> 
+<b>c) Export  an FBX</b> with these settings: turn on <b>Animation</b>, <b>Baked Keyframes</b> set from 1 to the end of your animation (for the above example, export 1-40). 
+
+<br><br><br>
+<b>In UNITY, import your animated FBX, prep the Clip and Controller:</b> 
+<br>
+<b>a)</b> RightClick  Project &gt; Assets folder to import FBX model and PNG texture.
+
+<br><br><b>b)</b> Select the FBX and in  Inspector open the <b>Animation tab</b>. 
+<br>Set  clip to  desired <b>range</b> (10-40), set  <b>name</b> to describe the action (&quot;walk&quot;), turn on &quot;<b>Loop</b>&quot; for continuous motion, and hit <b>[Apply]</b>.
+ 
+<br><br>
+<b>c)</b> <font face="arial">RightClick  Project &gt; Assets folder to <b>Create</b> an <b>Animator Controller</b>. Rename it per your FBX (in this example, &quot;Character_Animator&quot;)
+ 
+<br><br>
+<b>d)</b> <b>DoubleClick</b> the Animator Controller to open the <b>Animator panel</b>, and see the Unity State Machine. 
+<br>In the Assets folder open the FBX rolldown to find the triangular animaton clip you renamed (walk). 
+<br><b>Drag the clip into the state machine</b>. Because it is the first clip added, it becomes the default clip (turns orange. Additional clips could be accessed through scripts, but a single looping clip will start on Play and repeat). 
+<br>Return to the <b>Scene view</b>.
+ 
+<br><br><br>
+<b>Add the FBX to the Scene:</b>
+<br>
+<b>a)</b> Drag the <b>FBX</b> from the Assets folder into the <b>Hierarchy</b> (appears in  Scene). 
+
+<br>
+In the Inspector <font face="arial"><font face="arial"><b>set Position and Rotation transforms = 0</b></font>, and <b>Scale Transforms = 1</b></font>. 
+
+<br>Rename the mesh &quot;<b>[ObjectName]_art</b>&quot;.<br>
+Drag the <b>Animator Controller onto the FBX in the Hierarchy or Inspector, </b>to add it as a <b>Component</b>.
+<br>
+NOTE: The animated mesh cannot be Transformed directly, as the animation information will overried the Scene transforms on runtime. Therefore, we need to parent it under another object that CAN be transformed:
+
+
+<br><br>
+<b>b) Make the FBX mesh a child of an Empty GameObject:</b> 
+<br>
+Create a <b>GameObject &gt; Create Empty</b>, rename it &quot;<b>AnimatedGO</b>&quot;. 
+<br>
+<font face="arial">In the Inspector<b> set Position and Rotation transforms = 0</b></font>, and <b>Scale Transforms = 1</b>. 
+<br>
+<b>Drag</b> the FBX onto AnimatedGO to <b>parent</b> the FBX beneath it. 
+<br>
+We can now set the transforms on the AnimatedGO to set the Position, Rotation, and Scale for the child FBX mesh art!<br><br>
+<b>c)</b> RightClick the Assets folder to Create a <b>Material</b>. 
+<br>Drag the PNG texture into the <b>Albedo</b> (color) slot, and drag the Material onto the FBX in the Hierarchy. <br>Optionally, turn on Emmision, drag the PNG into the Emmision slot, and click the <b>HDR</b> button to adjust the incandescene.
+
+<br><br>
+<b>d)</b> <b>Drag</b> the Character GO onto the Vuforia ImageTarget to make it a <b>child</b>.<br>
+<b>This is critical</b>: only content that is the child of the Vuforia ImageTarget will appear in the AR swap!<br>
+<em><b><br>
+TESTING  TIME!</b></em></font><br>
+</font>
+<li><font face="arial">Save your scene! Turn off any active cameras (like in Zoom).</font>
+<li><font face="arial">Hit <b>Play</b> on your camera-enabled laptop.</font>
+<li><font face="arial">Hold up a printed copy of the image target/s to see  AR content appear.</font><font face="arial"><br>
+</font></td>
+<td valign=top align=center><font face=arial>
+
+<br><br><br><br><br><br><br><br><br><br>
+<a href="gamedesign/vr/ARVuforia10.png" target=cb1><img src="gamedesign/vr/ARVuforia10thumb.png" width=250 height=105 border=0></a> 
+
+<br><br>
+<a href="gamedesign/vr/ARVuforia11.png" target=cb1><img src="gamedesign/vr/ARVuforia11thumb.png" width=250 height=105 border=0></a> <br>
+<br>
+<a href="gamedesign/vr/ARVuforia12.png" target=cb1><img src="gamedesign/vr/ARVuforia12thumb.png" width=250 height=105 border=0></a> <br>
+<br>
+<a href="gamedesign/vr/ARVuforia13.png" target=cb1><img src="gamedesign/vr/ARVuforia13thumb.png" width=250 height=105 border=0></a> 
+
+<br><br><br><br>
+</font></td>
+</tr>
+</table>
+<br>
+<center>
+  <img src="gamedesign/bullet.png"><img src="gamedesign/bullet.png"><img src="gamedesign/bullet.png">
+</center><br>
+
+<table width=100% cellpadding=5 border=0 bgcolor=#efeffb>
+<tr>
+        <td valign=top><font face=arial><a name="v2">&nbsp;</a><b><font face=arial><a href="#TOP"><img src="comicsDesign/ArrowUp.png" alt=""></a></font></b><br>
+<b><font face=arial><img src="gamedesign/vr/vuforiaLogoSmall.png" alt="" width=35 align=left></font><font color=#5555bb>VUFORIA LESSON 2:</font> Occlusion allows AR holograms to feel more like they are part of the real world. </b>Use Vuforia Depth Mask material to create an AR scene in a real-world object. Consider a &quot;Book Nook&quot; city alley, a world beneath your floor (include floor thickness!), or a torn-open torso (<a href="https://youtu.be/FbP4I_dQ1oI" target=v01><em>video source</em></a>)<br>
+<br>
+<b><font color=#5555bb>PART A:</font> Vuforia Website 
+Preparations 
+</b><br>
+<b>1. SIGN UP (skip if you have ever done this already):</b> Go to the Vuforia <a href="https://developer.vuforia.com/vui/auth/register">website</a> 
+to create a free account. Remember your username and password!
+<br>
+Once you have confirmed through email and logged in, click the <b>[Develop]</b> tab.
+
+<br><br><br>
+<b>2. LICENSE KEY: <br>
+a) MAKE A KEY </b>(skip if you have ever done this already)<b>: </b>Under <b>[License Manager]</b> hit <b>[Get Development Key]</b> to get a free key (name it "FirstAR").
+
+<br><br>
+<b>b) COPY YOUR KEY </b>(skip if you are creating a new Scene in the same Unity Project as lesson 1)<b>:</b> Click  the Key name you created, and copy the <b>block of text</b> that appears on the gray field (your Vuforia License Key).
+
+<br><br><br>
+<b>3. MAKE A TARGET</b> (one or more images to reference):<br>
+<b>a)</b> Under <b>[Target Manager]</b> hit <b>[Add Database]</b>, name it (like &quot;BookAlley&quot;), leave it as "Device" (stores on your computer), hit <b>[Create]</b>.
+
+<br><br>
+<b>b)</b> Click your new "Database" in the list to enter it.<br>
+c) Hit <b>[Add Target]</b> to upload one or more &quot;<b>Single Image</b>&quot; files (like these book alley targets: <a href="http://www.madwomb.com/tutorials/ARtests/AR_AlleyBook_binding.png" target=hiro>binding</a> and <a href="http://www.madwomb.com/tutorials/ARtests/AR_AlleyBook_top.png" target=hiro>top</a>). Set size to 1, hit <b>[Add]</b>.
+
+<br><br>
+<b>d)</b> Try adding a <b>&quot;Cuboid&quot;</b> for these two images to work together:<br>
+Width=3.5, Length =6.5, Height =9.5. Name &quot;BookFull&quot; and hit [Add].<br>
+Click &quot;BookFull&quot; cuboid to upload the images into Front and Top slots.
+
+<br><br>
+<b>e)</b> Back up at the Database level (&quot;BookAlley&quot;), hit <b>[Download Database]</b>, choose Unity Editor, hit <b>[Download]</b> to <font color=#997755><b>copy your Image Target Database to your desktop</b></font>.<br>
+<em>NOTE:</em> You do not need to wait for "processing" to complete, but when it does Vuforia will rate the quality of your image.<br><br>
+<br>
+<b>4. GET THE PLUGIN PACKAGE FOR UNITY</b><b>:</b><br>
+<b>a)</b> Under the top <b>Downloads</b> tab, download the Unity<em> </em><font color=#997755><b>add-vuforia-package</b></font>. <br>
+<b>b)</b> Move it to your desktop or production folder so you can import it into Unity.<br>
+<br>
+
+
+<table width=100% cellpadding=5>
+  <td valign=top><font face=arial>
+<b>INSPIRATION: </b>
+<br>Real-world Book Nook links 
+<br><a href="https://www.reddit.com/r/booknooks/" target=insp3>https://www.reddit.com/r/booknooks/</a> 
+<br><a href="https://www.reddit.com/r/guidebooknook/" target=insp4>https://www.reddit.com/r/guidebooknook/</a> 
+<br><br>
+<br>Real-world City Alley links 
+<br><a href="https://unsplash.com/s/photos/alley">https://unsplash.com/s/photos/alley</a>
+
+</font></td>
+<td><a href="gamedesign/vr/ARVuforiaAlleys.jpg" target=insp1><img src="gamedesign/vr/ARVuforiaAlleysthumb.png"></a></td>
+<td><a href="gamedesign/vr/ARVuforiaBookNooks.jpg" target=insp2><img src="gamedesign/vr/ARVuforiaBookNooksthumb.png"></a></td>
+</tr></table>
+<br><br>
+</font></td>
+<td valign=top align=center><font face=arial>
+<a href="gamedesign/vr/ARVuforia16.png" target=cb1><img src="gamedesign/vr/ARVuforia16thumb.png" border=0 width=250 height=170></a>
+
+<br><br>
+<table><tr>
+<td width=50% valign=top><font face=arial>
+Download this <a href="gamedesign/vr/AR_bookAlley.pdf" target=pdf>PDF</a>, print and cut out to tape  to your AR Book Nook box:
+<br>
+height = 9.5&quot;
+<br>width = 3.5&quot;
+<br>depth = 6.5&quot;
+</font></td>
+<td width=50% valign=top align=center><a href="gamedesign/vr/ARVuforia16b.png" target=box><img src="gamedesign/vr/ARVuforia16bthumb.png" width=110></td>
+</tr></table>
+
+<br><em>Click for full images:</em> 
+
+<br><br>
+<a href="gamedesign/vr/ARVuforia05.png" target=cb1><img src="gamedesign/vr/ARVuforia05thumb.png" width=250 height=105 border=0></a> 
+
+<br><br>
+<a href="gamedesign/vr/ARVuforia06.png" target=cb1><img src="gamedesign/vr/ARVuforia06thumb.png" width=250 height=105 border=0></a> 
+
+<br><br></font><font face=arial><a href="gamedesign/vr/ARVuforia07.png" target=cb1><img src="gamedesign/vr/ARVuforia07thumb.png" width=250 height=105 border=0></a>
+
+<br><br><br>
+</font></td>
+</tr>
+<tr>
+<td valign=top><font face=arial>
+<b><font color=#5555bb>PART B:</font> UNITY Vuforia Activation:</b>
+<br>
+<em><b>NOTE:</b></em> If you already did Lesson 1, you do not need to do this Part B step again in the same Unity project, except to add the new Target Image Database (4b).<br>
+<br>
+<b>1. INSTALL the Vuforia plugin package</b>: <br>
+RightClick the Project panel &gt; Assets folder, <br>
+choose <b>Import Package &gt; Custom Package</b>, and choose the downloaded <b>add_vuforia_package</b>.<br>
+This may generate a console error, but Vuforia should still work.<br>
+<br>
+<b>2. ADD AN AR-CAMERA TO A SCENE: <br>
+RightClick the Hierarchy</b> of your Scene, choose <b>Vuforia Engine > ARCamera</b> (hit "Import" or "accept" the license agreement if asked). <br>
+This step is important-- it creates the Assets > <b>Resources</b> folder! <br>
+<b>Delete</b> the default MainCamera, above. <br>
+<br>
+<b>3. </b>Open the <b>Project &gt; Assets &gt; Resources </b> folder to find the <b> <font color=purple>VuforiaConfiguration</font></b> file. <br>
+<br>
+<b>a) ADD YOUR LICENSE KEY:</b> <br>
+Select the <b>VuforiaConfiguration</b> file, and look in the Inspector. <br>
+Find the App License Key slot, and <font color=#aa5555><b>paste your Vuforia License Key</b></font> into it. <br>
+Hit <b>[Add License]</b>.<br>
+<br>
+<b>b) ADD YOUR TARGET IMAGE DATABASE:</b> <br>
+<font color=#997755><b>Import your downloaded Image Target Database Package </b></font>into the Unity Project Assets folder: RightClick in the Assets folder to choose Import Package. <br>
+<br>
+To see the imported Target images, look in <b>Assets > Editor > Vuforia > ImageTargetTextures</b> (will be called filename_scaled). <br>
+<br>
+This database content is automatically added to the VuforiaConfiguration file: <br>
+select Assets &gt; Resources &gt; <b>VuforiaConfiguration</b> again to see the Database name listed under &quot;Databases&quot;.<br>
+Multiple databases may be added, each with multiple image targets.<br>
+<br>
+<b>CHECK CAMERA SETTING:</b> <br>
+With <b>VuforiaConfiguration</b> selected, scroll down to the bottom of the Inspector  to be sure the camera is set to your computer camera (and not to something like Snap Camera). <br>
+<br><br>
+</font></td>
+<td valign=top align=center><font face=arial><br>
+  <a href="gamedesign/vr/ARVuforia02.png" target=cb1><img src="gamedesign/vr/ARVuforia02thumb.png" width=250 height=105 border=0></a> <br>
+  <br>
+  <a href="gamedesign/vr/ARVuforia08.png" target=cb1><img src="gamedesign/vr/ARVuforia08thumb.png" width=250 height=105 border=0></a> <br>
+  <br>
+  <a href="gamedesign/vr/ARVuforia03.png" target=cb1><img src="gamedesign/vr/ARVuforia03thumb.png" width=250 height=105 border=0></a><br></font></td>
+</tr><tr>
+<td valign=top><font face=arial><b><font color=#5555bb>PART C:</font> UNITY AR Content:</b>
+
+<br><br>
+<b>1. ADD IMAGE TARGET:</b><br>
+<b>a)</b> Now that our information is loaded, RightClick in the Hierarchy to create a <b>Vuforia &gt; Image</b>  (to attempt the Cuboid, choose Vuforia &gt; <a href="https://library.vuforia.com/features/images/multi-target.html" target=multiDoc>Multi Image</a>, but a simple ImageTarget is more reliable). 
+<br>
+This will be labelled &quot;ImageTarget&quot; in the Hierarchy, and comes auto-loaded with your database, but you need to change some setting to display it: 
+<br>
+In the Inspector set the ImageTarget to your Database and target: Find the Component called "Image Target Behavior", choose &quot;<a href="gamedesign/VR/ImageTarget_Settings.png" target=db>From Database</a>&quot; and choose your image target.
+<br>
+<br>If your Database includes multiple images, you can select the ImageTarget and in the Inspector switch between the images.
+
+<br>
+<br>
+<b>b)</b> Rotate the ImageTarget: x = 90, y=0, and z = 180, to stand upright, facing front.</font><font face=arial><br>
+Please make sure to keep Transform Position = 0 and Transform Scale = 1.<br><br>
+<b>2. ADD SWAP CONTENT:</b><br>
+<b>a)</b> In the Project panel Assets folder, <b>import</b> your city mesh FBX and texture/s PNG (try this sample city
+<a href="gamedesign/vr/ARCityAlley.FBX" target=city2><b>FBX</b></a> and 
+<a href="gamedesign/vr/ARCityAlley_color.PNG" target=city2><b>PNG</b></a>).<br>
+<br>
+<b>b)</b> Drag the FBX into the <b>Hierarchy</b> and onto the<b> ImageTarget</b> to make it a child. Scale and Move it just behind the ImageTarget. <font face="arial">Optionally, also add  GameObject &gt; Light &gt; <b>Point Lights</b> or <b>Spot Lights</b> to help illuminate the space, also parented to the ImageTarget..</font><br>
+<br>
+<b>c)</b> RightClick the Assets panel to Create a new <b>Material</b>. Drag the texture PNG into the <b>Albedo</b> slot. Turn on <b>Emission</b> and drag the texture PNG into the Emission slot. Click HDR to lower the brightness a bit. Drag the material onto the City mesh in the Hierarchy.<br><br>
+<b>d)</b> Make a Sky: Create a <b>GameObject &gt; 3D Object &gt; Plane</b>. Name it &quot;<b>SkyPlane</b>&quot;. Rotate and position to stand behind the city mesh. RightClick the Project &gt; Assets panel to Create a new <b>Material</b>. In the Inspector click the <b>Albedo</b> color rectangle to make it bright blue. Turn on <b>Emission</b> and click HDR to set a bright blue color. Drag the material onto the SkyPlane in the Hierarchy.<br><br></font><font face=arial><a name="occlusion">&nbsp;</a></font></td>
+<td valign=top align=center><font face=arial>
+
+<br><br><br>
+<a href="gamedesign/vr/ImageTarget_Settings.png" target=cb1><img src="gamedesign/vr/ImageTarget_Settings_thumb.png" width=250 height=105 border=0></a>
+
+
+<br><br>
+<a href="gamedesign/vr/ARVuforia17.png" target=cb1><img src="gamedesign/vr/ARVuforia17thumb.png" width=250 height=105 border=0></a> <br>
+  <br>
+  <a href="gamedesign/vr/ARVuforia18.png" target=cb1><img src="gamedesign/vr/ARVuforia18thumb.png" width=250 height=105 border=0></a> <br>
+  <br>
+  <a href="gamedesign/vr/ARVuforia19.png" target=cb1><img src="gamedesign/vr/ARVuforia19thumb.png" width=250 height=105 border=0></a> 
+  
+  <br><br>
+  <a href="gamedesign/vr/ARVuforia20.png" target=cb1><img src="gamedesign/vr/ARVuforia20thumb.png" width=250 height=105 border=0></a><br></font></td>
+
+</tr><tr>
+<td valign=top><font face=arial>
+<b>3. CREATE OCCLUSION PLANES:<br>
+a)</b> Create a <b>GameObject &gt; 3D Object &gt; Plane</b>. Name it &quot;MaskPlane&quot;. Rotate it to face the same direction as the ImageTarget: x=180, y=0, z=-180. Scale it larger than the city, and move it to touch one side of the ImageTarget. Duplicate it and move the copies to surround the ImageTarget (4 total). Drag them onto the ImageTarget to make them children.
+
+<br><br>
+<b>b)</b> In the Project panel, open <b>Packages &gt; Vuforia &gt; </b><b>Materials</b> to find the <b>DepthMask</b> material. Drag it onto the MaskPlanes to make them disappear, and hide all the content behind them.
+
+<br><br>
+Want to create a custom hole shape? Create a polygon mask and depth moel in Maya! Try <a href="gamedesign/vr/ARholeMeshes.zip">these examples</a> (pulled wood boards hole and wavy shape) or this <a href="IntroMaya/DepthMask_CircleHole.fbx">circle-hole</a> FBX.
+
+<br><br><br>
+<em><b>TESTING  TIME:</b></em>
+<br>
+<img src="gamedesign/bullet.png" alt=""> Save your scene! Turn off any active cameras (like in Zoom).
+<br>
+<img src="gamedesign/bullet.png" alt=""> Hit <b>Play</b> on your camera-enabled laptop.
+<br>
+<img src="gamedesign/bullet.png" alt=""> Hold up a printed copy of the image target/s to see  AR content appear. Notice the scene only appears through the image-hole, and not around the sides!
+<br>
+<br>
+</font></td>
+<td valign=top align=center>
+<font face=arial><br>
+<a href="gamedesign/vr/ARVuforia23.png" target=cb1><img src="gamedesign/vr/ARVuforia23thumb.png" width=250 height=105 border=0></a>
+
+<br><br>
+<a href="gamedesign/vr/ARVuforia24.png" target=cb1><img src="gamedesign/vr/ARVuforia24thumb.png" width=250 height=105 border=0></a>
+
+<br><br></font></td>
+</tr><tr>
+<td valign=top><font face=arial>
+<b>4. INCLUDE AUDIO:<br>
+a)</b> WAV files are good for effects, MP3 for music. Import into the project panel, then drag and drop the soudn file onto a new Empty Game Object in the Hierarccy. This creates an Audio Source component on the object.
+
+<br><br>
+<b>b)</b> Drag the empty GO onto the Image Target if you want it to play only when the target is live! In the Inspector you can set the looping.
+
+<br><br>
+</font><font face="arial"><br>
+    <br>
+</font></td>
+<td valign=top align=center>
+<font face=arial><br>
+<br><br>
+<br><br></font></td>
+</tr>
+</table>
+
+<br>
+<center>
+<img src="gamedesign/bullet.png"><img src="gamedesign/bullet.png"><img src="gamedesign/bullet.png">
+</center>
+<br>
+
+<table width=100% cellpadding=5 border=0 bgcolor=#f5eeee><tr>
+	<td colspan=2 valign=top><font face=arial><a name="v3">&nbsp;</a> <a href="#TOP"><img src="comicsDesign/ArrowUp.png" alt=""></a> <br>
+        <font face=arial><img src="gamedesign/vr/vuforiaLogoSmall.png" alt="" width=35 align=left></font><font color=#775588><b>VUFORIA LESSON 3:</b></font> Grow your art into a dynamic, interactive experience!</b> <br>
+How can a story be implied through the design of the setting? What motion and interactivity might you include to enhance the sense of time and place?
+
+In Unity every element (GameObject) can get one or more scripts to make it act and be interactive. Start with <a href="#animMesh"><b>animated meshes</b></a> created in a 3D program (like Maya), then consider scripted options.
+<br><br>
+</font></td>
+</tr><tr>
+	<td width=55% valign=top><font face=arial>
+<b>1. OBJECT SCRIPTED MOTION</b>
+<br>
+Consider enhancing your scene with script-animated content:
+
+<br> <img src="gamedesign/bullet.png" alt=""> <b>Looping-in-Place Motion:</b> object flapping or spinning in the wind like window shutters or a broken wheel, or a character with repeated performance, like running a shop, eating at a cafe,  etc.
+
+<br><br>
+<img src="gamedesign/bullet.png" alt=""></font> <font face="arial"><b>Moving Content:</b> the occasional appearance of an elevated train or other vehicle passing through the scene in the background, or a passing-by character.
+
+
+<br><br><br>
+Here are  <a href="gamedesign/vr/AR_MotionScripts.zip" target=scripts><b>FOUR  BASIC SCRIPTS</b></a> for GameObject motion (open the ZIP, move scripts to  desktop, drag into Unity Assets folder, and drag onto Objects parented below the ImageTarget):
+
+<br><br>
+<img src="gamedesign/bullet.png" alt=""></font> <font face="arial"><a href="gamedesign/vr/ScrollingBG.cs" target=script1><b>Texture Panning</b></a><b>:</b> Scrolls an image across a surface. Good for clouds moving through the sky, or flowing water. Import a JPEG or PNG <b>image</b> into the Assets folder. In the Inspector, set this image's<b> Wrap Mode</b> from &quot;Clamp&quot; to &quot;<b>Repeat</b>&quot;, and hit [Apply]. RightClick Asset to Create &gt; <b>Material</b>, and drag the image into the Albedo slot. Create a Game Object &gt; 3D Object &gt; Plane, drag the Material onto the plane. Add this script.)
+
+<br><br>
+<img src="gamedesign/bullet.png" alt=""></font> <font face="arial"><a href="gamedesign/vr/RotateObject.cs" target=script2><b>Object Rotation</b></a><b>:</b> Rotates object around itself. Good for barber poles, windmills, wheels. Requires a <b>RigidBody</b> Component, set to <b>isKinematic</b>. Apply to an EmptyGO and parent an object to it to rotate around another object, like a bird around a mountain, or a bus that occasionally passes-by.)
+
+<br><br>
+<img src="gamedesign/bullet.png" alt=""> <a href="gamedesign/vr/BobFloat.cs" target=script3><b>Object Bob and Float</b></a><b>:</b> Motion to indicate a pick-up. Apply <b>Rigidbody</b> Component, set to <b>isKinematic. </b>Apply script.
+
+<br><br>
+<img src="gamedesign/bullet.png" alt=""> <a href="gamedesign/vr/FlickeringLight.cs" target=script4><b>FlickeringLight</b></a><b>:</b> A faulty streetlight or candlelight. Apply to a Unity light parented under the ImageTarget. Choose settings in the Inspector.
+
+<br><br>
+<br></font></td>
+    <td width=45% valign=top><font face=arial>
+<b>2. GAME INTERACTIVITY:</b>
+<br>
+<img src="gamedesign/bullet.png" alt=""> Consider a miniature Escape Room, where clicking on elements with your device allows them to be examined to answer questions in the UI, eventually switching the  scene.
+<br>
+<img src="gamedesign/bullet.png" alt=""> How about a game of Operation, carefully removing one element after another
+<br>
+<img src="gamedesign/bullet.png" alt=""> Or try using multiple ImageTargets: adding a second target to shoot a cannon into your first, to eliminate an approaching threat.<br><br>
+Here are some links to try  operations well-suited to an AR project
+<br>
+<img src="gamedesign/bullet.png" alt=""> Character <a href="https://youtu.be/khavGQ7Dy3c" target=move>movement</a> controller (6 min)
+<br>
+<img src="gamedesign/bullet.png" alt=""> Character <a href="https://www.ourtechart.com/augmented-reality/tutorial/unity3d-vuforia-character-follow-target/" target=follow>Following the Camera</a> (25 min)<br>
+</font>
+<b><font face="arial">AR <a href="https://youtu.be/b_Gn7Ns37bA" target=shoot1>Shooting</a> (15 min) and <a href="https://forum.unity.com/threads/unity-turret-tutorial.341866/" target=turret>Turret</a> (multiple videos)
+
+<br>
+<br>
+<img src="gamedesign/bullet.png" alt="">
+ Touch screen click to <a href="https://youtu.be/hi_KDpC1nzk" target=v3>Select AR Objects</a> (7 min)
+<br>
+<img src="gamedesign/bullet.png" alt=""> Vuforia's <a href="https://youtu.be/oTgc9ozukyY" target=gp>Ground Plane</a> Detection and Object Placement (5 min) and <a href="https://youtu.be/qKROC4WtyWw" target=v6>more details</a> (44min)
+<br> 
+<img src="gamedesign/bullet.png" alt=""> Create <a href="https://youtu.be/ElmzIq6stNI" target=v4>AR Buttons</a> (10 min)
+  another <a href="https://youtu.be/Fgd21lbhikU" target=buttons2>link</a> (18 min)
+<br>
+<img src="gamedesign/bullet.png" alt=""> Creating <a href="https://youtu.be/Tk31uGo7xHo" target=shapes>shapes out of multiple targets</a> (17 min)
+<br> 
+<img src="gamedesign/bullet.png" alt=""> Vuforia's <a href="https://youtu.be/oklcNZpx1-U" target=v5>User-defined targets</a> (25 min)
+<br>
+<img src="gamedesign/bullet.png" alt=""> Play and control <a href="https://youtu.be/8EWGJXjJsSA" target=audio>Audio</a> in AR (20 min)
+    
+<br><br>
+<b><em>NOTE: </em></b>Unity GameObjects can have any number of scripts. To make a new script, RightClick in the Assets folder to create a C# script, name it and hit [Enter]. Open in your prefered development program, like Visual Studio
+
+<br></font></td>
+</tr><tr>
+	<td colspan=2 valign=top><font face=arial>
+    <a name="export">&nbsp;</a> <a href="#TOP"><img src="comicsDesign/ArrowUp.png" alt=""></a><b>EXPORTING TO MOBILE DEVICES:</b>
+<br>
+While we can test our Vuforia projects using computer-cameras, here is how we export build files to mobile devices:
+<br>
+<img src="gamedesign/bullet.png" alt=""> Exporting to <a href="https://youtu.be/MtiUx_szKbI" target=android><b>Android devices</b></a>. Creates an APK file which can be shared online and loaded directly onto Android phones (that may need to have <a href="https://www.digitaltrends.com/mobile/how-to-get-developer-options-on-android/" target=dev>developer mode</a> activated).
+<br>
+<img src="gamedesign/bullet.png" alt=""> Exporting to <a href="https://youtu.be/dwjziS3Jjmk" target=ios><b>iOS devices</b></a>. 
+Requires a Mac computer<em><b>,</b></em> with the most recent version of XCode.
+<br><em><b>NOTE:</b></em> without a $100/year developer account, apps cannot be shared on multiple iOS devices.The only way to test is to build directly to an iOS device that is lightning-cord-tethered to your computer.
+    <br></font></td>
+</tr></table>
+
+
+
+
+
+
+<br>
+<br>
+<center>
+  <img src="gamedesign/bullet.png" alt=""><img src="gamedesign/bullet.png" alt=""><img src="gamedesign/bullet.png" alt="">
+</center>
+<br>
+<table width=100% cellpadding=5 border=0 bgcolor=#efefe4>
+  <tr>
+    <td colspan=2 valign=top><font face=arial><a name="v4">&nbsp;</a> <a href="#TOP"><img src="comicsDesign/ArrowUp.png" alt=""></a> <br>
+      <font face=arial><img src="gamedesign/vr/vuforiaLogoSmall.png" alt="" width=35 align=left></font><font color=#775588><b>VUFORIA LESSON 4:</b></font> NOTES ON MAKING <strong>3D ART AND ANIMATION</strong> FOR UNITY<br>
+      
+      <br>Not all functionality in your 3D package will work in Unity. Materials need to be simple and PNG-driven, and most effects need to be made in Unity, not your 3D package. 
+      <br>
+      <br>Please follow these guidelines (assumes Maya, but would be similar in any other 3D software):
+      <br>
+      <br></font></td>
+  </tr>
+  <tr>
+    <td width=55% valign=top><font face=arial> 
+    <b>1. 3D MODELING</b><br>Make each object a single mesh:
+<br>
+<em>Either</em> <strong>extrude the form from a single mesh</strong> or use <strong>Combine</strong> if the mesh is in multiple pieces (that are ot intended to be animated). <br>
+<em><strong>Example:</strong></em> Did you make a cool staircase out of many boxes instead of a single extruded form? <br>
+OK, now use Modeling Toolkit > <strong>[Combine]</strong> to make them into one mesh. 
+
+<br><br>
+All objects should have their Transforms Frozen: 
+<br><strong>Modify > Freeze Transforms</strong>. 
+<br>
+BUT check first to be sure the objects you are transform-freezing are not part of a parenting hierarchy: Select children and [Shift]+[p] to unparent. 
+
+<br>
+<br>
+All objects should have History Deleted (<strong>Edit > Delete By Type > History</strong>).
+
+<br>
+<br>
+There can be no Groups. Ideally, once each object histories has been deleted, remove extraneous transform nodes from the Outliner.
+
+<br><br>
+To make selection easier later, you can add the non-animated meshes to a Selection layer, then rightclick the selection layer to choose &quot;Select Objects&quot;. Each animated object should get its own layer.
+
+<br>
+<br>
+<br>
+<b>2. TEXTURING / MATERIALS:</b><br>
+Make materials Blinn, and named &quot;ObjectName_m&quot;.
+<br><br> 
+<strong>Textures colors must all be done with PNGs.</strong> 
+<br>Please do not use empty materials that just have the color changed!<br>
+<br> 
+A simple way to handle textures for many objects without full unwrapping: 
+<br>
+<strong>a). In Photoshop</strong> create a <strong>512x512, 72ppi</strong> file filled with a gray background and a grid of squares for the desired colors. Export as <strong>PNG</strong>.<br>
+<strong>b). In Maya</strong> add this texture to a Blinn named &quot;Objects__m&quot;, and apply to all (or most) of your objects. 
+<br>
+<strong>c).</strong> Then for each object, open the UV &gt; <strong>UV Editor</strong>, right click the UVs to choose <strong>UV Shell</strong>, then move and scale the UVs to fit one of the colored squares. 
+<br>
+You can also select edges to Cut /Sew &gt; Split seams, to drag parts to other squares. 
+<br>In this way nothing needs to be carefully uwnrapped, and everything gets a color. <br>
+<br> 
+Transparency should be handled with a semi-transparent PNG, and a material set to transparent in Unity.
+
+<br><br><br></font><font face=arial><b>3. 3D ANIMATION:</b><br>
+All <strong>TRANSFORM</strong> animations at the Object level are supported by Unity: <br>
+<strong>MOVE</strong>, <strong>ROTATE</strong>, <strong>SCALE</strong>. <br>
+Use these to make a cloud cross the screen. Set your file timeline to the extent of your animation (that time will export, by default)<br>
+<br>
+A <strong>ROTATION</strong>, like a banging shutter or spinning wheel, is easy to LOOP, and recommended! <br>
+<br>
+Component transforms,  like vertex animation, are <em><strong>NOT</strong></em> supported by Unity. <br>
+<br>
+<strong>DEFORMATIONS</strong> are supported, like a blanket rising and falling on a sleeping character, but only if accomplished with traditional rigging: <strong> JOINTS and SKINNING</strong> (BlendShapes also work, but Joints perform better). <br>
+<br>
+In Unity, animations need to be set to Loop and applied with an <strong><a href="#animMesh">Animator Controller</a></strong>.
+
+<br><br>
+<br>
+</font></td>
+<td width=45% valign=top><font face=arial><b>4. EXPORT SELECTION:</b><br>
+Maya meshes are exported as <strong>FBX</strong> to be imported into Unity. FBX can hold meshes, animations, cameras and and lighting (we don't want to export cameras or lights)<br>
+<br>
+To export your meshes from Maya to Unity, select your meshes and go to File &gt; <strong>Export Selection</strong>. <br><br>
+The Export Selection dialogue box includes parameters on the right. The default &quot;Includes&quot; options are fine, but turn on <strong>Embed Media &gt; Embed Media.</strong><br><br>
+<strong>Animated objects should be exported separately</strong> from the rest of your scene. <br>
+If your selected object has animation, add these settings to Export Selection:<br>
+<img src="gamedesign/bullet.png" alt=""> Animation &gt; enable <strong>Animation</strong><br>
+ <img src="gamedesign/bullet.png" alt=""> Bake Animation &gt; enable <strong>Bake Animation</strong><br>
+ <img src="gamedesign/bullet.png" alt=""> The start and end times should match your visible timeline.
+ <br>
+ (If your animated object uses a joint-rig, select both the mesh and the root joint to Export Selection.)<br><br>
+ All non-animated objects can be exported as a single FBX! This is particlarly helpful if you have built a street or a room and everything has a particular place. A single FBX will preserve their relative distances. 
+ 
+<br><br>
+On the other hand, <strong>if you want to export objects one at a time to duplicate and dstribute them in Unity inidvidually</strong>, then each should be placed to stand on Maya's World Center, with Transforms Frozen there (this is sometimes called "kitboxing").
+
+<br><br><br>
+<b>5. ARRANGING MESHES IN UNITY:</b><br>
+ Import your textures before your meshes, to have the texures be autimatically applied! Otherwise, you may need to apply the textures mannually, one by one.
+ <br><br>
+ All your FBX meshes 
+need to be <strong>children of the ImageTarget</strong> to particpate in the Vuforia system. BUT, to make them easy to Scale, they should also be children of an Empty Game Object that you can use for scaling:
+<br>
+<img src="gamedesign/bullet.png" alt=""> RightClick the ImageTarget and create an Empty Game Object. 
+<br>
+<img src="gamedesign/bullet.png" alt=""> In the Inspector, name it &quot;<strong>Objects_PIVOT</strong>&quot;. Its Position should be 0,0,0. 
+<br>
+<img src="gamedesign/bullet.png" alt=""> Drag your FBX meshes into the Scene and onto Objects_PIVOT. Move the meshes  BEHIND the Image Target. <br>
+<img src="gamedesign/bullet.png" alt=""> Now you can scale Objects_PIVOT to scale all children relative to the ImageTarget, instead of through it!<br>
+<br> 
+Your <strong>animated FBXs are imported SEPARATELY</strong>, and cannot have Transform information set directly on them in the Scene. Parent them to their own empty PIVOT object, where you can set Position, Rotation, Scale. 
+
+<br><br>
+Follow <strong><a href="#animMesh">these directions</a></strong> to get animations to work on your animated FBX (set clip name and looping, create an Animator Controller, add clip, apply to FBX in the Scene.</font></td>
+</tr><tr>
+<td colspan=2><font face=arial><b>6. SPECIAL EFFECTS:</b> <br>
+Particle and fluid effects in Maya will NOT export to Unity. Create them in Unity!<br>
+<br>
+For a <strong>campfire flame</strong>, for example, 
+create an <strong>Effect &gt; Particle Effect</strong>. <br>
+Note that while it is selected in the Hierarhcy, it will play in the Scene view. In the Inspector set: <br>
+<img src="gamedesign/bullet.png" alt=""> <strong>Transforms</strong>: <strong>Rotate X</strong> = -90<br>
+<img src="gamedesign/bullet.png" alt=""> Top Parameters: Start Lifetime=3, <br>
+Start Speed=2, Start Size=3<br>
+<img src="gamedesign/bullet.png" alt=""> <strong>Emission</strong>: Rate Over Time=25 <br>
+<img src="gamedesign/bullet.png" alt=""> <strong>Shape</strong>: Shape=Cone, Angle=2, radius=0.5<br>
+<img src="gamedesign/bullet.png" alt=""> Enable <strong>ColorOverLifetime</strong>, click  white box. <br>
+Set <strong>bottom Color tabs</strong> to yellow (birth, far left), red, and dark blue (death, far right). <br>
+Set top right Opacity  tab = 0 (transparent). <br>
+<img src="gamedesign/bullet.png" alt=""> Enable <strong>SizeOverLifetime</strong>, click  graph to view the full graph below. <br>
+Drag the left control point up near 1 and the right control point down near 0. <br>
+<br>
+<img src="gamedesign/bullet.png" alt=""> Optionally, create a new <strong>Material</strong> for your Particle Effect, to add a cartoony flame or smoke sprite: import your art that has transparancy, set the type from Default to Sprite and hit [Apply]. Create a material, set shader (top) to Particles &gt; Standard Unlit. Set renderign mode to Fade or Transparent, Add the sprite art to the Albedo square. Drag the material onto your particle effect!<br>
+</font></td>
+</tr></table>
+<br>
+<br><br>
+<br><br>
+<center>
+  <p><img src="gamedesign/bullet.png"><img src="gamedesign/bullet.png"><img src="gamedesign/bullet.png">
+    <font face=arial><a name="web">&nbsp;</a> 
+  <br>
+  <a href="#TOP"><img src="comicsDesign/ArrowUp.png" alt=""></a> &nbsp; 
+  <b>WEB ENABLED AUGMENTED REALITY </b></font>
+  <br>
+  <font face=arial>a</font><font face=arial>llows us to simply go to a webpage to run the program, 
+  <br>and avoids distributing apps on specific phone stores. 
+  <br>
+  </font>
+</center>
+
+<table width=100% cellpadding=5 border=0 bgcolor=#eeeeee><tr>
+<td width=55% valign=top><img src="../images1/spacer.gif" height=1></td>
+<td width=45% valign=top><img src="../images1/spacer.gif" height=1></td>
+</tr><tr>
+<td valign=top><font face=arial><a href="#TOP"><img src="comicsDesign/ArrowUp.png" alt=""></a> <a name="web1">&nbsp;</a><b>APPLE DEVICES</b> <b>ARKit (USDZ format):</b><br>
+The ARKit toolset (iphones and ipads series 8+) includes the <b>QuickLook</b> app for easy web viewing of 3D Assets. The format is USDZ (Pixar's Universal Scene Description format).<br><br>
+<b>PART 1: </b>Given a 3D object in Unity (with animated elements parented to a non-animated object), we can <b>export to USDZ</b> using these <a href="https://www.youtube.com/watch?v=q7FnJ4v97Is" target=USDZ1>steps</a>:
+
+<br>
+<b>a).</b> In Unity: <b>Window &gt; Package Manager</b>.
+
+<br><br>
+<b>b).</b> Open <b>Advanced &gt; Show Preview Packages</b>.
+
+<br><br>
+<b>c).</b> Search for <b>USD</b> and <b>[Install]</b>. This creates a new USD menu in Unity.
+
+<br><br>
+<b>d).</b> Import the 3D Asset into the Project Panel and select it. 
+<li>If there is animation, in the Inspector set Take001 to Loop. 
+<li>If textures are not appearign despite being embedded, import all PNGs into a subfolder before importing. 
+
+<br><br>
+<b>e).</b> Open <b>USD &gt; Export Selected as USDZ</b>. The file is generated and added to the Assets folder.
+
+<br><br><br>
+<b>PART 2:</b> Embed the USDZ and display code on your site (does NOT need to be https. See this tutorial, <a href="https://medium.com/xr-design-studios/add-augmented-reality-to-your-website-using-pixars-usdz-format-for-ios-devices-28304da7eaca" target=embedAR>part 2</a>):<br>
+<b>a). </b>Upload your USDZ file and a render of the image to your website. 
+
+<br><br>
+<b>b). </b>Use this simple script. Change &quot;asset_path&quot; and ObjectName to yours.
+<br>
+
+<center>
+<table width=80% cellpadding=5 border=1><tr>
+  <td><font face=arial>
+&lt;a href=&quot;<b>/asset_path/objectName.usdz</b>&quot; rel=&quot;ar&quot;&gt;
+<br>
+&lt;img src=&quot;<b>/asset_path/objectName.png</b>&quot;&gt;
+<br>
+&lt;/a&gt;
+</font></td></tr></table>
+</center>
+
+<br>Alternatively, upload your USDZ file to a site like <a href="https://usdzshare.com/" target=share>USDZshare.com</a>.
+<br><br><br></font></td>
+<td valign=top align=center><font face=arial><br>
+<i>iOS devices: click the cube icon in the upper right corner to download and play this mesh</i>
+<br><a href="ARtests/ARtest_ConveyorBoxes.usdz" rel="ar"><img src="ARtests/ConveyorBoxes.png"></a>
+
+
+
+<br><br><br><br>
+<br><br><br><br><br><br>
+Alternatively, explore Apple's <b>Reality Composer.</b> 
+<br>In combination with XCode, Reality Composer makes iOS &quot;Scene&quot; files that can be easily shared between devices, without making an app or needing a developer account.<br>
+Short <a href="https://www.youtube.com/watch?v=PHGIRRskzzE" target=rc>intro</a> &nbsp; | &nbsp; 
+3D Model  <a href="https://youtu.be/zJxq0r8wets" target=rc>importing</a>
+</font></td>
+</tr>
+
+<tr>
+<td valign=top bgcolor=#eee8ea><font face=arial><a href="#TOP"><img src="comicsDesign/ArrowUp.png" alt=""></a> 
+<a name="web2"><img src="gameDesign/vr/AR_ModelViewer_logo.png"></a>
+<b>ANDROID DEVICES</b> <b>ARCode  (gLB/glTF format):</b><br>
+Google's ARCode toolset (Android devices series 7+) includes the <a href="https://modelviewer.dev/" target=mv><b>ModelViewer</b></a> functonality for easy web viewing of 3D Assets. The Android format is  gLB (binary version of gLTF).<br>
+<br>
+<b>PART 1: </b><br>
+<font face="arial"> <b></b></font>A   3D object in Maya can be <b>exported to glTF</b> using one of the following plugins (install and restart Maya):<br>
+<b>*</b> <a href="https://github.com/matiascodesal/maya-glTF" target=maya1>maya-glTF</a> (simplest:  Python-- works in Win, Mac,  Linux)<br>
+<b>*</b> <a href="https://github.com/iimachines/Maya2glTF" target=maya2>maya2glTF</a> or <a href="https://doc.babylonjs.com/resources/maya_to_gltf" target=maya3>babylon.js</a> (includes textures and animation).<br>
+
+<b>*</b> <a href="https://www.blender.org/" target=lend><b>Blender</b></a> is a 3D Animation package able to import FBX files made in Maya and export as gLB. Here is the process:<br>
+<a href="gameDesign/vr/AR_blenderExport.png" target=blen1><img src="gameDesign/vr/AR_blenderExport_thumb.png" width=400 height=100></a><br>
+<em>NOTE: </em>A Unity engine   gLB exporter is in progress.<br>
+<br>
+Optionally choose an .HDR file, like from <a href="https://hdrihaven.com/hdris/" target=USDZ1>HRDIHaven</a>:<br>
+<a href="ARtests/hdri_forest.hdr" target=hdr1><img src="ARtests/hdri_forest_thumb.jpg"></a>
+<a href="ARtests/hdri_auto.hdr" target=hdr2><img src="ARtests/hdri_Auto_thumb.jpg"></a>
+<a href="ARtests/hdri_ballroom.hdr" target=hdr3><img src="ARtests/hdri_ballroom_thumb.jpg"></a>
+<a href="ARtests/hdri_market.hdr" target=hdr4><img src="ARtests/hdri_market_thumb.jpg"></a>
+<a href="ARtests/hdri_plant.hdr" target=hdr5><img src="ARtests/hdri_plant_thumb.jpg"></a>
+<!--<a href="ARtests/hdri_sidewalk.hdr" target=hdr6><img src="ARtests/hdri_sidewalk_thumb.jpg"></a>-->
+<a href="ARtests/hdri_street.hdr" target=hdr7><img src="ARtests/hdri_street_thumb.jpg"></a>
+<a href="ARtests/hdri_sunset.hdr" target=hdr8><img src="ARtests/hdri_sunset_thumb.jpg"></a>
+<a href="ARtests/hdri_wharf.hdr" target=hdr9><img src="ARtests/hdri_wharf_thumb.jpg"></a>
+
+<br><br>
+Use the <a href="https://modelviewer.dev/editor/" target=viewer><b>Model Viewer Editor</b></a> to generate code for <b>annotations</b>, <b>material adjustments</b>, etc.<br>
+<br>
+<b>BEST EXPORT PROCESS:</b>
+<br>Export Animation from <b>Maya</b> to Blender using FBX:<br>
+<b>1. Unfreeze Transforms:</b> "Frozen" transforms in Maya don't translate to Blender. 
+They need to have their relative positions restored for the pivots to be located correctly.<br>
+Use this <a href="http://pozeststar.blogspot.com/2012/02/mel-script-unfreezing-transformations.html" target=mel>Mel script</a> to unfreeze selected objects (requires there to be no keyframes yet, and no parenting).<br>
+<br>
+<b>2. Parent objects into a hierarchy</b> once unfrozen. 
+<br>
+<b>Animate</b> Rotation and Position keys as needed keys for start and end of the range, starting at zero. Typically we want loops: end frame matches the start frame. <br>
+<b></b><br>
+<b>3. Export:</b> File &gt; Export if your file only has desired objects. 
+<br>
+Or, select the objects (in hierarchies, just the ultimate parent) to Export Selected.<br>
+Choose <b>FBX</b>, turn on <b>Animate</b> and choose <b>range</b>, turn on <b>Embed Media</b> to include textures.<br>
+<b></b> <br>
+<b>4. In <a href="https://www.youtube.com/watch?v=pNA8ujgtogM" target=blend>Blender</a>:</b> Open the <b>Non-Linear Animation</b> Editor.
+<br>&quot;<b>Push Down</b>&quot; all channels. 
+<br>Name the NlaTrack layers the same.
+<br> In the material tab, for each material set <b>roughness</b>  = 1.0 to remove reflections.<br>
+<b></b> File &gt; Export &gt; <b>gLTF</b> to make the 
+<a href="https://docs.blender.org/manual/en/2.80/addons/io_scene_gltf2.html" target=glb>.gLB</a> file.
+
+<br><br><br>
+<b>(Alternately, check out <a href="https://youtu.be/kSFNGB4PAr8" target=alem>ALEMBIC</a></b> (Animation, no Textures): 
+<br>In Maya, Activate the Alembic plugins: Windows &gt; Settings / Preferences &gt; Plugin Manager.<br>
+Search for &quot;abc&quot; and activate all three.<br>
+With all meshes selected: Cache &gt; Alembic Cache &gt; Export Selection to Alembic. Turn on all check boxes at the bottom).<br>
+<br><br>
+  </font></td>
+<td valign=top bgcolor=#eee8ea><font face=arial>
+<br>
+<b>PART 2:</b> <br>
+<font face="arial"> <b></b></font>Embed the gLB and display code on a server / website:<br>
+    <b><br>
+    <font face="arial"> <b></b></font>a). </b>Upload your gLB file and optionally an HDRI image for lighting.</font>    <font face=arial><br>
+    <b><br>
+    <font face="arial"> <b></b></font>b).</b> Add these  scripts to your html <b>&lt;head&gt;</b> for the model-viewer package:</font>
+  <center>
+    <table width=100% cellpadding=5 border=1><tr>
+<td><font face=arial color=gray>&lt;script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"&gt; &lt;/script&gt;  &lt;script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"&gt; &lt;/script&gt;</font></td>
+</tr></table>
+</center>
+
+<br>
+<font face="arial">
+<b>c).</b> Add this script to your html <b>&lt;body&gt;</b> for an actual Viewer. The letters &quot;ar&quot;  alone allow Augmented Reality access.<br>
+Play animations with the autoplay attribute. 
+<br>Change &quot;paths&quot; and &quot;objName&quot;:<br>
+
+
+<center>
+<table width=100% cellpadding=5 border=1><tr>
+<td><font face=arial color=gray> &lt;model-viewer src="<b>path/objName.glb</b>"
+<br>
+ar ar-scale="auto"<br>ar-modes="webxr scene-viewer quick-look"<br>shadow-intensity="1"<br>
+auto-rotate camera-controls autoplay<br>alt="Description"<br>skybox-image="<b>path/skybox.hdr</b>"<br>ios-src="<b>path/objName.usdz</b>"<br>
+style=&quot;width: 100%; height: 200px;&quot;&gt;<br>
+&lt;/model-viewer&gt;</font></td>
+</tr></table>
+</center>
+
+
+
+<br><br>
+<em><b>LEARN MORE ABOUT MODEL VIEWER:</b></em>
+<br>
+&nbsp; &nbsp;&lt;model-viewer&gt; <a href="https://modelviewer.dev/examples/annotations/index.html" target=mvdocs>documentation and examples</a>.<br>
+
+&nbsp; &nbsp;Notes on embedding model viewer on <a href="https://support.google.com/webdesigner/answer/10177959" target=web>websites</a>.<br>
+<br>
+<br>
+<em><b>QUICK-TEST YOUR GLB FILES:</b></em><br>
+Drag the gLB file into a viewer to test 
+<br>animation and textures: 
+
+<br>&nbsp;&nbsp; <a href="https://modelviewer.dev/editor/" target=mv>https://modelviewer.dev/editor/</a>
+<br>&nbsp; &nbsp; &nbsp; or
+<br>&nbsp;&nbsp; <a href="https://sandbox.babylonjs.com/" target=bab>sandbox.babylonjs.com/</a>
+
+<br>
+<br>
+
+<br>
+<br>
+For object <strong>material transparency</strong>, like glass: <br>
+Load your gLB into the Google Model Viewer. 
+<br>
+<br>
+1. In the <strong>Material panel, open</strong> three rolldowns: <br>
+&nbsp;&nbsp; <strong>Selected Material</strong>, <strong>Base Color</strong>, and <strong>Other</strong><br>
+<br>
+2. Under <strong>Selected Material</strong>: choose glass material. <br>
+You will see the image change under <strong>Base Color</strong>.<br>
+<br>
+3. Under <strong>Other</strong>: <br>
+Set <strong>Alpha Blend Mode</strong> from Opaque to <strong>Blend</strong><br>
+Set <strong>Alpha Factor</strong>. Try <strong>0.3</strong>.<br>
+<br>
+<br>
+See this 
+<a href="http://madwomb.com/tutorials/GameDesign_ModelViewer.html" target=mv>presentation example</a>
+ with multiple animations, controlled with buttons.
+ <br><br>
+</font></td>
+</tr>
+<tr>
+<td align=center colspan=2 bgcolor=#eee8ea><font face=arial>
+<i><b>Android AND iOS devices:</b> Look at a room or table. Click the cube icon <img src="gameDesign/vr/AR_ModelViewer_click.png"> in a corner to download and play. 
+<br>
+Click-drag to scale the object in your space. Try walking around the object:</i>
+<br>
+<model-viewer src="ARtests/ARtest_ConveyorBoxes.glb" 
+ar ar-scale="auto"
+ar-modes="webxr scene-viewer quick-look" 
+shadow-intensity="1" 
+auto-rotate camera-controls autoplay 
+alt="Test model by Jason Wiser" 
+skybox-image="ARtests/hdri_plant.hdr" 
+ios-src="ARtests/ARtest_ConveyorBoxes.usdz"
+style="width: 100%; height: 300px;"></model-viewer>
+
+<br><br>
+
+<model-viewer src="ARtests/ARtest_Conveyors2.glb" 
+ar ar-scale="auto"
+ar-modes="webxr scene-viewer quick-look" 
+shadow-intensity="1" 
+auto-rotate camera-controls autoplay 
+alt="Test model by Jason Wiser" 
+skybox-image="ARtests/hdri_plant.hdr" 
+ios-src="ARtests/ARtest_Conveyors2.usdz"
+style="width: 100%; height: 500px;"></model-viewer>
+
+
+<br><br>
+
+<model-viewer src="ARtests/AmbiSort_v5.glb" 
+ar ar-scale="auto"
+ar-modes="webxr scene-viewer quick-look" 
+shadow-intensity="1" 
+auto-rotate camera-controls autoplay 
+alt="Test model by Jason Wiser" 
+style="width: 100%; height: 500px;"></model-viewer>
+
+
+<!--
+<model-viewer src="ARtests/ARtest_ConveyorBoxes.glb" 
+alt="A 3D model of an astronaut" auto-rotate camera-controls></model-viewer>
+ -->
+
+<br><br></font></td></tr>
+<tr><td colspan=2 bgcolor=white><img src="../images1/spacer.gif" height=1></td></tr>
+<tr>
+<td valign=top><font face=arial><a href="#TOP"><img src="comicsDesign/ArrowUp.png" alt=""></a> <a name="web4">&nbsp;</a><b>PANORAMAS: 360 Renders of 3D Spaces:</b><br>
+  Here are notes for creating an <b>Autodesk Maya</b> 360 Arnold render (for 360 video/VR or game panoramic scene textures): <br>
+<br>
+<b>PART 1: </b>Given a 3D scene centered on the Maya world center:</font><br>
+<b>a.</b> <font face="arial"><b>Create &gt; Cameras &gt; Camera</b>, lift about eye-height, name Cam360 <br>
+<br>
+<b>b.</b> Look through the Camera: viewport menu <b>Panels &gt; perspective &gt; Cam360</b>. <br>
+<br>
+<b>c.</b> In <b>Attribute Editor</b>, go down to the Arnold tab and change <b>Camera Type</b> from perpective to <b>Spherical</b>. If we are too close to the sides: Up in Camera Attributes set the Focal Length lower (try 20).
+<br>
+<br>
+<b>d.</b> Open Render settings (clapboard-gear icon). Set <b>Render Using = Arnold</b>. In the Common tab, Under <b>Image Size</b> choose 2048x1024. In the Arnold Renderer tab under Sampling set Camera (AA) = 3 and the other settings to 2. 
+<br><br>
+<b>e.</b> Hit <b>Render</b> to see the final image! The Spherical perspective shows in the render. This is called an Equirectangular image. <br><br><br>
+<b>PART 2a:</b> To view this as an interactive panorama, we need a viewer. You can use an Autodesk viewer or any other that uses Equirectangular images, like the <a href="https://community.gopro.com/t5/en/GoPro-Player/ta-p/413305" target=gopro1>GoPro viewer</a> (I use <a href="https://www.majorgeeks.com/files/details/gopro_vr_player.html" target=gopro2>this one</a> for quick tests on my computer).<br>
+<br><br></font></td>
+<td valign=top><font face=arial><b>PART 2b:</b> To share your creations with others, try an a web viewer like <a href="https://pannellum.org/documentation/overview/tutorial/" target=pan>Panellum</a> (an open-source web-enabled viewer from MIT), or Google's  <a href="https://www.marzipano.net/" target=pan2><b>Marzipano</b></a>, which includes the ability to link between panoramas. 
+
+<br><br>
+<b>MARZIPANO: </b>Click <a href="ARtests/MarzipanoTest1/app-files/index.html" target=panoTest><b><em>here</em></b></a> for a sample of a 360 panorama project. 
+<br><br>
+The <a href="https://www.marzipano.net/tool/" target=marztool><b>Marzipano Editor Tool</b></a> makes it  easy to upload and export a 360 experience that links multiple Equirectangular renders of proportion 2:1 (like 2048x1024). The exported files cabn then be uploaded to a personal website to share (or zipped up and sent to people to view in their own browsers).<br><br>
+A lot more functionality is available if the exported Javascript, HTML, and CSS files are modified. See these <a href="https://www.marzipano.net/demos.html" target=marzdemos><b>demos</b></a> for examples.
+
+<br><br>
+To use Equirectangular <b>VIDEO</b>, download this <b>package</b> of web files. In the <b>multiResVideo.js</b> file, replace the reference to the <b>.mp4</b> with your video file name and location. This example allows multiple reslotions based on the number-pairs offered in the <b>index.html</b> file. See this <a href="ARtests/MarzipanoTest3/Index.html" target=panoTest><b><em>video test</em></b></a></font></td>
+</tr>
+<tr><td colspan=2 bgcolor=white><img src="../images1/spacer.gif" height=1></td></tr>
+<tr>
+	<td valign=top bgcolor=#eee8e8><font face=arial><b> </b><a href="#TOP"><img src="comicsDesign/ArrowUp.png" alt=""></a> <a name="web5">&nbsp;</a> <b>AR.js</b>: is an open source system for AR on the web. <em><b>Most AR.js functionality has not yet been implemented in Unity</b></em>, but this tutorial covers  what can be done with Unity for devices with ARcode (Android 8+) or ARkit (iOS11+) installed. Make sure the <b>WebGL</b> Module is installed in <b>Unity Hub</b>.<br>
+	    <br>
+	    <b>AR.js</b> <b>SOURCE</b> was created by <a href="https://youtu.be/NBrM7YVznzk" target=jerome>Jerome Etienne</a> (here is his original <a href="https://github.com/jeromeetienne/AR.js" target=jerome>github</a>, now changed to an ORG), and the <b>AR.js UNITY</b> work is by <a href="https://github.com/taylordigital13/ARjs_Unity" target=notes>Weldonla</a>.</font><br>
+	    <font face=arial><br>
+              <b>Setting up Unity for AR.js </b>(<a href="https://youtu.be/v6fcqIglSHE" target=GVRstart>source</a>)<br>
+<br>
+1. Open Unity Hub. Create a new <b>Unity 3D</b> project.<br>
+<br>
+2. GET UNITY ARjs: On the <a href="https://github.com/taylordigital13/ARjs_Unity" target=sdk><b>AR.js <em>UNITY</em> Github</b></a> page hit the green Code button and choose Download ZIP. Extract the ARjs_Unity-master folder to your desktop and rename it <b>ARjs_Unity</b>.<br>
+Drag the folder into your Unity project Assets folder<b>.</b>
+<br>When it finishes compiling, a new &quot;AR.js&quot; menu appears at the top of Unity. This includes <b>Image Target</b>, <b>Make Button</b>, <b>Make Animation</b>, and <b>Compile Files</b>.
+<br><br>
+3. GET SOURCE ARjs: On the <a href="https://github.com/AR-js-org/AR.js" target=sdk><b>AR.js <em>SOURCE</em> Github</b></a> page hit the green Code button and choose Download ZIP. Extract the AR.js-master folder to your dektop. Drag into your Unity project Assets folder (if two folders appear, <b>AR.js 1-master</b> is the one you want to keep. Delete the duplicate master folder and rename the remainder <b>AR.js-master</b>) 
+
+<br><br>
+4. NAME AND SAVE THE SCENE: <b>File &gt; Save As</b> to create a new Scene and name it Scene AR_test.<br>
+<br>
+5. BUILD THE AR SCENE: RightClick in the Hierarchy to create <b>AR.js &gt; ImageTarget</b>. Note that the menu AR.js &gt; Compile Files option becomes active. With the ImageTarget selected in the Hierarchy, create <b>AR.js &gt;</b> Cubes or other AR.js objects (or even a low-poly <b>Custom Model</b>). 
+
+Occasionally check that Compile Files is still active, or you will need to delete your Image Target (with all objects parented to it) and create a new one.<br>
+<br>
+To add <b>textures that compile</b>: select texture, look in Inspector for Import Settings,  set Compression = none. Should  be 72 ppi and power-of-two-square.<br><br>6. Optionally, we can go to the AR.js menu to <em>Generate</em> a custom marker image and then <em>Apply</em> it, to customize the design that will be recognized and activate the AR experience.<em><font face="arial"><b><br><br>
+TESTING  TIME</b></font></em><br>
+        </font>
+<li><font face="arial">Save your scene. Hit <b>AR.js &gt; Compile File</b> to build the html page and model folder. Find them in your Unity project under <br>
+Assets &gt; AR.js-master &gt; aframe &gt; {Active Scene Name} &gt; index.html 
+<br>
+</font>
+<li><font face="arial"><b>TEST LOCALLY: </b>On your camera-enabled computer, drag the index.html file onto an open browser window. If the browser asks to enable the camea, say yes. The browswer will access your camera, and if you hold up <a href="ARtests/hiro.png" target=hiro>this marker image</a> (best as a print-out, with white border) you will see the 3D model track it on the screen (NOTE: if you get a bright blue screen with loading dots, the file containing custom models is either too complex or corrupt. Try a different model).</font>
+<li><font face="arial"><b>TEST ONLINE: </b>If your web domain has an SSL certificate (https, not http) you can <b>upload the  entire AR.js-master folder  once</b>, and then add each test folder (by scene name) to the aframe folder. </font><font face="arial">You can then test using your mobile device and the default "hiro" marker: navigate to the test folder using your mobile device, then look at <a href="ARtests/hiro.png" target=hiro>this image</a> (best as a print-out) through the camera to see the AR effect.<br>
+<br>
+</font></td>
+<td valign=top align=center bgcolor=#eee8e8><font face=arial><b>NOTE: </b>In order for the laptop or mobile device to allow its camera to be accessed, <br>
+the website needs an <a href="https://letsencrypt.org/getting-started/" target=letsencrypt>SSL certificate</a> (https, not http. See these steps: <a href="https://sucuri.net/guides/how-to-install-ssl-certificate/" target=steps>01</a>, <a href="https://www.digicert.com/kb/ssl-certificate-installation.htm" target=steps2>02</a>). <br><br><br>
+<em>Click for full images</em><br><br>
+<a href="gamedesign/vr/ARjs01.png" target=cb1><img src="gamedesign/vr/ARjs01thumb.png" width=250 height=105 border=0></a>
+
+<br><br><br>
+<a href="gamedesign/vr/ARjs02.png" target=cb1><img src="gamedesign/vr/ARjs02thumb.png" width=250 height=105 border=0></a>
+<br><br><br>
+<a href="gamedesign/vr/ARjs03.png" target=cb1><img src="gamedesign/vr/ARjs03thumb.png" width=250 height=105 border=0></a>
+<br><br><br>
+<a href="gamedesign/vr/ARjs04.png" target=cb1><img src="gamedesign/vr/ARjs04thumb.png" width=250 height=105 border=0></a>
+
+<br><br><br>
+</font><font face=arial><a href="gamedesign/vr/ARjs05.png" target=cb1><img src="gamedesign/vr/ARjs05thumb.png" width=250 height=105 border=0></a></font></td>
+	</tr></table>
+
+<br><br>
+
+	<center>
+	<table width=700 cellpadding=10 border=0><tr>
+	<td><font face=arial><em>Tutorials compiled by Jason Wiser, with a 5-month quarantine-beard. <a href="http://www.Madwomb.com" target=mw>Madwomb.com</a></em>	<br></font></td></tr>
+	</table></center>
+
+</td></tr>
+</table>
+</center>
+
+</body>
+</html>

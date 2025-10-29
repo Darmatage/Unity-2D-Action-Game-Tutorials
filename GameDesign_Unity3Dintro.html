@@ -1,0 +1,1329 @@
+<html>
+<head>
+<title>Unity3D Intro Tutorial</title>
+</head>
+
+<body text=#222222 link=#1e6669 vlink=#7700aa alink=#1088bb>
+
+<center>
+<table width=900 cellpadding=10 border=0>
+<tr><td colspan=2 valign=top><font face=arial>
+<a href="GameDesign_Unity.html"><img src="gamedesign/UnityLogo60.png" alt="" align=right></a>
+<font size=+2><b>UNITY - Introduction to 3D Games</b></font>
+<a name=theTop>&nbsp;</a> 
+<br>This tutorial covers introductory topics on starting in Unity, 3D games, and Scripting. 
+<br><br>
+<table width=100% cellpadding=5 cellspacing=0border=0><tr>
+<td width=22% valign=top bgcolor=#eeeeee><font face=arial>
+<strong>INTRO TO UNITY </strong><br>
+Part A: <a href="#a">Unity Interface</a>
+<br><br>
+Part B: <a href="#b">Major Concepts</a>  
+
+</font></td>
+<td width=25% valign=top bgcolor=#edf3ed><font face=arial>
+  <strong>3D INTERACTIONS </strong><br>
+Part 1. <a href="#01">Project Set-Up</a>  
+<br> and Terrain
+<br>
+Part 2. <a href="#02">Unity  Physics</a>  
+<br>
+Part 3. <a href="#03">Scripts &amp; Audio</a> 
+<br>Part 4. <a href="#04">Coroutines</a> 
+<br>
+Part 5. <a href="#05">AddForce</a>
+and<br>
+ Projectile Shooting
+<br>
+</font></td>
+<td width=25% valign=top bgcolor=#e7e2f1><font face=arial>
+<strong>FEEDBACK: VFX/ SFX </strong><br>
+Part 6. <a href="#06"><strong>Feedback FX</strong></a><br>
+Changes on impact:<br> &nbsp; <img src="gamedesign/bullet.png"> <a href="#06color">Color</a> 
+<br> 
+&nbsp; <img src="gamedesign/bullet.png"> <a href="#06sound">Sound</a> Pitch/ Volume
+<br> &nbsp; <img src="gamedesign/bullet.png"> Instantiate <a href="#06ps">Particles</a>
+</font></td>
+<td width=28% valign=top bgcolor=#ffeeee><font face=arial>
+<strong>SCORES, SCENES, BUILDS</strong><br>
+Part 7. <a href="#07">UI and Scoring</a> 
+<br>Part 8. <a href="#08">Debug Log</a> 
+<br>Part 9. <a href="#09">Switch Scenes</a> 
+<br>Part 10. <a href="#timer">Timer</a>
+<br>Part 11. <a href="#10">Export Build</a>
+</font></td></tr></table>
+
+
+</font></td>
+</tr></table>
+
+<br>
+<center>
+<a name=a>&nbsp;</a>
+</center>
+<table width=900 cellpadding=5 cellspacing=0 border=0 bgcolor=#eeeeee><tr>
+<td colspan=2 valign=top align=center bgcolor=#eeeeee><font size=+2 face="arial"><b><a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a> PART A: UNITY INTERFACE</b></font>
+</tr><tr>
+<td width=490 valign=top  bgcolor=#eeeeee><font face=arial><b>(1) PROJECT panel </b>(bottom): Where all assets are stored. Shows the actual Project folders, auto-updates if anything is  put into or taken out of  folders outside or inside Unity. Only change contents of Assets folder. Make subfolders: prefabs,  scripts, etc.<br>
+<br>
+<b>(2) HIERARCHY panel</b> (far left): Contents of  current scene.  Organize by parenting similar objects under a named Empty GO, like  putting all tree objects under an Empty G.O. called &ldquo;foliage&rdquo;. 
+
+<br><br>
+<b>(3) SCENE View </b>(center): View and Transform all assets in the game from  any desired angle.
+<li> <em>NAVIGATE SCENE:</em> <b>Orbit</b> = [Alt]+L-Mouse,
+<br>&nbsp; &nbsp;<b>Pan</b> = [Alt]+M-Mouse, <b>Zoom</b> = [Alt]+R-Mouse.
+<li><em>TRANSFORM OBJECTS:</em>
+<br> &nbsp; &nbsp;<b> move</b> = [w], <b>rotate</b> = [e], <b>scale</b> = [r]
+<li> Hit [f] to zoom and frame  selected (&ldquo;focus&rdquo;).  
+<li> [Shift]+LeftClick to add or remove  selection. 
+<br><br>
+<b>(4) GAME View:</b> See through camera. Multiple cameras  can split screen by percentages. Hit Play to play game. <em>NOTE:</em> changes to assets during Play mode are reset when play is turned off (not  saved). <br><br>
+<b>(5) INSPECTOR panel </b>(far right): Shows all Components and parameters  for G.O. selected in the Hierarchy (in Scene) or Project  (Assest or Prefabs). 
+<br><br>
+<b>Context gears/dots:</b> Click gears or other  context buttons to change parameters (like shapes or material Shaders) or  add assets, like texture PNGs.
+
+<br><br>
+<b>(6) MENU:</b>  easy access to all parts of  Unity. In particular, note: 
+<li><b>File</b> &gt; Build Settings (to start any project)
+<li><b>Edit</b> &gt; Project Settings/Inputs for script-controlling  inputs.
+<li><b>Assets</b> &gt; Import Package to get useful  prefabs
+<li><b>GameObject</b> (GO) and <b>Component</b>  to  build custom assets.
+
+
+</font></td>
+<td width=410 valign=top bgcolor=#eeeeee><font face=arial>
+<b>(7) CONSOLE panel:</b> Check script errors.
+
+<br><br>
+<b>(8) Asset Store view:</b> For downloading or uploading packages (note: for this course, all art and audio assets are expected to be made by your team).<br><br>
+  <b>SCRIPTING NOTES:</b></font>
+  <li>
+<font face="arial"><b>Script Editor (IDE): Visual Studio </b>(Unity 5.2 and above) <b> Notepad++</b> (PC only), <strong>Atom</strong> (Mac only), etc.</font><li><font face="arial">Set your editor in Unity: <b>Edit &gt; Preferences &gt; External Tools </b>and choose the Script Editor at the top (on a Mac find Preferences under Unity menu).</font><li><font face="arial">Once assigned, open  editor by DoubleClicking a script.
+</font>
+<li><font face="arial">Write Unity scripts in C#.
+  </font>
+<font face=arial>
+<li>Unity does not use one large block of code to manage the game; instead, each interactive object has one or more scripts to manage its behavior.<li>Scripts are Components added to GameObjects: 
+<b>[Add  Component] &gt; Script</b> (C#) or RightClick Project panel Assets folder to <b>Create &gt; C# script 
+</b> and drag onto the object in the Hierarchy.<li>Scripts  can access <b>Components</b> on their GameObject (play audio, change color or RigidBody Mass, etc).
+<li>Unity  won&rsquo;t play the game if a script has an <b>error</b>. This is good! See Console panel or footer for error messages to find the line with the problem and fix it.
+<li>Select  a term you do not understand and hit <b>[Ctrl/Cmd]+[&lsquo;]</b> to access documentation.
+<li><b>Mathf</b> =  math functions collection, including clamp.<li>Unity  has good <strong>physics engines</strong> built in (both 2D and 3D), complete with collision systems, raytracing, etc.<br>
+
+</font></td></tr></table>
+
+<img src="gamedesign/UnityTerrain/UnityInterface.png" width=1000 height=706>
+
+<br>
+<a name=b>&nbsp;</a>
+<br>
+<table width=900 cellpadding=10 border=0 bgcolor=#eeeeee>
+<tr>
+  <td colspan=2 valign=top align=center><font face=arial>
+<font size=+2><b><a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a> PART B: MAJOR  UNITY CONCEPTS / TERMS</b></font>
+</font></td>
+</tr><tr>
+<td width=450 valign=top><font face=arial><b>GAME OBJECT:</b> The base of a thing  in Unity. Just about everything in the game starts as an empty G.O., to which we  add components to build it into an interactive asset. 
+<br><br>
+<b>COMPONENT:</b> everything we add to  Game Objects to make them function as desired, including renderer, materials,  particles, audio, physics, and custom scripts. Components can most easily be  added to G.O.s and have their settings adjusted in the Inspector, with the G.O.  selected. 
+<br><br>
+<b>SCENE:</b> a game &ldquo;level&rdquo;. A  game can have many Scenes, each sharing or with their own G.O.s, Controllers,  and Prefabs. File &gt; New Scene for a new level or menu in the game,  File &gt; New Project to start an entirely new game.
+
+<br><br>
+<b>PREFAB:</b> A container for a  complete asset (collection of G.O., Components, settings) used repeatedly.  Create by  dragging an asset from Hierarchy to Project. Asset in Hierarchy turns blue, and each copy made from then on is an  &ldquo;instance&rdquo; of the Prefab in the project. Prefabs can be Instantiated by code in a script (bullets, etc.).
+
+Can be exported in a Package to be used by others (like teammates).<br>
+<br>
+<b>PACKAGE:</b> Unity scenes do not merge well. Therefore, only one person can &quot;own&quot; (modify) the Unity Scene at a time, and collaborators must work in temporary Scenes and then Package up the content they want to send to the Scene Owner for integration into the actual scene. The steps: 
+<br>
+(1) Create an Empty GameObject in the Hierarchy.  
+<br>(2) Parent all Hierarchy elements to be packaged under that Empty GO. 
+<br>(3) Name the Empty GO usefully. 
+<br>
+(4) Drag the Empty GO parent to the Project to make a Prefab of the entire group. 
+<br>
+(5) Rightclick to Export Package, and  share with team
+
+<br><br>
+<b>2D vs 3D</b>: a 3D Unity game  works with perspective and a 2D game uses flat parallax planes. Each must use  their own physics prefabs, for example &ldquo;RigidBody&rdquo; for 3D and &ldquo;2DrigidBody&rdquo; for  2D. Set the initial game system to 2D or 3D on project creation. 
+
+
+</font></td>
+<td width=450 valign=top><font face=arial>
+
+<b>PHYSICS:</b> in Unity there are a  number of Physics and Physics2D Components to manage physical interactions. <b>Colliders</b> (capsule, mesh, or box) manage object interactions and  can be set for physics interactions (bouncing) or to trigger other effects  (like activating a script if set to isTrigger). <b>RigidBody</b> enables the built-in physics engine, is applied to any  object with actively interacting colliders (any object with a collider that is  not the ground), and contains gravity which can be turned off for flying/space games. <b>Physic Materials</b> can be added to colliders to control friction and bounciness.<br><br>    
+<b>CONTROLLER:</b> a component meant to  manage a major game part. We write a custom GameController for a Scene  and add AnimationController to animated assets to manage interaction of  that asset&rsquo;s animations with its scripts.
+<br>
+<br>
+<b>GUITEXT</b> are empty G.O. with  GUIText components applied. They are differently visible in Game view (overlays game) and Scene (HUGE). Uses  pixels in viewport space. Position by default is relative to: lowerLeft 0/0/0,  upperLeft 1/0/0, upperRight 1/1/0, lowerRight 0/1/0.<br><br>
+<b>TAGS</b> are identifiers  which can be added to a GameObject in the Inspector for scripts to exclude or include  from an effect, or to find a unique tagged G.O., like the Player or  GameController (or a custom tag). <b>LAYERS</b> are for identifying groups of objects, and are accessed by Layer # (int) rather than Tag name (string). <br><br>
+<b>AUDIO </b>in Unity comes in 3  main forms: 
+<li><b>Audio Clips</b> = Sound files: WAV or MP3 work well. See Inspector for import  settings/ preview. Flat: Turn off 3D Sound. 
+<li><b>Audio Sources</b> = G.O. with audio component to play SFX or  music, added by dragging audio clip on G.O. Note &ldquo;Play on Awake&rdquo; and &ldquo;Loop&rdquo;  settings to decide if audio starts immediately as G.O. is created and if it  plays continuously. Also note volume settings. 
+  <li><b>Audio Listener</b> = What the audience hears. 
+  By default this is on the  Main Camera, the single G.O. that receives audio. If 3D sound is on, distance  of Sources from Listener changes audio volume.
+
+<br></font></td></tr></table>
+
+<br><br>
+
+
+<table width=680 cellpadding=10 border=0><tr>
+<td colspan=2 bgcolor=#edf3ed>
+<center>
+<font face="arial"><a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a><a name="01">&nbsp;</a></font><font size=+2 face="arial"><b>UNITY 3D TUTORIAL:  Intro to Physics,<br>
+First-Person Controller, and  Scripting Interactions</b></font>
+</center>
+<font face=arial>
+<br>
+<b>UNITY SHORTCUTS:</b><br>
+&nbsp; <img src="gamedesign/bullet.png" alt=""> Doubleclick   an item in Hierarchy to <strong>center</strong> it (or select an object, hover over Scene, hit <strong>[f]</strong>). <br>
+<strong>&nbsp; <img src="gamedesign/bullet.png" alt=""> [alt / option]</strong> +  mouse buttons to navigate in the Scene window.
+<br>&nbsp; <img src="gamedesign/bullet.png" alt=""> <strong>Transform</strong> an object: <strong>[w]</strong> = Move,  <strong>[e]</strong> = Rotate, <strong>[r]</strong> = Scale 
+<br></font></td></tr></table><br>
+
+<table width=680 cellpadding=10 border=0><tr>
+<td colspan=2 bgcolor=#edf3ed><font face=arial>
+<b><font color=purple><a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a> PART 1:</font> SET-UP</b> 
+<br>
+<strong>a).</strong> Create a new 3D Project in Unity: 
+
+<br>
+&nbsp; &nbsp; &nbsp;<img src="gamedesign/bullet.png" alt=""> Open the <strong>Unity Hub</strong>.<br>
+&nbsp; &nbsp; &nbsp;<img src="gamedesign/bullet.png" alt=""> Hit <strong>[New]</strong>.  In the window that opens, choose 3D, set the name and location (all names for projects and assets should avoid spaces or special characters. Use HumpCap notation). Hit [Create] and wait for the project to build into the location you set.<br><br>
+<strong>b) Download</strong> the following assets and add them to the <strong>Project Panel &gt; Assets folder:</strong><br>
+&nbsp; <img src="gamedesign/bullet.png" alt=""> This <a href="AdvancedMaya/FPScontroller.unitypackage" target=unity><b>First Person Controller</b></a> (RightClick in Assets folder to Import Package). 
+<br> 
+&nbsp; <img src="gamedesign/bullet.png" alt=""> These <a href="gamedesign/SoundFX.zip" target=SFX><b>3 Sound FX files</b></a> (open .ZIP, drag MP3s to desktop, then into Assest folder).     
+<br></font></td></tr></table>
+<br>
+<table width=680 cellpadding=10 border=0>
+  <tr>
+    <td bgcolor=#dad4c2><font face="arial"> <a href="GameDesign_UnityTerrain.html" target=terrainNew><img src="gamedesign/UnityTerrain/UnityTerrain_thumb.png" alt="" align=right></a> <a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a> <strong>3D TERRAIN:</strong> <br>
+      Want to try a more natural-looking environment? <br>
+      <br>
+      Try this short tutorial on using the <a href="GameDesign_UnityTerrain.html" target=terrainNew><strong>Unity Terrain</strong></a> system for <strong>sculpting</strong> landscape, <strong>texturing</strong> the surface, adding <strong>foliage</strong>.</font></td>
+  </tr>
+</table>
+<br>
+
+<table width=680 cellpadding=10 border=0><tr>
+<td colspan=2 bgcolor=#edf3ed><font face=arial>
+<b><a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a> <a name="02">&nbsp;</a><font color=purple>PART 2:</font> INTRODUCTION TO UNITY OBJECTS AND PHYSICS</b>
+<br>
+<strong>1. Create the ground: </strong><br>
+<strong>a).</strong> <b>Game Object menu &gt; 3D > Cube</b>. 
+
+<br>See it in both the <strong>Hierarchy</strong> (left column) and  <strong>Scene</strong> view (big center space). 
+
+<br>
+<br>
+<strong>b).</strong> In the <strong>Hierarchy</strong> select the Cube  to see properties in the <strong>Inspector</strong> panel (right column). 
+<br>
+&nbsp; &nbsp; &nbsp;<img src="gamedesign/bullet.png" alt=""> At the top of the Inspector, change the name to &quot;<strong>Ground</strong>.&quot; 
+<br>
+&nbsp; &nbsp; &nbsp;<img src="gamedesign/bullet.png" alt=""> Under Transforms, Set  <strong>Position</strong> X, Y,  Z = 0. Set  <strong>Scale</strong> X &amp; Z = 20 and  Y (height) = 0.1.
+<br>
+<strong>NOTE: </strong>In the Inspector, any rolldowns below Transforms are Componets assigned to the Game Object (G.O.). Any script we add to a Game Object is also a Component.
+
+<br><br><br>
+<strong>2. Navigate in 3D space: <br>a).</strong> With the Cube selected, hover the mouse over the Scene view and hit <b>[f]</b> to center the view on the selected Cube.
+
+<br><br>
+<strong>b).</strong> To adjust the view, hold <strong>[Alt / Option]</strong> and ClickDrag the mouse buttons: 
+<br><b>[Alt]+LeftMouse</b>=orbit 
+&nbsp; &nbsp;&nbsp; &nbsp;<b>[Alt]+RightMouse</b>=zoom &nbsp; &nbsp;&nbsp; &nbsp;<b>[Alt]+MiddleMouse</b>=pan 
+<br><br><br>
+<strong>3. Add a second cube to play with Physics: <br>
+a). </strong>Create another <b>Game Object menu &gt; 3D > Cube</b>.  
+
+<br><br>
+<strong>b).</strong> Hit <strong>[w]</strong> to move it up, high above the Ground. 
+
+<br><br>
+<strong>c). </strong>In the <strong>Inspector</strong>: name it &quot;<strong>DropCube</strong>&quot;, then at bottom click <b>[Add Component]</b>. 
+
+<br>
+Under <b>Physics</b> (<em>NOT</em> Physics2d) find and add <b>RigidBody</b> (this adds gravity effects). <br><br>
+<strong>d).</strong> Select the <strong>Camera</strong> and Transform it (<strong>[e]</strong> to rotate<strong>, [w]</strong> to move) to frame (look at) both the DropCube and the Ground.<br><br>
+<strong>e).</strong> Hit <b>Play</b> to watch the DropCube drop. 
+<br>Any changes while in "Play" mode are not saved, so we can go to the Scene window and lift the Cube to see the default physics engine continue to effect it. Turn off Play to resume editing. 
+
+<br>
+<br>
+<strong>f).</strong> <strong>Create Bounciness:</strong> 
+<br>
+&nbsp; &nbsp; &nbsp;<img src="gamedesign/bullet.png" alt=""> In the Project panel Assets folder RightClick to create a <strong>Physic Material</strong>. 
+<br>
+&nbsp; &nbsp; &nbsp;<img src="gamedesign/bullet.png" alt=""> In the Inspector change the bounce from 0 to 1 (100%). 
+<br>
+&nbsp; &nbsp; &nbsp;<img src="gamedesign/bullet.png" alt=""> Drag the Physic Material onto the DropCube in the Hierarchy or the Scene. 
+<br>
+&nbsp; &nbsp; &nbsp;<img src="gamedesign/bullet.png" alt=""> Hit <strong>Play</strong> to watch the cube fall and bounce. 
+<strong>Turn off Play</strong> to resume editing. 
+<br></font></td></tr></table><br>
+
+<table width=680 cellpadding=10 border=0><tr>
+<td colspan=2 bgcolor=#edf3ed><font face=arial>
+<b><a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a> <a name="03">&nbsp;</a><font color=purple>PART 3:</font> INTRO TO SCRIPTING AND AUDIO FOR 3D</b>
+
+<br>
+<b>See these </b><a href="#a">Scripting Notes</a>, above.
+<!--MONODEVELOP TIPS: For  the Manual (help): Select code and hit [Ctrl]+[&lsquo;]. To Comment  selected lines: [Ctrl]+[alt]+[c]. To Deactivate  Code Completion: Tools/General/Enable Code completion
+-->
+
+<br><br>
+<strong>1. </strong><b>Create a game Pickup:</b><br>
+<strong>a).</strong> Create a third <strong>GameObject &gt; 3D  Object &gt; Cube</strong>.
+In the Inspector name it &quot;SpinCube&quot;
+
+<br><br>
+<strong>b).</strong> Add a <strong>Material</strong> to change the color: <br>
+&nbsp; &nbsp; &nbsp;<img src="gamedesign/bullet.png" alt=""> In Project panel Assets folder, RightClick to create a <strong>folder</strong> called &quot;Materials&quot;. 
+
+<br>
+&nbsp; &nbsp; &nbsp;<img src="gamedesign/bullet.png" alt=""> Inside the folder RightClick to make a <b>material</b>, name it &quot;SpinCube_m&quot;. 
+
+<br>
+&nbsp; &nbsp; &nbsp;<img src="gamedesign/bullet.png" alt=""> In the Inspector, set the Albedo rectangle to a bright color. <br>
+&nbsp; &nbsp; &nbsp;<img src="gamedesign/bullet.png" alt=""> Drag the Material onto SpinCube in the Hierarchy  to see the color on the cube in Scene. <br>
+<br>
+<strong>c). </strong>Add<strong> Physics:</strong>
+<br>
+&nbsp; &nbsp; &nbsp;<img src="gamedesign/bullet.png" alt=""> Select the Spincube. In  Inspector, Add Component &gt; Physics &gt; <b>RigidBody</b>.
+
+<br>
+&nbsp; &nbsp; &nbsp;<img src="gamedesign/bullet.png" alt=""> Under RigidBody Turn off &quot;<b>Use Gravity&quot;.</b>
+
+<br>
+&nbsp; &nbsp; &nbsp;<img src="gamedesign/bullet.png" alt=""> Find the default <b>Box Collider</b> component on Spincube,  turn on &ldquo;<b>IsTrigger</b>&rdquo;.
+
+
+<br><br><br> 
+<strong>2. Create a new C# Script: <br> 
+a)</strong> In Project  panel Assets folder: RightClick to <strong>Create &gt; C# Script</strong>, name it &ldquo;Rotator,&rdquo;  hit  [Enter] to commit the name (adds the name to both the file and the Class).
+
+<br>
+<br>
+<strong>b) </strong>Double-click the script in the Project to open it in your editor. 
+
+<br><br>
+<strong>c) </strong>&ldquo;void  Start ()&rdquo; and &ldquo;void Update ()&rdquo; are default <b>functions</b>. <strong>Delete</strong> Start(), rename Update be sure class name is Rotator, add 1 line to Update() (see below).
+
+<br><br>
+<strong>d) </strong>Save the script <strong>[Ctrl / Cmd] + [s]</strong>. Click back to Unity and wait as the script loads. <br>
+<center>
+<em>Rotator.cs</em>:
+
+<table width=100% cellpadding=10 border=1 bgcolor=#efefef><tr>
+<td><font face=arial>
+<font color=#3ab050><b>using</b></font> System.Collections; <br>
+<font color=#3ab050><b>using</b></font> System.Collections.Generic; <br> 
+<font color=#3ab050><b>using</b></font> UnityEngine; <br><br><font color=#3ab050><b>public class</b></font></font> <font color=#31849b face="arial"><b>Rotator</b> : <b>MonoBehaviour</b></font><font face="arial"> {
+<br><br>
+<strong>&nbsp; &nbsp; &nbsp;<font color=#31849b>void</font> </strong>Update() { <strong><br>
+&nbsp; &nbsp; &nbsp; &nbsp; transform.Rotate (new Vector3 (15,  30, 45) * <font color=#31849b>Time</font>.deltaTime); 
+<br>
+&nbsp;&nbsp; &nbsp;  </strong>}<br>
+<br>
+} 
+</font></td></tr></table></center>
+  
+<br>
+<strong>e). </strong><b>Drag the script onto SpinCube</b> in Hierarchy. Hit Play to see rotation. Turn off Play. 
+<br><em><strong>OPTIONAL:</strong></em> How does the rotation change if you change the Update fuction to FixedUpdate instead (which limits the rotation to 50fps)?<br><br>
+<strong>f). </strong>Drag the SpinCube into the Project Assets folder to <b>create a Prefab </b>(an instance).<br><br>
+<strong>g). </strong>Select SpinCube in Hierarchy, hit [Ctrl/Cmd]+[d] to <b>duplicate</b> for 3 cubes, move in the Scene.<br><br><br>
+<strong>3. 
+Add Player Interaction: Make Cube Disappear<br>
+a). </strong>Drag the <strong>FPSController</strong> prefab from the Assets folder into the <strong>Hierarchy</strong>. By default, the FPS Character appears at location 0,0,0 in the Scene. <strong>This is too low: </strong>the collider is embedded halfway into the ground, so if you hit Play the FPS character will fall. In the Scene view hit <strong>[m]</strong> for the <strong>Move</strong> tool and click and drag the green &quot;Up&quot; arrow to raise the FPS character a bit above the ground.
+
+<br><br>
+</font>
+
+<a name="unlock">&nbsp;</a>
+
+  <p><em><strong><font face="arial">N</font></strong></em><font face="arial"><strong><em>OTE:</em></strong> The provided FPS controller automatically <strong>locks and hides the mouse cursor</strong>. 
+
+This is easy to fix: 
+  </font>  
+  <font face="arial">
+  <ol>
+<li>Select the FPSController in your Scene. 
+<li>In the Inspector, in the First Person Controller component, open <strong>Mouse Look</strong>. 
+<il>
+<li>Find the <strong>Lock Cursor</strong> option, and <strong>disable</strong> it. 
+</ol>
+
+  You can also add code to the GameHandler Start() function (or on an interaction) to unlock and unhide the cursor for an interaction of your choosing:
+</font>
+  <center>
+  <table width=90% cellpadding=10 border=1 bgcolor=#efefef>
+    <tr>
+      <td><font face="arial">&nbsp; &nbsp; &nbsp; <strong>Cursor.lockState = CursorLockMode.None;</strong><br>
+&nbsp; &nbsp; &nbsp; <strong>Cursor.visible = <font color=#31849b>true</font></strong></font><strong>;</strong></td>
+    </tr>
+  </table>
+</center>
+<p><font face=arial>
+  <p>
+<strong>b).</strong> With the FPSController selected, <strong>[Add Component]</strong> Physics &gt; <b>Capsule Collider.</b> 
+<br>
+Turn on &ldquo;<strong>isTrigger</strong>&rdquo;. Move Center <b>forward on Z</b> (try 2.0). At top set <b>Tag</b> to &ldquo;Player&rdquo;.<br><br>
+<strong>c).</strong> Add  an <strong>OnTriggerEnter</strong> function to the Rotator script (put before Class end-bracket). Note the condition: if an object with this script is impacted by a collider that is on an object with the tag &quot;player&quot;, do the command:<br>
+  <center>
+  <b>Add to </b><em>Rotator.cs </em>(new content is bold-faced):
+    
+  <table width=90% cellpadding=10 border=1 bgcolor=#efefef><tr>
+<td><font face=arial><font color=#3ab050><b>using</b></font> System.Collections; 
+<br><font color=#3ab050><b>using</b></font> System.Collections.Generic; 
+<br><font color=#3ab050><b>using</b></font> UnityEngine; 
+
+<br><br>
+<font color=#3ab050><b>public class</b></font></font> <font color=#31849b face="arial"><b>Rotator</b> :  <b>MonoBehaviour</b></font><font face="arial"> {
+<br>
+&nbsp; &nbsp; &nbsp;<font color=#31849b><b>void</b></font> Update () {<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  transform.Rotate  (new Vector3 (15, 30, 45) * 
+<font color=#31849b><b>Time</b></font>.deltaTime); 
+<br>&nbsp; &nbsp; &nbsp;}<br><br>
+<b>&nbsp; &nbsp; &nbsp;<font color=#31849b>void</font> OnTriggerEnter(Collider other){<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; <font color=#3ab050>if</font> (other.gameObject.tag == <font color=#ed6c0a>&quot;Player&quot;</font>) {
+<br>
+&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; gameObject.SetActive(false);<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;}<br>
+&nbsp; &nbsp; &nbsp; }</b><br>
+}</font></td></tr></table></center>
+  
+<br>
+<strong>d).</strong> Hit <strong>Play</strong> to test: use <strong>[WASD]</strong> to approach the Spincube. When the player touches the it, the Spincube should disappear (if it does not, make sure the <strong>tag</strong> &quot;Player&quot; was set on the FPSController). Turn off Play to reset the Scene.
+
+<br><br>
+<strong>CURSOR NOTE:</strong> If you want the Cursor to not disappear when using the FPS controller, select the FPS object and in the Inspector turn OFF: 
+<br>
+<strong>First Person Controller &gt; Mouse Look &gt; Lock Cursor</strong>.<br><br>
+<strong>COLLISION NOTE:</strong> The FPS Controller  may not work with OnCollisionEnter; it only works reliably with OnTriggerEnter. 
+<br>
+To add a damage script to an object meant to hurt the Player (like hitting a rock), add two colliders: a smaller one for blocking collisions and a slightly larger one for Trigger collisions. <br><br><br>
+<strong>4. 
+ Player Interaction: Cube Makes a Sound</strong><br>
+ <strong>a). </strong>Drag each <strong>sound effect</strong> file from the Assets folder onto a SpinCube in the Hierarchy (one each). This automatically adds an &quot;<strong>Audio Source</strong>&quot; component to the Objects.  
+<br>
+In the Inspector, <strong>turn off "Play on Awake"</strong> in each Audio Source.<br><br>
+<strong>b).</strong> Change the OnTriggerEnter code to comment-out the SetActive(false) line (type // at the start of that line) and add a new command to play the AudioSource component: <br>
+  <center>
+    <b>Add to </b><em>Rotator.cs </em>(in the OnTriggerEnter function):<br>
+    <table width=90% cellpadding=10 border=1 bgcolor=#efefef><tr>
+      <td><font face=arial>
+        &nbsp; &nbsp;<font color=#31849b><b>void</b></font>  OnTriggerEnter(Collider other) {<br>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#3ab050><b>if</b></font> (other.gameObject.tag == <font color=#ed6c0a><b>&quot;Player&quot;</b></font>) {<br>
+        <b>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#a6a6a6>
+          //gameObject.SetActive(false);</font><br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; GetComponent&lt;<font color=#31849b>AudioSource</font>&gt;().Play();</b><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;}<br>
+          &nbsp; &nbsp;}</font></td></tr></table></center>
+	  
+  <br>
+	  Hit  Play and move the Player to collide with each Cube to make all 3 sounds.<br><br><br>
+  <b><font face="arial">FIX DOUBLING: 
+  <br></font></b>Is the audio playing twice, and the score (see later notes) registering two hits per cube? 
+  <br>The reason is the FPS controller has a Collider in its Prefab in addition to the Capsule Collider we added, and both can hit the Cube Collider!<br><br>
+  A solutuon is to <strong>turn off the Cube Collider after it registers  first Player impact:</strong><br>
+  Add the bold-faced line to <b><font face="arial">OnTriggerEnter</font></b> above GetComponent&lt;AudioSource&gt;().Play():
+</font>
+<br>
+<center>
+<font face="arial"><b>Add to </b><em>Rotator.cs </em>(in the OnTriggerEnter function):</font><br>
+
+<table width=90% cellpadding=10 border=1 bgcolor=#efefef><tr>
+<td><font face=arial>&nbsp; &nbsp; &nbsp; &nbsp;<font color=#31849b><b>void</b></font> OnTriggerEnter(Collider other) { <br>
+  &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;<font color=#3ab050><b>if</b></font> (other.gameObject.tag == <font color=#ed6c0a><b>&quot;Player&quot;</b></font>) {<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;<b><font color=#a6a6a6>//gameObject.SetActive(false);</font></b><br>
+  &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;<strong>GetComponent&lt;</strong><font color=#31849b><strong>Collider</strong></font><strong>&gt; ().enabled = </strong><font color=#31849b><b>false</b></font><strong>;</strong><b><br></b>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;GetComponent&lt;<font color=#31849b>AudioSource</font>&gt;().Play();<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;  }</font></td>
+</tr>
+</table>
+</center><font face=arial>
+<br></font></td></tr></table><br>
+
+<table width=680 cellpadding=10 border=0><tr>
+<td colspan=2 bgcolor=#edf3ed><font face=arial>
+  <b><font face=arial><font face="arial"><a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a> <a name="04">&nbsp;</a></font></font><font color=purple>PART 4:</font> Use COROUTINES to add a  delay between sound and destruction:</b><br>
+	  To   BOTH make a sound and make the object disappear, we need a delay (so the audio plays for more than a single frame).<br>
+      <strong>a). To create a delay:</strong> Add a separate &quot;Co-routine&quot; IEnumerator function that returns the delay and then destroys the game object:<br>
+  <center><b>Add to</b> <em>Rotator.cs</em>:
+    <table width=90% cellpadding=10 border=1 bgcolor=#efefef><tr>
+      <td><font face=arial><font color=#3ab050><b>public class</b></font></font> <font color=#31849b face="arial"><b>Rotator</b> :  <b>MonoBehaviour</b></font><font face="arial"> {<br>
+        &nbsp; &nbsp; &nbsp; &nbsp;<b><font color=#31849b>void</font></b> Update () {<br>
+        &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; transform.Rotate  (new Vector3 (<font color=#ed6c0a><b>15, 30, 45</b></font>) * <font color=#31849b><b>Time</b></font>.deltaTime);<br>&nbsp; &nbsp; &nbsp; &nbsp;}<br><br>
+        &nbsp; &nbsp; &nbsp;&nbsp; <font color=#31849b><b>void</b></font> OnTriggerEnter(<font color=#31849b><b>Collider</b></font> other){<br>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; <font color=#3ab050><b>if</b></font>  (other.gameObject.tag == <font color=#ed6c0a><b>&quot;Player&quot;</b></font>) {<br>     
+        &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; GetComponent&lt;Collider&gt; ().enabled = <font color=#31849b><b>false</b></font>;<br>
+        &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; GetComponent&lt;<font color=#31849b><b>AudioSource</b></font>&gt;().Play();<br>
+        &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>StartCoroutine(DestroyThis()); </b><font color=gray>// call the new co-routine</font><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;}<br>&nbsp; &nbsp; &nbsp; &nbsp;}<br>
+        <font face="arial">&nbsp; &nbsp; &nbsp; &nbsp;</font><font color=gray>// the co-routine allows the yield delay command</font><br>
+        <b>&nbsp; &nbsp; &nbsp;&nbsp; <font color=#31849b>IEnumerator</font> DestroyThis(){<br>
+          &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; <font color=#3ab050>yield return new</font> <font color=#31849b>WaitForSeconds</font>(<font color=#ed6c0a>0.5f</font>);<br>
+          &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; Destroy(gameObject);<br>&nbsp; &nbsp; &nbsp; &nbsp;}<br>
+          </b>}</font></td></tr></table></center>
+<br><strong>b).</strong> Save the script, click on Unity to load, hit Play to test.<br>
+Any SpinCubes touched by the player should make their sound and disappear.<br></font></td></tr></table><br>
+
+<table width=680 cellpadding=10 border=0><tr>
+<td colspan=2 bgcolor=#edf3ed><font face=arial>
+<b><font face=arial><font face="arial"><a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a> <a name="05">&nbsp;</a></font></font><font color=purple>PART 5:</font> ADDFORCE:</b><br>
+As we saw with AudioSource, Unity variables can hold references to other Components of the Scripted-Object. Here is another example:<br><br>
+<strong>a). </strong>Create a third <strong>GameObject &gt; 3D  Object &gt; Cube.</strong><br>
+<strong>b).</strong> In the Inspector name it &quot;ZoomCube.&quot;<br>
+<b>c). [Add Component] > Physics > Rigidbody</b> to it. Turn off &quot;Use Gravity&quot;.<br>
+<strong>d).</strong> Create a new <b>C# script</b> called "<b>Zoooom</b>" and apply to the Cube.<br>
+<strong>e).</strong> Open the script in your editor, add this code, Save  
+
+ and Play to watch the motion:<br>
+</font>
+  <center> <font face=arial><em>Zoooom.cs</em></font>
+    <table width=90% cellpadding=10 border=1 bgcolor=#efefef><tr>
+<td><font face=arial><font color=#3ab050><b>using</b></font> System.Collections; <br>
+<font color=#3ab050><b>using</b></font> System.Collections.Generic; <br>
+<font color=#3ab050><b>using</b></font> UnityEngine; 
+<br><br>
+</font>
+<font color=#3ab050><b>public class</b></font> <font color=#31849b face="arial"><b>Zoooom</b><strong> :</strong> <b>MonoBehaviour</b></font><font face="arial"> {
+        
+        
+<br><br>
+&nbsp; &nbsp; &nbsp;&nbsp; <font color=#31849b><b>public</b></font> </font><font color=#31849b face="arial"><b>float</b></font><font face="arial"> thrust = <font color=#ed6c0a><b>100f</b></font>;<br>
+&nbsp; &nbsp; &nbsp;&nbsp; <font color=#31849b><b>private</b></font> </font><b><font color="#31849b" face="arial">Rigidbody</font></b><font face="arial"> rb;<br><br>
+          &nbsp; &nbsp; &nbsp; &nbsp;<b><font color=#31849b>void</font></b> Start () { <br>
+          &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; rb = GetComponent&lt;Rigidbody&gt;();
+<br>&nbsp; &nbsp; &nbsp; &nbsp;} 
+<br><br>
+&nbsp; &nbsp; &nbsp;&nbsp; <font color=#31849b><b>void</b></font> FixedUpdate() { 
+<br>
+&nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; rb.AddForce(transform.forward * thrust);  
+<br>&nbsp; &nbsp; &nbsp; &nbsp;}
+<br>
+}
+</font></td>
+</tr></table>
+</center>
+<br>
+<font face=arial>
+We can also make an object move from its current location to a target location using LERP (Linear Interpolation). Look through this excellent <a href="https://gamedevbeginner.com/the-right-way-to-lerp-in-unity-with-examples/#lerp_vector3" target=lerp>LERP Tutorial</a><br><br></font></td></tr></table>
+<br>
+<table width=680 cellpadding=10 border=0>
+  <tr>
+    <td bgcolor=#dad4c2><font face="arial"> <a href="GameDesign_Unity3DCharacter.html#shoot" target=shoot><img src="gamedesign/Unity3D/UnityShooting_thumb.png" alt="" align=right></a> <a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a> <strong>SHOOTING PROJECTILES:</strong> <br>
+      Want to shoot objects in the environment?
+<br><br>
+Go here to add
+<a href="GameDesign_Unity3DCharacter.html#shoot" target=shoot><b>projectile shooting</b></a> to your 
+<br>Standard Assets FPS Controller.
+
+<br><br></font></td>
+  </tr>
+</table>
+<br>
+
+<table width=680 cellpadding=10 border=0><tr>
+<td bgcolor=#e7e2f1>
+<!-- eeeeff -->  
+
+<center>
+  <font face="arial"><b><b><font face=arial><font face="arial"><a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a> <a name="06">&nbsp;</a></font></font><font color=purple>PART 6: </font></b>PLAYER FEEDBACK WITH VISUAL FX AND SOUND FX</b></font>
+</center><font face=arial>
+<br>
+<b>COLLISION EFFECTS:</b> There are many ways to emphasize an impact or action and let the player know something happened. Here are three ways to communicate information to the player in-game: change the object <strong>color</strong>, play a <strong>sound</strong>, create a <strong>particle effect</strong>. 
+<br>
+Each script pays attention to the &quot;<strong>magnitude</strong>&quot; of the impact velocity (how much force is involved), so that initial / big impacts generate results but final / smaller bounces do not.<br><br>
+<b>a).</b> Create a new GameObject &gt; 3D &gt; <b>Cube</b>, name it &quot;FunCube&quot;.<br>
+&nbsp;&nbsp;<img src="gamedesign/bullet.png" alt=""> [Add Component] Physics &gt; <b>Rigidbody.</b><br>
+&nbsp;&nbsp;<img src="gamedesign/bullet.png" alt=""> Hit [w] to move the cube <b>up</b> so it falls a distance to  the Ground when we Play.<br><br>
+<b>b).</b> At the top-right of the Inspector create a new <b>Layer</b> called "stuff":
+<br>
+<img src="gamedesign/bullet.png" alt=""> Click the word "default" next to Layer
+<br>
+<img src="gamedesign/bullet.png" alt=""> Choose "Add Layer"
+(bottom of the list)<br> 
+<img src="gamedesign/bullet.png" alt=""> In the list provided, choose an empty slot (I recommend Layer 8) <br>
+<img src="gamedesign/bullet.png" alt=""> Type the new Layer name "stuff". <br>
+<img src="gamedesign/bullet.png" alt=""> Now, set the Ground Cube and FunCube to this new layer!
+<br>
+<em><strong>NOTE:</strong></em> Tags are for single objects, Layers are for categories of objects. When a new Layer is created, it is not auto-assigned to the selected object. The object needs to be reselected and the Layer assigned. <br><br>
+<b>c).</b> RightClick the Project panel Assets folder to create a <b>Physic Material</b>.<br>
+&nbsp; &nbsp; &nbsp; &nbsp;<img src="gamedesign/bullet.png" alt=""> Inspector: Set <b>bounciness</b> to 2 and both <b>frictions</b> to 0.2.<br>
+&nbsp; &nbsp; &nbsp; &nbsp;<img src="gamedesign/bullet.png" alt=""> Drag the Physic Material into the FunCube Collider slot.<br><br>
+<a name="06color">&nbsp;</a>
+<br>
+<strong>d).</strong><b><b><font face=arial><font face="arial"><a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a></font></font></b></b> <strong>ADD VFX #1: Color Changes</strong><br>
+&nbsp; &nbsp; &nbsp; &nbsp;<img src="gamedesign/bullet.png" alt=""> Create the script <a href="gamedesign/Unity2D/FunCubeColor.cs" target=VFX1><i><b>FunCubeColor.cs</b></i></a> and add it to FunCube. 
+
+Playtest!<br>
+<strong>This script has:</strong></font>
+<li><font face=arial>A variable to track the number of times the object has collided with others.</font>
+<li><font face=arial>3  variables for the 3 values that define digital color (red, green, blue, each from 0 - 1).</font>
+<li><font face=arial>A <strong>condition</strong> to only count collisions over a certian magnitude, so lighter collisions will not change the color.</font>
+<li><font face=arial><strong>Random.Range</strong> commands to select values for each color variable at each impact (with a change from cool to warm colors after a certain number of hits).</font><li><font face=arial>Access to the object <strong>Renderer</strong> to set the <strong>color</strong> of the object <strong>Material</strong> to the new values.</font><br>
+<center>
+  <font face=arial><i>FunCubeColor.cs</i></font>
+  <table width=90% cellpadding=10 border=1 bgcolor=#efefef>
+    <tr>
+      <td><font face=arial> <font color=#3ab050><b>using</b></font> System.Collections; <br>
+        <font color=#3ab050><b>using</b></font> System.Collections.Generic; <br>
+        <font color=#3ab050><b>using</b></font> UnityEngine; <br>
+        <br>
+        <font color=#3ab050><b>public class</b></font> <font color=#31849b><b>FunCubeColor</b> : <b>MonoBehaviour</b></font> { <br>
+        <br>
+        &nbsp; &nbsp; &nbsp;&nbsp; <font color=#3ab050><b>private</b></font> <font color=#3ab050><b>float</b></font> hits = <font color=#ed6c0a><b>0</b></font>; 
+        &nbsp; &nbsp; <font color=gray>//the # of this object's collisions</font> <br>
+        &nbsp; &nbsp; &nbsp;&nbsp;<font color=#3ab050><b> private</b></font> <font color=#3ab050><b>float</b></font> r ; <font face=arial> &nbsp; &nbsp; </font><font face=arial> &nbsp; &nbsp; </font>&nbsp;&nbsp;&nbsp; &nbsp; <font color=gray>// red color, 0-1</font> <br>
+        &nbsp; &nbsp; &nbsp;&nbsp;<font color=#3ab050><b> private</b></font> <font color=#3ab050><b> float</b></font> g ; <font face=arial> &nbsp; &nbsp; </font>&nbsp;&nbsp;&nbsp;&nbsp; 
+        &nbsp; &nbsp; <font color=#999999>// green color, 0-1</font> <br>
+        &nbsp; &nbsp; &nbsp;&nbsp;<font face=arial><font color=#3ab050><b> private float</b></font></font> b ; <font face=arial> &nbsp; &nbsp; </font>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp; <font color=gray>// blue color, 0-1</font><br>
+        <br>
+        &nbsp; &nbsp; &nbsp;&nbsp; <b><font color=#31849b>void</font></b> OnCollisionEnter(<font color=#31849b><b>Collision</b></font> other){<br>
+        &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; <font color=gray>//if the impact has enough force</font><br>
+        &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; <font color=#3ab050><b>if</b></font> (other.relativeVelocity.magnitude > <font color=#ed6c0a><b>5</b></font>) {<br>
+        &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; <font color=gray>//increment hits #</font><br>
+        &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; hits += <font color=#ed6c0a><b>1</b></font>;<br>
+        &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; <font color=gray>//randomize RGB color values, but go from warm to cool</font><br>
+        &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; <font color=#3ab050><b>if</b></font> (hits <=<b><font color="#ed6c0a"> 4</font></b>) {<br>
+        &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; r = <b><font color=#31849b>Random</font></b>.Range (<font color=#ed6c0a><b>0.3f</b></font>, <font color=#ed6c0a><b>1f</b></font>);<br>
+        &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;  g = <b><font color=#31849b>Random</font></b>.Range (<font color=#ed6c0a><b>0.1f</b></font>, <font color=#ed6c0a><b>0.5f</b></font>);<br>
+        &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; b = <b><font color=#31849b>Random</font></b>.Range (<font color=#ed6c0a><b>0f</b></font>, <font color=#ed6c0a><b>0.2f</b></font>);<br>
+        &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; }<br>
+        &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; <font color=#3ab050><b>if</b></font> (hits ><b><font color="#ed6c0a"> 4</font></b>) {<br>
+        &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; r = <b><font color=#31849b>Random</font></b>.Range (<font color=#ed6c0a><b>0f</b></font>, <font color=#ed6c0a><b>0.3f</b></font>);<br>
+        &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;g = <b><font color=#31849b>Random</font></b>.Range (<font color=#ed6c0a><b>0f</b></font>, <font color=#ed6c0a><b>0.3f</b></font>);<br>
+        &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; b = <b><font color=#31849b>Random</font></b>.Range (<font color=#ed6c0a><b>0.3f</b></font>, <font color=#ed6c0a><b>1f</b></font>);<br>
+        &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; }<br>
+        <br>
+        &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<font color=#31849b><b>Renderer</b></font><b><font color="#3ab050"> </font></b>cubeRenderer = GetComponent&lt;<b><font color=#31849b>Renderer</font></b>&gt;(); <br>
+        &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; cubeRenderer.material.color = <font color=#3ab050><b>new</b></font> <b><font color=#31849b>Color</font></b>(r,g,b); <br>
+        &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; }<br>
+        &nbsp; &nbsp; &nbsp;&nbsp; }<br>
+        }</font></td>
+    </tr>
+  </table>
+</center>
+<font face=arial>
+<br>
+<a name="06sound">&nbsp;</a>
+<br>
+<b>e).</b> <b><b><font face=arial><font face="arial"><a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a></font></font></b></b> <strong>ADD SFX: Sound Changes:</strong><br>
+&nbsp; &nbsp; &nbsp; &nbsp;<img src="gamedesign/bullet.png" alt=""> Download this <a href="gamedesign/Unity2D/PianoC.wav"><b>sound file</b></a> (piano middle C).<br>
+&nbsp; &nbsp; &nbsp; &nbsp;<img src="gamedesign/bullet.png" alt=""> Drag the sound file into the Assets folder to add it to the Project.<br> 
+&nbsp; &nbsp; &nbsp; &nbsp;<img src="gamedesign/bullet.png" alt=""> Drag the file onto FunCube in the Hierarchy to add it as an <strong>AudioSource</strong> component.<br>
+&nbsp; &nbsp; &nbsp; &nbsp;<img src="gamedesign/bullet.png" alt=""> Select FunCube, and in the Inspector: Turn off <b>Play on Awake</b>, set <b>Volume</b> = 0.5.<br>
+&nbsp; &nbsp; &nbsp; &nbsp;<img src="gamedesign/bullet.png" alt=""> Create the script <a href="gamedesign/Unity2D/FunCubeSound.cs" target=new><i><b>FunCubeSound.cs</b></i></a> and add it to FunCube. Playtest!</font><font face=arial><strong><br>
+This script has:</strong></font><li><font face=arial>A variable to track of the number of times the object has collided with others.</font><li><font face=arial>A variable for the Audio Source component, a variable to hold the initial Pitch, and variables to hold changes to the Pitch and Volume.</font><li><font face=arial>A</font><font face=arial>n  Awake() function to populate these variables.</font>
+<li><font face=arial>A Collision function to set these values based on the numbe of hits, to achieve a <strong>Shepard Scale</strong> (moving pitch progressively upward or downward, in this case downward).</font><li><font face=arial>Sets the AudioSource component Pitch and Volume to the new values.</font><br>
+<center>
+<font face=arial>
+<i>FunCubeSound.cs</i> (sound file needs to be on cube)</font>
+<table width=90% cellpadding=10 border=1 bgcolor=#efefef>
+  <tr>
+    <td><font face=arial><font color=#3ab050><b>using</b></font> System.Collections;<br>
+      <font color=#3ab050><b>using</b></font> System.Collections.Generic;<br>
+      <font color=#3ab050><b>using</b></font> UnityEngine;<br>
+      <br>
+      <font color=#3ab050><b>public class</b></font></font> <font color=#31849b face="arial"><b>FunCubeSound</b> : <b>MonoBehaviour</b></font><font face="arial"> {<br>
+        <br>
+        &nbsp; &nbsp; &nbsp;&nbsp; <font face=arial><font color=#3ab050><b>private</b></font></font> <font face=arial><font color=#3ab050><b>float</b></font></font> hits = <b><font color="#ed6c0a">0</font></b>;<br>
+        &nbsp; &nbsp; &nbsp;&nbsp; <font face=arial><font color=#3ab050><b>private</b></font></font> <b><font color=#31849b>AudioSource</font></b> audioClip; 
+        &nbsp;&nbsp; <font color=gray>//the actual AudioSource</font><br>
+        &nbsp; &nbsp; &nbsp;&nbsp; <font face=arial><font color=#3ab050><b>private</b></font></font> <font face=arial><font color=#3ab050><b>float</b></font></font> clipStartPitch;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; <font color=gray>//the original note</font> <br>
+        &nbsp; &nbsp; &nbsp;&nbsp; <font face=arial><font color=#3ab050><b>private</b></font></font> <font face=arial><font color=#3ab050><b>float</b></font></font> clipPitch;&nbsp; &nbsp;  
+        &nbsp; &nbsp;&nbsp; &nbsp;  
+        &nbsp; &nbsp;  
+        &nbsp;  
+        &nbsp; &nbsp; &nbsp; <font color=gray>//a modified note</font><br>
+        &nbsp; &nbsp; &nbsp;&nbsp; <font face=arial><font color=#3ab050><b>private</b></font></font> <font face=arial><font color=#3ab050><b>float</b></font></font> clipVolume;<font face=arial>&nbsp; &nbsp; </font> &nbsp; &nbsp;  
+        &nbsp;   
+        &nbsp;&nbsp; &nbsp;  
+        &nbsp; &nbsp; <font color=gray>//hold and modify the volume</font><br>
+        <br>
+        &nbsp; &nbsp; &nbsp;&nbsp; <b><font color=#31849b>void</font></b> Awake() {<br>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; <font color=gray>//populate the variables</font><br>
+        &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;  audioClip = GetComponent&lt;AudioSource&gt;();<br>
+        &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; clipStartPitch = audioClip.pitch;<br>
+        &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; clipPitch = audioClip.pitch;<br>
+        &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; clipVolume = audioClip.volume;<br>
+        &nbsp; &nbsp; &nbsp;&nbsp; }<br>
+        <br>
+        &nbsp; &nbsp; &nbsp;&nbsp; <b><font color=#31849b>void</font></b> OnCollisionEnter(<font color=#31849b><b>Collision</b></font> other){<br>
+        &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; <font color=gray>//if the impact has enough force, play audio</font><br>
+        &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; <font color=#3ab050><b>if</b></font> (other.relativeVelocity.magnitude > <b><font color="#ed6c0a">5</font></b>) {<br>
+        &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; audioClip.Play();<br>
+        &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<font color=gray>//increment hits #</font><br>
+        &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; hits +=<b><font color="#ed6c0a"> 1</font></b>;<br>
+        &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; <font color=gray>//if pitch is above 0, lower pitch per hits,  lower volume</font><br>
+        &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; <font color=#3ab050><b>if</b></font> (clipPitch > 0){<br>
+        &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; clipPitch = (clipStartPitch - (hits/<b><font color="#ed6c0a">10</font></b>)); <font color=gray>//lower pitch</font><br>
+        &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; audioClip.pitch = clipPitch; 
+        &nbsp; &nbsp; &nbsp; &nbsp;  
+        &nbsp; &nbsp; &nbsp; &nbsp; <font color=gray>//assign to clip</font><br>
+        &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; audioClip.volume = clipVolume /<b><font color="#ed6c0a"> 2</font></b>;<br>
+        &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; }<br>
+        &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; }<br>
+        &nbsp; &nbsp; &nbsp;&nbsp; }<br>
+        }</font></td>
+</tr></table>
+</center>
+<font face=arial>
+<br><br>
+
+<table width=100% border=0><tr>
+  <td><font face=arial>
+    <a href="gamedesign/Unity2D/ParticleSmokeSmall.png" target=smoke><img src="gamedesign/Unity2D/ParticleSmokeSmall.png" align=right border=1></a>
+
+<a name="06ps">&nbsp;</a>
+<br>
+<b>f).</b> <b><b><font face=arial><font face="arial"><a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a></font></font></b></b> <strong>ADD VFX#2: Particle Effects:</strong><br>
+<b>1.</b> Create Smoke Material:
+<br>
+&nbsp; &nbsp; &nbsp;<img src="gamedesign/bullet.png" alt=""> Download this <a href="gamedesign/Unity2D/ParticleSmokeSmall.png" target=smoke><b>smoke texture</b></a>, drag into Project.
+<br>
+&nbsp; &nbsp; &nbsp;<img src="gamedesign/bullet.png" alt=""> Select it in the Project Panel, and in the Inspector change the <strong>Texture Type</strong> = <strong>Sprite (2D and UI)</strong>. 
+<br>
+&nbsp; &nbsp; &nbsp;<img src="gamedesign/bullet.png" alt=""> Hit <strong>[Apply]</strong> at the bottom to commit the change, and the image transparency should be visible in the Project panel.<br>
+&nbsp; &nbsp; &nbsp;<img src="gamedesign/bullet.png"> RightClick the Project panel Assets folder to create 
+<br>
+a new <b>Material</b>, name it &quot;ParticleSmoke&quot;.<br>
+&nbsp; &nbsp; &nbsp;<img src="gamedesign/bullet.png"> Hit Albedo hotspot and choose  your ParticleSmokeSmall.png.<br>
+&nbsp; &nbsp; &nbsp;<img src="gamedesign/bullet.png" alt=""> In the Inspector, set the <strong>Rendering Mode = Fade</strong>.<br>
+&nbsp; &nbsp; &nbsp;<img src="gamedesign/bullet.png"> Set Material Shader to <b>Particles &gt;Standard Unlit </b>or<b> Standard Surface.</b><br><br>
+<b>2.</b> Create the Particle System:<br>
+&nbsp; &nbsp; &nbsp;<img src="gamedesign/bullet.png" alt=""> Create a new GameObject &gt; Effect &gt; <b>ParticleSystem</b>.<br>
+&nbsp; &nbsp; &nbsp;<img src="gamedesign/bullet.png" alt=""> <b>Apply these SETTINGS</b> (<i>click image to  right for larger</i>):
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>RENDERER </b>(bottom)<b>:</b> Set Material to ParticleSmoke Material.
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>MAIN </b>(top)<b>:</b> Duration = 3, Turn off Looping, Start Lifetime = 2, 
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Start Speed = 0, Start Size = 1.<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>EMISSION:</b> Rate Over Time = 0, add a Burst [+].<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>SHAPE:</b> Shape = Donut.<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>VELOCITY OVER LIFETIME:</b> Turn on. Set Radial = 0.5.<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>COLOR OVER LIFETIME:</b> Turn on. Click white rectangle to open
+<br>&nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;color and opacity bar. Set bottom tabs (color) to brown and black.
+<br>
+&nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;Set top left tab to Alpha=0. Move  left-side tabs to Location = 50&#37;.
+<br><center><img src="gamedesign/Unity2D/ParticlesColorLife.png"></center>
+</font></td><td valign=top><br>
+<a href="gamedesign/Unity2D/ParticleSettings.png" target=PSettings><img src="gamedesign/Unity2D/ParticleSettings_sm.png" height=500 align=right border=1></a>
+</td></tr></table>
+
+<br>
+<b>3.</b> Make a Prefab:
+<br>
+&nbsp; &nbsp; &nbsp;<img src="gamedesign/bullet.png" alt=""> Drag the Particle Effect to the Project panel to make a <b>Prefab.</b><br>
+&nbsp; &nbsp; &nbsp;<img src="gamedesign/bullet.png" alt=""> <b>Delete</b> the Particle Effect from the Hierarchy.<br><br>
+<b>4.</b> Create a script for the Funcube to use this Particle System: 
+<br>
+&nbsp; &nbsp; &nbsp;<img src="gamedesign/bullet.png" alt=""> Create the script <a href="gamedesign/Unity2D/FunCubeParticles.cs" target=script3><b><i>FunCubeParticles.cs</i></b></a> and add it to FunCube.<br>
+&nbsp; &nbsp; &nbsp;<img src="gamedesign/bullet.png" alt=""> Add the Particle Prefab 
+to the <strong>script slot.</strong> Playtest! <br>
+<b><em>This script has:</em></b></font><li><font face=arial>A variable for a ParticleSystem GameObject and a Vector3 variable to hold a particular location in 3D space (x, y, and z coordinates).</font><li><font face=arial>A Collision function that populates the Vector3 with the point of contact in the Collision, and then &quot;Instantiates&quot; (creates) a copy of the ParticleSystem at that point of contact (if the impact exceeds the magnitue minimum).</font><br>
+    <center>
+      <font face=arial><i>FunCubeParticles.cs</i> (drag Particles Prefab into script slot)</font>
+      <table width=90% cellpadding=10 border=1 bgcolor=#efefef>
+        <tr>
+          <td><font face=arial><font color=#3ab050><b>using</b></font> System.Collections;<br>
+            <font color=#3ab050><b>using</b></font> System.Collections.Generic;<br>
+            <font color=#3ab050><b>using</b></font> UnityEngine;<br><br>
+            <font color=#3ab050><b>public class</b></font>
+            <font color=#31849b><b>FunCubeParticles</b> : <b>MonoBehaviour</b></font>{<br>
+            <br>
+            <font face=arial><font face="arial">&nbsp; &nbsp; &nbsp;&nbsp; </font><font color=#3ab050><b>public</b></font></font> <font color=#31849b><b>ParticleSystem</b></font> impactParticles;<br> 
+            <font face=arial><font face="arial">&nbsp; &nbsp; &nbsp;&nbsp; </font><font color=#3ab050><b>public</b></font></font> <font color=#31849b><b>Vector3</b></font> SpawnParticlesHere;<br>
+            <br>
+            <font face=arial><font face="arial">&nbsp; &nbsp; &nbsp;&nbsp; </font></font>void OnCollisionEnter(<font color=#31849b><b>Collision</b></font> other){<br>
+            <font face=arial><font face=arial><font face="arial">&nbsp; &nbsp; &nbsp;&nbsp; </font></font></font><font face=arial><font face="arial">&nbsp; &nbsp; &nbsp;&nbsp; </font></font><font color=gray>//if the impact has enough force</font><br> 
+            <font face=arial><font face=arial><font face="arial">&nbsp; &nbsp; &nbsp;&nbsp; </font></font></font><font face=arial><font face="arial">&nbsp; &nbsp; &nbsp;&nbsp; </font></font><font color=#3ab050><b>if</b></font> (other.relativeVelocity.magnitude ><b><font color="#ed6c0a"> 5</font></b>) {<br>
+            <font face=arial><font face=arial><font face="arial">&nbsp; &nbsp; &nbsp;&nbsp; </font></font></font><font face=arial><font face="arial">&nbsp; &nbsp; &nbsp;&nbsp; </font></font><font face=arial><font face="arial">&nbsp; &nbsp; &nbsp;&nbsp; </font></font><font color=gray>//get impact location</font><br>
+            <font face=arial><font face="arial">&nbsp; &nbsp; &nbsp;&nbsp; </font></font><font face=arial><font face="arial">&nbsp; &nbsp; &nbsp;&nbsp; </font></font><font face=arial><font face="arial">&nbsp; &nbsp; &nbsp;&nbsp; </font></font>SpawnParticlesHere = other.contacts[<b><font color="#ed6c0a">0</font></b>].point;<br>
+            <font face=arial><font face=arial><font face="arial">&nbsp; &nbsp; &nbsp;&nbsp; </font></font></font><font face=arial><font face="arial">&nbsp; &nbsp; &nbsp;&nbsp; </font></font><font face=arial><font face="arial">&nbsp; &nbsp; &nbsp;&nbsp; </font></font><font color=gray>//make particles at that location</font><br>
+            <font face=arial><font face="arial">&nbsp; &nbsp; &nbsp;&nbsp; </font></font><font face=arial><font face="arial">&nbsp; &nbsp; &nbsp;&nbsp; </font></font><font face=arial><font face="arial">&nbsp; &nbsp; &nbsp;&nbsp; </font></font>Instantiate (impactParticles, SpawnParticlesHere, other.transform.rotation);<br>
+            <font face=arial><font face="arial">&nbsp; &nbsp; &nbsp;&nbsp; </font></font><font face=arial><font face="arial">&nbsp; &nbsp; &nbsp;&nbsp; </font></font>}<br>
+            <font face=arial><font face="arial">&nbsp; &nbsp; &nbsp;&nbsp; </font></font>}<br>
+            }</font></td>
+        </tr>
+      </table>
+    </center>
+
+<font face=arial>
+<br><br>
+<b>5.</b> Add Efficiency:
+<br>
+The above script  does not  remove the <strong>Particle Systems (PS)</strong> after they have completed, so you will still see the &quot;shuriken&quot; icon in the Scene view during Play mode.
+<br><strong>This is not performant</strong> (can cause slow-down in a game).<br>
+&nbsp; &nbsp; &nbsp;<img src="gamedesign/bullet.png" alt=""> <strong>To remove them, make these changes to the script:</strong><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;#1 Create a GameObject variable to hold the current instantiated PS.<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;#2 Set the Instantiate line to fill this GO variable.</font><br>
+<font face="arial">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;#3 Call a Co-routine (IEnumerator) to remove the current PS.</font><br>
+<font face="arial">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;#4 In the IEnumerator, set a delay long enough for the PS to finish, then destroy it.<br>
+</font>
+<center>
+<font face=arial><strong>Add</strong> to <i>FunCubeParticles.cs</i> <strong>to make it more efficient</strong></font>
+<table width=90% cellpadding=10 border=1 bgcolor=#efefef><tr>
+<td><font face=arial><font color=#3ab050><b>using</b></font> System.Collections;<br>
+<font color=#3ab050><b>using</b></font> System.Collections.Generic;<br>
+<font color=#3ab050><b>using</b></font> UnityEngine;<br>
+<br>
+<font color=#3ab050><b>public class</b></font> <font color=#31849b><b>FunCubeParticles</b> : <b>MonoBehaviour</b></font>{<br>
+<br>
+&nbsp; &nbsp; &nbsp;&nbsp; <font color=#3ab050><b>public</b></font> <font color=#31849b><b>GameObject </b></font> impactParticles;<br>
+&nbsp; &nbsp; &nbsp;&nbsp; <font color=#3ab050><b>public</b></font> <font color=#31849b><b>Vector3</b></font> SpawnParticlesHere;<br>
+&nbsp; &nbsp; &nbsp;&nbsp; <font color=#3ab050><strong>public</strong></font> <font color=#31849b><b>GameObject</b> </font><strong>newParticles;</strong>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; <font face=arial> &nbsp; &nbsp;<font color=gray></font></font> &nbsp; &nbsp;<font color=gray></font><font color=gray>//#1</font><br>
+<br>
+&nbsp; &nbsp; &nbsp;&nbsp; void OnCollisionEnter(<font color=#31849b><b>Collision</b></font> other){<br>
+&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; <font color=gray>//if the impact has enough force</font><br>
+&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; <font color=#3ab050><b>if</b></font> (other.relativeVelocity.magnitude ><b><font color="#ed6c0a"> 5</font></b>) {<br>
+&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; <font color=gray>//get impact location</font><br>
+&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; SpawnParticlesHere = other.contacts[<b><font color="#ed6c0a">0</font></b>].point;<br>
+&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; <font color=gray>//make particles</font> <font color=gray> at that location</font><br>
+&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; <strong>newParticles</strong> = Instantiate (impactParticles, SpawnParticlesHere, other.transform.rotation);&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;<font face=arial> &nbsp; &nbsp;<font color=gray></font></font> &nbsp; &nbsp;<font color=gray></font><font color=gray>//#2</font><b>
+<br>
+</b>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; <b>StartCoroutine(DestroyPS(newParticles));</b>&nbsp;&nbsp; <font color=gray>//#3</font>
+<br>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; }
+<br>&nbsp; &nbsp; &nbsp;&nbsp; }
+
+<br><br>
+<b>&nbsp; &nbsp; &nbsp;&nbsp; <font color=#31849b>IEnumerator</font> DestroyPS(GameObject newPS){ </b> &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;<font color=gray>//#4</font><b><br>
+&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; <font color=#3ab050>yield return new</font> <font color=#31849b>WaitForSeconds</font>(<font color=#ed6c0a>3.0f</font>); <br>
+&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; Destroy(newPS); <br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;} </b><br>
+}</font></td>
+</tr></table>
+</center>
+      
+<font face="arial"><br><b>g). Increase Gravity for faster falls / more VFX:</b>
+<br>Open <b>Edit &gt; Project Settings &gt; Physics</b> to increase gravity from the default 9.8 meters per second. Try setting it to a much higher number, like 50.  
+<br></font></td></tr></table>  
+
+<br><br>
+
+<table width=680 cellpadding=10 border=0><tr>
+  <td bgcolor=#f8eaea><font face=arial>
+<b><a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a> <font face=arial><a name="07">&nbsp;</a></font><font color=purple>PART 7:</font> UI AND SCORING:</b><br>
+Another way to give players feedback on their progress is through HUD displays. 
+<br>
+To show a score we need two new things: A <strong>Game Object</strong> containing a public <strong>Control script</strong> for managing the scorekeeping, and a <strong>UI Text Object</strong> to display the score (on a <strong>Canvas</strong>).<br>
+<br>
+<strong>A). Create an Empty G.O.:</strong> <strong>GameObject &gt; </strong><b>CreateEmpty</b>, name &quot;GameControlObj&quot;.
+<br>In the Inspector apply the <b>tag</b> <em>GameController.</em>
+<br><br>Create a <b>new C# script </b> named <b>GameController.cs</b>. Drag  this script onto GameControlObj.
+<br>Doubleclick the script to open in  your editor.<br>
+<strong>IMPORTANT:</strong> Be sure to add the <strong>UI namespace</strong> to the top!:
+</font>
+
+<br><center>
+<font face=arial><em>GameController.cs</em>:</font>
+<br>
+<table width=90% cellpadding=10 border=1 bgcolor=#efefef><tr>
+  <td><font face=arial><font color=#3ab050><b>using</b></font> System.Collections;<br>
+<font color=#3ab050><b>using</b></font> System.Collections.Generic;<br>
+<font color=#3ab050><b>using</b></font> UnityEngine;<br><font color=#3ab050><b>using</b></font> UnityEngine.UI;<br><br>
+      <font color=#3ab050><b>public class</b></font></font> <font color=#31849b face="arial"><b>GameController</b> : <b>MonoBehaviour</b></font><font face="arial">  {
+      <br><br>
+        &nbsp; &nbsp; &nbsp;<font color=#3ab050><b>public</b></font> <font color=#31849b><b>GameObject</b></font> textGameObject;<br>
+        &nbsp; &nbsp; &nbsp;<font color=#3ab050><b>private</b></font> <font color=#31849b><b>int</b></font>  score;<br><br>
+        &nbsp; &nbsp; &nbsp;<font color=#31849b><b>void</b></font> Start () {<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; score = <strong><font color=#ed6c0a>0</font></strong>;<br>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; UpdateScore();<br>
+        &nbsp; &nbsp; &nbsp;}<br>
+        <br>
+        &nbsp; &nbsp; &nbsp;<font color=#3ab050><b>public</b></font> <font color=#31849b><b>void</b></font>  AddScore (<font color=#31849b><b>int</b></font> newScoreValue) {<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  score += newScoreValue;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  UpdateScore  ();<br>
+        &nbsp; &nbsp; &nbsp;}<br><br>
+        &nbsp; &nbsp; &nbsp;<font color=#31849b><b>void</b></font> UpdateScore () {<br>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>Text</b></font> scoreTextB = textGameObject.GetComponent&lt;<font color=#31849b><b>Text</b></font>&gt;();<br>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  scoreTextB.text  = <font color=#ed6c0a><b>&quot;Score: &quot;</b></font> + score;<br>
+        &nbsp; &nbsp; &nbsp;}<br>
+        }
+<br><br></font></td></tr></table></center>
+
+<font face=arial> 
+<br>
+<b>B).</b> <b>Create a Canvas Text object</b>, add it to the GameControllerObj script: 
+<br>
+&nbsp;<img src="gamedesign/bullet.png"> <strong>GameObject menu&gt; UI &gt; Legacy &gt; </strong><b>Text</b> 
+to make a Text Object inside a Canvas Object. <br>
+(<em><strong>NOTE:</strong></em> The Canvas appears normal in the Game view and crazy large in the Scene  view).
+<br>
+&nbsp;<img src="gamedesign/bullet.png" alt=""> With the Text Object selected, change these settings in  the <strong>Inspector</strong>: 
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set <strong>Width</strong> and <strong>Height</strong> much larger to increase text field (double or more). 
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set <strong>Pos  X</strong> and <strong>Pos Y</strong> to a corner of Game view. 
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Change <strong>text field</strong> to  &quot;Score&quot;.<br>
+&nbsp;<img src="gamedesign/bullet.png" alt=""> 
+<strong>Add</strong> the Text object to the GameControllerObj script slot:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;In the Hierarchy select your GameControlObj.<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;In the Inspector find the GameController  script component with the empty, public TextGameObject <strong>script slot</strong>.<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fast-drag the Text  object from the Hierarchy into the TextGameObject <strong>script slot</strong>.<br><br>
+<b>C).</b> Finally <strong>add 3 parts</strong> to the <b>Rotator.cs </b>script so  collected objects can update the score:<br> 
+&nbsp; &nbsp; &nbsp; &nbsp;<b>#1.</b> Add a <b>private  variable</b> to hold the GameController object. 
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp;<b>#2.</b> Add a <b>Start</b> method to find the actual GameController object and <b>assign it</b> to the private variable (first assign to a temporary GameObjectTemp variable). <br>
+&nbsp; &nbsp; &nbsp; &nbsp;<b>#3.</b> Add a line to the <b>OnTriggerEnter</b> function to run the AddScore function inside of GameController's script<b>:</b>
+</font>
+
+<br>
+<center>
+<font face=arial><b>Add to</b> <em>Rotator.cs</em>:</font>
+<br>
+<table width=660 cellpadding=10 border=1 bgcolor=#efefef><tr>
+  <td><font face=arial><font color=#3ab050><b>using</b></font> System.Collections; <br>
+            <font color=#3ab050><b>using</b></font> System.Collections.Generic; <br>
+            <font color=#3ab050><b>using</b></font> UnityEngine; <br>
+  <br><font color=#3ab050><b>public class</b></font></font> <font color=#31849b face="arial"><b>Rotator</b> <b>:</b> <b>MonoBehaviour</b></font><font face="arial"> {<br><br>
+&nbsp; &nbsp; &nbsp; &nbsp;<b><font color=#3ab050>private</font> <font color=#31849b>GameController</font> gameController; 
+</b><font color=gray>// #1: add variable to hold GameController</font>
+<br><br>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;<font color=#31849b>void</font> Start () { 
+<font color=gray>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </font></b><font color=gray>// #2: assign actual Game Controller to variable</font><b><br>
+&nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;<font color=#3ab050>if</font> (<font color=#31849b>GameObject</font>.FindWithTag (<font color=#ed6c0a>&quot;GameController&quot;</font>) != <font color=#31849b>null</font>) { gameController = <font color=#31849b>GameObject</font>.FindWithTag (<font color=#ed6c0a>&quot;GameController&quot;</font>).GetComponent&lt;<font color=#31849b>GameController</font>&gt;();<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;}<br>
+&nbsp; &nbsp;&nbsp; &nbsp;}</b><br><br>
+&nbsp; &nbsp; &nbsp; &nbsp;<b><font color=#31849b>void</font></b> Update () {<br>
+&nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; transform.Rotate  (new Vector3 (<font color=#ed6c0a><b>15, 30, 45</b></font>) * <font color=#31849b><b>Time</b></font>.deltaTime); <br>
+&nbsp; &nbsp; &nbsp; &nbsp;}<br>
+<br>
+&nbsp; &nbsp; &nbsp;&nbsp; <font color=#31849b><b>void</b></font> OnTriggerEnter(<font color=#31849b><b>Collider</b></font> other){<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; <font color=#3ab050><b>if</b></font> (other.gameObject.tag == <font color=#ed6c0a><b>&quot;Player&quot;</b></font>) {
+<br>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+GetComponent&lt;Collider&gt;().enabled = false;
+<br>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; GetComponent&lt;<font color=#31849b><b>AudioSource</b></font>&gt;().Play();<br>
+&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+<b>gameController.AddScore (<font color=#ed6c0a>1</font>); <font color=gray>&nbsp;</font></b><font color=gray> &nbsp; &nbsp; &nbsp; // #3: 
+update score through AddScore()</font>
+<br>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; StartCoroutine(DestroyThis());<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;}<br>&nbsp; &nbsp; &nbsp; &nbsp;}<br>
+<br>&nbsp; &nbsp; &nbsp;&nbsp; <font color=#31849b><b>IEnumerator</b></font> DestroyThis(){<br>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; <font color=#3ab050><b>yield return new</b></font> <font color=#31849b><b>WaitForSeconds</b></font>(<font color=#ed6c0a><b>0.5f</b></font>);<br>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; Destroy(gameObject);<br>
+&nbsp; &nbsp; &nbsp; &nbsp;}<br>
+}</font></td></tr></table>
+</center>
+
+<br><br>
+
+<table width=100% bgcolor=#cccccc cellpadding=10><tr><td><font face=arial>
+<br>
+<em><strong>NOTE:</strong></em> In this tutorial we are using the <strong>legacy Text</strong> instead of the newer <strong>TextMeshPro</strong>.
+TextMeshPro has become the standard. If you prefer to use TextMeshPro for this tutorial, here are the adjustments you will need to make to the GameController code: </font>
+<br><br>
+<center>
+  <font face=arial><em>Optional GameController.cs revisions for TextMeshPro</em>:</font> <br>
+  <table width=90% cellpadding=10 border=1 bgcolor=#efefef>
+    <tr>
+      <td><font face=arial><font color=#3ab050><b>using</b></font> System.Collections;<br>
+<font color=#3ab050><b>using</b></font> System.Collections.Generic;
+<br>
+<font color=#3ab050><b>using</b></font> UnityEngine;
+<br>
+<font color=#3ab050><b>using</b></font> UnityEngine.UI;
+<br>        
+        
+<font color=#3ab050><strong>using</strong></font><strong> TMPro; </strong><font face="arial">&nbsp; &nbsp; &nbsp; &nbsp;</font>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;<font color=gray>// #1: add namespace for TMPro</font><br>
+<br>
+        <font color=#3ab050><b>public class</b></font></font> <font color=#31849b face="arial"><b>GameController</b> : <b>MonoBehaviour</b></font><font face="arial"> {
+        <br><br>
+          &nbsp; &nbsp; &nbsp;<font color=#3ab050><strong>public</strong></font> <strong><font color=#31849b>TMP_Text</font> textScore;</strong> <font color=gray>// #2: add  TMPro variable</font><br>
+          &nbsp; &nbsp; &nbsp;<font color=#3ab050><b>private</b></font> <font color=#31849b><b>int</b></font> score;<br>
+          <br>
+          &nbsp; &nbsp; &nbsp;<font color=#31849b><b>void</b></font> Start () {<br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; score = <strong><font color=#ed6c0a>0</font></strong>;<br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; UpdateScore();<br>
+          &nbsp; &nbsp; &nbsp;}<br>
+          <br>
+          &nbsp; &nbsp; &nbsp;<font color=#3ab050><b>public</b></font> <font color=#31849b><b>void</b></font> AddScore (<font color=#31849b><b>int</b></font> newScoreValue) {<br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  score += newScoreValue;<br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  UpdateScore  ();<br>
+          &nbsp; &nbsp; &nbsp;}<br>
+          <br>
+          &nbsp; &nbsp; &nbsp;<font color=#31849b><b>void</b></font> UpdateScore () {<br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<strong>textScore.text  = <font color=#ed6c0a>&quot;SCORE: &quot;</font> + score;</strong> <font color=gray>// #3: set output</font><br>
+          &nbsp; &nbsp; &nbsp;}<br>
+          }</font></td>
+    </tr>
+  </table>
+  <br><br>
+  </center>
+</td></tr></table>  
+  
+<br></font></td></tr></table><br>
+
+<table width=680 cellpadding=10 border=0><tr>
+<td colspan=2 bgcolor=#f8eaea><font face=arial>
+<b><a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a> <a name="08">&nbsp;</a><font color=purple>PART 8:</font> ADDING DEBUG.LOG</b><br>
+Not sure why a certain behavior is occurring? Add a &ldquo;return&rdquo; to the debug log!
+
+<br><br>For example, to the updated <em>Rotator.cs</em> script, in the <b>OnTriggerEnter</b> function, you can add this to see how many times the collider is activated:<br>
+</font><center><table width=90% cellpadding=10 border=1 bgcolor=#efefef><tr>
+  <td><font face=arial>  
+  &nbsp; &nbsp;<font color=#31849b><b>Debug</b></font>.Log (<font color=#ed6c0a><b>&quot;impact: &quot;</b></font> + scoreValue);</font></td></tr></table></center><font face="arial"><br>
+  Hit Play and open the Console Panel (next to the Project Panel ) to view the log.
+<br></font></td></tr></table><br>
+
+<table width=680 cellpadding=10 border=0><tr>
+<td colspan=2 bgcolor=#f8eaea><font face=arial>
+  <b><a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a> <a name="09">&nbsp;</a><font color=purple>PART 9:</font></b> <b>SWITCH BETWEEN LEVELS:</b> 
+<br>Let's say we want to go to a new level when this level is complete.
+
+<br><br>
+<strong>a). </strong>If you have not already done, so, <strong>drag</strong> the GameController object from the Hierarchy into the Assets folder to make it a <strong>Prefab</strong>.<br><br>
+<strong>b). </strong><b>Save</b> this Game Scene, name it &quot;<strong>GameScene</strong>&quot;.<br>
+<br>
+<strong>c).</strong> Open and revise <b>GameController.cs script:</b> 
+<br>
+<strong>Please add:</strong><br>
+<img src="gamedesign/bullet.png" alt=""> an <strong>Update() </strong>function to allow <strong>[Esc]-quitting</strong> the game
+<br>
+<img src="gamedesign/bullet.png" alt=""> a new <strong>Namespace</strong> at the top for <strong>UnityEngine.SceneManagement</strong>
+<br>
+<img src="gamedesign/bullet.png" alt=""> a class variable int for <strong>scoreWin</strong> to define the win state<br>
+<img src="gamedesign/bullet.png" alt=""> content to the <strong>AddScore()</strong> function for the win state 
+<br> 
+<img src="gamedesign/bullet.png" alt=""> new functions for <strong>Update(), PlayAgain()</strong> and <strong>QuitGame()</strong><br>
+<img src="gamedesign/bullet.png" alt=""> a new class bool &quot;<strong>isEnd</strong>&quot; and a <strong>condition</strong> to the <strong>Start()</strong> function to make the Cursor visible and functional in End Scenes (needed after the First Person Controller disables it in the Game Scene).
+
+<br><br>
+</font>
+
+<center>
+<font face="arial"><a name=GameControllerScript>&nbsp;</a><b>Add to</b> <em>GameController.cs</em>:
+</font>
+
+<table width=660 cellpadding=10 border=1 bgcolor=#efefef><tr>
+<td><font face="arial"><font color=#3ab050><b>using</b></font> UnityEngine;<br><font color=#3ab050><b>using</b></font> System.Collections;<br><font color=#3ab050><b>using</b></font> UnityEngine.UI;<br><font color=#3ab050><strong>using</strong></font><strong> UnityEngine.SceneManagement;</strong><br><br><font color=#3ab050><b>public class</b></font></font> <font color=#31849b face="arial"><b>GameController</b> <b>:</b> <b>MonoBehaviour</b></font><font face="arial"> {<br>
+&nbsp; &nbsp; &nbsp;<font color=#3ab050><b>public</b></font> <font color=#31849b><b>GameObject</b></font> textGameObject;<br>
+&nbsp; &nbsp; &nbsp;<font color=#3ab050><b>private</b></font> <font color=#31849b><b>int</b></font> score;<br>
+&nbsp; &nbsp; &nbsp;<font color=#3ab050><strong>public</strong></font> <strong><font color=#31849b>int</font> scoreWin = <font color="#ed6c0a">3</font>;</strong><br>
+<strong>&nbsp; &nbsp; &nbsp;<font color=#3ab050>public</font> <font color=#31849b>bool</font> isEnd = <font color=#31849b>true</font>;</strong><b> </b>&nbsp;<b> </b><b><font color=gray>// allows specific settings for end scenes</font></b>
+
+<br>
+<br>&nbsp; &nbsp; &nbsp;<font color=#31849b><b>void</b></font> Start () {<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; score =<b><font color="#ed6c0a">0</font></b>;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; UpdateScore ();
+<br>
+<br>
+<strong>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#3ab050>if</font> (isEnd){<br>
+&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;Cursor.lockState = CursorLockMode.None;<br>
+&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;Cursor.visible = <font color=#31849b>true</font>;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</strong><br>
+&nbsp; &nbsp; &nbsp;}<br>
+<br>
+<b>&nbsp; &nbsp; <font color=#31849b>void</font> Update () { 
+&nbsp; &nbsp; </b><font color=gray>// always include a way to quit the game:</font><b><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;if (Input.GetKey(<font color="#ed6c0a">&quot;escape&quot;</font>)) {<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;QuitGame();<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  }<br>
+&nbsp; &nbsp; }</b><br>
+<br>
+&nbsp; &nbsp; <font color=#3ab050><b>public</b></font> <font color=#31849b><b>void</b></font> AddScore (<font color=#31849b><b>int</b></font> newScoreValue) {<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  score += newScoreValue;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  UpdateScore  ();<br>
+<b>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;if (score >=</b> <strong>scoreWin</strong><b>){<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; SceneManager.LoadScene(<font color="#ed6c0a">&quot;EndWin&quot;</font>); </b><font color=gray>// uses level name</font><b><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=gray>//SceneManager.LoadScene(1); </font></b><font color=gray>// uses build index</font><b><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=gray>//SceneManager.LoadScene (SceneManager.GetActiveScene().buildIndex); 
+<br>
+</font>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</b><font color=gray>// restart same level</font><br>
+&nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;}<br>
+&nbsp; &nbsp; &nbsp;}<br><br>
+&nbsp; &nbsp; <font color=#31849b><b>void</b></font> UpdateScore () {<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=#31849b><b>Text</b></font> scoreTextB = textGameObject.GetComponent&lt;<font color=#31849b><b>Text</b></font>&gt;();<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; scoreTextB.text  = <font color=#ed6c0a><b>&quot;Score: &quot;</b></font> + score;<br>
+&nbsp; &nbsp; &nbsp;}
+
+<br>
+<br>	
+<strong>&nbsp; &nbsp; <font color=#3ab050>public</font> <font color=#31849b>void</font> PlayAgain() { <br>        
+&nbsp; &nbsp; &nbsp; &nbsp; SceneManager.LoadScene(<font color="#ed6c0a">&quot;GameScene&quot;</font>);<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; score = <font color="#ed6c0a">0</font>; <br>	
+&nbsp; &nbsp; } </strong><br>
+<br>	
+<strong>&nbsp; &nbsp; <font color=#3ab050>public</font> <font color=#31849b>void</font> QuitGame() { <br>		
+&nbsp; &nbsp; &nbsp; &nbsp; <font color=#804000>#if UNITY_EDITOR</font> <br>		
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; UnityEditor.EditorApplication.isPlaying = <font color=#31849b>false</font>; <br>		
+&nbsp; &nbsp; &nbsp; &nbsp; <font color=#804000>#else</font> <br>		
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Application.Quit(); <br>		
+&nbsp; &nbsp; &nbsp; &nbsp; <font color=#804000>#endif</font> <br>    
+&nbsp; &nbsp; } </strong><br>
+}</font></td>
+</tr></table>
+</center>
+
+<font face="arial"><br>
+<strong>NOTE</strong> the options for using the Scene index, the Scene name, or  just restarting the same level. 
+<br>
+To delay the switch to the next level, optionally add another Co-routine (IEnumerator) with a delay. 
+
+<br><br><br>
+<strong>d)</strong> In the <strong>GameScene</strong> select the <strong>GameController</strong> to set the "<strong>isEnd</strong>" <strong>bool = off / false</strong>, so the cursor will remain under the control of the First Person Controller (and in the next section the countdown timer will end the game).<br><br>
+<strong>e).</strong> File &gt; Create a <b>new Scene</b>. 
+<br>
+<img src="gamedesign/bullet.png" alt=""> File &gt; Save the Scene into the Scenes folder and name it &quot;<strong>EndWin</strong>&quot;.
+<br>
+<img src="gamedesign/bullet.png" alt=""> <strong>Drag</strong> the <strong>GameController Prefab</strong> from the Project panel into the Hirarchy to add it to this Scene.<br><br>
+<strong>f).</strong> Add a new <b>GameObject > UI > Legacy &gt; Text</b>.<br>
+<img src="gamedesign/bullet.png" alt=""> Select the new <strong>Canvas</strong>  created in the Hierarchy, and see the Inspector.
+<br>
+<img src="gamedesign/bullet.png" alt=""> Set the <strong>Canvas Scaler</strong> &gt; UI Screen Mode = <strong>Scale with Screen Size</strong> 
+<br>
+<img src="gamedesign/bullet.png" alt=""> Set the <strong>Reference Resolution</strong> Size: X = <strong>1280</strong> and Y = <strong>720</strong><br><br>
+Select the <strong>Text</strong> object: <br>
+<img src="gamedesign/bullet.png" alt=""> In the <strong>Inpector</strong> name it &quot;textWin&quot;. 
+<br>
+<img src="gamedesign/bullet.png" alt=""> Set the <strong>Rect Size</strong> big (800 x 100). 
+<br>
+<img src="gamedesign/bullet.png" alt=""> Set the <strong>Font Size</strong> big (70, bold), <strong>align</strong> = center, set the <strong>color</strong> bright. 
+<br>
+ <img src="gamedesign/bullet.png" alt=""> Change the text field to "<strong>You Win!!</strong>"
+ <br>
+ <img src="gamedesign/bullet.png" alt=""> In  Scene view hit <strong>[m]</strong> to move textWin to Canvas center and middle-top. <br>
+<br>
+<strong>g).</strong> Add a new <b>GameObject > UI > Button</b>.<br>
+<img src="gamedesign/bullet.png" alt=""> In the <strong>Inpector</strong> name it &quot;<strong>Button_PlayAgain</strong>&quot;. 
+<br>
+<img src="gamedesign/bullet.png" alt=""> Set size = 300 x 80 and set desired colors for Normal and Highlighted.<br>
+<img src="gamedesign/bullet.png" alt=""> Open the <strong>twirly</strong> to select the Button's child <strong>Text</strong> object.  
+<br>
+<img src="gamedesign/bullet.png" alt=""> Set <strong>font size</strong> = 50, <strong>bold</strong>, and the <strong>color</strong> high-contrast against the button. 
+<br>
+<img src="gamedesign/bullet.png" alt=""> Change the text to "<strong>PLAY AGAIN</strong>"
+
+<br><br>
+
+<a href="gamedesign/UnityTerrain/unity3D_win.png" target=img><img src="gamedesign/UnityTerrain/unity3D_win_thumb.png" align=right></a>
+
+ <img src="gamedesign/bullet.png" alt=""> <strong><em>Add Functionality:</em></strong> Re-select the Button.<br>At the bottom of the Inspector, find &quot;<strong>OnClick()</strong>&quot; and hit the <strong>[+]</strong> to add an event.<br>
+ <strong>Drag</strong> the GameController object from the Hierarchy (NOT the Assets folder) into the &quot;<strong>None</strong>&quot; slot (beneath &quot;Runtime Only&quot;). 
+ <br>
+ Then click &quot;<strong>No Function</strong>&quot; (on the right) and choose <strong>GameController &gt; PlayAgain()</strong>.<br>
+<br>
+<strong>h).</strong> Duplicate the Button, drag it lower in the Canvas.<br>
+<img src="gamedesign/bullet.png" alt=""> In the <strong>Inpector</strong> rename it &quot;Button_QUIT&quot;.<br>
+<img src="gamedesign/bullet.png" alt=""> Open the twirly and select the Text object to change the field to say &quot;QUIT GAME&quot;.<br>
+<img src="gamedesign/bullet.png" alt=""> Re-select Button, under OnClick change &quot;PlayAgain()&quot; to <strong>GameController &gt; QuitGame()</strong>.<br><br>
+<strong>i).</strong> <strong>Save</strong> the Scene as &quot;<strong>EndWin</strong>&quot;.<br>
+<img src="gamedesign/bullet.png" alt=""> Make a <strong>duplicate</strong> of the Scene: File &gt; Save As, name it &quot;<strong>EndLose</strong>&quot;.<br>
+<img src="gamedesign/bullet.png" alt=""> Change the Text in End Lose from &quot;You Win!&quot; To &quot;<strong>You lost</strong>&quot;.<br>
+<br>
+<strong>j).</strong> Open to <b>File > Build Settings</b>. We need to add the Scenes: 
+<br>
+<img src="gamedesign/bullet.png" alt=""> Open the Project panel &gt; Assets &gt; Scenes folder. 
+<br>
+<img src="gamedesign/bullet.png" alt=""> Select Level1 and drag it into the Build Settings top window. 
+<br>
+<img src="gamedesign/bullet.png" alt=""> Because it was dragged first, it gets assigned index 0. 
+<br>
+<img src="gamedesign/bullet.png" alt=""> Next, drag in the Level2 Scene (it becomes index 1). <br>
+</font></td></tr></table><br>
+
+<table width=680 cellpadding=10 border=0><tr>
+<td colspan=2 bgcolor=#f8eaea><font face=arial>
+<a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a> <a name="timer">&nbsp;</a>
+<font color=purple><b>PART 10:</b></font> <strong>MAKE A TIMER:</strong><br>
+Finally, <b>ADD STAKES</b> to your game by creating a <strong>time limit.</strong><br>
+A <b>countdown timer</b> can go to a <b>second Scene</b> with a &quot;lose&quot; message in the Canvas Text.<br><br>
+<strong>a). Create the Timer Display:</strong><br>
+<img src="gamedesign/bullet.png" alt=""> Select the existing Canvas in the Hierarchy. 
+<br>
+<img src="gamedesign/bullet.png" alt=""> RightClick to add a new <strong>UI > Legacy &gt;  Text.</strong><br>
+<img src="gamedesign/bullet.png" alt=""> In the Inspector name it &quot;<strong>TimerText</strong>&quot;. 
+<br>
+<img src="gamedesign/bullet.png" alt=""> Set PosX and PosY to the opposite corner from the Score text. 
+<br>
+<img src="gamedesign/bullet.png" alt=""> Set  Width and Height a bit bigger. 
+<br>
+<img src="gamedesign/bullet.png" alt=""> Add default text to the Text Field: &quot;TIME: 00&quot;<br>
+<br>
+<strong>b). Revise</strong> the <strong>GameController.cs</strong> script to include:
+</font>
+  <br><font face=arial><img src="gamedesign/bullet.png" alt=""> <strong>Three</strong> new <strong>variables</strong>: <strong>
+  <br>
+  </strong><b>&nbsp; &nbsp; &nbsp; &nbsp;</b>a <strong>float</strong>  called &quot;<strong>theTimer</strong>&quot;<br>
+  <b>&nbsp; &nbsp; &nbsp; &nbsp;</b>a <strong>Text</strong> object to reference called &quot;<strong>TimerText</strong>&quot; <br>
+  <b>&nbsp; &nbsp; &nbsp; &nbsp;</b>a<strong> float</strong> called &quot;<strong>startTime</strong>&quot; <br> <img src="gamedesign/bullet.png" alt=""> A line in the <strong>Start()</strong> function to set the initial time, in seconds. <br> 
+  <img src="gamedesign/bullet.png" alt=""> A <strong>FixedUpdate()</strong> function to decrement the time based on 
+
+  <strong>Time.fixedDeltaTime</strong>.</font>
+
+<font face="arial"><br>
+<br>
+</font><center>
+<font face="arial"><b>Add to</b> <em>GameController.cs</em>: 
+<br>
+Two variables at the top of the Class, with the other Class variables
+</font>
+
+<font face="arial"><br>
+
+</font><table width=95% cellpadding=10 border=1 bgcolor=#efefef><tr>
+<td><font face="arial"><b>&nbsp; &nbsp; &nbsp; &nbsp;<font color=#3ab050>public</font> <font color=#31849b>float</font> theTimer; 
+      <font face="arial"><b> </b>&nbsp;</font> </b>&nbsp;<b><font color=gray>// add a timer variable</font><br>
+&nbsp; &nbsp; &nbsp; &nbsp;<font color=#3ab050>public</font> <font color=#31849b>Text</font> timerText;</b> <b><font face="arial"> &nbsp;</font> <font color=gray>// add a reference to  UI Text object</font></b>
+	
+    <br>
+    <strong>&nbsp; &nbsp; &nbsp; &nbsp;<font color=#3ab050>public</font> <font color=#31849b>float</font></strong> <strong>startTime = <font color="#ed6c0a">20</font>;</strong></font></td>
+</tr></table>
+</center>
+<center>
+<font face="arial"><br>
+  One new line in the Start() function: <br>
+    </font>
+  <table width=95% cellpadding=10 border=1 bgcolor=#efefef>
+    <tr>
+      <td><font face="arial">&nbsp; &nbsp; &nbsp; &nbsp;<font color=#31849b><b>void</b></font> Start () {<br>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  score =<b><font color="#ed6c0a">0</font></b>;<br>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  UpdateScore ();<br>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>theTimer =</b><strong> startTime</strong><b>; </b>&nbsp; &nbsp; &nbsp;<b><font color=gray>// set timer to 20 seconds</font></b> 
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> (isEnd){<br>
+&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;Cursor.lockState = CursorLockMode.None;<br>
+&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;Cursor.visible = <strong><font color=#31849b>true</font></strong>;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br>
+        &nbsp; &nbsp; &nbsp; &nbsp;}</font></td>
+    </tr>
+  </table>
+</center>
+<center>
+<font face="arial"><br>
+A FixedUpdate() function, after Update():<br>
+    </font>
+  <table width=95% cellpadding=10 border=1 bgcolor=#efefef>
+    <tr>
+      <td><font face="arial"><b>&nbsp; &nbsp; &nbsp; &nbsp;<font color=#31849b>void</font> FixedUpdate () {<br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;theTimer -= <font color=#31849b>Time</font>.fixedDeltaTime; <font color=gray>// decrement time, </font>
+          <br>
+          <b>&nbsp; &nbsp; &nbsp; &nbsp;</b>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;<font color=gray>// display time,</font> <font color=gray>remove decimal from float:</font><br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;timerText.text = <font color="#ed6c0a">&quot;Time: &quot;</font> + <font color=#31849b>Mathf</font>.Floor(theTimer);<br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=#3ab050>if</font> ((theTimer <= <font color="#ed6c0a">0</font>) &amp;&amp; (isEnd == <font color=#31849b>false</font>)){<br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b>SceneManager</font>.LoadScene (<font color="#ed6c0a">&quot;EndLose&quot;</font>);<br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;}<br>
+          &nbsp; &nbsp; &nbsp; &nbsp;}</b></font></td>
+    </tr>
+  </table>
+</center>
+<center>
+  <font face="arial"><br>
+    Revise PlayAgain() to include a timer reset:<br>
+    </font>
+  <table width=95% cellpadding=10 border=1 bgcolor=#efefef>
+    <tr>
+      <td><font face="arial">&nbsp; &nbsp; <font color=#3ab050><b>public</b></font> <font color=#31849b><b>void</b></font> PlayAgain() {<br>
+&nbsp; &nbsp; &nbsp; &nbsp; SceneManager.LoadScene(<b><font color="#ed6c0a">&quot;GameScene&quot;</font></b>);<br>
+&nbsp; &nbsp; &nbsp; &nbsp; <strong>theTimer = startTime;</strong><br>
+&nbsp; &nbsp; &nbsp; &nbsp; score = <b><font color="#ed6c0a">0</font></b>;<br>
+&nbsp; &nbsp; }</font></td>
+    </tr>
+  </table>
+</center>
+<font face="arial"><br>
+</font><font face="arial"><br>
+Here is the full revised GameController script:
+<br></font>
+<center>
+  <font face="arial"><a name=GameControllerScript>&nbsp;</a><em>GameController.cs</em>: </font>
+  <table width=660 cellpadding=10 border=1 bgcolor=#efefef>
+    <tr>
+      <td><font face="arial"><font face="arial"><font color=#3ab050><b>using</b></font> System.Collections;</font><br>
+      <font color=#3ab050><b>using </b></font><font face="arial">System.Collections.Generic;</font><br>
+      <font color=#3ab050><b>using</b></font> UnityEngine;<br>
+        <font color=#3ab050><b>using</b></font> UnityEngine.UI;<br>
+        <font color=#3ab050><b>using</b></font> UnityEngine.SceneManagement;<br>
+        <br>
+        <font color=#3ab050><b>public class</b></font></font> <font color=#31849b face="arial"><b>GameController</b> <b>:</b> <b>MonoBehaviour</b></font><font face="arial"> {<br>
+          &nbsp; &nbsp; &nbsp;<font color=#3ab050><b>public</b></font> <font color=#31849b><b>GameObject</b></font> textGameObject;<br>
+          &nbsp; &nbsp; &nbsp;<font color=#3ab050><b>private</b></font> <font color=#31849b><b>int</b></font> score;<br>
+&nbsp; &nbsp; &nbsp;<font color=#3ab050><strong>public</strong></font> <strong><font color=#31849b>int</font> </strong>scoreWin = <strong><font color="#ed6c0a">3</font></strong>;<br><br>
+          &nbsp; &nbsp; &nbsp;<b><font color=#3ab050>public</font> <font color=#31849b>float</font> </b>theTimer;<b><br>
+          </b>&nbsp; &nbsp; &nbsp;<b><font color=#3ab050>public</font> <font color=#31849b>Text</font> </b>timerText;<br>
+          &nbsp; &nbsp; &nbsp;<strong><font color=#3ab050>public</font> <font color=#31849b>float</font></strong> startTime =<strong> <font color="#ed6c0a">20</font></strong>;<strong>
+          
+          <br><br>
+          </strong>&nbsp; &nbsp; &nbsp;<strong><font color=#3ab050>public</font> <font color=#31849b>bool</font> </strong>isEnd =<strong> <font color=#31849b>true</font></strong>;<br><br>
+          &nbsp; &nbsp; &nbsp;<font color=#31849b><b>void</b></font> Start () {<br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; score =<b><font color="#ed6c0a">0</font></b>;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; UpdateScore();<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; theTimer = startTime;
+<br><br>
+&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;<b><font color=#3ab050>if</font></b> (isEnd){<br>
+&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;Cursor.lockState = CursorLockMode.None;<br>
+&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;Cursor.visible = <strong><font color=#31849b>true</font></strong>;<br>
+&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;}<br>
+          &nbsp; &nbsp; &nbsp;}<br>
+          <br>
+          &nbsp; &nbsp; <font color=#31849b><strong>void</strong></font> Update () {<br>
+              &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<b><font color=#3ab050>if</font></b> (Input.GetKey(<b><font color="#ed6c0a">&quot;escape&quot;</font></b>)) {<br>
+              &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;QuitGame();<br>
+              &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  }<br>
+              &nbsp; &nbsp; }<br><br>
+              &nbsp; &nbsp; <b><font color=#31849b>void</font> </b>FixedUpdate () {<br>
+              &nbsp; &nbsp; &nbsp; &nbsp; theTimer -= <b><font color=#31849b>Time</font></b>.fixedDeltaTime;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; timerText.text = <b><font color="#ed6c0a">&quot;Time: &quot;</font></b> + <b><font color=#31849b>Mathf</font></b>.Floor(theTimer);<b><br>
+</b>&nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font> </b>((theTimer <= <b><font color="#ed6c0a">0</font></b>) &amp;&amp; (isEnd ==<b> <font color=#31849b>false</font></b>)){<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><strong>SceneManager</strong></font><strong>.</strong>LoadScene (<b><font color="#ed6c0a">&quot;EndLose&quot;</font></b>);<b><br>
+</b>&nbsp; &nbsp; &nbsp; &nbsp; }<br>
+              &nbsp; &nbsp; }<br><br>
+          &nbsp; &nbsp; <font color=#3ab050><b>public</b></font> <font color=#31849b><b>void</b></font> AddScore (<font color=#31849b><b>int</b></font> newScoreValue) {<br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  score += newScoreValue;<br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  UpdateScore  ();<br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<b><font color=#3ab050>if</font></b> (score >= scoreWin) {<br>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; SceneManager.LoadScene(<b><font color="#ed6c0a">&quot;EndWin&quot;</font></b>);<br>
+          &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;}<br>
+          &nbsp; &nbsp; &nbsp;}<br>
+          <br>
+          &nbsp; &nbsp; <font color=#31849b><b>void</b></font> UpdateScore () {<br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=#31849b><b>Text</b></font> scoreTextB = textGameObject.GetComponent&lt;<font color=#31849b><b>Text</b></font>&gt;();<br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; scoreTextB.text  = <font color=#ed6c0a><b>&quot;Score: &quot;</b></font> + score;<br>
+          &nbsp; &nbsp; &nbsp;}<br>
+          <br>
+          &nbsp; &nbsp; <font color=#3ab050><b>public</b></font> <font color=#31849b><b>void</b></font> PlayAgain() {<br>
+          &nbsp; &nbsp; &nbsp; &nbsp; SceneManager.LoadScene(<b><font color="#ed6c0a">&quot;GameScene&quot;</font></b>);<br>
+          &nbsp; &nbsp; &nbsp; &nbsp; theTimer = startTime;<br>
+          &nbsp; &nbsp; &nbsp; &nbsp; score = <b><font color="#ed6c0a">0</font></b>;<br>
+          &nbsp; &nbsp; }<br>
+          <br>
+          &nbsp; &nbsp; <font color=#3ab050><b>public</b></font> <font color=#31849b><b>void</b></font> QuitGame() {<br>
+          &nbsp; &nbsp; &nbsp; &nbsp; <font color=#804000>#if UNITY_EDITOR</font><br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; UnityEditor.EditorApplication.isPlaying = <font color=#31849b><b>false</b></font>;<br>
+          &nbsp; &nbsp; &nbsp; &nbsp; <font color=#804000>#else</font><br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Application.Quit();<br>
+          &nbsp; &nbsp; &nbsp; &nbsp; <font color=#804000>#endif</font><br>
+          &nbsp; &nbsp; }<br>
+          }</font></td>
+    </tr>
+  </table>
+</center>
+<font face="arial">&nbsp;</font><font face="arial"><br><br>
+</font><font face="arial"><em><strong>NOTE:</strong></em><strong> FixedUpdate() vs Update():</strong>
+<li><strong>FixedUpdate()</strong> runs every .02 seconds on all computers (50fps), and is good for timers and physics calculations.
+<li><strong>Update()</strong> runs once per frame and so varies by computer speed; it is great for &quot;listeners&quot; like keyboard inputs.
+
+<br><br>
+</font></td></tr></table><br>
+
+<table width=680 cellpadding=10 border=0><tr>
+<td colspan=2 bgcolor=#f8eaea><font face=arial>
+<b><a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a> <a name="10">&nbsp;</a><font color=purple>PART 11:</font></b> <b>BUILD THE GAME:</b> <br>
+
+<br>
+<br>
+<strong>[1]</strong> To create a <strong>web build</strong> to upload to<strong> itch.io</strong>, please follow the directions <a href="GameDesign_Unity.html#build" target=web>here</a>, on the right. <br>
+<br>
+<br>
+<strong>[2]</strong><em> To create a standalone build: </em><br>
+<strong>a).</strong> Open <b>File > Build Settings</b><strong>.</strong><br><br>
+<strong>b).</strong> Hit <b>[Build]</b>, create a new folder named "Build" outside of your Unity project folder.
+
+<br><br>
+<strong>c).</strong> Hit <b>[Select Folder]</b> to build  game. On Mac this makes a single .APP. On PC this makes multiple files and folder, all needed (when submitting, compress in a .ZIP).
+<br><br>
+<strong>d).</strong> DoubleClick the application in the Build folder to run the game. <br><br>
+<strong>e).</strong> Our Update() function in the <a href="#GameControllerScript">GameController script</a> lets us hit <b>[Esc]</b> to exit.
+
+<br>
+<br><br><br></font></td>
+</tr></table>
+
+<br><br>
+
+<table width=680 border=0><tr><td>
+<center>
+<font face="arial"><em>Tutorial by Jason Wiser, MadWomb.com</em><br>
+The instructional content of this page is &copy; 2015-2023 Jason Wiser. <em><br>
+See more Unity tutorials at <a href="http://www.Madwomb.com/Unity" target=unityLearn>http://www.Madwomb.com/Unity</a></em>
+</font></center>
+</td></tr></table>
+</center>
+
+<br><br>
+
+</body>
+</html>

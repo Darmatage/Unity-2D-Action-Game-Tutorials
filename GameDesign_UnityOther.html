@@ -1,0 +1,1031 @@
+<html>
+<head>
+<title>Unity3D Character Tutorial</title>
+</head>
+
+<body text=#222222 link=#1e6669 vlink=#7700aa alink=#1088bb>
+
+<center>
+<table width=800 cellpadding=10 border=0>
+<tr>
+  <td valign=top><font face=arial>
+
+<font face=arial><a href="GameDesign_Unity.html"><img src="gamedesign/UnityLogo60.png" alt="" align=right></a></font><font size=+2><b>UNITY 3D - Cool Stuff</b></font>
+<br>
+This tutorial covers modules for specific, interesting game scenarios. </font>
+    <center>
+<table width=80% cellpadding=10><tr><td>
+<li><font face="arial"><strong><a href=#pickups>Carry Objects</a></strong> (created for about gatherign piles of objects).</font><li> <font face="arial"><strong><a href=#keygen>Generate Random Keys</a></strong> for player input, like player character movement.</font>
+<li><font face="arial"><strong><a href=#tour>Tour</a></strong>  between waypoints (rocket ship, no navmesh).</font>
+    <li><font face="arial"><strong><a href=#dragon>Dragon NPC</a></strong> for a 3D game: Flight and Attack on random players or areas.</font>
+    <li><font face="arial"><strong><a href=#lava>Rising Lava</a></strong> Death for a 3D game.</font>
+
+</td></tr></table>
+</center>
+</td></tr>
+<tr><td bgcolor=#eef5ee>
+<center>
+<font face=arial><a name="pickups">&nbsp;</a></font><font size=+2 face="arial"><b>CARRY A STACK OF OBJECTS</b></font><font face="arial"><br>
+In a Unity 3D scene, given the 3D character, we make it able to pick up objects with a weight limit, and score by the total weight of the objects returned to home base: 
+</font>
+</center>
+
+<font face=arial>
+<br>
+<b>[STEP 1] SET UP OBJECTS:</b> Before we add scripts, make ther objects:
+<br>
+<li><strong>Create a Third-Person character controller</strong>: (see 
+<a href="GameDesign_Unity3DCharacter.html" target=third><strong>Third-Person Character</strong></a> tutorial). Create three Empty Game Objects, name them (objSlot1, objSlot2,  objSlot3), and parent them to the Player Character.</font>
+
+<li><font face="arial"><strong>Create a Canvas </strong>(for scoring)<strong>:</strong> Create an Empty Canvas and add a Text object. Position and size as desired, name it Player Score.</font>
+<li><font face="arial"><strong>Create a GameHandler:</strong> Create an Empty Game Object, name it GameHandler</font>.
+<li><font face="arial"><strong>Create a HomeBase</strong> (to bring back objects): Drag your mesh into the Hierarchy (or make a Cylinder). Add a BoxCollider and create and apply the <strong>TAG </strong> <strong>HomeBase</strong>.</font>
+<li><font face="arial"><strong>Create  Pickups:</strong> Create an Empty Game Object, name it PickupA. Drag your mesh into the Hierarchy (or make a cube) and parent it below PickupA. Make sure the child has no colliders, and add to the parent a <strong>BoxCollider</strong> (adjust size to surround mesh) and a <strong>Rigidbody</strong>. Create and Apply <strong>LAYER 10: PickUps</strong>. </font>
+
+<br><br>
+  <font face="arial"><b>[STEP 2] ADD C# SCRIPTS:</b><br>
+  <strong>a) </strong></font><font face="arial">Add this script to <strong>PickUps</strong> to designate the object weight::<br>
+  </font>
+  
+  <center>
+    <font face="arial"><em>PickUp.cs</em>: </font>
+    <table width=98% cellpadding=10 border=1>
+      <tr>
+        <td><font face="arial"> <font color=#3ab050><b>using</b></font> System.Collections;<br>
+          <font color=#3ab050><b>using</b></font> System.Collections.Generic;<br>
+          <font color=#3ab050><b>using</b></font> UnityEngine;<br>
+          <br>
+          <font color=#3ab050><b>public class</b></font></font> <font color=#31849b face="arial"><b>PickUp</b> <strong>:</strong> <b>MonoBehaviour</b></font><font face="arial"> {<br>
+            &nbsp; &nbsp; <font color=#31849b><b>public</b></font> int objWeight;&nbsp; &nbsp; &nbsp; &nbsp; <font color=gray>//Set weight value in Inspector for each object type prefab</font><br>
+            } </font></td>
+      </tr>
+    </table>
+  </center>
+  <font face="arial"><br>
+    <b>b) </b>Add this script to the <strong>GameHandler</strong>, to track the score and update the Canvas Text object with it.<br>
+  </font>
+<li><font face="arial">Once updated in Unity, add the canvas Text object to the Inspector<strong> script slot</strong>. </font><br><br>
+      <center>
+        <font face="arial"><em>GameHandlerScript.cs</em>: </font>
+        <table width=98% cellpadding=10 border=1>
+          <tr>
+            <td><font face=arial> <font color=#3ab050><b>using</b></font> System.Collections;<br>
+              <font color=#3ab050><b>using</b></font> System.Collections.Generic;<br>
+              <font color=#3ab050><b>using</b></font> UnityEngine;<br>
+              <font color=#3ab050><b>using</b></font> UnityEngine.UI;<br><br>
+              <font color=#3ab050><b>public class</b></font></font> <font color=#31849b face="arial"><b>GameHandlerScript</b> <strong>:</strong> <b>MonoBehaviour</b></font><font face="arial"> {<br>
+                &nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>static int</b></font> playerScore;<br>
+                &nbsp; &nbsp; <font color=#31849b><b>public</b></font> GameObject playerScoreText;
+                
+                <br><br>
+                &nbsp; &nbsp; <font color=#31849b><b>void</b></font> Start () { <br>
+                &nbsp; &nbsp; &nbsp; &nbsp;updateScore(playerScore);<br>
+                &nbsp; &nbsp; }
+                <br>
+                <br>
+                &nbsp; &nbsp; <font color=#31849b><b>public void</b></font> updateScore (int newScore) { <br>
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; playerScore += newScore;<br>
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>Text</b></font> scoreTextPlayer = playerScoreText.GetComponent&lt;<font color=#31849b><b>Text</b></font>&gt;();<br>
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; scoreTextPlayer.text = <b><font color="#e36c0a">&quot;Score: &quot;</font></b> + playerScore);<br>
+                &nbsp; &nbsp; &nbsp; &nbsp; } <br>
+                &nbsp; &nbsp; }<br>
+                } <br>
+              </font></td>
+          </tr>
+        </table>
+      </center>
+      <font face="arial"></font><font face="arial"><strong><em>NOTE: </em></strong>Want to make this multiplayer? Duplicate the score and text variables as well as the Start call to updateScore. Give updateScore a second argument: a string for the player name, and test against this string to determine which player's score gets updated!
+      
+<br><br>
+  <strong>c) </strong>Add this script to the <strong>Player</strong>, to manage the interactions with the pickups. </font><br>
+<li><font face=arial>Drag the GameHandler into the script slot.</font>
+<li><font face=arial>Drag each of the three objSlot Game Objects into their script slots.</font>
+<li><font face=arial>Draasdad.</font><br>
+<br>
+
+
+    <center>
+      <font face="arial"><em>PlayerPickup.cs</em>: </font>
+      <table width=98% cellpadding=10 border=1>
+        <tr>
+          <td><font face=arial> <font color=#3ab050><b>using</b></font> System.Collections;<br>
+            <font color=#3ab050><b>using</b></font> System.Collections.Generic;<br>
+            <font color=#3ab050><b>using</b></font> UnityEngine;<br>
+            <br>
+            <font color=#3ab050><b>public class</b></font></font> <font color=#31849b face="arial"><b>PlayerPickup</b><strong> : </strong><b>MonoBehaviour</b></font><font face="arial"> {<br>
+            &nbsp; &nbsp;<font color=#31849b><b> public</b></font> GameHandlerScript gameHandler;<br>
+&nbsp; &nbsp; 	<font color=#31849b><b>public</b></font> <font color=#31849b><b>int</b></font> carryCapacity = <b><font color="#e36c0a">3</font></b>;<br>&nbsp; &nbsp; 	<font color=#31849b><b>public</b></font> <font color=#31849b><b>int</b></font> currentLoad;<br>
+&nbsp; &nbsp; 	<font color=#31849b><b>public</b></font> <font color=#31849b><b>Transform</b></font> pickupSlot1;<br>&nbsp; &nbsp; 	<font color=#31849b><b>public</b></font> <font color=#31849b><b>Transform</b></font> pickupSlot2;<br>&nbsp; &nbsp; 	<font color=#31849b><b>public</b></font> <font color=#31849b><b>Transform</b></font> pickupSlot3;<br>
+&nbsp; &nbsp; 	<font color=#31849b><b>private</b></font> GameObject slot1Pickup;<br>
+&nbsp; &nbsp; 	<font color=#31849b><b>private</b></font> GameObject slot2Pickup;<br>
+&nbsp; &nbsp; 	<font color=#31849b><b>private</b></font> GameObject slot3Pickup;<br>
+&nbsp; &nbsp; 	<font color=#31849b><b>private</b></font> GameObject CurrentPickup;<br>
+&nbsp; &nbsp; 	<font color=#31849b><b>private</b></font> <font color=#31849b><b>bool</b></font> slot1isOpen = <font color=#31849b><b>true</b></font>;<br>&nbsp; &nbsp; 	<font color=#31849b><b>private</b></font> <font color=#31849b><b>bool</b></font> slot2isOpen = <font color=#31849b><b>true</b></font>;<br>&nbsp; &nbsp; 	<font color=#31849b><b>private</b></font> <font color=#31849b><b>bool</b></font> slot3isOpen = <font color=#31849b><b>true</b></font>;<br>
+<br>
+&nbsp; &nbsp; <font color=#31849b><b>void</b></font> OnTriggerEnter (Collider other) {<br>
+&nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> (other.gameObject.layer == <b><font color="#e36c0a">10</font></b>) {<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; CurrentPickup = other.gameObject;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; PickUpThing();<br>			
+              &nbsp; &nbsp; &nbsp; &nbsp; }<br>
+&nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> (other.gameObject.tag == <b><font color="#e36c0a">&quot;HomeBase&quot;</font></b>) {<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; PutDownThing();<br>
+&nbsp; &nbsp; &nbsp; &nbsp; }<br>&nbsp; &nbsp; }<br>
+<br>	
+&nbsp; &nbsp; <font color=#31849b><b>public void</b></font> PickUpThing(){<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>int</b></font> availCapacity = carryCapacity - currentLoad;<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>int</b></font> objWeightTemp = CurrentPickup.GetComponent
+<AntGrasshopperObjectPickUp>().objWeight;<br>		
+&nbsp; &nbsp; &nbsp; &nbsp;  <b><font color=#3ab050>if</font></b> (availCapacity >= objWeightTemp){<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <b><font color=#3ab050>if</font></b> (slot1isOpen == <font color=#31849b><b>true</b></font>){<br>				
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; currentLoad += objWeightTemp;<br>				
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; CurrentPickup.transform.parent = pickupSlot1;<br>				
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; CurrentPickup.transform.position = pickupSlot1.position;<br>				
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; CurrentPickup.GetComponent&lt;<font color=#31849b><b>Rigidbody</b></font>&gt;().isKinematic = <font color=#31849b><b>true</b></font>;<br>				
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; CurrentPickup.GetComponent&lt;<font color=#31849b><b>Collider</b></font>&gt;().enabled = <font color=#31849b><b>false</b></font>;<br>				
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; slot1Pickup = CurrentPickup;<br>				
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; slot1isOpen = <font color=#31849b><b>false</b></font>;<br>				
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Debug.Log(<b><font color="#e36c0a">&quot;slot 3 filled! </font><font face="arial"><b><font color="#a53e00">\n</font></b></font><font color="#e36c0a"> current load weight = &quot;</font></b> + currentLoad);<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; else if (slot2isOpen == true){<br>				
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; currentLoad += objWeightTemp;<br>				
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; CurrentPickup.transform.parent = pickupSlot2;<br>				
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; CurrentPickup.transform.position = pickupSlot2.position;<br>				
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; CurrentPickup.GetComponent&lt;<font color=#31849b><b>Rigidbody</b></font>&gt;().isKinematic = <font color=#31849b><b>true</b></font>;<br>				
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; CurrentPickup.GetComponent&lt;<font color=#31849b><b>Collider</b></font>&gt;().enabled = <font color=#31849b><b>false</b></font>;<br>				
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; slot2Pickup = CurrentPickup;<br>				
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; slot2isOpen = <font color=#31849b><b>false</b></font>;<br>				
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Debug.Log(<b><font color="#e36c0a">&quot;slot 2 filled! </font><font face="arial"><b><font color="#a53e00">\n</font></b></font><font color="#e36c0a"> current load weight = &quot;</font></b> + currentLoad);<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; else if (slot3isOpen == true){<br>				
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; currentLoad += objWeightTemp;<br>				
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; CurrentPickup.transform.parent = pickupSlot3;<br>				
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; CurrentPickup.transform.position = pickupSlot3.position;<br>				
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; CurrentPickup.GetComponent&lt;<font color=#31849b><b>Rigidbody</b></font>&gt;().isKinematic = <font color=#31849b><b>true</b></font>;<br>				
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; CurrentPickup.GetComponent&lt;<font color=#31849b><b>Collider</b></font>&gt;().enabled = <font color=#31849b><b>false</b></font>;<br>				
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; slot3Pickup = CurrentPickup;<br>				
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; slot3isOpen = <font color=#31849b><b>false</b></font>;<br>				
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Debug.Log(<b><font color="#e36c0a">&quot;slot 3 filled! \n current load weight = &quot;</font></b> + currentLoad);<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; }<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; else {<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Debug.Log(<b><font color="#e36c0a">&quot;Your load is too heavy to get that.</font> <font color="#a53e00">\n</font> <font color="#e36c0a">Current weight: &quot;</font></b> + currentLoad);<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; }<br>
+&nbsp; &nbsp; }<br><br>
+<br>	
+&nbsp; &nbsp;  <font color=#31849b><b>public void</b></font> PutDownThing(){<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> (slot3isOpen == <font color=#31849b><b>false</b></font>){<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Destroy(slot3Pickup.gameObject);<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; slot3isOpen = <font color=#31849b><b>true</b></font>;<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Debug.Log(<b><font color="#e36c0a">&quot;slot 3 emptied! </font><font face="arial"><b><font color="#a53e00">\n</font></b></font><font color="#e36c0a"> curent load weight = &quot;</font></b>  + currentLoad);<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; }<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> (slot2isOpen == <font color=#31849b><b>false</b></font>){<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Destroy(slot2Pickup.gameObject);<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; slot2isOpen = <font color=#31849b><b>true</b></font>;<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Debug.Log(<b><font color="#e36c0a">&quot;slot 2 emptied! </font><font face="arial"><b><font color="#a53e00">\n</font></b></font><font color="#e36c0a"> curent load weight = &quot;</font></b> + currentLoad);<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; }<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> (slot1isOpen == <font color=#31849b><b>false</b></font>){<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Destroy(slot1Pickup.gameObject);<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; slot1isOpen = <font color=#31849b><b>true</b></font>;<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Debug.Log(<b><font color="#e36c0a">&quot;slot 1 emptied! </font><font face="arial"><b><font color="#a53e00">\n</font></b></font><font color="#e36c0a"> curent load weight = &quot;</font></b> + currentLoad);<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; }<br>
+<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; gameHandler.GetComponent
+<GameHandlerAntsGrasshoppers>
+().updateScore(currentLoad);<br>
+&nbsp; &nbsp; &nbsp; &nbsp; currentLoad =<b><font color="#e36c0a"> 0</font></b>;<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; Debug.Log(<b><font color="#e36c0a">&quot;Curent load weight = &quot;</font></b> + currentLoad);<br>	
+&nbsp; &nbsp; } <br>}
+<br></font></td>
+</tr></table>
+</center>
+
+<br>
+</font></td></tr>
+
+<tr>
+  <td bgcolor=#eeeeff><font face="arial">
+<a name="keygen">&nbsp;</a>
+<br>
+<a href="#TOP"><img src="comicsDesign/ArrowUp.png" alt=""></a>
+<font size=+2><b>GENERATE RANDOM KEYS</b></font><br><br>
+<b>VERSION 1 (intended for two player)</b><b>: Hit the displayed key before the other player: </b>
+
+<br>
+<b>[STEP 1] SET UP OBJECTS:</b>
+<br>
+<b>a) </b>Create a <strong>GameObject &gt; UI &gt; Canvas</strong>. <br>
+<b>b) </b>Add two <strong>GameObject &gt; UI &gt; Text</strong> objects, size larger as desired. <br>
+<b>c)</b> Create an Empty Game Object, name it GameHandler. 
+
+<br><br>
+<b>[STEP 2] SET UP OBJECTS (intended for two player):</b><br>
+Add this script to the GameHandler:<br>
+</font>
+    <center>
+      <font face="arial"><em>KeyClasher.cs</em>: </font>
+<table width=98% cellpadding=10 border=1><tr>
+<td><font face=arial>
+
+<font color=#3ab050><b>using</b></font> System.Collections;<br>
+<font color=#3ab050><b>using</b></font> System.Collections.Generic;<br>
+<font color=#3ab050><b>using</b></font> UnityEngine;<br>
+<font color=#3ab050><b>using</b></font> UnityEngine.UI;<br>
+<br>
+<font color=#3ab050><b>public class</b></font> 
+<font color=#31849b><b>KeyClasher : MonoBehaviour</b></font> {
+<br>
+<br>	&nbsp; &nbsp; <font color=gray>//public GameObject player1;</font>
+<br>	&nbsp; &nbsp; <font color=gray>//public GameObject player2;</font>
+<br>	&nbsp; &nbsp; <font color=#31849b><b>public</b></font> GameObject p1KeyText; <br>	
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font> GameObject p2KeyText; <br>	
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font> char p1CurrentKey; <br>	
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font> char p2CurrentKey; <br>	
+&nbsp; &nbsp; <font color=#31849b><b>private</b></font> string p1Keys; <br>	
+&nbsp; &nbsp; <font color=#31849b><b>private</b></font> string p2Keys; <br>
+<br>	
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>float</b></font> comboSpeed = 0.9f; <br>	
+&nbsp; &nbsp; <font color=#31849b><b>private</b></font> <font color=#31849b><b>float</b></font> p1HitTime; <br>
+<font face=arial>&nbsp; &nbsp; </font><font color=#31849b><b>private float</b></font> p1TimeA; 
+<br>
+<font face=arial>&nbsp; &nbsp; </font><font color=#31849b><b>private float</b></font> p1TimeB; <br>	
+&nbsp; &nbsp; <font color=#31849b><b>private</b></font> <font color=#31849b><b>float</b></font> p2HitTime; <br>
+<font face=arial>&nbsp; &nbsp; </font><font color=#31849b><b>private</b></font> <font color=#31849b><b>float</b></font> p2TimeA; 
+<br>
+<font face=arial><font face=arial>&nbsp; &nbsp; </font></font><font color=#31849b><b>private</b></font> <font color=#31849b><b>float</b></font> p2TimeB; <br>
+<br>    
+&nbsp; &nbsp; <font color=#31849b><b>void</b></font> Start(){ <br>		
+&nbsp; &nbsp; &nbsp; &nbsp; p1Keys = <b><font color="#e36c0a">&quot;qwertasdfgzxc&quot;</font></b>;
+<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; p2Keys = <b><font color="#e36c0a">&quot;yuiophjklvbnm&quot;</font></b>;
+<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; Player1NewKey(); <br>		
+&nbsp; &nbsp; &nbsp; &nbsp; Player2NewKey(); <br>    
+&nbsp; &nbsp; } <br>		
+<br>    
+&nbsp; &nbsp; <font color=#31849b><b>void</b></font> FixedUpdate(){ <br>		
+&nbsp; &nbsp; &nbsp; KeyCode p1KeyCode = (KeyCode) System.Enum.Parse(typeof(KeyCode), p1CurrentKey.ToString()) ; <br>		
+&nbsp; &nbsp; &nbsp; KeyCode p2KeyCode = (KeyCode) System.Enum.Parse(typeof(KeyCode), p2CurrentKey.ToString()) ; <br>
+<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> (Input.GetKey(p1KeyCode)){ <br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; p1TimeB = Time.time; <br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; p1HitTime = p1TimeB - p1TimeA; <br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Attack(1, p1HitTime); <br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Player1NewKey(); <br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; p1TimeA = p1TimeB; <br>		
+&nbsp; &nbsp; &nbsp; &nbsp; } <br>		
+&nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> (Input.GetKey(p2KeyCode)){ <br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; p2TimeB = Time.time; <br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; p2HitTime = p2TimeB - p2TimeA; <br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Attack(2, p2HitTime); <br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Player2NewKey(); <br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; p2TimeA = p2TimeB; <br>		
+&nbsp; &nbsp; &nbsp; &nbsp; } <br>	
+&nbsp; &nbsp; } <br>
+<br>	
+&nbsp; &nbsp;<font color=#31849b><b>public</b></font><font color=#31849b><b> void</b></font> Player1NewKey(){ <br>		
+&nbsp; &nbsp; &nbsp; &nbsp; p1CurrentKey = p1Keys[Random.Range(0, p1Keys.Length)]; <br>		
+&nbsp; &nbsp; &nbsp; &nbsp; p1CurrentKey = System.Char.ToUpper(p1CurrentKey); <br>		
+&nbsp; &nbsp; &nbsp; &nbsp; Text p1Keytemp = p1KeyText.GetComponent
+<Text>();
+<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; p1Keytemp.text = <b><font color="#e36c0a">&quot;HIT: &quot;</font></b> + p1CurrentKey; <br>	
+&nbsp; &nbsp; } <br>		
+<br>	
+&nbsp; &nbsp;<font color=#31849b><b>public void</b></font> Player2NewKey(){ <br>		
+&nbsp; &nbsp; &nbsp; &nbsp; p2CurrentKey = p2Keys[Random.Range(0, p2Keys.Length)];<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; p2CurrentKey = System.Char.ToUpper(p2CurrentKey);<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; Text p2Keytemp = p2KeyText.GetComponent
+<Text>();<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; p2Keytemp.text = <b><font color="#e36c0a">&quot;HIT: &quot;</font></b> + p2CurrentKey;<br>	
+&nbsp; &nbsp; } <br>		
+<br>	
+&nbsp; &nbsp;<font color=#31849b><b>public void</b></font> Attack(int playerNum, float speed){ <br>
+<font face="arial">&nbsp; &nbsp; </font>&nbsp; &nbsp; <font color=gray>//		GameObject thePlayer;
+<br>
+</font><font face="arial">&nbsp; &nbsp; </font>&nbsp; &nbsp; <font color=gray>//		if (playerNum == 1){ thePlayer = player1;}
+<br>
+</font><font face="arial">&nbsp; &nbsp; </font>&nbsp; &nbsp; <font color=gray>//		</font><font color=gray>else { thePlayer = player2;} <br>
+</font><font face="arial">&nbsp; &nbsp; </font>&nbsp; &nbsp; <font color=gray>//		if (speed >= comboSpeed) {<br>
+</font><font face="arial">&nbsp; &nbsp; </font>&nbsp; &nbsp; <font color=gray>//			</font><font face="arial">&nbsp; &nbsp; </font><font color=gray>thePlayer.attackBasic((Random.Range(1,3)).ToInt()) //1 of 3 possible attacks <br>
+</font><font face="arial">&nbsp; &nbsp; </font>&nbsp; &nbsp; <font color=gray>//		}
+<br>
+</font><font face="arial">&nbsp; &nbsp; </font>&nbsp; &nbsp; <font color=gray>//		else {thePlayer.attackCombo(1)} //add +1 to combo, hits with more force
+</font>
+<br>
+<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; Debug.Log (<b><font color="#e36c0a">&quot;player &quot;</font></b> + playerNum + <b><font color="#e36c0a">&quot;attacks! </font><font face="arial"><b><font face="arial"><b><font color="#a53e00">\n</font></b></font></b></font> <font color="#e36c0a">Speed interval: &quot;</font></b> + speed);
+<br>	
+&nbsp; &nbsp; }<br>
+}
+<br>
+<br>
+<font color=gray>
+<br>//source for array: https://answers.unity.com/questions/800488/random-char-a-to-z.html
+<br>//source for timer: https://answers.unity.com/questions/1156608/random-keys-combo.html
+</font>
+
+<br><br>
+</font></td>
+</tr></table>
+</center>
+
+<br>
+</font><font face="arial">(IN PROGRESS:)<br>
+<b>VERSION 2 (intended for one player): Hit the displayed key to move the player: </b> <br>
+<b>[STEP 1] SET UP OBJECTS:</b>
+<br>
+<b>a)</b> Create top-down <a href="GameDesign_Unity2DTilemap.html#tilemap" target=TD2><strong>Tilemap</strong></a> environment and a top-down <a href="GameDesign_Unity2DTilemap.html#tilemap" target=TD2><strong>Player Character</strong></a><strong>.</strong> 
+<br>
+<b>b)</b> Create a <strong>GameObject &gt; UI &gt; Canvas</strong>. Make it local, sized to the 9 grids around Player, parent to the Player.<br>
+<b>c)</b> Add four <strong>GameObject &gt; UI &gt; Text</strong> objects. Size 24, then shrink (using scale tool) to the grids around Player. <br>
+<br>
+<b>[STEP 2] Add script:</b><br>
+Add this script to the Player:<br>
+</font>
+<center>
+  <font face="arial"><em>KeyClasherPlayerMove.cs</em>: </font>
+  <table width=98% cellpadding=10 border=1>
+    <tr>
+      <td><font face=arial> <font color=#3ab050><b>using</b></font> System.Collections;<br>
+        <font color=#3ab050><b>using</b></font> System.Collections.Generic;<br>
+        <font color=#3ab050><b>using</b></font> UnityEngine;<br>
+        <font color=#3ab050><b>using</b></font> UnityEngine.UI;<br>
+        <br>
+        <font color=#3ab050><b>public class</b></font> <font color=#31849b><b>KeyClasher : MonoBehaviour</b></font> {<br>
+        <br>
+        &nbsp; &nbsp; <font color=gray>//public GameObject player1;</font><br>
+        &nbsp; &nbsp; <font color=#31849b><b>public</b></font> GameObject p1KeyText;<br>
+        &nbsp; &nbsp; <font color=#31849b><b>public</b></font> char p1CurrentKey;<br>
+        &nbsp; &nbsp; <font color=#31849b><b>private</b></font> string p1Keys;<br>
+        <br>
+        &nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>float</b></font> comboSpeed = <b><font face=arial><b><font color="#e36c0a">0.9f</font></b></font></b>;<br>
+        &nbsp; &nbsp; <font color=#31849b><b>private</b></font> <font color=#31849b><b>float</b></font> p1HitTime;<br>
+        <font face=arial>&nbsp; &nbsp; </font><font color=#31849b><b>private float</b></font> p1TimeA;<br>
+        <font face=arial>&nbsp; &nbsp; </font><font color=#31849b><b>private float</b></font> p1TimeB;<br>
+        <br>
+        &nbsp; &nbsp; <font color=#31849b><b>void</b></font> Start(){<br>
+        &nbsp; &nbsp; &nbsp; &nbsp; p1Keys = <b><font color="#e36c0a">&quot;qwertasdfgzxc</font><font face=arial><b><font color="#e36c0a">yuiophjklvbnm</font></b></font><font color="#e36c0a">&quot;</font></b>;<br>
+        &nbsp; &nbsp; &nbsp; &nbsp; Player1NewKey();<br>
+        &nbsp; &nbsp; }<br>
+        <br>
+        &nbsp; &nbsp; <font color=#31849b><b>void</b></font> FixedUpdate(){ <br>
+        &nbsp; &nbsp; &nbsp; KeyCode p1KeyCode = (KeyCode) System.Enum.Parse(typeof(KeyCode), p1CurrentKey.ToString()) ; <br>
+        <br>
+        &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> (Input.GetKey(p1KeyCode)){<br>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; p1TimeB = Time.time;<br>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; p1HitTime = p1TimeB - p1TimeA;<br>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Attack(1, p1HitTime);<br>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Player1NewKey();<br>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; p1TimeA = p1TimeB;<br>
+        &nbsp; &nbsp; &nbsp; &nbsp; }<br>
+        &nbsp; &nbsp; }<br>
+        <br>
+        &nbsp; &nbsp;<font color=#31849b><b>public</b></font><font color=#31849b><b> void</b></font> Player1NewKey(){<br>
+        &nbsp; &nbsp; &nbsp; &nbsp; p1CurrentKey = p1Keys[Random.Range(0, p1Keys.Length)];<br>
+        &nbsp; &nbsp; &nbsp; &nbsp; p1CurrentKey = System.Char.ToUpper(p1CurrentKey);<br>
+        &nbsp; &nbsp; &nbsp; &nbsp; Text p1Keytemp = p1KeyText.GetComponent
+        <Text>
+        ();<br>
+        &nbsp; &nbsp; &nbsp; &nbsp; p1Keytemp.text = <b><font color="#e36c0a">&quot;HIT: &quot;</font></b> + p1CurrentKey;<br>
+        &nbsp; &nbsp; }<br>
+        <br>
+        &nbsp; &nbsp;<font color=#31849b><b>public void</b></font> Attack(int playerNum, float speed){ <br>
+        <font face="arial">&nbsp; &nbsp; </font>&nbsp; &nbsp; <font color=gray>//		GameObject thePlayer;<br>
+          </font><font face="arial">&nbsp; &nbsp; </font>&nbsp; &nbsp; <font color=gray>//		if (playerNum == 1){ thePlayer = player1;}<br>
+            </font><font face="arial">&nbsp; &nbsp; </font>&nbsp; &nbsp; <font color=gray>// </font><font color=gray>else { thePlayer = player2;}<br>
+              </font><font face="arial">&nbsp; &nbsp; </font>&nbsp; &nbsp; <font color=gray>//		if (speed >= comboSpeed) {<br>
+                </font><font face="arial">&nbsp; &nbsp; </font>&nbsp; &nbsp; <font color=gray>// </font><font face="arial">&nbsp; &nbsp; </font><font color=gray>thePlayer.attackBasic((Random.Range(1,3)).ToInt()) //1 of 3 possible attacks<br>
+                  </font><font face="arial">&nbsp; &nbsp; </font>&nbsp; &nbsp; <font color=gray>//		}<br>
+                    </font><font face="arial">&nbsp; &nbsp; </font>&nbsp; &nbsp; <font color=gray>//		else {thePlayer.attackCombo(1)} //add +1 to combo, hits with more force</font><br>
+        <br>
+        &nbsp; &nbsp; &nbsp; &nbsp; Debug.Log (<b><font color="#e36c0a">&quot;player &quot;</font></b> + playerNum + <b><font color="#e36c0a">&quot;attacks! </font><font face="arial"><b><font face="arial"><b><font color="#a53e00">\n</font></b></font></b></font> <font color="#e36c0a">Speed interval: &quot;</font></b> + speed);<br>
+        &nbsp; &nbsp; }<br>
+        }<br>
+        <font color=gray><br>
+          //source for array: https://answers.unity.com/questions/800488/random-char-a-to-z.html<br>
+          //source for timer: https://answers.unity.com/questions/1156608/random-keys-combo.html</font><br>
+        <br>
+      </font></td>
+    </tr>
+  </table>
+</center></td></tr>
+
+<tr>
+  <td bgcolor=#eef5ee><font face="arial">
+<a name="tour">&nbsp;</a><font face="arial"><b><font face=arial><a href="#TOP">
+
+<br>
+<img src="comicsDesign/ArrowUp.png" alt=""></a></font></b></font><font size=+2><b>ROCKET SHIP TOUR</b></font><br><br>
+
+
+<b>[STEP 1] SET UP OBJECTS:</b>
+
+<br>
+<b>a) </b>Create an object to be your <strong>Rocketship</strong> (import custom mesh or use a Unity cylinder). Add a <strong>Rigidbody</strong> and a <strong>BoxCollider</strong> that surrounds the Rocketship, set to isTrigger.<br>
+<b>b) </b>Create an object to be your <strong>ShipYard</strong> (custom mesh or Unity cube). Locate at world center.<br>
+<b>c) </b>Create an object to be your <strong>Waypoint1</strong> (custom mesh or Unity cube). Create and Apply <strong>LAYER 9: Waypoints</strong>. Drag Waypoint1 into the Project panel to make it a <strong>prefab</strong>, then <strong>duplicate</strong>  in scene and position as desired to make the path the Rocketship will travel (this script uses 7 waypoints, can of course be changed).<br>
+<br>
+<b>[STEP 2] Add scripts:</b>
+<br>
+<strong>a) </strong>Add this script to the <strong>Rocketship</strong>:<br>
+</font>
+    <center>
+      <font face="arial"><em>RocketPath.cs</em>: </font>
+      <table width=98% cellpadding=10 border=1>
+        <tr>
+          <td><font face=arial><font color=#3ab050><b>using</b></font> System.Collections;<br>
+              <font color=#3ab050><b>using</b></font> System.Collections.Generic;<br>
+              <font color=#3ab050><b>using</b></font> UnityEngine;<br>
+              <font color=#3ab050><b>using</b></font> UnityEngine.UI;<br>
+            <br>
+            <font color=#3ab050><b>public class</b></font></font> <font color=#31849b face="arial"><b>RocketPath</b> <strong>:</strong> <b>MonoBehaviour</b></font><font face="arial"> {<br>
+<br>
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font> Transform StartingLine;<br>	
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font> Transform Waypoint1;<br>	
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font> Transform Waypoint2;<br>	
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font> Transform Waypoint3;<br>	
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font> Transform Waypoint4;<br>	
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font> Transform Waypoint5;<br>	
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font> Transform Waypoint6;<br>	
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font> Transform Waypoint7;<br>
+<br>	
+&nbsp; &nbsp; <font color=#31849b><b>private</b></font> Transform currentLoc;<br>	
+&nbsp; &nbsp; <font color=#31849b><b>private</b></font> Transform nextLoc;<br>
+<br>	
+&nbsp; &nbsp; <font color=#31849b><b>public </b></font><font color=#31849b><b>float</b></font> moveSpeed =<b><font face=arial><b><font color="#e36c0a"> 2f</font></b></font></b>;<br>	
+&nbsp; &nbsp;<font color=#31849b><b> public </b></font><font color=#31849b><b>float</b></font> rotationSpeed = <b><font face=arial><b><font color="#e36c0a">5f</font></b></font></b>;<br>	
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font> Vector3 offset;<br>	
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font> Rigidbody rb;<br>
+<br>    
+&nbsp; &nbsp; <font color=#31849b><b>void</b></font> Start(){<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; rb = GetComponent
+<Rigidbody>();<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; currentLoc = StartingLine;<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; transform.position = currentLoc.position;<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; moveShip();<br>    
+&nbsp; &nbsp; }<br>
+<br>    
+&nbsp; &nbsp; <font color=#31849b><b>void</b></font> Update(){<br>		
+&nbsp; &nbsp; <font color=gray>//LERP rotation</font><br>		
+&nbsp; &nbsp; &nbsp; &nbsp;Vector3 relativePos = nextLoc.position - transform.position;<br>		
+&nbsp; &nbsp; &nbsp; &nbsp;Quaternion toRotation = Quaternion.LookRotation(relativePos);<br>		
+&nbsp; &nbsp; &nbsp; &nbsp;transform.rotation = Quaternion.Lerp( transform.rotation, toRotation, rotationSpeed * Time.deltaTime );<br>
+<br>		
+&nbsp; &nbsp; <font color=gray>//LERP movement</font><br>		
+&nbsp; &nbsp; &nbsp; &nbsp; Vector3 newPos = nextLoc.position + offset;<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; Vector3 smoothPos = Vector3.Lerp (transform.position, newPos, moveSpeed * Time.deltaTime);<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; transform.position = smoothPos;<br> 
+&nbsp; &nbsp; }<br>
+<br>	
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font><font color=#31849b><b> void</b></font> OnTriggerEnter(Collider other){<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> (other.gameObject.layer == <b><font face=arial><b><font color="#e36c0a">9</font></b></font></b>){<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Debug.Log(<b><font face=arial><b><font color="#e36c0a">&quot;Hit a waypoint!&quot;</font></b></font></b>);<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; moveShip();<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; }<br>	
+&nbsp; &nbsp; }<br>
+<br>	
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font><font color=#31849b><b> void</b></font> moveShip(){<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; <font color=gray>//Transform ShipYard = transform.position;</font><br>		
+&nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> (nextLoc == Waypoint1){ currentLoc = Waypoint1; nextLoc = Waypoint2; }<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>else if</font></b> (nextLoc == Waypoint2){ currentLoc = Waypoint2; nextLoc = Waypoint3; }<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>else if</font></b> (nextLoc == Waypoint3){ currentLoc = Waypoint3; nextLoc = Waypoint4; }<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>else if</font></b> (nextLoc == Waypoint4){ currentLoc = Waypoint4; nextLoc = Waypoint5; }<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>else if</font></b> (nextLoc == Waypoint5){ currentLoc = Waypoint5; nextLoc = Waypoint6; }<br>		
+&nbsp; &nbsp; &nbsp; &nbsp;<b><font color=#3ab050> else if</font></b> (nextLoc == Waypoint6){ currentLoc = Waypoint6; nextLoc = Waypoint7; }<br>		
+&nbsp; &nbsp; &nbsp; &nbsp;<b><font color=#3ab050> else if</font></b> (nextLoc == Waypoint7){ currentLoc = Waypoint7; nextLoc = StartingLine; }<br>		
+&nbsp; &nbsp; &nbsp; &nbsp;<b><font color=#3ab050> else if</font></b> (currentLoc == StartingLine){ nextLoc = Waypoint1; }<br>
+<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; <font color=gray>//transform.LookAt (nextLoc);</font><br>		
+&nbsp; &nbsp; &nbsp; &nbsp; Debug.Log("leaving: " + currentLoc + "\n heading towards:" + nextLoc);<br>	
+&nbsp; &nbsp; }<br>}<br>
+<br>
+<font color=gray>//research:  https://youtu.be/RkrC0PopskM</font><br> 
+<font color=gray>//A* algorithm</font><br>
+            </font></td>
+        </tr>
+      </table>
+</center>
+
+
+<br>
+<font face="arial"><strong>b) </strong>Add this script to the <strong>MainCamera</strong>. 
+<br>
+Drag the Rocketship into the target script slot. 
+<br>Set offset for the distance the ship should maintain from each Waypoint.<br>
+</font>
+<center>
+  <font face="arial"><em>Camera3DLERP.cs</em>: </font>
+  <table width=98% cellpadding=10 border=1>
+    <tr>
+      <td><font face=arial><font color=#3ab050><b>using</b></font> UnityEngine;<br>
+        <br>
+        <font color=#3ab050><b>public class</b></font></font> <font color=#31849b face="arial"><b>Camera3DLERP</b> <strong>:</strong> <b>MonoBehaviour</b></font><font face="arial"> {<br>
+<br>
+	&nbsp; &nbsp; <font color=#31849b><b>public</b></font><b><font color="#31849b"> </font></b>Transform target; // drag  intended target object into the Inspector slot<br>	
+&nbsp; &nbsp; <font color=#31849b><b>public </b></font>float smoothSpeed = <b><font face=arial><b><font color="#e36c0a">10f</font></b></font></b>;<br>	
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font> Vector3 offset; // set the offset in the editor<br>
+<br>
+	&nbsp; &nbsp;<font color=#31849b><b>void</b></font> FixedUpdate () {<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; Vector3 newPos = target.position + offset;<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; Vector3 smoothPos = Vector3.Lerp (transform.position, newPos, smoothSpeed * Time.deltaTime);<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; transform.position = smoothPos;<br>
+<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; transform.LookAt (target);<br>	
+&nbsp; &nbsp; }<br>
+}</font></td>
+    </tr>
+  </table>
+</center>
+&nbsp; <br>
+</font></td></tr>
+
+<tr>
+  <td bgcolor=#eeeeff><font face=arial>
+<a name="dragon">&nbsp;</a>
+<br>
+<a href="#TOP"><img src="comicsDesign/ArrowUp.png" alt=""></a>
+<font size=+2><b>DRAGON NPC</b></font><br>
+<br>
+<b>SUMMARY: </b>This script is to make the basic behavior of a Dragon enemy NPC that flies around the gamespace and occasionally attacks the players.<br><br>
+<b>[STEP 1] Create the flight targets and Dragon:</b><br>
+<b>a) </b>Create a <strong>GameObject &gt; Empty Game Object</strong>, name it <strong>DragonTargetLook</strong>. Place it at the center of the intended flight circle.<br>
+<b>b) </b>Create another <strong>Empty Game Object</strong>, name it <strong>DragonTargetFly</strong>. Place it at the intended distance from and above the DragonTargetLook, at the radius of the intended flight circle.<br>
+<b>c)</b> Create another <strong>Empty</strong> Game Object, name it <strong>Dragon</strong>. <strong>Reset</strong> Transforms to locate at world center. Add Component a <strong>RigidBody</strong> (freeze X and Z rotation ounder constrain) and a <strong>BoxCollider</strong>.<br>
+<strong>d)</strong> Create a <strong>3D Object &gt; Cube</strong>. Scale 3x3x3. Name it &quot;<strong>DragonMeshPlaceholder</strong>&quot; and reset Transforms. 
+In the Hierarchy  drag the cube onto the Dragon game object to make it a child of Dragon.<br> 
+<strong>e)</strong> Duplicate the cube, name it &quot;<strong>head</strong>&quot;, and scale it smaller (1x1x1). In the Scene view, pull it forward on the blue Z-axis in front of the big cube, to show the facing-direction. In the Hierarchy, drag the small cube onto the big cube to make it a child of the big cube.<br> 
+<strong>f)</strong> Select the Dragon game object and <strong>Add
+
+Component</strong> a second <strong>BoxCollider</strong>, set to <strong>isTrigger</strong>, and increase just the <strong>X and Z scale</strong> of the trigger collider for the stopping distance from the targets.<br>
+<br>
+<b>[STEP 2] Create the Dragon Script:</b><br>
+Create a new <strong>C# script</strong>, name it <strong>DragonFlyAttack</strong>. Add this script to the Dragon object. <br>
+<strong>Populate the script slots: </strong>add the <strong>players</strong>, the <strong>targets</strong>, and the <strong>dragon mesh</strong>.
+
+<br><br>
+</font>
+    <center>
+      <font face="arial"><em>DragonFlyAttack.cs</em>: </font>
+      <table width=98% cellpadding=10 border=1><tr>
+<td><font face=arial>
+
+<font color=#3ab050><b>using</b></font> System.Collections;<br>
+<font color=#3ab050><b>using</b></font> System.Collections.Generic;<br>
+<font color=#3ab050><b>using</b></font> UnityEngine;<br>
+<br>
+<font color=#3ab050><b>public class</b></font> 
+<font color=#31849b><b>DragonFlyAttack : MonoBehaviour</b></font> {<br>	
+<br>	
+&nbsp; &nbsp;  <font color=gray>//public GameHandler gameHandler; // to send attack info</font><br>	
+&nbsp; &nbsp;  <font color=gray>//public Animator anim;</font><br>
+<br>	
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>Transform</b></font> FlyTarget;<br>	
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>Transform</b></font> FlyTargetLook;<br>	
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>Transform</b></font> player1Pos;<br>	
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>Transform</b></font> player2Pos;<br>	
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>Transform</b></font> dragonMesh;<br>
+<br>	
+&nbsp; &nbsp;  <font color=gray>// FOR RANDOM LOCATIONS INSTEAD OF PLAYERS:</font><br>	
+&nbsp; &nbsp;  <font color=gray>// public Transform DragonNest1;</font><br>	
+&nbsp; &nbsp;  <font color=gray>// public Transform DragonNest2;</font><br>	
+&nbsp; &nbsp;  <font color=gray>// public Transform DragonNest3;</font><br>	
+&nbsp; &nbsp;  <font color=gray>// public Transform DragonNest4;</font><br>
+<br>	
+&nbsp; &nbsp;<font color=#31849b><b> private bool</b></font> AttackTimer = <font color=#31849b><b>true</b></font>;<br>	
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>float</b></font> AttackInterval = <b><font face=arial><b><font color="#e36c0a">50f</font></b></font></b>;&nbsp; &nbsp; <font color=gray>// how long to next attack</font><br>	
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>float</b></font> FlyInterval = <b><font face=arial><b><font color="#e36c0a">20f</font></b></font></b>;&nbsp; &nbsp; <font color=gray>// how long spent on the ground before flying away</font><br>	
+&nbsp; &nbsp; <font color=#31849b><b>private float</b></font> TimeToAttack;<br>	
+&nbsp; &nbsp;<font color=#31849b><b> private</b></font><font color=#31849b><b> float</b></font> TimeToEndAttack;<br>
+<br>	
+&nbsp; &nbsp; <font color=#31849b><b>private</b></font> <font color=#31849b><b>Transform</b></font> attackLocation;<br>	
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>float</b></font> mSpeed = <b><font face=arial><b><font color="#e36c0a">10f</font></b></font></b>;&nbsp; &nbsp; <font color=gray>// this value must be faster than the Intervals, above</font> <br>	
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font> Vector3 offsetAttackPos;&nbsp; &nbsp; <font color=gray>// set the offset in the editor</font><br>	
+&nbsp; &nbsp;<font color=#31849b><b> private</b></font><font color=#31849b><b> bool</b></font> moveToAttack= <font color=#31849b><b>false</b></font>;<br>	
+&nbsp; &nbsp; <font color=#31849b><b>private bool</b></font> moveToFly = <font color=#31849b><b>false</b></font>;<br>
+<br>	
+&nbsp; &nbsp;<font color=#31849b><b> private </b></font><font color=#31849b><b>bool</b></font> p1inRange = <font color=#31849b><b>false</b></font>;<br>	
+&nbsp; &nbsp;<font color=#31849b><b> private bool</b></font> p2inRange = <font color=#31849b><b>false</b></font>;<br>	
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>float</b></font> attackRange = <b><font face=arial><b><font color="#e36c0a">2f</font></b></font></b>;<br>
+<br>	
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>bool</b></font> isGrounded = <font color=#31849b><b>false</b></font>;<br>	
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>bool</b></font> isCircling = <font color=#31849b><b>true</b></font>;<br>	
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>float</b></font> flySpeed = <b><font face=arial><b><font color="#e36c0a">10f</font></b></font></b>;<br>
+<br>    
+&nbsp; &nbsp; <font color=#31849b><b>void</b></font> Start(){<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; transform.position = FlyTarget.position;<br>    
+&nbsp; &nbsp; }<br>
+<br>	
+&nbsp; &nbsp;  <font color=gray>//WE USE Update() for character movement:</font> <br>	
+&nbsp; &nbsp; <font color=#31849b><b>void</b></font> Update(){<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> (isCircling == <font color=#31849b><b>true</b></font>){<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; dragonMesh.localEulerAngles = new Vector3(transform.localEulerAngles.x,<b><font face=arial><b><font color="#e36c0a"> 90</font></b></font></b>, transform.localEulerAngles.z);<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; transform.LookAt(FlyTargetLook);<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; transform.Translate(Vector3.right * flySpeed * <font color=#31849b><b>Time</b></font>.deltaTime);<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; }<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>else</font></b> {<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; dragonMesh.localEulerAngles = new Vector3(transform.localEulerAngles.x,<b><font face=arial><b><font color="#e36c0a"> 0</font></b></font></b>, transform.localEulerAngles.z);<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; }<br>
+<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> (moveToAttack == <font color=#31849b><b>true</b></font>){<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Vector3 newPos = attackLocation.position + offsetAttackPos; <br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Vector3 LERPposition = Vector3.Lerp (transform.position, newPos, mSpeed * <font color=#31849b><b>Time</b></font>.deltaTime);<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; transform.position = LERPposition;<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; transform.LookAt (attackLocation);<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; }<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> (moveToFly == <font color=#31849b><b>true</b></font>){<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Vector3 newPos = FlyTarget.position;<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Vector3 LERPposition = Vector3.Lerp (transform.position, newPos, mSpeed * <font color=#31849b><b>Time</b></font>.deltaTime);<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; transform.position = LERPposition;<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; transform.LookAt (FlyTargetLook);<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; }<br>
+<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>float</b></font> DistToPlayer1 = Vector3.Distance(transform.position, player1Pos.position);<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>float</b></font> DistToPlayer2 = Vector3.Distance(transform.position, player2Pos.position);<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> (DistToPlayer1 <= attackRange){<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Debug.Log(<b><font face=arial><b><font color="#e36c0a">&quot;I am attacking player 1 for so much damage!&quot;</font></b></font></b>);<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <font color=gray>//anim.SetBool(&quot;Attack&quot;, true);</font><br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <font color=gray>//gameHandler.UpdateDamage("Player1", 10);</font><br>		
+&nbsp; &nbsp; &nbsp; &nbsp; }<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> (DistToPlayer2 <= attackRange){<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Debug.Log(<b><font face=arial><b><font color="#e36c0a">&quot;I am attacking player 2 for so much damage!&quot;</font></b></font></b>);<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <font color=gray>//anim.SetBool(&quot;Attack&quot;, true);</font><br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <font color=gray>//gameHandler.UpdateDamage("Player2", 10);</font><br>		
+&nbsp; &nbsp; &nbsp; &nbsp; }<br>
+<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> ((DistToPlayer1 >= attackRange + <b><font face=arial><b><font color="#e36c0a">0.1f</font></b></font></b>) && (DistToPlayer2 >= attackRange + <b><font face=arial><b><font color="#e36c0a">0.1f</font></b></font></b>)){<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <font color=gray>//anim.SetBool(&quot;Attack&quot;, false);</font><br>		
+&nbsp; &nbsp; &nbsp; &nbsp; }<br>	
+&nbsp; &nbsp; }<br>
+<br>	
+&nbsp; &nbsp; <font color=gray>// WE USE FixedUpdate() for the timers:</font><br>    
+&nbsp; &nbsp; <font color=#31849b><b>void</b></font> FixedUpdate() {<br>		
+&nbsp; &nbsp; &nbsp; &nbsp;  <font color=gray>//this first timer is while the dragon is orbiting in the air, waiting to fly to a target</font><br>		
+&nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> (AttackTimer == <font color=#31849b><b>true</b></font>){<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; TimeToAttack += <b><font face=arial><b><font color="#e36c0a">0.1f</font></b></font></b>;<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <font color=gray>//Debug.Log("Time to Start Attack: " + TimeToAttack);</font><br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> (TimeToAttack >= AttackInterval){<br>				
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; isCircling = <font color=#31849b><b>false</b></font>;<br>				
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; TimeToAttack = <b><font face=arial><b><font color="#e36c0a">0</font></b></font></b>;<br>				
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; dragonAttack();<br>				
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; AttackTimer = <font color=#31849b><b>false</b></font>;<br>				
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Debug.Log(<b><font face=arial><b><font color="#e36c0a">&quot;Attack Starting! Attack Timer = &quot;</font></b></font></b> + AttackTimer);<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; }<br>		
+&nbsp; &nbsp; &nbsp; &nbsp;  <font color=gray>//this second timer is while the dragon is on the ground, waiting to fly back to orbit</font><br>		
+&nbsp; &nbsp; &nbsp; &nbsp;<b><font color=#3ab050> else </font></b><b><font color=#3ab050>if</font></b> (AttackTimer == <font color=#31849b><b>false</b></font>){<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; TimeToEndAttack += <b><font face=arial><b><font color="#e36c0a">0.1f</font></b></font></b>;<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <font color=gray>//Debug.Log("Time to End Attack: " + TimeToEndAttack);</font><br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> (TimeToEndAttack >=FlyInterval){<br>				
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; TimeToEndAttack = <b><font face=arial><b><font color="#e36c0a">0</font></b></font></b>;<br>				
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; dragonFly();<br>				
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; AttackTimer = <font color=#31849b><b>true</b></font>;<br>				
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Debug.Log(<b><font face=arial><b><font color="#e36c0a">&quot;Attack ended. Attack Timer = &quot;</font></b></font></b> + AttackTimer);<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; }<br> 
+&nbsp; &nbsp; }<br>
+<br>	
+&nbsp; &nbsp;  <font color=gray>//USE TRIGGER to reach destinations and end LERP-to-tareget movements</font><br>	
+&nbsp; &nbsp;<font color=#31849b><b> public void</b></font> OnTriggerEnter(Collider other){<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> ((other.gameObject.tag ==<b><font face=arial><b><font color="#e36c0a">&quot;Player1&quot;</font></b></font></b>) || (other.gameObject.tag == <b><font face=arial><b><font color="#e36c0a">&quot;Player2&quot;</font></b></font></b>)){<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; moveToAttack = <font color=#31849b><b>false</b></font>;<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; isGrounded = <font color=#31849b><b>true</b></font>;<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; }<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> (other.gameObject.tag == <b><font face=arial><b><font color="#e36c0a">&quot;FlyStart&quot;</font></b></font></b>){<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; moveToFly = <font color=#31849b><b>false</b></font>;<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; isCircling = <font color=#31849b><b>true</b></font>;<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; }<br>	
+&nbsp; &nbsp; }<br>
+<br>	
+&nbsp; &nbsp;  <font color=gray>//FLY FUNCTION</font><br>	
+&nbsp; &nbsp; <font color=#31849b><b>public void</b></font> dragonFly(){<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; moveToFly = <font color=#31849b><b>true</b></font>;<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; isGrounded = <font color=#31849b><b>false</b></font>;<br>	
+&nbsp; &nbsp; }<br>		
+<br>	
+&nbsp; &nbsp;  <font color=gray>//ATTACK FUNCTION</font><br>	
+&nbsp; &nbsp;<font color=#31849b><b> public void</b></font> dragonAttack(){<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; int playerTarget =  Random.Range (<b><font face=arial><b><font color="#e36c0a">1</font></b></font></b>, <b><font face=arial><b><font color="#e36c0a">4</font></b></font></b>);<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> ((playerTarget == <b><font face=arial><b><font color="#e36c0a">1</font></b></font></b>) || (playerTarget == <b><font face=arial><b><font color="#e36c0a">3</font></b></font></b>)) {<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; attackLocation = player1Pos;<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; }<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>else</font></b> {<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; attackLocation = player2Pos;<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; }<br>
+<br>		
+&nbsp; &nbsp; &nbsp; &nbsp;  <font color=gray>//FOR RANDOM LOCATIONS INSTEAD OF PLAYERS:</font><br>
+&nbsp; &nbsp; &nbsp; &nbsp;  <font color=gray>//if (playerTarget == 1) {attackLocation = DragonNest1;}</font> <br>
+&nbsp; &nbsp; &nbsp; &nbsp;  <font color=gray>//else if (playerTarget == 2) {attackLocation = DragonNest2;}</font> <br>
+&nbsp; &nbsp; &nbsp; &nbsp;  <font color=gray>//else if (playerTarget == 3) {attackLocation = DragonNest3;}</font> <br>
+&nbsp; &nbsp; &nbsp; &nbsp;  <font color=gray>//else {attackLocation = DragonNest4;}</font> <br>
+<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; Debug.Log (<b><font face=arial><b><font color="#e36c0a">&quot;Attacking: &quot;</font></b></font></b> + playerTarget);<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; moveToAttack = <font color=#31849b><b>true</b></font>;<br>	
+&nbsp; &nbsp; }<br>
+<br>	
+&nbsp; &nbsp;  <font color=gray>//USEFULLY DISPLAY the range of the Dragon's attack when it is selected in the editor</font><br>	
+&nbsp; &nbsp; <font color=#31849b><b>void</b></font> OnDrawGizmosSelected(){<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; Gizmos.DrawWireSphere(transform.position, attackRange);<br>	
+&nbsp; &nbsp; }<br>}<br>
+<br>
+</font></td>
+</tr></table>
+</center>
+<br>
+<font face=arial><strong><em>SCRIPT NOTES:</em></strong>
+<li>To actually <strong>damage</strong> players, un-comment the  gameHandler sections of this script (top variable and Updates). <br>
+<li>To <strong>animate the Dragon</strong>, add an <a href="gamedesign/dragon_animated.zip">animated 3D dragon mesh</a> to replace the box under Dragon. This mesh has animation for 3 clips: an idle (10-70), flying (100-130), and an attack (200-320, an breathign fire area-effect attack). Create and add an Animator State Machine to the Dragon Mesh, with the fly clip as default and a boolean parameter  for "Attack". Uncomment the "anim" parts of this script, and the hooks will work if their names match the script.<li>Note the commented slots for<strong> attack locations</strong> to use instead of (or in combination with) player locations.<br>
+  <br></font>
+</td></tr>
+
+<tr><td bgcolor=#eef5ee><font face=arial>
+<a name="lava">&nbsp;</a>
+<br>
+<a href="#TOP"><img src="comicsDesign/ArrowUp.png" alt=""></a>
+<font size=+2><b>DEATH BY RISING LAVA</b></font><br>
+</font>
+
+<table width=100% border=0><tr>
+<td valign=top><font face=arial>
+<em><strong>SUMMARY: </strong></em>Given  one or more characters, create a plane with a lava texture that rises to cause damage to the players. <br>
+<br>
+<b>[STEP 1] Create the Lava and add a script to animate:</b>
+<br>
+<b>a) </b>Create a Game Object &gt; 3D Object &gt; Plane, name it LavaPlane, and remove the MeshCollider component. <br>
+<b>b) </b>Add a new Material. Turn on emmisive and add this color texture to both the albedo and emissive slots. Optionally, add the grayscale image to the bump slot.<br>
+<b>c)</b> Create a new C# script LavaRise.cs and add to LavaPlane:<br>
+<br>
+<br>
+
+</font></td><td align=center width=200><font face=arial>
+<a href="gamedesign/UnityTerrain/lava_NickRossi_color.jpg" target=lava1><img src="gamedesign/UnityTerrain/lava_NickRossi_color.jpg" width=60></a>
+<br><br>
+<a href="gamedesign/UnityTerrain/lava_NickRossi_specular.jpg" target=lava1><img src="gamedesign/UnityTerrain/lava_NickRossi_specular.jpg" width=60></a>
+</font></td></tr></table>
+
+    <center>
+      <font face="arial"><em>LavaRise.cs</em>: </font>
+      <table width=98% cellpadding=10 border=1><tr>
+<td><font face=arial>
+
+<font color=#3ab050><b>using</b></font> System.Collections;<br>
+<font color=#3ab050><b>using</b></font> System.Collections.Generic;<br>
+<font color=#3ab050><b>using</b></font> UnityEngine;<br>
+<br>
+<font color=#3ab050><b>public class</b></font> 
+<font color=#31849b><b>LavaRise : MonoBehaviour</b></font> {<br>
+<br>	
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>float</b></font> riseSpeed = <b><font face=arial><b><font color="#e36c0a">2f</font></b></font></b>;
+<br>	
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>float</b></font> stopHeight = <b><font face=arial><b><font color="#e36c0a">10000f</font></b></font></b>;
+&nbsp; &nbsp; <font color=gray>//set to the desired stopping height</font>  
+<br><br>
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>float</b></font> ScrollX = <b><font face=arial><b><font color="#e36c0a">0.01f</font></b></font></b>;
+&nbsp; &nbsp; <font color=gray>// texture scroll speeds</font> <br>
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>float</b></font> ScrollY = <b><font face=arial><b><font color="#e36c0a">0.01f</font></b></font></b>;<br>
+<br>	
+&nbsp; &nbsp; <font color=#31849b><b>void</b></font> Update(){<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; <font color=gray>//Lava Texture Pan</font><br>		
+&nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>float</b></font> OffsetX = Time.time * ScrollX;<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>float</b></font> OffsetY = Time.time * ScrollY;<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; GetComponent
+<Renderer>().material.mainTextureOffset = new Vector2(OffsetX, OffsetY);<br>	
+&nbsp; &nbsp; }<br>		
+<br> 
+&nbsp; &nbsp; <font color=#31849b><b>void</b></font> FixedUpdate(){<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; <font color=gray>//Lava Rise Up</font>
+
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> (transform.position.y <= stopHeight){
+<br>	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; transform.Translate(Vector3.up * riseSpeed * Time.deltaTime); <br>
+&nbsp; &nbsp; &nbsp; &nbsp; }
+<br>    &nbsp; &nbsp; }<br>}<br><br>
+<font color=gray>//script for moving an object up (and slamming it back down):</font><br>
+<font color=gray>//https://answers.unity.com/questions/509379/make-objects-slowly-go-up-then-slam-down.html</font>
+
+</font></td>
+</tr></table>
+</center>
+
+<br><br>
+<font face=arial><b>[STEP 2] Add a Lava Damage script to Lava:</b><br>
+</font>
+<li><font face=arial><strong>Create</strong> a new <strong>C# script</strong> called <strong>LavaDamage.cs</strong>. Add this script to the Lava and drag players into script slots.</font>
+<font face="arial"><br>
+</font><li><font face=arial>This script <strong>assumes there is already a damage system</strong> in place: a script in your GameHandler called UpdateDamage() which takes two arguments: the player name and the damage amount.</font>
+<br><br>
+    <center>
+      <font face="arial"><em>LavaPlayerDamage.cs</em>: </font>
+      <table width=98% cellpadding=10 border=1>
+        <tr>
+          <td><font face=arial> <font color=#3ab050><b>using</b></font> System.Collections;<br>
+            <font color=#3ab050><b>using</b></font> System.Collections.Generic;<br>
+            <font color=#3ab050><b>using</b></font> UnityEngine;<br>
+            <br>
+            <font color=#3ab050><b>public class</b></font> <font color=#31849b><b>LavaPlayerDamage : MonoBehaviour</b></font> {<br>
+            <br>
+            &nbsp; &nbsp; <font color=#31849b><b>public</b></font> GameHandler gameHandler; <br>	
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>Transform</b></font> player1; <br>	
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>Transform</b></font> player2; <br>	
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>Transform</b></font> player3; <br>	
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>Transform</b></font> player4; <br>	
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>int</b></font> LavaDamage = <b><b><font color="#e36c0a">10</font></b></b>; <br>	
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>float</b></font> DamageTime = <b><b><font color="#e36c0a">0f</font></b></b>;
+<br>
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>int</b></font> damage = <b><b><font color="#e36c0a">10</font></b></b>; <br>
+<br>	
+&nbsp; &nbsp; <font color=#31849b><b>void</b></font> Update(){ <br>
+		 <font face=arial>&nbsp; &nbsp; &nbsp; &nbsp; </font><font color=gray>//Check to be sure the player has been added befroe testing its height</font><br>
+<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> (player1 != <b><font color=#3ab050>null</font></b>){<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (transform.position.y >= player1.position.y){ burnPlayer(<b><b><font color="#e36c0a">&quot;Player1&quot;</font></b></b>, damage); }<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; }<br>
+<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> (player2 != <b><font color=#3ab050>null</font></b>){<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (transform.position.y >= player2.position.y){ burnPlayer(<b><b><font color="#e36c0a">&quot;Player2&quot;</font></b></b><font face=arial>, damage</font>); }<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; }<br>
+<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> (player3 != <b><font color=#3ab050>null</font></b>){<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (transform.position.y >= player3.position.y){ burnPlayer(<b><b><font color="#e36c0a">&quot;Player3&quot;</font></b></b>, damage); }<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; }<br>
+<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> (player4 != <b><font color=#3ab050>null</font></b>){<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (transform.position.y >= player4.position.y){ burnPlayer(<b><b><font color="#e36c0a">&quot;Player4&quot;</font></b></b><font color="#e36c0a"></font><font face=arial>, damage</font>); }<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; }<br>	
+&nbsp; &nbsp; }<br>
+<br>	
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font><font color=#31849b><b> void</b></font> burnPlayer(<font color=#31849b><b>string</b></font> player, <font color=#31849b><b>int</b></font> damage){<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; Debug.Log(<b><b><font color="#e36c0a">&quot;Ouch! &quot;</font></b></b> + player + <b><b><font color="#e36c0a">&quot; got burned by lava for &quot;</font></b></b> + damage + <font color="#e36c0a">&quot;<b><b> damage!&quot;</b></b></font>);<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; gameHandler.UpdateDamage(player, damage);<br>
+&nbsp; &nbsp; }<br>
+}</font></td>
+        </tr>
+      </table>
+    </center>
+    <font face="arial"><br>
+    </font>
+    <center>
+      <font face="arial"><em>Add to your GameHandler.cs</em>: </font>
+      <table width=98% cellpadding=10 border=1>
+        <tr>
+          <td><font face=arial>&nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>int</b></font> P1Health = <b><b><font color="#e36c0a">100</font></b></b>;<br>
+            &nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>int</b></font> P2Health = <b><b><font color="#e36c0a">100</font></b></b>;<br>
+            &nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>int</b></font> P3Health = <b><b><font color="#e36c0a">100</font></b></b>;<br>
+            &nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>int</b></font> P4Health = <b><b><font color="#e36c0a">100</font></b></b>;<br>
+            <br>
+                &nbsp; &nbsp; public void updateDamage(<font color=#31849b><b>string</b></font> player, <font color=#31849b><b>int</b></font> damage){<br>		
+                &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> ((player == <b><b><font color="#e36c0a">&quot;Player1&quot;</font></b></b>) && (P1Health >= <b><b><font color="#e36c0a">1</font></b></b>)){<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; P1Health -= damage; Debug.Log(<b><b><font color="#e36c0a">&quot;p1 health = &quot;</font></b></b> + P1Health);}<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> ((player == <b><b><font color="#e36c0a">&quot;Player2&quot;</font></b></b>) && (P2Health >= <b><b><font color="#e36c0a">1</font></b></b>)){<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; P2Health -= damage; Debug.Log(<b><b><font color="#e36c0a">&quot;p2 health = &quot;</font></b></b> + P2Health);}<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> ((player == <b><b><font color="#e36c0a">&quot;Player3&quot;</font></b></b>) && (P3Health >= <b><b><font color="#e36c0a">1</font></b></b>)){<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; P3Health -= damage; Debug.Log(<b><b><font color="#e36c0a">&quot;p3 health = &quot;</font></b></b> + P3Health);}<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> ((player == <b><b><font color="#e36c0a">&quot;Player4&quot;</font></b></b>) && (P4Health >= <b><b><font color="#e36c0a">1</font></b></b>)){<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; P4Health -= damage; Debug.Log(<b><b><font color="#e36c0a">&quot;p4 health = &quot;</font></b></b> + P4Health);}<br>    
+&nbsp; &nbsp; }</font></td>
+        </tr>
+      </table>
+    </center>
+    <font face="arial"></font><font face="arial"><br>
+    </font></td></tr>
+</table>
+
+<!--
+<img src="gamedesign/Unity2D/sdfsdff.png">
+-->
+
+<table width=750 cellpadding=10 border=0>
+<tr>
+	<td colspan=2>
+
+<!-- start of bottom code -->
+
+<!--
+
+<center>
+<font size=+2 face="arial"><b>PLAYER MELEE FIGHTING</b></font>
+</center><font face=arial><b>MELEE:</b>
+(<a href=="" target=shoot>Source Video</a>)
+<img src="gamedesign/Unity2D/sdfsdf.png" width=256 align=right border=1>
+<br>
+Your character animation frames can be  a single <b>spritesheet</b>. Select a spritesheet in the  Project and in the Inspector set it from Single to <b>Multiple</b>, hit <b>[Apply]</b>, and <b>Slice</b> to get a file for each image (in Project hit  the spritesheet triangle  to view all). <br>
+<br>
+Apply
+<a href="GameDesign/Unity2D/PlayerShooting.cs" target=unity><b>PlayerMelee.cs</b></a> script to the <b>Player</b>. In Inspector drag the FirePoint from the Hierarchy to the script slot, and the Projectile prefab from the Project into the Script slot. PLAYTEST! 
+<br><br>
+<em><b>Create an Impact Prefab:</b></em>
+<br>
+<b>Drag</b> the impact sprite  into the Hierarchy, name it &quot;Impact,&quot; set Order in Layer = 14.
+<li>Drag the Impact into the Project to make a <b>Prefab</b> and <b>delete</b> it from the Hierarchy.</font>
+<li><font face="arial"> Finally, <b>drag the Impact Prefab</b> to the Effect script slot.
+
+<br>
+<br>
+To make our Player vulnerable to enemies, add the <a href="GameDesign/Unity2D/PlayerHit.cs" target=unity><b>PlayerHit.cs</b></a> script, and drag the Impact prefab into the script slot.
+</font>
+
+<br>
+<br>
+<center>
+  <font size=+2 face="arial"><b>FRIENDLY NPCs</b></font>
+</center>
+<font face="arial">Artificial Intelligence for NPCs in games is not typically advanced learning algorythms, but instead a <b>simple list of responses to specific conditions in the game</b>. For example, consider an enemy that shoots at the player. It moves towards the player until it reaches a specified distance, and retreats if the player gets too close. All of these are responses to one piece of data: the distance from the player. We can capture that data and test against it in the Update() function to decide what the enemy will do.<br><em><b>NOTE:</b></em> These 3 Enemy types/scripts work equally well on 3D games, with Physics modifications:
+
+<br><br>
+<img src="gamedesign/Unity2D/dfgdf" align=right width=256 border=1>
+<b>NPC #1: <font color=purple>2D PATHFINDING</font></b> 
+(<a href="https://www.youtube.com/watch?v=jvtFUfJ6CP8" target=vid>source video</a>)<br>
+This NPC follows a particular path. It an be used for villagers moving about their day or a patrolling guard.<br><br>
+<b>Add NPCpath sprite</b> to Hierarchy. </font>
+<li><font face="arial">Set &quot;Order in Layer&quot; = 4, apply <b>tag</b> &quot;enemy&quot; (create if needed). </font>
+<font face="arial">
+<li>Reset Transforms (0,0,0). 
+<li>Add <b>Physics2D &gt; Rigidbody2D</b>, set <b>Mass = 3</b> and <b>Gravity Scale = 0</b>.
+<li>Add <b>Physics2D &gt; Collider2D</b> (box or circle, set size).
+<li>Apply <a href="GameDesign/Unity2D/EnemyMoveHit.cs" target=unity><b>xxxxx.cs</b></a>.
+<li>Drag to the Project to make a <b>Prefab</b> and <b>delete</b> from the Hierarchy. 
+
+<br><br>
+<img src="gamedesign/Unity2D/dfgdf" align=right width=256 border=1>
+<b>NPC #2:<font color="purple">DIALOGUE</font></b> 
+(<a href="https://www.youtube.com/watch?v=jvtFUfJ6CP8" target=vid>source video</a>)<br>
+This enemy follows the player. If it reaches the player it causes damage and disappears. It takes a specified amount of bullet damage before being removed.<br><br>
+<b>Add NPCdialogue sprite</b> to Hierarchy. </font>
+<li><font face="arial">Set &quot;Order in Layer&quot; = 4, apply <b>tag</b> &quot;enemy&quot; (create if needed). </font>
+<font face="arial">
+<li>Reset Transforms (0,0,0). 
+<li>Add <b>Physics2D &gt; Rigidbody2D</b>, set <b>Mass = 3</b> and <b>Gravity Scale = 0</b>.
+<li>Add <b>Physics2D &gt; Collider2D</b> (box or circle, set size).
+<li>Apply <a href="GameDesign/Unity2D/EnemyMoveHit.cs" target=unity><b>xxxxx.cs</b></a>.
+<li>Drag to the Project to make a <b>Prefab</b> and <b>delete</b> from the Hierarchy. 
+
+
+<br><br><br><br><br><br>
+<center>
+    <font size=+2 face="arial"><b>INVENTORY SYSTEM</b></font>
+  </center>
+An inventory lets us store objectives the Player needs to collect to win, or items for later use (keys, health potions, alternate weapons, etc).
+    
+<br><br>
+<b>SETTING UP  INVENTORY UI:</b> (<a href="https://youtu.be/-xB4xEmGtCY" target=ui1>source video</a>)
+Select the <b>Canvas</b> object in Hierarchy, rename &quot;<b>HUD</b>.&quot;
+<li><b>PANEL: </b>Create a <b>UI &gt; Panel</b> for the inventory background. Align to the bottom-center, size (hit Anchor Preset, choose Center, then width=270 x height=60) and for the Source Image choose a basic button sprite and set to a semi-transparent gray. Name the Panel "<b>Inventory</b>."
+  
+<li><b>SLOT: </b>Make a <b>UI &gt; Image</b>. parent beneath &quot;Inventory,&quot; size 50x50, dark color, name it &quot;<b>Slot</b>.&quot; This will be the background for trhe slot (children appear atop parents).<li><b>BORDER:</b> <b>Duplicate</b> the first image ([Cmd/Ctrl]+[d]), <b>parent</b> below Slot, and name &quot;<b>Border</b>.&quot; Size 50x50, import a PNG with a thin border. Open the [Sprite Editor] and set all borders = 4 so it will scale well. Assign this sprite as Source Image, set color to white. 
+Add component <b>UI &gt; Button</b>, and assign a  <b>Highlight</b> <b>Color</b>. Play to see rollover effect.<br>
+<li><b>ITEM IMAGE: </b>Create a new image, parent below Border, and name &quot;<b>ItemImage</b>.&quot; Import an inventory item sprite as the Source Image and size to fit. 
+<li>Create more slots: duplicate Slot. Select its ItemImage, set Source Image to &quot;None,&quot; and disable the Image component. 
+<li>Select the Inventory Panel, add component <b>Layout &gt; Horizontal Layout Group</b>. Set Child Alignmment to middle-center. Now, when Slots are duplicated, they space themseves evenly on the Panel.<br>
+  <br>
+  <b>INVENTORY SCRIPTS: </b>
+(<a href="https://youtu.be/Hj7AZkyojdo" target=ui1>source video</a>)
+<li>Create a <b>new Empty GO</b>, name it &quot;<b>InventoryManager</b>.&quot; Apply the <a href="GameDesign/Unity2D/InventoryManager.cs" target=unity><b>InventoryManager.cs</b></a> script (list of inventory items, manages events for item Add and Remove). 
+Also add <a href="GameDesign/Unity2D/InventoryItem.cs" target=unity><b>InventoryItem.cs</b></a> to the project, to define the Interface referenced by Inventory.cs.
+<li> Apply <a href="GameDesign/Unity2D/InventoryPlayer.cs" target=unity><b>InventoryPlayer.cs</b></a> script to Player (to call  Inventory.cs when a pick-up-able item is touched), and <b>drag the Inventory GO</b> into the script slot.
+<li> Apply <a href="GameDesign/Unity2D/InventoryHUD.cs" target=unity><b>InventoryHUD.cs</b></a> script to the Canvas HUD (to make the UI changes).
+<li> Add and modify a <a href="GameDesign/Unity2D/InventoryObject.cs" target=unity><b>InventoryObject.cs</b></a> script to each object we want to be pick-up-able.
+</font>
+
+-->
+
+<!-- end of bottom code -->
+
+<br>
+<font face=arial>
+    <br><br>
+<i>Tutorial compiled by Jason Wiser, Madwomb.com</i>
+<br>
+</font>
+</td></tr></table>
+
+<br><br>
+
+
+<!-- old
+
+<br><br><br><br>
+<b>PLAYER MOVEMENT</b> 
+(<a href="https://youtu.be/7KiK0Aqtmzc" target=betterJump>Better Jumping source video</a>):
+<li>moving: 
+<a href="https://youtu.be/dwcT-Dch0bA" target="_blank">https://youtu.be/dwcT-Dch0bA</a> 
+<li>jumping: <a href="https://youtu.be/j111eKN8sJw" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://youtu.be/j111eKN8sJw&source=gmail&ust=1579200963392000&usg=AFQjCNEV64Dr0QlIoVbqFFLAGEyF2_MWQQ">https://youtu.be/j111eKN8sJw</a> 
+<li>wall jumping: <a href="https://youtu.be/STyY26a_dPY" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://youtu.be/STyY26a_dPY&source=gmail&ust=1579200962787000&usg=AFQjCNEMpytesWvBLc8Mh6wEIvJHRiiF7A">https://youtu.be/STyY26a_dPY</a> <br> 
+  Add Character sprite to Hierarchy 
+  
+<br><br>
+Introduction to LERP for smooth transitions: <br>
+<img src="gamedesign/bullet.png" alt=""> LERP <a href="https://youtu.be/cD-mXwSCvWc" target=LERP1><b>Basics</b></a>: object motion, light intensity, color <br>
+<img src="gamedesign/bullet.png" alt=""> <a href="https://youtu.be/MFQhpwc6cKE" target=LERP2><b>Smooth</b></a> LERP Camera Following. <br>
+<img src="gamedesign/bullet.png" alt=""> Example <a href="gamedesign/CameraControlLERP.txt" target=LERP3><b>LERP code</b></a>. 
+<br><br><br>
+
+<img src="gamedesign/bullet.png" alt=""> <a href="https://www.youtube.com/watch?v=QkisHNmcK7Y" target=parallax><b>Parallax Scrolling</b></a> alternative script design 
+
+(Manage the <a href="https://answers.unity.com/questions/743148/display-quad-over-sprites.html" target=sort>sorting order</a> between sprites and quads). 
+
+-->
+
+
+</center>
+
+</body>
+</html>

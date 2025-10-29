@@ -1,0 +1,605 @@
+<html>
+<head>
+<title>Unity3D Terrain Steps</title>
+</head>
+<body text=#222222 link=#1e6669 vlink=#7700aa alink=#1088bb>
+
+<center>
+
+<table width=820 cellpadding=10 border=0>
+<tr>
+  <td><font face=arial>
+
+<font face=arial><a href="GameDesign_Unity.html"><img src="gamedesign/UnityLogo60.png" alt="" align=right></a></font><font size=+2><b>UNITY VR: GOOGLE CARDBOARD</b></font><br>
+A. <a href="#a">GVR Set-Up</a> &nbsp; | &nbsp; 
+B. <a href="#b">Teleportation</a> &nbsp; | &nbsp;<a href="#checklist">Final Checklist</a> 
+ &nbsp; | &nbsp; C. <a href="#c">Build to your Phone</a>
+<br>
+D. Importing Custom 3D Animation: 
+Animated Door &nbsp; | &nbsp; 
+Animated Character
+
+<br><br>
+<a href="https://www.amazon.com/Cardboard-Topmaxions-Virtual-Reality-Compatible/dp/B01C2PA0KK/#ace-8881249860" target=gc1><img src="gamedesign/googleCardboard.png" alt="" width=200 height=160 align=right></a>
+
+<br>
+<a href="https://www.amazon.com/Cardboard-Topmaxions-Virtual-Reality-Compatible/dp/B01C2PA0KK/#ace-8881249860" target=gc1></a>
+This tutorial covers  basic steps for creating and building a VR Unity Project to explore for Google Cardboard VR. This requires <a href="gamedesign/vr/InstallUnity2019-2-21f1.png" target=install><b>Unity 2019.2.21f1</b></a>.<br>
+<em><b>NOTE</b></em>: Google Cardboard does not work in Unity 2019.3 and above.<br>
+Make sure  <b>Andoid</b> or <b>iOS</b> Module is installed in <b>Unity Hub</b>, along with  <a href="gamedesign/vr/UnityVR_modulesAndrew.png" target=submod>sub-modules</a>. 
+<br>
+For the full experience get a Google Cardboard VR-phone viewer (available online for  $10). 
+<br>
+iOS only works if you have both a Mac computer and an iPhone or iPad. 
+<br>APK works on all computers, and can be sent to the teacher for veiwing
+</font>
+<br><br><br>
+
+<table width=100% cellpadding=5 border=0 bgcolor=#effbef><tr><td>
+
+<table width=100% cellpadding=0><tr>
+<td valign=top><font face=arial><a name="a">&nbsp;</a>
+<br>
+<b><font color=purple>[PART  A] </font>Setting up Unity for Google Cardboard </b>(<a href="https://youtu.be/OEP7sMwfZnE" target=GVRstart>source</a>)<br><br>
+1. Open Unity Hub. Create a new <b>Unity 3D</b> project wth Unity <b>2019.2.21</b>. Name the Scene GVR_test.<br><br>
+2. From the <a href="https://github.com/googlevr/gvr-unity-sdk/releases" target=sdk><b>GoogleVR Github</b></a> download  the <b>GoogleVRForUnity</b> package.<br>
+In Unity: Assets > Import Package > Custom, find  <b>GoogleVRForUnity.</b><br>
+(In the <b>Import Unity Package</b> window optionally uncheck &quot;Demos&quot; to save space, but do <em>not</em> uncheck the Demos folder under Beta).Hit <b>[Import].</b><br><br>
+3. Download and add these four scripts to the Assets folder (drag into the Project panel Assets folder):<br>
+<table width=550 cellpadding=5><tr>
+<td valign=top><font face="arial">
+<a href="gamedesign/vr/GVR_Gaze.cs" target=gvr1><em><b>GVR_Gaze.cs</b></em></a>
+<br><a href="gamedesign/vr/GVR_Teleport.cs" target=gvr2><b><em>GVR_Teleport.cs</em></b></a> 
+<br><a href="gamedesign/vr/GVR_Rotate.cs" target=gvr2><b><em>GVR_Rotate.cs</em></b></a>
+<br><a href="gamedesign/vr/GVR_Color.cs" target=gvr2><b><em>GVR_Color.cs</em></b></a>
+  <br><br></font></td>
+<td valign=top><font face="arial">For the Player, retucule-driven interactivity
+<br>
+Teleport destinations
+<br>Make a Rotating object change directions
+<br>Make an object change colors
+</font></td>
+</tr></table><br><br>
+4. Open File &gt; <b>Build Settings</b>. 
+Hit <b>[Add Open Scenes]</b>.<br>
+Choose <b>Android</b> or <b>iOS</b> to make a mobile app,
+<!--(iOS requires working on a mac)--> and hit <b>[Switch Platform]</b>.</font><font face="arial"><br>
+<br>
+5. At the bottom of Build Settings hit<b> [Player Settings]</b> to set them for
+</font> 
+
+<!--
+<em><a href="https://docs.unity3d.com/Manual/class-PlayerSettingsWebGL.html" target=web>WebGL:</a></em>
+</font>
+  <table border=1 cellpadding=5>
+    <tr>
+      <td valign=top><font face=arial><nobr><em><b>Player Settings </b></em><b>&gt; Other Settings</b></nobr></font></td>
+      <td valign=top><font face=arial>disable <b>Auto Graphics API</b></font></td>
+    </tr>
+    <tr>
+      <td valign=top>&nbsp;</td>
+      <td valign=top><font face=arial>enable <b>Prebake Collision Meshes</b></font></td>
+    </tr>
+    <tr>
+      <td valign=top>&nbsp;</td>
+      <td valign=top><font face=arial>disable <b>Keep Loaded Shaders Alive</b></font></td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td valign=top><font face=arial>set <b>Preloaded Assets &gt; Size = 1</b></font></td>
+    </tr>
+    <tr>
+      <td valign=top><font face="arial"><b><em>Player Settings</em></b> <br>(top)</font></td>
+      <td><font face=arial>set <b>CompanyName</b> and <b>ProductName</b> to your name (humpCap notation)</font></td>
+    </tr>
+    <tr>  
+      <td><font face="arial"><b><em>Player Settings</em></b> <b>&gt; Package Name</b></font></td>
+      <td><font face="arial"><b>com.CompanyName.ProductName</b></font></td>
+    </tr>
+  </table>
+  <br>
+ -->
+  
+<font face="arial"><a href="https://developers.google.com/vr/develop/unity/get-started-android" target=android><em>Android APK:</em></a></font><br>
+<table border=1 cellpadding=5><tr>
+<td><font face=arial><nobr><em><b>Player Settings </b></em><b>&gt; XR Settings</b></nobr></font></td>
+<td valign=top><font face="arial">enable <b>Virtual Reality Supported</b></font></td>
+</tr><tr>
+<td><font face=arial><em><b>Player Settings </b></em><b>&gt; XR Settings &gt; Virtual Reality SDKs</b></font></td>
+<td valign=top><font face=arial>add <b>[+] Cardboard</b></font></td>
+</tr><tr>
+<td><font face="arial"><b><em>Player Settings</em> &gt; Other Settings</b></font></td>
+<td valign=top><font face=arial>Set Minimum API Level to<b> Android 4.4 "Kit Kat"</b> (API Level 19) or higher</font>. 
+<br><font face="arial"> Set <b>Android TV Compatibility</b> = off </font></td>
+</tr><tr>
+<td valign=top><font face="arial"><b><em>Player Settings </em></b><em>(top)</em></font></td>
+<td><font face=arial>set <b>CompanyName</b> and <b>ProductName</b> to your name (humpCap notation)</font></td>
+</tr><tr>
+<td><font face="arial"><b><em>Player Settings</em> &gt; Package Name</b></font></td>
+<td><font face="arial"><b>com.CompanyName.ProductName</b></font></td>
+</tr></table>
+<br>
+<font face="arial">Close out of player settings and Build Settings [x].</font>
+
+</td>
+<td valign=top>
+<a href="gamedesign/vr/cardboard1.png" target=cb1><img src="gamedesign/vr/cardboard1_thumb.png" width=250 height=105 border=0></a><br><br>
+<img src="gamedesign/vr/cardboard4_thumb.png" alt="" width=250 height=210 border=0>
+<br><br><a href="gamedesign/vr/cardboard2.png" target=cb2><img src="gamedesign/vr/cardboard2_thumb.png" width=250 height=200 border=0></a>
+<br><br><a href="gamedesign/vr/cardboard3.png" target=cb3><img src="gamedesign/vr/cardboard3_thumb.png" width=250 height=200 border=0></a><center><font face=arial size=2><i>Click for full image</i></font></center></td>
+</tr><tr>
+<td valign=top><font face="arial"><br>
+6. From the new <b>GoogleVR</b> folders in the Project, drag to  Hierarchy:<br>
+<b>Assets &gt; GoogleVR &gt; Prefabs &gt; <font color=#3399ff>GvrEditorEmulator</font></b><br>
+<b>Assets &gt; GoogleVR &gt; Prefabs &gt; Headset &gt; <font color=#3399ff>GvrHeadset</font></b><br>
+<br>
+7. Set-up the <b>Player Object:</b><br>
+a. Create a GameObject &gt; <b>Empty Game Object</b>. Name it &quot;<b>Player</b>.&quot; In the Inspector hit the gear icon to reset Transforms.</font><br>
+b. <font face="arial"> Select <b>Main Camera</b>, <b>Reset Transforms</b>, set near clipping plane to 0.1, <b>parent</b> below Player (drag onto it).</font><br>
+c. <font face="arial">With</font><font face="arial"> Main Camera selected,  in Inspector hit <b>[Add Component]</b> to search and apply: <b><font color=#3399ff>GvrPointerPhysicsRaycaster</font></b>.</font><br>
+d. <font face="arial">From Project drag to Hierarchy and <b>parent </b>to<b> Camera</b>:<br>
+<b>Assets &gt; GoogleVR &gt; Prefabs &gt; Cardboard &gt; <font color=#3399ff>GvrReticlePointer</font></b>.<br>
+<br>
+    8. Create the <b>Ground:</b><br>
+a. Add <b>GameObject &gt; 3D &gt; Cube</b>, name it &quot;<b>Ground</b>.&quot;<br>
+b. Scale: 20 x 0.2 x 20, Position y = -1.<br>
+c. RightClick the Project panel (under Assets) to create a <b>Material</b>, name it <b>Ground_m</b>, apply to the Ground (drag onto it) and in the Inspector set Albedo color to something darker.<br>
+<br></font></td>
+<td valign=top><br><img src="gamedesign/vr/cardboard5.png" width=200 height=190 border=0>
+</td>
+</tr><tr>
+<td colspan=2><font face=arial>
+<em><b>TESTING  TIME!</b></em><br>
+For reference, create a cube and move forward on the Z-axis. 
+<br>
+Select <b>GvrEditorEmulator</b> to see Cardboard controls in Inspector (hold <strong>[Alt/Option]</strong> move mouse to look around). <br>
+Hit <b>Play</b> to try them, and to see a small, default Player <b>reticule</b>. showing the center of player vision/focus.<br> 
+<b>Turn off Play </b>to resume (remember: any changes while in play mode are not saved) </font></td>
+</tr></table>
+
+</td></tr></table>
+
+<br>
+
+<table width=100% cellpadding=5 border=0 bgcolor=#e9f7fe><tr><td>
+
+<table width=100% cellpadding=0><tr>
+<td width=500 valign=top><font face=arial> <b><font face=arial><a name="b">&nbsp;</a></font>
+<br>
+<font color=purple>[PART  B]</font> Teleportation</b>
+    (<a href="https://youtu.be/bmMaVTV8UqY" target=port>source video</a>)<br>
+Cardboard does not support real-body spatial movement, so  the best way to move in GVR is to teleport.<br><br>
+1. Add to  Hierarchy  to enable  interactions:<br><nobr><b>Assets &gt; GoogleVR &gt; Prefabs &gt; EventSystem &gt; <font color=#3399ff>GvrEventSystem</font></b>.</nobr> 
+<br><br>
+<a href="gamedesign/Unity_Reticule.png" target=reticule><img src="gamedesign/Unity_Reticule_thumb.png" align=right border=0></a>
+2. Create the animate-able <b>Reticule in a Canvas Image:</b>
+<br>
+a). Download and drag <a href="gamedesign/Unity_Reticule.png" target=VRspace><b>Unity_Reticule.png</b></a> into the Project panel (or make your own: 32x32 pixels).
+
+In the Inspector set <b>Texture Type</b> from Default to <b>Sprite (2D and UI)</b>. Hit <b>[Apply]</b>
+
+<br>
+<br>
+b). Add to the Hierarchy: GameObject &gt; UI &gt; <b>Canvas</b>. With the Canvas selected, add GameObject &gt; UI &gt;<b> Image</b>.
+
+<br><br>
+c). In Hierarchy select <b>Canvas</b>  and in  Inspector RightClick <b>Graphic Raycaster</b> to Remove Component<b>.</b>
+
+<br><br>
+d). Under Canvas Component: Change Canvas <b>RenderMode</b> from &quot;Screen Space - Overlay&quot; to &quot;<b>Screen Space - Camera</b>&quot;. Drag Main Camera into the <strong>Render Camera</strong> slot (so the reticule will be centered in each view on your phone). Set <strong>Plane Distance</strong> low (0.5).<br>
+<br>
+e). In Hierarchy select <b>Image</b> and in  Inspector Reset Transforms. Drag <b>Unity_Reticule.png</b> into the &quot;Source Image&quot; slot.
+
+<br>
+<br>
+f). Change <b>Image Type</b> from &quot;Simple&quot; to &quot;<b>Filled</b>.&quot;<br>
+In Game view Scrub filled-amount bar to see change, then set = 0.
+
+<br><br><br>
+3. Select any object in the Hierarchy, and in the Inspector find the Tag rolldown at the top. Click &quot;Untagged&quot; and choose &quot;Add Tag&quot; to create 3 new tags (don't yet apply): <b>TeleportHere</b>, <b>RotateThis</b>, <b>ColorSwitch</b>.<br>
+  <br>
+</font></td>
+<td valign=top align=center><font face=arial>
+<img src="gamedesign/vr/cardboard18.png" width=300 height=245 border=0>
+<br><br><img src="gamedesign/vr/cardboard19.png" width=280 height=160 border=0>
+<br><br><img src="gamedesign/vr/cardboard8.png" width=330 height=205 border=0>
+</font></td>
+</tr><tr>
+<td colspan=2><font face=arial> 4. Apply the <a href="gamedesign/vr/GVR_Gaze.cs" target=gvr1><b>GVR_Gaze.cs</b></a> script to the Player.</font><br>
+
+  <center>
+    <font face="arial"><a href="gamedesign/vr/GVR_Gaze.cs" target=gvr1><em>GVR_Gaze.cs</em></a>: </font>
+    <table width=95% cellpadding=10 border=1>
+      <tr>
+        <td><font face="arial"><font color=#3ab050><b>using</b></font> System.Collections;<br> 
+<font color=#3ab050><b>using</b></font> System.Collections.Generic;<br> 
+<font color=#3ab050><b>using</b></font> UnityEngine;<br> 
+<font color=#3ab050><b>using</b></font> UnityEngine.UI;<br>
+<br> 
+<font color=#3ab050><b>public class</b></font> </font><font color=#31849b face="arial"><b>GVR_Gaze</b></font><font face="arial"> : </font><font color=#31849b face="arial"><b>MonoBehaviour</b></font><font face="arial"> {<br>
+<br>
+&nbsp; &nbsp; 	</font><font color=#31849b face="arial"><b>public</b></font> <font color=#31849b face="arial"><b>Image</b></font><font face="arial"> imgGaze;<br>
+<br>
+&nbsp; &nbsp; 	</font><font color=#31849b face="arial"><b>public</b></font> <font color=#31849b face="arial"><b>float</b></font><font face="arial"> totalTime =<b><font color="#ed6c0a"> 1f</font></b>;<br>
+&nbsp; &nbsp; 	</font><font color=#31849b face="arial"><b>bool</b></font><font face="arial"> gvrStatus;<br>&nbsp; &nbsp; 	</font><font color=#31849b face="arial"><b>float</b></font><font face="arial"> gvrTimer;<br>
+<br>
+&nbsp; &nbsp; 	</font><font color=#31849b face="arial"><b>public</b></font> <font color=#31849b face="arial"><b>int</b></font><font face="arial"> distanceOfRay = <b><font color=#ed6c0a>50</font></b>;<br>
+&nbsp; &nbsp; 	</font><font color=#31849b face="arial"><b>private</b></font> <font face="arial">RaycastHit rayHit;<br>
+<br>
+&nbsp; &nbsp; 	<font color=#31849b><b>void</b></font> Update () {<br>
+&nbsp; &nbsp; &nbsp; &nbsp; <font color=#999999>//create a ray to check distance:</font><br>
+&nbsp; &nbsp; &nbsp; &nbsp;		<font color=#31849b><b>Ray</b></font> ray = <font color=#31849b><b>Camera</b></font>.main.ViewportPointToRay(<font color=#3ab050><b>new</b></font><font color=#31849b><b> Vector3</b></font>(<b><font color=#ed6c0a>0.5f</font></b>, <b><font color=#ed6c0a>0.5f</font></b>, <b><font color=#ed6c0a>0f</font></b>));<br>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; 		<font color=#3ab050><b>if</b></font> (Physics.Raycast(ray, <font color=#3ab050><b>out</b></font> rayHit, distanceOfRay)){<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#999999>//code to fill reticule:</font><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#3ab050><b>if</b></font> (gvrStatus){<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 			&nbsp; &nbsp; gvrTimer +=<b><font color="#31849b"> Time</font></b>.deltaTime;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 			&nbsp; &nbsp; imgGaze.fillAmount = gvrTimer / totalTime;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; 		&nbsp; &nbsp; }<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#999999>//code to teleport player:</font><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 			<font color=#3ab050><b>if</b></font> (imgGaze.fillAmount == <b><font color="#ed6c0a">1</font></b> && rayHit.transform.CompareTag(<font color=#ed6c0a><b>&quot;TeleportHere&quot;</b></font>)){<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;				&nbsp; &nbsp; rayHit.transform.gameObject.GetComponent&lt;GVR_Teleport&gt;
+<Teleport>
+().TeleportPlayer();<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;			}
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=#999999>//code to activate transform in another object:</font><br>
+&nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; 			<font color=#3ab050><b>if</b></font> (imgGaze.fillAmount == <b><font color="#ed6c0a">1</font></b> && rayHit.transform.CompareTag(<font color=#ed6c0a><b>&quot;RotateThis&quot;</b></font>) && gvrStatus){<br>
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;  				rayHit.transform.gameObject.GetComponent&lt;GVR_Rotate&gt;
+<RotateCube>().ChangeSpin();<br>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; 				gvrStatus = </font><font color=#31849b face="arial"><b>false</b></font><font face="arial">;<br>
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;  			}
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=#999999>//code to activate color change in another object:</font><br>
+&nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; <font color=#3ab050><b>if</b></font> (imgGaze.fillAmount == <b><font color="#ed6c0a">1</font></b> && rayHit.transform.CompareTag(<font color=#ed6c0a><b>&quot;ColorSwitch&quot;</b></font>) && gvrStatus){<br>
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;  				rayHit.transform.gameObject.GetComponent&lt;GVR_Color&gt;
+<RotateCube>
+().ChangeColor();<br>
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; 				gvrStatus = </font><font color=#31849b face="arial"><b>false</b></font><font face="arial">;<br>
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;  			}</font><font face="arial"><br>
+&nbsp; &nbsp;&nbsp; &nbsp;  		}<br>&nbsp; &nbsp; 	}<br>
+<br>&nbsp; &nbsp; 	</font><font color=#31849b face="arial"><b>public</b></font><font face="arial">&nbsp; </font><font color=#31849b face="arial"><b>void</b></font><font face="arial"> GVROn(){<br>
+&nbsp; &nbsp; &nbsp; &nbsp; 		gvrStatus = </font><font color=#31849b face="arial"><b>true</b></font><font face="arial">;<br>&nbsp; &nbsp; 	}<br>
+<br>&nbsp; &nbsp; 	</font><font color=#31849b face="arial"><b>public</b></font><font face="arial">&nbsp; </font><font color=#31849b face="arial"><b>void</b></font><font face="arial"> GVROff(){<br>
+&nbsp; &nbsp; &nbsp; &nbsp; 		gvrStatus = </font><font color=#31849b face="arial"><b>false</b></font><font face="arial">;<br>&nbsp; &nbsp; &nbsp; &nbsp; 		gvrTimer = <b><font color=#ed6c0a>0</font></b>;<br>&nbsp; &nbsp; &nbsp; &nbsp; 		imgGaze.fillAmount = <b><font color=#ed6c0a>0</font></b>;<br>&nbsp; &nbsp; 	}<br>
+}</font></td>
+</tr>
+</table>
+</center>
+
+<font face=arial>
+<br>
+5. With Player still selected in the Hierarchy, drag the <b>Image</b> object (under Canvas) from the Hierarchy into the GVR_Gaze Img Gaze <b>script slot</b> in the Inspector.
+<br>
+</font>
+
+<table width=100% border=0><tr><td valign=top><font face=arial>
+<br>6. Create a <b>Teleport Destination</b> Cube:<br>
+a). Create a new GameObject &gt; 3D &gt; <b>Cube</b>, name it &quot;<b>Teleport</b>.&quot;<br>
+<br>
+b). Apply the <b>tag</b> &quot;<b>TeleportHere</b>&quot; to the cube.<br><br>
+c). Scale as desired, position onto one corner of the Ground.<br><br>
+d). At  bottom of Inspector, hit [Add Component], Event &gt;<b> Event Trigger</b> to handle the reticule:<br>
+&nbsp; &nbsp; &nbsp;(1). Hit <b>[Add New Event Type]</b> to add two events: <b>PointerEnter</b> and <b>Pointer Exit</b>.<br>
+&nbsp; &nbsp; &nbsp;(2). Click the <b>[+]</b> icons on each.
+To each <b>[None (Object)]</b> slot drag the <b>Player</b>.<br>
+&nbsp; &nbsp; &nbsp;(3). <em>Under PointerEnter:</em> Hit <b>[No Function]</b> to choose <b>GVR_Gaze</b> and then <b>GVROn( )</b>.<br>
+&nbsp; &nbsp; &nbsp;(4). <em>Under PointerExit:</em> Hit <b>[No Function]</b> to choose <b>GVR_Gaze</b> and then <b>GVROff( )</b>.</font></td>
+<td valign=top><img src="gamedesign/vr/cardboard6.png" width=180 height=245 border=0></td>
+</tr></table>
+<br>
+
+<table width=100% border=0><tr>
+<td valign=top><img src="gamedesign/vr/cardboard6b.png" alt="" width=190 height=220 border=0></td>
+<td valign=top>
+<img src="gamedesign/vr/cardboard9.png" alt="" width=370 height=275 border=0></td>
+<td valign=top>
+<font face=arial><img src="gamedesign/vr/cardboard10.png" width=260 height=290 border=0></font></td>
+</tr></table>
+
+<font face=arial>
+<br>
+<em><strong>TESTING TIME: </strong></em>Hit <b>Play</b> to test, and we should see the Reticule activate when we hover over the teleport destination block.
+Now, for actual teleportation:<br>
+<br>7. Apply the <a href="gamedesign/vr/GVR_Teleport.cs" target=gvr2><b>GVR_Teleport.cs</b></a> script to the  <b>Teleport</b> object. 
+<br>Drag Player object from the Hierarchy into the<b> Player script slot.</b>
+</font>
+
+<br><br>
+<center>
+  <em><font face="arial"><a href="gamedesign/vr/GVR_Teleport.cs" target=gvr2>GVR_Teleport.cs</a></font></em><font face="arial">: </font>
+  <table width=100% cellpadding=10 border=1>
+    <tr>
+      <td><font face="arial"><font color=#3ab050><b>using</b></font> System.Collections;<br> 
+<font color=#3ab050><b>using</b></font> System.Collections.Generic;<br> 
+<font color=#3ab050><b>using</b></font> UnityEngine;<br>
+<br> 
+<font color=#3ab050><b>public class</b></font> </font><font color=#31849b face="arial"><b>GVR_Teleport</b></font><font face="arial"> : </font><font color=#31849b face="arial"><b>MonoBehaviour</b></font><font face="arial"> {<br>
+<br>
+&nbsp; &nbsp;</font><font color=#31849b face="arial"><b>public</b></font> <font color=#31849b face="arial"><b>GameObject</b></font><font face="arial"> player;<br>
+<br>
+&nbsp; &nbsp; 	</font><font color=#31849b face="arial"><b>public</b></font> <font color=#31849b face="arial"><b>void</b></font><font face="arial"> TeleportPlayer(){<br>&nbsp; &nbsp; &nbsp; &nbsp; 		player.transform.position = <font color=#3ab050><b>new</b></font> <font color=#31849b><b>Vector3</b></font> (transform.position.x, transform.position.y + <b><font color=#ed6c0a>1.5f</font></b>, transform.position.z);<br>
+&nbsp; &nbsp; 	}<br>
+}</font></td>
+    </tr>
+  </table>
+</center>
+
+<font face=arial>
+<br>
+8. With the Teleport cube still selected, drag the <b>Player</b> object from the Hierarchy into the GVR_Teleport Player <b>script slot</b>. 
+<b>Duplicate</b> the Teleport cube and put these copies around your space, some at ground level, some higher!<br>
+<br>
+<em><b>TESTING  TIME!</b></em> Hit Play to test teleportation when gazing at the Teleport Objects.
+
+<br><br>
+Let's add <strong>other VR actions</strong> based on gaze: a <strong>Transform</strong> change and a <strong>Color</strong> change on another object: <br>
+<br>
+9. Create a <strong>Cube</strong>, name it &quot;ChangeCube.&quot; 
+<br>
+&nbsp; &nbsp; &nbsp;a. Apply either the &quot;<b>RotateThis</b>&quot; or &quot;<b>ColorSwitch</b>&quot; <b>tags </b> to the cube. <br>
+&nbsp; &nbsp; &nbsp;b. Add Component <b>Event Trigger</b>, hit <b>[Add New Event Trigger]</b> to add <b>PointerEnter</b> and <b>Pointer Exit</b>.  
+<br>
+&nbsp; &nbsp; &nbsp;c. Click the <b>[+]</b> icons on each, and then drag the <b>Player</b> into each <b>[None (Object)]</b> slot.
+<br>
+&nbsp; &nbsp; &nbsp;d. <em>Under PointerEnter:</em> Hit <b>[No Function]</b> to choose <b>GVR_Gaze</b> and then <b>GVROn()</b>.
+<br>
+&nbsp; &nbsp; &nbsp;e. <em>Under PointerExit:</em> Hit <b>[No Function]</b> to choose <b>GVR_Gaze</b> and then <b>GVROff()</b>.
+<br><br>
+10. <b>Apply</b> either the <em><a href="gamedesign/vr/GVR_Rotate.cs" target=gvr2><b>GVR_Rotate.cs</b></a></em> or <em><a href="gamedesign/vr/GVR_color.cs" target=gvr2><b>GVR_Color.cs</b></a></em> to the <b>ChangeCube</b> object:
+</font><br>
+<center>
+
+<table width=100% border=0><tr>
+<td width=51% valign=top align=center><font face="arial">
+<em><a href="gamedesign/vr/GVR_Rotate.cs" target=gvr2>GVR_Rotate.cs</a></em> (set Tag to RotateThis):</font>
+<table width=100% cellpadding=10 border=1><tr>
+<td><font face=arial>
+<font color=#3ab050><b>using</b></font> System.Collections;<br><font color=#3ab050><b>using</b></font> System.Collections.Generic;<br><font color=#3ab050><b>using</b></font> UnityEngine;<br><br>
+<font color=#3ab050><b>public class</b></font> <font color=#31849b><b>GVR_Rotate</b></font> : <font color=#31849b><b>MonoBehaviour</b></font> {<br><br>&nbsp; &nbsp;<font color=#31849b><b>public</b></font> <font color=#31849b><b>float</b></font> spinForce = <b><font color=#ed6c0a>45</font></b>;<br><br>
+&nbsp; &nbsp;<font color=#31849b><b>void</b></font> Update(){
+
+<br>
+<nobr>&nbsp; &nbsp; &nbsp; &nbsp; transform.Rotate(<b><font color=#ed6c0a>0</font></b>, spinForce * <font color=#31849b><b>Time</b></font>.deltaTime, <b><font color=#ed6c0a>0</font></b>);</nobr>
+
+<br>&nbsp; &nbsp; 	}<br><br>&nbsp; &nbsp;<font color=#31849b><b>public void</b></font> ChangeSpin(){<br>&nbsp; &nbsp; &nbsp; &nbsp; spinForce = -spinForce;<br>&nbsp; &nbsp; 	}<br>}</font></td>
+</tr></table>
+
+</td>
+<td width=49% valign=top align=center>
+
+<font face="arial"><em><a href="gamedesign/vr/GVR_color.cs" target=gvr2>GVR_Color.cs</a></em> (set Tag to ColorSwitch):</font>
+<table width=100% cellpadding=10 border=1><tr>
+<td><font face="arial">
+<font color=#3ab050><b>using</b></font> System.Collections;
+<br><font color=#3ab050><b>using</b></font> System.Collections.Generic;
+<br><font color=#3ab050><b>using</b></font> UnityEngine;
+<br><br>
+<font color=#3ab050><b>public class</b></font><font color=#31849b><b>GVR_Color</b></font> : <font color=#31849b><b>MonoBehaviour</b></font> {
+<br><br>&nbsp; &nbsp;<font color=#31849b><b>public</b></font> Renderer rend;<br>&nbsp; &nbsp;<font color=#31849b><b>public</b></font> Vector3 clrs;<br><br>&nbsp; &nbsp;<font color=#31849b><b>void</b></font> Start(){<br>&nbsp; &nbsp; &nbsp; &nbsp;rend = gameObject.GetComponent&lt;Renderer&gt;();<br>&nbsp; &nbsp; 	}<br><br>&nbsp; &nbsp;<font color=#31849b><b>public void</b></font> ChangeColor(){<br>
+&nbsp; &nbsp; &nbsp; clrs.x = Random.Range (<b><font color="#ed6c0a">0.5f</font></b>,<b><font color=#ed6c0a>1f</font></b>);<br>
+&nbsp; &nbsp; &nbsp; clrs.y = Random.Range (<b><font color="#ed6c0a">0.5f</font></b>, <b><font color=#ed6c0a>1f</font></b>);<br>
+&nbsp; &nbsp; &nbsp; clrs.z = Random.Range (<b><font color="#ed6c0a">0.5f</font></b>, <b><font color=#ed6c0a>1f</font></b>);<br>
+<nobr>&nbsp; &nbsp; &nbsp; rend.material.color = <font color=#31849b><b>new</b></font> Color(clrs.x, clrs.y, clrs.z); </nobr><br>
+&nbsp; &nbsp; }
+<br>}</font></td>
+</tr></table>
+
+</td></tr></table>
+</center>
+
+<font face=arial><em><b>TESTING  TIME!</b></em> Hit Play to test the cube rotation when gazing at the RotateCube. 
+<br></font></td>
+</tr></table>
+
+<center>
+<table width=100% cellpadding=5><tr>
+<td valign=top><font face=arial><a name="checklist">&nbsp;</a><b>PROBLEM SOLVING:</b>
+<br>
+Are your teleportation or rotation cubes not appearing to function? 
+<br><br>
+Check you have all the elements in the Hierarchy (see image to the right).
+<br>
+In particular, check that you added <b><font color=#3399ff>GvrEventSystem</font></b> to the Hierarchy.
+
+<br><br>Check your cube or other target object has:
+<br>
+&nbsp; <b>[ ]</b> The <b>Tag</b> set to  <b>TeleportHere</b>, <b>RotateThis</b>, or <strong>ColorSwitch</strong>. <br><br>&nbsp; 
+<b>[ ]</b> The action <b>script</b> applied (<b>GVR_Teleport.cs</b> or <b>GVR_Rotate.cs</b>) <br>
+&nbsp; <b>[ ]</b> The <b>Player</b> dragged into the <b>script slot</b> (this solves the console error 'Unassigned Reference Exception: The variable player of GVR_Teleport has not been assigned')<br><br>
+&nbsp; <b>[ ]</b> An <b>Event Trigger</b> Component applied.<br>
+&nbsp; <b>[ ]</b> Added <b>Events [+]</b> for <b>Pointer Enter</b> and <b>Pointer Exit</b>.<br>
+&nbsp; <b>[ ]</b> The <b>Player</b> dragged into the <b>[None (Object)]</b> slots for each event. <br>
+&nbsp; <b>[ ]</b> The [No Function] slots set  to <b>GVR_Gaze.cs</b> script and <b>GVROn</b> / <b>GVROff</b> Methods. <br>
+</font></td>
+<td valign=top>
+<img src="gamedesign/vr/cardboard20.png" alt="" width=200 height=300 border=0>
+</td></tr></table>
+</center>
+
+</td></tr></table>
+
+<!--
+<table width=100% cellpadding=0><tr>
+<td valign=top><font face=arial> <b><font face=arial><a name="d">&nbsp;</a></font><font color=purple>[PART  D]</font> Export a Build to a WebGL App </b>(<a href="https://youtu.be/OEP7sMwfZnE" target=GVRstart>source</a>)
+<br>1. In Build settings, export the WebGL. 
+<br><br>2. Upload the file to an online repository (like <a href="https://simmer.io/" target=sim>Simmer.io</a>).
+<br><br>3. From your smartphone open the app site.
+<br><br>4. Google Play Store: Download/install Google Cardboard App.
+<br><br>5. Run the app to play your VR project.
+<br><br></font></td>
+<td valign=top><img src="gamedesign/vr/gvr.png" width=300 height=150 border=0></td>
+</tr></table>
+-->
+
+<br>
+<!--<table width=100% cellpadding=5 border=0 bgcolor=#f7f7ff><tr><td>-->
+
+<table width=100% cellpadding=5 border=0 bgcolor=#efefff><tr><td>
+
+
+<table width=100% cellpadding=0>
+  <tr>
+    <td valign=top><font face=arial><a name="c">&nbsp;</a>
+    <br><b><font color=purple>[PART  C-1]</font> Export a build to an Android Phone </b>(<a href="https://youtu.be/OEP7sMwfZnE" target=GVRstart>source</a>) 
+<br>
+1. In Unity File &gt; <strong>Build Settings</strong>, export the APK by hitting <b>[Build]</b>. <br><br>2. <strong>Upload</strong> the APK to an online repository (like Piazza). <br><br>
+3. From your Android phone click the APK link to load the APK package to your phone. 
+<strong>DoubleClick to install</strong> (and accept).<br>
+<br>
+4.  <strong>Run</strong> your APK to play your VR project. Try it in your Google Cardboard viewer!<br>
+      <br>
+    </font></td>
+    <td valign=top>
+    
+    <img src="gamedesign/vr/cardboard12.png" width=300 height=170 border=0>
+    
+    </td>
+  </tr>
+</table>
+
+<br><br>
+<table width=100% cellpadding=0><tr>
+<td valign=top><font face=arial> <b><font color=purple>[PART  C-2]</font> Export a build to an iPhone </b>(<a href="https://youtu.be/6AewrPpnEZM" target=GVRstart2>source</a> and <a href="https://developers.google.com/vr/develop/unity/get-started-ios" target=qsg>Quikstart Guide</a>) 
+<br>
+1. Install the newest version of <b>X-Code</b> (Xcode comes on Mac computers, but you need the newest). 
+In Unity: Note in Unity Build Settings the item &quot;Run in Xcode&quot; is set to Latest Version by default. In Build Settings hit <b>[Build] </b>to choose location and name. expect about 3-5 minutes to build. <br>
+<br>
+2. On your computer open the build folder. DoubleClick this file to open your project in the Xcode app (NOT .xcodeproj): <b>Unity-iPhone.xcworkspace.</b> In Xcode, the loading bar at the top will take time for &quot;<strong>Indexing /Processing files</strong>&quot; until it changes to &quot;<strong>Unity-iPhone Ready</strong>&quot;.<br>
+<br>
+3.  In  left panel, select the <strong>Unity-iPhone folder</strong> (top) to load the <strong>Editor</strong> into  center. <br><br>
+4. File &gt; Preferences &gt; <b>Accounts</b>, sign into your <b>Apple ID</b> (what you use for iTunes). This allows you to build the game to your own phone for testing (can't be shared with other users).<br><br>
+5. In the Big middle Xcode Editor window:
+<br>
+a. Under <b>Signing</b> set &quot;Team&quot; from None to &quot;Personal Team&quot; (shows your name).
+<br>
+b. Under <b>deployment Info &gt; Device Orientation</b> turn off Portrait and Upside Down, leave on <b>Landscape Left</b> and <b>Landscape Right</b>. 
+Leave Devices as &quot;Universal.&quot;</font>
+<br>
+c. <font face="arial">Under Identity note  Bundle Identifier (Should be  same as in Unity: do not change).
+
+<br>
+<br>
+6. <b>Unlock your phone</b>, click "<b>Trust this Computer</b>" and enter your passcode. In the upper left of Xcode, click "Generic iOS Device" and change it to your "iPhone".
+
+<br><br>
+<b>NOTE:</b> If Xcode says &quot;iPhone (untrusted)," it may be because your phone is still locked. 
+<br>
+If it says "(unavailable)", your phone OS may be newer than your version of Xcode  supports. To confirm, check Window > &quot;Devices and Simulators&quot;.  The best solution is usually to update Xcode, BUT if your phone is newer that the latest Xcode, try this hack:</font><br>
+<center>
+<table width=80% cellpadding=5><tr><td><font face=arial>
+(a). In the Finder go to Application, RightClick Xcode.app to choose &quot;Show Package Contents&quot;. 
+Then go to <b>Applications</b>/Xcode.app/<b>Contents</b>/ <b>Developer</b>/Platforms/<b>iPhoneOS</b>.<b>platform</b>/DeviceSupport/<br><br>
+(b). The numbered folders are iOS versions. Duplicate the newest version available, rename it for your later version (like 13.3).<br>
+<br>
+(c). You may then need to restart Xcode, reboot the computer, and reconnect your iPhone.</font></td></tr></table></center>
+<font face="arial"><br>
+7.  Hit the <strong>Play</strong> button in the upper left corner of Xcode. The game should build in 3-5 minutes (yellow triangle errors are fine, but a red stopsign error stops the build). Once completed, the build should run on your connected iPhone. Try it in your Google Cardboard viewer!<br>
+</font></td><td valign=top align=center>
+<img src="gamedesign/vr/cardboard14_thumb.png" width=100 height=95 border=0>
+
+<br><br>
+<a href="gamedesign/vr/cardboard17.png" target=vr15><img src="gamedesign/vr/cardboard17_thumb.png" width=190  border=0></a>
+
+<br><br>
+<a href="gamedesign/vr/cardboard15.png" target=vr15><img src="gamedesign/vr/cardboard15_thumb.png" width=190 height=180 border=0></a><center><font face=arial size=2><i>Click for full image</i></font></center>
+
+<br><br>
+<a href="gamedesign/vr/cardboard16.png" target=vr15><img src="gamedesign/vr/cardboard16_thumb.png" width=190 height=180 border=0></a>
+<center><font face=arial size=2><i>Click for full image</i></font></center>
+</td>
+</tr></table>
+
+</td></tr></table><br>
+
+<table width=100% cellpadding=0>
+  <tr>
+    <td valign=top><p><font face=arial> <b><font face=arial><a name="d">&nbsp;</a></font>Quick Phone Testing </b>(<a href="https://youtu.be/RdhliD0zupg" target=GVRstart>source</a>)<br>
+<b><em>NOTE:</em></b><em> This app is notoriously fickle. Do not count on it working.</em>
+<br><br>1. To your smartphone download/install <b>Unity Remote App</b> (Google Play Store or iTunes). Launch on your phone for instructions.<br>
+<br>2. Plug your phone into your computer using a  data microUSB  (or iPhone Lightning), be sure phone is awake / not in locked state.<br><br>3. On <b>Android</b> be sure USB Debugging is enabled:<br>a. On the device, go to Settings &gt; About &lt;device&gt;.<br>b. Tap the Build number seven times to make Settings &gt; Developer options available.<br>
+      c. Turn on "Developer Options" and turn on </font><font face=arial><b>USB Debugging</b>. TIP: You could also enable Stay Awake, to prevent sleeping while plugged into the USB port. <br>
+<br>4. In Game View, set Aspect Ratio to &quot;Free Aspect&quot; and &quot;Remote (Not Connected)&quot;.<br>
+<br>5. Go to the Unity Editor settings (menu: Edit &gt; Project Settings &gt; Editor) and in the <b>Unity Remote</b> settings, switch the Device to &quot;Any Android Device&quot; or &quot;Any iOS Device&quot;. Restart your Unity project.<br>
+<br>6. IMPORTANT: Turn off phone connection when not testing, or computer keyboard may not work :). <br>
+        <br>
+      </font></td>
+    <td valign=top><img src="gamedesign/space.png" alt="" width=150 height=150 border=0></td>
+  </tr>
+</table>
+
+</td></tr>
+</table>
+
+<br><br>
+<br>
+<table width=100% cellpadding=5 border=0 bgcolor=#effbef>
+  <tr>
+    <td><table width=100% cellpadding=0>
+      <tr>
+        <td valign=top><font face=arial><a name="a">&nbsp;</a> <br>
+          <b><font color=purple>[PART  D] </font>IMPORTING ANIMATED ELEMENTS </b>(<a href="https://youtu.be/OEP7sMwfZnE" target=GVRstart>source</a>)<br>
+          DOOR:<br>
+          1. Open Unity Hasdast.<br>
+          <br>
+          2. From thsad<b>port].</b><br>
+          <br>
+          3. Download and addasdad<br>
+          4. Open Fsdff.</font><font face="arial"><br>
+            <br>
+            5. At the bottom of Busdsdff</font><font face="arial">.</font></td>
+        <td valign=top><a href="gamedesign/vr/cardboard1.png" target=cb1><img src="gamedesign/vr/cardboard1_thumb.png" alt="" width=250 height=105 border=0></a><br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <center>
+            <font face=arial size=2><i>Click for full image</i></font>
+          </center></td>
+      </tr>
+      <tr>
+        <td valign=top><font face="arial"><br>
+          6. From the nsdfs<br>
+          <br>
+          7. Set-sdf<br>
+          a. Creasdfsdf</font><br>
+          b. <font face="arial"> Selsdff</font><br>
+          c. <font face="arial">Witsdf</font><br>
+          d. <font face="arial">Frosdfsf<br>
+            <br>
+            8. Cresdfsf<br>
+            a. Adsdfsf<br>
+            b. Scasdfsf.<br>
+            c. RightClsdfs<br>
+            <br>
+          </font></td>
+        <td valign=top><br>
+          <img src="gamedesign/vr/cardboard5.png" alt="" width=200 height=190 border=0></td>
+      </tr>
+      <tr>
+        <td colspan=2><font face=arial> <em><b>TESTING  TIME!</b></em><br>
+          For refsdfsfaved) </font></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+<br><br>
+
+<table width=600 cellpadding=10 border=0><tr>
+<td><font face=arial>
+<b>FURTHER UNITY GOOGLE CARBOARD TOPICS TO EXPLORE:</b> 
+<br>
+<li>Player <a href="https://youtu.be/Qgpb5QzhuOg" target=move>Movement</a> with the one button
+<li>3D <a href="https://youtu.be/M88jDVfu6-Q" target=sound>Sound</a>
+<li>Grab and <a href="https://youtu.be/UnSVN99ADpY" target=throw>throw</a> an object
+<li>Gaze <a href="https://youtu.be/zdNBZsJdg9c" target=buttons>Buttons</a>
+  
+<br><br>
+Create a WebGL VR app purely with Javascript (no Unity at all) with <a href="https://medium.com/adventures-in-consumer-technology/how-to-start-building-your-own-webgl-based-vr-app-cdaf47b8132a" target=java>this tutorial</a>.
+  
+<br><br><em>Jason Wiser, Madwomb.com</em>
+<br></font></td></tr>
+</table>
+</center>
+
+</body>
+</html>

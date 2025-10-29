@@ -1,0 +1,393 @@
+<html>
+<head>
+<title>Unity2D SideScroller Tutorial</title>
+</head>
+
+<body text=#222222 link=#1e6669 vlink=#7700aa alink=#1088bb>
+
+<center>
+<table width=750 cellpadding=10 border=0>
+<tr>
+  <td valign=top><font face=arial>
+
+<font face=arial><a href="GameDesign_Unity.html"><img src="gamedesign/UnityLogo60.png" alt="" align=right></a></font><font size=+2><b>UNITY  - Local Multi-player</b></font>
+<br>
+Multiplayer games offer opportunties to drive engagement with competitive or cooperative play. Unity used an input system for many years that still works, but they are shifting over to a new, easier to implement system that is explained below. NOTE: this only works for Unity 2019 and above.
+<br><br>
+
+<center><font size=+2><b>SETTING UP:</b></font></center>
+Create a new Unity 3D project (these notes and scripts can be adapted for 2D game as well). Import into the Asset folder all three of the scripts below.
+
+<br><br>
+<a name="local">&nbsp;</a>
+<br>
+<b>Local Multiplayer Input System</b>
+  (<a href="https://youtu.be/D8nUI88POU8" target=follow>Video Source</a>)<br>
+<br>
+<strong>[1]. </strong><em>Import and install the package:</em><br>a. Open <b>Window &gt; Package Manager</b>
+<br>b. At top click <b>Advanced &gt; Show Preview Packages</b>
+<br>c. Scroll down to <b>Input System</b> (preview 0.9.0), hit [install]. For popup choose [yes]
+<br>
+d. <b>Restart </b>the Unity Editor so inputs are read correctly (even if Unity prompts this, do it again).
+</font>
+<center>
+<table width=90% cellpadding=2><tr>
+  <td valign=top><font face=arial>
+<em><strong>NOTE: </strong></em>Changed your mind and want the old Input System back? The switch is under <strong>Edit > Project Settings > Player > Other Settings > Active Input Handling</strong>. Choose Inoput Manager (Old). This will restart the Editor, then ask if you want to switch back to the new. Say no if you still want the old).</font></td>
+<td valign=top>
+<a href="gamedesign/Unity2D/PlayerInputSwitch.png" target=switch><img src="gamedesign/Unity2D/PlayerInputSwitch_thumb.png"></a>
+</td></tr></table>
+</center>
+<br><font face=arial>
+<strong>[2]. </strong><em>When Unity restarts, add Devices and Add Inputs Asset to your project:</em><br>a. <b>Plugin </b>desired devices (like USB XBox Controllers).
+<br>
+b. Unity<b> Assets menu &gt; Create &gt; Input Actions</b> (bottom) and Name ("PlayerInput")
+<br>
+c. In Inspector, hit <b>[Edit Asset]</b>. The Input Actions editor opens, and can be docked next to scene and game. All inputs will be entered here in these three columns, going from left to right.
+  <br>
+  <br>
+  <strong>[3]. </strong><em>Add Inputs:</em><br>a. Left column "<b>Action Maps</b>": hit <b>[+]</b>. Name it "<b>Player</b>". Keep it selected.
+<br>
+b. Middle column "<b>Actions</b>": DoubleClick "<b>New Action</b>" to rename to "<b>Move</b>." (NOTE: in your script this will be a function OnMove). Hit Enter and keep selected.
+<br>
+c. Right column "<b>Properties</b>": set the device: For a joystick, set "<b>Action Type</b>" from "button" to "<b>Value</b>," and "Control Type" to "<b>Stick</b>" (or, if you plan to use both sticks, try "Axis" for the second one).
+<br>
+d. Back in middle column, select &lt;No Binding&gt; so that in the right column we see binding properties. Click Path rolldown and hit <b>[Listen]</b>. On the first XBox controller, wiggle and click the left joystick and choose "<b>LeftStick [Gamepad]</b>". If this does not work, hit the [T] and type it in: <b>&lt;Gamepad&gt;/leftStick</b>
+<br>
+e. Make other actions: mid-col <b>Actions</b>, hit <b>[+]</b> name "<b>Jump</b>" (NOTE: in your script this will be a function OnJump). Rt-col Properties, leave "Action Type" as "Button". Mid-col <b>Actions </b>select &lt;No Bindings&gt;, rt-col Properties click rolldown, hit <b>[Listen]</b>, hit desired controller button, and choose the top option.
+<br>f. At top of Input Actions Editor, hit <b>[Save Asset]</b> (super important, after every use!)
+
+<br><br>
+<strong>[4]. </strong><em>Add Player Input component to your Player GameObject:</em><br>
+a. Create a cube and name it Player (or, if you are using a custom mesh, parent that mesh under an empty GO and name that Empty GO &quot;Player&quot;).<br>
+b. In Inspector hit <b>[Add Component]</b>, add <b>Input &gt; Player Input</b> and apply to the Player.<br>
+c. Note the empty Actions slot at top. <b>Drag </b> PlayerInput Input Actions asset from Project into that slot. <br>d. Set <b>Default Action Mode</b> rolldown to our Action Map: <b>Player</b>.
+<br>e. (Be sure "Auto-Switch" is unchecked -- not available?).
+
+<br><br>At the bottom of the component we can see actions this component will allow. Now that we have set the Action Map, click off the Player object and then select it again to see those actions update with Move and Jump. These are the Functions we will need to define in the PlayerController script!
+<br><br>
+
+<br>
+<strong>[5] </strong><em>Create the PlayerControl script:</em><br>
+RightClick the Project panel to create a new C# script called <em>PlayerControl.cs</em>. Add to Player. <br>DoubleClick to edit:<br>
+</font>
+
+<center>
+  <font face="arial"><a href="gamedesign/Unity2D/PlayerControl.cs" target=script1><i><b>PlayerControl.cs</b></i></a>:</font>
+      <table width=95% cellpadding=10 border=1>
+        <tr>
+          <td><font face=arial> <font color=#3ab050><b>using</b></font> System.Collections; <br>
+            <font color=#3ab050><b>using</b></font> System.Collections.Generic; <br>
+            <font color=#3ab050><b>using</b></font> UnityEngine; <br>
+            <br>
+            <font color=#3ab050><b>public class</b></font></font> <font color=#31849b face="arial"><b>PlayerControl</b> : <b>MonoBehaviour</b></font><font face="arial"> { <br><br> 
+&nbsp; &nbsp; Vector2 i_move;<br>
+              &nbsp; &nbsp; <font color=#31849b><b>float</b></font> moveSpeed =10f;<br>
+              &nbsp; &nbsp; <font color=#31849b><b>float</b></font> JumpSpeed = 500;<br>
+              &nbsp; &nbsp; <font color=#31849b><b>private</b></font> <font color=#31849b><b>Vector3</b></font> startPosition;<br>
+              &nbsp; &nbsp; <font color=#31849b><b>private</b></font> <font color=#31849b><b>Rigidbody</b></font> rb; <br><br> 
+              &nbsp; &nbsp; <font color=#31849b><b>void</b></font> Awake (){ <br>
+              &nbsp; &nbsp; &nbsp; &nbsp; startPosition = transform.position; <br>
+              &nbsp; &nbsp; &nbsp; &nbsp; rb = GetComponent&lt;Rigidbody&gt;(); <br>
+              &nbsp; &nbsp; &nbsp; &nbsp; } <br><br> 
+              &nbsp; &nbsp; <font color=#31849b><b>void</b></font> Update() {<br>
+              &nbsp; &nbsp; &nbsp; &nbsp; Move();<br>
+              &nbsp; &nbsp; &nbsp; &nbsp; } <br><br> 
+              &nbsp; &nbsp;<font color=#31849b><b>private void</b></font> Move(){<br>
+              &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>Vector3</b></font> moves = new Vector3(i_move.x, 0, i_move.y) * moveSpeed * Time.deltaTime;<br>
+              &nbsp; &nbsp; &nbsp; &nbsp; transform.Translate(moves);<br>
+              &nbsp; &nbsp; &nbsp; &nbsp; } <br><br> 
+              &nbsp; &nbsp;<font color=#31849b><b>private void</b></font> OnMove (InputValue value) {<br>
+              &nbsp; &nbsp; &nbsp; &nbsp; i_move = value.Get&lt;Vector2&gt;();<br>
+              &nbsp; &nbsp; &nbsp; &nbsp; Debug.Log(<b><font color=#ed6c0a>&quot;Moving&quot;</font></b>);<br>
+              &nbsp; &nbsp; &nbsp; &nbsp; }<br><br> 
+            &nbsp; &nbsp;<font color=#31849b><b>private void</b></font> OnJump(){<br>
+              &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> (transform.position.y &lt;= (startPosition.y + 1)){<br>
+              &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; rb.AddForce(Vector3.up * JumpSpeed);<br>
+              &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Debug.Log(<b><font color=#ed6c0a>&quot;Jumping&quot;</font></b>);<br>
+              &nbsp; &nbsp; &nbsp; &nbsp; } else {<br>
+              &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Debug.Log(<b><font color=#ed6c0a>&quot;I'm too high to jump.&quot;</font></b> + startPosition + transform.position);<br>
+              &nbsp; &nbsp; &nbsp; &nbsp; }<br>
+              &nbsp; &nbsp; }<br>
+              }</font></td>
+        </tr>
+      </table>
+    </center>
+
+<font face=arial>
+<br><br>
+<strong>[6].</strong> <em>Create the Player Prefab and Player Input Manager:</em><br>
+    <br>
+    a. <strong>Drag </strong>the Player GameObject into the Project to create a <strong>Prefab</strong>.<br>
+    b. <strong>Delete </strong>the original from the Hierarchy.
+    <br>
+    c. Create a new Empty Game Object, name it PlayerInputManger<br>
+    
+    <br>
+    d. [Add Component] and add <strong>Input &gt; Player Input Manage</strong>r component.
+    <br>
+    Note options for "Join Behavior" and "Limit Number of Players" (leave as default for now)
+    <br>
+    e. <strong>Drag </strong>the Player Prefab into the waiting slot.<br>
+    <br>
+    <strong>Hook up 1 or more controllers and start playing! <br>
+    </strong><br>
+    <strong>NOTE 1: </strong>To use a <strong>different prefab for each player</strong>, we can either: <br>
+    1. Turn off the Input Manager and drag copies of the prefab into the Hierarchy. Swap out the meshes for each. As long as the number of prefabs in the scene matches the number of controllers, they will be automatically assigned, one to each!<br>
+2. Have all prefabs include multiple meshes, hide all but one, and include code that switches which one is visible (pColorNames.cs, below, can be adepated for this purpose).<br>
+3. <em>From video source notes: </em>In PlayerInputManager, change the Join Behavior to "Join Players Manually".
+<br>
+"Call JoinPlayerFromUI or JoinPlayerFromAction explicitly in order to join new players. Alternatively, just create GameObjects with PlayerInput components directly and they will be joined automatically."
+
+
+<br>
+<br><strong>NOTE 2: </strong>How can we call a method constantly by <strong>holding the key</strong> (for repeated fire, etc)? <br>
+If you edit the binding, under where we set the button, see "Interactions". Click the [+],  in dropdown choose "Press". Set "Trigger Behavior" to "Press and Release". Click "Save Asset".
+
+<br><br>
+<a name="unique">&nbsp;</a><br>
+  <b>Make each Player a unique character:</b><br>
+  The Player Input component gives each user a unique identifyer, but we can easily ID each player as it is created with a simple Start() script. Make sure to set the Player Prefab tag to &quot;Player&quot; and add this script to change the color, name, and position (so they no longer spawn in the same place). NOTE: Instead of just changing the color, multiple meshes can be associated with the player Prefab, all but one hidden, and this script could change which one is visible.<br>
+    </font>
+    <center>
+      <font face="arial"><a href="gamedesign/Unity2D/pColorName.cs" target=script1><i><b>pColorName.cs</b></i></a>:</font>
+      <table width=90% cellpadding=10 border=1>
+        <tr>
+          <td><font face=arial> <font color=#3ab050><b>using</b></font> System.Collections; <br>
+            <font color=#3ab050><b>using</b></font> System.Collections.Generic; <br>
+            <font color=#3ab050><b>using</b></font> UnityEngine; <br>
+            <br>
+            <font color=#3ab050><b>public class</b></font></font> <font color=#31849b face="arial"><b>pColorName</b> : <b>MonoBehaviour</b></font><font face="arial"> { 
+
+<br><br>
+&nbsp; &nbsp; <font color=#31849b><b>private</b></font> <font color=#31849b><b>int</b></font> count; <br>&nbsp; &nbsp; <font color=#31849b><b>private</b></font> <font color=#31849b><b>Renderer</b></font> pRen; <br>
+&nbsp; &nbsp; <font color=#31849b><b>private</b></font> <font color=#31849b><b>float</b></font> startPosX; <br><br>
+&nbsp; &nbsp; <font color=#31849b><b>void</b></font> Start () { <br>
+              &nbsp; &nbsp; &nbsp; &nbsp;  count = GameObject.FindGameObjectsWithTag(<b><font color=#ed6c0a>&quot;Player&quot;</font></b>).Length;<br>
+              &nbsp; &nbsp; &nbsp; &nbsp; pRen = this.GetComponent&lt;<font color=#31849b><b>Renderer</b></font>&gt;();
+            <br><br> 
+            &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> (count == 1){<br>
+              &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; pRen.material.color = new Color(0.5f,0.5f,1f);<br>
+              &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; this.name = &quot;Player1&quot;;<br>
+              &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; startPosX = 1;<br>
+              &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Debug.Log(<b><font color=#ed6c0a>&quot;Players = &quot;</font></b> + count);<br>
+              &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; } <br>
+              &nbsp; &nbsp; &nbsp; &nbsp;<b><font color=#3ab050>else if</font></b> (count == 2){ <br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; pRen.material.color = new Color(1f,0.5f,0.5f);
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; this.name = &quot;Player2&quot;;
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; startPosX = -1;
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Debug.Log(<b><font color=#ed6c0a>&quot;Players = &quot;</font></b> + count); <br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp;<b><font color=#3ab050>else if</font></b> (count == 3){ <br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; pRen.material.color = new Color(0.5f,1f,0.5f);
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; this.name = &quot;Player3&quot;;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; startPosX = 3;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Debug.Log(<b><font color=#ed6c0a>&quot;Players = &quot;</font></b> + count);<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br>
+&nbsp; &nbsp; &nbsp; &nbsp;<b><font color=#3ab050>else if</font></b> (count == 4){<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; pRen.material.color = new Color(0.7f,0.2f,0.7f);<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; this.name = &quot;Player4&quot;;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; startPosX = -3;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Debug.Log(<b><font color=#ed6c0a>&quot;Players = &quot;</font></b> + count);<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; } <br><br> 
+&nbsp; &nbsp; &nbsp; &nbsp; transform.position = transform.position + new Vector3(startPosX,0,0);<br>
+              &nbsp; &nbsp; &nbsp; &nbsp; } <br>
+              }<br></font></td>
+        </tr>
+      </table>
+    </center>
+    <font face=arial><font face="arial"><br>
+    </font><font face="arial"><a name="betterjump">&nbsp;</a> <br>
+    <b>Better Jumping</b>:<br>
+    It is always nice to add an improved jumping physics:<br>
+    </font>
+    <center>
+      <font face="arial"><a href="gamedesign/Unity2D/BetterJump.cs" target=script1><i><b>BetterJump.cs</b></i></a>:</font>
+<table width=90% cellpadding=10 border=1>
+<tr>
+<td><font face=arial> <font color=#3ab050><b>using</b></font> System.Collections; <br>
+<font color=#3ab050><b>using</b></font> System.Collections.Generic; <br>
+<font color=#3ab050><b>using</b></font> UnityEngine; 
+<br><br>
+<font color=#3ab050><b>public class</b></font></font> <font color=#31849b face="arial"><b>BetterJump</b> : <b>MonoBehaviour</b></font><font face="arial"> { 
+
+<br><br>
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>float</b></font> fallMultiplier = 2.5f;<br>
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>float</b></font> lowJumpMult = 2f;<br>
+&nbsp; &nbsp; <font color=#31849b><b>Rigidbody</b></font> rb; <br>
+<br>
+              &nbsp; &nbsp; <font color=#31849b><b>void</b></font> Awake () { <br>
+              &nbsp; &nbsp; &nbsp; &nbsp;  rb = GetComponent&lt;Rigidbody&gt;();<br>
+              &nbsp; &nbsp; } <br><br> 
+            &nbsp; &nbsp; <font color=#31849b><b>void</b></font> Update(){<br>
+              &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> (rb.velocity.y &lt; 0) {<br>
+              &nbsp; &nbsp; &nbsp; &nbsp; rb.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime;<br>
+              &nbsp; &nbsp; } <b><font color=#3ab050>else</font></b> <b><font color=#3ab050>if</font></b> (rb.velocity.y &gt; 0 &amp;&amp; !Input.GetButton (&quot;Jump&quot;)){ <br>
+              &nbsp; &nbsp; &nbsp; &nbsp; rb.velocity += Vector3.up * Physics.gravity.y * (lowJumpMult - 1) * Time.deltaTime;<br>
+              &nbsp; &nbsp; &nbsp; &nbsp; }<br>
+              &nbsp; &nbsp; }<br>
+              }<br>
+            </font></td>
+        </tr>
+      </table>
+    </center>
+    <font face=arial><font face="arial"><br>
+    </font><font face="arial"><br>
+    <br>
+
+
+  
+    </font>
+<table width=100% border=0><tr>
+<td width=20%>&nbsp;</td>
+<td width=80%><font face="arial">
+<em><b>TO MODIFY SCRIPTS IN MONODEVELOP:</b></em>
+<br>
+</font></td>
+</tr>
+</table>
+
+<table width=100% border=0><tr><td width=80%><font face="arial">
+<li>DoubleClick  script to open in your editor.
+<li>For  the Manual (to get help): Select a word or line of code and hit [Ctrl]+[&lsquo;].
+<li>Comment-out  selected lines: [Ctrl]+[alt]+[c] (turn gray, not  read by engine).            
+<li>To deactivate  Code Completion: Tools &gt; General &gt; Enable Code Completion.
+</font></td></tr></table>
+  
+</td></tr></table>
+
+
+<table width=750 cellpadding=10 border=0>
+<tr>
+	<td colspan=2>
+
+<!-- start of bottom code -->
+<!--
+
+<center>
+<font size=+2 face="arial"><b>PLAYER MELEE FIGHTING</b></font>
+</center><font face=arial><b>MELEE:</b>
+(<a href=="" target=shoot>Source Video</a>)
+<img src="gamedesign/Unity2D/sdfsdf.png" width=256 align=right border=1>
+<br>
+Your character animation frames can be  a single <b>spritesheet</b>. Select a spritesheet in the  Project and in the Inspector set it from Single to <b>Multiple</b>, hit <b>[Apply]</b>, and <b>Slice</b> to get a file for each image (in Project hit  the spritesheet triangle  to view all). <br>
+<br>
+Apply
+<a href="GameDesign/Unity2D/PlayerShooting.cs" target=unity><b>PlayerMelee.cs</b></a> script to the <b>Player</b>. In Inspector drag the FirePoint from the Hierarchy to the script slot, and the Projectile prefab from the Project into the Script slot. PLAYTEST! 
+<br><br>
+<em><b>Create an Impact Prefab:</b></em>
+<br>
+<b>Drag</b> the impact sprite  into the Hierarchy, name it &quot;Impact,&quot; set Order in Layer = 14.
+<li>Drag the Impact into the Project to make a <b>Prefab</b> and <b>delete</b> it from the Hierarchy.</font>
+<li><font face="arial"> Finally, <b>drag the Impact Prefab</b> to the Effect script slot.
+
+<br>
+<br>
+To make our Player vulnerable to enemies, add the <a href="GameDesign/Unity2D/PlayerHit.cs" target=unity><b>PlayerHit.cs</b></a> script, and drag the Impact prefab into the script slot.
+</font>
+
+<br>
+<br>
+<center>
+  <font size=+2 face="arial"><b>FRIENDLY NPCs</b></font>
+</center>
+<font face="arial">Artificial Intelligence for NPCs in games is not typically advanced learning algorythms, but instead a <b>simple list of responses to specific conditions in the game</b>. For example, consider an enemy that shoots at the player. It moves towards the player until it reaches a specified distance, and retreats if the player gets too close. All of these are responses to one piece of data: the distance from the player. We can capture that data and test against it in the Update() function to decide what the enemy will do.<br><em><b>NOTE:</b></em> These 3 Enemy types/scripts work equally well on 3D games, with Physics modifications:
+
+<br><br>
+<img src="gamedesign/Unity2D/dfgdf" align=right width=256 border=1>
+<b>NPC #1: <font color=purple>2D PATHFINDING</font></b> 
+(<a href="https://www.youtube.com/watch?v=jvtFUfJ6CP8" target=vid>source video</a>)<br>
+This NPC follows a particular path. It an be used for villagers moving about their day or a patrolling guard.<br><br>
+<b>Add NPCpath sprite</b> to Hierarchy. </font>
+<li><font face="arial">Set &quot;Order in Layer&quot; = 4, apply <b>tag</b> &quot;enemy&quot; (create if needed). </font>
+<font face="arial">
+<li>Reset Transforms (0,0,0). 
+<li>Add <b>Physics2D &gt; Rigidbody2D</b>, set <b>Mass = 3</b> and <b>Gravity Scale = 0</b>.
+<li>Add <b>Physics2D &gt; Collider2D</b> (box or circle, set size).
+<li>Apply <a href="GameDesign/Unity2D/EnemyMoveHit.cs" target=unity><b>xxxxx.cs</b></a>.
+<li>Drag to the Project to make a <b>Prefab</b> and <b>delete</b> from the Hierarchy. 
+
+<br><br>
+<img src="gamedesign/Unity2D/dfgdf" align=right width=256 border=1>
+<b>NPC #2:<font color="purple">DIALOGUE</font></b> 
+(<a href="https://www.youtube.com/watch?v=jvtFUfJ6CP8" target=vid>source video</a>)<br>
+This enemy follows the player. If it reaches the player it causes damage and disappears. It takes a specified amount of bullet damage before being removed.<br><br>
+<b>Add NPCdialogue sprite</b> to Hierarchy. </font>
+<li><font face="arial">Set &quot;Order in Layer&quot; = 4, apply <b>tag</b> &quot;enemy&quot; (create if needed). </font>
+<font face="arial">
+<li>Reset Transforms (0,0,0). 
+<li>Add <b>Physics2D &gt; Rigidbody2D</b>, set <b>Mass = 3</b> and <b>Gravity Scale = 0</b>.
+<li>Add <b>Physics2D &gt; Collider2D</b> (box or circle, set size).
+<li>Apply <a href="GameDesign/Unity2D/EnemyMoveHit.cs" target=unity><b>xxxxx.cs</b></a>.
+<li>Drag to the Project to make a <b>Prefab</b> and <b>delete</b> from the Hierarchy. 
+
+
+<br><br><br><br><br><br>
+<center>
+    <font size=+2 face="arial"><b>INVENTORY SYSTEM</b></font>
+  </center>
+An inventory lets us store objectives the Player needs to collect to win, or items for later use (keys, health potions, alternate weapons, etc).
+    
+<br><br>
+<b>SETTING UP  INVENTORY UI:</b> (<a href="https://youtu.be/-xB4xEmGtCY" target=ui1>source video</a>)
+Select the <b>Canvas</b> object in Hierarchy, rename &quot;<b>HUD</b>.&quot;
+<li><b>PANEL: </b>Create a <b>UI &gt; Panel</b> for the inventory background. Align to the bottom-center, size (hit Anchor Preset, choose Center, then width=270 x height=60) and for the Source Image choose a basic button sprite and set to a semi-transparent gray. Name the Panel "<b>Inventory</b>."
+  
+<li><b>SLOT: </b>Make a <b>UI &gt; Image</b>. parent beneath &quot;Inventory,&quot; size 50x50, dark color, name it &quot;<b>Slot</b>.&quot; This will be the background for trhe slot (children appear atop parents).<li><b>BORDER:</b> <b>Duplicate</b> the first image ([Cmd/Ctrl]+[d]), <b>parent</b> below Slot, and name &quot;<b>Border</b>.&quot; Size 50x50, import a PNG with a thin border. Open the [Sprite Editor] and set all borders = 4 so it will scale well. Assign this sprite as Source Image, set color to white. 
+Add component <b>UI &gt; Button</b>, and assign a  <b>Highlight</b> <b>Color</b>. Play to see rollover effect.<br>
+<li><b>ITEM IMAGE: </b>Create a new image, parent below Border, and name &quot;<b>ItemImage</b>.&quot; Import an inventory item sprite as the Source Image and size to fit. 
+<li>Create more slots: duplicate Slot. Select its ItemImage, set Source Image to &quot;None,&quot; and disable the Image component. 
+<li>Select the Inventory Panel, add component <b>Layout &gt; Horizontal Layout Group</b>. Set Child Alignmment to middle-center. Now, when Slots are duplicated, they space themseves evenly on the Panel.<br>
+  <br>
+  <b>INVENTORY SCRIPTS: </b>
+(<a href="https://youtu.be/Hj7AZkyojdo" target=ui1>source video</a>)
+<li>Create a <b>new Empty GO</b>, name it &quot;<b>InventoryManager</b>.&quot; Apply the <a href="GameDesign/Unity2D/InventoryManager.cs" target=unity><b>InventoryManager.cs</b></a> script (list of inventory items, manages events for item Add and Remove). 
+Also add <a href="GameDesign/Unity2D/InventoryItem.cs" target=unity><b>InventoryItem.cs</b></a> to the project, to define the Interface referenced by Inventory.cs.
+<li> Apply <a href="GameDesign/Unity2D/InventoryPlayer.cs" target=unity><b>InventoryPlayer.cs</b></a> script to Player (to call  Inventory.cs when a pick-up-able item is touched), and <b>drag the Inventory GO</b> into the script slot.
+<li> Apply <a href="GameDesign/Unity2D/InventoryHUD.cs" target=unity><b>InventoryHUD.cs</b></a> script to the Canvas HUD (to make the UI changes).
+<li> Add and modify a <a href="GameDesign/Unity2D/InventoryObject.cs" target=unity><b>InventoryObject.cs</b></a> script to each object we want to be pick-up-able.
+</font>
+
+-->
+
+<!-- end of bottom code -->
+
+<br>
+<font face=arial><br>
+<i>Tutorial by Jason Wiser, Madwomb.com</i></font></td></tr></table><br>
+<br><br>
+
+<!-- old
+
+<br><br><br><br>
+<b>PLAYER MOVEMENT</b> 
+(<a href="https://youtu.be/7KiK0Aqtmzc" target=betterJump>Better Jumping source video</a>):
+<li>moving: 
+<a href="https://youtu.be/dwcT-Dch0bA" target="_blank">https://youtu.be/dwcT-Dch0bA</a> 
+<li>jumping: <a href="https://youtu.be/j111eKN8sJw" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://youtu.be/j111eKN8sJw&source=gmail&ust=1579200963392000&usg=AFQjCNEV64Dr0QlIoVbqFFLAGEyF2_MWQQ">https://youtu.be/j111eKN8sJw</a> 
+<li>wall jumping: <a href="https://youtu.be/STyY26a_dPY" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://youtu.be/STyY26a_dPY&source=gmail&ust=1579200962787000&usg=AFQjCNEMpytesWvBLc8Mh6wEIvJHRiiF7A">https://youtu.be/STyY26a_dPY</a> <br> 
+  Add Character sprite to Hierarchy 
+  
+<br><br>
+Introduction to LERP for smooth transitions: <br>
+<img src="gamedesign/bullet.png" alt=""> LERP <a href="https://youtu.be/cD-mXwSCvWc" target=LERP1><b>Basics</b></a>: object motion, light intensity, color <br>
+<img src="gamedesign/bullet.png" alt=""> <a href="https://youtu.be/MFQhpwc6cKE" target=LERP2><b>Smooth</b></a> LERP Camera Following. <br>
+<img src="gamedesign/bullet.png" alt=""> Example <a href="gamedesign/CameraControlLERP.txt" target=LERP3><b>LERP code</b></a>. 
+<br><br><br>
+
+<img src="gamedesign/bullet.png" alt=""> <a href="https://www.youtube.com/watch?v=QkisHNmcK7Y" target=parallax><b>Parallax Scrolling</b></a> alternative script design 
+
+(Manage the <a href="https://answers.unity.com/questions/743148/display-quad-over-sprites.html" target=sort>sorting order</a> between sprites and quads). 
+
+-->
+
+
+</center>
+
+</body>
+</html>

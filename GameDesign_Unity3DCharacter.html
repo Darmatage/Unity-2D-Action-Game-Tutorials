@@ -1,0 +1,3286 @@
+<html>
+<head>
+<title>Unity3D Character Tutorial</title>
+
+<style type="text/css">
+
+body,html{
+	margin-left: 0px; 
+	margin-top: 0px; 
+	margin-right: 0px; 
+	margin-bottom: 0px;
+
+	font-size: 16px;
+	font-family: "Arial", "Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", "Helvetica",  "sans-serif";
+	color: #555;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.centerPage{
+	margin: auto;
+	width:90%;
+	max-width: 950px;
+}
+
+
+/* SECTION 1: WEEKLY MATERIALS */
+	#TopArt{
+		height: auto;
+		text-align:center;
+	}
+	
+	.SiteRow_top{
+		/* background:#aaa; */
+	}
+	
+	/* logo and course title */
+	#siteTop1{
+		vertical-align: top;
+	}
+	
+	/* quotes and syllabus */
+	#siteTop2{
+		vertical-align: top;
+	}
+	
+	/* course description */
+	#siteTop3{
+		vertical-align: top;
+	}
+	
+	/* weekly breakdown links */
+	#siteTop4{
+		background: #eee;
+	}
+
+
+/* SECTION 2: WEEKLY MATERIALS */
+	
+	/* blue-backed category header */
+	.sectionHeader{
+		background: #b7d7f5;
+		margin-bottom: -10px;
+	}
+	
+	.sectionHeader h1{
+		text-align:center;
+	}
+	
+	.sectionHeader div{
+		margin-top: -10px;
+	}
+
+	
+/* A WEEK UNIT */
+	.week{
+		background: #eee;
+	}
+	
+	/* week title */
+	.weekTitle h2{
+		padding: 10px;
+		text-align:center;
+	}
+	
+	/* core week materials */
+	#weekArea1{
+		background:#eee;
+	}
+	
+	/* weekly assignments */
+	#weekArea2{
+		border: 3px solid #66aa66;
+  		border-color: #66aa66;
+  		border-collapse: collapse;
+  		background: #efefef;
+  		border-radius: 10px;
+	}
+	
+	/* student samples */
+	#weekArea3{
+		border: 3px solid #777;
+  		border-color: #777;
+  		border-collapse: collapse;
+		background:#f1f1e1;
+		padding: 10px;
+	}
+	
+	.weekAreaEvent{
+		border: 3px solid #efefef;
+  		border-color: #efefef;
+  		border-collapse: collapse;
+		background:#edf6f3;
+		padding: 10px;
+	}
+	
+	
+	#studentSamples{
+		background:#eee;
+		padding: 10px;
+		text-align: center;
+	}
+	
+	#sectionBooks{
+		/*text-align:center;*/
+	}
+	
+	.callOutBox{
+		border: 3px solid #777;
+  		border-color: #777;
+  		border-collapse: collapse;
+		background:#f1f1e1;
+		padding: 10px;
+	}
+
+/* PROJECTS */
+#section_Projects{
+	background: #eee;
+}
+
+/* RESOURCES */
+#section_Resources{
+	background: #eee;
+}
+
+/* course description */
+	#FAQ{
+		vertical-align: top;
+		background: #eee;
+	}
+	
+	#Text_Column{
+		width:80%;
+		vertical-align: top;
+		margin:auto;
+	}
+	
+	#Text_Column_schedule{
+		max-width:800px;
+		min-width:200px;
+		vertical-align: top;
+		margin:auto;
+		padding: 10px;
+	}
+
+/* COPYRIGHT */
+#section_copyright{
+	text-align:center;
+	/* right elements move under left elements */
+	/* clear: left; */
+}
+
+/* modifiying the w3 */
+	.w3-half{
+		padding-left: 7px;
+		padding-right: 7px;
+	}
+	
+	.AccordionArrow{
+		float: right;
+	}
+	
+
+/* FONTS: */
+	#text_CourseTitle{
+		font-size: 28px;
+		line-height:1.25;
+		/* use number instead of bold, in hundreds*/
+		font-weight: 600;
+		color: #555;
+		text-align:left;
+	}
+	
+	h1{
+		font-size: 24px;
+		font-weight: 600;
+		color: #555;
+		/*text-align:center;*/
+		margin-top: 10px;
+	}
+	
+	h2{
+		font-size: 22px;
+		font-weight: 600;
+		color: #444;
+		/*text-align:left;*/
+		padding-top: 15px;
+		padding-bottom: 0px;
+		line-height:1;
+	}
+	
+	/*
+	.sectionHeader +h2 {
+		text-align:center;
+		margin-bottom:0;
+		padding-bottom:15px;
+	}
+	*/
+	
+	/* change paragraphs after h2: */
+	h2 +p{
+		margin-top: -10px;
+	}
+	
+
+	
+	h3{
+		font-size: 19px;
+		font-weight: 500;
+		color: #666;
+		text-align:left;
+		padding-top: 15px;
+		padding-bottom: 0px;
+	}
+	
+	h2 +h3{
+		padding-top: 0px;
+	}
+	
+	h3 +p{
+		margin-top: -10px;
+	}
+	
+	h4{
+		font-size: 15px;
+		font-weight: 500;
+		color: #666;
+		text-align:left;
+		padding-top: 15px;
+		padding-bottom: 0px;
+	}
+	
+	h4 +h3{
+		padding-top: 0px;
+	}
+	
+	h4 +p{
+		margin-top: -10px;
+	}
+	
+	/*
+	h3 +ul{
+		margin-top: -10px;
+	}
+	*/
+	ul, ol{
+		margin-top: -5px;
+	}
+
+	#text_copyright{
+		font-size: 14px;
+		color: #555;
+		text-align:center;
+	}
+	
+	.homework{
+		color: #228822;
+	}
+	
+	/* haunted house */
+	.homework2{
+		color: #d73d01;
+		/* font-style: italic; */
+	}
+	
+	/* fruit & vegetable */
+	.homework3{
+		color: #7030a0;
+	}
+	
+	/* Eleven Rig */
+	.homework4{
+		color: #984806;
+	}
+	
+	/* Unity */
+	.homework5{
+		color: #6d5100;
+	}
+	
+	/* Performance animation */
+	.homework6{
+		color: #0e5875;
+	}
+	
+/* RULE: pseudoelements change all tags / linked text */
+	a{
+		color:#1e6669;
+		font-weight: 600;
+		text-decoration: none;
+	}
+	
+	a:active{
+		color:#1088bb;
+		font-weight: 600;
+	}
+	
+	/*
+	a:visited{
+		color:#7700aa;
+	}
+	*/
+	
+	a:hover{
+		color:#7700aa;
+		font-weight: 600;
+		text-decoration: underline;
+	}
+	
+	a:focus {
+		outline: 3px solid blue;
+		font-weight: 600; 
+	}
+	
+	input:focus, textarea:focus, button:focus {
+		outline: 3px solid blue;
+	}
+	
+	a.myButton{
+		background-color:#1e6669;
+		padding: 8px;
+		border: #000 solid 1px;
+		display: inline-block;
+		border-radius:5px;
+		font-size:18px;
+		color:#fff;
+		text-transform:uppercase;
+	}
+	
+	a.myButton:hover{
+		background-color:#fff;
+		color:#1e6669;
+		text-decoration: none;
+	}
+	
+	.accordionAllButton{
+		background-color:#1e6669;
+		padding: 8px;
+		border: #000 solid 1px;
+		display: inline-block;
+		border-radius:5px;
+		font-size:14px;
+		color:#fff;
+		text-transform:uppercase;
+		margin-top: 15px;
+		margin-bottom: 15px;
+	}
+	
+	.accordionAllButton:hover {  
+		background-color:#fff;
+		color:#1e6669;
+		text-decoration: none;
+		cursor: pointer;
+	}
+	
+	.video{
+		max-width:100%; 
+		max-height:100%;
+		margin-bottom: 10px;
+	}
+	
+	.table_callout {
+		border: 3px solid #fff;
+		border-color: #fff;
+		/*border-collapse: collapse;
+		background-color: #efefef;*/
+		border-radius: 10px;
+	}	
+	
+	.table_callout td, .table_callout th {
+    	border: 1px solid #fff;
+	}
+	
+	
+	/*	
+	.toggleBox{
+		background-image: url("IntroMaya/AccordionArrow_up.png");
+		background-position: right;
+		width:100%;
+	}	
+	
+	.toggleBox.open{
+		background-image: url("IntroMaya/AccordionArrow_down_outline.png");
+	}
+	*/
+	
+	li::marker {
+  		color: #4f91cd;
+	}
+	
+	ol li::marker {
+        font-weight: bold;
+	}
+	
+	.UpArrow:hover{
+		filter: invert(1) drop-shadow(1px 1px 1px #555);
+	}
+	
+/* C# script*/	
+	
+	.CS_using{
+		color:#3ab050;
+		font-weight: bold;
+	}
+	
+	.CS_bool{
+		color:#365f91;
+		font-weight: bold;
+	}
+	
+	.CS_if{
+		color:#3ab050;
+		font-weight: bold;
+	}
+	
+	.CS_variable, .CS_method{
+		color:#31849b;
+		font-weight: bold;
+	}
+	
+	.CS_comment{
+		/*margin-left: 50px;*/
+		color:#aaaaaa;
+		font-weight: bold;
+	}
+	
+	.CS_body{
+		margin-left: 30px;
+	}
+	
+</style>
+
+
+</head>
+<body text=#222222 link=#1e6669 vlink=#7700aa alink=#1088bb>
+
+<center>
+<table width=900 cellpadding=10 border=0>
+<tr>
+  <td valign=top>
+
+<a href="GameDesign_Unity.html"><img src="gamedesign/UnityLogo60.png" alt="" align=right></a><font size=+2><b>UNITY 3D - 3rd Person Character Control</b></font>
+<br>
+This tutorial covers modules for 3D games with third-person characters. 
+<br>For a first-person character controller, consider using the default <a href="AdvancedMaya/FPScontroller.unitypackage" target=unity><b>First Person Controller</b></a> package.
+
+
+<br><br>
+<center>
+
+<table width=100% cellpadding=10><tr>
+<td width=50% valign=top bgcolor=#eeeeff rowspan=4>
+
+QUICK PLAYERS WITH <b>STANDARD PHYSICS</b>: <br>
+<br>
+<b>[A]</b> <b>Third-Person Character: </b>
+<br>
+<li> &nbsp; <a href=#char1><b>Single Player Set-Up</b></a><b>.
+</b>
+<br>
+<li> &nbsp; <b>Camera:</b> follow with <a href=#cam2><b>LERP</b></a><b>.</b><br>
+<li> &nbsp; <a href=#UIhealth><b>HealthBar:</b></a> WorldSpace Canvas<b>.</b> 
+
+<p>
+<b>[B] Shooting <a href=#shoot>Projectiles</a>.</b>
+
+<br><br>
+
+<b>[C]</b> <b>Two Players: </b>
+<li> <a href=#char><b>Two Player Set-Up</b></a><b>.</b>
+ <li> <b>Two-Player Camera.</b>
+
+<br><br>
+<b>[D]</b> <b>Vehicle <a href=#drive>Driving</a>.</b>
+
+<br><br>
+<b>[E]</b> <b>Slime <a href=#slime>Undulaton</a> with Tweening.</b>
+
+<br>
+</td>
+<td width=50% valign=top bgcolor=#eef5ee>
+  SINGLE AND MULTIPLAYER CHARACTERS WITH <b>CHARACTER CONTROLLER:</b>
+  
+<br><br>
+<li> &nbsp; <b>3rd-Person <a href=#char>Character Set-Up</a></b>, and notes on multiplayer with <a href=#input>Input Manager</a>.
+<br>
+<li> &nbsp; <b>Single Player Camera:</b> follow  and mouse control with <a href=#cam1>Cinemachine</a>
+<br>
+<li> &nbsp; <b>Two-player Cameras:</b> follow with <a href=#cam2>LERP</a></a>
+</td></tr>
+<tr>
+<td width=50% valign=top bgcolor=#f2e6f5>
+<b>[F] Player</b> <b>Navigation:</b> Creating a <a href="#map"><b>Minimap</b></a>
+</td>
+</tr>
+<tr>
+<td width=50% valign=top bgcolor=#e0e9f8> <b>[G] NPCs:</b> <a href="#navmesh"><b>Navmesh</b></a> for <b>pathfinding</b> (3D only) </td>
+</tr>
+<tr>
+<td width=50% valign=top bgcolor=#f2e6f5> <b>[H] </b><a href="#URP"><b>URP</b></a> Universal Render Pipeline (lighting, effects, and decal projection)</td>
+</tr>
+</table>
+
+</center>
+
+
+<br></td>
+</tr><tr>
+<td valign=top bgcolor=#eeeeff>
+
+<center>
+<a name="char1">&nbsp;</a><font size=+2><b>PLAYER MOVEMENT: Rigidbody and BoxCollider</b></font>
+<br>In a Unity 3D scene,   create a character that moves in the direction of the camera: 
+</center>
+
+<br><br>
+<center>
+<b><font size=+2 color=purple>[A] BASIC  SINGLE-PLAYER 3D CHARACTER</font></b>
+
+</center>
+<br>
+<b>[STEP 1] CHARACTER SET-UP:</b>
+<br>
+The basic set up of a 3D character is an <b>Empty Game Object</b> with the <b>Visible Mesh parented below</b>. 
+
+<br>&nbsp;&nbsp; &nbsp; 
+The <b>Empty Game Object</b> gets the Colliders, the RigidBody, the scripts, and the tag, "Player". 
+<br>&nbsp;&nbsp; &nbsp;
+The <b>Visible Mesh</b> can get animation (Mecanim State Machine Animator), if it is an animated mesh.
+
+<br><br>
+<b>a)<em> VISIBLE MESH: </em></b>Import your character model, drag into Hierarchy, and set transforms to world center.
+<br>
+<b>Don't yet have a character model?</b> Make a quick <b>primitive proxy:</b><br>
+<li> &nbsp;
+GameObject &gt; 3D &gt; <b>Capsule</b>, Scale X, Y, Z = <b>2</b>. Reset Transforms, raise to stand on ground. <br><li> &nbsp;
+Game Object &gt; 3D &gt; <b>Box</b>, Scale small (<b>0.3</b>), parent and move to cylinder top-front (facing direction). <br><li> &nbsp;
+In the Inspector, <b>remove  colliders</b> from both objects, (they are just meant to be the graphics).
+
+<br><li> &nbsp;Optionally, add a <b>Material</b> to both objects to change the character proxy color.
+
+<br><br>
+<b>b) <em>EMPTY GAME OBJECT:</em></b> GameObject &gt; <b>Create Empty</b>. Reset Transforms.<br>
+<li> &nbsp;Move the Empty GO to half-way up the height of the character mesh / proxy.<br>
+<li> &nbsp;<b>Parent</b> the character mesh under EmptyGO.<br>
+<li> &nbsp;In the Inspector <b>name</b> the Empty GO &quot;<b>Player</b>&quot; and set the <b>tag</b> to <b>&quot;Player</b>&quot;.<br><br>
+<b>c)</b> Select Player. 
+In the Inspector:<br>
+<li> Hit <b>[Add Component]</b> to add Physics &gt; <b>RigidBody.</b> Under Constraints lock off Rotate X and Z.<br>
+<li> Hit <b>[Add Component]</b> to add Physics &gt; <b>CapsuleCollider</b>. Edit Collider size to fit around the mesh.<br>
+<br>
+<b>d)</b> 
+Create a ground:<br>
+Create a <b>Box</b>, set <b>Scale</b> to X = <b>60</b>, Y = <b>0.5</b>, Z = <b>60</b>. You can also add a few ramps.<br><br>
+<em><b>OPTIONAL:</b></em> To prepare for <b>Jumping</b> functionality: <br>
+<li> In the Hierarchy select any object and in the Inspector <b>create a new Layer</b> called &quot;<b>Ground</b>&quot;.
+<br>
+&nbsp; &nbsp; Select all  environment objects in your game. In the Inspector <b>assign</b> this Ground Layer. 
+
+<br>
+<li> <b>Create </b>another<b> Empty GameObject</b>. In the Inpector, name it &quot;<b>GroundCheck</b>&quot;.<br>
+&nbsp; &nbsp; <b>Reset Transforms</b>, <b>parent</b> to Player, <b>move</b> to bottom  
+(must start at ground level for  jump to work). <br>
+<br>
+<br>
+<b>[STEP 2] SINGLE PLAYER MOVEMENT SCRIPT:</b>
+
+<br>
+<b>a) </b>RightClick in the Project panel to <b>create</b> new C# script &quot;<b>PlayerMove3D</b>.cs.&quot;
+
+<br>
+<b>b) Drag</b> the script onto  Player and drag <b>MainCamera</b> into the cam <b>script slot</b><br>
+<a name="playerMove">&nbsp;</a><br>
+
+<center>
+<em>PlayerMove3D.cs</em>:
+    
+<table width=98% cellpadding=10 border=1 bgcolor=#efefef><tr>
+<td>
+<font color=#3ab050><b>using</b></font> System.Collections;
+<br>
+<font color=#3ab050><b>using</b></font> System.Collections.Generic;
+<br>
+<font color=#3ab050><b>using</b></font> UnityEngine;
+          
+<br><br>
+<font color=#3ab050><b>public class</b></font>
+<font color=#31849b><b>PlayerMove3D : MonoBehaviour</b></font> {
+          
+<br>&nbsp; &nbsp; <font color=gray>//Animator anim;</font>
+<br>
+&nbsp; &nbsp; <font color=#31849b><b>Rigidbody</b></font> rb;<br>
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>Transform</b></font> cam;<br>
+<br>	
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>float</b></font> speed =<b><font color="#e36c0a"> 6f</font></b>; <br>	
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>float</b></font> turnSmoothTime =<b><font color="#e36c0a">0.1f</font></b>; <br>	
+&nbsp; &nbsp; <font color=#31849b><b>private</b></font> <font color=#31849b><b>float</b></font> turnSmoothVelocity; <br>
+<br>	
+&nbsp; &nbsp; <font color=#31849b><b>void</b></font> Start(){ <br>		
+&nbsp; &nbsp; &nbsp; &nbsp; <font color=gray>//anim = gameObject.GetComponentInChildren&lt;Animator&gt;();</font>
+<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; rb = gameObject.GetComponent&lt;Rigidbody&gt;();
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; cam = GameObject.FindWithTag(&quot;MainCamera&quot;).GetComponent&lt;Transform&gt;();<br>	
+&nbsp; &nbsp; } <br>
+<br>	
+&nbsp; &nbsp; <font color=#31849b><b>void</b></font> Update () { <br>		
+<font face=arial>&nbsp; &nbsp; </font>&nbsp; &nbsp; <font color=#31849b><b>float</b></font> horiz = Input.GetAxisRaw(<b><font color="#e36c0a">&quot;Horizontal&quot;</font></b>); <br>		
+<font face=arial>&nbsp; &nbsp; </font>&nbsp; &nbsp; <font color=#31849b><b>float</b></font> vert = Input.GetAxisRaw(<b><font color="#e36c0a">&quot;Vertical&quot;</font></b>); <br>		
+&nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>Vector3</b></font> direct = new <font color=#31849b><b>Vector3</b></font>(horiz, <b><font color="#e36c0a">0f</font></b>, vert).normalized; <br>
+<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> (direct.magnitude >= <b><font color="#e36c0a">0.1f</font></b>) { <br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>float</b></font> targetAngle = Mathf.Atan2(direct.x, direct.z) * Mathf.Rad2Deg + cam.eulerAngles.y; <br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>float</b></font> angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime); <br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; transform.rotation = Quaternion.Euler(<b><font color="#e36c0a">0f</font></b>, angle, <b><font color="#e36c0a">0f</font></b>); <br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>Vector3</b></font> moveDir = Quaternion.Euler(<b><font color="#e36c0a">0f</font></b>, targetAngle, <b><font color="#e36c0a">0f</font></b>) * <font color=#31849b><b>Vector3</b></font>.forward;<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; rb.MovePosition(transform.position + moveDir * speed * Time.deltaTime); <br>		
+&nbsp; &nbsp; &nbsp; &nbsp; }<br>
+&nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>else</font></b> {<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; GetComponent&lt;Rigidbody&gt;().velocity = Vector3.zero;<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; GetComponent&lt;Rigidbody&gt;().angularVelocity = Vector3.zero;<br>
+		&nbsp; &nbsp; &nbsp; &nbsp; }<br>	
+&nbsp; &nbsp; }<br>          
+}
+</td>
+</tr></table>
+</center>
+
+
+<br><br>
+<p>A more advanced movement script, that includes Slope Movement:<center>
+<em>PlayerSlopeMovement.cs</em>:
+<table width=98% cellpadding=10 border=1 bgcolor=#efefef><tr>
+<td>
+<span class=CS_using>using</span> System.Collections;
+<br>
+<span class=CS_using>using</span> System.Collections.Generic;
+<br>
+<span class=CS_using>using</span> UnityEngine;
+
+<p><span class=CS_method>public class</span> <span class=CS_bool>PlayerSlopeMovement : MonoBehaviour</span>{
+<div class=CS_body>
+<span class=CS_variable>private</span> Animator animator;
+
+<p>
+<span class=CS_comment>[Header("Movement")]</span>
+<br>    <span class=CS_variable>public float</span> moveSpeed = 10f;
+<br>    <span class=CS_variable>public float</span> baseSpeed;
+
+<p>    <span class=CS_variable>public float</span> groundDrag;
+<br>    <span class=CS_variable>public float</span> jumpForce = 18f;
+<br>    <span class=CS_variable>public float</span> fallMultiplier = 9f;
+<br>    <span class=CS_variable>public float</span> jumpCooldown = 0.2f;
+<br>    <span class=CS_variable>public float</span> gravity = 18f;
+<br>    <span class=CS_variable>public float</span> airMultiplier = 0.6f;
+
+<p>    <span class=CS_variable>private bool</span> readyToJump = true;
+<br>    <span class=CS_variable>private float</span> lastBaseSpeed = -1f;
+
+<p>
+<span class=CS_comment>[Header("Ground Check")]</span>
+<br>    <span class=CS_variable>public float</span> playerHeight;
+<br>    <span class=CS_variable>public</span> LayerMask whatIsGround;
+<br>    <span class=CS_variable>public bool</span> grounded = true;
+
+<p>
+<span class=CS_comment>[Header("Keybinds")]</span>
+<br>    <span class=CS_variable>public</span> KeyCode jumpKey = KeyCode.Space;
+
+<p>
+<span class=CS_comment>[Header("Audio")]</span>
+<br>    <span class=CS_variable>public</span> AudioSource walkAudio;
+<br>    <span class=CS_variable>public</span> AudioSource runAudio;
+
+<p>    
+<span class=CS_comment>[Header("References")]</span>
+<br>    <span class=CS_variable>public</span> Transform orientation;
+
+<p>    <span class=CS_variable>private</span> Rigidbody rb;
+<br>    <span class=CS_variable>private</span> PlayerStatsCollector statsCollector;
+
+<p>    <span class=CS_variable>private float</span> horizontalInput;
+<br>    <span class=CS_variable>private floa</span>t verticalInput;
+<br>    <span class=CS_variable>private Vector3</span> moveDirection;
+<br>    <span class=CS_variable>Vector3</span> velocity;
+
+<p><span class=CS_comment>//SLOPE MANAGEMENT #1:</span> 
+<br>[Header("SlopeHandling")]
+<br><span class=CS_variable>public float</span> maxSlopeAngle =85;
+<br><span class=CS_variable>private</span> RaycastHit slopeHit;
+<br><span class=CS_variable>private bool</span> exitingSlope;
+
+<p>   
+<span class=CS_method>private</span> void Start(){
+
+<div class=CS_body>
+animator = GetComponent&lt;Animator&gt;();
+<br>
+rb = GetComponent&lt;Rigidbody&gt;();
+<br>
+rb.freezeRotation = <span class=CS_bool>true</span>;
+<br>
+<br>statsCollector = PlayerStatsCollector.instance;
+<br>
+<br><span class=CS_if>if</span> (statsCollector != null){
+<div class=CS_body>
+SetBaseSpeed(statsCollector.GetCurrentMoveSpeed());
+</div>}<br><span class=CS_if>else</span>{
+<div class=CS_body>
+  Debug.LogWarning("PlayerStatsCollector not found! Using default speed values.");
+</div>}
+<br>
+
+
+<br><span class=CS_if>if</span> (PlayerPrefs.HasKey("PlayerPosX")){
+<div class=CS_body>
+            float x = PlayerPrefs.GetFloat("PlayerPosX");
+<br>            float y = PlayerPrefs.GetFloat("PlayerPosY");
+<br>            float z = PlayerPrefs.GetFloat("PlayerPosZ");
+<br>            transform.position = new Vector3(x, y, z);
+
+<br>
+<br>            PlayerPrefs.DeleteKey("PlayerPosX");
+<br>            PlayerPrefs.DeleteKey("PlayerPosY");
+<br>            PlayerPrefs.DeleteKey("PlayerPosZ");
+<br>            PlayerPrefs.Save();
+</div>
+
+        }
+</div>
+    }
+
+<p>
+<span class=CS_method>private</span> void Update(){
+<div class=CS_body>
+grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.3f, whatIsGround);
+<br>
+<br>        
+<span class=CS_if>if</span> (grounded)
+{rb.drag = groundDrag;}
+<br>        
+<span class=CS_if>else</span>
+{rb.drag = 0f;
+
+}<br>
+<br>        // Dynamically pull speed from stats collector if changed
+<br>        <span class=CS_if>if</span> (statsCollector != null)
+{
+<div class=CS_body>
+float currentSpeed = statsCollector.GetCurrentMoveSpeed();
+<br>            Debug.Log($"Stats collector returned speed: {currentSpeed}, lastBaseSpeed: {lastBaseSpeed}");
+ <br>           
+ <br>           <span class=CS_if>if</span> (Mathf.Abs(currentSpeed - lastBaseSpeed) > 0.01f){
+                <div class=CS_body>
+                SetBaseSpeed(currentSpeed);
+                </div>
+            }
+</div>
+        }
+<br>        <span class=CS_if>else</span>{
+<div class=CS_body>
+ 		// If we somehow lost the reference to the stats collector, try to find it again
+<br>            
+statsCollector = PlayerStatsCollector.instance;
+<br>            if (statsCollector != null){
+                    <div class=CS_body>
+                    Debug.Log("Reconnected to PlayerStatsCollector");
+                    </div>
+<br>            }
+</div>
+        }
+<br>
+<br>        MyInput();
+<br>        UpdateAnimationState();
+<br>        SpeedControl(); 
+<br>// Re-enabled speed control to prevent excessive velocity
+</div>}
+
+<p>
+<span class=CS_method>private</span> void FixedUpdate(){
+            <div class=CS_body>
+            MovePlayer();
+            </div>
+    }
+
+<p><span class=CS_method>private</span> void MyInput(){
+<div class=CS_body>
+        horizontalInput = Input.GetAxisRaw("Horizontal");
+<br>        verticalInput = Input.GetAxisRaw("Vertical");
+<br>
+<br>        
+<span class=CS_if>if</span> (Input.GetKeyDown(jumpKey) && readyToJump && grounded){
+<div class=CS_body>
+            readyToJump = <span class=CS_bool>false</span>;
+<br>            Jump();
+<br>            Invoke(nameof(ResetJump), jumpCooldown);
+</div>
+        }
+        </div>
+    }
+
+<p>
+<span class=CS_method>private</span> void MovePlayer(){
+<div class=CS_body>
+        moveSpeed = Input.GetKey(KeyCode.LeftShift) ? baseSpeed * 1.5f : baseSpeed;
+<br>        moveSpeed = Mathf.Clamp(moveSpeed, 1f, 20f); // Clamp to avoid going infinite
+<br>
+<br>        Vector3 inputDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
+<br>        moveDirection = inputDirection.normalized;
+<br>
+<br>		//SLOPE MANAGEMENT #3: 
+<br>		<span class=CS_if>if</span> (OnSlope() && !exitingSlope){
+<div class=CS_body>
+			rb.AddForce(GetSlopeMoveDirection() * moveSpeed *20f, ForceMode.Force);
+<br>			<span class=CS_if>if</span> (rb.velocity.y > 0){
+<div class=CS_body>
+				rb.AddForce(Vector3.down *80f, ForceMode.Force);
+                </div>
+			}
+</div>
+		}
+<br>		//to prevent sliding down on slopes:
+<br>		rb.useGravity = !OnSlope();
+<br>
+ <br>       <span class=CS_if>if</span> (grounded){
+<div class=CS_body>
+            rb.drag = groundDrag;
+<br>            
+rb.AddForce(moveDirection * moveSpeed * 10f, ForceMode.Force);
+</div>
+        }
+<br>        <span class=CS_if>else</span>{
+<div class=CS_body>
+            rb.drag = 0f;
+<br>            rb.AddForce(moveDirection * moveSpeed * airMultiplier, ForceMode.Force);
+<br>            velocity.y -= gravity * Time.deltaTime;
+</div>
+        }
+        </div>
+    }
+
+<p>
+<span class=CS_method>private</span> void SpeedControl(){
+<div class=CS_body>	//SLOPE MANAGEMENT #4: 
+<br>		<span class=CS_if>if</span> (OnSlope() && !exitingSlope){
+<div class=CS_body>
+			<span class=CS_if>if</span> (rb.velocity.magnitude > moveSpeed){
+                <div class=CS_body>
+                rb.velocity = rb.velocity.normalized * moveSpeed;
+                </div>
+			}
+</div>
+		}
+
+<br>
+<br>	//all the old content of this method;
+<br>		<span class=CS_if>else</span> {
+<div class=CS_body>
+			Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+<br>
+<br>			<span class=CS_if>if</span> (flatVel.magnitude > moveSpeed){
+<div class=CS_body>
+				Vector3 limitedVel = flatVel.normalized * moveSpeed;
+<br>				rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
+</div>
+			}</div>
+		}
+</div>
+    }
+
+<p>
+<span class=CS_method>private</span> void Jump(){
+<div class=CS_body>
+		//Slope Mangement #5a:
+<br>		exitingSlope = <span class=CS_bool>true</span>;
+<br>
+<br>		//reset y velocity:
+<br>        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+<br>        rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+</div>
+    }
+
+<p>
+<span class=CS_method>private</span> void ResetJump(){
+<div class=CS_body>
+        readyToJump = <span class=CS_bool>true</span>;
+<br>
+<br>		//Slope Mangement #5b:
+<br>		exitingSlope = <span class=CS_bool>false</span>;
+</div>
+    }
+
+<p>
+<span class=CS_method>public</span> void SetBaseSpeed(float newSpeed){
+<div class=CS_body>
+        <span class=CS_if>if</span> (float.IsNaN(newSpeed) || float.IsInfinity(newSpeed) || newSpeed <= 0f)
+{
+<div class=CS_body>
+           Debug.LogError($"Invalid base speed from stats collector: {newSpeed}. Using fallback of 5f.");
+<br>            baseSpeed = 5f; // Set a fallback value
+</div>
+        }
+<br>        
+<span class=CS_if>else</span>{
+<div class=CS_body>
+            baseSpeed = newSpeed; // This line was missing in the original
+<br>            Debug.Log($"Updated player base speed to: {baseSpeed}");
+</div>
+        }
+<br>        
+<br>        // Always update lastBaseSpeed to prevent continuous attempts to update
+<br>        lastBaseSpeed = newSpeed;
+</div>
+    }
+
+<p>
+
+<span class=CS_method>private</span> void UpdateAnimationState(){
+<div class=CS_body>
+<span class=CS_if>if</span> (animator == null) return;
+<br>
+<br>        bool isMoving = horizontalInput != 0 || verticalInput != 0;
+<br>
+<br>        <span class=CS_if>if</span> (isMoving && grounded){
+<div class=CS_body>
+	            <span class=CS_if>if</span> (Input.GetKey(KeyCode.LeftShift)){
+                  <div class=CS_body>
+animator.SetBool("Running", <span class=CS_bool>true</span>);
+<br>                animator.SetBool("Walking", <span class=CS_bool>false</span>);
+<br>                <span class=CS_if>if</span> (!runAudio.isPlaying) runAudio.Play();
+ <br>               <span class=CS_if>if</span> (walkAudio.isPlaying) walkAudio.Stop();
+</div>
+            }
+ <br><span class=CS_if>else</span>{
+<div class=CS_body>animator.SetBool("Walking", <span class=CS_bool>true</span>);
+<br>                animator.SetBool("Running", <span class=CS_bool>false</span>);
+<br><span class=CS_if>if</span> (!walkAudio.isPlaying) walkAudio.Play();
+<br><span class=CS_if>if</span> (runAudio.isPlaying) runAudio.Stop();
+                </div>
+            }
+</div>
+        }
+<br>        
+<span class=CS_if>else</span>{
+            <div class=CS_body>
+            animator.SetBool("Walking", <span class="CS_bool">false</span>); <br>            
+            animator.SetBool("Running", <span class=CS_bool>false</span>);
+            <br><span class=CS_if>if</span> (walkAudio.isPlaying) walkAudio.Stop();
+            <br><span class=CS_if>if</span> (runAudio.isPlaying) runAudio.Stop();
+            </div>
+        }
+<br>
+ <br>       // Jumping/falling
+<br>        animator.SetBool("jumping", !grounded && rb.velocity.y > 0);
+ <br>       animator.SetBool("landing", !grounded && rb.velocity.y <= 0);
+<br>        <span class=CS_if>if</span> (grounded) {
+                <div class=CS_body>
+                animator.SetBool("jumping", <span class=CS_bool>false</span>);
+                animator.SetBool("landing", <span class=CS_bool>false</span>);
+                </div>
+        }</div>
+    }
+
+<p>
+<span class=CS_comment>//SLOPE MANAGEMENT #2: </span>
+<br>
+<span class=CS_method>private</span> bool OnSlope(){
+
+<div class=CS_body>
+<span class=CS_if>if</span> (Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f + 0.3f)) {
+            <div class=CS_body>
+            float angle = Vector3.Angle(Vector3.up, slopeHit.normal);
+            <br>return angle < maxSlopeAngle && angle != 0;
+            </div>
+		}
+<br>		return <span class=CS_bool>false</span>;
+</div>
+	}
+
+<p>
+<span class=CS_method>private</span> Vector3 GetSlopeMoveDirection(){
+<div class=CS_body>return Vector3.ProjectOnPlane(moveDirection, slopeHit.normal).normalized;
+</div>
+	}
+</div>
+}</td>
+</tr></table>
+</center>
+
+<p>
+
+<br><br>
+<a name="cam2">&nbsp;</a> <br>
+  <b><a href="#TOP"><img src="comicsDesign/ArrowUp.png" alt=""></a> </b><b>[STEP 3] SIMPLE CAMERA FOLLOW WITH LERP (single or two player):</b> <br>
+  <br>
+  <b>SINGLE PLAYER: </b>Use the default MainCamera:<br>
+  <b>Create</b> and  add this script to the camera &quot;<b>Camera3DLERP.cs</b>&quot;. <br>
+Drag the Player into the <b>target script slot</b>. <br>
+<b>Set offset</b> values for the camera distance to Player (try X = 0, Y = 11, Z = -15). <br>
+<br>
+
+  <center>
+    <em>Camera3DLERP.cs</em>: 
+    <table width=98% cellpadding=10 border=1 bgcolor=#efefef>
+      <tr>
+        <td><font color=#3ab050><b>using</b></font> UnityEngine;<br>
+          <br>
+          <font color=#3ab050><b>public class</b></font></font> <font color=#31849b><b>Camera3DLERP</b> <b>:</b> <b>MonoBehaviour</b></font> {<br>
+            &nbsp; &nbsp; <font color=#31849b><b>private</b></font> <font color=#31849b><b>Transform</b></font> target; 
+            &nbsp; &nbsp; <font color=gray>// drag  intended Player object into  Inspector slot</font> <br>
+            &nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>float</b></font> smoother = 5f;<br>
+            &nbsp; &nbsp; <font color=#31849b><b>public Vector3 </b></font>offset = new <font color=#31849b><b>Vector3</b></font>(4, 2, 0); 
+            &nbsp; &nbsp; <font color=gray>// adjust the offset in the editor</font> <br>
+            <br>
+            &nbsp; &nbsp; <font color=#31849b><b>void</b></font> Start(){ <br>
+            &nbsp; &nbsp; &nbsp; &nbsp;target = GameObject.FindWithTag("Player").GetComponent&lt;Transform&gt;(); <br>
+            &nbsp; &nbsp; } <br>
+            <br>
+            &nbsp; &nbsp; <font color=#31849b><b>void</b></font> FixedUpdate () { <br>
+            &nbsp; &nbsp; &nbsp; &nbsp;<font color=#31849b><b>Vector3 </b></font>newPos = target.position + offset;<br>
+            &nbsp; &nbsp; &nbsp; &nbsp;<font color=#31849b><b>Vector3</b></font> smPos = <font color=#31849b><b>Vector3</b></font>.Lerp (transform.position, newPos, smoother * <font color=#31849b><b>Time</b></font>.deltaTime); <br>
+            &nbsp; &nbsp; &nbsp; &nbsp;transform.position = smPos;<br>
+            <br>
+            &nbsp; &nbsp; &nbsp; &nbsp;transform.LookAt (target);<br>
+            &nbsp; &nbsp; }<br>
+            }</td>
+      </tr>
+    </table>
+  </center>
+
+<br><br>
+<a name="UIhealth">&nbsp;</a> 
+<br><a href="#TOP"><img src="comicsDesign/ArrowUp.png" alt=""></a>
+
+<b>[STEP 4] HEALTHBAR that follows the player:</b> 
+
+<p>
+Set up Canvas elements: <br><b>a) </b>Create a <b>GameObject &gt; UI &gt; Canvas</b>. 
+
+<br>(This is the space that will contain the healthbar, and any other player statistics you want to display).
+
+<br>To make the healthbar follow the character (so it can move in the game world  instead of staying locked on the HUD overlay):
+<ul>
+<li> &nbsp; In the Inspector set <b>RenderMode = World Space</b>.
+<li> &nbsp; Set <b>Rect Transform</b> to fit in your game space. Try width = 2, height = 1, PosX / Pos Y / PosZ = 0, then raise above character head.
+</ul>
+
+<p>
+<b>b)</b> Create a <b>GameObject > UI > Image</b> for a healthbar background. 
+
+<ul>
+<li> &nbsp; Name it "<b>HealthBG</b>".
+<li> &nbsp; Click the <b>Rect Tool</b> (upper left corner of Unity) to set desired width and height  (usually a long rectangle. Try width = 1, height = 0.15).
+</ul>
+In Inspector set color dark and semi-transparent (try black, Alpha = 120). 
+
+<p>
+<b>c)</b> In the Hierarchy select and <b>duplicate</b> the HealthBG to make the actual healthbar.
+  <br>
+  Drag the duplicate onto HealthBG to make it a child of HealthBG.
+  <br>In the Inspector name the duplicate "<b>HealthBar</b>".
+<br>
+Change color to green with alpha set to mostly visible (200).
+    
+<br><br>
+<a href="gamedesign/Unity2D/WhitePixels32.png" target=pixel><img src="gamedesign/Unity2D/WhitePixels32.png" align=right border=2></a>
+<b>d)</b> Download and import this <a href="gamedesign/Unity2D/WhitePixels32.png" target=pixel>WhitePixel32.png</a> image. 
+<br>
+In the Inspector, set <b>Texture Type</b> = &quot;<b>Sprite (2D and UI)</b>&quot;, and at bottom hit <b>[Apply]</b>.<br>
+<br>
+<b>e)</b> In the Hierarchy select the HealthBar object. In the Inspector, under Image: 
+<ul>
+	<li> &nbsp; For the <b>SourceImage</b>, click the hotspot (far right) and choose <a href="gamedesign/Unity2D/WhitePixels32.png" target=pixel>WhitePixel32</a> (can be your own art!).
+    <li> Set <b>Image Type</b> = <b>Filled</b>.
+    <li> Set <b>Fill Method = Horizontal</b>.
+    <li> Set <b>Fill Origin = Right</b>.
+</ul>  
+<br>
+
+<br>Scrub the Fill Amount to see it work! 
+<br>This is the parameter that will change through the damage script 
+
+<p>
+<b>f)</b> Create the script to display damage: 
+<ul>
+<li> RightClick in the Project panel to <b>create</b> new<b> C# script</b> &quot;<b>HealthBarThirdPerson</b>.cs.&quot;<br>
+<li> <strong>Drag</strong> the script onto the Canvas object for your healthbar. 
+<br>
+<li> <strong>Drag</strong> HealthBar into the image <b>script slot</b>.<br>
+</ul>
+
+<br>
+<b>NOTES:</b> 
+<br>Health can be 0-100 or 0-200, etc, but <b>fillAmount</b> only sees 0-1, so we  divide <em>current</em> health by the <em>starting</em> full 
+health value before it is displayed. 
+<br>
+Also, player character script should talk with a <b>GameHandler</b>, to track the health stat between Scenes/Levels (stats handled in the Canvas is just for testing-- use a centralized state!).
+
+<p>
+<center>
+<em>HealthBar_ThirdPerson.cs</em>
+
+  <table width=750 cellpadding=10 border=1 bgcolor=#efefef>
+  <tr>
+    <td><font color=#31849b><b>using </b></font>System.Collections; <br>
+      <font color=#31849b><b>using </b></font>System.Collections.Generic; <br>
+      <font color=#31849b><b>using </b></font>UnityEngine; <br>
+      <font color=#31849b><b>using </b></font>UnityEngine.UI; <br>
+      <font color=#31849b><b>using</b></font> UnityEngine.SceneManagement; <br>
+      <br>
+      <font color=#31849b><b>public class</b></font> <font color=#365f91><b>HealthBar_ThirdPerson</b></font> : <font color=#365f91><b>MonoBehaviour</b></font> { <br>
+      <br>
+      &nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>float</b></font> startHealth = 100; <br>
+      &nbsp; &nbsp; &nbsp; <font color=#31849b><b>private</b></font> <font color=#31849b><b>float</b></font> health; <br>
+<font color=gray>      &nbsp; &nbsp; &nbsp; //public GameObject deathEffect; 
+</font>      
+ <br>
+      &nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>Image</b></font> healthBar; <br>
+      &nbsp; &nbsp; &nbsp; <font color=#31849b><b>public Color </b></font>healthyColor = new Color(<b><font color="#e36c0a">0.3f, 0.8f, 0.3f</font></b>); <br>
+      &nbsp; &nbsp; &nbsp; <font color=#31849b><b>public Color </b></font>unhealthyColor = new Color(<b><font color="#e36c0a">0.8f, 0.3f, 0.3f</font></b>); <br>
+      <br>
+<font color=gray>
+      &nbsp; &nbsp; &nbsp; //temporary time variables: 
+</font>      
+      
+      <br>
+      &nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>float</b></font> timeToDamage = <font face=arial><font color=#e36c0a><b>5f</b></font></font>; <br>
+      &nbsp; &nbsp; &nbsp; <font color=#31849b><b>private</b></font> <font color=#31849b><b>float</b></font> theTimer; <br>
+      &nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>float</b></font> damageAmt = <font face=arial><font color=#e36c0a><b>10f</b></font></font>; <br>
+      <br>
+      &nbsp; &nbsp; &nbsp; <font color=#31849b><b>private</b></font> <font color=#31849b><b>void</b></font> Start () { <br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; health = startHealth; <br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; theTimer= timeToDamage; <br>
+      &nbsp; &nbsp; &nbsp; } <br>
+      <br>
+<font color=gray>
+      // this timer is just to test damage. Comment-out when no longer needed
+</font>      
+<br>
+      &nbsp; &nbsp; &nbsp; <font color=#31849b><b>void</b></font> FixedUpdate () { <br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; theTimer -= Time.deltaTime; <br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (theTimer <= <font face=arial><font color=#e36c0a><b>0</b></font></font>) { <br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; TakeDamage(damageAmt); <br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; theTimer = timeToDamage; <br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; } <br>
+      &nbsp; &nbsp; &nbsp; } <br>
+      <br>
+      &nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>void</b></font> SetColor(<font color=#31849b><b>Color</b></font> newColor){<br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; healthBar.GetComponent&lt;<font color=#365f91><b>Image</b></font>&gt;().color = newColor; <br>
+      &nbsp; &nbsp; &nbsp; } <br>
+      <br>
+      &nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>void</b></font> TakeDamage (<font color=#31849b><b>float</b></font> amount){ <br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; health -= amount; <br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; healthBar.fillAmount = health / startHealth; <br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=gray>//turn red at low health:</font><br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> (health < <b><font color="#e36c0a">0.3f</font></b>){<br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> ((health * <b><font color="#e36c0a">100f</font></b>) % <b><font color="#e36c0a">3</font></b> &lt;= <b><font color="#e36c0a">0</font></b>){<br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; SetColor(Color.white); <br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Die(); <br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>else</font></b> {<br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; SetColor(unhealthyColor);<br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>else</font></b> {<br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; SetColor(healthyColor);<br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br>
+      &nbsp; &nbsp; &nbsp; } <br>
+      <br>
+      &nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>void</b></font> Die(){<br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Debug.Log(<b><font color="#e36c0a">&quot;You Died So Much&quot;</font></b>);
+<br>
+<font color=gray>
+      &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; // death stuff. change scene? how about a particle effect? <br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //Vector3 objPos = this.transform.position <br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //Instantiate(deathEffect, objPos, Quaternion.identity) as GameObject; <br>
+      &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; //SceneManager.LoadScene ("Scene_lose");
+</font>      
+<br>
+      &nbsp; &nbsp; &nbsp; } <br>
+      } </td>
+  </tr>
+</table>
+</center>
+
+
+<p>
+<b>g)</b> For a 3D game, we want the healthbar to always face the screen (called a &quot;Billboard&quot; effect). <br>
+Create a script and apply it to the Canvas:
+</font>
+
+<br><br>
+
+<center>
+
+<em>BillboardEffect.cs</em>
+<br>
+<table width=750 cellpadding=10 border=1 bgcolor=#efefef>
+  <tr>
+    <td><font color=#31849b><b>using </b></font>System.Collections; <br>
+      <font color=#31849b><b>using </b></font>System.Collections.Generic; <br>
+      <font color=#31849b><b>using </b></font>UnityEngine; <br>
+      <br>
+      <font color=#31849b><b>public class</b></font> <font color=#365f91><b>BillboardEffect</b></font> : <font color=#365f91><b>MonoBehaviour</b></font> { <br>
+      <br>
+      &nbsp; &nbsp; &nbsp; <font color=#31849b><b>void</b></font> Update()
+      { <br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; transform.LookAt(transform.position + Camera.main.transform.rotation *- 
+      Vector3.back, <br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Camera.main.transform.rotation *- Vector3.down); <br>
+      &nbsp; &nbsp; &nbsp; }<br>
+      }
+      
+<p>
+<font color=gray>
+      //OR TRY: <br>
+      //&nbsp; &nbsp; &nbsp; public void Update()
+      { <br>
+      //&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Camera camera = Camera.main; <br>
+      //&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; transform.LookAt(transform.position + camera.transform.rotation * Vector3.forward, <br>
+      //&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; camera.transform.rotation * Vector3.up); <br>
+      //&nbsp; &nbsp; &nbsp; }
+      
+      <p>
+      //OR TRY: <br>
+      //&nbsp; &nbsp; &nbsp; void Update()
+      { <br>
+      //&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; transform.forward = Camera.main.transform.forward; <br>
+      //&nbsp; &nbsp; &nbsp; }
+      <br></td>
+  </tr>
+</table>
+</center>
+
+
+<br>
+Want to try something nifty? <br>
+You can get a <b>power-up bar</b> using the same objects by replacing the HealthBar script on the Canvas with this script: <b><a href="gamedesign/Unity2D/PowerBoostBar.cs" target=boost>PowerBoostBar.cs</a></b>. <br>
+Use this to show a weapon recharging, etc
+<br>
+<br></td>
+</tr><tr>
+<td height=10>&nbsp;</td>
+</tr><tr>
+<td height=10 bgcolor=#eeeeff>
+  <a name="shoot">&nbsp;</a>
+  <br>
+  <img src="gamedesign/Unity3D/FPSShooting.png">
+  
+  
+  <br>
+
+  <center>
+    <a href="#TOP"><img src="comicsDesign/ArrowUp.png" alt=""></a> &nbsp; 
+    <font size=+2 color=purple><b>[B] SHOOTING PROJECTILES</b></font>
+  </center>
+   
+  <br>
+  This tutorial  adds projectile shooting functionality to a player controller. 
+  <br>
+  It works with both the Standard Assets FP controller and the custom controller (explained above):<br>
+<br>
+<b>a)<em> Create the Gun (visible mesh): </em></b>
+<br>
+Let's start with a primitive Cylinder, which can be later replaced wth a modeled mesh.
+
+
+<ul>
+<li> &nbsp; For the custom 3rd person controller explained above, select the player and rightclick to add a Cylinder. 
+<br>
+<li> &nbsp; For the tandard Assets FPS Controller, select the Player Camera, called  &quot;FPS Controller&quot;.
+<br> 
+<li> &nbsp; Right-click Camera to create a 3D Object &gt; <b>Cylinder</b>. It should be a child of the Camera. <br>
+<li> &nbsp;
+In the Inspector, Right-click the <b>Collider Component</b> and choose [<b>Remove Component</b>]. <br>
+<li> &nbsp; Name the Cylinder &quot;<b>Gun</b>&quot; and apply these Transforms:<br> &nbsp; &nbsp; &nbsp; <b>POSITION:</b> X = 0.7, Y = -0.5, Z = 0.5<br> 
+&nbsp; &nbsp; &nbsp; <b>ROTATION:</b> X = 90, Y = 0, Z = 0<br> &nbsp; &nbsp; &nbsp; <b>SCALE:</b> X = 0.3, Y = 0.8, Z = 0.3
+</ul>
+
+<p>
+<img src="gamedesign/Unity3D/FPSShooting_Hierarchy.png" alt="" align=right><b>b)<em> Add the FirePoint and BasePoint: </em></b>
+<ul>
+<li>
+Right-click  Gun to create a <b>Empty GameObject</b>. 
+<br>
+This Empty should be a child of Gun. 
+<br>
+<li> In the Scene view, <b>Move</b> one Empty to the Gun tip (should be moved on the blue Z axis, but in Inspector it will show change on the Y axis (1.2), because it is parented to a rotated cyclinder). 
+<br>
+<li> In the Inspector, name it &quot;<b>FirePoint</b>&quot;.<br>
+
+<li> RightClick FirePoint to Duplicate it. <b>Move</b> the copy back along the gun barrel. In the Inspector, name it &quot;<b>BasePoint</b>&quot;.
+
+</ul>
+<em><b>NOTE:</b></em> Both of these Empty GameObjects will be easirr to manage if they are visible: In the Inspector topleft, give them a diamind icon.
+
+<p>
+<b>c)<em> Create the Player Projectile (visible mesh): </em></b> <br>
+Start with a primitive Sphere, which can be later replaced wth a modeled mesh. 
+<ul>
+<li> &nbsp;
+Game Object &gt; 3D &gt; <b>Sphere</b>. Name it &quot;Projectile,&quot; Scale small (<b>0.2</b>), reset Transforms. <br>
+<li> Under the <b>Sphere Collider</b>, turn on &quot;<b>Is Trigger</b>&quot;.<br>
+<li> [<b>Add Component</b>] &gt; <b>Rigidbody</b>, turn off &quot;<b>Use Gravity</b>&quot;.
+</ul>
+
+<p>
+<b>d) <em>Add Projectile Script:</em></b><br>
+<li> &nbsp;Create a new C# script called &quot;<b>PlayerProjectle</b>.cs&quot;. Add the  content below, save, return to Unity.<br>
+<li> &nbsp;<b>Apply</b> this Script to your Player Projectile.<br>
+<li> &nbsp;<b>Impact explosion:</b> Optionally, un-comment and fill the hitVFX <b>script slot</b>: <br>
+&nbsp; &nbsp;If you have a <b>particle effect prefab</b> ready, un-comment the two VFX lines and save the script. <br>
+&nbsp; &nbsp;In the Unity Inspector drag the particle effect prefab into the hitVFX script (note the DestroyEffect script, below). 
+<br>
+<li> &nbsp;<b>Impact Audio:</b> Optionally, un-comment and fill the hitSFX <b>script slot</b>: <br>
+&nbsp; &nbsp;If you have a sound effect <b>.WAV</b> ready, un-comment the two SFX lines and save the script. <br>
+&nbsp; &nbsp;In the Unity Hierarchy drag the .WAV onto the projectile parent object, then in the Inspector drag the new AudioSource component into the hitSFX script slot. <br>
+<br>
+
+<center>
+<i>PlayerProjectile.cs script:</i>
+<br>
+<table width=100% cellpadding=10 border=1 bgcolor=#f7f7f7><tr>
+<td>
+
+<font color=#3ab050><b>using</b></font> System.Collections.Generic;
+
+<br><font color=#3ab050><b>using</b></font> System.Collections;
+
+<br><font color=#3ab050><b>using</b></font> UnityEngine;
+
+<br><br>
+<font color=#31849b><b>public class </b></font>
+<font color=#365f91><b>PlayerProjectile : MonoBehaviour</b></font>{ 
+
+<br><br>
+&nbsp; &nbsp; &nbsp; <font color=#31849b><b>public int</b></font> damage = <font color=#e36c0a><b>1</b></font>;
+
+<br>&nbsp; &nbsp; &nbsp; 
+<font color=gray><b>//public</b> GameObject hitVFX; //<em>uncomment VFX #1</em></font>
+<br>
+
+&nbsp; &nbsp; &nbsp; <font color=gray><b>//public</b> AudioSource hitSFX; //<em>uncomment SFX #1</em></font><br>
+&nbsp; &nbsp; &nbsp; <font color=#31849b><b>public float </b></font> SelfDestructTime = 
+<font color=#e36c0a><b>2.0f</b></font>;
+
+<font color=gray>//<em>Time after being fired to disappear</em></font><br>
+&nbsp; &nbsp; &nbsp; <font color=#31849b><b>public float </b></font> SelfDestructSFX = 
+<font color=#e36c0a><b>0.5f</b></font>; 
+
+
+
+<font color=gray>//<em>Time after impact for playing sound effect</em></font><br>
+&nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font> GameObject projectileArt;
+
+<br>
+<br>&nbsp; &nbsp; &nbsp; <font color=#31849b><b>void</b></font> Start(){
+
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;selfDestruct();
+<br>&nbsp; &nbsp; &nbsp; }
+
+<br><br>&nbsp; &nbsp; &nbsp; 
+<font color=gray>//if  bullet hits a collider, play  explosion animation, then destroy the effect and the bullet</font>
+
+<br>&nbsp; &nbsp; &nbsp; <font color=#31849b><b>void</b></font> OnTriggerEnter(Collider other){
+
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=#3ab050><b>if</b></font> 
+(other.gameObject.layer == LayerMask.NameToLayer(<font color=#e36c0a><b>&quot;Enemies&quot;</b></font>)) {
+
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=gray>//gameHandlerObj.playerGetHit(damage);</font>
+
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=gray>//other.gameObject.GetComponent&lt;EnemyMeleeDamage&gt;().TakeDamage(damage);</font>
+
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  }
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=#3ab050><b>if</b></font> (other.gameObject.tag != 
+<font color=#e36c0a><b>&quot;Player&quot;</b></font>) {
+
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+<font color=gray>//GameObject animEffect = Instantiate (hitVFX, transform.position, Quaternion.identity); 
+//<em>uncomment VFX #2</em></font>
+<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; <font color=gray>//hitSFX.Play(); 
+//<em>uncomment SFX #2</em></font><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; 
+gameObject.GetComponent&lt;Collider&gt;().enabled = <font color=#365f91><b>false</b></font>; <br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; 
+projectileArt.SetActive(<font color=#365f91><b>false</b></font>); <br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; 
+          StartCoroutine(selfDestructHit());
+          <br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  }<br>
+          &nbsp; &nbsp; &nbsp; }<br>
+          <br>
+          &nbsp; &nbsp; &nbsp; IEnumerator selfDestructHit(){<br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>yield return new</b></font> WaitForSeconds(SelfDestructSFX);<br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Destroy (gameObject);<br>
+          &nbsp; &nbsp; &nbsp; }<br>
+          <br>
+          &nbsp; &nbsp; &nbsp; IEnumerator selfDestruct(){<br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>yield return new</b></font> WaitForSeconds(SelfDestructTime);<br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Destroy (gameObject);<br>
+          &nbsp; &nbsp; &nbsp; }<br>
+          }</td>
+      </tr>
+    </table>
+  </center>
+
+<br>
+  <b>e) Make the PlayerProjectile Prefab:</b> 
+  <ul>
+  <li> &nbsp;<b>Drag</b> the PlayerProjectile into the Project panel to make it a <b>Prefab</b>. 
+  <br>
+  <li> &nbsp;<b>Delete</b> the original PlayerProjectile from the Hierarchy. 
+  </ul>
+  
+  <p>
+<b>f) <em>Add Player Shooting Script:</em></b>
+<ul>
+<li> &nbsp;Create a new C# script called &quot;<b>PlayerShoot</b>.cs&quot;. Add the  content below, save,  return to Unity.<br>
+<li> &nbsp;<b>Apply</b> this Script to your Player character, top level.<br>
+<li> &nbsp;Fill the script slots:<br>
+&nbsp; &nbsp; &nbsp; Drag FireBase and FirePoint from the Hierarchy into the fireBase and firePoint <b>script slots</b>.
+<br>
+&nbsp; &nbsp; &nbsp; Drag  PlayerProjectile Prefab from  Project panel into the projectilePrefab <b>script</b> <b>slot</b>.
+</ul>
+
+<p>
+<center>
+<i>PlayerShoot.cs script:</i>
+<br>
+    <table width=100% cellpadding=10 border=1 bgcolor=#f7f7f7>
+      <tr>
+        <td><font color=#3ab050><b>using</b></font> System.Collections.Generic;<br>
+          <font color=#3ab050><b>using</b></font> System.Collections;<br>
+          <font color=#3ab050><b>using</b></font> UnityEngine;<br>
+          <br>
+          <font face=arial><font color=#31849b><b>public class </b></font><font face=arial><font face=arial><font color=#365f91><b>PlayerShoot : MonoBehaviour</b></font></font></font></font>{ <br>
+          <br>
+          <font face=arial>&nbsp; &nbsp; &nbsp; </font><font color=gray>//public Animator animator;</font>
+          <br>
+          <font face=arial>&nbsp; &nbsp; &nbsp; </font><font color=#31849b><b>public</b></font> Transform fireBase;<br>
+          <font face=arial>&nbsp; &nbsp; &nbsp; </font><font color=#31849b><b>public</b></font> Transform firePoint;<br>
+          <font face=arial>&nbsp; &nbsp; &nbsp; </font><font color=#31849b><b>public</b></font> GameObject projectilePrefab; <br>
+          &nbsp; &nbsp; &nbsp; <font color=#31849b><b>public float </b></font>projectileSpeed = <font color=#e36c0a><b>10f</b></font>;<br>
+          <font face=arial>&nbsp; &nbsp; &nbsp; </font><font color=#31849b><b>public</b></font> <font color=#31849b><b>float</b></font> attackRate = <font color=#e36c0a><b>2f</b></font>;<br>
+          <font face=arial>&nbsp; &nbsp; &nbsp; </font><font color=#31849b><b>private</b></font> <font color=#31849b><b>float</b></font> nextAttackTime = <font color=#e36c0a><b>0f</b></font>; <br>
+          <br>
+          &nbsp; &nbsp; &nbsp; <font color=#31849b><b>void</b></font> Start(){<br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=gray>//animator = gameObject.GetComponentInChildren&lt;Animator&gt;();</font><br>
+          &nbsp; &nbsp; &nbsp; }<br>
+          <br>
+          &nbsp; &nbsp; &nbsp; <font color=#31849b><b>void</b></font> Update(){<br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=#3ab050><b>if</b></font><b><font color="#31849b"> </font></b>(Time.time &gt;= nextAttackTime){<br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font face=arial>&nbsp; &nbsp; &nbsp; </font><font color=gray>//if (Input.GetKeyDown(KeyCode.Space))</font><br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=#3ab050><b>if</b></font><b><font color="#31849b"> </font></b>(Input.GetAxis(<font color=#e36c0a><b>&quot;Attack&quot;</b></font>) &gt; <font color=#e36c0a><b>0</b></font>){<br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; playerFire();<br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; nextAttackTime = Time.time + <font color=#e36c0a><b>1f</b></font> / attackRate;<br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br>
+          &nbsp; &nbsp; &nbsp; }<br>
+          <br>
+          &nbsp; &nbsp; &nbsp; <font color=#31849b><b>void</b></font> playerFire(){<br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=gray>//animator.SetTrigger (&quot;Fire&quot;);</font> <br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>Vector3</b></font> fwd = (firePoint.position - fireBase.position).normalized; 
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=gray>//Spawn a bullet that inherits rotation from the instantating object:</font><br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; GameObject projectile = Instantiate(projectilePrefab, firePoint.position, transform.rotation); <br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; projectile.GetComponent&lt;Rigidbody&gt;().AddForce(fwd * projectileSpeed, ForceMode.Impulse); <br>
+          &nbsp; &nbsp; &nbsp; } <br>
+          } </td>
+      </tr>
+    </table>
+  </center>
+  <br>
+  <a href="gamedesign/Unity3D/InputManager_Attack.png" target=newInputs><img src="gamedesign/Unity3D/InputManager_Attack_thumb.png" alt="" align=right></a><br>
+  <b>g). Create an "Attack" Input:</b><br>
+Open <b>Edit > Project Settings</b> panel to select the <b>Input Manager</b>.<br>
+Open the first <b>Fire1</b> and change it to "<b>Attack</b>".<br>
+Leave settings on default (left mouse click to shoot).
+
+<p>
+<b>h). Create the Particle Effect projectile impact explosion:</b>
+<ul>
+<li> &nbsp;RightClick the Hierarchy to create an effect &gt; <b>Particle System</b>. In  Inspector rename it &quot;PS_Boom&quot;. <br>
+<li> &nbsp;In the Inspector, set <b>parameters</b>. In general, life short, size small, emission to burst, and Color over Lifetime to allow a fade: <br>&nbsp; &nbsp; 
+Duration = 4, Start Lifetime = 2, Start Speed = 0.5, Start Size = 0.2<br>
+&nbsp; &nbsp; Under Emission: Set Rate Over Time = 0, hit [+] to add a burst.<br>
+&nbsp; &nbsp; Under Color Over Lifetime: Click the color box, set bottom tab colors as desired (typically yellow, red, and black) and top right tab = 0 (for fade to transparency).<br>
+<br>
+<li> &nbsp;Create a  <b>C# script</b> called "<b>DestroyEffect</b>.cs". Add   content below. In Unity apply to PS_Boom.
+
+<br>
+<li> &nbsp;<b>Drag</b> the Particle Effect
+into the Assets &gt; Prefabs folder to make it a <b>Prefab</b>. <br>
+<li> &nbsp;<b>Delete</b> it from the Scene. <b>Drag</b> the Prefab from the Assets folder into the Projectile script slot.
+</ul>
+
+<p>
+<center>
+<i>DestroyEffect.cs script:</i><br>
+
+  <table width=100% cellpadding=10 border=1 bgcolor=#f7f7f7>
+    <tr>
+      <td><font color=#3ab050><b>using</b></font> System.Collections.Generic;<br>
+        <font color=#3ab050><b>using</b></font> System.Collections;<br>
+        <font color=#3ab050><b>using</b></font> UnityEngine;<br>
+        <br>
+        <font color=#31849b><b>public class </b></font><font color=#365f91><b>DestroyEffect : MonoBehaviour</b></font>{ <br>
+        <br>
+        &nbsp; &nbsp; &nbsp; <font color=#31849b><b>public float </b></font> selfDestructTime = <font color=#e36c0a><b>2f</b></font>;<br>
+        <br>
+        &nbsp; &nbsp; &nbsp; <font color=#31849b><b>void</b></font> Start(){<br>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; StartCoroutine(SelfDestruct());<br>
+        &nbsp; &nbsp; &nbsp; }<br>
+        <br>
+        &nbsp; &nbsp; &nbsp; IEnumerator selfDestruct(){<br>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>yield return new</b></font> WaitForSeconds(selfDestructTime);<br>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Destroy (gameObject);<br>
+        &nbsp; &nbsp; &nbsp; }<br>
+        }</td>
+    </tr>
+  </table>
+</center>
+<br></td>
+</tr><tr>
+<td height=10>&nbsp;</td>
+</tr><tr>
+<td bgcolor=#eeeeff><a name="cam2">&nbsp;</a><br>
+
+  <center>
+    <b><font size=+2 color=purple>[C] BASIC  TWO-PLAYER 3D CHARACTER</font></b> 
+  </center>
+  <br>
+<b><a href="#TOP"><img src="comicsDesign/ArrowUp.png" alt=""></a></b> 
+<b>TWO PLAYER MOVEMENT SCRIPT:</b> 
+<br>
+This is a local multiplayer system: Two Players on the same keyboard.
+
+<p>
+<b>1. Start</b> with the <b>Player character</b> created above: 
+<ul>
+<li> An Empty Game Object named Player with the Player tag, 
+<br>
+<li> Rigidboy with Rotation Constraints on X and Z, 
+<br>
+<li> Capsule Collider sized to fit around mesh, <br>
+<li> child Player Mesh. 
+</ul>
+
+<p>
+<em><b>2. Duplicate the Player:</b></em>
+<ol type="a">
+<li> <strong>Duplicate</strong> the Player Character. 
+Name one <b>&quot;Player1&quot; </b>and the other <b>&quot;Player2&quot;.
+<li> <strong>Create</strong> and apply a new Material to change the color of Player2. 
+</ol>
+
+<p>
+<em><b>3. Create and adjust the Cameras to each view only half the screen: </b></em><a href="gamedesign/Unity2D/CameraInspector.png" target=camInsp><img src="gamedesign/Unity2D/CameraInspector_thumb.png" alt="" align=right></a>
+<br>
+<b>a) </b>Select <b>CameraMain</b>. 
+<br>
+&nbsp;&nbsp; &nbsp; In the Inspector find the <b>Viewport Rect</b> properties. <br>
+&nbsp;&nbsp; &nbsp; Set display set <b>W = 0.5</b> (for half the width, on the left side)
+<br>
+<b>b) </b>Create a new GameObject &gt; <b>Camera</b>. Name it &quot;<b>CameraP2</b>&quot;.
+<br>
+&nbsp;&nbsp; &nbsp; Set <b>W = 0.5</b> (for the same half width) and set <b>X = 0.5</b>, so it moves to show the right side of the screen.
+<br>
+&nbsp;&nbsp; &nbsp; Apply the <b>Camera3DLERP</b>.cs script (above), drag <b>Player2</b> into <b>target</b>, set <b>offset</b> (try 0, 11, 15).
+
+<p>
+<em><b>4. Create the new Script:</b></em> 
+<ol type="a">
+<li>RightClick in  Project panel to <b>create</b> a  new C# script &quot;<b>PlayerMove3D_2P</b>.cs&quot; with  content below.<br>
+<li>Apply this script to both characters (remove the previous PlayerMove script, if applied) <br>
+<li> CameraMain into the cam <b>script slot </b>of <b>Player1.</b><br>
+<li> <b>Drag</b> CameraP2 into the cam <b>script slot </b>of <b>Player2.</b> 
+</ol>
+
+<p>
+<em><b>5. Set distinct input axis in the Input Manager for each Player: </b></em>
+<ol type="a">
+<li>In the <b>Input Manager, </b>add<b> two </b>new<b> Axis </b>named<b> &quot;HorizP2&quot; </b>and<b> &quot;VertP2&quot;</b> <br>
+<li>Set<b> HorizP2 </b>the same as <b>Horizontal,</b> but only use the <b>arrow keys.</b><br>
+<li>Set<b> VertP2 </b>the same as <b>Vertical, </b>but only use the <b>arrow keys.</b><br>
+<li>Revise<b> Hozontal </b>and<b> Vertical </b>to<b> remove</b> the arrow keys (so they only use <b>WASD</b>)<b>.</b>
+</ol>
+
+<br>
+<br>
+  <center>
+    <em>PlayerMove3D_2P.cs</em>:
+    <table width=98% cellpadding=10 border=1 bgcolor=#efefef>
+      <tr>
+        <td> <font color=#3ab050><b>using</b></font> System.Collections; <br>
+          <font color=#3ab050><b>using</b></font> System.Collections.Generic; <br>
+          <font color=#3ab050><b>using</b></font> UnityEngine; <br>
+          <br>
+          <font color=#3ab050><b>public class</b></font> <font color=#31849b><b>PlayerMove3D_2P : MonoBehaviour</b></font> { <br>
+          &nbsp; &nbsp; <font color=gray>//Animator anim;</font><br>
+          &nbsp; &nbsp; <font color=#31849b><b>Rigidbody</b></font> rb;<br>
+          &nbsp; &nbsp; <font color=#31849b><b>private</b></font> <font color=#31849b><b>Transform</b></font> cam;<br>
+          <br>
+          &nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>float</b></font> speed =<b><font color="#e36c0a"> 6f</font></b>;<br>
+          &nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>float</b></font> turnSmoothTime =<b><font color="#e36c0a">0.1f</font></b>;<br>
+          &nbsp; &nbsp; <font color=#31849b><b>private</b></font> <font color=#31849b><b>float</b></font> turnSmoothVelocity;<br>
+          &nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>bool</b></font> isPlayer1 = <font color=#31849b><b>true</b></font>;<br>
+          <br>
+          &nbsp; &nbsp; <font color=#31849b><b>void</b></font> Start(){<br>
+          &nbsp; &nbsp; &nbsp; &nbsp; <font color=gray>//anim = gameObject.GetComponentInChildren&lt;Animator&gt;();</font><br>
+          &nbsp; &nbsp; &nbsp; &nbsp; rb = gameObject.GetComponent&lt;Rigidbody&gt;();<br>
+          &nbsp; &nbsp; } <br>
+          <br>
+          &nbsp; &nbsp; <font color=#31849b><b>void</b></font> Update () { <br>
+          &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> (isPlayer1) { <br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>float</b></font> horiz = Input.GetAxisRaw(<b><font color="#e36c0a">&quot;Horizontal&quot;</font></b>); <br>
+          <font face=arial>&nbsp; &nbsp; </font>&nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>float</b></font> vert = Input.GetAxisRaw(<b><font color="#e36c0a">&quot;Vertical&quot;</font></b>); <br>
+          &nbsp; &nbsp; &nbsp; &nbsp; } <b><font color=#3ab050>else</font></b> {<br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>float</b></font> horiz = Input.GetAxisRaw(<b><font color="#e36c0a">&quot;HorizP2&quot;</font></b>); <br>
+          <font face=arial>&nbsp; &nbsp; </font>&nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>float</b></font> vert = Input.GetAxisRaw(<b><font color="#e36c0a">&quot;VertP2&quot;</font></b>); <br>
+          &nbsp; &nbsp; &nbsp; &nbsp; }<br>
+          <br>
+          &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>Vector3</b></font> direct = new <font color=#31849b><b>Vector3</b></font>(horiz, <b><font color="#e36c0a">0f</font></b>, vert).normalized; <br>
+          <br>
+          &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> (direct.magnitude >= <b><font color="#e36c0a">0.1f</font></b>) { <br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>float</b></font> targetAngle = Mathf.Atan2(direct.x, direct.z) * Mathf.Rad2Deg + cam.eulerAngles.y; <br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>float</b></font> angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime); <br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; transform.rotation = Quaternion.Euler(<b><font color="#e36c0a">0f</font></b>, angle, <b><font color="#e36c0a">0f</font></b>); <br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>Vector3</b></font> moveDir = Quaternion.Euler(<b><font color="#e36c0a">0f</font></b>, targetAngle, <b><font color="#e36c0a">0f</font></b>) * <font color=#31849b><b>Vector3</b></font>.forward;<br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; rb.MovePosition(transform.position + moveDir * speed * Time.deltaTime); <br>
+          &nbsp; &nbsp; &nbsp; &nbsp; }<br>
+&nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>else</font></b> {<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; GetComponent&lt;Rigidbody&gt;().velocity = Vector3.zero;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; GetComponent&lt;Rigidbody&gt;().angularVelocity = Vector3.zero;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; }<br>
+          &nbsp; &nbsp; }<br>
+          }</td>
+</tr></table>
+</center>
+<br><br>
+</td>
+</tr>
+<tr>
+<td height=10>&nbsp;</td>
+</tr><tr>
+<td height=10 bgcolor=#eeeeff>
+<a name="drive">&nbsp;</a><br>
+<img src="gamedesign/Unity3D/VehicleDriving.png" alt=""> 
+<br>
+
+<center>
+    <a href="#TOP"><img src="comicsDesign/ArrowUp.png" alt=""></a> &nbsp; 
+    <font size=+2 color=purple><b>[D] VEHICLE DRIVING</b></font>
+    <br> <a href=#vehicle1>Simple Vehicle</a> |  <a href=#vehicle2>Advanced Vehicle</a> 
+    
+</center>
+
+<br>
+A vehicle moves differently than a person. Motion forward and backwards  build speed to accelerate and take a distance to slow and come to a stop. Turning is particularly different, rotating on curves based on the  distance between front and back wheels.
+
+<br><br>
+<a name="vehicle1">&nbsp;</a>
+<br>
+<a href="#drive"><img src="gamedesign/triangle_purple.png" alt=""></a> <b>Simple Car Structure and Motion</b><br>
+(4 minute <a href="https://youtu.be/4SZ3vZBqEw4?si=Lv7d1ecFaRQ3cTCr" target=vid1><b>video</b></a> and <a href="https://github.com/DevLiakos/CarTutorial" target=gh1><b>GitHub</b></a>, includes
+skid marks and audio)<b>:</b><br><br>
+
+<b>1. 
+Create the Car parent object:</b><br>
+&nbsp; &nbsp; Create an <b>Empty Game Object</b>. In Inspector, rename &quot;Car&quot;, Reset Transforms.<br>
+&nbsp; &nbsp; [<b>Add Component</b>] &gt; <b>BoxCollider.</b> Center Y=2. Size X = 2, Y = 2, Z = 4.<br>
+&nbsp; &nbsp; [<b>Add Component</b>] &gt; <b>RigidBody</b>. Set RigidBody constraints: lock X and Z rotation.<br>
+
+&nbsp; &nbsp; Right-click Car, add an <b>Empty Game Object</b>.<br>
+&nbsp; &nbsp; In Inspector name it &quot;<b>Right</b>&quot; and add an icon (upper-left corner). Rotation: X=0, Y=90, Z=-10.<br>
+
+&nbsp; &nbsp; <b>Duplicate</b> this GameObject, name it &quot;<b>Left</b>&quot;. Rotation:  X=0, Y=-90, Z=10.<br>
+&nbsp; &nbsp; <b>Duplicate</b> this GameObject, name it &quot;<b>Straight</b>&quot;. Rotation:  X=0, Y=0, Z=0.<br>
+<br>
+<b>2. 
+Create the CarArtHub object:</b><br>
+&nbsp; &nbsp; Right-click Car, add an <b>Empty Game Object</b>.<br>
+&nbsp; &nbsp; In Inspector, rename it &quot;<b>CarArtHub</b>&quot;, Reset Transforms.<br>
+&nbsp; &nbsp; (All car art objects will be parented to this Empty, and this Empty will fill the CarBody script slot).<br><br>
+<b>3. Create the Car Art out of primitives</b> 
+<br>
+(<em>MODELING NOTE:</em> if you are creating the models in Blender, position them at 0/0/0 and <b>Object > Apply Transforms</b> to remove irregular transforms): <br>
+<b><em>Make the car Body:</em></b><br>
+&nbsp; &nbsp; a. Right-click CarArtHub, create a 3D Object &gt; Cube. Rename it: &quot;car_art&quot;.<br>
+&nbsp; &nbsp; b. Position: Y = 1.5. Size: X = 2, Y = 1, Z = 4.<br>
+&nbsp; &nbsp; c. Right-click car_art, create a 3D Object &gt; Cube.<br>
+&nbsp; &nbsp; d. Position: Y = 1. Size: X = 1, Y = 1, Z = 0.6.<br>
+
+<em><b>Make the Wheels:</b></em><br>
+&nbsp; &nbsp; a. Right-click CarArtHub, create a 3D Object &gt; Cylinder. Rename it: &quot;wheel1&quot;.<br>
+&nbsp; &nbsp; b. Position: X=-1, Y=0.75, Z=1.06. Rotation: Z = 90. Size: X=1, Y= 0.2, Z=1.
+<br>
+&nbsp; &nbsp; c. Right-click the Cylinder Collider component, to choose [<b>Remove Component</b>]
+<br>
+&nbsp; &nbsp; d. [<b>Add Component</b>] > <b>Sphere Collider</b>.
+<br>
+&nbsp; &nbsp; e. Duplicate 3 times, name them wheel2, wheel3, and wheel4.<br>
+&nbsp; &nbsp; f. Position the wheels at the four car corners.<br>
+<br>
+<b>4.</b> Create a new C# script, name it &quot;<b>CarController</b>.cs&quot;. Add the content below, save,  return to Unity. <br>
+&nbsp; &nbsp; Populate all <b>script slots:</b><br>
+&nbsp; &nbsp; &nbsp; &nbsp; Add car_art into the CarBody slot<br>
+&nbsp; &nbsp; &nbsp; &nbsp; Add each wheel into the wheel Transform slots.<br>
+&nbsp; &nbsp; &nbsp; &nbsp; Add the Right, Left and Straight Empty Game Objects in the corresponding Transform slots.<br>
+<br>
+
+  <center>
+    <em>CarController.cs (basic version)</em>:
+    <table width=98% cellpadding=10 border=1 bgcolor=#efefef>
+      <tr>
+        <td> <font color=#3ab050><b>using</b></font> System.Collections; <br>
+          <font color=#3ab050><b>using</b></font> System.Collections.Generic; <br>
+          <font color=#3ab050><b>using</b></font> UnityEngine; <br>
+          <br>
+          <font color=#3ab050><b>public class</b></font> <font color=#31849b><b>CarController : MonoBehaviour</b></font> { <br>
+          &nbsp; &nbsp; <font color=#31849b><b>private </b></font>Rigidbody RB;<br>
+          &nbsp; &nbsp; <font color=#31849b><b>public</b></font> GameObject CarBody;<br>
+          <br>
+          &nbsp; &nbsp; <font color=#31849b><b>public</b></font> Transform Wheel1;<br>
+          &nbsp; &nbsp; <font color=#31849b><b>public</b></font> Transform Wheel2;<br>
+          &nbsp; &nbsp; <font color=#31849b><b>public</b></font> Transform Wheel3;<br>
+          &nbsp; &nbsp; <font color=#31849b><b>public</b></font> Transform Wheel4;<br>
+          <br>
+          &nbsp; &nbsp; <font color=#31849b><b>public</b></font> Transform Right;<br>
+          &nbsp; &nbsp; <font color=#31849b><b>public</b></font> Transform Left;<br>
+          &nbsp; &nbsp; <font color=#31849b><b>public</b></font> Transform Straight;
+          
+<br>
+<br>
+&nbsp; &nbsp; <font color=#31849b><b>public float</b></font> speedFWD = 50; <br>
+&nbsp; &nbsp; <font color=#31849b><b>public float</b></font> speedBACK = 30;
+<br>
+&nbsp; &nbsp; <font color=#31849b><b>public float</b></font> speedTurnFWD = 50;
+<br>
+&nbsp; &nbsp; <font color=#31849b><b>public float</b></font> speedTurnBACK = 40;
+
+
+<br>
+<br>
+          &nbsp; &nbsp; <font color=#31849b><b>private </b></font><font color=#31849b><b>void</b></font> Start(){<br>
+          &nbsp; &nbsp; &nbsp; &nbsp; RB = gameObject.GetComponent&lt;Rigidbody&gt;();<br>
+          &nbsp; &nbsp; }<br>
+          <br>
+          &nbsp; &nbsp; <font color=#31849b><b>private </b></font><font color=#31849b><b>void</b></font> Update() {<br>
+          &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> (Input.GetKey(<b><font color="#e36c0a">&quot;w&quot;</font></b>)){<br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; RB.velocity += transform.forward * speedFWD * Time.deltaTime; <br>
+          <br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Wheel1.Rotate(<b><font color="#e36c0a">0</font></b>, -<b><font color="#e36c0a">50</font></b><b><font color="#e36c0a">0</font></b>, <b><font color="#e36c0a">0</font></b> * Time.deltaTime); <br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Wheel2.Rotate(<b><font color="#e36c0a">0</font></b>, <b><font face=arial>-<b><font color="#e36c0a">50</font></b></font><font color="#e36c0a">0</font></b>, <b><font color="#e36c0a">0</font></b> * Time.deltaTime); <br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Wheel3.Rotate(<b><font color="#e36c0a">0</font></b>, <b><font color="#e36c0a">50</font></b><b><font color="#e36c0a">0</font></b>,<b><font color="#e36c0a"> 0</font></b> * Time.deltaTime); <br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Wheel4.Rotate(<b><font color="#e36c0a">0</font></b>, <b><font face=arial><b><font color="#e36c0a">50</font></b></font><font color="#e36c0a">0</font></b>,<b><font color="#e36c0a"> 0</font></b> * Time.deltaTime); <br>
+          &nbsp; &nbsp; &nbsp; &nbsp; }<br>
+          <br>
+          &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> (Input.GetKey(<b><font color="#e36c0a">&quot;s&quot;</font></b>)){<br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; RB.velocity -= transform.forward * speedBACK * Time.deltaTime; <br>
+          <br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Wheel1.Rotate(<b><font color="#e36c0a">0</font></b>, <b><font color="#e36c0a">50</font></b><b><font color="#e36c0a">0</font></b>, <b><font color="#e36c0a">0</font></b> * Time.deltaTime); <br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Wheel2.Rotate(<b><font color="#e36c0a">0</font></b>, <b><font face=arial><b><font color="#e36c0a">50</font></b></font><font color="#e36c0a">0</font></b>,<b><font color="#e36c0a"> 0</font></b> * Time.deltaTime); <br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Wheel3.Rotate(<b><font color="#e36c0a">0</font></b>, <b><font face=arial>-<b><font color="#e36c0a">50</font></b></font><font color="#e36c0a">0</font></b>, <b><font color="#e36c0a">0</font></b> * Time.deltaTime); <br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Wheel4.Rotate(<b><font color="#e36c0a">0</font></b>, -<b><font color="#e36c0a">50</font></b><b><font color="#e36c0a">0</font></b>, <b><font color="#e36c0a">0</font></b> * Time.deltaTime); <br>
+          &nbsp; &nbsp; &nbsp; &nbsp; }<br>
+          <br>
+          &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> (Input.GetKey(<b><font color="#e36c0a">&quot;a&quot;</font></b>) && Input.GetKey(<b><font color="#e36c0a">&quot;w&quot;</font></b>)){ <br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; transform.Rotate(<b><font color="#e36c0a">0</font></b>, -<b><font color="#e36c0a">30</font></b> * Time.deltaTime, <b><font color="#e36c0a">0</font></b>); <br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; CarBody.transform.rotation = Quaternion.Lerp(CarBody.transform.rotation, Left.rotation, <b><font color="#e36c0a">4</font></b> * Time.deltaTime); <br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; RB.velocity += CarBody.transform.forward * speedTurnFWD * Time.deltaTime; <br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; RB.velocity -= transform.forward * speedTurnBACK * Time.deltaTime; <br>
+          &nbsp; &nbsp; &nbsp; &nbsp; } <br>
+          <br>
+          &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> (Input.GetKey(<b><font color="#e36c0a">&quot;d&quot;</font></b>) && Input.GetKey(<b><font color="#e36c0a">&quot;w&quot;</font></b>)){ <br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; transform.Rotate(<b><font color="#e36c0a">0</font></b>, <b><font color="#e36c0a">30</font></b> * Time.deltaTime, <b><font color="#e36c0a">0</font></b>); <br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; CarBody.transform.rotation = Quaternion.Lerp(CarBody.transform.rotation, Right.rotation, <b><font color="#e36c0a">4</font></b> * Time.deltaTime); <br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; RB.velocity += CarBody.transform.forward * speedTurnFWD * Time.deltaTime; <br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; RB.velocity -= transform.forward * speedTurnBACK * Time.deltaTime; <br>
+          &nbsp; &nbsp; &nbsp; &nbsp; } <br>
+          <br>
+          &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> ((!Input.GetKey(<b><font color="#e36c0a">&quot;d&quot;</font></b>)) && (!Input.GetKey(<b><font color="#e36c0a">&quot;a&quot;</font></b>))){ <br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; CarBody.transform.rotation = Quaternion.Lerp(CarBody.transform.rotation, Straight.rotation, <b><font color="#e36c0a">4</font></b> * Time.deltaTime); <br>
+          &nbsp; &nbsp; &nbsp; &nbsp; }<br>
+          &nbsp; &nbsp; } <br>
+          } </td>
+      </tr>
+    </table>
+  </center>
+
+  <br>
+  Hit <b>[Play]</b> to test your car with <b>[W][A][S][D]</b> keys! Turn off <b>[Play]</b> to resume work.
+<br><br>  
+If the wheels  turn on the wrong axis, try changing which axis is turning in the Update() function.
+<br>
+The default is in the Y axis, so try swappign the value change to X for all wheels: 
+<br>
+<em>EXAMPLE: </em>Wheel1.Rotate(-<b><font color="#e36c0a">500</font></b>, <b><font color="#e36c0a">0</font></b>, * Time.deltaTime);<br><br>
+<br>
+<b>5. Add Audio to the Car:</b>
+<br>
+Sound Effects: <a href="gamedesign/Unity3D/SFX_CarEngine.wav" target=sfx1><b>Car Engine SFX</b></a> | <a href="gamedesign/Unity3D/SFX_Drift.mp3" target=sfx2><b>Car Drift SFX</b></a><br>
+ &nbsp; &nbsp; a. Select the Car, right-click to add an <b>Empty Game Object</b>. In the Inspector name it &quot;<b>AUDIO</b>&quot;.
+ <br>
+ &nbsp; &nbsp; b. Right-click Audio to create another Empty Game Object. Name it &quot;<b>CarEngineSFX</b>&quot;.<br>
+ &nbsp; &nbsp; c. With CarEngineSFX selected, [<b>Add Component</b>] <b>AudioSource</b>. <br>
+ &nbsp; &nbsp; d. Download and import this <a href="gamedesign/Unity3D/SFX_CarEngine.wav" target=sfx1><b>Car Engine WAV</b></a> file into the Project, and drag it into the AudioSource.<br>
+&nbsp; &nbsp; e. Duplicate CarEngineSFX and rename it &quot;<b>CarDriftSFX</b>&quot;.<br>
+&nbsp; &nbsp; f. Download and import 
+this <a href="gamedesign/Unity3D/SFX_Drift.mp3" target=sfx2><b>Car Drift MP3</b></a> file into the Project, and drag it into the AudioSource.<br>
+<br>
+<b>6. Create a Skidmarks:</b><br>
+&nbsp; &nbsp; a. RightClick each wheel to create an <b>Empty</b> Game Object. Name them &quot;<b>wheel1_skid</b>&quot;, etc. <br>
+&nbsp; &nbsp; b. In the Scene view, drag each to the bottom of their wheel (so they are at ground level). <br>
+&nbsp; &nbsp; c. In the Hierarchy, drag each wheel_skid up so they are no longer parented to the wheels.
+<br> 
+&nbsp; &nbsp; d. Select all four wheel_skid object, and [<b>Add Component</b>] &gt;<b> TrailRenderer</b>.<br>
+&nbsp; &nbsp; e. In the graph, drag leftpoint down to <b>0.5</b>. Add a midpoint, drag rightpoint down to <b>0</b>. <br>
+&nbsp; &nbsp; f. Right-click the Assets folder to create a new <b>Material</b>. <br>
+&nbsp; &nbsp; g. Name it &quot;<b>skid_m</b>&quot;, set to a <b>dark color</b>, drag into the TrailRenderers <b>material slot</b>.<br>
+<br>
+
+<b>7.</b> Revise &quot;<b>CarController</b>.cs&quot; with the content below, save,  return to Unity.
+<br>
+&nbsp; &nbsp; Populate new <b>script slots:</b><br>
+&nbsp; &nbsp; &nbsp; &nbsp; Add the wheel_skid objects into all Trail slots.<br>
+&nbsp; &nbsp; &nbsp; &nbsp; Add the two Audio files into the AudioSource Script slots.<br><br>
+
+  <center>
+<em>CarController.cs</em> (new content in <b>bold</b>):
+    <table width=98% cellpadding=10 border=1 bgcolor=#efefef>
+      <tr>
+        <td> <font color=#3ab050><b>using</b></font> System.Collections; <br>
+          <font color=#3ab050><b>using</b></font> System.Collections.Generic; <br>
+          <font color=#3ab050><b>using</b></font> UnityEngine; <br>
+          <br>
+          <font color=#3ab050><b>public class</b></font> <font color=#31849b><b>CarController : MonoBehaviour</b></font> { <br>
+          &nbsp; &nbsp; <font color=#31849b><b>private </b></font>Rigidbody RB;<br>
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font> GameObject CarBody;<br>
+<br>
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font> Transform Wheel1;<br>
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font> Transform Wheel2;<br>
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font> Transform Wheel3;<br>
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font> Transform Wheel4;<br>
+<br>
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font> Transform Right;<br>
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font> Transform Left;<br>
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font> Transform Straight;<br>
+<br>
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font><b> TrailRenderer Trail1;</b><br>
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font><b> TrailRenderer Trail2;</b><br>
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font><b> TrailRenderer Trail3;</b><br>
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font><b> TrailRenderer Trail4;</b><br>
+<br>
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font><b> AudioSource CarEngine;</b><br>
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font><b> AudioSource CarDrift;</b><br>
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font> <b><font color=#31849b>bool</font> DriftCheck;</b><br>
+          <br>
+          &nbsp; &nbsp; <font color=#31849b><b>private </b></font><font color=#31849b><b>void</b></font> Start(){<br>
+          &nbsp; &nbsp; &nbsp; &nbsp; RB = gameObject.GetComponent&lt;Rigidbody&gt;();<br>
+          &nbsp; &nbsp; } <br>
+          <br>
+          &nbsp; &nbsp; <font color=#31849b><b>private </b></font><font color=#31849b><b>void</b></font> Update () { <br>
+          &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> (Input.GetKey(<b><font color="#e36c0a">&quot;w&quot;</font></b>)){ <br>            
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; RB.velocity += transform.forward * <b><font color="#e36c0a">15</font><font color="#e36c0a">0</font></b> * Time.deltaTime; <br>
+<br>            
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Wheel1.Rotate(<b><font color="#e36c0a">0</font></b>, <b><font color="#e36c0a">0</font></b>, -<b><font color="#e36c0a">50</font></b><b><font color="#e36c0a">0</font></b> * Time.deltaTime); <br>            
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Wheel2.Rotate(<b><font color="#e36c0a">0</font></b>, <b><font color="#e36c0a">0</font></b>, -<b><font color="#e36c0a">50</font></b><b><font color="#e36c0a">0</font></b> * Time.deltaTime); <br>            
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Wheel3.Rotate(<b><font color="#e36c0a">0</font></b>, <b><font color="#e36c0a">0</font></b>, <b><font color="#e36c0a">50</font></b><b><font color="#e36c0a">0</font></b> * Time.deltaTime); <br>            
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Wheel4.Rotate(<b><font color="#e36c0a">0</font></b>, <b><font color="#e36c0a">0</font></b>, <b><font color="#e36c0a">50</font></b><b><font color="#e36c0a">0</font></b> * Time.deltaTime); <br>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#3ab050><b>if</b></font><b> (CarEngine.isPlaying == <font color=#31849b>false</font>){ </b><br>                
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>CarEngine.Play();</b><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>}</b><br>
+&nbsp; &nbsp; &nbsp; &nbsp; }<br>
+&nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>else</font> {<br>            
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; CarEngine.Stop();<br>
+&nbsp; &nbsp; &nbsp; &nbsp; }</b><br>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> (Input.GetKey(<b><font color="#e36c0a">&quot;s&quot;</font></b>)){ <br>            
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; RB.velocity -= transform.forward * <b><font color="#e36c0a">80</font></b> * Time.deltaTime; <br>
+<br>            
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Wheel1.Rotate(<b><font color="#e36c0a">0</font></b>, <b><font color="#e36c0a">0</font></b>, <b><font color="#e36c0a">50</font></b><b><font color="#e36c0a">0</font></b> * Time.deltaTime); <br>            
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Wheel2.Rotate(<b><font color="#e36c0a">0</font></b>, <b><font color="#e36c0a">0</font></b>, <b><font color="#e36c0a">50</font></b><b><font color="#e36c0a">0</font></b> * Time.deltaTime); <br>            
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Wheel3.Rotate(<b><font color="#e36c0a">0</font></b>, <b><font color="#e36c0a">0</font></b>, -<b><font color="#e36c0a">50</font></b><b><font color="#e36c0a">0</font></b> * Time.deltaTime); <br>            
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Wheel4.Rotate(<b><font color="#e36c0a">0</font></b>, <b><font color="#e36c0a">0</font></b>, -<b><font color="#e36c0a">50</font></b><b><font color="#e36c0a">0</font></b> * Time.deltaTime); <br>
+&nbsp; &nbsp; &nbsp; &nbsp; } <br>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> (Input.GetKey(<b><font color="#e36c0a">&quot;a&quot;</font></b>) && Input.GetKey(<b><font color="#e36c0a">&quot;w&quot;</font></b>)){ <br>            
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; transform.Rotate(<b><font color="#e36c0a">0</font></b>, -<b><font color="#e36c0a">30</font></b> * Time.deltaTime, <b><font color="#e36c0a">0</font></b>); <br>            
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; CarBody.transform.rotation = Quaternion.Lerp(CarBody.transform.rotation, Left.rotation, <b><font color="#e36c0a">4</font></b> * Time.deltaTime); <br>            
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; RB.velocity += CarBody.transform.forward * <b><font color="#e36c0a">12</font></b><b><font color="#e36c0a">0</font></b> * Time.deltaTime; <br>            
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; RB.velocity -= transform.forward * <b><font color="#e36c0a">110</font></b> * Time.deltaTime; <br>
+&nbsp; &nbsp; &nbsp; &nbsp; } <br>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> (Input.GetKey(<b><font color="#e36c0a">&quot;d&quot;</font></b>) && Input.GetKey(<b><font color="#e36c0a">&quot;w&quot;</font></b>)){ <br>            
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; transform.Rotate(<b><font color="#e36c0a">0</font></b>, <b><font color="#e36c0a">30</font></b> * Time.deltaTime, <b><font color="#e36c0a">0</font></b>); <br>            
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; CarBody.transform.rotation = Quaternion.Lerp(CarBody.transform.rotation, Right.rotation, <b><font color="#e36c0a">4</font></b> * Time.deltaTime); <br>            
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; RB.velocity += CarBody.transform.forward * <b><font color="#e36c0a">12</font></b><b><font color="#e36c0a">0</font></b> * Time.deltaTime; <br>            
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; RB.velocity -= transform.forward * <b><font color="#e36c0a">110</font></b> * Time.deltaTime; <br>
+&nbsp; &nbsp; &nbsp; &nbsp; } <br>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> ((!Input.GetKey(<b><font color="#e36c0a">&quot;d&quot;</font></b>)) && (!Input.GetKey(<b><font color="#e36c0a">&quot;a&quot;</font></b>))){ <br>            
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; CarBody.transform.rotation = Quaternion.Lerp(CarBody.transform.rotation, Straight.rotation, <b><font color="#e36c0a">4</font></b> * Time.deltaTime); <br>
+&nbsp; &nbsp; &nbsp; &nbsp; } <br>
+<br>
+<b>&nbsp; &nbsp; &nbsp; &nbsp; <font color=#3ab050>if</font> ((CarBody.transform.localRotation.y * <font color="#e36c0a">100</font> > <font color="#e36c0a">15</font>) || (CarBody.transform.localRotation.y * <font color="#e36c0a">100</font> < -<font color="#e36c0a">15</font>)){ <br>            
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Trail1.emitting = <font color=#31849b>true</font>; <br>            
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Trail2.emitting = <font color=#31849b>true</font>; <br>            
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Trail3.emitting = <font color=#31849b>true</font>; <br>            
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Trail4.emitting = <font color=#31849b>true</font>; <br>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#3ab050>if</font> (DriftCheck == <font color=#31849b>false</font>){ <br>                
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; DriftCheck = <font color=#31849b>true</font>; <br>                
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; CarDrift.Play(); <br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; } <br>
+&nbsp; &nbsp; &nbsp; &nbsp; } <br>
+&nbsp; &nbsp; &nbsp; &nbsp; <font color=#3ab050>else</font>{
+<br>            
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; DriftCheck = <font color=#31849b>false</font>; <br>
+<br>            
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Trail1.emitting = <font color=#31849b>false</font>; <br>            
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Trail2.emitting = <font color=#31849b>false</font>; <br>           
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Trail3.emitting = <font color=#31849b>false</font>; <br>           
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Trail4.emitting = <font color=#31849b>false</font>; <br>
+&nbsp; &nbsp; &nbsp; &nbsp; } </b><br>
+&nbsp; &nbsp; } <br>}          
+        
+</td>
+</tr></table>
+  </center>
+  
+<br><br>
+<center>
+<img src="gamedesign/bullet.png" alt=""> &nbsp; <img src="gamedesign/bullet.png" alt=""> &nbsp; <img src="gamedesign/bullet.png" alt="">
+</center>
+
+  <br>
+  <a href="#drive"><img src="gamedesign/triangle_purple.png" alt=""></a> 
+  <a name="vehicle2">&nbsp;</a><b>More Complex Car Structure and Motion</b> <br>
+(12 minute <a href="https://youtu.be/Z4HA8zJhGEk?si=Dbhyt-6ar7DbYIGf" target=vid1><b>video</b></a> and <a href="https://github.com/GameDevChef/CarController" target=gh2><b>GitHub</b></a>, includes
+wheel colliders)<b>:</b>
+
+<p>
+  NOTES TO COME
+  
+<br><br><br>
+</td>
+</tr>
+<tr>
+  <td height=10>&nbsp;</td>
+</tr>
+<tr>
+  <td height=10 bgcolor=#eeeeff> <a name="slime">&nbsp;</a><br>
+    <br>
+    <center>
+      <a href="#TOP"><img src="comicsDesign/ArrowUp.png" alt=""></a> &nbsp; <font size=+2 color=purple><b>[E] SLIME UNDULATION</b></font>
+      <br>
+      <a href=#slime1>Slime Set-Up</a> | <a href=#slime2>Slime Scale Script</a> and <a href=#slime3>Animation Curves</a>
+    </center>
+    <br>
+    A pretty specific movement type to illustarte the power of Animation Curves and Tweening to define movement on a 3D object. In this case, whenever the charater moves or jumps, the mesh  squashes and stretches.<br>
+    <br>
+    <a name="slime1">&nbsp;</a><br>
+    <a href="#slime"><img src="gamedesign/triangle_purple.png" alt=""></a> <b>Slime Set-Up:</b>
+    
+    <p>
+    <b>1. Create the Slime object:</b><br>
+    &nbsp; &nbsp; Create an <b>Empty Game Object</b>. In Inspector, rename &quot;PlayerSlime&quot;, Reset Transforms.
+    <br> Add the tag "Player" (if it is the player)
+    <br>
+    &nbsp; &nbsp; [<b>Add Component</b>] &gt; <b>BoxCollider.</b> Center Y=0.5. leave Sizes = 1.<br>
+    &nbsp; &nbsp; [<b>Add Component</b>] &gt; <b>RigidBody</b>. Set RigidBody constraints: lock Rotation X and Z.<br>
+    &nbsp; &nbsp; Right-click Slime, add an <b>Empty Game Object</b>.<br>
+    &nbsp; &nbsp; In Inspector name it &quot;<b>scaleTween</b>&quot;.
+    
+    <p>
+    <b>2. Create the Mesh:</b><br>
+    &nbsp; &nbsp; Right-click scaleTween, add a <b>3D Object &gt; Sphere</b>.<br>
+    &nbsp; &nbsp; Remove the default SphereCollider.<br>
+    &nbsp; &nbsp; Right-click the Inspector to Create a material. Name it Slime_m. Set Albedo color = green.
+    
+    <p><b>3. Add a basic movement script to the PlayerSlime</b> <br>
+    &nbsp; &nbsp; For example, use this <a href="playerMove" target=newscript1>PlayerMove3D</a> script and this <a href="cam2" target=newscript2>CameraFollow3D</a> script (if it is the player).<br>
+    &nbsp; &nbsp; I am assuming the Player in the following, and using the Input.GetAxis &quot;Horizontal&quot; and &quot;Vertical&quot;, and Input.GetButtonDown &quot;Jump&quot;.
+    
+<p>a. In the movement script, include these variables:<br>
+    
+    <center>
+      <table width=98% cellpadding=10 border=1 bgcolor=#efefef>
+        <tr>
+          <td><font color=gray>// Variables to activate for FixedUpdate action:</font><br>
+            &nbsp; &nbsp; <font color=#31849b><b>bool</b></font> jumpTweenActive = false;<br>
+            &nbsp; &nbsp; <font color=#31849b><b>float</b></font> moveForward = 0f;<br>
+            &nbsp; &nbsp; <font color=#31849b><b>float</b></font> moveSide = 0f;<br>
+            <br>
+            <font color=gray>// Better fall variables:</font><br>
+&nbsp; &nbsp; <font color=#31849b><b>public float</b></font> fallMultiplier = 2.5f;<br>
+&nbsp; &nbsp;<font color=#31849b><b> public float</b></font> lowJumpMultiplier = 02f;<br>
+            <br>
+        </td>
+        </tr>
+    </table>
+    </center>
+     
+<p>b. In the <strong>Update()</strong> function input listeners, include commands to activate the <strong>jumpTweenActive</strong> variable in the <strong>jump</strong> and <strong>BetterFall</strong> conditions (also set moveForward and moveSide to 1 or -1 based on Vertical and Horizontal axis values, not shown here):<br>
+
+
+    <center>
+      <table width=98% cellpadding=10 border=1 bgcolor=#efefef>
+        <tr>
+          <td><font color=gray>// Jump:</font><br>
+              <b><font color=#3ab050>if</font></b> (Input.GetButtonDown(<b><font color="#e36c0a">&quot;Jump&quot;</font></b>)){<br>
+&nbsp; &nbsp; rb.AddForce (Vector3.up * JumpSpeed);<br>
+&nbsp; &nbsp; jumpTweenActive = <b><font color=#31849b>true</font></b>;<br>
+}<br>
+<br>
+            <font color=gray>// Better Fall:</font><br>
+            <b><font color=#3ab050>if</font></b> (rb.velocity.y &lt; <b><font color="#e36c0a">0.3f</font></b>) {<br>
+&nbsp; &nbsp; rb.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - <b><font color="#e36c0a">1</font></b>) * Time.deltaTime;<br>
+} <b><font color=#3ab050>else if</font></b> (rb.velocity.y &gt;<b><font color="#e36c0a">0</font></b> &amp;&amp; !Input.GetButtonDown(<b><font color="#e36c0a">&quot;Jump&quot;</font></b>)){
+<br>
+&nbsp; &nbsp; jumpTweenActive = <b><font color=#31849b>true</font></b>;
+
+<br>
+&nbsp; &nbsp; rb.velocity += Vector3.up * Physics.gravity.y * (lowJumpMultiplier - <b><font color="#e36c0a">1</font></b>) * Time.deltaTime;<br>
+}<br>
+            <br>
+          </td>
+        </tr>
+      </table>
+    </center>
+
+<p>
+c. In the <strong>FixedUpdate()</strong> function activate the slime script:<br>
+    
+    <center>
+      <table width=98% cellpadding=10 border=1 bgcolor=#efefef>
+        <tr>
+          <td>
+          <font color=gray>// TWEENING jump:</font><br>
+            <b><font color=#3ab050>if</font></b> (jumpTweenActive){<br>
+            &nbsp; &nbsp;GetComponent&lt;Slime_Scale&gt;().jumpTweenOn = <b><font color=#31849b>true</font></b>;<br>
+&nbsp; &nbsp;jumpTweenActive = <b><font color=#31849b>false</font></b>;<br>
+            }<br>
+            <br>
+            <font color=gray>// TWEENING walk:</font><br>
+            <b><font color=#3ab050>else if</font></b> ((moveForward != 0)||(moveSide != 0)<b><font color="#e36c0a"></font></b>) {<br>
+            &nbsp; &nbsp; GetComponent&lt;Slime_Scale&gt;().moveTweenOn = <b><font color=#31849b>true</font></b>;<br>
+            } <b><font color=#3ab050>else </font></b>{<br>
+            &nbsp; &nbsp; GetComponent&lt;Slime_Scale&gt;().moveTweenOn = <b><font color=#31849b>false</font></b>;<br>
+            }<br>
+            <br>
+          </td>
+        </tr>
+      </table>
+    </center>
+    
+    <br><br>
+      <a name="slime2">&nbsp;</a><br>
+      <a href="#slime"><img src="gamedesign/triangle_purple.png" alt=""></a> <b>Slime Scale Script:</b>
+      <br><br>
+      <b>4.</b> Add a script to make the player mesh undulate: <br>
+      &nbsp; &nbsp; Create a new C# script, name it &quot;<b>Slime_Scale</b>.cs&quot;.<br>
+&nbsp; &nbsp; Save and in Unity apply to the PlayerSlime object. 
+<br>
+      <br>
+
+
+    <center>
+<em>Slime_Scale.cs</em> (new content in <b>bold</b>):
+      <table width=98% cellpadding=10 border=1 bgcolor=#efefef>
+        <tr>
+          <td> 
+          <font color=#3ab050><b>using</b></font> System.Collections; <br>
+            <font color=#3ab050><b>using</b></font> System.Collections.Generic; <br>
+            <font color=#3ab050><b>using</b></font> UnityEngine; <br>
+            <br>
+            <font color=#3ab050><b>public class</b></font> <font color=#31849b><b>Slime_Scale : MonoBehaviour</b></font> {
+<br><br> 
+<font color=gray>           
+// This script uses tweening to make the character undulate as it moves, jumps, etc 
+<br>
+// Right-click the character to make an Empty GO child called "ScaleTween".
+<br>
+// Make the Mesh a child of ScaleTween so the mesh inherits scaling from ScaleTween.
+<br>
+<br>
+// There is a new AnmationCurve for each type of motion: move, jump, etc. 
+<br>
+// Each starts at 1, ends at 1, and has at least one middle keyframe. 
+<br>// In this case, Move center goes down and jump goes up.              
+</font>
+<br>
+<br>
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font> Transform scaleTweener;
+<br>
+&nbsp; &nbsp; <font color=#31849b><b>Vector3</b></font> startScale;
+<br>&nbsp; &nbsp; <font color=#31849b><b>public</b></font> AnimationCurve curveMove = AnimationCurve.EaseInOut(<b><font color="#e36c0a">0</font></b><b><font color="#e36c0a">f</font></b>, <b><font color="#e36c0a">0</font></b><b><font color="#e36c0a">f</font></b>, <b><font color="#e36c0a">1f</font></b>, <b><font color="#e36c0a">1f</font></b>); <br>
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font> AnimationCurve curveJump = AnimationCurve.EaseInOut(<b><font color="#e36c0a">0</font></b><b><font color="#e36c0a">f</font></b>, <b><font color="#e36c0a">0</font></b><b><font color="#e36c0a">f</font></b>,<b><font color="#e36c0a"> 1f</font></b>, <b><font color="#e36c0a">1f</font></b>); <br>
+&nbsp; &nbsp; <font color=#31849b><b>float </b></font>elapsed = <b><font color="#e36c0a">0</font></b><b><font color="#e36c0a">f</font></b>; <br>
+&nbsp; &nbsp; <font color=#31849b><b>float </b></font>elapsedJump = <b><font color="#e36c0a">0</font></b><b><font color="#e36c0a">f</font></b>; <br><br>
+&nbsp; &nbsp; <font color=gray>// bools activated by a separate character movement script:</font>
+<br>&nbsp; &nbsp; <font color=#31849b><b>public bool</b></font> jumpTweenOn = <b><font color=#31849b>false</font></b>; <br>&nbsp; &nbsp; <font color=#31849b><b>public bool</b></font> moveTweenOn = <b><font color=#31849b>false</font></b>; <br>
+<br>
+            &nbsp; &nbsp; <font color=#31849b><b>private </b></font><font color=#31849b><b>void</b></font> Start(){<br>
+            &nbsp; &nbsp; &nbsp; &nbsp; startScale = scaleTweener.localScale;<br>
+            &nbsp; &nbsp; } 
+            
+<p>
+&nbsp; &nbsp; <font color=#31849b><b>private </b></font><font color=#31849b><b>void</b></font> FixedUpdate () {<br>
+&nbsp; &nbsp; <font color=gray>//TWEENING jump (curve goes up). Note it will always finish the current elapse:</font>
+<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> ((jumpTweenOn)||(elapsedJump > <b><font color="#e36c0a">0</font></b>)){ <br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>Vector3</b></font> newScale = new <font color=#31849b><b>Vector3</b></font>(startScale.x - (curveJump.Evaluate(elapsedJump) -<b><font color="#e36c0a">1</font></b>), <br>											
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; startScale.y + (curveJump.Evaluate(elapsedJump) -<b><font color="#e36c0a">1</font></b>), <br>											
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; startScale.z - (curveJump.Evaluate(elapsedJump) -<b><font color="#e36c0a">1</font></b>) <br>											
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; );<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; scaleTweener.localScale = newScale; <br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; elapsedJump += Time.deltaTime; <br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=gray>//reset / end:</font> <br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> (elapsedJump >= <b><font color="#e36c0a">1f</font></b>){ <br>				
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; elapsedJump = <b><font color="#e36c0a">0</font></b>; <br>				
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; jumpTweenOn = <b><font color=#31849b>false</font></b>; <br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; } <br>		
+&nbsp; &nbsp; &nbsp; &nbsp; } 
+
+<p>		
+&nbsp; &nbsp; <font color=gray>//TWEENING walk (curve goes down). Note it will always finish the current elapse:</font> <br>		
+<b><font color=#3ab050>if</font></b> ((moveTweenOn)||(elapsed > <b><font color="#e36c0a">0</font></b>)){ <br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>Vector3</b></font> newScale = new <font color=#31849b><b>Vector3</b></font>(startScale.x + (<b><font color="#e36c0a">1</font></b>-curveMove.Evaluate(elapsed)), <br>											
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; startScale.y * curveMove.Evaluate(elapsed), <br>											
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; startScale.z + (<b><font color="#e36c0a">1</font></b>-curveMove.Evaluate(elapsed)) <br>											
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ); <br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; scaleTweener.localScale = newScale; <br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; elapsed += Time.deltaTime; <br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=gray>//reset / loop:</font> <br>			
+<b></b>&nbsp; &nbsp; <b><font face=arial>&nbsp; &nbsp; </font><font color=#3ab050>if</font></b> (elapsed >= <b><font color="#e36c0a">1f</font></b>){ <br>				
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; elapsed = <b><font color="#e36c0a">0</font></b>; <br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; } <br>		
+&nbsp; &nbsp; &nbsp; &nbsp; } <br>    
+&nbsp; &nbsp; } 
+
+<p>
+}  
+          </td>
+        </tr>
+      </table>
+    </center>
+    
+    
+    <p>
+<a name="slime3">&nbsp;</a><br>
+    <a href="#slime"><img src="gamedesign/triangle_purple.png" alt=""></a> <b>Slime Curve Data:</b>
+    
+    <p>
+    5. In the Inspector, populate new <b>script slots:</b><br>
+&nbsp; &nbsp; &nbsp; &nbsp; Add the scaleTween object to the scaleTween slot.<br>
+&nbsp; &nbsp; &nbsp; &nbsp; Click on the AnimatinCurves to set the desired curves, or rightclick them to paste this data:<br>
+<center>
+  <br>
+  <table width=700>
+    <tr>
+      <td colspan=2><strong>Curve Data for Move</strong> (copy and right-click in the Inspector curve to paste):</td>
+    </tr>
+    <tr>
+      <td width=50>&nbsp;</td>
+      <td>
+      UnityEditor.AnimationCurveWrapperJSON:{"curve":{"serializedVersion":"2",
+      "m_Curve":
+      [{"serializedVersion":"3",
+      "time":0.0,
+      "value":0.99468994140625,
+      "inSlope":-0.00013183144619688392,
+      "outSlope":-0.00013183144619688392,
+      "tangentMode":0,
+      "weightedMode":0,
+      "inWeight":0.0,
+      "outWeight":0.43180805444717409},
+      {"serializedVersion":"3",
+      "time":0.4921168088912964,
+      "value":0.7032498121261597,
+      "inSlope":-0.001537143369205296,
+      "outSlope":-0.001537143369205296,
+      "tangentMode":0,
+      "weightedMode":0,
+      "inWeight":0.3333333432674408,
+      "outWeight":0.5159648060798645},
+      {"serializedVersion":"3",
+      "time":1.0,"value":1.0,
+      "inSlope":0.0,
+      "outSlope":0.0,"tangentMode":0,
+      "weightedMode":0,
+      "inWeight":0.38558733463287356,
+      "outWeight":0.0}],
+      "m_PreInfinity":2,
+      "m_PostInfinity":2,
+      "m_RotationOrder":4}}
+      </td>
+    </tr>
+    <tr>
+      <td colspan=2> 
+      <br><br>
+          <strong>Curve Data for Jump </strong>(copy and right-click in the Inspector curve to paste):</td>
+    </tr>
+    <tr>
+      <td width=50>&nbsp;</td>
+      <td> 
+      UnityEditor.AnimationCurveWrapperJSON:{"curve":{"serializedVersion":"2",
+      "m_Curve":[{"serializedVersion":"3",
+      "time":0.0,"value":1.0,
+      "inSlope":2.8031272888183595,
+      "outSlope":2.8031272888183595,
+      "tangentMode":0,
+      "weightedMode":0,
+      "inWeight":0.0,
+      "outWeight":0.24098551273345948},
+      {"serializedVersion":"3",
+      "time":0.10051063448190689,
+      "value":1.2000000476837159,
+      "inSlope":1.2370513677597047,
+      "outSlope":1.2370513677597047,
+      "tangentMode":0,
+      "weightedMode":0,"inWeight":0.4466570019721985,
+      "outWeight":0.0713697075843811},
+      {"serializedVersion":"3",
+      "time":0.40204253792762759,
+      "value":1.2000000476837159,
+      "inSlope":-1.2984205484390259,
+      "outSlope":-1.2984205484390259,
+      "tangentMode":0,
+      "weightedMode":0,
+      "inWeight":0.42589667439460757,
+      "outWeight":0.46982529759407046},
+      {"serializedVersion":"3",
+      "time":0.47530677914619448,
+      "value":1.0411547422409058,
+      "inSlope":-2.7838730812072756,
+      "outSlope":-2.7838730812072756,
+      "tangentMode":0,"weightedMode":0,
+      "inWeight":0.3333333432674408,
+      "outWeight":0.3333333432674408},
+      {"serializedVersion":"3",
+      "time":1.0,"value":1.0,
+      "inSlope":-2.8526015281677248,
+      "outSlope":-2.8526015281677248,
+      "tangentMode":0,"weightedMode":0,
+      "inWeight":0.24184474349021913,
+      "outWeight":0.0}],
+      "m_PreInfinity":2,"m_PostInfinity":2,
+      "m_RotationOrder":4}}
+      </td>
+    </tr>
+  </table>
+</center>
+
+<br>
+<br></td>
+</tr>
+
+<tr>
+<td height=10>&nbsp;</td>
+</tr>
+
+<tr>
+<td bgcolor=#eef5ee>
+<a name="char">&nbsp;</a>
+<br>
+<center>
+  <font size=+2><b>PLAYER MOVEMENT: Character Controller</b></font>
+<br>
+(Source Videos: <a href="https://youtu.be/4HpC--2iowE" target=brack><em>3rd person</em></a>, and <a href="https://youtu.be/_QajrabyTJc" target=brack2>1st-person with gravity / jumping</a>):
+<br>
+In a Unity 3D scene, we  create a character that moves in the direction of the camera: 
+</center>
+
+
+<p>
+
+<table width=100% cellpadding=10 border=0><tr><td align=center bgcolor=#efefef>
+<em><b>PLEASE NOTE:</b></em> This tutorial should be updated with the newer <b>Input System Package</b>. <br>
+See these two quick tutorials: 
+<a href="https://youtu.be/WNV9l04s8t4?si=bC-P9pYQAQtvEW3u" target=new1><b>Part 1</b></a> and 
+<a href="https://youtu.be/T9PGE2m6ndo?si=VpOdfo_sijjvksrM" target=new2><b>Part 2</b></a>.
+</td></tr></table>
+
+<p>
+<b>[STEP 1] CHARACTER SET-UP:</b><br>
+The basic set up of a 3D character is an <b>Empty Game Object</b> with the <b>Visible Mesh parented below</b>. 
+<ul>
+<li>The <b>Empty Game Object</b> gets the Colliders, the RigidBody, the scripts, and the tag (like "Player").
+<li>The <b>Visible Mesh</b> can get animation (Mecanim State Machine Animator), if it is an animated mesh. 
+</ul>
+
+<p>
+<b>a)<em> VISIBLE MESH: </em></b>Import your character model, drag into Hierarchy, and set transforms to world center. 
+<br>
+<b>Don't yet have a character model?</b> Make a quick primitive proxy: 
+<ul>
+<li>Create a tall <b>Cylinder</b> (y = 1.2), located at world center, standing on your ground.
+<li>Create a small <b>Box</b> (0.2), move to the top and front of the cylinder, and parent beneath (to show which way it is facing).
+
+In the Inspector, <b>remove the colliders</b> from both 3D objects, since they are just meant to be the Visible Mesh. Optionally, add a <b>Material</b> to both objects to change the character proxy color.
+</ul>
+
+<p>
+<b>b) <em>EMPTY GAME OBJECT: </em>Create</b> the Empty Game Object. Set transforms to world center. Raise the Empty GO so it is half-way up the height of the character mesh/proxy. <b>Parent</b> the character under the Empty Game Object. <b>Name</b> the Empty GO &quot;<b>PlayerCharacter</b>&quot; and in Inspector set <b>tag</b> to <b>Player</b>.
+
+<p>
+  <b>c) </b>Select PlayerCharacter and hit <b>[Add Component]</b> to add a <b>CharacterController collider</b> (<em>INSTEAD</em> of a regular Collider and a RigidBody). Set <b>Radius</b> from 0.5 to <b>0.6</b> and <b>Height</b> from 2 to <b>3.6</b>. 
+
+<p>
+<b>d)</b> To prepare for  Jumping functionality: 
+<ul>
+<li><b>Create another Empty GameObject</b>, name it &quot;<b>GroundCheck</b>&quot;. Set Transforms to world center, <b>parent</b> below PlayerCharacter, and move  to very bottom,  
+  
+  (needs to start at ground level for  jump to work).
+<li><b>Create a simple environment </b>(a box for the ground, a few ramps, etc). In the Hierarchy select all environment objects in your game. In the Inspector set them all to the same <b>Layer</b> (top right) = "<b>Ground</b>".
+</ul>  
+  
+  <p>
+  <b>[STEP 2] CHARACTER MOVEMENT SCRIPT:</b><br>
+  <b>a) </b>RightClick in the Project panel to <b>create</b> new C# script &quot;ThirdPersonMover.cs.&quot;<br>
+  <b>b) Drag</b> the script onto  PlayerCharacter and these elements into the script slots:
+
+<ul>
+<li>Drag <b>MainCamera</b> into the cam <b>script slot</b>
+<li>Drag <b>CharacterController</b> component into the controller <b>script slot</b>.
+<li><font face=arial>Drag the <b>GroundCheck</b> object into the GroundCheck script slot, and set <b>layerMask</b> to <b>Ground</b>.
+</ul>
+
+<br>
+<br>
+
+
+    <center>
+<em>ThirdPersonMover.cs</em>:
+      <table width=98% cellpadding=10 border=1>
+        <tr>
+          <td> <font color=#3ab050><b>using</b></font> System.Collections;<br>
+            <font color=#3ab050><b>using</b></font> System.Collections.Generic;<br>
+            <font color=#3ab050><b>using</b></font> UnityEngine;<br>
+            <br>
+            <font color=#3ab050><b>public class</b></font> <font color=#31849b face="arial"><b>ThirdPersonMover</b> : <b>MonoBehaviour</b></font><font face="arial"> {<br>
+              &nbsp; &nbsp; <font color=#31849b><b>public</b></font> CharacterController controller;<br>
+              &nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>Transform</b></font> cam;<br>
+              <br>
+              &nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>float</b></font> speed = 6f;<br>
+              <br>
+              &nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>float</b></font> turnSmoothTime = 0.1f;<br>
+              &nbsp; &nbsp;<font color=#31849b><b> private</b></font> <font color=#31849b><b>float</b></font> turnSmoothVelocity;
+<br>
+<br> 
+<font face="arial">&nbsp; &nbsp;<font color=#31849b><b> </b></font></font><font color=#31849b><b>public </b></font><font color=#31849b><b>float</b></font> gravity = -9.81f; <br> 
+<font face="arial">&nbsp; &nbsp;<font color=#31849b><b> </b></font></font><font color=#31849b><b>public </b></font><font color=#31849b><b>float</b></font> jumpHeight = 3; <br> 
+<font face="arial"><font face="arial">&nbsp; &nbsp;<font color=#31849b><b> </b></font></font><font color=#31849b><b>private</b></font></font> <font color=#31849b><b>Vector3</b></font> velocity; <br> 
+<font face="arial"><font face="arial">&nbsp; &nbsp;<font color=#31849b><b> </b></font></font><font color=#31849b><b>private </b></font></font><font color=#31849b><b>bool </b></font>isGrounded; <br> 
+<font face="arial">&nbsp; &nbsp; </font><font color=#31849b><b>public Transform</b></font> groundCheck; <br> 
+<font face="arial">&nbsp; &nbsp;<font color=#31849b><b> </b></font></font><font color=#31849b><b>public </b></font><font color=#31849b><b>float</b></font> groundDistance = 0.4f; <br> 
+<font face="arial">&nbsp; &nbsp;<font color=#31849b><b> </b></font></font><font color=#31849b><b>public</b></font> <font color=#31849b><b>LayerMask</b></font> groundMask; <br><br>
+              &nbsp; &nbsp; <font color=#31849b><b>void</b></font> Update () { <br>		
+              &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>float</b></font> horiz = Input.GetAxisRaw(<b><font color="#e36c0a">&quot;Horizontal&quot;</font></b>);<br>		
+              &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>float</b></font> vert = Input.GetAxisRaw(<b><font color="#e36c0a">&quot;Vertical&quot;</font></b>);<br>		
+              &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>Vector3</b></font> direct = new Vector3(horiz, 0f, vert).normalized;<br>
+              <br>		
+              &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> (direct.magnitude >= 0.1f) {<br>			
+              &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>float</b></font> targetAngle = Mathf.Atan2(direct.x, direct.z) * Mathf.Rad2Deg + cam.eulerAngles.y; <br>			
+              &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>float</b></font> angle = Mathf.SmoothDampAngle(transform.eulerAngles.y,  targetAngle, ref turnSmoothVelocity, turnSmoothTime);<br>			
+              &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; transform.rotation = Quaternion.Euler(<b><font color="#e36c0a">0f</font></b>, angle, <b><font color="#e36c0a">0f</font></b>);<br>			
+              &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>Vector3</b></font> moveDir = Quaternion.Euler(<b><font color="#e36c0a">0f</font></b>, targetAngle, <b><font color="#e36c0a">0f</font></b>) * Vector3.forward;<br>			
+              &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; controller.Move(moveDir.normalized * speed * <font color=#31849b><b>Time</b></font>.deltaTime);<br>			
+              &nbsp; &nbsp; &nbsp; &nbsp; }<br>
+&nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>else</font></b> {<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; GetComponent&lt;Rigidbody&gt;().velocity = Vector3.zero;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; GetComponent&lt;Rigidbody&gt;().angularVelocity = Vector3.zero;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; } <br>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; <font color=gray>//JUMP</font> <br>
+&nbsp; &nbsp; &nbsp; &nbsp; isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+<br>        
+&nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> (isGrounded && velocity.y < 0){
+<br>            
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; velocity.y = -2f; <br>        
+&nbsp; &nbsp; &nbsp; &nbsp; } <br>
+<br>        
+&nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> (Input.GetButtonDown("Jump") && isGrounded){
+<br>            
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity); <br>        
+&nbsp; &nbsp; &nbsp; &nbsp; } <br>
+<br>        
+&nbsp; &nbsp; &nbsp; &nbsp; <font color=gray>//GRAVITY</font> <br>        
+&nbsp; &nbsp; &nbsp; &nbsp; velocity.y += gravity * Time.deltaTime; <br>        
+&nbsp; &nbsp; &nbsp; &nbsp; controller.Move(velocity * Time.deltaTime); 
+<br> &nbsp; &nbsp; }
+<br>}
+<br></td>
+</tr></table>
+</center>
+
+
+<p>
+<br><strong>ANIMATION:</strong> 
+<br>Is your 3D character mesh animated? 
+Check out this tutorial on setting clips and using a 
+<a href="GameDesign_UnityMecanim.html" target=gb4><font color=#aa00aa><b>Mecanim</b></font></a> 
+State Machine in Unity to set behaviors and script hooks 
+(like bools for &quot;Jump&quot; and  &quot;Walk&quot;). 
+<br>
+To use it in this script, try adding this:
+
+<br>
+<br>
+    <center>
+    <em>Add to ThirdPersonMover.cs, top of class</em>:
+      <table width=98% cellpadding=10 border=1>
+        <tr>
+          <td>&nbsp; &nbsp; &nbsp; <font color=#0070c0>public Animator</font> anim;<br>
+              <br>
+              &nbsp; &nbsp; &nbsp; <font color=#0070c0>void</font> Start () {<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; anim =  gameObject.GetComponent&lt;<font color=#0070c0>Animator</font>&gt; ();<br>
+&nbsp; &nbsp; &nbsp; }</td>
+        </tr>
+      </table>
+    </center>
+<br>
+<center>
+<em>Add to ThirdPersonMover.cs, bottom of Update </em>:
+  <table width=98% cellpadding=10 border=1><tr>
+<td>
+<b><font color=#3ab050>if</font></b> (horiz != 0 || vert != 0){ <br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; anim.SetBool("Walk", true);
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; }
+<br>&nbsp; &nbsp; <b><font color=#3ab050>else</font></b>{
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; anim.SetBool("Walk", false);
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; }
+<br>
+&nbsp; &nbsp; <b><font color=#3ab050>if</font></b> (isGround == false){ <br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; anim.SetBool("Jump", true); <br>
+&nbsp; &nbsp; &nbsp; &nbsp; } <br>
+&nbsp; &nbsp; <b><font color=#3ab050>else</font></b>{ <br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; anim.SetBool("Jump", false); <br>
+&nbsp; &nbsp; &nbsp; &nbsp; } 
+</td>
+</tr></table>
+</center>
+
+<br>
+Want to use <b>Rigdbody</b> and a <b>Box Collider</b> instead of the combined <b>CharacterCollider</b>? <br>
+Try this <a href="gamedesign/Unity2D/ThirdPersonMover.cs" target=rb>modified script</a>
+
+<p>
+<a name="input">&nbsp;</a><b>TWO-PLAYER GAME:</b> Want <b>2-players</b>? Here is the <b>old Input Manager system</b>:
+<ul>
+    <li>Duplicate  your script, name one Player1Mover and the other Player2Mover (and also rename their classes to stay identical).Then in each change <b><font color="#e36c0a">&quot;Horizontal&quot;</font></b> and <b><font color="#e36c0a">&quot;Vertical&quot;</font></b> in Input.GetAxisRaw() to <b><font color="#e36c0a">&quot;P1Horiz&quot;</font></b> and <b><font color="#e36c0a">&quot;P1Vert&quot;</font></b> for player 1 and <b><font color="#e36c0a">&quot;P2Horiz&quot;</font></b> and <b><font color="#e36c0a">&quot;P2Vert&quot;</font></b> for player 2.
+    <li>Go to <b>Edit > Project Settings > Input Manager</b>. Open the Axis rolldown to see the inputs.
+    <li>Increase the Size by 4 (typically, from 18 to 22 in a new project).
+    <li>Change the new bottom four &quot;Cancel&quot; inputs into new Horizontal and Vertical Inputs for each character:
+</ul>
+
+  <table width=100% cellpadding=10><tr>
+<td width=30% valign=top><font face=arial><b>Player 1:
+</b><br>
+&nbsp; &nbsp; &nbsp; &nbsp; NAME: <br>
+&nbsp; &nbsp; &nbsp; &nbsp; NEGATIVE BUTTON:<br>
+&nbsp; &nbsp; &nbsp; &nbsp; POSITIVE BUTTON: <br><br>
+&nbsp; &nbsp; &nbsp; &nbsp; NAME: <br>
+&nbsp; &nbsp; &nbsp; &nbsp; NEGATIVE BUTTON:<br>
+&nbsp; &nbsp; &nbsp; &nbsp; POSITIVE BUTTON: 
+</td>
+<td width=20% valign=top>
+<br>
+<b>P1Horiz</b><br>
+<b>a</b><br>
+<b>d</b><br><br>
+<b>P1Vert</b><br>
+<b>s</b><br>
+<b>w</b> </td>
+<td width=50% rowspan=2 valign=top><font face="arial"><a href="gamedesign/Unity2D/InputManager.png"><img src="gamedesign/Unity2D/InputManager_thumb.png"></a></td>
+</tr><tr>
+<td valign=top><font face=arial><b>Player 2:
+</b><br>&nbsp; &nbsp; &nbsp; &nbsp; NAME: <br>
+&nbsp; &nbsp; &nbsp; &nbsp; NEGATIVE BUTTON:<br>
+&nbsp; &nbsp; &nbsp; &nbsp; POSITIVE BUTTON: <br>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; NAME: <br>
+&nbsp; &nbsp; &nbsp; &nbsp; NEGATIVE BUTTON:<br>
+&nbsp; &nbsp; &nbsp; &nbsp; POSITIVE BUTTON: 
+</td>
+<td valign=top><font face=arial>
+<br>
+<b>P2Horiz</b><br>
+<b>left</b><br>
+<b>right</b><br><br>
+<b>P2Vert </b><br>
+<b>down</b><br>
+<b>up</b> </td>
+</tr></table>
+
+<br></td></tr>
+
+<tr><td bgcolor=#eeeeff>
+<a name="cam1">&nbsp;</a>
+<br>
+<b><a href="#TOP"><img src="comicsDesign/ArrowUp.png" alt=""></a> [STEP 3-a] CINEMACHINE  CAMERA FOLLOW &amp; MOUSE CONTROL (single player only):</b><br>
+<b>a) </b>Open <b>Window > Package Manager</b>. At top select "All Packages" and search for Cinemachine. 
+
+<br>
+In the left column click to select and at bottom right hit <b>[Install]</b> and <b>[Update]</b>. Close Package Manager. 
+
+<br>
+<b>b) </b>This adds Cinemachine to the top menu of this particular project: a package of cool camera control scripts. Open the top Cinemachine menu and 
+<b>choose</b> &quot;<b>Create a Freelook Camera</b>&quot;. 
+
+<br>
+<b>c)</b> In the Hierarchy note the new FreeLook Camera. This is not a camera <em>object</em> so much as a camera <em>controller</em>;  it will tell our MainCamera what to do. In the Hierarchy select the MainCamera. In the Inspector <b>note</b> the new <b>CinemachineBrain</b> component. This can make it follow the player, with just a few settings in the FreeLook Camera: <br>
+<br>
+<b>d)</b> FreeLook Settings: With the <b>FreeLookCamera</b> selected, in the Inspector:
+<ul>
+    <li>Find the CinemachineFreeLook &gt; <b>LookAt</b> property and <b>drag</b> in your PlayerCharacter mesh or proxy.
+<li>Also find the <b>Follow</b> property directly below and <b>drag</b> in the same PlayerCharacter mesh or proxy.
+</ul>
+ To see what this does, look in your Game View (you may want to show Game and Scene Views side by side). The Camera may be too close to the character. To fix this, we change the FreeLookOrbits.
+  
+
+<br><br>
+Find the CinemachineFreeLook &gt; <b>Orbits</b> properties. These orbits are what the camera will see when moving the computer mouse up and down.
+<ul>
+<li>Set <b>BottomRig</b> height to the ground (try 0 or -2) and set the radius bigger (try 12). 
+<li>Set <b>MiddleRig</b> height to a bit above the character (try 5) and set the radius bigger (try 16).
+<li> Set <b>TopRig</b> height even heigher (try 14) and set the radius to the same as the BottomRig (try 12).
+<li>Set the <b>BindingMode</b> above from "Simple Follow" to "World Space".
+</ul>
+
+<br>
+<em><b>NOTE:</b></em> Optionallty, you can further compose the appearance of each orbit-shot with more precision in the controls below (by setting the aim), or at the top by turning on Window Guides and adjusting those in the Game View to decide exactly how to frame your player. <br>
+<br>
+To test the mouse functionality, hit <b>[Play]</b>. Move the mouse to see it control the camera, and switch between these three different orbits!
+<br>
+<br>
+To change mouse sensitivity, adjust <b>Axis Controls</b> properties:
+<ul>
+<li>Set Y-axis <b>Speed</b> from 2 to <b>4</b> and <b>Accel Time</b> from 0.2 to <b>0.1</b>.
+<li>Set X-axis Speed from 300 to 450
+</ul>
+
+<p>
+<b>e) </b>FINALLY, are you having trouble with your camera going into meshes?
+<ul>
+	<li>At the bottom of the FreeLook Camera, note the options for Extensions. Click on the rolldown next to &quot;<b>Add Extensions</b>&quot; and choose <b>CinemachineCollider</b>.
+    <li>Set <b>CollideAgainst</b>  = <b>Ground</b> and <b>remove Default</b>. 
+    <li>Set <b>Ignore Tag</b> = <b>Player</b>. 
+    <li>Change <b>Preserve Strategy</b> from &quot;Preserve Camera Height&quot; to &quot;<b>Pull Camera Forward</b>&quot;.
+    <li>Set <b>Damping</b> = 0.6 and also <b>Damping When Occluded</b> = <b>0.6</b>.
+    <li>Near the top of the Inspector find <b>Lens</b> and set <b>Near Clip Plane</b> from 0.1 to <b>0.01</b>
+</ul>
+<br><br>
+</td></tr>
+
+<tr>
+  <td bgcolor=#eef5f5>&nbsp;</td></tr>
+
+<tr>
+  <td bgcolor=#eef5f5>
+<a name="cam2">&nbsp;</a><br>
+<b><a href="#TOP"><img src="comicsDesign/ArrowUp.png" alt=""></a> [STEP 3-b]  ALTERNATIVE: CAMERA FOLLOWS TARGET POSITION AND ROTATION:</b>
+<br>
+<b>a) </b><b>Create</b> a Cameras: <b>GameObject > Camera</b>. Name for  player: CameraPlayer. 
+<br>
+<a href="gamedesign/Unity2D/CameraInspector.png" target=camInsp><img src="gamedesign/Unity2D/CameraInspector_thumb.png" align=right></a><b>b)</b> <b>Create</b> and  add this script to each of the two character cameras &quot;<b>CameraFollow.cs</b>&quot;. 
+<br>
+If the player character has the tag &quot;Player&quot; then this script will automatically find the player and load it into the playerObj target. <b>Set the offsetCam </b>values as desired (for the distance you want the camera to maintain from the character. Try X = 0, Y = 11, Z = -15).<br>
+
+    <center>
+<em>CameraFollow.cs</em>:
+      <table width=98% cellpadding=10 border=1>
+        <tr>
+          <td><font color=#3ab050><b>using</b></font> System.Collections; <br>
+                <font color=#3ab050><b>using</b></font> System.Collections.Generic;
+<br><font color=#3ab050><b>using</b></font> UnityEngine;<br>
+            <br>
+            <font color=#3ab050><b>public class</b></font> <font color=#31849b><b>CameraFollow</b> <b>:</b> <b>MonoBehaviour</b></font> {
+
+<p>
+&nbsp; &nbsp; [SerializeField]<br>
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font> Transform playerObj;<br>
+&nbsp; &nbsp; <font color=#31849b><b>public float</b></font> speed = <b><font color="#e36c0a">0.01f</font></b>;
+<br><br>
+&nbsp; &nbsp; [SerializeField]<br>
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font> Vector3 offsetCam;<br>
+<br>
+&nbsp; &nbsp; [SerializeField]<br>
+&nbsp; &nbsp; <font color=#31849b><b>private</b></font> Space offsetPositionSpace = Space.Self;<br>
+<br>
+&nbsp; &nbsp; [SerializeField]<br>
+&nbsp; &nbsp; <font color=#31849b><b>private</b></font> bool lookAt = true;<br>
+<br>
+&nbsp; &nbsp; <font color=#31849b><b>void</b></font> Start(){<br>
+&nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> (GameObject.FindWithTag("Player") != null) {<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; playerObj = GameObject.FindWithTag("Player").transform;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; }<br>
+&nbsp; &nbsp; }<br>
+<br>
+&nbsp; &nbsp; <font color=#31849b><b>private void</b></font> LateUpdate() {<br>
+&nbsp; &nbsp; &nbsp; &nbsp; MoveAndRotateCamera();<br>
+&nbsp; &nbsp; }<br>
+<br>
+&nbsp; &nbsp; <font color=#31849b><b>public void</b></font> MoveAndRotateCamera() {<br>
+&nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>Vector3</b></font> offsetCameraSide = new Vector3(offsetCam.x + <b><font color="#e36c0a">1</font></b>, offsetCam.y, offsetCam.z);<br>
+&nbsp; &nbsp; &nbsp; &nbsp; <font color=gray>//if (playerObj == null) { Debug.LogWarning("Missing playerObj ref !", this); return; }</font><br><br>
+&nbsp; &nbsp; &nbsp; &nbsp; <font color=gray>// compute position</font><br>
+&nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> (offsetPositionSpace == Space.Self) { 
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; transform.position =&nbsp;playerObj.TransformPoint(offsetCameraSide); }<br>
+&nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>else</font></b> {transform.position = playerObj.position + offsetCameraSide; }<br><br>
+&nbsp; &nbsp; &nbsp; &nbsp; <font color=gray>// compute rotation</font><br>&nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> (lookAt) { transform.LookAt(playerObj);}<br>
+&nbsp; &nbsp; &nbsp; &nbsp; <font color=gray>//else {transform.rotation = playerObj.rotation;}</font><br>
+&nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>else</font></b> {<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Transform fromRot = gameObject.transform;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Transform toRot = playerObj;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; transform.rotation = Quaternion.Lerp(fromRot.rotation, toRot.rotation, Time.time * speed);<br>
+&nbsp; &nbsp; &nbsp; &nbsp; }<br>
+&nbsp; &nbsp; }<br>
+}</td>
+</tr></table>
+</center>
+
+<br><br>
+ </td></tr>
+
+<tr><td>&nbsp;</td></tr>
+
+<tr>
+  <td bgcolor=#f2e6f5>
+<a name="map">&nbsp;</a>
+<br>
+
+    <center>
+<b><font size=+2 color=purple>[F] NAVIGATION: MINI-MAP</font></b>
+    </center>
+<br>
+<b><a href="#TOP"><img src="comicsDesign/ArrowUp.png" alt=""></a>
+CREATE A MINI-MAP WITH RENDER TEXTURE </b>(<a href="https://blog.theknightsofunity.com/implementing-minimap-unity/" target=minimap>source</a>)<b>:</b>
+
+<ol type="a">
+<li> Create a new Camera, name it &quot;camTop&quot;. Raise it high, pointed down (rotation X = 90).
+<li> Set the Camera &gt; Clear Flags from Skybox to Solid Color.
+<li> RightClick in the Project panel to create a <b> Render Texture</b> named &quot;camTop_RenderTexture&quot;. Set width and height to 1280x720 or 512x512. Drag it into the Camera <b>Target Texture</b> slot.
+<li> Create a GameObject &gt; <b>UI &gt; Raw Image</b>. Set width and height to same as Render Texture and change Scale X and Y to final size. Apply the Render Texture to the Texture slot.
+</ul>
+
+<br>
+To shape this MiniMap into something other than a rectangle: create a UI > Image, apply the Mask componnt, add a white-on-transparent image (like a <a href="gamedesign/Unity2D/circleMask512.png" target=circle>circle</a>), and make the Raw Image a child of this masked-image.
+<br><b>e)</b> Add a LERP script to the camera to follow the X and Z positon of the character, but not rotation or Y positon.
+
+<p>
+<center>
+<em>CameraMiniMap.cs</em>:
+  <table width=98% cellpadding=10 border=1>
+    <tr>
+      <td><br>
+          &nbsp; &nbsp;</td>
+    </tr>
+  </table>
+</center>
+<br>
+<b>TWO PLAYER MINIMAP</b> (<a href="https://answers.unity.com/questions/1142089/moving-camera-with-2-players.html" target=minimap2>source</a>):<br>
+Are you making a game with two characters, and want the camera to folow them both, getting closer when they move closer together, and further apart whn they separate? Try this:<br>
+<br>
+
+<center>
+<em>CameraMiniMapTwoPlayer.cs</em>:
+  <table width=98% cellpadding=10 border=1><tr>
+<td><font color=#3ab050><b>using</b></font> System.Collections; <br> 
+<font color=#3ab050><b>using</b></font> System.Collections.Generic; <br> 
+<font color=#3ab050><b>using</b></font> UnityEngine; <br>
+<br>
+<font color=#3ab050><b>public class</b></font> <font color=#31849b><b>CameraMiniMapTwoPlayer</b> <b>:</b> <b>MonoBehaviour</b></font> { <br>
+<br>	
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font> Transform p1; <br>	
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font> Transform p2; <br>	
+&nbsp; &nbsp; <font color=#31849b><b>public</b></font> Camera cam; <br>
+<br>    
+&nbsp; &nbsp; <font color=#31849b><b>void</b></font> Start(){ <br>		
+&nbsp; &nbsp; &nbsp; &nbsp; cam = gameObject.GetComponent&lt;Camera&gt;();
+<br>    
+&nbsp; &nbsp; } <br>
+<br>    
+&nbsp; &nbsp; <font color=#31849b><b>void</b></font> Update(){ <br>		
+&nbsp; &nbsp; &nbsp; &nbsp; FixedCameraFollowSmooth(cam, p1, p2); <br>    
+&nbsp; &nbsp; } <br>
+<br>	 
+&nbsp; &nbsp; <font color=#31849b><b>public void</b></font> FixedCameraFollowSmooth(Camera cam, Transform p1, Transform p2){ <br>     
+&nbsp; &nbsp; &nbsp; &nbsp; <font color=gray>// How many units should we keep from the players</font> <br>     
+&nbsp; &nbsp; &nbsp; &nbsp; float zoomFactor = <b><font color="#e36c0a">1.5f</font></b>; <br>     
+&nbsp; &nbsp; &nbsp; &nbsp; float followTimeDelta = <b><font color="#e36c0a">0.8f</font></b>; <br>
+<br>     
+&nbsp; &nbsp; &nbsp; &nbsp; <font color=gray>// Midpoint we're after</font> <br>     
+&nbsp; &nbsp; &nbsp; &nbsp; Vector3 midpoint = (p1.position + p2.position) / <b><font color="#e36c0a">2f</font></b>; <br>
+<br>     
+&nbsp; &nbsp; &nbsp; &nbsp; <font color=gray>// Distance between objects</font> <br>     
+&nbsp; &nbsp; &nbsp; &nbsp; float distance = (p1.position - p2.position).magnitude; <br>
+<br>     
+&nbsp; &nbsp; &nbsp; &nbsp; <font color=gray>// Move camera a certain distance</font> <br>     
+&nbsp; &nbsp; &nbsp; &nbsp; Vector3 camDest = midpoint - cam.transform.forward * distance * zoomFactor; <br>
+<br>     
+&nbsp; &nbsp; &nbsp; &nbsp; <font color=gray>// Adjust ortho size if we're using one of those</font> <br>     
+&nbsp; &nbsp; &nbsp; &nbsp; if (cam.orthographic) {
+<br>         
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // The camera's forward vector is irrelevant, only this size will matter <br>         
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; cam.orthographicSize = distance; <br>     
+&nbsp; &nbsp; &nbsp; &nbsp; } <br>     
+&nbsp; &nbsp; &nbsp; &nbsp; <font color=gray>// You specified to use MoveTowards instead of Slerp</font> <br>     
+&nbsp; &nbsp; &nbsp; &nbsp; cam.transform.position = Vector3.Slerp(cam.transform.position, camDest, followTimeDelta); <br>         
+<br>     
+&nbsp; &nbsp; &nbsp; &nbsp; <font color=gray>// Snap when close enough to avoid bad Slerp behavior</font>
+<br>     
+&nbsp; &nbsp; &nbsp; &nbsp; if ((camDest - cam.transform.position).magnitude <= <b><font color="#e36c0a">0.05f</font></b>) <br>         
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; cam.transform.position = camDest; <br>
+&nbsp; &nbsp; &nbsp; &nbsp; }
+<br>}      
+</td>
+</tr></table>
+</center>
+&nbsp;</td></tr>
+
+<tr><td>&nbsp;</td></tr>
+
+<tr>
+  <td bgcolor=#e0e9f8>
+<a name="navmesh">&nbsp;</a><br>
+    <center>
+      <b><font size=+2 color=purple>[G] NPC NAVMESH</font></b>
+    </center>
+<br>
+<b><a href="#TOP"><img src="comicsDesign/ArrowUp.png" alt=""></a>
+USING NAVMESH FOR 3D NPCs</b> 
+(<a href="https://youtu.be/u2EQtrdgfNs?si=wgykOkZG03jK3NKY" target=navmesh>source</a>)<b>:</b>
+
+<br>
+ NavMesh is a system in Unity to define walk-able and non-walkable areas for NPC AI. 
+ <br>NavMesh targets also give your NPC a &quot;smart route&quot; to navigate to a destination.
+<p>
+<b>The <font color=#119911>AI Navigation Package</font> has 4 main parts:</b>
+<ol type="a">
+<li> The Window &gt; AI &gt; <font color=#991199><b>Navigation panel</b></font>, to add  Agent Types (AI Character groups).
+<li> The <font color=#991111><b>NavMesh Surface</b></font> object, which defines the walkable surface, and can contain multiple <b>NavMeshSurface Components</b>, one for each Agent Type (AI character). 
+<li><b><font color=#111199> NPC Characters </font></b>with a <b><font color=#111199>NavMeshAgent Component</font>, </b>set to the correct Agent Type.<br>
+<li> Optionally, make Objects with a <b>NavMeshModifier Component</b> (to control how they are excluded from  NavMeshSurface), or a <b>NavMeshLink Component</b> (to make an Agent destination).
+</ol>
+
+<p>
+The following steps assume an environment (at least a ground box and some walls), a player character, and at least one NPC (at least a mesh and a collider):<br><br>
+<b>1.</b> <b>Install</b> the <b><font color=#119911>AI Navigation Package</font>:</b><br>
+Open Windows
+&gt; <b>Package Manager</b>. In upper left, set display to Unity Registry.<br>
+In upper right, search for &quot;ai&quot; to find and <b>[install]</b> AI Navigation. The Overlay AI window appears in the Scene view, lower right corner (rght click to collapse or expand)<b>.</b><br>
+
+
+<br>
+<br>
+<b>2.</b><b>Create AI Agent Types in the <font color=#991199>Navigation Panel</font>:</b><br>
+Open <b>Window > AI > Navigation</b> (the new one at top-- NOT the obsolete one)<br>
+<li> &nbsp;Under the Agents tab hit <b>[+]</b> to add an <b>Agent Type</b>.<br>
+<li> &nbsp;Give it a name, optionally set the radius (to determine what size doors it can move through). 
+
+<p>
+<b>3.</b> <b>Make and SetUp  the <font color=#991111>NavMesh Surface</font> Object</b><b>:</b><br>
+<b>a.</b> Create a GameObject
+&gt; <b>AI &gt; NavMesh Surface</b>. It will appear in the Hierarchy.<br>
+<br>
+<b>b.</b> Disable (hide) the Player/s and NPCs that are meant to be moveable, so they won't effect baking. 
+<br>
+<li> &nbsp;In the <b>Hierarchy</b>, select the new NavMeshSurface. In the <b>Inspector</b>, hit <b>[Bake]</b>.
+
+<br> 
+<li> &nbsp;The areas an AI character can navigate  should appear in blue. 
+<br>
+If  blue does not appear, look in the little, black &quot;<b>AI&nbsp;Navigation</b>&quot; overlay window to enable Surfaces > Show NavMesh, and 
+open Gizmos (Scene view upper-right) to be sure NavMeshSurface is enabled.<br><br> 
+<b>c.</b> The NavMesh can be <b>revised</b> and re-baked as many times as needed.<br>
+To control NavMesh exclusion of a specific environment object:<br>
+<li> &nbsp;[Add Component] &gt; <b>NavMesh Modifier</b> to that object, set <b>Mode = Remove Object</b>.<br>
+<li> &nbsp;Select the NavMesh Surface object and then hit <b>[Bake]</b> again.<br>
+<br>
+<b>d.</b> Add a new <b>NavMeshSurface COMPONENT</b> for each intended Agent Type:<br>
+<li> &nbsp;Select the NavMesh Surface Object.<br>
+<li> &nbsp;For each Agent Type added in the Navigation Panel, [Add Component] &gt; <b>NavMeshSurface</b>.<br>
+<li> &nbsp;Set the Agent Type to match, and then hit <b>[Bake]</b> again.
+
+<p>
+<b>3. Create actual AI Agents: <font color=#111199>NPC Characters</font></b> with the <b><font color=#111199>NavMeshAgent Component</font>:</b><br>
+<b>a.</b> Select the NPC Character Object in the Inspector, [Add Component] &gt; NavMeshAgent.<br>
+<li> &nbsp;Set <b>Agent Type</b> to the name in the Navigation panel, and set the <b>speed</b>, etc as desired.<br>
+
+<br>
+<b>b.</b> Create a <b>C# script</b> called &quot;<b>NavigationScript</b>.cs&quot; including the content below.<br>
+
+Save. In Unity apply to the NPC Character.<br>
+<br>
+    
+    <center>
+<em>NavigationScript.cs</em>:
+      <table width=98% cellpadding=10 border=1 bgcolor=#efefef>
+        <tr>
+          <td><font color=#3ab050><b>using</b></font> System.Collections; <br>
+            <font color=#3ab050><b>using</b></font> System.Collections.Generic; <br>
+            <font color=#3ab050><b>using</b></font> UnityEngine; <br>
+            <br>
+            <font color=#3ab050><b>public class</b></font><font color=#31849b><b> NavigationScript</b> <b>:</b> <b>MonoBehaviour</b></font> { 
+            <p>
+              &nbsp; &nbsp; <font color=#31849b><b>public</b></font> Transform player; <br>
+              &nbsp; &nbsp; <font color=#31849b><b>private</b></font> UnityEngine.AI.NavMeshAgent agent;
+              <p>
+&nbsp; &nbsp; <font color=#31849b><b>void</b></font> Start(){ 
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; 
+player = GameObject.FindWithTag(&quot;Player&quot;).GetComponent&lt;Transform&gt;(); <br>
+&nbsp; &nbsp; &nbsp; &nbsp; 
+agent = gameObject.GetComponent&lt;UnityEngine.AI.NavMeshAgent&gt;();
+<br>
+              &nbsp; &nbsp; } <br>
+              <br>
+              &nbsp; &nbsp; <font color=#31849b><b>void</b></font> Update(){ <br>
+              &nbsp; &nbsp; &nbsp; &nbsp; agent.destination = player.position; <br>
+              &nbsp; &nbsp; } <br>
+              <br>
+              } </td>
+        </tr>
+      </table>
+    </center>
+    <br>
+
+<br><br>
+
+
+    <center>
+      <img src="gamedesign/bullet.png" alt=""> &nbsp; <img src="gamedesign/bullet.png" alt=""> &nbsp; <img src="gamedesign/bullet.png" alt="">
+    </center>
+    <font face="arial"><br>
+<b>OLD (LEGACY) NAVMESH SYSTEM</b> (<a href="https://youtu.be/0k_2wfgo_6s" target=navmesh>source</a>): <br>
+<br>
+<b>1. Organize Environment Meshes: </b>Given an environment (Terrain and/or meshes), organize all Hierarchy elements under Empty Game Objects named &quot;Env_Walkable&quot; and &quot;Env_NotWalkable&quot;
+
+<br><br>
+Open <b>Window > AI > Navigation (Obsolete)</b> (the panel to set object NavMesh properties and bake): <br>
+<b>2. Define Walk-able Elements (Terrain or other ground meshes):</b><br>
+<b>a)</b> Object tab: select all &quot;Walkable&quot; object/s in scene (terrain or meshes), turn on Navigation Static, and set Navigation Area = walkable <br>
+<b>b)</b> Bake tab:  Hit <b>[Bake]</b>. In the Scene view, turn on <b>Show NavMesh</b> to see the walkable area in blue. <br><br>
+<b>3. Define Not-Walk-able Elements (Obstacles):<br>
+a)</b> Object tab: select all &quot;NotWalkable&quot; object/s in scene (meshes), turn on Navigation Static, and set Navigation Area = not-walkable <br>
+<b>b)</b> Bake tab:  Hit <b>[Bake]</b>. In the Scene view, turn on <b>Show NavMesh</b> to see the interruptions in the walkable area around your meshes. <br><br>
+<b>4. To make  interactive obstacles</b> (moves the holes in the NavMesh if moved in scene): <br>
+<b>a)</b> Select your not-walkable, interactive meshes and turn off <b>Navigation Static</b> and re-bake. <br>
+<b>b)</b> With these interactive meshes selected, [Add Component] &quot;<b>NavmeshObstacle</b>&quot;. Set shapes as desired (box or capsule). <br>
+Set <b>Carve</b> = on,  re-Bake into the NavMesh  
+<br>
+Move the object (with Navigation panel and Navmesh visible) to see the hole move with the object!
+
+<br><br>
+<b>5. NPCs: Add the NavMeshAgent Component, and a C# script to use it:</b><br>
+The NavMeshAgent allows any mobile Game Object (NPCs) to use a NavMesh: 
+
+<br>
+a) Make an NPC with a GameObject &gt; 3D &gt; cube. Reset Tranforms. Set ScaleY = 2, PositionY = 1. Remove the Collider component.
+<br>
+b) Create an Empty GameObject, reset Tranforms, name it &quot;NPC&quot;. Parent the cube to NPC.  
+<br>
+c) Select your NPC, [Add Component]  <b>BoxCollider</b>. Hit the Edit Collider button and move the bottom down to the base. <br>
+[Add Component] <b>NavMeshAgent</b>, set Speed (try 10 for a fast NPC) and AngularSpeed (how quickly it goes around obstacles: try 300) <br>
+d) Create a <b>C# script</b> called &quot;<b>NPCmove.cs</b>&quot;. Add the content below, which includes UnityEngine.AI namespace and a reference to the NavMeshAgent: <br>
+    </font><br>
+<center>
+<font face="arial"><em>NPCmove.cs</em> (this script moves the NPC based on mouse position): </font>
+<table width=98% cellpadding=10 border=1 bgcolor=#efefef><tr>
+<td><font face="arial"><font face="arial"><font color=#3ab050><b>using</b></font></font> System.Collections;<br> 
+  <font face="arial"><font color=#3ab050><b>using</b></font></font> System.Collections.Generic;<br> 
+  <font face="arial"><font color=#3ab050><b>using </b></font></font>UnityEngine;<br> 
+  <font face="arial"><font color=#3ab050><b>using</b></font></font> UnityEngine.AI;
+  
+<br><br>
+  <font color=#3ab050><b>public class</b></font> </font><b><font color=#31849b face="arial">NPCmove : MonoBehaviour</font></b><font color=#31849b face="arial">&nbsp;</font><font face="arial"> {<br>
+<br>
+&nbsp; &nbsp; <font color=#3ab050><b>NavMeshAgent</b></font> myAgent;<br>
+<br>
+&nbsp; &nbsp; <font color=#31849b><b>void</b></font> Start() {<br>
+&nbsp; &nbsp; &nbsp; &nbsp; myAgent = GetComponent&lt;NavMeshAgent&gt;();<br>
+&nbsp; &nbsp; }<br>
+<br>
+&nbsp; &nbsp; <font color=#31849b><b>void</b></font> Update() {<br>
+&nbsp; &nbsp; &nbsp; &nbsp; RaycastHit hit;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; <font color=#3ab050><b>if</b></font> (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), <font color=#31849b><b>out</b></font> hit, <b><font color="#e36c0a">100</font></b>)) { <br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; myAgent.destination = hit.point;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; }<br>
+&nbsp; &nbsp; }<br>}</td>
+</tr></table>
+</center>
+<font face="arial">Note the <b>.destination</b> method for NavMeshAgent navigates towards a specific location (a Vector3, which is a transform.position). In this first example that location is wherever the mouse clicks, but it can also be a character (like the player) or a set of patrol points.<br><br>
+See this <a href="https://docs.unity3d.com/ScriptReference/AI.NavMeshAgent.html" target=ai3>list of other useful methods</a> associated with the NavMeshAgent<br>
+<br>
+<b>6. ADD TARGETS:</b><br>
+NPCs typically patrol an area or attack the player (or other NPCs). This requires them to have the ability to target other objects. For a patrol behavior, these target objects are usually simple Gizmos (visible EmptyGameObjects) that are loaded directly into public GameObject slots in the NPC script. For Players, we usually load the Player dynamically through its tag &quot;Player&quot; and attack when the player gets close enough. Try this:<br>
+<br>
+</font>
+<center>
+  <font face="arial"><em>NPC_PatrolAndAttack.cs</em> (this script moves the NPC based on targets): </font>
+  <table width=98% cellpadding=10 border=1 bgcolor=#efefef>
+    <tr>
+      <td><font face="arial"><font face="arial"><font color=#3ab050><b>using</b></font></font> System.Collections;<br>
+        <font face="arial"><font color=#3ab050><b>using</b></font></font> System.Collections.Generic;<br>
+<font face="arial"><font color=#3ab050><b>using </b></font></font>UnityEngine;<br>
+<font face="arial"><font color=#3ab050><b>using</b></font></font> UnityEngine.AI; <br>
+<br><font color=#3ab050><b>public class</b></font></font><b><font color=#31849b face="arial"> NPC_PatrolAndAttack : MonoBehaviour</font></b><font face="arial"> {
+<br>
+<br>
+&nbsp; &nbsp; <font face="arial"><font face="arial"><font color=#31849b><b>private</b></font></font></font><font color=#3ab050><b> NavMeshAgent</b></font> myAgent;<br>
+&nbsp; &nbsp;<font face="arial"><font face="arial"><font color=#31849b><b> private</b></font></font></font> Transform playerTarget;<br>
+&nbsp; &nbsp; public Transform nextPatrolTarget;<br>
+<br>
+&nbsp; &nbsp; <font face="arial"><font color=#31849b><b>public</b></font></font> Transform patrolTarget1;<br>
+&nbsp; &nbsp; <font face="arial"><font color=#31849b><b>public</b></font></font> <font face="arial">Transform patrolTarget2</font>;<br>
+&nbsp; &nbsp; <font face="arial"><font color=#31849b><b>public</b></font></font> <font face="arial">Transform patrolTarget3</font>;<br>
+&nbsp; &nbsp; <font face="arial"><font color=#31849b><b>public</b></font></font> <font face="arial">Transform patrolTarget4</font>;<br>
+<br>
+&nbsp; &nbsp; <font face="arial"><font color=#31849b><b>public</b></font></font><font color=#3ab050><b> float </b></font>playerAttackDistance = <b><font color="#e36c0a">10f</font></b>;<br> 
+&nbsp; &nbsp; <font face="arial"><font color=#31849b><b>public</b></font></font><font color=#3ab050><b> float </b></font>patrolSwitchThreshold = <b><font color="#e36c0a">0.5f</font></b>;<br> 
+&nbsp; &nbsp; <font face="arial"><font color=#31849b><b>public</b></font></font><font color=#3ab050><b> float </b></font>distToPlayer;<br>
+&nbsp; &nbsp; <font face="arial"><font color=#31849b><b>public</b></font></font><font color=#3ab050><b> float </b></font> distToTarget;<br>
+&nbsp; &nbsp; <font face="arial"><font color=#31849b><b>public</b></font></font><font color=#3ab050><b> bool </b></font>attackPlayer = <font face="arial"><font color=#31849b><b>false</b></font></font>;<br>
+&nbsp; &nbsp; <font face="arial"><font color=#31849b><b>public</b></font></font><font color=#3ab050><b> bool </b></font>getNextTarget = <font face="arial"><font color=#31849b><b>true</b></font></font>;<br><br>
+&nbsp; &nbsp; <font color=#31849b><b>void</b></font> Start() {<br>&nbsp; &nbsp; &nbsp; &nbsp; myAgent = GetComponent&lt;NavMeshAgent&gt;();<br>
+&nbsp; &nbsp; &nbsp; &nbsp; <font color=#3ab050><b>if</b></font> (GameObject.FindWithTag(<b><font color="#e36c0a">&quot;Player&quot;</font></b>) != null) {<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; playerTarget = GameObject.FindWithTag(<b><font color="#e36c0a">&quot;Player&quot;</font></b>).GetComponent&lt;Transform&gt;();<br>
+&nbsp; &nbsp;&nbsp; &nbsp; }<br>
+&nbsp; &nbsp; &nbsp; &nbsp; nextPatrolTarget = patrolTarget1;<br>
+&nbsp; &nbsp; }<br>
+<br>	
+&nbsp; &nbsp; <font color=#31849b><b>void</b></font> Update() {<br>
+<font face="arial">&nbsp; &nbsp; </font>&nbsp; &nbsp; <font color=gray>//get distances to player and next target</font><br>		
+&nbsp; &nbsp; &nbsp; &nbsp; distToPlayer = Vector3.Distance(playerTarget.position, gameObject.transform.position);<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; distToTarget = Vector3.Distance(nextPatrolTarget.position, gameObject.transform.position);<br>				
+<br>
+<font face="arial">&nbsp; &nbsp; </font>&nbsp; &nbsp; <font color=gray>//is the player close enough to attack?</font><br>		
+<font face="arial">&nbsp; &nbsp; </font>&nbsp; &nbsp; <font color=#3ab050><b>if</b></font> (distToPlayer <= playerAttackDistance) {<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; attackPlayer = <font face="arial"><font color=#31849b><b>true</b></font></font>;<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; } <font color=#3ab050><b>else</b></font> {<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; attackPlayer = <font face="arial"><font color=#31849b><b>false</b></font></font>;<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; }<br>		
+<br>
+<font face="arial">&nbsp; &nbsp; </font>&nbsp; &nbsp; <font color=gray>//am I moving towards the player or my next patrol location?</font><br>		
+<font face="arial">&nbsp; &nbsp; </font>&nbsp; &nbsp; <font color=#3ab050><b>if</b></font> (attackPlayer == <font face="arial"><font color=#31849b><b>true</b></font></font>) {<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; myAgent.destination = playerTarget.position;<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; } <font color=#3ab050><b>else</b></font> {<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; myAgent.destination = nextPatrolTarget.position;<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; }<br>		
+<br>
+<font face="arial">&nbsp; &nbsp; </font>&nbsp; &nbsp; <font color=gray>//have a I reached a patrol destination, so I should switch to the next?</font><br>		
+<font face="arial">&nbsp; &nbsp; </font>&nbsp; &nbsp; <font color=#3ab050><b>if</b></font> (distToTarget <= patrolSwitchThreshold){<br>			
+<font face="arial">&nbsp; &nbsp; </font>&nbsp; &nbsp; &nbsp; &nbsp; <font color=#3ab050><b>if</b></font> (getNextTarget == <font face="arial"><font color=#31849b><b>true</b></font></font>){<br>				
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; StopCoroutine(FindNextPatrolTarget());<br>				
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; StartCoroutine(FindNextPatrolTarget());<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; getNextTarget = <font face="arial"><font color=#31849b><b>false</b></font></font>;<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; } <font color=#3ab050><b>else if</b></font> (distToTarget >= (patrolSwitchThreshold * <b><font color="#e36c0a">10</font></b>)){<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; getNextTarget = <font face="arial"><font color=#31849b><b>true</b></font></font>;<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; }<br>	
+&nbsp; &nbsp; }<br>
+<br>	
+&nbsp; &nbsp; IEnumerator FindNextPatrolTarget(){ <br>		
+&nbsp; &nbsp; &nbsp; &nbsp; <font color=#3ab050><b>yield return new</b></font>  WaitForSeconds (<b><font color="#e36c0a">0.1f</font></b>); <font color=gray>//pause at destination</font>
+<br>&nbsp; &nbsp; &nbsp; &nbsp; <font color=gray>//Debug.Log("Current at " + nextPatrolTarget + ". Getting next target.");</font><br>		
+<font face="arial">&nbsp; &nbsp; </font>&nbsp; &nbsp; <font color=#3ab050><b>if</b></font> (nextPatrolTarget == patrolTarget1){nextPatrolTarget = patrolTarget2;}<br>		
+<font face="arial">&nbsp; &nbsp; </font>&nbsp; &nbsp; <font color=#3ab050><b>else if</b></font> (nextPatrolTarget == patrolTarget2){nextPatrolTarget = patrolTarget3;}<br>		
+<font face="arial">&nbsp; &nbsp; </font>&nbsp; &nbsp; <font color=#3ab050><b>else if</b></font> (nextPatrolTarget == patrolTarget3){nextPatrolTarget = patrolTarget4;}<br>		
+<font face="arial">&nbsp; &nbsp; </font>&nbsp; &nbsp; <font color=#3ab050><b>else if</b></font> (nextPatrolTarget == patrolTarget4){nextPatrolTarget = patrolTarget1;}<br>
+&nbsp; &nbsp; }<br>}</td>
+</tr></table>
+</center>
+
+</td></tr>
+
+<tr><td>&nbsp;</td></tr>
+
+<tr>
+  <td bgcolor=#f2e6f5><font face="arial">
+<a name="URP">&nbsp;</a>
+<br><br>
+</font>
+<center>
+<font face="arial"><b><font size=+2 color=purple>[H] UNIVERSAL RENDER PIPELINE (EFFECTS)</font></b> </font>
+</center>
+
+<font face=arial>&nbsp; 
+
+<br>
+<b><font face=arial><a href="#TOP"><img src="comicsDesign/ArrowUp.png" alt=""></a></font></b> How to <a href="https://docs.unity3d.com/Packages/com.unity.render-pipelines.universal@7.1/manual/InstallURPIntoAProject.html" target=urpInstall><b>install</b></a>
+ the URP package, 
+<br><br> 
+<a href="GameDesign/Unity3D/URP_install.png" target=URP5><img src="GameDesign/Unity3D/URP_install_thumb.png" align=right></a>
+<b>1. INSTALL THE PACKAGE: </b><br>
+<ul>
+<li> Open the Window &gt; Package Manager
+
+<br><br>
+<li> In the upper-left corner change the left-most filter from &quot;In Project&quot; to &quot;<b>Unity Registry</b>&quot;.
+
+<br><br>
+ 
+<li> In the upper-right search bar type &quot;Universal&quot; to find the Universal RP (Render Pipeline).
+
+Hit [Install] and wait. When complete, you will have access to the Shader Graph for making custom shaders!
+</ul>
+
+<br><br><br><br>
+<p>BUT YOU ARE NOT DONE: YOU MUST SET-UP URP RENDERER CONFIGURATION!<br><br>
+
+<b>2. SET UP THE RENDERER:</b><br>
+a. Create a Universal Render Pipeline Asset:
+<ul>
+<li> &nbsp;Right-click the Project panel &gt; Assets folder. Choose Create &gt; Renderer
+&gt; <strong>URP Asset (With Universal Renderer)</strong>.
+<li> &nbsp;This creates a <strong>New Universal Render Pipeline</strong><strong> Asset</strong>
+</ul>
+
+
+<br>
+b. Add this Renderer Asset in your Project Settings:
+<ul>
+<li> &nbsp;Open the Edit menu &gt; Project Settings &gt; Graphics.
+<li> &nbsp;Under the top Scriptable Render Pipeline Settings hit the hotspot to choose your new Asset.
+</ul>
+
+<br>
+<b>3. CONVERT YOUR <a href="https://youtu.be/JjHwpP6elnc?si=tzHwOWzILPl68gEo" gtarget=pink>MATERIALS</a> 
+OVER TO URP:</b><br>
+When you install URP any existing materials turn purple bright purple. This indicates an error in the material: they need to be updated for URP!
+<ul>
+<li>
+Confirm your shader install: Go to Edit > Project Settings > Graphics.  
+<li>
+ Go to Edit &gt; Rendering &gt; Materials, chose &quot;Upgrade Selected Materials to URP&quot;.
+</ul>
+
+<br>
+<br><br><br> 
+<a href="GameDesign/Unity3D/URP_shadows.png" target=URP5><img src="GameDesign/Unity3D/URP_shadows_thumb.png" align=right></a>
+<b>4. FIX YOUR SHADOWS</b> (source <a href="https://courses.dce.harvard.edu/?details&srcdb=202403&crn=34727" target=shadows>video</a>):<br>Are your URP shadows choppy and pizelated?<br>
+<br>
+Here is a quick fix:<br>In the Project panel select the"<b>New Universal Render Pipeline Asset</b>".<br>
+In the Inspector under "<b>Shadows</b>":<br>
+<ul>
+<li> &nbsp;Set <b>Cascade Count</b> from 1 to <b>4</b>.<br>
+<li> &nbsp;Set <b>Soft Shadows = enabled</b>.
+</ul>
+
+<br><br>
+Also, lower Normal Bias creates more self-shadowing artifacts.<br>
+Try as low as 0.1, but never down to 0.<br><br><br><br>
+<br>
+<b>SAMPLE EFFECTS:</b><br>
+<a href="https://www.youtube.com/watch?v=2PBgCl-zIZQ" target=emmissive><b>Emmissive</b></a> materials (glow effect) <br><br>
+    
+<a href="https://youtu.be/MXZ578OXOog?si=1WUL946vDDQxsveF" target=toon1><b>Toon Shader</b></a> materials (cartoon / cell-shading effect) 
+<br><br>
+
+<a href="https://youtu.be/1GPvI-5bOSk?si=gV_codmvsUSsKty4" target=fresnel><b>Fresnel Shader</b></a> materials (glowing crystals / outer glow effect)
+
+
+
+<br><br>
+<a href="https://youtu.be/tI3USKIbnh0?si=-4WA3gC7dFky_8ko" target=toon1><b>Potion in a Bottle</b></a> materials (realistic movement) <br><br><br><br>
+<p><b>DECAL PROJECTORS </b>(sources: 
+<a href="https://docs.unity3d.com/Packages/com.unity.render-pipelines.universal@12.0/manual/renderer-feature-decal.html" target=decal1>Decal basics</a>
+ | 
+
+<a href="https://docs.unity3d.com/Packages/com.unity.render-pipelines.universal@12.0/manual/urp-renderer-feature-how-to-add.html" target=decal2>Add to Renderer</a>
+ | 
+<a href="https://portal.productboard.com/unity/1-unity-platform-rendering-visual-effects/c/1076-decal-layers" target=decal3>Layers</a> and 
+
+
+<a href="https://docs.unity3d.com/Packages/com.unity.render-pipelines.universal@16.0/manual/features/rendering-layers.html" target=decal3>Exclusion</a>)<b>:</b><br>
+A Decal projector can be used to add detail on a surface (like grafitti), or to act a real world light projector. Can also be used for a player ID circle on the ground:
+
+<br><br>
+<b>1. ADD THE DECAL FEATURE:</b> Select your <b>Renderer</b> asset (&quot;New Universal Render Pipeline Asset_Renderer&quot;), at bottom click <b>[Add Renderer Feature]</b>, choose "<b>Decal</b>".
+In the Render Pipeline Asset, make sure &quot;Depth Texture&quot; is enabled.
+
+<br><br>
+<b>2. ADD PROJECTOR:</b> RightClick Hierarchy for Rendering > <b>URP Decal Projector</b>. In the Inspector set the Width, Height, and Projection Depth.
+
+<br><br>
+<b>3. ADD MATERIAL:</b> Import the 3D texture image to be projected. In the Inspector set it to Sprite, [Apply]. Create a new Material, set the shader to Decal Shader Graph (search for Decal, choose top option). Apply the 2D sprite to the first slot. Apply the Materila to the projector 
+
+<br><br>
+<b>4. OPTIONALLY, EXCLUDE CERTAIN OBJECTS FROM DECALS:</b> 
+
+<br>
+This can be helpful when we want to project detail onto a wall but not on an object in front of the wall.
+<ul>
+<li> Back in the <b>Rendering Asset</b>, under the added <b>Decal</b> feature, <b>enable</b> &quot;<b>Use Rendering Layers</b>&quot;
+<br>(NOTE: this will add to rendering performance cost).
+<br>
+<li> Select the <b>UniversalRenderPipelineGlobalSettings</b> object or go to <b>Project Settings > Graphics > URP Global Settings</b>. Under "Rendering Layers" hit <b>[+]</b> to add a Layer. Name it "<b>GetsDecals</b>". 
+<br>
+<li> Select your Decal Projector in the Scene or Prefab. Set the <b>Rendering Layer</b> = GetsDecals. 
+
+<li> Select the environment Meshes you want to <em><b>INCLUDE</b></em> from Decals. Under Additional Settings in the <b>Rendering Layer Mask</b> ADD GetsDecals (or click &quot;Everything&quot;).
+<li> Select the Meshes you want to <em><b>EXCLUDE</b></em> from Decals. Under Additional Settings in the <b>Rendering Layer Mask</b>  <em>REMOVE</em> GetsDecals.
+
+<br><br>
+Now the Decal Projector will not effect that Mesh!
+</ul>
+<br><br>
+<br>
+<br>
+</td>
+</tr></table>
+
+<!--
+<img src="gamedesign/Unity2D/sdfsdff.png">
+-->
+
+<table width=750 cellpadding=10 border=0>
+<tr>
+	<td colspan=2>
+
+<!-- start of bottom code -->
+
+<!--
+
+<center>
+<font size=+2 face="arial"><b>PLAYER MELEE FIGHTING</b></font>
+</center><font face=arial><b>MELEE:</b>
+(<a href=="" target=shoot>Source Video</a>)
+<img src="gamedesign/Unity2D/sdfsdf.png" width=256 align=right border=1>
+<br>
+Your character animation frames can be  a single <b>spritesheet</b>. Select a spritesheet in the  Project and in the Inspector set it from Single to <b>Multiple</b>, hit <b>[Apply]</b>, and <b>Slice</b> to get a file for each image (in Project hit  the spritesheet triangle  to view all). <br>
+<br>
+Apply
+<a href="GameDesign/Unity2D/PlayerShooting.cs" target=unity><b>PlayerMelee.cs</b></a> script to the <b>Player</b>. In Inspector drag the FirePoint from the Hierarchy to the script slot, and the Projectile prefab from the Project into the Script slot. PLAYTEST! 
+<br><br>
+<em><b>Create an Impact Prefab:</b></em>
+<br>
+<b>Drag</b> the impact sprite  into the Hierarchy, name it &quot;Impact,&quot; set Order in Layer = 14.
+<li>Drag the Impact into the Project to make a <b>Prefab</b> and <b>delete</b> it from the Hierarchy.</font>
+<li><font face="arial"> Finally, <b>drag the Impact Prefab</b> to the Effect script slot.
+
+<br>
+<br>
+To make our Player vulnerable to enemies, add the <a href="GameDesign/Unity2D/PlayerHit.cs" target=unity><b>PlayerHit.cs</b></a> script, and drag the Impact prefab into the script slot.
+</font>
+
+<br>
+<br>
+<center>
+  <font size=+2 face="arial"><b>FRIENDLY NPCs</b></font>
+</center>
+<font face="arial">Artificial Intelligence for NPCs in games is not typically advanced learning algorythms, but instead a <b>simple list of responses to specific conditions in the game</b>. For example, consider an enemy that shoots at the player. It moves towards the player until it reaches a specified distance, and retreats if the player gets too close. All of these are responses to one piece of data: the distance from the player. We can capture that data and test against it in the Update() function to decide what the enemy will do.<br><em><b>NOTE:</b></em> These 3 Enemy types/scripts work equally well on 3D games, with Physics modifications:
+
+<br><br>
+<img src="gamedesign/Unity2D/dfgdf" align=right width=256 border=1>
+<b>NPC #1: <font color=purple>2D PATHFINDING</font></b> 
+(<a href="https://www.youtube.com/watch?v=jvtFUfJ6CP8" target=vid>source video</a>)<br>
+This NPC follows a particular path. It an be used for villagers moving about their day or a patrolling guard.<br><br>
+<b>Add NPCpath sprite</b> to Hierarchy. </font>
+<li><font face="arial">Set &quot;Order in Layer&quot; = 4, apply <b>tag</b> &quot;enemy&quot; (create if needed). </font>
+<font face="arial">
+<li>Reset Transforms (0,0,0). 
+<li>Add <b>Physics2D &gt; Rigidbody2D</b>, set <b>Mass = 3</b> and <b>Gravity Scale = 0</b>.
+<li>Add <b>Physics2D &gt; Collider2D</b> (box or circle, set size).
+<li>Apply <a href="GameDesign/Unity2D/EnemyMoveHit.cs" target=unity><b>xxxxx.cs</b></a>.
+<li>Drag to the Project to make a <b>Prefab</b> and <b>delete</b> from the Hierarchy. 
+
+<br><br>
+<img src="gamedesign/Unity2D/dfgdf" align=right width=256 border=1>
+<b>NPC #2:<font color="purple">DIALOGUE</font></b> 
+(<a href="https://www.youtube.com/watch?v=jvtFUfJ6CP8" target=vid>source video</a>)<br>
+This enemy follows the player. If it reaches the player it causes damage and disappears. It takes a specified amount of bullet damage before being removed.<br><br>
+<b>Add NPCdialogue sprite</b> to Hierarchy. </font>
+<li><font face="arial">Set &quot;Order in Layer&quot; = 4, apply <b>tag</b> &quot;enemy&quot; (create if needed). </font>
+<font face="arial">
+<li>Reset Transforms (0,0,0). 
+<li>Add <b>Physics2D &gt; Rigidbody2D</b>, set <b>Mass = 3</b> and <b>Gravity Scale = 0</b>.
+<li>Add <b>Physics2D &gt; Collider2D</b> (box or circle, set size).
+<li>Apply <a href="GameDesign/Unity2D/EnemyMoveHit.cs" target=unity><b>xxxxx.cs</b></a>.
+<li>Drag to the Project to make a <b>Prefab</b> and <b>delete</b> from the Hierarchy. 
+
+
+<br><br><br><br><br><br>
+<center>
+    <font size=+2 face="arial"><b>INVENTORY SYSTEM</b></font>
+  </center>
+An inventory lets us store objectives the Player needs to collect to win, or items for later use (keys, health potions, alternate weapons, etc).
+    
+<br><br>
+<b>SETTING UP  INVENTORY UI:</b> (<a href="https://youtu.be/-xB4xEmGtCY" target=ui1>source video</a>)
+Select the <b>Canvas</b> object in Hierarchy, rename &quot;<b>HUD</b>.&quot;
+<li><b>PANEL: </b>Create a <b>UI &gt; Panel</b> for the inventory background. Align to the bottom-center, size (hit Anchor Preset, choose Center, then width=270 x height=60) and for the Source Image choose a basic button sprite and set to a semi-transparent gray. Name the Panel "<b>Inventory</b>."
+  
+<li><b>SLOT: </b>Make a <b>UI &gt; Image</b>. parent beneath &quot;Inventory,&quot; size 50x50, dark color, name it &quot;<b>Slot</b>.&quot; This will be the background for trhe slot (children appear atop parents).<li><b>BORDER:</b> <b>Duplicate</b> the first image ([Cmd/Ctrl]+[d]), <b>parent</b> below Slot, and name &quot;<b>Border</b>.&quot; Size 50x50, import a PNG with a thin border. Open the [Sprite Editor] and set all borders = 4 so it will scale well. Assign this sprite as Source Image, set color to white. 
+Add component <b>UI &gt; Button</b>, and assign a  <b>Highlight</b> <b>Color</b>. Play to see rollover effect.<br>
+<li><b>ITEM IMAGE: </b>Create a new image, parent below Border, and name &quot;<b>ItemImage</b>.&quot; Import an inventory item sprite as the Source Image and size to fit. 
+<li>Create more slots: duplicate Slot. Select its ItemImage, set Source Image to &quot;None,&quot; and disable the Image component. 
+<li>Select the Inventory Panel, add component <b>Layout &gt; Horizontal Layout Group</b>. Set Child Alignmment to middle-center. Now, when Slots are duplicated, they space themseves evenly on the Panel.<br>
+  <br>
+  <b>INVENTORY SCRIPTS: </b>
+(<a href="https://youtu.be/Hj7AZkyojdo" target=ui1>source video</a>)
+<li>Create a <b>new Empty GO</b>, name it &quot;<b>InventoryManager</b>.&quot; Apply the <a href="GameDesign/Unity2D/InventoryManager.cs" target=unity><b>InventoryManager.cs</b></a> script (list of inventory items, manages events for item Add and Remove). 
+Also add <a href="GameDesign/Unity2D/InventoryItem.cs" target=unity><b>InventoryItem.cs</b></a> to the project, to define the Interface referenced by Inventory.cs.
+<li> Apply <a href="GameDesign/Unity2D/InventoryPlayer.cs" target=unity><b>InventoryPlayer.cs</b></a> script to Player (to call  Inventory.cs when a pick-up-able item is touched), and <b>drag the Inventory GO</b> into the script slot.
+<li> Apply <a href="GameDesign/Unity2D/InventoryHUD.cs" target=unity><b>InventoryHUD.cs</b></a> script to the Canvas HUD (to make the UI changes).
+<li> Add and modify a <a href="GameDesign/Unity2D/InventoryObject.cs" target=unity><b>InventoryObject.cs</b></a> script to each object we want to be pick-up-able.
+</font>
+
+-->
+
+<!-- end of bottom code -->
+
+<br>
+<font face=arial>
+
+<br>
+<br><br>
+<i>Tutorials compiled by Jason Wiser, Madwomb.com</i>
+<br>
+</td></tr>
+</table>
+
+<br><br><br><br><br>
+
+
+<!-- old
+
+<br><br><br><br>
+<b>PLAYER MOVEMENT</b> 
+(<a href="https://youtu.be/7KiK0Aqtmzc" target=betterJump>Better Jumping source video</a>):
+<li>moving: 
+<a href="https://youtu.be/dwcT-Dch0bA" target="_blank">https://youtu.be/dwcT-Dch0bA</a> 
+<li>jumping: <a href="https://youtu.be/j111eKN8sJw" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://youtu.be/j111eKN8sJw&source=gmail&ust=1579200963392000&usg=AFQjCNEV64Dr0QlIoVbqFFLAGEyF2_MWQQ">https://youtu.be/j111eKN8sJw</a> 
+<li>wall jumping: <a href="https://youtu.be/STyY26a_dPY" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://youtu.be/STyY26a_dPY&source=gmail&ust=1579200962787000&usg=AFQjCNEMpytesWvBLc8Mh6wEIvJHRiiF7A">https://youtu.be/STyY26a_dPY</a> <br> 
+  Add Character sprite to Hierarchy 
+  
+<br><br>
+Introduction to LERP for smooth transitions: <br>
+<li> LERP <a href="https://youtu.be/cD-mXwSCvWc" target=LERP1><b>Basics</b></a>: object motion, light intensity, color <br>
+<li> <a href="https://youtu.be/MFQhpwc6cKE" target=LERP2><b>Smooth</b></a> LERP Camera Following. <br>
+<li> Example <a href="gamedesign/CameraControlLERP.txt" target=LERP3><b>LERP code</b></a>. 
+<br><br><br>
+
+<li> <a href="https://www.youtube.com/watch?v=QkisHNmcK7Y" target=parallax><b>Parallax Scrolling</b></a> alternative script design 
+
+(Manage the <a href="https://answers.unity.com/questions/743148/display-quad-over-sprites.html" target=sort>sorting order</a> between sprites and quads). 
+
+-->
+
+
+</center>
+
+</body>
+</html>

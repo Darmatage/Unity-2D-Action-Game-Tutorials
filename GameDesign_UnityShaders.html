@@ -1,0 +1,662 @@
+<html>
+<head>
+<title>Unity2D Tilemapping Tutorial</title>
+</head>
+
+<body text=#222222 link=#1e6669 vlink=#7700aa alink=#1088bb>
+
+<center>
+<table width=800 cellpadding=10 border=0>
+<tr>
+  <td valign=top><font face=arial>
+<a href="GameDesign_Unity.html"><img src="gamedesign/UnityLogo60.png" alt="" align=right></a><font size=+2><b>UNITY  - Shader Scripting</b></font>
+<br>
+
+This tutorial covers an introduction to Unity Shaders. 
+  </font>
+<br><br>
+
+    <table width=100% cellpadding=10><tr>
+<td width=35% valign=top bgcolor=#ebf3f5><font face=arial> <strong>Steps:</strong><br>
+&nbsp; Follow these <a href="#steps"><strong>steps</strong></a> for adding a custom ShaderScript
+
+
+<br>
+<br></font></td>
+<td width=35% valign=top bgcolor=#f5f2f8><font face=arial><strong>Script:</strong> 
+<br>
+&nbsp; Click <strong><a href="#script1"> here</a></strong> for the sample script<br>
+&nbsp;</font></td>
+<td width=30% valign=top bgcolor=#eef5e9><font face=arial>
+
+<strong>Links:</strong><br>
+&nbsp; learn more at these <a href="#links"><strong>links</strong></a><br>
+&nbsp;</font></td>
+
+
+</tr>
+</table>
+<center>
+<table width=100% cellpadding=10><tr>
+  <td><font face=arial>
+<strong>Intro: </strong>
+<br>
+ Shaders allow game developers to add detail and unique look and feel to individual art assets models and the overall look of the game. New shaders are as simple to add to Unity as any other script. 
+</font></td></tr></table>
+
+</td></tr></table><br>
+<table width=800  cellpadding=10 border=0 bgcolor=#ebf3f5><tr>
+<td bgcolor=#d8e8f5><center>
+<font size="+2" face="arial"><b>STEPS TO IMPLEMENT A SHADER SCRIPT:</b>
+</font>
+</center></td>
+</tr><tr><td>
+
+<table width=100% cellpadding=5><tr>
+  <td width=60% valign=top><font face=arial><a href="#TOP"><img src="comicsDesign/ArrowUp.png" alt=""></a> <a name="steps">&nbsp;</a></font><font face=arial>
+
+
+<br><br>
+<strong>1.</strong> In <strong>Unity</strong>, Rightclick in the Project panel to make a new <strong>Unlit shader</strong>. 
+
+Name it to match the script Shader name.<br>
+<br>
+<em>Example below:</em> Name the shaderscript "<strong>SectionPlane</strong>". 
+<br>
+<br><br><br>
+</font></td>
+<td width=40% valign=top align=center><font face=arial><br><br>
+</font></td>
+</tr><tr>
+<td valign=top><font face=arial> <strong>2. Open</strong> the ShaderScript in your text editor and replace all the shadercode with the script. <br><br>
+<em>Example:</em> See script below
+
+<br><br>
+<br>
+</font></td><td align=center><font face=arial><a href="gamedesign/Unity2D/tilemapping_inspectorB.png"></a></font></td>
+</tr><tr>
+<td valign=top><font face=arial>  <strong>3.</strong> <strong>Save</strong> and click on <strong>Unity</strong> to compile. <br><br><br><br>
+  </font></td>
+<td valign=top align=center><font face=arial><a href="gamedesign/Unity2D/tilemapping_process01.png" target=new1></a>
+<br></font></td>
+</tr><tr>
+<td valign=top><font face=arial><strong>4.</strong> Rightclick in the Project panel to make a <strong>new Material</strong>. <br><br><br><br></font></td>
+<td valign=top align=center><font face=arial><a href="gamedesign/Unity2D/tilemapping_process05.png" target=new2></a><br><br></font></td>
+</tr><tr>
+<td valign=top><font face=arial><strong>5.</strong> In the <strong>Inspector</strong>, set the shader to the name of your ShaderScript (in this case, "IppokratisBournellis/SectionPlane"
+)<br>
+<br><br><br></font></td>
+<td valign=top align=center><font face=arial><a href="gamedesign/Unity2D/tilemapping_process06.png" target=new3></a>
+<br>
+</font></td>
+</tr><tr>
+<td valign=top><font face=arial><strong>6. Drag</strong> the Material onto a 3D Object in a scene, like a sphere. <br><br><br><br></font></td>
+<td valign=top align=center><font face=arial><br><br>
+  <br>
+</font></td>
+</tr><tr>
+<td valign=top><font face=arial><strong>7.</strong> Select the material in the Project panel and in the <strong>Inspector</strong> play with the  x/y/z and w values to see the cross section work. <br><br><br><br>
+</font></td>
+  <td valign=top align=center><font face=arial><a href="gamedesign/Unity2D/tilemapping_inspector.png" target=tmInsp></a></font></td>
+</tr>
+</table>
+<br></td>
+</tr><tr>
+<td bgcolor=#d8e8f5><font face=arial>
+<a href="#TOP"><img src="comicsDesign/ArrowUp.png" alt=""></a>
+<a name="script1">&nbsp;</a>
+<br>
+<strong>Sample shader script</strong>, to get a <strong>cross-section of 3D geometry</strong> in-game: <br>&quot;<strong>Section Plane</strong>&quot; by Ippokratis Bournellis
+<br>
+(Source: post #45 in this <a href="https://forum.unity.com/threads/simple-cross-section-shader.34508/?_ga=2.97417244.2058461734.1637294232-274279084.1632427317">thread</a>)<br>
+<br>
+
+</font><center>
+<font face="arial"><em>SectionPlane.cs</em>:
+</font>
+<table width=98% cellpadding=10 border=1 bgcolor=#eeeeee><tr>
+<td><font face=arial>
+
+<font color=#3ab050><b>Shader</b></font></font> <font color=#31849b face="arial"><b>IppokratisBournellis/SectionPlane</b></font><font face="arial"><br>
+     {<br>&nbsp; &nbsp; &nbsp; Properties<br>        
+&nbsp; &nbsp; &nbsp; {<br>          
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; _MainTex (<strong><font color=#ed6c0a>&quot;Texture&quot;</font></strong>, 2D) = <strong><font color=#ed6c0a>&quot;white&quot;</font></strong> {}<br>          
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; _section ("Section plane (x angle, y angle, z angle, w displacement)", vector) = (<strong><font color=#ed6c0a>0</font></strong>,<strong><font color=#ed6c0a>0</font></strong>,<strong><font color=#ed6c0a>0</font></strong>,<strong><font color=#ed6c0a>0.15</font></strong>)<br>          
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; _Color ("Section Color", Color) = (<strong><font color=#ed6c0a>1</font></strong>,<strong><font color=#ed6c0a>1</font></strong>,<strong><font color=#ed6c0a>1</font></strong>,<strong><font color=#ed6c0a>0</font></strong>)<br>        
+&nbsp; &nbsp; &nbsp; }<br><br>       
+        &nbsp; &nbsp; &nbsp; SubShader<br>        
+        &nbsp; &nbsp; &nbsp; {<br>          
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Tags { <strong><font color=#ed6c0a>&quot;RenderType&quot;</font></strong> = <strong><font color=#ed6c0a>&quot;Opaque&quot;</font></strong> }<br>          
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Cull Off <br>       
+<br>          
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; CGPROGRAM <br>          
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; #pragma surface surf Lambert <br>    
+<br>          
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>struct</b></font> Input<br>          
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {<br>              
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>float2</b></font> uv_MainTex;<br>              
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>float3</b></font> worldPos;<br>              
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>float3</b></font> viewDir;<br>              
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>float3</b></font> worldNormal;<br>          
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; };<br>
+<br>          
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; sampler2D _MainTex;<br>          
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; sampler2D _BumpMap;<br>          
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; float4 _section;<br>          
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; fixed4 _Color;<br><br>         
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>void</b></font> surf (Input IN, inout SurfaceOutput o)<br>          
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {<br>            
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; float toClip = _section.x * <strong><font color=#ed6c0a>0.1</font></strong> * IN.worldPos.x +<br>                           
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; _section.y * <strong><font color=#ed6c0a>0.1</font></strong> * IN.worldPos.y +<br>                           
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; _section.z * <strong><font color=#ed6c0a>0.1</font></strong> * IN.worldPos.z +<br>                           
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; _section.w;<br>
+          <br>            
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; clip( toClip);<br>
+          <br>            
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; float fd = dot( IN.viewDir, IN.worldNormal);<br><br> 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#3ab050><b>if</b></font> (fd.x > <strong><font color=#ed6c0a>0</font></strong>)<br>            
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {<br>                
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; o.Albedo = tex2D (_MainTex, IN.uv_MainTex).rgb;<br>                
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return;<br>            
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br>
+<br>            
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; o.Emission = _Color;<br>          
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br>          
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ENDCG<br>        
+&nbsp; &nbsp; &nbsp; }<br>        
+&nbsp; &nbsp; &nbsp; Fallback "Diffuse"<br>     }
+
+<br><br><br>
+</font></td>
+</tr></table>
+</center><font face=arial>
+
+<br><br><br>
+</font></td>
+</tr>
+
+<tr>
+<td><font face=arial><a name="links"><font face="arial">&nbsp;</font></a> <br>
+<a href="#TOP"><font face="arial"><img src="comicsDesign/ArrowUp.png" alt=""></font></a></font></td>
+</tr>
+
+<tr>
+<td><font face="arial"><b>Learning Links:</b></font>
+<li><font face="arial">Intro to <a href="https://youtu.be/JfC_ye23MvY" target=red1>writing / modifying shaders</a> (35 min)</font><li><font face="arial">Unity learning sequence <a href="https://learn.unity.com/tutorial/writing-your-first-shader-in-unity" target=tm7>shaders</a></font><br>
+<br>
+</td>
+</tr></table>
+
+<!--
+<br><br>
+<table width=800 cellpadding=5 bgcolor=#f5f2f8><tr>
+<td colspan=2 bgcolor=#efe8f6><center>
+  <font size="+2" face="arial"><b>CHJGJGHJR:</b></font>
+</center></td>
+</tr><tr>
+
+
+<td width=500 valign=top><font face=arial><a name="player">&nbsp;</a>
+<br>
+<a href="#TOP"><img src="comicsDesign/ArrowUp.png" alt=""></a> <b>PLasdasdN</b>:<br>
+<strong>0.</strong> Foasdds. 
+
+<br>
+<img src="gamedesign/bullet.png" alt=""> <strong>Expasd</strong>G.
+
+<br>
+<img src="gamedesign/bullet.png" alt=""> Adasdsde! <br><br>
+<em><strong>1. UNasdasdS:</strong></em> 
+<br>
+<img src="gamedesign/bullet.png" alt=""> Draasdasdnel. <br>
+<img src="gamedesign/bullet.png" alt=""> In  thasdsd<strong>]</strong><br><br>
+<strong>2. asdas:</strong><br>
+<img src="gamedesign/bullet.png" alt=""> Hasdasel.<br>
+<img src="gamedesign/bullet.png" alt=""> Hasdad4).<br>
+<img src="gamedesign/bullet.png" alt=""> Hiasdast).<br><br><br>
+</font></td><td valign=top align=center><br>
+  <a href="gamedesign/Unity2D/SwampKid_spritesheet.png" target=sheet2><font face=arial><a href="gamedesign/Unity2D/dfg" target=pixelArt2><img src="gamedesign/Unity2D/dfg" alt="" width=300 height=150></a><br><br><br></td>
+</tr><tr>
+<td valign=top><font face=arial><em><strong>3. PLasdT:</strong></em> 
+<br>
+<img src="gamedesign/bullet.png" alt=""> In  Projasdcts. <strong>
+<br>
+</strong><img src="gamedesign/bullet.png" alt=""> <strong>Drasd</strong>rchy. 
+
+
+<br>
+<img src="gamedesign/bullet.png" alt=""> In Insasd<strong>Art</strong>.&quot; 
+<br>
+<img src="gamedesign/bullet.png" alt=""> To asd. 
+<br>
+<img src="gamedesign/bullet.png" alt=""> Resasd.
+
+<br><br>
+
+<strong><em>4. CREasdNT: </em></strong>
+<br>
+<img src="gamedesign/bullet.png" alt=""> Creasd<strong>er</strong>&quot;. 
+
+<br>
+<img src="gamedesign/bullet.png" alt=""> Reasd 0.<br>
+<img src="gamedesign/bullet.png" alt=""> <strong>Drasd</strong>yer. 
+<br>
+<img src="gamedesign/bullet.png" alt=""> In Inspasd<strong>er</strong>."
+
+<br><br>
+<em><strong>5. AasdION: </strong></em>
+<br>
+<strong>CRasdPS: </strong>With  Plaasdt). 
+
+<br><br>
+<strong>b)</strong> <strong>Drag</strong> yoasd0).
+<br><br><br>
+</font></td><td valign=bottom>
+<a href="gamedesign/Unity2D/Character2D_Animation.png" target=anim><font face=arial><a href="gamedesign/Unity2D/dfg" target=pixelArt2><img src="gamedesign/Unity2D/dfg" alt="" width=300 height=150></a></td>
+</tr><tr>
+<td valign=top><font face=arial>
+
+<strong>6. </strong> <strong>SasdNE: </strong>
+<br>
+Douasdsne. <br>
+<strong>a) </strong>Maasdault). 
+
+<br><br>
+<strong>b) </strong>Creatasddnd). 
+
+<br><br>
+<strong>c) </strong>To thasdas<strong>0</strong>. 
+<br>
+<br><br>
+</font></td><td valign=top>
+<a href="gamedesign/Unity2D/Character2D_StateMachine.png" target=state><font face=arial><a href="gamedesign/Unity2D/dfg" target=pixelArt2><img src="gamedesign/Unity2D/dfg" alt="" width=300 height=150></a></td>
+</tr><tr>
+<td colspan=2 valign=top2 bgcolor=#efe8f6><font face=arial>
+<a name="move">&nbsp;</a>
+<br><br>
+<strong><em>8. PLAYER MOVEMENT SCRIPT:</em></strong> 
+<br>
+Create a new C# script, name it &quot;<strong>PlayerMovement</strong>.cs&quot;. 
+<br>Apply to the parent game object.<br><br>
+</font>
+      <center>
+        <font face="arial"><em>PlayerMove.cs (for a single animation parameter, &quot;moving&quot;)</em>: </font>
+        <table width=98% cellpadding=10 border=1 bgcolor=#eeeeee>
+          <tr>
+            <td><font face=arial><font color=#3ab050><b>using</b></font> System.Collections;<br>
+              <font color=#3ab050><b>using</b></font> System.Collections.Generic;<br>
+              <font color=#3ab050><b>using</b></font> UnityEngine;<br>
+              <br>
+              <font color=#3ab050><b>public class</b></font></font> <font color=#31849b face="arial"><b>PlayerMove</b> : <b>MonoBehaviour</b></font><font face="arial"> {<br>
+                <br>
+                &nbsp; &nbsp; &nbsp; &nbsp;<font color=#31849b><b>public</b></font> <font color=#31849b><b>float</b></font> speed = 3f; <font color=gray>// player movement speed</font><font color=#aaaaaa><br></font><br> 
+&nbsp; &nbsp; &nbsp; &nbsp;<font color=#31849b><b>private</b></font> bool isAlive = <font color=#31849b><b>true</b></font>; <br>
+<br><br> 
+&nbsp; &nbsp; &nbsp; &nbsp;<b><font color=#31849b>void</font></b> Start () {
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;anim = GetComponentInChildren&lt;Animator&gt;();
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;rend = GetComponentInChildren&lt;Renderer&gt; ();<br>
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;<font color=#3ab050><b>if</b></font> (gameObject.GetComponent&lt;<font color=#31849b><b>Rigidbody2D</b></font>&gt;() != null) {<br>
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;rb2d = GetComponent&lt;<font color=#31849b><b>Rigidbody2D</b></font>&gt;();<br>
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;}<br>
+&nbsp; &nbsp; &nbsp; &nbsp;}<br><br>
+&nbsp; &nbsp; &nbsp; &nbsp;<b><font color=#31849b>void</font></b> Update() {<br>
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;<font color=#3ab050><b>if</b></font> (isAlive == <font color=#31849b><b>true</b></font>){<br>
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;change = Vector3.zero;<br>
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;change.x = Input.GetAxisRaw(<strong><font color=#ed6c0a>&quot;Horizontal&quot;</font></strong>);<br>
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;change.y = Input.GetAxisRaw(<strong><font color=#ed6c0a>&quot;Vertical&quot;</font></strong>);<br>
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;UpdateAnimationAndMove();<br><br>
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;<font color=#3ab050><b>if</b></font> (Input.GetAxis (<strong><font color=#ed6c0a>&quot;Horizontal&quot;</font></strong>) &gt; <strong><font color=#ed6c0a>0</font></strong>){<br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;Vector3 newScale = transform.localScale;<br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;newScale.x = 1.0f;<br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;transform.localScale = newScale;<br>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;}<br>
+&nbsp; &nbsp; &nbsp; &nbsp;}<br>
+<br>}
+
+<br><br></font></td>
+</tr></table>
+</center>
+<font face="arial">
+<br>
+<em><strong>NOTE:</strong></em> thiasdsdg.
+
+<br><br>
+<strong>9. </strong>RightClicasdsd<strong>lot</strong>. 
+<br><br><br></font></td></tr>
+<tr>
+  <td colspan=2><font face=arial>
+<a name="VFX">&nbsp;</a><br>
+<strong>EXPLOSIONS: ANIMATI</strong></font><font face=arial><br>
+<br>
+
+    </font></td>
+</tr><tr>
+
+<td colspan=2 bgcolor=#efe8f6><font face=arial>
+<a name="follow">&nbsp;</a><br><br>
+
+</font></td>
+
+</tr></table>
+
+<br><br>
+<table width=800 bgcolor=#eef5e9>
+<tr>
+  <td align=center colspan=2 bgcolor=#e6f0df><font face=arial>
+  <center>
+  <font size="+2" face="arial"><b>CREATING PIXEL ART:</b></font>
+</center></font></td></tr><tr>
+<td><a name="PixelArt">&nbsp;</a><br>
+
+<table width=100% cellpadding=5><tr>
+<td valign=top>
+
+<table width=100% cellpadding=0><tr>
+<td width=50% valign=top><font face=arial>
+<a href="#TOP"><img src="comicsDesign/ArrowUp.png" alt=""></a>
+<b>CRasd</b>. 
+</font></td>
+<td width=50% align=center valign=top><font face=arial>
+<em><strong>Doasd</strong></em>lder).
+</font></td>
+</tr></table>
+
+</td>
+</tr></table>
+<table width=100% cellpadding=5>
+  <tr>
+<td with=90% valign=top><font face="arial">
+<strong>STEP 1: Fasdp:</strong>
+<li>Creasd). </font>
+<li><font face="arial">Creasdle.</font>
+<li><font face="arial">Createasd<strong>s</strong>.<br>
+  <strong><br>
+  STEP 2: Sasdk):</strong>
+  </font><font face="arial"><li>Hold dasd<strong> ]</strong>).</font>
+<li>
+<font face="arial">For the <strong>Eraser</strong> tool, at top change <strong>Mode</strong> from Brush to <strong>Block</strong> so it also easdations.<br>
+<br>
+<strong>STEP 3: Dasds:</strong><br>
+<li>Clicasdck.
+<li>In  <strong>asd</strong>%.<br>
+<br>
+<strong>STEP 4: "asdks:</strong><br>
+<li>Set dasdhave dark-green inks).
+<li>In thasdes.
+<li>Choasder.<br><br>
+<strong>STEP 5: asd:</strong><br></font>
+<li><font face="arial">Set asdnting.</font>
+<li><font face="arial"> In theasdctful.<br><br>
+<strong>STEP 6: asd:</strong><br></font>
+<li><font face="arial">In thasdated.</font>
+<li><font face="arial"> Characteasdze).<br></font></td>
+<td width=10% valign=top align=center><font face="arial">
+<br>
+<a href="gamedesign/Unity2D/dfg" target=pixelArt2><img src="gamedesign/Unity2D/dfg" alt="" width=300 height=150></a><a href="gamedesign/Unity2D/PixelArt_256x256.psd" target=psd></a>
+<br><br>
+<br><br>
+</font></td>
+</tr><tr>
+<td valign=top><font face=arial><a name="white">&nbsp;</a><br>
+    <font face=arial><a href="#TOP"><img src="comicsDesign/ArrowUp.png" alt=""></a></font> <strong>RASDets</strong><br>
+AaSAes.<br><br>
+<br></font></td>
+<td valign=top><font face=arial><br>
+    <a href="gamedesign/Unity2D/dfg" target=pixelArt2><img src="gamedesign/Unity2D/dfg" alt="" width=300 height=150></a><a href="gamedesign/Unity2D/MonsterColors01.png"></a><br>
+<br></font></td>
+</tr><tr>
+<td colspan=2>&nbsp;</td>
+</tr><tr>
+<td valign=top bgcolor=#e6f0df><font face=arial><a name="anim">&nbsp;</a><br>
+    <font face=arial><a href="#TOP"><img src="comicsDesign/ArrowUp.png" alt=""></a></font> <strong>Aniasdasdll)</strong><br>
+     Look for waasdasd<br><br>
+<strong>1.</strong> Paint asdsd<br><br>
+<strong>2.</strong> Impasdasd<br>
+<strong>3.</strong> Opeasda<strong>ply]</strong>.<br>
+<br>
+<strong>4.</strong> In the Inasdschy.<br>
+<br>
+<strong>5.</strong> In the Inspectorasdas20).<br>
+<br>
+<strong>6.</strong> With asdas<br>
+<br>
+<strong>7.</strong> Drag all wasdt the end.<br>
+<br>
+<strong>8.</strong> Select asdasdause-length.<br><br>
+<br></font></td>
+<td valign=top bgcolor=#e6f0df><font face=arial>
+<a href="gamedesign/Unity2D/dfg" target=pixelArt2><img src="gamedesign/Unity2D/dfg" alt="" width=300 height=150></a><a href="gamedesign/Unity2D/WaterfallSpritesheet.png" target=waterfall></a>
+
+<br>
+<br></font></td>
+</tr><tr>
+<td colspan=2 bgcolor=#e6f0df>&nbsp;</td>
+</tr>
+
+<tr>
+<td valign=top><font face=arial>
+
+<a name="best">&nbsp;</a><br>
+  <font face=arial><a href="#TOP"><img src="comicsDesign/ArrowUp.png" alt=""></a></font> <em><strong>GOasdasasdOP: </strong></em>
+  </font>
+  <li><font face="arial">Windoasdadwhole while you work on a part.
+</font>
+<li><font face="arial">To scale up asdad<br>
+<br></font></td>
+<td valign=top><font face=arial><br>
+  <a href="gamedesign/Unity2D/dfg" target=pixelArt2><img src="gamedesign/Unity2D/dfg" alt="" width=300 height=150></a><br>
+  <br>
+<br></font></td>
+</tr></table>
+  
+<font face="arial">
+<a name="best2">&nbsp;</a><br>
+<b>Pixasdasd</b></font><font face="arial">e. <br><br><br>
+</font></td></tr></table>
+  
+-->  
+  
+<br><br><br><br>
+
+<table width=800 cellpadding=10 border=0><tr>
+<td colspan=2 align=center><font face=arial>
+<br>
+<em>Tutorial by Jason Wiser, Madwomb.com. 
+<br>See more Unity tutorials at <a href="http://www.Madwomb.com/Unity" target=unityLearn>http://www.Madwomb.com/Unity</a> </em>
+
+<br><br>
+</font></td>
+</tr></table>
+
+<br><br><br><br>
+
+</center>
+
+</body>
+</html>
+
+
+
+<!--
+<table width=800 cellpadding=10><tr><td valign=top bgcolor=#f2f2e9><font face=arial>  
+<a name="dialogue">&nbsp;</a>
+<center>
+<font size=+2><b>DIALOGUE TEXT DISPLAY:</b></font>
+</center>
+</font>
+
+<br><font face=arial>
+<b>BASIC SIGN  OR NPC TEXT DISPLAY:</b>
+<br><b>Posted Sign</b> (<a href="https://youtu.be/1NCvpZDtTMI?t=98" target=follow>video source</a>)
+</font>
+<br>
+<li><font face=arial> Add sign object art to Hierarchy. Name &quot;Sign.&quot;</font>
+<li><font face=arial> Add <b>Physics 2D &gt; BoxCollider2D</b> twice, change second one to <b>isTrigger</b>, and extend collider downward, for the place the player can stand to view the sign. Add Sign to a new <b>Sorting Layer </b>called "Signs" and move this above the "Player" Sortign Layer so it displays below.</font>
+<li><font face=arial> <b>GameObject &gt; UI &gt; Image</b> to make a Canvas and an Image. Zoom out in Scene view to extend the image to <b>fit</b> the bottom third of the Canvas. Rename &quot;<b>DialogueBox</b>&quot; and set <b>anchor</b> to the center.
+<br>(NOTE: we can replace with a sprite cut into 9 units, for the sides to stretch leaving the corners unstretched, for a word bubble, by moving the green lines in the sprite editor).</font>
+<li><font face=arial> Add &nbsp;a <b>UI &gt; Text</b> object parented to the Dialogue Box image. In Scene view extend to <b>fit</b> the Dialogue Box. <b>Font size 30</b> and color <b>black</b>.
+<br><br>Create a new C# script <b>signDisplay.cs</b>, add to Sign object, add DialogueBox and Text to the script slots, and add intended text to display (like "Abandon All Hope Ye Who Enter Here" or "Parking Lot Ahead"):
+</font>
+  
+<br><br>
+<center>
+<font face="arial"><em>signDisplay.cs:</em></font>
+<table width=90% cellpadding=10 border=1><tr>
+<td><font face=arial><font color=#3ab050><b>using</b></font> System.Collections;
+<br><font color=#3ab050><b>using</b></font> System.Collections.Generic;
+<br><font color=#3ab050><b>using</b></font> UnityEngine;
+<br><font color=#3ab050><b>using</b></font> UnityEngine.UI;
+<br><br>
+          
+          <font color=#3ab050><b>public class</b></font></font> <font color=#31849b face="arial"><b>signDisplay</b> : <b>MonoBehaviour</b></font><font face="arial"> {<br><br>
+  &nbsp; &nbsp; &nbsp; &nbsp;<font color=#31849b><b>public</b></font> <font color=#31849b><b>GameObject</b></font> dialogueBox;<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;<font color=#31849b><b>public</b></font> <font color=#31849b><b>Text</b></font> dialogueText;<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;<font color=#31849b><b>public</b></font> <font color=#31849b><b>string</b></font> dialogue;<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;<font color=#31849b><b>public</b></font> <font color=#31849b><b>bool</b></font> playerInRange;<br>
+  <br>
+            &nbsp; &nbsp; &nbsp; &nbsp;<b><font color=#31849b>void</font></b> Update () {<br>
+            &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=#3ab050><b>if</b></font> (Input.GetKeyDown(KeyCode.Space) &amp;&amp; playerInRange){<br>
+  &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (dialogue.activeInHierarchy){<br>
+  &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;dialogueBox.SetActive(false);<br>
+  &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; } <font color=#3ab050><b>else</b></font> {<br>
+  &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;dialogueBox.SetActive(true);<br>
+  &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;dialogueText.text = dialogue;<br>
+  &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br>
+  &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;}<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;}<br>
+            <br>
+            &nbsp; &nbsp; &nbsp;&nbsp; <font color=#31849b><b>private</b></font> <b><font color=#31849b>void</font></b> OnTriggerEnter2D(<font color=#31849b><b>Collider2D</b></font> other){<br>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; <font color=#3ab050><b>if</b></font> (other.ObjectTag(<font color=#ed6c0a><b>&quot;Player&quot;</b></font>)) {<br>
+            &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; playerInRange = true;<br>
+            &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  <font color=#aaaaaa> //Debug.Log(&quot;Player in range&quot;);</font><br>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;}<br>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<br>
+            &nbsp; &nbsp; &nbsp;&nbsp; <font color=#31849b><b>private</b></font> <b><font color=#31849b>void</font></b> OnTriggerExit2D(<font color=#31849b><b>Collider2D</b></font> other){<br>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; <font color=#3ab050><b>if</b></font> (other.ObjectTag(<font color=#ed6c0a><b>&quot;Player&quot;</b></font>)) {<br>
+  &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; playerInRange = false;<br>
+  &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; dialogueBox.SetActive(false);<br>
+  &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#aaaaaa> //Debug.Log(&quot;Player left range&quot;);</font><br>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;}<br>
+}
+</font></td>
+</tr>
+</table>
+</center>
+<br><br>
+</font></td></tr></table>
+-->
+
+<!--
+
+<center>
+<font size=+2 face="arial"><b>PLAYER MELEE FIGHTING</b></font>
+</center><font face=arial><b>MELEE:</b>
+(<a href=="" target=shoot>Source Video</a>)
+<img src="gamedesign/Unity2D/sdfsdf.png" width=256 align=right border=1>
+<br>
+Your character animation frames can be  a single <b>spritesheet</b>. Select a spritesheet in the  Project and in the Inspector set it from Single to <b>Multiple</b>, hit <b>[Apply]</b>, and <b>Slice</b> to get a file for each image (in Project hit  the spritesheet triangle  to view all). <br>
+<br>
+Apply
+<a href="GameDesign/Unity2D/PlayerShooting.cs" target=unity><b>PlayerMelee.cs</b></a> script to the <b>Player</b>. In Inspector drag the FirePoint from the Hierarchy to the script slot, and the Projectile prefab from the Project into the Script slot. PLAYTEST! 
+<br><br>
+<em><b>Create an Impact Prefab:</b></em>
+<br>
+<b>Drag</b> the impact sprite  into the Hierarchy, name it &quot;Impact,&quot; set Order in Layer = 14.
+<li>Drag the Impact into the Project to make a <b>Prefab</b> and <b>delete</b> it from the Hierarchy.</font>
+<li><font face="arial"> Finally, <b>drag the Impact Prefab</b> to the Effect script slot.
+
+<br>
+<br>
+To make our Player vulnerable to enemies, add the <a href="GameDesign/Unity2D/PlayerHit.cs" target=unity><b>PlayerHit.cs</b></a> script, and drag the Impact prefab into the script slot.
+</font>
+
+<br>
+<br>
+<center>
+  <font size=+2 face="arial"><b>FRIENDLY NPCs</b></font>
+</center>
+<font face="arial">Artificial Intelligence for NPCs in games is not typically advanced learning algorythms, but instead a <b>simple list of responses to specific conditions in the game</b>. For example, consider an enemy that shoots at the player. It moves towards the player until it reaches a specified distance, and retreats if the player gets too close. All of these are responses to one piece of data: the distance from the player. We can capture that data and test against it in the Update() function to decide what the enemy will do.<br><em><b>NOTE:</b></em> These 3 Enemy types/scripts work equally well on 3D games, with Physics modifications:
+
+<br><br>
+<img src="gamedesign/Unity2D/dfgdf" align=right width=256 border=1>
+<b>NPC #1: <font color=purple>2D PATHFINDING</font></b> 
+(<a href="https://www.youtube.com/watch?v=jvtFUfJ6CP8" target=vid>source video</a>)<br>
+This NPC follows a particular path. It an be used for villagers moving about their day or a patrolling guard.<br><br>
+<b>Add NPCpath sprite</b> to Hierarchy. </font>
+<li><font face="arial">Set &quot;Order in Layer&quot; = 4, apply <b>tag</b> &quot;enemy&quot; (create if needed). </font>
+<font face="arial">
+<li>Reset Transforms (0,0,0). 
+<li>Add <b>Physics2D &gt; Rigidbody2D</b>, set <b>Mass = 3</b> and <b>Gravity Scale = 0</b>.
+<li>Add <b>Physics2D &gt; Collider2D</b> (box or circle, set size).
+<li>Apply <a href="GameDesign/Unity2D/EnemyMoveHit.cs" target=unity><b>xxxxx.cs</b></a>.
+<li>Drag to the Project to make a <b>Prefab</b> and <b>delete</b> from the Hierarchy. 
+
+<br><br>
+<img src="gamedesign/Unity2D/dfgdf" align=right width=256 border=1>
+<b>NPC #2:<font color="purple">DIALOGUE</font></b> 
+(<a href="https://www.youtube.com/watch?v=jvtFUfJ6CP8" target=vid>source video</a>)<br>
+This enemy follows the player. If it reaches the player it causes damage and disappears. It takes a specified amount of bullet damage before being removed.<br><br>
+<b>Add NPCdialogue sprite</b> to Hierarchy. </font>
+<li><font face="arial">Set &quot;Order in Layer&quot; = 4, apply <b>tag</b> &quot;enemy&quot; (create if needed). </font>
+<font face="arial">
+<li>Reset Transforms (0,0,0). 
+<li>Add <b>Physics2D &gt; Rigidbody2D</b>, set <b>Mass = 3</b> and <b>Gravity Scale = 0</b>.
+<li>Add <b>Physics2D &gt; Collider2D</b> (box or circle, set size).
+<li>Apply <a href="GameDesign/Unity2D/EnemyMoveHit.cs" target=unity><b>xxxxx.cs</b></a>.
+<li>Drag to the Project to make a <b>Prefab</b> and <b>delete</b> from the Hierarchy. 
+
+
+<br><br><br><br><br><br>
+<center>
+    <font size=+2 face="arial"><b>INVENTORY SYSTEM</b></font>
+  </center>
+An inventory lets us store objectives the Player needs to collect to win, or items for later use (keys, health potions, alternate weapons, etc).
+    
+<br><br>
+<b>SETTING UP  INVENTORY UI:</b> (<a href="https://youtu.be/-xB4xEmGtCY" target=ui1>source video</a>)
+Select the <b>Canvas</b> object in Hierarchy, rename &quot;<b>HUD</b>.&quot;
+<li><b>PANEL: </b>Create a <b>UI &gt; Panel</b> for the inventory background. Align to the bottom-center, size (hit Anchor Preset, choose Center, then width=270 x height=60) and for the Source Image choose a basic button sprite and set to a semi-transparent gray. Name the Panel "<b>Inventory</b>."
+  
+<li><b>SLOT: </b>Make a <b>UI &gt; Image</b>. parent beneath &quot;Inventory,&quot; size 50x50, dark color, name it &quot;<b>Slot</b>.&quot; This will be the background for trhe slot (children appear atop parents).<li><b>BORDER:</b> <b>Duplicate</b> the first image ([Cmd/Ctrl]+[d]), <b>parent</b> below Slot, and name &quot;<b>Border</b>.&quot; Size 50x50, import a PNG with a thin border. Open the [Sprite Editor] and set all borders = 4 so it will scale well. Assign this sprite as Source Image, set color to white. 
+Add component <b>UI &gt; Button</b>, and assign a  <b>Highlight</b> <b>Color</b>. Play to see rollover effect.<br>
+<li><b>ITEM IMAGE: </b>Create a new image, parent below Border, and name &quot;<b>ItemImage</b>.&quot; Import an inventory item sprite as the Source Image and size to fit. 
+<li>Create more slots: duplicate Slot. Select its ItemImage, set Source Image to &quot;None,&quot; and disable the Image component. 
+<li>Select the Inventory Panel, add component <b>Layout &gt; Horizontal Layout Group</b>. Set Child Alignmment to middle-center. Now, when Slots are duplicated, they space themseves evenly on the Panel.<br>
+  <br>
+  <b>INVENTORY SCRIPTS: </b>
+(<a href="https://youtu.be/Hj7AZkyojdo" target=ui1>source video</a>)
+<li>Create a <b>new Empty GO</b>, name it &quot;<b>InventoryManager</b>.&quot; Apply the <a href="GameDesign/Unity2D/InventoryManager.cs" target=unity><b>InventoryManager.cs</b></a> script (list of inventory items, manages events for item Add and Remove). 
+Also add <a href="GameDesign/Unity2D/InventoryItem.cs" target=unity><b>InventoryItem.cs</b></a> to the project, to define the Interface referenced by Inventory.cs.
+<li> Apply <a href="GameDesign/Unity2D/InventoryPlayer.cs" target=unity><b>InventoryPlayer.cs</b></a> script to Player (to call  Inventory.cs when a pick-up-able item is touched), and <b>drag the Inventory GO</b> into the script slot.
+<li> Apply <a href="GameDesign/Unity2D/InventoryHUD.cs" target=unity><b>InventoryHUD.cs</b></a> script to the Canvas HUD (to make the UI changes).
+<li> Add and modify a <a href="GameDesign/Unity2D/InventoryObject.cs" target=unity><b>InventoryObject.cs</b></a> script to each object we want to be pick-up-able.
+</font>
+
+-->
+
+<!-- old
+
+<br><br><br><br>
+<b>PLAYER MOVEMENT</b> 
+(<a href="https://youtu.be/7KiK0Aqtmzc" target=betterJump>Better Jumping source video</a>):
+<li>moving: 
+<a href="https://youtu.be/dwcT-Dch0bA" target="_blank">https://youtu.be/dwcT-Dch0bA</a> 
+<li>jumping: <a href="https://youtu.be/j111eKN8sJw" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://youtu.be/j111eKN8sJw&source=gmail&ust=1579200963392000&usg=AFQjCNEV64Dr0QlIoVbqFFLAGEyF2_MWQQ">https://youtu.be/j111eKN8sJw</a> 
+<li>wall jumping: <a href="https://youtu.be/STyY26a_dPY" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://youtu.be/STyY26a_dPY&source=gmail&ust=1579200962787000&usg=AFQjCNEMpytesWvBLc8Mh6wEIvJHRiiF7A">https://youtu.be/STyY26a_dPY</a> <br> 
+  Add Character sprite to Hierarchy 
+  
+<br><br>
+Introduction to LERP for smooth transitions: <br>
+<img src="gamedesign/bullet.png" alt=""> LERP <a href="https://youtu.be/cD-mXwSCvWc" target=LERP1><b>Basics</b></a>: object motion, light intensity, color <br>
+<img src="gamedesign/bullet.png" alt=""> <a href="https://youtu.be/MFQhpwc6cKE" target=LERP2><b>Smooth</b></a> LERP Camera Following. <br>
+<img src="gamedesign/bullet.png" alt=""> Example <a href="gamedesign/CameraControlLERP.txt" target=LERP3><b>LERP code</b></a>. 
+<br><br><br>
+
+<img src="gamedesign/bullet.png" alt=""> <a href="https://www.youtube.com/watch?v=QkisHNmcK7Y" target=parallax><b>Parallax Scrolling</b></a> alternative script design 
+
+(Manage the <a href="https://answers.unity.com/questions/743148/display-quad-over-sprites.html" target=sort>sorting order</a> between sprites and quads). 
+
+-->

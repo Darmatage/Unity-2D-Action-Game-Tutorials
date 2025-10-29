@@ -1,0 +1,608 @@
+<html>
+<head>
+<title>Unity3D Intro Tutorial</title>
+</head>
+
+<body text=#222222 link=#1e6669 vlink=#7700aa alink=#1088bb>
+
+<center>
+<table width=750 cellpadding=10 border=0>
+<tr>
+  <td valign=top><font face=arial>
+<font face=arial><a href="GameDesign_Unity.html"><img src="gamedesign/UnityLogo60.png" alt="" align=right></a></font><font size=+2><b>UNITY 2D - Top Down Gameplay</b></font>
+<br>
+This tutorial covers modules for top-down Players (movement, shooting, and getting hit),  Enemy NPCs ((1)Following, (2)Shooting, and (3)KillerGaze), scoring and and touch-goals. 
+
+Many of these elements can be used in other game modes.
+
+<br>
+<center>
+<a href=#setting><b>Setting</b></a> &nbsp; | &nbsp;
+Player:
+<a href=#player><b>Movement</b></a>, 
+<a href=#shoot><b>Shooting</b></a>, 
+<a href=#melee><b>Melee</b></a><br>
+NPCs:
+<a href=#enemyFollow><b>Follow Player</b></a>, 
+<a href=#enemyShoot><b>Shoot Player</b></a>, 
+<a href=#enemyGaze><b>Death Gaze</b></a> &nbsp; | &nbsp;
+<a href=#score><b>Score Display</b></a> &nbsp; | &nbsp;
+<a href=#win><b>Win / Lose</b></a> 
+</center>
+
+<br><br>
+<center>
+  <font size=+2 face="arial"><b>SETTING AND PLAYER MOVEMENT:</b></font>
+</center>
+<img src="gamedesign/Unity2D/Art2D_HunterA.png" align=right width=256 border=1>
+Create a new Unity 2D project. Import into the Asset folder: Background, Characters, and Effects images. 
+<br>
+<a name="setting">&nbsp;</a><br>
+<b>SETTING:</b>
+<br>
+
+Drag Background image/s into the Hierarchy (1920x1080 PNGs). Set Order in Layer = 1-3 (the lower the number, the further back).
+<li>Create an <b>Empty Game Object</b> called BG_ArtColliders to act as a folder in the Hierarchy. Create an Empty GO for each collide-able element in the background art and drag onto BG_ArtColliders to parent them. To each apply a <b>Physics2D &gt; BoxCollider2D</b> or <b>CircleCollider2D</b>
+and move and set size as desired.
+<li>Game Window: set aspect to 16:9.<br>
+<a name="player">&nbsp;</a>
+<br>
+  <b>PLAYER MOVEMENT</b> 
+  (<a href="https://youtu.be/LNLVOjbrQj4" target=vid1>source video</a>): 
+  <br> 
+  Add Character sprite to Hierarchy (power-of-two square PNG: 64x64, 128x128, 256x256, 512x512, etc).
+</font>
+  <li> <font face="arial"><b>Inspector: </b>Set Order in Layer=10, name PlayerArt, tag=Player. Set Position and Rotation to 0,0,0.
+</font>
+<li><font face="arial">Create a <strong>GameObject &gt; Empty GameObject</strong>, name it Player. In the Inspector assign the tag = Player.</font>
+  <li><font face="arial"><strong>Drag PlayerArt onto Player</strong> to make it a child of Player.</font>
+  <li><font face="arial">Add  <b>Physics2D &gt; Rigidbody2D</b> to Player, set Gravity Scale = 0, Constraints &gt; Freeze Rotation.</font>
+  <li> <font face="arial">Add <b>Physics2D &gt; BoxCollider2D</b> to Player, and set size.</font>
+  <li><font face="arial">Apply <a href="GameDesign/Unity2D/PlayerMoveAim.cs" target=cs1><b>PlayerMoveAim.cs</b></a> script to Player (rotates player towards mouse). PLAYTEST!
+<br>
+  <br>
+</font>
+<center>
+  <font face="arial"><i>PlayerMoveAim.cs script:</i> <br>
+    </font>
+  <table width=100% cellpadding=10 border=1>
+    <tr>
+      <td><font face=arial><font color=#3ab050><b>using</b></font> UnityEngine;<br>
+        <font color=#3ab050><b>using</b></font> System;<br>
+        <font color=#3ab050><b>using</b></font> System.Collections;<br>
+        <br>
+        <font color=#31849b><b>public class </b></font></font><font color=#0070c0 face="arial"><b>PlayerMoveAim </b></font><font face=arial>: </font><font color=#0070c0 face="arial"><b>MonoBehaviour</b></font> <font face=arial>{ <br>
+          <br>
+          &nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font><font color=#0070c0><b> float</b></font> moveSpeed =<font color=#e36c0a><b> 5f</b></font>;
+          <br>
+          &nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font> Rigidbody2D rb; <br>
+          &nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font><b><font color="#0070c0"> </font></b>Camera cam; <br>
+          &nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#0070c0><b>Vector2</b></font> movement; <br>
+          &nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font><b><font color="#0070c0"> </font></b><font color=#0070c0><b>Vector2</b></font> mousePos; 
+          <br><br>
+          &nbsp; &nbsp; &nbsp; <font color=#31849b><b>void</b></font> Awake(){<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#a6a6a6>//assign rigidbody2D and camera to variables</font></b><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; rb = GetComponent
+&lt;Rigidbody2D&gt;(); <br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; cam = GameObject.FindGameObjectWithTag(<font color=#e36c0a><b>&quot;MainCamera&quot;</b></font>).GetComponent&lt;Camera&gt;() as Camera; <br>
+&nbsp; &nbsp; &nbsp; }<br><br>
+&nbsp; &nbsp; &nbsp; <font color=#31849b><b>void</b></font> Update(){<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>if</b></font> (gameObject != null) {<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#a6a6a6>//for position, get axis inputs</font></b><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; movement.x = Input.GetAxisRaw (<font color=#e36c0a><b>&quot;Horizontal&quot;</b></font>);<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; movement.y = Input.GetAxisRaw (<font color=#e36c0a><b>&quot;Vertical&quot;</b></font>);<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#a6a6a6>//for rotation: get mouse position</font></b><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; mousePos = cam.ScreenToWorldPoint (<font color=#0070c0><b>Input</b></font>.mousePosition);<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br>
+&nbsp; &nbsp; &nbsp; }<br>
+<br>
+&nbsp; &nbsp; &nbsp; <font color=#31849b><b>void</b></font> FixedUpdate(){<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#a6a6a6>//actual movement uses Rigidbody, so goes in FixedUpdate</font></b><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#a6a6a6>//actual rotation uses vector math to calculate angle,  then rotates character to mouse </font></b><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#0070c0><b>Vector2</b></font> lookDir = mousePos - rb.position;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg <font color=#e36c0a><b>-90f</b></font>;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; rb.rotation = angle;<br>
+&nbsp; &nbsp; &nbsp; }<br>
+}</font></td>
+    </tr>
+  </table>
+</center>
+<font face="arial"> <font face="arial"></font></font></td></tr></table>
+
+<img src="gamedesign/Unity2D/TopDown_img1.png">
+
+<table width=750 cellpadding=10 border=0>
+<tr>
+	<td colspan=2><font face=arial>
+
+<center>
+<font face=arial><a name="shoot">&nbsp;</a></font><font size=+2><b>PLAYER SHOOTING: PROJECTILES</b></font>
+</center>
+<b>SHOOTING:</b>
+(<a href="https://youtu.be/LNLVOjbrQj4" target=vid2>Source Video</a>)
+<img src="gamedesign/Unity2D/Art2D_explosionsSpritesheets.png" width=256 align=right border=1><br>
+Your projectile and impact effect frames can be  a single <b>spritesheet</b>. Select a spritesheet in the  Project and in the Inspector set it from Single to <b>Multiple</b>, hit <b>[Apply]</b>, and <b>Slice</b> to get a file for each image (in Project hit  the spritesheet triangle  to view all).<br>
+<br>Add an <b>EmptyGO</b> to Hierarchy, parent under Player, rename <b>FirePoint</b> and in Scene move to tip of gun.<br><br>
+<b>Add Projectile sprite</b> to the <b>Hierarchy</b>, set Order in Layer = 12, name &quot;ProjectileArt.&quot; In Scene move to the tip of gun.</font>
+<li><font face=arial>Create a <strong>GameObject &gt; Empty GameObject</strong>, name it &quot;<strong>Projectile</strong>&quot;. <strong>Drag ProjectileArt onto Projectile</strong> to make it a child of Projectile. Add to Projectile:</font>
+<li><font face=arial>Component <strong>Physics2D &gt; </strong><b>BoxCollider2D</b> (size to projectile).</font>
+<li><font face=arial>Component
+<strong>Physics2D &gt; </strong><b>Rigidbody2D</b> (Gravity Scale = 0).</font>
+<li><font face=arial> Apply <a href="GameDesign/Unity2D/Bullet.cs" target=cs2><b>Bullet.cs</b></a> to  Projectile for movement and effects.</font>
+<li><font face=arial>Drag to Project to make a Prefab and delete from Hierarchy.<br>
+<br>
+    </font>
+      <center>
+        <font face="arial"><i>Bullet.cs script:</i> <br>
+          </font>
+        <table width=100% cellpadding=10 border=1>
+          <tr>
+            <td><font face=arial><font color=#3ab050><b>using</b></font> System.Collections;<br>
+              <font color=#3ab050><b>using</b></font> System.Collections.Generic;<br>
+              <font color=#3ab050><b>using</b></font> UnityEngine;<br>
+              <br>
+              <font color=#31849b><b>public class </b></font></font><b><font color="#0070c0" face="arial">Bullet</font></b> <font face=arial>: </font><font color=#0070c0 face="arial"><b>MonoBehaviour</b></font> <font face=arial>{<br>
+              <br>	
+&nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font> GameObject hitEffectAnim;<br>
+<br>	
+&nbsp; &nbsp; &nbsp; <b><font color=#a6a6a6>//if  bullet hits a collider, play explosion animation, then destroy effect and bullet</font></b><br>	
+&nbsp; &nbsp; &nbsp; <font color=#31849b><b>void</b></font> OnCollisionEnter2D(Collision2D collision){<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; GameObject animEffect = Instantiate (hitEffectAnim, transform.position, Quaternion.identity);<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Destroy(animEffect, <font color=#e36c0a><b>0.5f</b></font>);<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Destroy(gameObject);<br>	
+&nbsp; &nbsp; &nbsp; }<br>
+}</font></td>
+          </tr>
+        </table>
+      </center>
+      <font face=arial><br>
+  Apply
+  <a href="GameDesign/Unity2D/PlayerShoot.cs" target=cs3><b>PlayerShoot.cs</b></a> script to the <b>Player</b>. In Inspector drag the FirePoint from the Hierarchy to the script slot, and the Projectile prefab from the Project into the Script slot. PLAYTEST! 
+  <br>
+  <br>
+      </font>
+      <center>
+        <font face="arial"><i>PlayerShoot.cs script:</i> <br>
+          </font>
+        <table width=100% cellpadding=10 border=1>
+          <tr>
+            <td><font face=arial><font color=#3ab050><b>using</b></font> System.Collections;<br>
+              <font color=#3ab050><b>using </b></font>System.Collections.Generic;<br>
+              <font color=#3ab050><b>using</b></font> UnityEngine;<br>
+              <br>
+              <font color=#31849b><b>public class </b></font></font><font color=#0070c0 face="arial"><b>PlayerShoot :</b></font><font face=arial>&nbsp; </font><font color=#0070c0 face="arial"><b>MonoBehaviour</b></font> <font face=arial>{<br>              
+<br>
+&nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#0070c0><b>float</b></font> bulletForce = <font color=#e36c0a><b>20f</b></font>;<br>	
+&nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font> Transform firePoint;<br>	
+&nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font> GameObject bulletPrefab;<br>
+<br>	
+&nbsp; &nbsp; &nbsp; <font color=#31849b><b>void</b></font> Update(){ <br>		
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>if</b></font> ((<font color=#0070c0><b>Input</b></font>.GetButtonDown(<font color=#e36c0a><b>&quot;Fire1&quot;</b></font>)) || (<font color=#0070c0><b>Input</b></font>.GetKeyDown(<font color=#e36c0a><b>&quot;space&quot;</b></font>))) { <br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Shoot(); <br>		
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br>	
+&nbsp; &nbsp; &nbsp; }<br>
+<br>	
+&nbsp; &nbsp; &nbsp; <b><font color=#a6a6a6>// Create the bullet and send it flying</font></b><br>	
+&nbsp; &nbsp; &nbsp; <font color=#31849b><b>void</b></font> Shoot(){ <br>		
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation); <br>		
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Rigidbody2D rb = bullet.GetComponent&lt;Rigidbody2D&gt;();
+<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; rb.AddForce(firePoint.up * bulletForce, ForceMode2D.Impulse); <br>	
+&nbsp; &nbsp; &nbsp; }<br>
+}</font></td>
+          </tr>
+        </table>
+      </center>
+      <font face=arial><br>
+  <em><b>Create the Explosion Prefab:</b></em><br>
+  <b>Drag</b> the first Sprite of the Spritesheet into the Hierarchy, name it Explosion, set Order in Layer = 14. 
+<li> Open <b>Window &gt; Animation &gt; Animation</b>, hit <b>[Create]</b>, save this clip as <b>ExplosionAnim</b>.<li> Drag all explosion frames into the Animation Window timeline, and set the Samples (framerate, around 2x # frames, so 5 images would be 10-12 frames). Note in Project the <b>ExplosionAnim clip</b> and <b>Explosion Animator</b> created.<li> Hit <b>Play</b> to see the Explosion loop in the scene (if it does not, turn off Play and be sure the Animator is applied to the Explosion object in the Hierarchy).<li>Drag the Explosion into the Project to make a <b>Prefab</b> and <b>delete</b> it from the Hierarchy.</font>      <li><font face="arial"> Finally, <b>drag the Explosion Prefab</b> to the Effect script slot.<br><br>
+To make our Player vulnerable to enemies, add the <a href="GameDesign/Unity2D/PlayerHit.cs" target=cs4><b>PlayerHit.cs</b></a> script, and drag the explosion prefab into the script slot.
+</font>
+  <font face="arial"><br>
+  </font>
+  <center>
+    <font face="arial"><i>PlayerHit.cs script:</i> <br>
+      </font>
+    <table width=100% cellpadding=10 border=1>
+      <tr>
+        <td><font face=arial><font color=#3ab050><b>using</b></font> UnityEngine;<br>
+          <font color=#3ab050><b>using</b></font> System;<br>
+          <font color=#3ab050><b>using</b></font> System.Collections;<br>
+          <br>
+          <font color=#31849b><b>public class </b></font></font><font color=#0070c0 face="arial"><b>PlayerHit</b> : <b>MonoBehaviour</b></font> <font face=arial>{ 
+<br>
+<br>	
+&nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font><font color=#0070c0><b> </b></font> <font color=#0070c0><b>int</b></font> PlayerLives = <font color=#e36c0a><b>5</b></font>; <br>	
+&nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font><font color=#0070c0><b> </b></font> GameObject hitEffectAnim; <br>	
+&nbsp; &nbsp; &nbsp; <font color=#31849b><b>private</b></font>  Renderer rend; <br>	
+&nbsp; &nbsp; &nbsp; <font color=#31849b><b>private</b></font>  GameController gameControllerObj; <br>
+<br>	
+<font face=arial>&nbsp; &nbsp; &nbsp; </font><font color=#31849b><b>void</b></font> Start () { <br>		
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; rend = GetComponent&lt;Renderer&gt;();	
+<br>
+<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; GameObject gameControllerLocation = GameObject.FindWithTag (<font color=#e36c0a><b>&quot;GameController&quot;</b></font>); <br>		
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (gameControllerLocation != null) { <br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; gameControllerObj = gameControllerLocation.GetComponent
+<GameController> ();
+<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; } <br>	
+&nbsp; &nbsp; &nbsp; } <br>
+<br>	
+<font face=arial>&nbsp; &nbsp; &nbsp; </font><font color=#31849b><b>void</b></font> OnCollisionEnter2D(Collision2D collision){ <br>		
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if ((collision.gameObject.tag == <font color=#e36c0a><b>&quot;enemy&quot;</b></font>) || (collision.gameObject.tag == <font color=#e36c0a><b>&quot;bulletEnemy&quot;</b></font>)) {
+<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; PlayerLives -= <font color=#e36c0a><b>1</b></font>; <br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; gameControllerObj.LifeChange (<font color=#e36c0a><b>-1</b></font>); <br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; StopCoroutine(<font color=#e36c0a><b>&quot;HitPlayer&quot;</b></font>);
+<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; StartCoroutine(<font color=#e36c0a><b>&quot;HitPlayer&quot;</b></font>); <br>		
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; } <br>	
+&nbsp; &nbsp; &nbsp; } <br>
+<br>	
+&nbsp; &nbsp; &nbsp; IEnumerator HitPlayer(){ <br>		
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#a6a6a6>// color values are R, G, B, and alpha, each divided by 100</font></b><br>		
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; rend.material.color = new Color(<font color=#e36c0a><b>2.4f</b></font>, <font color=#e36c0a><b>0.9f</b></font>, <font color=#e36c0a><b>0.9f</b></font>, <font color=#e36c0a><b>0.5f</b></font>); <br>		
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>if</b></font> (PlayerLives < <font color=#e36c0a><b>1</b></font>){ <br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; GameObject animEffect = Instantiate (hitEffectAnim, transform.position, Quaternion.identity); <br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Destroy(animEffect, <font color=#e36c0a><b>0.5f</b></font>); <br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Destroy(gameObject); <br>		
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>else</b></font> yield return new WaitForSeconds(<font color=#e36c0a><b>0.5f</b></font>); <br>		
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  rend.material.color = Color.white; <br>	
+&nbsp; &nbsp; &nbsp; }<br>
+}</font></td>
+      </tr>
+    </table>
+  </center>
+</td></tr></table><br>
+<table width=850 cellpadding=5 bgcolor=#eef9ea><tr><td align=center>
+
+<table width=750><tr><td><font face=arial>
+<center><a name="melee">&nbsp;</a><font size=+2><b>PLAYER MELEE FIGHTING</b></font></center>
+<b>FIGHTING:</b> (<a href="https://youtu.be/sPiVz1k-fEs" target=vid2>Source Video</a>)
+<br>Melee combat in Unity needs 3 things: 
+<br>
+<em>ATTACK:</em> An animation that impacts / covers a region (like a sword thrust or a punch uppercut) <br>
+<em>DETECT:</em> An empty game object to act as the impact location <br>
+<em>DAMAGE:</em> A script that sees if an enemy is touching that hitpoint during the time the animation plays, and if so, causes a reaction to the enemy (reduces health, pushes them back, plays animation). 
+
+<br>
+(<em><b>NOTE:</b></em> remember, on a 2D character the Sprite itself can be the top of the Player hierarchy and hold Physics and scripts components, but for a 3D character these components are applied to an Empty Game Object called Player and the animated mesh is parented below it).
+
+<br><br>
+This tutoial assumes a player charactrr spritesheet set to Multiple, sliced in the Pixel Editor. Drag the first pose into the Hierarchy, add a Rigidbody2D (decide gravity and constraints) and a BoxCollider2D, and a movement script.
+
+<br>
+<br>
+a. An animated 2D or 3D character for a fighting game should include at least &quot;idle&quot;, &quot;walk&quot;, &quot;attack&quot;,  &quot;injured&quot;,  and &quot;dead&quot;. Bring these animation clips into the Mecanim State Machine (Animator Controller). 
+<li> Under Parameters create a new <b>Trigger</b> called &quot;<b>Attack</b>&quot;. 
+<li> Create a <b>transition</b> from <b>[Any State] </b>to the<b> [attack]</b> node, select this transition and in Inspector add the Attack Trigger as Condition. Turn off <b>Has Exit Time</b>, set <b>Settings &gt; Transition Duration = 0.</b> 
+<li> Create a <b>transition</b> from [attack] to [idle], in Inspector turn on <b>Has Exit Time</b>, set <b>Settings &gt; Exit Time = 1</b>  and <b>Transition Duration = 0</b>.
+
+<br><br>
+b. Add an Empty G.O.: Game Object menu > <b>Empty Game Object</b>, name <b>&quot;HitPoint</b>&quot;. Parent below Player.<br><br>
+c. Add this script to Player: <a href="GameDesign/Unity2D/MeleePlayerAttack.cs" target=cs3><b>MeleePlayerAttack.cs</b></a>.
+<li>In the Inspector drag the<b> HitPoint</b> from the Hierarchy to the <b>script slot</b>.
+<li>Adjust the AttackRange in the Inspector to resize the gizmo until satisfied. 
+<li>Create a new <b>Layer</b> for all enemies (like &quot;enemies&quot;), then assign to enemyLayers in the <b>script rolldown</b>.
+<li><em><strong>NOTE:</strong></em> this script references the other (MeleeEnemyDamage), and will show errors until both exist.</font>
+</td></tr></table>
+
+<br>
+<font face=arial>
+<em><a href="gamedesign/unity2D/MeleePlayerAttack.cs" target=gvr2>MeleePlayerAttack.cs</a></em> : 
+</font>
+
+<table width=850 cellpadding=10 border=1><tr>
+<td><font face="arial">
+<font color=#3ab050><b>using</b></font> System.Collections;<br><font color=#3ab050><b>using</b></font> System.Collections.Generic;<br><font color=#3ab050><b>using</b></font> UnityEngine;<br><br>
+<font color=#3ab050><b>public class </b></font><font color=#31849b><b>MeleePlayerAttack</b></font> : <font color=#31849b><b>MonoBehaviour</b></font> {<br><br>
+&nbsp; &nbsp;<font color=#31849b><b>public Animator</b></font> animator;<br>&nbsp; &nbsp;<font color=#31849b><b>public Transform</b></font> attackPoint;<br>&nbsp; &nbsp;<font color=#31849b><b>public float</b></font> attackRange = <b><font color=#ed6c0a>0.5f</font></b>;<br> 
+&nbsp; &nbsp;<font color=#31849b><b>public float</b></font> attackRate = <b><font color=#ed6c0a>2f</font></b>;<br>
+<font face="arial">&nbsp; &nbsp;</font><font color=#31849b><b>private float</b></font> nextAttackTime = <b><font color=#ed6c0a>0f</font></b>;<br> &nbsp; &nbsp;<font color=#31849b><b>public int</b></font> attackDamage = <b><font color=#ed6c0a>40</font></b>;<br>&nbsp; &nbsp;<font color=#31849b><b>public LayerMask</b></font> enemyLayers;</font><br><br>
+&nbsp; &nbsp;<b><font color="#31849b" face="arial">v</font></b><font color=#31849b face="arial"><b>oid</b></font><font face="arial"> Update(){<br>
+&nbsp; &nbsp;&nbsp; &nbsp;<font color=#3ab050><b>if</b></font> (Time.time &gt;= nextAttackTime){<br>
+&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;<font color=#3ab050><b>if</b></font> (Input.GetKeyDown(KeyCode.Space)){<br>
+&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;Attack();<br>
+&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;nextAttackTime = Time.time + <b><font color=#ed6c0a>1f</font></b> / attackRate;<br>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;<b><font color="#31849b" face="arial"></font></b>}<br>&nbsp; &nbsp;&nbsp; &nbsp;}<br>&nbsp; &nbsp; }<br><br>
+&nbsp; &nbsp; </font><b><font color="#31849b" face="arial">v</font></b><font color=#31849b face="arial"><b>oid</b></font><font face="arial"> Attack(){<br>&nbsp; &nbsp; &nbsp; &nbsp; animator.SetTrigger (<b><font color=#ed6c0a>&quot;Attack&quot;</font></b>);<br>
+&nbsp; &nbsp; &nbsp; &nbsp; Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers); &nbsp; &nbsp; 
+<font color=gray>//2D</font><br>
+<font color=gray>&nbsp; &nbsp; &nbsp; &nbsp; //Collider[] hitEnemy = Physics.OverlapSphere(AttackPoint.position, attackRange, enemyLayers); &nbsp; //3D version</font><br><br>
+&nbsp; &nbsp; </font><b><font face="arial">&nbsp; &nbsp; </font><font color="#31849b" face="arial">foreach</font></b><font face="arial">(Collider2D enemy in hitEnemies){&nbsp; &nbsp; &nbsp; &nbsp; 
+<font color=gray>//2D, change Collider2D to Collider for 3D</font><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Debug.Log(&quot;We hit &quot; + enemy.name);<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; enemy.GetComponent&lt;MeleeEnemyDamage&gt;().TakeDamage(attackDamage);<br>
+&nbsp; &nbsp; &nbsp; &nbsp; }<br>&nbsp; &nbsp; }<br><br>
+<font color=gray>&nbsp; &nbsp;//to help see the attack sphere in editor:</font><br>
+&nbsp; &nbsp;<b><font color="#31849b" face="arial">v</font></b><font color=#31849b face="arial"><b>oid</b></font> OnDrawGizmosSelected(){<br>
+&nbsp; &nbsp; &nbsp; &nbsp; if (attackPoint == null) return;<br>&nbsp; &nbsp; &nbsp; &nbsp; Gizmos.DrawWireSphere(attackPoint.position, attackRange);<br>&nbsp; &nbsp;}<br>}</font></td>
+</tr></table>
+
+
+<table width=750 cellpadding=10 border=0><tr>
+<td colspan=2><font face=arial>
+<b>THE ENEMY:</b><br>
+<strong>d. </strong>Import the enemy spritesheet, set to <strong>Multiple</strong>, choose <strong>pixels per unit</strong> and <strong>compression</strong>, and hit <strong>[Apply]</strong>. Use Sprite Editor to slice it up, hit <strong>[Apply]</strong>. Drag the first pose from the Project panel to the Hierarchy, name it EnemyArt. Create a <strong>GameObject &gt; Empty GameObject</strong>, name it &quot;<strong>Enemy</strong>&quot;. <strong>Drag EnmyArt onto Enemy</strong> to make it a child of Enemy. </font>
+    <font face=arial>Add Component a <strong>Rigidbody2D</strong> (choose constraint and gravity) and a <strong>BoxColider2D</strong> (cover body). In the Inpsector <strong>create</strong> and <strong>assign</strong> <strong>Layer</strong> = <strong>enemies</strong>.<br>
+<br>
+<strong>e. ANIMATION: </strong>Create an Animator Controller named EnemyAnimator. Drag &quot;<strong>idle</strong>&quot;, &quot;<strong>hurt</strong>&quot;, and &quot;<strong>dead</strong>&quot; animation clips into Enemy Mecanim State Machine (double click the Animator to view).
+<li> Under <strong>Parameters</strong> create a new <b>Trigger</b> called &quot;<b>Hurt</b>&quot; and a <b>Bool</b> called &quot;<b>isDead</b>&quot;. 
+<li> Create a <b>transition</b> from <b>[Any State] </b>to <b> [hurt]</b> node, select this transition and in  Inspector add the Hurt Trigger as Condition. Turn <b>off</b> [Has Exit Time] and set <b>Settings &gt; Transition Duration = 0.</b>
+<li>Create a <b>transition</b> from <b>[hurt] </b>to <b> [dead]</b> node, select the transition 
+  in Inspector add the isDead Condition, set to <b>True</b>. Turn <b>on</b> Has Exit Time, set <b>Settings &gt; Exit Time = 1,Transition Duration = 0</b>.
+<li> Create a <b>transition</b> from <b>[hurt]</b> to <b>[idle]</b>. Select the transition, in Inspector add the isDead Condition, set to <b>False</b>. Turn <b>on</b> Has Exit Time, set <b>Settings &gt; Exit Time = 1,Transition Duration = 0</b>.
+  
+  <br><br>
+  <strong>f. </strong>Add this script to Player: <a href="GameDesign/Unity2D/MeleeEnemyDamage.cs" target=cs3><b>MeleeEnemyDamage.cs</b></a>.
+<li>In the Inspector drag the<b> Animator</b> component into the <b>script slot</b>.
+  
+  <br><br> &nbsp; &nbsp;PLAYTEST!</font>       
+    </font></td>
+  </tr>
+</table>
+
+<br>
+<font face=arial> <em><a href="gamedesign/unity2D/MeleeEnemyDamage.cs" target=gvr2>MeleeEnemyDamage.cs</a></em> : </font>
+<table width=850 cellpadding=10 border=1>
+  <tr>
+    <td><font face="arial"><font color=#3ab050><b>using</b></font> System.Collections;<br>
+      <font color=#3ab050><b>using</b></font> System.Collections.Generic;<br>
+      <font color=#3ab050><b>using</b></font> UnityEngine;<br>
+      <br>
+      <font color=#3ab050><b>public class </b></font></font><font color=#31849b face="arial"><b>MeleeEnemyDamage</b></font><font face="arial"> : </font><font color=#31849b face="arial"><b>MonoBehaviour</b></font><font face="arial"> {<br>
+        <br>
+        &nbsp; &nbsp;</font><font color=#31849b face="arial"><b>public</b></font> <font color=#31849b face="arial"><b>Animator</b></font><font face="arial"> animator;<br>
+          &nbsp; &nbsp;</font><font color=#31849b face="arial"><b>public int </b></font><font face="arial">maxHealth = <b><font color=#ed6c0a>100</font></b>;<br>
+          &nbsp; &nbsp;</font><font color=#31849b face="arial"><b>public int </b></font><font face="arial">currentHealth;<br>
+          <br>
+          &nbsp; &nbsp;</font><b><font color="#31849b" face="arial">v</font></b><font color=#31849b face="arial"><b>oid</b></font><font face="arial"> Start(){<br>
+          &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;currentHealth = maxHealth;<br>
+&nbsp; &nbsp; }<br><br>
+&nbsp; &nbsp;</font><b><font color="#31849b" face="arial">public v</font></b><font color=#31849b face="arial"><b>oid</b></font><font face="arial"> TakeDamage(</font><font color=#31849b face="arial"><b>int</b></font><font face="arial"> damage){<br>
+&nbsp; &nbsp;<b>&nbsp; &nbsp;</b>currentHealth -= damage;<br>&nbsp; &nbsp; &nbsp;  animator.SetTrigger (<b><font color=#ed6c0a>&quot;Hurt&quot;</font></b>);<br>
+            <font face="arial">&nbsp; &nbsp;</font>&nbsp; &nbsp;<font color=#3ab050><b>if</b></font> (currentHealth &lt;= <b><font color=#ed6c0a>0</font></b>){<br>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;Die();<br>&nbsp; &nbsp;&nbsp; &nbsp;}<br>&nbsp; &nbsp; }<br><br>
+&nbsp; &nbsp; </font><b><font color="#31849b" face="arial">v</font></b><font color=#31849b face="arial"><b>oid</b></font><font face="arial"> Die(){<br>&nbsp; &nbsp; &nbsp; &nbsp; animator.SetBool (<b><font color=#ed6c0a>&quot;isDead&quot;</font></b>, true);<br>
+&nbsp; &nbsp; &nbsp; &nbsp; GetComponent&lt;Collider2D&gt;().enabled = false;
+&nbsp; &nbsp; <font color=gray>//2D, change Collider2D to Collider for 3D</font><br>
+&nbsp; &nbsp; &nbsp; &nbsp; this.enabled = false;<br>&nbsp; &nbsp; }<br>
+}</font></td>
+</tr></table>
+
+</td></tr></table>
+
+<br><br>
+<table width=750><tr><td>
+<center>
+  <font size=+2 face="arial"><b>ENEMY NPC AI SAMPLES</b></font>
+</center><font face=arial>
+Artificial Intelligence for NPCs in games is not typically advanced learning algorythms, but instead a <b>simple list of responses to specific conditions in the game</b>. For example, consider an enemy that shoots at the player. It moves towards the player until it reaches a specified distance, and retreats if the player gets too close. All of these are responses to one piece of data: the distance from the player. We can capture that data and test against it in the Update() function to decide what the enemy will do.<br><em><b>NOTE:</b></em> These 3 Enemy types/scripts work equally well on 3D games, with Physics modifications:
+
+<br>
+<a name="enemyMove">&nbsp;</a><br>
+<b>ENEMY #1: <font color=purple>FOLLOW THE PLAYER</font></b> 
+(<a href="https://youtu.be/rhoQd6IAtDo" target=vid3>source video</a>)<br>
+<img src="gamedesign/Unity2D/Art2D_EnemyFollow.png" align=right width=256 border=1>
+This enemy follows the player. If it reaches the player it causes damage and disappears. It takes a specified amount of bullet damage before being removed.<br><br>
+<b>Add EnemyFollow sprite</b> to Hierarchy, name it EnemyFollowArt. </font>
+<li><font face="arial">Set &quot;Order in Layer&quot; = 4, apply <b>tag</b> &quot;enemy&quot; (create if needed). </font>
+<font face="arial">
+<li>Reset Transforms (0,0,0).
+<li>
+Create a <strong>GameObject &gt; Empty GameObject</strong>, name it &quot;<strong>EnemyFollow</strong>&quot;. <strong>Drag EnemyFollowArt onto EnemyFollow</strong> to make it a child of EnemyFollow. Add to EnemyFollow:
+<li>Component <b>Physics2D &gt; Rigidbody2D</b>, set <b>Mass = 3</b> and <b>Gravity Scale = 0</b>.
+<li>Component <b>Physics2D &gt; Collider2D</b> (box or circle, set size).
+<li>Apply <a href="GameDesign/Unity2D/EnemyMoveHit.cs" target=cs5><b>EnemyMoveHit.cs</b></a> to follow the player and respond to bullets (color change <a href="https://www.youtube.com/watch?v=J66UkLJHzCY" target=vid4>source</a>).
+<li>Drag to the Project to make a <b>Prefab</b> and <b>delete</b> from the Hierarchy. <br><br>Create an <b>EmptyGO</b> and name it <b>EnemySpawn</b>.
+<li>Apply <a href="GameDesign/Unity2D/EnemySpawn.cs" target=cs6><b>EnemySpawn.cs</b></a>, add the Enemy prefab to the script slot.
+<br>
+(Random enemy spawn <a href="https://www.youtube.com/watch?v=AI8XNNRpTTw" target=vid5> source</a>)
+
+<br><br>
+<a name="enemyShoot">&nbsp;</a>
+<br>
+  <b>ENEMY #2: <font color=purple>SHOOTING BACK</font></b> 
+  (<a href="https://youtu.be/_Z1t7MNk0c4" target=vid6>source video</a>)
+  <br>
+  <img src="gamedesign/Unity2D/Art2D_EnemyShoot.png" align=right width=256 border=1>
+  This enemy runs towards and away from Player, depending on distance, and shoots towards Player. 
+  It takes a specified amount of bullet damage before being removed.<br><br>
+  <b>Add EnemyShoot sprite</b> to Hierarchy, neme it EnemyShootArt. 
+<li>Set &quot;Order in Layer&quot; = 4
+, apply <b>tag</b> &quot;enemy&quot; (create if needed).
+<li> Reset Transforms (0,0,0).
+<li>Create a <strong>GameObject &gt; Empty GameObject</strong>, name it &quot;<strong>EnemyShoot</strong>&quot;. <strong>Drag EnemyShootArt onto EnemyShoot</strong> to make it a child of EnemyShoot. Add to EnemyShoot:
+<li>Component  <strong>Physics2D > </strong><b>Rigidbody2D,</b>
+set <b>Mass = 5</b> and <b>Gravity Scale = 0</b>.
+<li> Component <strong>Physics2D &gt; </strong><b>Collider2D</b> (box or circle, set size).
+<li> Apply the <a href="GameDesign/Unity2D/EnemyShootMove.cs" target=cs7><b>EnemyShootMove.cs</b></a> script to EnemyShoot.
+
+<br><br> 
+<b>Add EnemyProjectile sprite</b> to the Hierarchy, name it EnemyProjectileArt.
+<li>Set &quot;<strong>Order in Layer</strong>&quot; = 12.
+<li> Create a <strong>GameObject &gt; Empty GameObject</strong>, name it &quot;<strong>EnemyProjectile</strong>&quot;. <strong>Drag EnemyProjectileArt onto EnemyProjectile</strong> to make it a child of EnemyProjectile. Add to EnemyProjectile:
+<li>Add <b>BoxCollider2d</b> (set to <strong>isTrigger</strong> and size), add <b>Rigidbody2D</b> and set <strong>Gravity Scale</strong> = 0
+<li>Apply <a href="GameDesign/Unity2D/BulletEnemy.cs" target=cs8><b>BulletEnemy.cs</b></a>, drag to Project to make a <b>Prefab</b> and <b>delete</b> from Hierarchy. 
+</font><li><font face="arial">Select the EnemyShoot and <b>drag the Projectile Prefab</b> to the script slot.<br>
+  <br>
+  </font><center>
+    <font face="arial"><em>BulletEnemy.cs:</em><br>
+      </font>
+    <table width=100% cellpadding=10 border=1>
+      <tr>
+        <td><font face=arial> 
+<font face=arial><font color=#3ab050><b>using</b></font></font> System.Collections;<br> 
+<font face=arial><font color=#3ab050><b>using</b></font></font> System.Collections.Generic;<br> 
+<font face=arial><font color=#3ab050><b>using</b></font></font> UnityEngine;<br>
+<br>
+<font color=#3ab050><b>public class</b></font> </font><font color=#31849b face="arial"><b>BulletEnemy</b></font><font color=#31849b face="arial"> : <b>MonoBehaviour</b></font> <font face=arial> {<br>
+<br>
+&nbsp; &nbsp;<font color=#31849b><b>public</b></font> GameHandler gameHandlerObj;<br>
+&nbsp; &nbsp;<font color=#31849b><b>public</b></font> </font><font color=#31849b face="arial"><b>int</b></font><font face=arial> damage = <font color=#ed6c0a><b>1</b></font>;<br>
+&nbsp; &nbsp;<font color=#31849b><b>public</b></font> </font><font color=#31849b face="arial"><b>float</b></font><font face=arial> speed = <font color=#ed6c0a><b>10f</b></font>;<br>&nbsp; &nbsp;<font color=#31849b><b>private</b></font> Transform playerTrans;<br>	
+&nbsp; &nbsp;<font color=#31849b><b>private</b></font> </font><font color=#31849b face="arial"><b>Vector2</b></font><font face=arial> target;<br>	
+&nbsp; &nbsp;<font color=#31849b><b>public</b></font> GameObject hitEffectAnim;<br>
+<br>	
+&nbsp; &nbsp;<font color=#31849b><b>void</b></font> Start() {<br>		
+&nbsp; &nbsp;<b><font color=#a6a6a6>//transform gets location, but we need Vector2 to get direction, so we can moveTowards.</font></b><br>		
+&nbsp; &nbsp;&nbsp; &nbsp;playerTrans = GameObject.FindGameObjectWithTag(<font color=#ed6c0a><b>&quot;Player&quot;</b></font>).transform;<br>		
+&nbsp; &nbsp;&nbsp; &nbsp;target = new Vector2(playerTrans.position.x, playerTrans.position.y);<br>	
+&nbsp; &nbsp;}<br>
+<br>	
+&nbsp; &nbsp;<font color=#31849b><b>void</b></font> Update () {<br>		
+&nbsp; &nbsp;&nbsp; &nbsp;transform.position = Vector2.MoveTowards (transform.position, target, speed * Time.deltaTime);<br>	
+&nbsp; &nbsp;}<br>
+<br>	
+&nbsp; &nbsp;<b><font color=#a6a6a6>//if bullet hits a collider, play explosion animation, then destroy effect and bullet </font></b><br>	
+&nbsp; &nbsp;<font color=#31849b><b>void</b></font> OnTriggerEnter2D(Collider2D other){<br>		
+&nbsp; &nbsp;&nbsp; &nbsp;<font color=#3ab050><b>if</b></font> (other.gameObject.tag != <font color=#ed6c0a><b>&quot;enemyShooter&quot;</b></font>) {<br>
+&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;<font color=#3ab050><b>if</b></font> (other.gameObject.tag == <font color=#ed6c0a><b>&quot;Player&quot;</b></font>){<br>
+&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;gameHandlerObj.playerGetHit(damage);<br>
+&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;}<br>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;GameObject animEffect = Instantiate (hitEffectAnim, transform.position, Quaternion.identity);<br>			
+&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;Destroy (animEffect, <font color=#ed6c0a><b>0.5f</b></font>);<br>			
+&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;Destroy (gameObject);<br>		
+&nbsp; &nbsp;&nbsp; &nbsp;}<br>	
+&nbsp; &nbsp;}<br>
+}</font></td>
+      </tr>
+    </table>
+  </center>
+  <font face="arial"><br>
+  <br>
+<a name="enemyGaze">&nbsp;</a>
+<br>
+  <b>ENEMY #3: <font color=purple>KILLER GAZE</font></b> 
+  (<a href="https://youtu.be/GPrGg8UDB_E" target=vid6>source video</a>)
+  <br>
+  <img src="gamedesign/Unity2D/Art2D_EnemyGaze.png" align=right width=256 border=1>
+  Good for stealth mechanics, this enemy  looks around. If their gaze hits the player, the player loses, or gaze-contact could initiate Enemy following and/or attacking. The player can avoid the gaze by sneaking behind them or obstacles, and could attack from behind. For a 2D game rotate.forward means to rotate on the Z axis, the one that draws through the plane of the screen (the only axis of rotation for a 2D game). This example uses the Unity Line Renderer effect to show the gaze-line in Game, but could replace with a .PNG. Debug.drawline shows full line in Scene. 
+  
+  <br><br>
+  <b>Add EnemyGaze sprite</b> to Hierarchy (should face right in art). Name it EnemyGazeArt.
+</font><font face="arial"><li>Set &quot;Order in Layer&quot; = 4, apply <b>tag</b> &quot;enemy&quot; (create if needed).
+<li> 
+Reset Transforms (0,0,0).
+<li>
+Create a <strong>GameObject &gt; Empty GameObject</strong>, name it &quot;<strong>EnemyGaze</strong>&quot;. <strong>Drag EnemyGazeArt onto EnemyGaze</strong> to make it a child of EnemyGaze. Add to EnemyGaze:
+<li>Component <strong>Physics2D > </strong><b>Rigidbody2D,</b>
+set <b>Mass = 10</b> and <b>Gravity Scale = 0</b>.
+<li>Component <strong>Physics2D &gt; </strong><b>Collider2D</b> (box or circle, set size).
+<li>
+  Apply the <a href="GameDesign/Unity2D/EnemyGazeMove.cs" target=cs9><b>EnemyGazeMove.cs</b></a> script to EnemyGaze. <b>Set the 2 colors</b> in  script slots (red and green).
+  
+  <br><br> Create a new <b>Empty GO</b>. Drag it onto EnemyGaze to parent it beneath. Name it &quot;<b>LineOfSight</b>.&quot;
+<li> Add component <b>Effect > Line Renderer</b>. 
+<li>(Turn OFF <b>Use World Space</b> to see it follow the parent in the scene, but turn it ON to follow in Game).
+<li>Under Positions set Index 0 to Z= 0, and set Index 1 to x=1 and z=0.
+<li> Change from default purple with a <b>Material</b>: click  hotspot to right of Element0, choose white Spites_Default material. Toward bottom, set Order In Layer to 5.
+<li> Lower line <b>Width</b> (try 0.25). Optionally, change Material placeholder color by clicking the rectangle.
+<li>Select the EnemyGaze and <b>drag the LineOfSight GO</b> into the script slot.<br>
+
+<br>
+<a name="score">&nbsp;</a>
+<br>
+  <center>
+    <font size=+2 face="arial"><b>UI: DISPLAY PLAYER SCORE</b></font>
+  </center>
+  
+  Tracking the Player score is best managed with a Master Game Controller that can be referenced by any destroyed enemies (to give the Player points) and to write to the UI. 
+  
+  <br><br>Create a <b>UI &gt; Text</b> object, which is put under a Canvas object. 
+<li>Select the <b>Canvas</b> and change <b>UI Scale Mode</b> from Constant Pixel Size to Scale With Screen Size.<br>
+<li>Select the <b>Text</b> and type in initial placeholder Text. Set the Rect Transform > Width and Height to 300, the Text > Font Size to 18 or more, and the color as desired. Change Pos X and Pos Y to decide the location of your score text (like the upper right).
+
+<br><br>
+Create a <b>new Empty Game Object</b>. 
+<li>Name it "<b>GameControl</b>" and set <b>tag to GameController</b>. 
+</font><li><font face="arial">Apply <a href="GameDesign/Unity2D/GameController.cs" target=cs10><b>GameController.cs</b></a> script to this GameControl object. 
+<li>Drag the Text object into the script slot, so the Game Controller can update the text display.
+</font><li><font face="arial">Note the function in each enemy script that references the GameController and adds to the score.<br>
+    <a name="win">&nbsp;</a><br>
+<center>
+  <font size=+2><b>WIN CONDITION: HIT SWITCHES</b></font>
+</center>
+<img src="gamedesign/Unity2D/SwitchOn.png" align=right width=128 border=1>
+  <b>Create a Win Scene:</b> (sources <a href="https://www.youtube.com/watch?v=5x2tDagmFiQ" target=sm><b>Scene Manager</b></a>  and <a href="https://www.youtube.com/watch?v=kwRlfAtcmOE" target=drag><b>Static Public Variables</b></a>).
+</font>
+<li><font face="arial">Create a new Scene. Add UI > Text object. Change text to "You Win!" and make large and bright.</font>
+<li><font face="arial">To display the Player stats from the game, we set those variables to static and put a copy of the GameControl object and GameController script in the new Scene.</font>
+<li><font face="arial">Save the Scene (&quot;WinScene&quot;).</font>
+<li><font face="arial">File > Build Settings, hit [Add Scene] to make WinScene index 1 (the original scene is default index 0).
+
+<br><br><br>
+<img src="gamedesign/Unity2D/SwitchOff.png" align=right width=128 border=1>
+There are many possible win conditions. 
+<br>In this example, the player wins by flipping all the switches. 
+</font>
+<li><font face="arial">Add  <b>SwitchOff</b> sprite to Hierarchy, drag it back into Project to make a <b>Prefab</b>, <b>delete</b> from Hierarchy.</font>
+<li><font face="arial">Add  <b>SwitchOn</b> sprite to Hierarchy, add a <b>Physics2D > BoxCollider2D</b> and size. </font>
+<li><font face="arial">Apply the <a href="GameDesign/Unity2D/Switch.cs" target=cs11><b>Switch.cs</b></a> script to SwitchOn. Add the <b>SwitchOff Prefab</b> to the script slot.</font>
+<li><font face="arial">Drag SwitchOn to Project to make a Prefab, then duplicate for 5 switches and place.</font>
+<li><font face="arial">The Game Controller script tracks the switches-score, and when all switches are collected the GameController uses Scenemanager.LoadScene to change to the WinScene. <br>
+<br>
+</font>
+<center>
+  <font face="arial"><em>BulletEnemy.cs:</em><br>
+    </font>
+  <table width=100% cellpadding=10 border=1>
+    <tr>
+      <td><font face=arial> <font face=arial><font color=#3ab050><b>using</b></font></font> System.Collections;<br>
+        <font face=arial><font color=#3ab050><b>using</b></font></font> System.Collections.Generic;<br>
+        <font face=arial><font color=#3ab050><b>using</b></font></font> UnityEngine;<br>
+        <br>
+        <font color=#3ab050><b>public class</b></font></font><font color=#31849b face="arial"><b> Switch</b></font><font color=#31849b face="arial"> : <b>MonoBehaviour</b></font> <font face=arial> {<br>
+<br>	
+&nbsp; &nbsp;<font color=#31849b><b>private</b></font> GameController gameControllerObj;<br>	
+&nbsp; &nbsp;<font color=#31849b><b>public</b></font> GameObject OffSwitch;<br>
+<br>	
+<b><font face=arial>&nbsp; &nbsp;</font><font color=#a6a6a6>// Use this for initialization</font></b><br>	
+&nbsp; &nbsp;<font color=#31849b><b>void</b></font> Start () {<br>		
+&nbsp; &nbsp;&nbsp; &nbsp;GameObject gameControllerLocation = GameObject.FindWithTag (<font color=#ed6c0a><b>&quot;GameController&quot;</b></font>);
+<br>		
+&nbsp; &nbsp;&nbsp; &nbsp;if (gameControllerLocation != null) { <br>			
+&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;gameControllerObj = gameControllerLocation.GetComponent&lt;GameController&gt;();
+<br>		
+&nbsp; &nbsp;&nbsp; &nbsp;}<br>	
+&nbsp; &nbsp;}<br>
+<br> 
+&nbsp; &nbsp;<b><font color=#a6a6a6>// If the player hits the switch, reduce # of switches remaining in HUD,</font></b><br> 
+&nbsp; &nbsp;<b><font color=#a6a6a6>// display the off-switch and remove the on-switch</font></b><br>	
+<font face=arial>&nbsp; &nbsp;</font><font color=#31849b><b>void</b></font> OnCollisionEnter2D(Collision2D collision){<br>		
+&nbsp; &nbsp;&nbsp; &nbsp;<font color=#3ab050><b>if</b></font> (collision.gameObject.tag == <font color=#ed6c0a><b>&quot;Player&quot;</b></font>) {<br>			
+&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;gameControllerObj.AddSwitch (<font color=#ed6c0a><b>-1</b></font>);<br>			
+&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;<b><font color=#a6a6a6>// Instantiate (OffSwitch, transform.position, Quaternion.identity);</font></b><br>			
+&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;Instantiate (OffSwitch, transform.position, transform.rotation);<br>			
+&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;Destroy(gameObject);<br>		
+&nbsp; &nbsp;&nbsp; &nbsp;}<br>	
+&nbsp; &nbsp;}<br>
+}</font></td>
+    </tr>
+  </table>
+</center>
+&nbsp;
+<font face="arial">
+<br>
+  
+</font></td></tr></table>
+  
+<center><img src="gamedesign/Unity2D/TopDown_img2.png" width=800></center>
+
+<table width=750 cellpadding=10 border=0><tr>
+<td><font face=arial>
+  
+<table width=100% border=0><tr><td width=10%>&nbsp;</td><td width=90%><font face=arial>
+<em>TO MODIFY SCRIPTS IN MONODEVELOP:</em>
+<li>DoubleClick  script to open in your editor.
+<li>For  the Manual (to get help): Select a word or line of code and hit [Ctrl]+[&lsquo;].
+<li>Comment-out  selected lines: [Ctrl]+[alt]+[c] (makes them gray, not currently read by engine).
+<li>To deactivate  Code Completion: Tools &gt; General &gt; Enable Code completion.</font></td></tr></table>
+  
+<br><i>Tutorial by Jason Wiser, Madwomb.com</i>
+</font></td></tr></table>
+
+</center>
+
+</body>
+</html>

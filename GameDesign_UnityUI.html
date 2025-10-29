@@ -1,0 +1,1231 @@
+<html>
+<head>
+<title>Unity3D Intro Tutorial</title>
+</head>
+
+<body text=#222222 link=#1e6669 vlink=#7700aa alink=#1088bb>
+
+<center>
+<table width=800 cellpadding=10 border=0>
+<tr>
+  <td valign=top><font face=arial>
+  <a href="GameDesign_Unity.html"><img src="gamedesign/UnityLogo60.png" alt="" align=right></a><a name=TOP>&nbsp;</a><font size=+2><b>UNITY - Introduction to Unity User Interface Tools</b></font>
+<br>
+In the Intro to Unity 3D Tutorial we saw the basics of displaying and <b>updating player score</b>: using a GameController.cs Script on an Empty GO to update a Canvas Text object when other scene objects send messages to it.
+</font>
+
+<center>
+<table width=80% cellpadding=10><tr>
+  <td valign=top><font face=arial>
+&nbsp; &nbsp; &nbsp; &nbsp; <font color=purple><b>[A]:</b></font> <a href="#text">Basic Text Update</a> <br>
+&nbsp; &nbsp; &nbsp; &nbsp; <font color=purple><b>[B]:</b></font> <a href="#button">Canvas Buttons</a> 
+<font face=arial>
+<br><nobr>&nbsp; &nbsp; &nbsp; &nbsp; <font color=purple><b>[C]:</b></font> <a href="#slider">Slider: Volume Control</a></nobr></font>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; <font color=purple><b>[D]:</b></font> <a href="#pause">Pause Menu</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; <font color=purple><b>[E]:</b></font> <a href="#healthbar">Health Bar</a><br>
+<br>
+</font></td>
+  <td valign=top><font face=arial>
+&nbsp; &nbsp; &nbsp; &nbsp; <font color=purple><b>[F]:</b></font> <a href="#inventory">Inventory and Object Pickup</a>
+<br>&nbsp; &nbsp; &nbsp; &nbsp; <font color=purple><b>[G]:</b></font> <a href="#warning">Warning Vignette / Distance Calculator</a>
+<br>&nbsp; &nbsp; &nbsp; &nbsp; <font color=purple><b>[H]:</b></font> <a href="#speed">Scene ID</a> and <a href="#speed">Speed Calculator</a> 
+<br><br>
+&nbsp; &nbsp; &nbsp; &nbsp;<em>Click here for the </em><a href="GameDesign_UnityVisualNovel.html">Visual Novel Tutorial</a><em> page.</em></font></td>
+</tr></table>
+
+<br>
+
+<table width=90% cellpadding=5><tr>
+<td><font face=arial> <font size="+2"><b>UNITY TUTORIAL: Canvas UI Tools</b></font>
+<br>
+&nbsp; &nbsp; Unity Canvas is a 2D space to hold HUD elements (&quot;Heads Up Display&quot;): Text, Images, Buttons, Sliders, and more.<br>
+&nbsp; &nbsp; 
+In the Scene view the Canvas appears over-large, but in the Game View it maps over the visible screen and tracks with camera movement.<br>&nbsp; &nbsp; Text objects can be static (display  message and not change) or  can be updated by a script. 
+<br>&nbsp; &nbsp; <strong>Buttons</strong> and <strong>Sliders</strong> include <b>Event Triggers</b> to call (activate) a script on another object. 
+<br>
+&nbsp; &nbsp; <strong>STANDARD CANVAS SET-UP:</strong> In Inspector set Canvas Scaler &gt; UI Scale Mode from &quot;Constant Pixel Size&quot; to &quot;Scale With Screen Size&quot; and Reference Resolution = 1280x720</font></td></tr></table>
+<br>
+
+<table width=750 bgcolor=#eef5ee cellpadding=10><tr><td><font face=arial><a name="text">&nbsp;</a> 
+        <a href="#TOP"></a><br>
+        <b><font face=arial><a href="#TOP"><img src="comicsDesign/ArrowUp.png" alt=""></a></font><font color=purple> [A]:</font> BASIC TEXT UPDATE:</b>
+<br><b>1. <font face="arial">Create an Empty Game O</font></b><b>bject</b>: GameObject &gt; <b><font face="arial">CreateEmpty</font></b>, name GameControlObj.<br>
+In the Inspector apply the <b><font face="arial">tag</font></b> <em><font face="arial">GameController.</font></em>
+<br><br>Create a <b><font face="arial">new C# script </font></b> named <b><font face="arial">&quot;GameController&quot;</font></b>. Add  script to GameControlObj. <br>
+Doubleclick script to open in  editor. Be sure to add the <b><font face="arial">using UnityEngine.UI namespace</font></b> to the top: <br>
+<br>
+      </font>
+        <center>
+          <font face="arial"><em>GameController.cs</em>:<br>
+            </font>
+          <table width=90% cellpadding=10 border=1>
+            <tr>
+              <td><font face=arial><font color=#31849b><b>using </b></font>System.Collections;<br>
+                <font color=#31849b><b>using </b></font>System.Collections.Generic;<br>
+                <font color=#31849b><b>using </b></font>UnityEngine;<br>
+                <font color=#31849b><b>using </b></font>UnityEngine.UI;<br>
+                <br>
+                <font color=#31849b><b>public class</b></font></font> <font color=#365f91 face="arial"><b>GameController</b> :</font><font face=arial><font color=#365f91><b>MonoBehaviour</b></font></font><font face="arial"> {<br>
+                  &nbsp; &nbsp; &nbsp; &nbsp;<font color=#31849b><b>public</b></font><b><font color="#3ab050"> </font></b><font color=#31849b><b>GameObject</b></font> textGameObject;<br>
+                  &nbsp; &nbsp; &nbsp; &nbsp;<font color=#31849b><b>private</b></font><b><font color="#3ab050"> </font></b><font color=#31849b><b>int</b></font> score;<br>
+                  <br>
+                  &nbsp; &nbsp; &nbsp; &nbsp;<font color=#31849b><b>void</b></font> Start () {<br>
+                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  score = 0;<br>
+                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  UpdateScore ();<br>
+                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;}<br>
+                  <br>
+                  &nbsp; &nbsp; &nbsp; &nbsp;<font color=#31849b><b>public</b></font><b><font color="#3ab050"> </font></b><font color=#31849b><b>void</b></font> AddScore (<font color=#31849b><b>int</b></font> newScoreValue) {<br>
+                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;score += newScoreValue;<br>
+                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;UpdateScore  ();<br>
+                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;}<br>
+                  <br>
+                  &nbsp; &nbsp; &nbsp; &nbsp;<font color=#31849b><b>void</b></font> UpdateScore () {<br>
+                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=#31849b><b>Text</b></font> scoreTextB = textGameObject.GetComponent&lt;<font color=#31849b><b>Text</b></font>&gt;();<br>
+                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;   scoreTextB.text  = <font color=#ed6c0a><b>&quot;Score: &quot;</b></font> + score;<br>
+                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;}<br>
+                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;}
+<br>
+</font></td>
+</tr>
+</table>
+</center>
+
+<font face="arial">
+<br><b>2.</b> <b>Create a Canvas Text object</b>: GameObject &gt; UI &gt;Legacy &gt; <b>Text</b>
+<br>(NOTE: Canvas appears normal in Game view and crazy large in Scene  view).
+<br>
+&nbsp; &nbsp; &nbsp;a. In Inspector, change text field to  &quot;Score?&quot; and set Pos  X and Pos Y to a corner. 
+<br>
+Set 
+Width and Height  larger to increase text field (double or more) <br>
+&nbsp; &nbsp; &nbsp;b. Select the GameControlObj and drag the Text  object into the empty public <b>Text script slot </b>(in the GameController  script component).<br><br>
+<b>3.</b> <b>Finally,</b> any object in your Scene can access this AddScore method to update the score: <br><b>#1.</b> Add a <b>private  variable</b> to hold the GameController object.<br>
+<b>#2.</b> Add a <b>Start</b> method to find the actual GameController object and <b>assign it</b> to the private variable (Assign first to a temporary GameObjectTemp variable). This only works if the GameController component already exists, assigned to the GameController object (step 1).<br>
+<b>#3.</b> Add a line (like to an <b>OnTriggerEnter</b> function) to call AddScore inside of GameController script<b>:</b> 
+
+<br><br>
+</font>
+<center>
+  <table width=700 cellpadding=10 border=1>
+    <tr>
+      <td><font face=arial><font color=#31849b><b>using</b></font> System.Collections; <br>
+        <font color=#31849b><b>using </b></font>System.Collections.Generic; <br>
+        <font color=#31849b><b>using </b></font>UnityEngine; <br>
+        <br>
+        <font color=#31849b><b>public class</b></font></font> <font color=#365f91 face="arial"><b>HitObjectToAddScore</b> <b>:</b></font><font face=arial><font color=#365f91><b> MonoBehaviour</b></font></font><font face="arial"> {<br>
+          <br>
+          <font face=arial><font face="arial"><font face=arial><font face="arial">&nbsp; &nbsp; &nbsp; &nbsp;</font></font></font></font><font color=#31849b><b>private</b></font><font color="#3ab050"> </font><b><font color=#31849b>GameController</font> gameController; </b><font color=#aaaaaa>&nbsp;&nbsp;  // #1 variable to hold GameController</font> <br>
+          <br>
+          <font face=arial><font face="arial"><b>&nbsp; &nbsp; &nbsp; &nbsp;</b></font></font><b><font color=#31849b>void</font> Start () { <font color=#aaaaaa>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</font></b><font color=#aaaaaa>// #2 assign actual Game Controller to var</font><b> <br>
+            <font face="arial">&nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </font><font color=#31849b>GameObject</font> gameCtrlTemp = <font color=#31849b>GameObject</font>.FindWithTag (<font color=#ed6c0a>&quot;GameController&quot;</font>);<br>
+            <font face="arial">&nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </font><font color=#3ab050>if</font> (gameCtrlTemp != <font color=#31849b>null</font>) {<br>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; gameController = gameCtrlTemp.GetComponent &lt;<font color=#31849b>GameController</font>&gt;();<br>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br>
+            <font face="arial">&nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </font><font color=#3ab050>if</font> (gameCtrlTemp == <font color=#31849b>null</font>) {<br>
+            <font face="arial">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </font><font color=#31849b>Debug</font>.Log (<font color=#ed6c0a>&quot;Cannot find 'GameController' script&quot;</font>);<br>
+            <font face="arial">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </font>}<br>
+            <font face="arial"><font face="arial">&nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </font></font>}</b><br>
+          <br>
+          &nbsp; &nbsp; &nbsp;&nbsp; <font color=#31849b><b>void</b></font> OnTriggerEnter(<font color=#31849b><b>Collider</b></font> other){<br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; <font color=#3ab050><b>if</b></font> (other.gameObject.tag == <font color=#ed6c0a><b>&quot;Player&quot;</b></font>) { <br>
+          &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>gameController.AddScore (<font color=#ed6c0a>1</font>); <font color=#aaaaaa>&nbsp;</font></b><font color=#aaaaaa> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // #3 
+            update score through AddScore()</font><br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;}<br>
+          }</font></td>
+</tr></table>
+</center>
+<font face="arial"><br>
+</font></td>
+</tr></table>
+
+<br><br>
+
+<table width=750 bgcolor=#f5eeee cellpadding=10><tr>
+<td><font face=arial><a name="button">&nbsp;</a><a href="#TOP"></a><br>
+<b><font face=arial><a href="#TOP"><img src="comicsDesign/ArrowUp.png" alt=""></a></font> <font color=purple>[B]:</font> CANVAS BUTTONS:</b>
+(<a href="https://youtu.be/kdkrjCF0KCo" target=vid1>video</a>)
+<br>
+1. Add a <b>Game Object &gt; UI &gt; Canvas</b> to create a transparent space that will hold our UI elements.<br>
+<br>2. In the Hierarchy select the Canvas, RightClick and add a <b>UI &gt; Button</b>. 
+<br>Position as desired. Note the Button also includes a <b>Text</b> child Component, which can be changed by selecting and typing into the field in the Inspector. Type &quot;My Text&quot;.<br>
+With the Button selected, change the <b>Pressed Color.</b>
+<br>Hit Play to see the result when the button is clicked. Turn off Play.
+
+<br><br>
+3. Create a script and add it to the Button, <b>ButtonHandler.cs</b>:
+<br></font>
+
+<center>
+<table width=600 cellpadding=10 border=1><tr>
+<td><font face=arial><font color=#31849b><b>using</b></font> System.Collections; <br>
+            <font color=#31849b><b>using</b></font> System.Collections.Generic; <br>
+            <font color=#31849b><b>using</b></font> UnityEngine; <br>
+            <font color=#31849b><b>using</b></font> System.UI; <br>
+            <br>
+            <font color=#31849b><b>public class</b></font> <font color=#365f91><b>ButtonHandler</b></font> : <font color=#365f91><b>MonoBehaviour</b></font> { <br>
+            <br>
+            &nbsp; &nbsp; &nbsp;<font color=#31849b><b>public void </b></font>SetText(<font color=#365f91><b>string</b></font> text){ <br>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Text txt = transform.Find(<font color=#e36c0a><b>&quot;Text&quot;</b></font>).GetComponent&lt;<font color=#31849b><b>Text</b></font>&gt;(); <br>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; txt.text = text; 
+<br>&nbsp; &nbsp; &nbsp; } 
+<br>} </font></td>
+</tr>
+</table>
+</center>
+
+<br>
+<font face=arial>4. Select the Button and <b>add an OnClick event</b>: hit the [+] button in the On Click () box. 
+<br>
+Click [None (Obj)] to add the <b>Button</b>, and click [No Function] to choose <b>Button Handler &gt; SetText()</b>. 
+<br>In the text box that appears below function, type &quot;New Text&quot;. Hit Play to see the text change when clicked.
+</font>
+
+<br>
+<center>
+<table width=100% border=0><tr>
+<td><font face=arial>
+
+<table width=100% cellpadding=0><tr>
+<td valign=top><img src="gamedesign/Unity2D/UI_buttonOnClick1.png" width=200></td>
+<td valign=top align=center><img src="gamedesign/Unity2D/UI_buttonOnClick2.png" width=200></td>
+<td rowspan=2 valign=top><img src="gamedesign/Unity2D/UI_buttonOnClick3.png"></td>
+</tr><tr>
+<td colspan=2 valign=bottom><font face=arial>5. <b>USE A BUTTON TO SWITCH SCENES</b> (like to  level #1): 
+<br>&nbsp; &nbsp;  a. Use the <b>Script</b> below (note  SceneManagement namespace).
+<br>&nbsp; &nbsp;  b. change  <b>OnClick()</b> function to <b>ButtonHandler &gt; PlayGame()</b>. 
+</font></td>
+</tr></table>
+
+</font></td>
+</tr></table>
+
+<table width=700 cellpadding=10 border=1>
+  <tr>
+    <td><font face=arial><font color=#31849b><b>using</b></font> System.Collections; <br>
+      <font color=#31849b><b>using</b></font> System.Collections.Generic; <br>
+      <font color=#31849b><b>using</b></font> UnityEngine; <br>
+      <font color=#31849b><b>using </b></font>UnityEngine.SceneManagement; <br>
+      <br>
+      <font color=#31849b><b>public class</b></font> <font color=#365f91><b>ButtonHandler</b></font> : <font color=#365f91><b>MonoBehaviour</b></font> { <br>
+      <br>
+      &nbsp; &nbsp; &nbsp; <font color=#31849b><b>public void </b></font>PlayGame () {<b><br>
+        </b>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; SceneManager.LoadScene(<font color=#e36c0a><b>&quot;Level1&quot;</b></font>);<b> </b><font color=#999999> //uses level name</font><br>
+      &nbsp; &nbsp; &nbsp; }<br>
+      } </font></td>
+  </tr>
+</table>
+
+</center>
+</td>
+</tr></table>
+  
+<br><br>
+
+<table width=780 bgcolor=#eeeef5 cellpadding=10><tr>
+<td><font face=arial> <a name="slider">&nbsp;</a> 
+    <a href="#TOP"></a><br>
+<img src="gamedesign/Unity2D/AudioMixer.png" align=right><font face=arial><a href="#TOP"><img src="comicsDesign/ArrowUp.png" alt=""></a></font> <font color=purple><b>[C]: </b></font><b>VOLUME CONTROL SLIDER</b> (<a href="https://youtu.be/xNHSGMKtlv4">source video</a>, sample audio)<br>
+      This tutorial offers more accurate logarithmic control over volume.<br>
+<br>
+1. Create a Window &gt; Audio &gt;<b> Audio Mixer</b> (or hit [Ctrl/Cmd]+[8]) fro your project (is created in a new panel, exists for all scenes).<br>
+&nbsp; &nbsp; &nbsp; a. Hit the <b>[+]</b> to create a new Mixer, name it <b>MyMusicMixer</b>.<br>
+&nbsp; &nbsp; &nbsp; b. <em>Expose  volume as a variable:</em><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Select Mixer Groups &gt; <b>Master</b>.<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; In Inspector RightClick <b>Volume</b> to choose:<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>Expose 'Volume (of Master)' to Script</b>.<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; In  upper right corner of Mixer click <b>Exposed Parameters</b><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; rolldown, change name &quot;Volume of Master&quot; to &quot;<b>MusicVolume</b>&quot;.<br>
+<br>
+2. Create an <b>Empty Game Object</b> to hold the game audio.<br>
+&nbsp; &nbsp; &nbsp; a. Drag  audio clip .WAV onto it for an <b>Audio Source </b>Component. <br>
+&nbsp; &nbsp; &nbsp; b. Under AudioSource &gt; <b>Output</b> hit  hotspot to add  MyMusicMixer.<br>
+<br>
+3. Create a GameObject &gt; UI &gt; <b>Slider</b>.<br>&nbsp; &nbsp; &nbsp; a. Set <b>Min Value</b> to 0.0001 (leave Max Value at 1).<br>&nbsp; &nbsp; &nbsp; b. Set Value = 1.<br>&nbsp; &nbsp; &nbsp; c. Add this C# script, called &quot;<b>SetVolume.cs</b>&quot;:<br><br>
+</font>
+
+<table width=470 cellpadding=10 border=1><tr>
+<td><font face=arial><font color=#31849b><b>using</b></font> UnityEngine;<br>
+<font color=#31849b><b>using</b></font> System.Collections;<br>
+<font color=#31849b><b>using</b></font><b> </b>UnityEngine.Audio;
+
+<br><br>
+<font color=#31849b><b>public class</b></font> <font color=#365f91><b>SetVolume</b></font> : <font color=#365f91><b>MonoBehaviour</b></font>{<br>
+<br>
+&nbsp;<font color=#31849b><b>public</b></font><b> </b>AudioMixer mix;<br>
+<br>
+&nbsp;<font color=#31849b><b>public void </b></font>SetLevel (<font color=#365f91><b>float</b></font> slideVal){<br>
+&nbsp; &nbsp; mix.SetFloat(<font face=arial><font color=#e36c0a><b>&quot;MusicVolume&quot;</b></font></font>,<font color=#365f91><b> Mathf</b></font>.Log10 (slideVal) *<font face=arial><font color=#e36c0a><b> 20</b></font></font>);<br>
+&nbsp;}<br>
+}</font></td>
+</tr>
+</table>
+
+<font face=arial>
+<img src="gamedesign/Unity2D/AudioMixer2.png" alt="" align=right>
+<br>When the saved script loads in Unity on the Slider:<br>
+<b>a. </b>At the &quot;mixer&quot; <b>script slot hit the HotSpot</b> to add MyMusicMixer. 
+<br><b>b. </b>Above, in  <b>OnValueChanged</b> event trigger, hit <b> [+] </b>to add an event.<br>
+<b>c. </b>Drag  SetVolume Component up into  <b>"None" slot</b> (adds  Slider to itself).<br>
+<b>d. </b>Click <b>[No Function],</b> set SetVolume > <b><font color=gray>Dynamic float</font> SetLevel</b> (use the top one, NOT the bottom one!).<br>
+<img src="gamedesign/Unity2D/AudioMixer3.png" align=right>
+<br>Hit <b>Play</b> to scrub  slider and change  volume! 
+<br></font></td>
+  </tr>
+</table>
+
+<br><br>
+
+<table width=750 bgcolor=#eef5ee cellpadding=10>
+  <tr>
+<td><font face=arial>
+<a name="pause">&nbsp;</a>
+<a href="#TOP"></a><br>
+<b><a href="#TOP"><img src="comicsDesign/ArrowUp.png" alt=""></a>
+<font color=purple>[D]:</font> PAUSE MENU:</b><br>
+<b>1. 
+Create the canvas:<br>
+</b><b>a. </b>Create a <b>Canvas</b> object: GameObject &gt; <b>UI &gt; Canvas.</b> Leave it named &quot;Canvas&quot;. In Inspector set to Scale with Screen Size and choose 1280x720.<br>
+<b>b. </b>With Canvas selected create an <b>UI &gt; Image</b> object, name it &quot;<b>PauseMenu</b>&quot;.Set size to 1280x720, centered (x and y = 0).<br>
+<b>c.</b> <em>Optionally</em>, add a second image to hold pause menu background art, parented to PauseMenu. Import a PNG image to your project (1280x720, smaller central column of art 450x650 surrounded by empty space). In the Inspector set the PNG Texture Type from Default to <strong>Sprite 2D</strong>, hit [Apply].<br>
+ <b>d. </b>Apply 6 GameObject &gt;UI elements below PauseMenu:<br> 
+&nbsp; &nbsp; &nbsp; &nbsp; GameObject &gt; UI &gt;  <b>Button</b> (#1): set text to "<b>RESUME</b>". Optionally, add a custom sprite image.<br> 
+&nbsp; &nbsp; &nbsp; &nbsp; Duplicate ([Ctrl/Cmd] + [D]) <b>Button</b> (#2): set text to "<b>RESTART</b>".<br> 
+&nbsp; &nbsp; &nbsp; &nbsp; Duplicate to make <b>Button</b> (#3): set text to "<b>QUIT</b>"<br> 
+&nbsp; &nbsp; &nbsp; &nbsp; GameObject &gt; UI &gt; Legacy &gt; <b>Text</b> set text field to "<b>PAUSE MENU</b>", locate top. 
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Size object and font large. <br>
+&nbsp; &nbsp; &nbsp; &nbsp; GameObject &gt; UI &gt;  Legacy &gt;<b>Text</b> set text field to "<b>VOLUME:</b>", locate middle.  
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Size object and font large. <br>
+&nbsp; &nbsp; &nbsp; &nbsp; GameObject &gt; UI &gt; <b>Slider</b>. Add a new <strong>Tag</strong> to the slider: <strong>"PauseMenuSlider"</strong>.</font> 
+<br>
+<font face=arial>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Set Slider <b>Min Value</b> to 0.0001 (leave Max Value at 1) and  <strong>Value</strong> = 1.</font><br>
+
+<font face=arial><b>e. </b>Select the Buttons, and in the Inspector, under Image, click Color and set Alpha to zero (if you did not add a custom image). In the text object below each button set font Size = 25 and color to white.
+
+<br><br>
+<b>2. 
+Create the Audio Objects </b>(as explained in the <a href="#slider">Volume Control tutorial</a>)<b>:</b><br>
+<b>a. </b>Open Window &gt; Audio &gt; <b>AudioMixer</b>, hit [+] to create new mixer and name it &quot;<strong>MyMusicMixer</strong>&quot;.<br>
+<b>b. </b><em><strong>Expose  volume as a variable:</strong></em> Select Mixer Groups &gt; <b>Master</b>. In Inspector RightClick <b>Volume</b> to choose: &quot;<b>Expose 'Volume (of Master)' to Script</b>.&quot; In  upper right corner of Mixer click <b>Exposed Parameters</b> rolldown, change name &quot;Volume of Master&quot; to &quot;<b>MusicVolume</b>&quot;. <br>
+<b>c. </b>Create an Empty G.O., name it &quot;<strong>AudioManager</strong>.&quot; Drag an audio file onto this object to add it in an <strong>Audio Source Component</strong> (<strong><a href="gamedesign/audioSample_TylerFlahive_music.mp3" target=audio2>music</a></strong> or other <strong><a href="gamedesign/audioSample_BirdSounds_fadeIn.wav" target=audio2>ambient sounds</a></strong>, as .MP3 or .WAV). Under the AudioSource Component &gt; <b>Output</b> hit  the hotspot to add  MyMusicMixer. Drag the AudioManager object into the Project panel to make it a <strong>Prefab</strong> (ideally in a folder named Prefabs) so you can easily add it to other Scenes, where the music file can be changed.<br>
+<br>
+<b>3. Add script &quot;PauseMenu.cs&quot;  to the parent Canvas.</b><br>
+ <b>a. </b>Into the &quot;pauseMenuUI&quot; <b>script slot</b> drag the PauseMenu Canvas object.<br>
+<b>b. </b>For the &quot;mixer&quot; <b>script slot</b> hit the <b>hotspot</b> to load your Audio Mixer object.</font><br>
+
+
+<br>
+<center>
+<font face="arial"><em>PauseMenu.cs</em>:</font>
+<br>
+
+<table width=90% cellpadding=10 border=1><tr>
+<td><font face=arial>
+
+<font color=#31849b><b>using</b></font> System.Collections;<br> 
+<font color=#31849b><b>using</b></font> System.Collections.Generic;<br> 
+<font color=#31849b><b>using</b></font> UnityEngine;<br> 
+<font color=#31849b><b>using</b></font> UnityEngine.UI;<br> 
+<font color=#31849b><b>using</b></font> UnityEngine.SceneManagement;<br> 
+<font color=#31849b><b>using</b></font> UnityEngine.Audio;<br><br>
+<font color=#31849b><b>public class</b></font> </font><font color=#365f91 face="arial"><b>PauseMenu</b> <b>:</b></font><font face=arial><font color=#365f91><b> MonoBehaviour</b></font></font><font face="arial">&nbsp; </font><font face=arial>{<br>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font> <b><font color=#31849b>static</font></b> <b><font color=#31849b>bool</font></b> GameisPaused = <font color=#365f91><b>false</b></font>;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font> <b><font color=#31849b>GameObject</font></b> pauseMenuUI;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font> <b><font color=#31849b>AudioMixer</font></b> mixer;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font> <b><font color=#31849b>static float </font></b>volumeLevel = 1.0f;<br> 
+&nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>private</b></font><b><font color="#31849b"> </font></b>Slider sliderVolumeCtrl;<br><br>
+&nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>void</b></font> Awake (){
+
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; SetLevel (volumeLevel);
+<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; GameObject sliderTemp = GameObject.FindWithTag("PauseMenuSlider");
+<br>		
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> (sliderTemp != null){ <br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; sliderVolumeCtrl = sliderTemp.GetComponent&lt;Slider&gt;();
+<br>			
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; sliderVolumeCtrl.value = volumeLevel; <br>		
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br>
+&nbsp; &nbsp; &nbsp; &nbsp; }<br><br>
+&nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>void</b></font> Start (){<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; pauseMenuUI.SetActive(false);<br>&nbsp; &nbsp; &nbsp; &nbsp; }<br><br>
+&nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>void</b></font> Update (){<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> (Input.GetKeyDown(KeyCode.Escape)){<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> (GameisPaused){<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Resume();<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>else</font></b>{<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Pause();<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br>&nbsp; &nbsp; &nbsp; &nbsp; }<br>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>void</b></font> Pause(){<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; pauseMenuUI.SetActive(<font color=#365f91><b>true</b></font>);<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Time.timeScale = <font color=#ed6c0a><b>0f</b></font>;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; GameisPaused = <font color=#365f91><b>true</b></font>;<br>&nbsp; &nbsp; &nbsp; &nbsp; }<br>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>void</b></font> Resume(){<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; pauseMenuUI.SetActive(false);<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Time.timeScale = <font color=#ed6c0a><b>1f</b></font>;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; GameisPaused = <font color=#365f91><b>false</b></font>;<br>&nbsp; &nbsp; &nbsp; &nbsp; }<br>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>void</b></font> Restart(){<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Time.timeScale = <font color=#ed6c0a><b>1f</b></font>;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=gray>//restart the game:</font>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //SceneManager.LoadScene (SceneManager.GetActiveScene().buildIndex);
+<br>SceneManager.LoadScene ("MainMenu");
+
+<br>&nbsp; &nbsp; &nbsp; &nbsp; }<br>
+<br>
+&nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>void</b></font> QuitGame() {<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#804000>#if UNITY_EDITOR</font> <br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; UnityEditor.EditorApplication.isPlaying = <font color=#365f91><b>false</b></font>; <br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#804000>#else</font> <br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Application.Quit(); <br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#804000>#endif</font><br>
+&nbsp; &nbsp; &nbsp; }<br>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>void</b></font> SetLevel (float sliderValue){<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; mixer.SetFloat("MusicVolume", Mathf.Log10 (sliderValue) * <font color=#ed6c0a><b>20</b></font>);
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; volumeLevel = sliderValue;
+<br>&nbsp; &nbsp; &nbsp; &nbsp; }
+<br>}
+
+</font></td>
+</tr></table>
+</center>
+
+<font face=arial>
+<br>
+<b>3. Set up functionality for each UI element:</b><br>
+<b>a. </b>Select each <b>Button</b>, in Inspector find the <b>OnClick field</b>, hit <b>[+]</b>.<br>
+<b>b. </b>Drag the parent Canvas object into the "<b>None</b>" slot.<br>
+<b>c. </b>Click <b>[No Function]</b> to find the <b>PauseMenu()</b> script and choose the corresponding function:<br>
+&nbsp; &nbsp; &nbsp; &nbsp; <b>QuitGame()</b> for Quit<br>
+&nbsp; &nbsp; &nbsp; &nbsp; <b>Restart()</b> for Restart<br>
+&nbsp; &nbsp; &nbsp; &nbsp; <b>Resume()</b> for Resume<br>
+<b>d. </b>Select the <b>Slider</b>. In Inspector  find the <b>OnValueChanged</b> field and hit <b>[+]</b>. Drag Canvas into None, click [No Function] to find the PauseMenu() script and at the top of the options under <em>Dynamic float</em> choose &quot;<b>SetLevel</b>&quot;<br>
+(if you have not already done so, follow the <a href="#slider">Volume Control tutorial</a> using the PauseMenu slider: expose the Master Volume variable, name it MusicVolume, set the Audio Source Output to  mixer, etc). <br><br>
+To playtest, hit Play and at any time tap the [Esc] key.</font><font face=arial><br>
+<br> 
+<em><strong>FINALLY, REPLICATE: </strong></em>This script maintains persistant audio levels for all scenes that include the Pause menu. Drag it into the Project panel to make a Prefab, and then drag into all game and menu scenes under their Canvas, add the script tom the Canvas, and re-connect the buttons and slider. 
+
+<br><br>
+<em><strong>IMPORTANT: </strong></em>
+If you already have an Update() function in the GameHandler script <strong>using the [ESC] key to quite the game</strong>, you need to <strong>delete or comment out this code</strong>, or otherwise every time you try to hit [ESC] to pause the game in the actual build, it will instead close the game. </font></td>
+  </tr>
+</table>
+
+<br><br>
+
+<table bgcolor=#eeeef5 width=750><tr>
+<td><font face=arial> <a name="healthbar">&nbsp;</a>
+<br><a href="#TOP"><img src="comicsDesign/ArrowUp.png" alt=""></a>
+<font color=purple><b>[E]: </b></font><b>HEALTH BAR:</b> (<a href="https://youtu.be/UKs1qO8w7qc" target=hb1>source video</a>)
+<br><br>
+<table cellpadding=5><tr>
+<td width=80% valign=top><font face=arial> <strong>[STEP 1]: </strong>Set up Canvas elements:<br>
+<strong>a) </strong>Create a <strong>GameObject &gt; UI &gt; Canvas</strong>. This is the space that will contain the health bar and all player statistics you want to display.
+
+<table width=95% cellpadding=2><tr>
+<td width=10>&nbsp;</td>
+<td><font face=arial>
+<em><strong>OPTIONAL:</strong></em> If you want the healthbar to be connected to a character (so it can move in the game world  instead of staying locked on the HUD overlay):
+<li>In the Inspector set  <strong>RenderMode = World Space</strong>.  
+    <li> Set  <strong>Rect Transform</strong> to fit in your game space (try width and height = 3, PosX / Pos Y / PosZ to 0 then raise above character). </font></td></tr></table>
+<br><b>b)</b> Create a <strong>GameObject > UI > Image</strong> for a healthbar background. </font>
+  <table width=95% cellpadding=2>
+    <tr>
+      <td width=10>&nbsp;</td>
+      <td><li><font face="arial">Name it "HealthBG".</font>      
+        <li><font face=arial>Click the <strong>Rect Tool</strong> (upper left corner of Unity) to set desired width and height  
+(usually a long rectangle. Try width = 3, height = 0.6, PosY = -1). </font>
+          <li><font face=arial>In Inspector set color dark and semi-transparent (try black, Alpha = 180). </font></td>
+    </tr>
+  </table>
+  <font face=arial><br>
+<strong>c)</strong> In the Hierarchy select and <strong>duplicate</strong> the HealthBG to make the actual health bar.</font>
+  <table width=95% cellpadding=2>
+    <tr>
+      <td width=10>&nbsp;</td>
+      <td><li><font face="arial">Drag the duplicate onto HealthBG to make it a child of HealthBG.</font>
+        <li><font face=arial>In the Inspector name the duplicate "HealthBar". </font>
+        <li><font face=arial>C</font><font face=arial>hange color to green with 
+alpha set to fully visible (255). </font></td>
+    </tr>
+  </table>
+  <font face=arial><br>
+
+<strong>d)</strong> Download and import this <a href="gamedesign/Unity2D/WhitePixels32.png" target=pixel>WhitePixel32.png</a> image. In the Inspector:<br>
+</font>
+
+<table width=95% cellpadding=2><tr>
+<td width=10>&nbsp;</td>
+<td>
+<a href="gamedesign/Unity2D/WhitePixels32.png" target=pixel><img src="gamedesign/Unity2D/WhitePixels32.png" align=right border=2></a>
+<li><font face="arial"> Set the Texture Type = <strong>Sprite (2D and UI)</strong>.</font>
+<li><font face=arial>Turn off "Generate Mip Maps". </font>
+<li><font face=arial> Set Filter Mode = Point 
+(no filter), and then hit <strong>[Apply]</strong>. </font></td>
+</tr></table>
+
+<br><font face=arial><strong>e)</strong> In the Hierarchy select the HealthBar object. In the Inspector:<br>
+</font>
+
+<table width=95% cellpadding=2><tr>
+<td width=10>&nbsp;</td>
+<td><li><font face="arial">find Image > Source Image, hit  <strong>hotspot</strong> (right) to add WhitePixel32 image.</font>
+<li><font face=arial>Change <strong>Image Type</strong> from Simple to <strong>Filled</strong>. </font>        
+<li><font face=arial>Set <strong>Fill Method = Horizontal</strong></font>.
+<li>Set <font face=arial><strong>Fill Origin = 
+Left</strong>.</font></td>
+    </tr>
+  </table>
+  <font face=arial>Scrub the Fill Amount to see it work! This is the paramter that will change through the damage script
+  
+<br><br><br><br>
+</font></td>
+<td width=20% valign=top><br><br></td>
+</tr>
+</table>
+
+<strong>[STEP 2]: </strong>Create script for HealthBar: <br>
+Add a script to take damage. Note that health can be 0-100 or 0-200, etc, but <strong>fillAmount</strong> only sees 0-1, so we need to adjust for that: divide <em>current</em> health by the <em>starting</em> full 
+health value before it is displayed:<br>
+<br>
+RightClick in the Project panel to <strong>create</strong> new C# script &quot;HealthBarThirdPerson.cs.&quot;<br>
+<strong>Drag</strong> the script onto the Canvas object for your healthbar, then drag HealthBar into the image <strong>script slot</strong>.<br>
+<br>
+<center>
+<em>HealthBarThirdPerson.cs</em>
+</center>
+</font>
+
+<table width=750 cellpadding=10 border=1><tr>
+<td><font face=arial><font color=#31849b><b>using </b></font>System.Collections; <br>
+<font color=#31849b><b>using </b></font>System.Collections.Generic; 
+<br><font color=#31849b><b>using </b></font>UnityEngine; 
+<br><font color=#31849b><b>using </b></font>UnityEngine.UI; 
+<br><font color=#31849b><b>using</b></font> UnityEngine.SceneManagement; <br><br>
+                <font color=#31849b><b>public class</b></font> <font color=#365f91><b>HealthBarThirdPerson</b></font> : <font color=#365f91><b>MonoBehaviour</b></font> { <br>
+                <br>
+&nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>float</b></font> startHealth = 100; <br>
+&nbsp; &nbsp; &nbsp; <font color=#31849b><b>private</b></font> <font color=#31849b><b>float</b></font> health; <br>
+&nbsp; &nbsp; &nbsp; //public GameObject deathEffect;
+<br>
+&nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>Image</b></font> healthBar; 
+
+
+<br>
+&nbsp; &nbsp; &nbsp; <font color=#31849b><b>public Color </b></font>healthyColor = new Color(<b><font color="#e36c0a">0.3f, 0.8f, 0.3f</font></b>); 
+
+<br>
+&nbsp; &nbsp; &nbsp; <font color=#31849b><b>public Color </b></font>unhealthyColor = new Color(<b><font color="#e36c0a">0.8f, 0.3f, 0.3f</font></b>); <br>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //temporary time variables:
+<br>
+&nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>float</b></font> timeToDamage = <font face=arial><font color=#e36c0a><b>5f</b></font></font>; <br>
+&nbsp; &nbsp; &nbsp; <font color=#31849b><b>private</b></font> <font color=#31849b><b>float</b></font> theTimer; <br>
+&nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>float</b></font> damageAmt = <font face=arial><font color=#e36c0a><b>10f</b></font></font>; <br>
+<br>
+&nbsp; &nbsp; &nbsp; <font color=#31849b><b>private</b></font> <font color=#31849b><b>void</b></font> Start () { 
+<br>	
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; health = startHealth; <br>	
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; theTimer= timeToDamage; <br>
+&nbsp; &nbsp; &nbsp; }
+<br>
+<br>// this timer is just to test damage. Comment-out when no longer needed
+<br>
+&nbsp; &nbsp; &nbsp; <font color=#31849b><b>void</b></font> FixedUpdate () { <br>	
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; theTimer -= Time.deltaTime; <br>	
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (theTimer <= <font face=arial><font color=#e36c0a><b>0</b></font></font>) { <br>		
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; TakeDamage(damageAmt); <br>		
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; theTimer = timeToDamage; <br>		
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; } <br>	
+&nbsp; &nbsp; &nbsp; } 
+
+<br><br>
+&nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>void</b></font> SetColor(<font color=#31849b><b>Color</b></font> newColor){<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; healthBar.GetComponent&lt;<font color=#365f91><b>Image</b></font>&gt;().color = newColor; <br>
+&nbsp; &nbsp; &nbsp; } 
+
+<br><br>
+&nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>void</b></font> TakeDamage (<font color=#31849b><b>float</b></font> amount){ <br>	
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; health -= amount; <br>	
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; healthBar.fillAmount = health / startHealth; <br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=gray>//turn red at low health:</font><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> (health < <b><font color="#e36c0a">0.3f</font></b>){<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> ((health * <b><font color="#e36c0a">100f</font></b>) % <b><font color="#e36c0a">3</font></b> &lt;= <b><font color="#e36c0a">0</font></b>){<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; SetColor(Color.white);
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Die(); <br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>else</font></b> {<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; SetColor(unhealthyColor);<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>else</font></b> {<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; SetColor(healthyColor);<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br>	
+&nbsp; &nbsp; &nbsp; } <br>
+<br>
+<br>
+<br>
+&nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>void</b></font> Die(){<br>	
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Debug.Log(<b><font color="#e36c0a">&quot;You Died So Much&quot;</font></b>);
+<br>	
+&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; // death stuff. change scene? how about a particle effect? <br>	
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //Vector3 objPos = this.transform.position <br>	
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //Instantiate(deathEffect, objPos, Quaternion.identity) as GameObject; <br>	
+&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; //SceneManager.LoadScene ("Scene_lose");
+<br>&nbsp; &nbsp; &nbsp; } 
+<br>}
+</font></td>
+</tr></table>
+<font face=arial><br>
+For a player character, we typically want this script talking with a GameHandler, to track the health stat between Scenes/Levels.
+
+<br><br>
+This health bar can live in the main Canvas (as HUD) or be integrated into gameplay by floating near a character. 
+
+<br><br> 
+<strong>[OPTIONAL STEP 3]: </strong>HealthBar Location (<a href="https://youtu.be/ViZto58MgjM" target=billboard>video source</a>):<br>
+To make the health bar follow a character on the screen (Player or NPC):
+<br><strong>a)</strong> In the Hierarchy, <strong>select</strong> the character that is intended to receive the HealthBar. This can be a Player or an NPC (If the NPC is a prefab that is spawned by the game, temporarily drag 
+it into the Hierarchy). <br>
+<strong>b)</strong> <strong>Drag</strong> the Canvas for the healthbar onto the character, to make it a child of the character object.<br>
+<strong>c)</strong> In the scene, <strong>move</strong> the Canvas to center on the character and slightly above.<br>
+<strong>d)</strong> For a 3D game, we want the healthbar to always face the screen (called a &quot;Billboard&quot; effect). 
+<br>Create a script and apply it to the Canvas:<br><br>
+<font face=arial><em>billboardEffect.cs</em></font><br>
+            </font>
+          <table width=750 cellpadding=10 border=1>
+            <tr>
+              <td><font face=arial><font color=#31849b><b>using </b></font>System.Collections; <br>
+                <font color=#31849b><b>using </b></font>System.Collections.Generic; <br>
+                <font color=#31849b><b>using </b></font>UnityEngine; <br>
+                <br>
+                <font color=#31849b><b>public class</b></font> <font color=#365f91><b>billboardEffect</b></font> : <font color=#365f91><b>MonoBehaviour</b></font> { <br>
+                <br>
+                &nbsp; &nbsp; &nbsp; <font color=#31849b><b>void</b></font> Update()
+{ <br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; transform.LookAt(transform.position + Camera.main.transform.rotation *- 
+Vector3.back, <br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Camera.main.transform.rotation *- Vector3.down); <br>
+&nbsp; &nbsp; &nbsp; }<br>
+                } 
+<br>
+<br>
+<br>
+//OR TRY:
+<br>
+//&nbsp; &nbsp; &nbsp; public void Update()
+{
+<br>        
+//&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Camera camera = Camera.main; <br>        
+//&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; transform.LookAt(transform.position + camera.transform.rotation * Vector3.forward, <br>
+//&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; camera.transform.rotation * Vector3.up);
+<br>    
+//&nbsp; &nbsp; &nbsp; }<br>
+<br>
+//OR TRY:
+<br>
+//&nbsp; &nbsp; &nbsp; void Update()
+{
+<br>            
+//&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; transform.forward = Camera.main.transform.forward; <br>        
+//&nbsp; &nbsp; &nbsp; } </font></td>
+</tr></table>
+          <font face=arial><br>Want to try something nifty? 
+<br>
+You can get a <strong>power-up bar</strong> using the same objects by replacing the HealthBar script on the Canvas with this script: <strong><a href="gamedesign/Unity2D/PowerBoostBar.cs" target=boost>PowerBoostBar.cs</a></strong>. 
+<br>Use this to show a weapon recharging, etc 
+<br><br>
+</font></td></tr></table>
+
+<br><br>
+
+<table width=750><tr><td>
+          <center>
+          <font face="arial"><b>ALTERNATE HEALTH BAR SYSTEM 
+          <br>
+          (Without Canvas Objects, but with GameHandler </b><a href="https://youtu.be/Gtw7VyuMdDc" target=hb1>video option 01</a> ,  <a href="https://youtu.be/UKs1qO8w7qc" target=hb2>02</a>, <a href="https://youtu.be/Jio15WMfnzk" target=hb3>03</a>)</font><strong>:</strong>
+          </center>
+          <table cellpadding=5>
+            <tr>
+              <td width=80% valign=top><font face=arial> <strong>[PART A]: </strong><em>Create HUD elements:</em><br>
+                <strong>1. </strong>Create GameObject &gt; Empty Game Object. In  Hierarchy name it &quot;<strong>HealthBarGO</strong>&quot;. <br>
+                <strong>2. </strong>Create a 2nd Empty Game Object, drag it onto HealthBarGO to make it a child, and name it &quot;<strong>Background</strong>&quot;.
+                
+                Add Component &gt;<strong> Sprite Renderer</strong>.<br>
+                &nbsp; &nbsp; &nbsp;<strong> a. </strong>Set <strong>Scale</strong> to a long rectangle. Try (40, 5, 1).<a href="gamedesign/Pixel.png" target=pixel><img src="gamedesign/Pixel.png" alt="" width=40 align=right></a><br>
+                &nbsp; &nbsp; &nbsp; <strong>b. </strong>Download and import this <a href="gamedesign/Pixel.png" target=pixel>Pixel.png</a> image. In the Inspector set the Texture Type to <strong>Sprite</strong> and hit [Apply]. Select the Background object and add this Pixel sprite to Sprite.<br>
+                &nbsp; &nbsp; &nbsp; <strong>c. </strong>Set color to a dark shade and alpha to around 80%.<br>
+                &nbsp; &nbsp; &nbsp; <strong>d. </strong>Set <strong>Order in Layer</strong> high, to be visible above any game content (try 150). <br>
+                <strong>3. </strong>Create a 3rd Empty GO, parent it below HealthBar, name it &quot;<strong>Bar</strong>&quot; (a normalized anchor for the bar Sprite).<br>
+                <strong>4. </strong>Create a 4th Empty GO, parent below Bar, name it &quot;<strong>BarSprite</strong>&quot;.<br>
+                Add Component &gt; <strong>Sprite Renderer</strong>.<br>
+                &nbsp; &nbsp; &nbsp; <strong>a. </strong>Set <strong>Scale</strong> to the same as the Background (40, 5, 1).<br>
+                &nbsp; &nbsp; &nbsp; <strong>b. </strong>Set X <strong>Position</strong> to the center of the background (-0.2,0,0): half of width.<br>
+                &nbsp; &nbsp; &nbsp; <strong>c.</strong> Add an image if desired.<br>
+                &nbsp; &nbsp; &nbsp; <strong>d.</strong> Set color to a bright green, and alpha to around 80%.<br>
+                &nbsp; &nbsp; &nbsp; <strong>e.</strong> Set <strong>Order in Layer</strong> above the Background sprite (try 160).<br>
+                <strong>5. </strong>Select the <strong>Bar</strong> object, set <strong>Position X</strong> to place BarSprite start at left side of Background (0.2, 0, 0).  Scrub the X Scale value to see it empty at 0 and full at 1!<br>
+                <strong>6.</strong> Want a border around your Healthbar? Duplicate Background, set color = black, Scale = (40, 6, 1), Order in Layer = 140, and position in Hierarchy above the Background. This can also be enhanced with a custom image.<br>
+<br>
+<br>
+</font></td>
+<td width=20% valign=top><font face="arial"><br>
+<br>
+</font></td>
+</tr>
+</table>
+
+<font face="arial">
+<b>[PART B]:</b>
+<em>Create scripts for HealthBar and GameHandler:</em>
+<br>1. RightClick in the Project panel to create new C# script &quot;HealthBar.cs.&quot;<br>
+Drag the script onto the main HealthBar Game Object.
+</font>
+<br><br>
+
+
+<font face=arial><em>HealthBar.cs</em></font><br>
+<table width=750 cellpadding=10 border=1>
+  <tr>
+    <td><font face=arial><font color=#31849b><b>using </b></font>System.Collections; <br>
+      <font color=#31849b><b>using </b></font>System.Collections.Generic; <br>
+      <font color=#31849b><b>using </b></font>UnityEngine; <br>
+      <br>
+      <font color=#31849b><b>public class</b></font> <font color=#365f91><b>HealthBar</b></font> : <font color=#365f91><b>MonoBehaviour</b></font> { <br>
+      &nbsp; &nbsp; &nbsp; <font color=#31849b><b>public Transform </b></font>bar; <br>
+      <br>
+      &nbsp; &nbsp; &nbsp; <font color=#31849b><b>private</b></font> <font color=#31849b><b>void</b></font> Start(){ <br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; bar = transform.Find(<font face=arial><font color=#e36c0a><b>&quot;Bar&quot;</b></font></font>); <br>
+      &nbsp; &nbsp; &nbsp; } <br>
+      <br>
+      &nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>void</b></font> SetSize(<font color=#31849b><b>float</b></font> sizeNormalized){ <br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; bar.localScale = new Vector3(sizeNormalized, <font face=arial><font color=#e36c0a><b>1f</b></font></font>); <br>
+      &nbsp; &nbsp; &nbsp; } <br>
+      <br>
+      &nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>void</b></font> SetColor(<font color=#31849b><b>Color</b></font> newColor){<br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; bar.Find(<font face=arial><font color=#e36c0a><b>&quot;BarSprite&quot;</b></font></font>).GetComponent&lt;<font color=#365f91><b>SpriteRenderer</b></font>&gt;().color = newColor; <br>
+      &nbsp; &nbsp; &nbsp; } <br>
+      } </font></td>
+  </tr>
+</table>
+<font face=arial><br>
+2. If you do not already have a GameHandler object, create a new Empty GO and name it GameHandlerGO. Create and apply a GameHandler.cs C# script (if you already have a GameHandler, add this script content). <strong>Drag</strong> the HealthBarGO onto the health bar <strong>script slot</strong>. <br>
+<br>
+<em>GameHandler.cs</em></font> <br>
+<table width=750 cellpadding=10 border=1>
+  <tr>
+    <td><font face=arial> <font color=#31849b><b>using</b></font> System.Collections;<br>
+      <font color=#31849b><b>using</b></font> System.Collections.Generic;<br>
+      <font color=#31849b><b>using</b></font> UnityEngine;<br>
+      <br>
+      <font color=#31849b><b>public class</b></font> <font color=#365f91><b>GamerHandler</b></font> : <font color=#365f91><b>MonoBehaviour</b></font> {<br>
+      &nbsp; &nbsp; &nbsp; <font color=#31849b><b>public HealthBar</b></font> healthBar;<br>
+      &nbsp; &nbsp; &nbsp; <font color=#31849b><b>public static float</b></font> health = <font color=#e36c0a><b>1f</b></font>;<br>
+      &nbsp; &nbsp; &nbsp; <font color=#31849b><b>public static Color </b></font>color = new Color(<b><font color="#e36c0a">0f, 1f, 0f</font></b>);<br>
+      <br>
+      &nbsp; &nbsp; &nbsp; <font color=#31849b><b>private</b></font> <font color=#31849b><b>void</b></font> Update(){<br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; UpdateHealth(0);<br>
+      &nbsp; &nbsp; &nbsp; }<br>
+      <br>
+      &nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>void</b></font> UpdateHealth(<font color=#365f91><b>float</b></font> healthChange){<br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=gray>//enemy health changes should be decimals, like -0.1f:</font><br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; health += healthChange;<br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> (health &gt;= <b><font color="#e36c0a">1f</font></b>) {health = <b><font color="#e36c0a">1f</font></b>;}<br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; DisplayHealth();<br>
+      &nbsp; &nbsp; &nbsp; } <br>
+      <br>
+      &nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>void</b></font> DisplayHealth(){ <br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; healthBar.SetSize(health);<br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=gray>//flash red at low health:</font><br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> (health < <b><font color="#e36c0a">0.3f</font></b>){<br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if ((health * <b><font color="#e36c0a">100f</font></b>) % <b><font color="#e36c0a">3</font></b> == <b><font color="#e36c0a">0</font></b>){<br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; healthBar.SetColor(Color.white);<br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>else</font></b> {<br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; healthBar.SetColor(Color.red);<br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>else</font></b> {<br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; healthBar.SetColor(Color.green);<br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br>
+      &nbsp; &nbsp; &nbsp; }<br>
+      }</font></td>
+  </tr>
+</table>
+<font face=arial><br>
+<strong>[PART B]:</strong> <em>Healthbar Location:</em><br>
+This health bar can live in the Canvas or be integrated into gameplay by floating near a character. <br>
+To make the health bar follow a character on the screen (player or NPC):<br>
+Parent  the HealthBarGO to the character. For a 3D game, add a script to make it always face the screen (needs RB?):<br>
+<br>
+<font face=arial><em>Billboard.cs</em></font><br>
+</font>
+<table width=750 cellpadding=10 border=1>
+  <tr>
+    <td><font face=arial><font color=#31849b><b>using </b></font>System.Collections; <br>
+      <font color=#31849b><b>using </b></font>System.Collections.Generic; <br>
+      <font color=#31849b><b>using </b></font>UnityEngine; <br>
+      <br>
+      <font color=#31849b><b>public class</b></font> <font color=#365f91><b>Billboard</b></font> : <font color=#365f91><b>MonoBehaviour</b></font> { <br>
+      <br>
+      &nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>void</b></font> Update(){ <br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;transform.LookAt(Camera.main.transform.position, -Vector3.up); <br>
+      &nbsp; &nbsp; &nbsp; } <br>
+      } </font></td>
+  </tr>
+</table>
+<font face=arial><br>
+</font></td>
+</tr></table>
+
+<br><br>
+
+<table width=750 bgcolor=#eef5ee><tr>
+        <td><font face=arial><a name="inventory">&nbsp;</a> <br>
+          <font face="arial"><b><font face="arial"><a href="#TOP"><img src="comicsDesign/ArrowUp.png" alt=""></a></font></b></font> <font color=purple><b>[F]: </b></font><b>BASIC INVENTORY  SYSTEM #1: </b>A very simple, hard-coded system for an Inventory. </font> <br>
+          <br>
+          <table width=100% cellpadding=5>
+            <tr>
+              <td width=45% valign=top><font face=arial> This tutorial uses <b>PNG Sprites</b> for: <br>
+                5 unique <b>pickup items</b>, 1 <b>container</b>, 1 player. <br>
+                Click <a href="gamedesign/Unity2D/InventoryImages.zip">here</a> to download  a zip of all 7 images. <br>
+                <em>SETUP:</em> <a href="http://madwomb.com/tutorials/GameDesign_Unity2DTopDown.html#player" target=move>2D Player Move</a> and <a href="http://madwomb.com/tutorials/GameDesign_Unity2DTilemap.html#tilemap" target=tm>Tilemapping</a> <br>
+              </font></td>
+              <td  width=25% valign=top align=center><a href="gamedesign/Unity2D/InvItem1.png" target=vignette><img src="gamedesign/Unity2D/InvItem1.png" alt="" width=32 height=32></a> &nbsp; <a href="gamedesign/Unity2D/InvItem2.png" target=vignette><img src="gamedesign/Unity2D/InvItem2.png" alt="" width=32 height=32></a> &nbsp; <a href="gamedesign/Unity2D/InvItem3.png" target=vignette><img src="gamedesign/Unity2D/InvItem3.png" alt="" width=32 height=32></a> <br>
+                <a href="gamedesign/Unity2D/InvItem4.png" target=vignette><img src="gamedesign/Unity2D/InvItem4.png" alt="" width=32 height=32></a> &nbsp; <a href="gamedesign/Unity2D/InvItem5.png" target=vignette><img src="gamedesign/Unity2D/InvItem5.png" alt="" width=32 height=32></a></td>
+              <td  width=25% valign=top align=center><a href="gamedesign/Unity2D/InvContainer.png" target=vignette><img src="gamedesign/Unity2D/InvContainer.png" alt=""width=64 height=64></a> &nbsp; <a href="gamedesign/Unity2D/InvPlayer.png" target=vignette><img src="gamedesign/Unity2D/InvPlayer.png" alt=""width=64 height=64></a></td>
+            </tr>
+          </table>
+          <br>
+          <font face=arial><b>1. CANVAS:</b> If you do not already have a <b>GameObject &gt; UI &gt; Canvas</b> object in your Hierarchy, create one. <br>
+            <b>a.</b> In Inspector, set Canvas Scaler &gt; UI Scale Mode from &quot;Constant Pixel Size&quot; to &quot;Scale With Screen Size&quot; and Reference Resolution to 1280 x 720. <br>
+            <b>b.</b> Create a <b>GameObject &gt; Empty GO</b>, name it &quot;InventoryMenu&quot;. Parent it under the main Canvas. <br>
+            <b>c.</b> Add a <b>GameObject &gt; UI > Image. </b>Name it &quot;InventoryBG&quot; and use the Rect tool to shape it into a short, long rectangle near canvas bottom. In Inspector set opacity to medium and choose a color. <br>
+            <b>d. </b>Add another <b>UI > Image</b> and use Rect tool to size and position as an Item in the Inventory (NOTE: visibility is reverse of Hierarchy order, so lowest item in Hierarchy is shown in scene on top). <br>
+            <b>e. </b> Include a <b>GameObject &gt; UI > Legacy &gt; Text</b> object to track the number of coins found. <br>
+            <br>
+            <b>2. Create a PREFAB</b> of the intended container: Drag the container sprite into the Hierarchy, name it ItemContainerPrefab. Add Component <b>BoxCollider2D</b>, set to <b>isTrigger</b>, and add script <b>ItemContainer.cs</b> (Refers to the GameController and OnTriggerEnter2D() activates an Inventory function in GameController). Drag this object into the Project panel to create a Prefab.<br>
+            <br>
+            Once script is applied, add to Inspector <b>slot</b> &quot;Item Name&quot;. The scripts in this turorial assume these names: item1, item2, item3, item4, item 5, coin1, coin2, coin3, coin4, coin5. </font><br>
+          <br>
+          <font face=arial><em>ItemContainer.cs</em></font> <br>
+          <table width=750 cellpadding=10 border=1>
+            <tr>
+              <td><font face=arial><font color=#3ab050><b>using</b></font><b><font color="#31849b"> </font></b>System.Collections.Generic;<br>
+                  <font color=#3ab050><b>using </b></font>System.Collections;<br>
+                  <font color=#3ab050><b>using</b></font> UnityEngine;<br>
+                  <br>
+                  <font color=#31849b><b>public class</b></font> <font color=#365f91><b>ItemContainer: </b></font><font color=#365f91><b>MonoBehaviour</b></font> {<br>
+                  <br>
+&nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font> GameInventory playerInventory;<br>
+&nbsp; &nbsp; &nbsp; <font color=#31849b><b>public string</b></font> ItemName = <font face=arial><font color=#e36c0a><b>&quot;item1&quot;</b></font></font>;<br>
+<br>
+&nbsp; &nbsp; &nbsp; <font color=#31849b><b>void</b></font> Awake(){<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<b><font color=#3ab050>if</font></b> (GameObject.FindWithTag(<font face=arial><font color=#e36c0a><b>&quot;GameHandler&quot;</b></font></font>) != null) 
+                {<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;playerInventory = GameObject.FindWithTag(<font face=arial><font color=#e36c0a><b>&quot;GameHandler&quot;</b></font></font>).GetComponent&lt;GameInventory&gt;();<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;}<br>
+&nbsp; &nbsp; &nbsp; }<br>
+<br>
+&nbsp; &nbsp; &nbsp; <font color=#31849b><b>void OnTriggerEnter2D</b></font>(Collider2D other){<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> (other.gameObject.tag == <font face=arial><font color=#e36c0a><b>&quot;Player&quot;</b></font></font>){<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#999999>//Debug.Log("You found an" + ItemName);</font><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; playerInventory.InventoryAdd(ItemName);<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#999999>//playerInventory.removeObjectFromLevel(ItemName);</font><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Destroy(gameObject);<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br>
+&nbsp; &nbsp; &nbsp; }<br>
+}</font></td>
+            </tr>
+          </table>
+          <br>
+          <br>
+          <font face=arial> <b>3. GAME INVENTORY:</b> If you do not already have a GameHandler object: create a <b>GameObject &gt; Empty GO</b>, name it &quot;GameHandler&quot;. In Inspector set the tag &quot;GameHandler&quot; and add the following script (I prefer to keep this script separate from the GameHandler script that manages other player stats, for clarity). 
+
+<br>
+<br><i><strong>NOTE:</strong></i> This hard-coded Inventory system requires two variables for each item (a more elegant solution could store all items in an array): </font>
+          <li> <font face=arial>A <b>bool variable</b> for <b>each inventory item</b>, to set the state (whether they are collected or not: on or off) </font>
+          <li> <font face=arial>A <b>GameObject variable</b> for <b>each inventory image</b>, to make them invisible/visible. <br>
+            <br>
+            In  the Start() function note the InventoryMenu is set visible and all inventory items are set not visible. We can also run the InventoryDisplay() function to set  the Inventory Image Items to not visible. <br>
+            <br>
+            In  addition to the <strong>InventoryDisplay() function</strong>, we have an  <strong>InventoryAdd() function</strong> to call by the ItemContainer.cs script,  an </font> <strong><font face=arial>InventoryRemove()</font></strong><font face=arial> function to call if an item is &quot;spent&quot;, and a CoinChange() function to add coins when found  or subtract coins for a purchase (<em>NOTE:</em> any action to use an item or spend coins should first check if their bool is true or if the amount is sufficient for the purchase).</font> <br>
+            <br>
+            <font face=arial><em>GameInventory.cs</em></font><br>
+            <table width=750 cellpadding=10 border=1>
+              <tr>
+                <td><font face=arial><font color=#3ab050><b>using</b></font> System.Collections.Generic;<br>
+                    <font color=#3ab050><b>using</b></font> System.Collections;<br>
+                    <font color=#3ab050><b>using</b></font><b><font color="#31849b"> </font></b>UnityEngine;<br>
+                    <font color=#3ab050><b>using</b></font><b><font color="#31849b"> </font></b>UnityEngine.UI; <br>
+                    <br>
+                    <font color=#31849b><b>public class</b></font> <font color=#365f91><b>GameInventory</b></font> : <font color=#365f91><b>MonoBehaviour</b></font> {<br>
+                    <br>
+                    <font face=arial>&nbsp; &nbsp; &nbsp; </font><font color=#999999>//5 Inventory Items:</font><br>
+&nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font> GameObject InventoryMenu;<br>
+<br>
+&nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>static</b></font> bool item1bool = <font color=#365f91><b>false</b></font>;<br>
+&nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>static</b></font> bool item2bool = <font color=#365f91><b>false</b></font>;<br>
+&nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>static</b></font> bool item3bool = <font color=#365f91><b>false</b></font>;<br>
+&nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>static</b></font> bool item4bool = <font color=#365f91><b>false</b></font>;<br>
+&nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>static</b></font> bool item5bool = <font color=#365f91><b>false</b></font>;<br>
+&nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>static</b></font> int coins = <font face=arial><font color=#e36c0a><b>0</b></font></font>; <br>
+<br>
+&nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font> GameObject item1image;<br>
+&nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font> GameObject item2image;<br>
+&nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font> GameObject item3image;<br>
+&nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font> GameObject item4image;<br>
+&nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font> GameObject item5image;<br>
+&nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font> GameObject coinText;<br>
+<br>
+&nbsp; &nbsp; &nbsp; <font color=#31849b><b>void</b></font> Start(){<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; InventoryMenu.SetActive(<font color=#365f91><b>true</b></font>);<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; item1image.SetActive(<font color=#365f91><b>false</b></font>);<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; item2image.SetActive(<font color=#365f91><b>false</b></font>);<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; item3image.SetActive(<font color=#365f91><b>false</b></font>);<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; item4image.SetActive(<font color=#365f91><b>false</b></font>);<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; item5image.SetActive(<font color=#365f91><b>false</b></font>);<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; InventoryDisplay();<br>
+&nbsp; &nbsp; &nbsp; }<br>
+<br>
+&nbsp; &nbsp; &nbsp; <font color=#31849b><b>void</b></font> InventoryDisplay(){<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> (item1bool == <font color=#365f91><b>true</b></font>) {item1image.SetActive(<font color=#365f91><b>true</b></font>);} <b><font color=#3ab050>else</font></b> {item1image.SetActive(<font color=#365f91><b>false</b></font>);}<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> (item2bool == <font color=#365f91><b>true</b></font>) {item2image.SetActive(<font color=#365f91><b>true</b></font>);} <b><font color=#3ab050>else</font></b> {item2image.SetActive(<font color=#365f91><b>false</b></font>);}<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> (item3bool == <font color=#365f91><b>true</b></font>) {item3image.SetActive(<font color=#365f91><b>true</b></font>);} <b><font color=#3ab050>else</font></b> {item3image.SetActive(<font color=#365f91><b>false</b></font>);}<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> (item4bool == <font color=#365f91><b>true</b></font>) {item4image.SetActive(<font color=#365f91><b>true</b></font>);} <b><font color=#3ab050>else</font></b> {item4image.SetActive(<font color=#365f91><b>false</b></font>);}<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> (item5bool == <font color=#365f91><b>true</b></font>) {item5image.SetActive(<font color=#365f91><b>true</b></font>);} <b><font color=#3ab050>else</font></b> {item5image.SetActive(<font color=#365f91><b>false</b></font>);}<br>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Text coinTextB = coinText.GetComponent
+<Text>
+();<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; coinTextB.text = (<font face=arial><font color=#e36c0a><b>&quot;COINS: &quot;</b></font></font> + coins);<br>
+&nbsp; &nbsp; &nbsp; }<br>
+<br>
+&nbsp; &nbsp; &nbsp; <font face=arial><font color=#31849b><b>public</b></font></font> <font color=#31849b><b>void</b></font> InventoryAdd(<font color=#31849b><b>string</b></font> item){<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>string</b></font> foundItemName = item;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> (foundItemName == <font face=arial><font color=#e36c0a><b>&quot;item1&quot;</b></font></font>) {item1bool = <font color=#365f91><b>true</b></font>;}<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>else if</font></b> (foundItemName == <font face=arial><font color=#e36c0a><b>&quot;item2&quot;</b></font></font>) {item2bool = <font color=#365f91><b>true</b></font>;}<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>else if</font></b> (foundItemName == <font face=arial><font color=#e36c0a><b>&quot;item3&quot;</b></font></font>) {item3bool = <font color=#365f91><b>true</b></font>;}<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>else if</font></b> (foundItemName == <font face=arial><font color=#e36c0a><b>&quot;item4&quot;</b></font></font>) {item4bool = <font color=#365f91><b>true</b></font>;}<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>else if</font></b> (foundItemName == <font face=arial><font color=#e36c0a><b>&quot;item5&quot;</b></font></font>) {item5bool = <font color=#365f91><b>true</b></font>;}<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; InventoryDisplay(); <br>
+&nbsp; &nbsp; &nbsp; }<br>
+<br>
+&nbsp; &nbsp; &nbsp; <font face=arial><font color=#31849b><b>public</b></font></font> <font color=#31849b><b>void</b></font> InventoryRemove(<font color=#31849b><b>string</b></font> item){<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>string</b></font> itemRemove = item;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> (itemRemove == <font face=arial><font color=#e36c0a><b>&quot;item1&quot;</b></font></font>) {item1bool =<font color=#365f91><b>false</b></font>;}<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>else if</font></b> (itemRemove == <font face=arial><font color=#e36c0a><b>&quot;item2&quot;</b></font></font>) {item2bool =<font color=#365f91><b>false</b></font>;}<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>else if</font></b> (itemRemove == <font face=arial><font color=#e36c0a><b>&quot;item3&quot;</b></font></font>) {item3bool =<font color=#365f91><b>false</b></font>;}<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>else if</font></b> (itemRemove == <font face=arial><font color=#e36c0a><b>&quot;item4&quot;</b></font></font>) {item4bool =<font color=#365f91><b>false</b></font>;}<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>else if</font></b> (itemRemove == <font face=arial><font color=#e36c0a><b>&quot;item5&quot;</b></font></font>) {item5bool =<font color=#365f91><b>false</b></font>;}<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; InventoryDisplay(); <br>
+&nbsp; &nbsp; &nbsp; } <br>
+<br>
+&nbsp; &nbsp; &nbsp; <font face=arial><font color=#31849b><b>public</b></font></font> <font color=#31849b><b>void</b></font> CoinChange(<font color=#31849b><b>int</b></font> amount){<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; coins +=amount;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; InventoryDisplay(); <br>
+&nbsp; &nbsp; &nbsp; } <br>
+}</font></td>
+              </tr>
+            </table>
+            <br>
+            <font face=arial> <b>USE AN INVENTORY TO CHANGE PLAYER ABILITIES: </b><br>
+              <b>1. Health Potions:</b> Let's say a player needs to have a health potion in the Inventory in order to use it. In an AddHealth function, wrap the <em>action</em> of increasig the player heath in a <em>condition</em> to check if the potion exists in the Inventory: if (itembool == true). Then, after using, set the itembool = false!<br>
+              <br>
+              <b>2. Keys:</b> Let's say the player needs a key to enter a door. Add an EmptyGO to the scene with a boxcollider to prevent player passage. On a player action, check if there is a key, and if there is, remove the key (set bool=false) and turn off the collider. <br>
+              <br>
+            </font></td>
+      </tr>
+    </table>
+
+<br><br>
+
+<table width=750 bgcolor=#eeeef5 cellpadding=10><tr>
+<td><font face="arial"> <a name="warning">&nbsp;</a> 
+    <a href="#TOP"></a><br>
+    <b><font face="arial"><a href="#TOP"><img src="comicsDesign/ArrowUp.png" alt=""></a></font> <font color=purple>[G]:</font> WARNING VIGNETTE / DISTANCE CLACULATOR:</b> 
+<br>
+<a href="gamedesign/Unity2D/vignette.png" target=vignette><img src="gamedesign/Unity2D/vignette.png" width=128 height=72 align=right></a>
+Warn your player of impending doom with this script! Uses the distance from player to enemy to determine whether to start the warning, and get more intense the closer the enemy is within that range.
+<br><br>
+Create a Canvas object (if on does not already exist). 
+<br>In Inspector, set Canvas Scaler &gt; UI Scale Mode from &quot;Constant Pixel Size&quot; to &quot;Scale With Screen Size&quot; and Reference Resolution to 1280x720. 
+<br>
+<br>Apply this script to a Canvas Image object, with vignette (framing) art applied.</font>
+<br>
+<br>
+<center><font face=arial><em>EnemyWarning.cs</em>:</font>
+<br>
+    <table width=700 cellpadding=10 border=1>
+              <tr>
+                <td><font face=arial> <font color=#31849b><b>using</b></font> System.Collections;<br>
+                  <font color=#31849b><b>using</b></font> System.Collections.Generic;<br>
+                  <font color=#31849b><b>using</b></font> UnityEngine;
+                  <br> 
+                  <font color=#31849b><b>using</b></font> UnityEngine.UI; <br>
+                  <br>
+                  <font color=#31849b><b>public class</b></font></font><font color=#365f91 face="arial"><b> EnemyWarning</b> <b>:</b></font><font face=arial><font color=#365f91><b> MonoBehaviour</b></font></font><font face="arial">&nbsp; </font><font face=arial>{<br>
+                  <br>
+&nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font> GameObject player;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font> GameObject enemy;
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>float</b></font> distance;<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>float</b></font> enemyRange = <font color=#ed6c0a><b>20</b></font><font face=arial><font color=#ed6c0a><b>f</b></font></font>;<br><br>
+&nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>void</b></font> Update()
+{ <br>        
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; distance = Vector3.Distance(player.transform.position, enemy.transform.position); <br>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> (distance <= <font color=#ed6c0a><b>20</b></font><font face=arial><font color=#ed6c0a><b>f</b></font></font>)
+{<br>            
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; float alphaChange = (<font face=arial><font color=#ed6c0a><b>1</b></font></font> - (distance / <font color=#ed6c0a><b>20</b></font>) + <font color=#ed6c0a><b>0</b></font><font face=arial><font color=#ed6c0a><b>.1f</b></font></font>); <br>            
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Debug.Log("AlphaChange = " + alphaChange);
+<br>            
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; GetComponent
+&lt;Image&gt;().color = new Color(<font face=arial><font color=#ed6c0a><b>1</b></font></font>, <font face=arial><font color=#ed6c0a><b>1</b></font></font>, <font face=arial><font color=#ed6c0a><b>1</b></font></font>, alphaChange); <br>        
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; } <br>        
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>else</font></b> { <br>            
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; GetComponent
+&lt;Image&gt;().color = new Color(<font face=arial><font color=#ed6c0a><b>1</b></font></font>, <font face=arial><font color=#ed6c0a><b>1</b></font></font>, <font face=arial><font color=#ed6c0a><b>1</b></font></font>, <font color=#ed6c0a><b>0</b></font>); <br>        
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br>    
+&nbsp; &nbsp; &nbsp; &nbsp; }<br>
+}</font></td>
+</tr></table>
+</center>
+
+<font face=arial>
+<em>Script written with Broderick Woodward-Crackower </em>
+<br><br>
+<br>
+<b>2D SPRITES </b>(<a href="https://youtu.be/hXUMdWXr2so" target=vis>source</a>)<b>:</b> Alpha is part of color options in <b>SpriteRenderer</b>: (R,G, B, A).<br>
+a. Create a GameObject &gt; 2D Object &gt; Sprite.<br>
+b. Hit the hotspot to add an Image to the SpriteRenderer.<br>
+c. Apply the script ChangeAlpha.cs.<br>
+d. In the Inspector click the the Increase and Decrease alpha arrows, and choose the keys to hold in order to change the result.<br>
+e. Hit <b>Play</b> and hit those keys to see the change.<br>
+</font>
+<center>
+  <font face=arial><em>ChangeAlphaKeys.cs</em>:</font><br>
+  <table width=730 cellpadding=10 border=1>
+    <tr>
+      <td><font face=arial> <font color=#31849b><b>using</b></font> System.Collections; <br>
+        <font color=#31849b><b>using</b></font> System.Collections.Generic; <br>
+        <font color=#31849b><b>using</b></font> UnityEngine; <br>
+        <br>
+        <font color=#31849b><b>public class</b></font></font><font color=#365f91 face="arial"><b> ChangeAlphaKeys</b> <b>:</b></font><font face=arial><font color=#365f91><b> MonoBehaviour</b></font></font> <font face=arial>{<br>
+          <br>
+          &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font> <b><font color=#31849b>KeyCode</font></b> increaseAlpha; <br>
+          &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font> <b><font color=#31849b>KeyCode</font></b> decreaseAlpha; <br>
+          &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font> <b><font color=#31849b>float</font></b> alphaLevel = <font color=#ed6c0a><b>1.0f</b></font>;<br>
+          <br>
+          &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>void</b></font> Update(){ <br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if </font></b>(Input.GetKeyDown (increaseAlpha)) <br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; alphaLevel += <font color=#ed6c0a><b>0.05f</b></font>;<br>
+          <br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>if</font></b> (Input.GetKeyDown (decreaseAlpha)) <br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; alphaLevel -= <font color=#ed6c0a><b>0.05f</b></font>;<br>
+          <br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; GetComponent&lt;</font><font color=#365f91 face="arial"><b>SpriteRenderer</b></font><font face=arial>&gt;().color = new Color(<font color=#ed6c0a><b>1</b></font>,<b><font color="#ed6c0a">1</font></b>,<b><font color="#ed6c0a">1</font></b>, alphaLevel); <br>
+            &nbsp; &nbsp; &nbsp; &nbsp; } <br>
+            } </font></td>
+</tr></table>
+</center>
+<font face=arial><br>
+</font></td>
+</tr></table>
+
+<br><br>
+
+  <table width=750 bgcolor=#f5eeee cellpadding=10><tr>
+<td><font face="arial"> <a name="speed">&nbsp;</a> <a href="#TOP"></a><br>
+    <b><font face="arial"><a href="#TOP"><img src="comicsDesign/ArrowUp.png" alt=""></a></font> <font color=purple>[H]:</font> SCENE ID</b>: How do you get your GameHandler to perfom different behaviors depending on the scene, like in a GameEnd scene? Make a condition based on scene name!<br><br>
+<em>GameHandler.cs</em>: (This is meant to be just part of a larger GameHandler script)</font><br>
+<center>
+  <table width=700 cellpadding=10 border=1>
+    <tr>
+      <td><font face=arial> <font color=#31849b><b>using</b></font> System.Collections;<br>
+        <font color=#31849b><b>using</b></font> System.Collections.Generic;<br>
+        <font color=#31849b><b>using</b></font> UnityEngine;<br>
+        <font color=#31849b><b>using</b></font> UnityEngine.SceneManagement;
+        
+<br><br>
+<font color=#31849b><b>public class</b></font></font><font color=#365f91 face="arial"><b> GameHandler :</b></font><font face=arial><font color=#365f91><b> MonoBehaviour</b></font></font> <font face=arial>{<br>
+        <br>   
+        <font face=arial><font face=arial>&nbsp; &nbsp; &nbsp; &nbsp; </font></font><font color=#31849b><b>private string</b></font> sceneName;        
+        
+<br> 
+<font face=arial><br>
+&nbsp; &nbsp; &nbsp; &nbsp; </font><font color=#31849b><b>void</b></font> Start(){<br>
+<b><font face=arial>&nbsp; &nbsp; &nbsp; &nbsp; </font></b>&nbsp; &nbsp; &nbsp; &nbsp; sceneName = SceneManager.GetActiveScene().name;
+<b><font face=arial><br>
+&nbsp; &nbsp; &nbsp; &nbsp; <b><font face=arial>&nbsp; &nbsp; &nbsp; &nbsp; </font></b></font><font color=#3ab050>if</font></b> (sceneName == "WinScene"){
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp;<b><font face=arial>&nbsp;<b><font face=arial>&nbsp; &nbsp; &nbsp; &nbsp; </font></b> &nbsp; &nbsp; &nbsp; </font></b>GameOverStuff();
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; <b><font face=arial>&nbsp; &nbsp; &nbsp; &nbsp; </font></b>}<br>
+&nbsp; &nbsp; &nbsp; &nbsp; }<br>
+<br>
+<font face=arial>&nbsp; &nbsp; &nbsp; &nbsp; </font><font color=#31849b><b>public void</b></font> GameOverStuff() {<font color=gray><br>
+</font><font face=arial><font face=arial>&nbsp; &nbsp; &nbsp; &nbsp; </font></font><font face=arial>&nbsp; &nbsp; &nbsp; &nbsp; </font><font color=gray>// put here final game scene display commands, like final static vars for score, etc</font>
+<br>
+<font face=arial>&nbsp; &nbsp; &nbsp; &nbsp; </font>}
+<br>}
+          </font></td>
+    </tr>
+  </table>
+</center>
+<font face="arial"><br>
+    <b>SPEED:</b> Need to show the <b>speed</b> something travels, like a vehicle or character? <br>
+    Calculate Speed with this script, and display <b>movingSpeed</b> as needed (<a href="https://answers.unity.com/questions/17106/getting-the-speed-of-a-gameobject.html">source</a>) <br>
+  <br>
+  <em>CalcSpeed.cs</em>:</font><br>
+
+<center>
+<table width=700 cellpadding=10 border=1><tr>
+<td><font face=arial> <font color=#31849b><b>using</b></font> System.Collections;<br>
+        <font color=#31849b><b>using</b></font> System.Collections.Generic;<br>
+        <font color=#31849b><b>using</b></font> UnityEngine;<br>
+        <br>
+        <font color=#31849b><b>public class</b></font></font><font color=#365f91 face="arial"><b> CalcSpeed</b> <b>:</b></font><font face=arial><font color=#365f91><b> MonoBehaviour</b></font></font><font face="arial">&nbsp; </font><font face=arial>{<br>
+          <br>
+          &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>void</b></font> Start(){<br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; StartCoroutine(CalcVelocity());<br>
+          &nbsp; &nbsp; &nbsp; &nbsp; }<br>
+          <br>
+          &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>IEnumerator</b></font> CalcVelocity(){<br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>while</font></b>(Application.isPlaying){<br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#31849b>Vector3</font></b> lastPos = this.transform.position;<br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#3ab050>yield return new</font></b> WaitForFixedUpdate();<br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; movingSpeed = Mathf.RoundToInt(Vector3.Distance(this.transform.position,lastPos)/Time.fixedDeltaTime);<br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Debug.Log(<font color=#ed6c0a><b>&quot;Speed of char is: &quot;</b></font> + movingSpeed);<br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br>
+          &nbsp; &nbsp; &nbsp; &nbsp; }<br>
+          }</font></td>
+</tr></table>
+</center>
+</td></tr></table>
+
+
+<br><br><br>
+<font face=arial><i>MORE NOTES TO COME:</i></font><br>
+
+<table width=750><tr><td><font face=arial>
+<a name="inventory">&nbsp;</a>
+<br>
+<font color=purple><b>[I]: </b></font><b>INVENTORY  SYSTEM #2: </b>(video 
+<a href="https://youtu.be/DLAIYSMYy2g" target=vid3a>01</a>,
+<a href="https://youtu.be/OG7vHstkZqM" target=vid3b>02</a>
+)
+
+<em>Notes to come</em><br>
+  Here is a start on the scripts for the Inventory system, as described in these videos:</font></td></tr></table>
+
+
+<!--
+<center>
+<table width=700 cellpadding=10 border=1><tr>
+<td><font face=arial>
+<font color=#31849b><b>using</b></font> UnityEngine;
+<br><font color=#31849b><b>using</b></font> System.Collections;
+<br><br><font color=#31849b><b>public class</b></font> <font color=#365f91><b>Player</b></font> :  <font color=#365f91><b>MonoBehaviour</b></font> {
+<br>&nbsp; &nbsp; &nbsp; <font color=#365f91><b>float</b></font> speed = <font color=#e36c0a><b>.25f</b></font>;
+<br>&nbsp; &nbsp; &nbsp; <font color=#365f91><b>Animator</b></font> anim;
+<br>&nbsp; &nbsp; &nbsp; <font color=#365f91><b>Rigidbody</b></font> rigidbody;
+<br>&nbsp; &nbsp; &nbsp; <font color=#365f91><b>float</b></font> JumpSpeed = <font color=#e36c0a><b>25f</b></font>;
+
+<br><br>&nbsp; &nbsp; &nbsp; void  Start(){
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; anim  = gameObject.GetComponentInChildren&lt;<font color=#365f91><b>Animator</b></font>&gt;();
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; rigidbody  =gameObject.GetComponent&lt;Rigidbody&gt;();
+<br>&nbsp; &nbsp; &nbsp; }
+
+<br><br>&nbsp; &nbsp; &nbsp; void  FixedUpdate(){
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>if</b></font> (<font color=#365f91><b>Input</b></font>.GetKey (<font color=#e36c0a><b>&quot;w&quot;</b></font>))  {
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; rigidbody.velocity  += transform.forward * speed;
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; anim.SetBool  (<font color=#e36c0a><b>&quot;walk&quot;</b></font>, <font color=#365f91><b>true</b></font>);
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; } <font color=#31849b><b>else if</b></font> (<font color=#365f91><b>Input</b></font>.GetKey  (<font color=#e36c0a><b>&quot;s&quot;</b></font>))  {
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; rigidbody.velocity  += transform.forward *<font color=#e36c0a><b> -1</b></font> * speed; <br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; anim.SetBool  (<font color=#e36c0a><b>&quot;walk&quot;</b></font>,<font color=#365f91><b>true</b></font>); <br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; } <font color=#31849b><b>else if</b></font> (<font color=#365f91><b>Input</b></font>.GetKey  (<font color=#e36c0a><b>&quot;a&quot;</b></font>))  {
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; rigidbody.velocity  += transform.right * <font color=#e36c0a><b>-1</b></font> * speed; <br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; anim.SetBool  (<font color=#e36c0a><b>&quot;walk&quot;</b></font>,<font color=#365f91><b>true</b></font>); <br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; } <font color=#31849b><b>else if</b></font> (<font color=#365f91><b>Input</b></font>.GetKey  (<font color=#e36c0a><b>&quot;d&quot;</b></font>))  {
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; rigidbody.velocity  += transform.right * speed;
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; anim.SetBool  (<font color=#e36c0a><b>&quot;walk&quot;</b></font>,<font color=#365f91><b>true</b></font>); <br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; } <font color=#31849b><b>else if</b></font> (<font color=#365f91><b>Input</b></font>.GetKey(<font color=#e36c0a><b>&quot;space&quot;</b></font>)){
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; anim.SetTrigger(<font color=#e36c0a><b>&quot;jump&quot;</b></font>);
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; rigidbody.AddForce (<font color=#365f91><b>Vector3</b></font>.up  * JumpSpeed);
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; } <font color=#31849b><b>else</b></font> {
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; anim.SetBool  (<font color=#e36c0a><b>&quot;walk&quot;</b></font>,  false);
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; rigidbody.velocity  = new <font color=#365f91><b>Vector3</b></font>(0,rigidbody.velocity.y,0);
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }
+<br>&nbsp; &nbsp; &nbsp; }
+<br>}
+    </font></td></tr></table>
+    </center>
+
+
+<center>
+<table width=600><tr><td><font face=arial>
+<br><br>
+<b>NOTE 1:</b> sdfsfsf<br>
+<br>
+<b>NOTE 2:</b> Rsdfsdfsf.
+</font></td></tr></table>
+</center>
+-->
+
+
+
+<font face=arial><em>Slot.cs</em></font><br>
+<table width=750 cellpadding=10 border=1>
+  <tr>
+    <td><font face=arial><font color=#31849b><b>using</b></font> System.Collections;<br>
+      <font color=#31849b><b>using</b></font> System.Collections.Generic;<br>
+      <font color=#31849b><b>using</b></font> UnityEngine;<br>
+      <font color=#31849b><b>using</b></font> UnityEngine.SceneManagement;<br>
+      <br>
+      <font color=#31849b><b>public class</b></font> <font color=#365f91><b>Slot</b></font> : <font color=#365f91><b>MonoBehaviour</b></font> {<br><br>
+&nbsp; &nbsp; &nbsp; <font color=#31849b><b>private void </b></font>Start () {<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font face=arial>Inventory = <font color=#365f91><b>GameObject</b></font>.FindGameObjectWithTag(<font color=#e36c0a><b>&quot;Player&quot;</b></font>).GetComponent&lt;</font><font color=#365f91><b>Inventory</b></font>&gt;();<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br>
+<br>
+&nbsp; &nbsp; &nbsp; <font color=#31849b><b>void OnTriggerEnter2D </b></font>(Collider2D other){<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><font color="#31849b">if</font></b> (other.CompareTag(<font face=arial><font color=#e36c0a><b>&quot;Player&quot;</b></font></font>)) {<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><font color="#31849b">for</font></b> (<font face=arial><b><font color="#31849b">int </font></b></font>i = 0; i &lt; inventory.slots.Length; i++){<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><font color="#31849b">if</font></b> (inventory.isFull[i] == <b><font color="#31849b">false</font></b>) {<font color=#999999><br>
+</font>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#999999>//item may be added to inventory</font><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; inventory.isFull[i] = <b><font color="#31849b">true</font></b>;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Instantiate(itemButton, inventory.slots[i].transform, <b><font color="#31849b">false</font></b>);<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Destroy(gameObject);<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><font color="#31849b">break</font></b>;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br>
+&nbsp; &nbsp; &nbsp; }<br>
+}</font></td>
+</tr>
+</table>
+
+
+<br><font face=arial><em>Slot.cs</em></font><br>
+<table width=700 cellpadding=10 border=1>
+  <tr>
+    <td><font face=arial><font color=#31849b><b>using</b></font> System.Collections;<br>
+        <font color=#31849b><b>using</b></font> System.Collections.Generic;<br>
+        <font color=#31849b><b>using</b></font> UnityEngine;<br>
+        <br>
+        <font color=#31849b><b>public class</b></font> <font color=#365f91><b>Slot</b></font> : <font color=#365f91><b>MonoBehaviour</b></font> { <br>
+        <br>
+        &nbsp; &nbsp; &nbsp; <font color=#31849b><b>public void </b></font>DropItem () { <br>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>foreach</b></font> (<font color=#365f91><b>Transform</b></font> child <font color=#31849b><b>in</b></font> transform) { <br>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#365f91><b>GameObject</b></font>.Destroy(child.gameObject); <br>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; } <br>
+        &nbsp; &nbsp; &nbsp; } <br>
+} </font></td>
+  </tr>
+</table>
+
+</center>
+
+<br><br><br>
+<font face="arial"><i>Tutorials prepared from multiple sources by Jason Wiser, <a href="http://www.Madwomb.com" target=mw>Madwomb.com</a></i>
+<br></font></td>
+</tr></table>
+
+</center>
+
+</body>
+</html>

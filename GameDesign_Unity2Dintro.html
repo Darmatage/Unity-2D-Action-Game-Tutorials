@@ -1,0 +1,420 @@
+<html>
+<head>
+<title>Unity 2D Intro Tutorial</title>
+</head>
+
+<body text=#222222 link=#1e6669 vlink=#7700aa alink=#1088bb>
+
+<center>
+<table width=650 cellpadding=10 border=0>
+<tr>
+  <td valign=top><font face=arial>
+<font face=arial><a href="GameDesign_Unity.html"><img src="gamedesign/UnityLogo60.png" alt="" align=right></a></font><font size=+2><b>UNITY - Introduction to 2D Games</b></font>
+<br>This tutorial covers intro topics to making a 2D game in Unity. 
+
+<br><br><br>
+
+<b>BASICS OF 2D:</b>
+<br>Start with a 2D project to avoid some steps! Or, if starting with a <b>Unity  3D Scene: </b>Hit the 2D button at Scene top to lock out  the Z-axis, and convert all PNGs from Texture to Sprite. 
+<br><br><b>Unity Inspector: </b>set PNG art as &ldquo;Sprites&rdquo; and set &quot;Order in Layer&quot; to  decide placement:
+<li>Higher  numbers = closer to camera
+<li>Lower  numbers = further away
+<li>Use   even numbers to allow space for later insertions.     
+<li>Use only <b>2D Physics:</b> Rigidbody2D, BoxCollider2D, etc.
+      
+<br><br> <b>PAINTING BACKGROUNDS:</b> 
+<br>
+Paint  bitmaps (Photoshop, PyxelEdit) or vectors (Flash, Illustrator). <a name="sizes">&nbsp;</a>
+<li>Create files as <strong>72ppi</strong>, sized <strong>power-of-2-square</strong> (<a href="gamedesign/ImageSize_32x32.png" target=image32>32x32</a>, 
+<a href="gamedesign/ImageSize_64x64.png" target=image64>64x64</a>, 
+<a href="gamedesign/ImageSize_128x128.png" target=image128>128x128</a>, 
+<a href="gamedesign/ImageSize_256x256.png" target=image256>256x256</a>, 
+<a href="gamedesign/ImageSize_512x512.png" target=image512>512x512</a>, 
+<a href="gamedesign/ImageSize_1024x1024.png" target=image1024>1024x1024</a>, 
+<a href="gamedesign/ImageSize_2048x2048.png" target=image2048>2048x2048</a>). 
+Export as <strong>PNG</strong>, quality  24.
+<li><strong>Standard  game display = 1280x720, 72 ppi</strong>. Paint 2x size for HD/retina display.    
+<li>To  create Layered Background Art: foreground and midground layers need empty &ldquo;opacity&rdquo; space around the art.
+<li>For  Tiling/Scrolling Art, consider at least 3 horizontal screens, with furthest  right and left sides matching. (See longer, multi-layer art in <a href="https://youtu.be/7m5YQrucis8?t=221" target=Rayman>Rayman Legends</a>  play-thrus).
+<li>For  a 2d platformer, paint layers to include art which looks like platforms. 
+In the following tutorial, we assume rooftops are meant to be platforms.
+<br><br>
+
+<center>
+  <font size=+2><b>UNITY TUTORIAL #2:<br>
+    Making a 2D Platformer</b></font>
+</center>
+
+<br> &nbsp; &nbsp; &nbsp; &nbsp; 
+<font color=purple><b>PART 1:</b></font> <a href="#part1">BACKGROUNDS  IN UNITY</a>
+<br> 
+&nbsp; &nbsp; &nbsp; &nbsp;
+<font color=purple><b>PART 2:</b></font> <a href="#part2">CREATE PLATFORMS COLLIDERS</a>
+<br> &nbsp; &nbsp; &nbsp; &nbsp;
+<font color=purple><b>PART 3:</b></font> <a href="#part3">BASIC 2D PLAYER CHARACTER</a>
+<br> &nbsp; &nbsp; &nbsp; &nbsp;
+<font color=purple><b>PART 4:</b></font> <a href="#part4">ANIMATED 2D PLAYER CHARACTER</a>
+<br> &nbsp; &nbsp; &nbsp; &nbsp;
+<font color=purple><b>PART 5:</b></font> <a href="#part5">ADDING PICKUPS</a>
+<br> &nbsp; &nbsp; &nbsp; &nbsp;
+<font color=purple><b>PART 6:</b></font> <a href="#part6">COIN PICKUP INTERACTIVITY</a>
+<br> &nbsp; &nbsp; &nbsp; &nbsp;
+<font color=purple><b>PART 7:</b></font> <a href="#part7">UI AND SCORING</a>
+<br> &nbsp; &nbsp; &nbsp; &nbsp;
+<font color=purple><b>PART 8:</b></font> <a href="#part8">ADDING DEBUG.LOG</a>
+
+<br></font></td>
+</tr></table>
+
+<img src="gamedesign/UnityTerrain/Unity2Dproject.png" alt="" width=800 height=472><br><br>
+
+<table width=600 cellpadding=10 border=0>
+<tr><td><font face=arial>
+<a name="part1">&nbsp;</a>
+<br><font color=purple><b>PART 1:</b></font> <b>BACKGROUNDS  IN UNITY:</b> 
+<br>
+a. Move copies of the <a href="gamedesign/2D_assets.zip" target=gb2><strong>provided PNGs</strong></a> into the Project &gt; Assets folder. 
+<br><br>
+b. Select each PNG, and  in the Inspector: 
+<li> set Texture type from &quot;texture&quot; to &quot;<b>Sprite</b>,&quot;  
+<li> set the <b><em>Pixels Per Unit</em></b> number (density of pixels in 1 meter Unity space.  Larger pixel numbers = smaller/denser the art appears on  screen. Set Foreground  to the highest number for the art to appear smallest. Try <b>BG=40, MG=50, FG=60</b>)
+<li> hit <b>[Apply]</b>.<br><br>
+c. Drag each background sprite into the Hierarchy, one at a time to avoid creating a sequence. 
+<br><br>
+d. With each Sprite selected in the Hierarchy:
+<li>Set the <b>Order in Layer</b> number: 
+<b>BG=10, MG=12, FG=14</b>
+</font><li><font face="arial">Hit <b>[w]</b> to move background sprites  up/down in Scene view to see all 3 images. </font>
+<li><font face="arial">Set t</font><font face="arial">he 2D Camera  distance in the Inspector with the <strong>Scale</strong> property to make the overall background  appear smaller (further) or bigger (closer). <br><br><br><a name="part2">&nbsp;</a>
+  <br><b><font color=purple>PART 2:</font> CREATE PLATFORM COLLIDERS:</b> 
+  <br>a. To make platform art areas collide-able, <b>create new Empty GameObjects</b> in the Hierarchy.
+  <br><br>b. To each add <b>Component > Physics 2D > Box Collider 2D</b>. You can  create just one and [Ctrl] or [Cmd]+[d] to make easy copies. Name them in the Inspector! 
+  <br><br>c. Each of  these colliders can be <b>transformed</b> (Scale by setting BoxCollider2D size, and hit [W] to move and [E] to rotate) to fit the image of  platforms in the art. Colliders will be invisible unless their Game Object is selected in the  Hierarchy. 
+  
+  <br><br><br><a name="part3">&nbsp;</a>
+  <br><font color=purple><b>PART 3:</b></font> <b>BASIC 2D PLAYER CHARACTER:</b>
+  <br><b>For a basic static (non-animated) Player Character:</b> 
+  <br><br>
+  
+  <table width=100% border=0><tr>
+    <td valign=top><font face=arial>a. In Photoshop (or your art tools of choice) create a small 2D  image for character art with an empty background, 72ppi and power-of-2-square (like 256x256). Save as a PNG.
+      <br><br>b. In Unity add this PNG to your  Project. 
+      <br><br>c. In  the Inspector set Texture Type = &ldquo;<b>Sprite</b>&rdquo;, leave <b>Pixels per Unit = 100</b>. Hit [Apply].
+      </font></td>
+    <td width=128><font face="arial"><img src="GameDesign/MouseThief.png" width=128></font></td>
+  </tr></table>
+  
+  <br>d. Add  to Hierarchy and in Inspector set <b>Order in Layer</b> = a high number (100, if  you want the character to be foremost).
+  <br><br>e. Add  Component &gt; Physics 2D &gt; <b>Box Collider 2D</b>, and reduce size.
+  <br><br>
+  f. Add  Component &gt; Physics2D &gt; <b>RigidBody 2D</b>, and under Constraints turn on <strong>Freeze Rotation  Z</strong>. <br><br>
+  g. Create a new <b>C# script</b> named <strong>PlayerControl</strong>, add  to character with the following movement, jumping, and flipping methods in the Update function: <br><br><br>
+  
+  </font><center>
+  <font face="arial"><i>2D PlayerControl.cs script:</i>
+<br>    </font><table width=90% cellpadding=10 border=1><tr>
+      <td><font face=arial><font color=#3ab050><b>using</b></font> UnityEngine;<br>
+          <font color=#3ab050><b>using</b></font> System;<br>
+          <font color=#3ab050><b>using</b></font> System.Collections;<br><br>
+        <font color=#31849b><b>public class</b></font> </font><font color=#0070c0 face="arial"><b>PlayerControl </b></font><font face=arial>: </font><font color=#0070c0 face="arial"><b>MonoBehaviour</b></font> <font face=arial>{ <br><br>
+          &nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font><font color=#0070c0><b> float</b></font> speed =<font color=#e36c0a><b> 0.2f</b></font> ; <br>
+          &nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#0070c0><b>string </b></font>axisName =<font color=#e36c0a><b> &quot;Horizontal&quot;</b></font>;
+          <br>
+          &nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font><font color=#0070c0><b> float</b></font> jump = <font color=#e36c0a><b>1</b></font>; <br><br>&nbsp; &nbsp; &nbsp; <font color=#31849b><b>void</b></font> Update () { <br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<b> <font color=#a6a6a6>//movement  code</font>
+            </b><br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; transform.position +=  transform.right *<font color=#0070c0><b> Input</b></font>.GetAxis(axisName)*  speed; <br><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><font color=#a6a6a6>//jump  code</font></b>
+          <br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>if</b></font> (<font color=#0070c0><b>Input</b></font>.GetKey(KeyCode.UpArrow)){ <br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#0070c0><b>Vector3</b></font> position = <font color=#0070c0><b>this</b></font>.transform.position;
+          <br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; position.y  += jump / <font color=#e36c0a><b>4</b></font>; <br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#0070c0><b>this</b></font>.transform.position = position; <br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }
+          
+          <br><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#a6a6a6><b>//flip  character based on movement direction</b></font>
+          <br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>if</b></font> (<font color=#0070c0><b>Input</b></font>.GetAxis (axisName) &lt; <font color=#e36c0a><b>0</b></font>){ <br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#0070c0><b>Vector3</b></font> newScale = transform.localScale; <br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; newScale.x =  <font color=#e36c0a><b>1.0f</b></font>; <br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; transform.localScale  = newScale;
+          <br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }
+          <br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>else  if</b></font> (<font color=#0070c0><b>Input</b></font>.GetAxis (axisName) &gt; <font color=#e36c0a><b>0</b></font>){ <br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#0070c0><b>Vector3</b></font> newScale =transform.localScale; <br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; newScale.x =  <font color=#e36c0a><b>-1.0f</b></font>; <br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; transform.localScale  = newScale;
+          <br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;} 
+          <br>&nbsp; &nbsp; &nbsp;} 
+          <br>
+          }
+          </font></td></tr></table>
+  </center><font face="arial">
+  
+  <font face="arial"><br><br>
+  <a name="part4">&nbsp;</a>
+  <br><b><font color=purple>PART 4:</font> ANIMATED 2D PLAYER CHARACTER (MORE ADVANCED):</b><br>
+    
+  </font><table width=100% border=0><tr>
+    <td valign=top><font face=arial><b>IN PHOTOSHOP:</b>
+      <br>1. <b>Draw:</b> In one  Photoshop file draw each character pose in its own layers. 
+      <br><br>2. <b>Build Spritesheet:</b> In a new  Photoshop file (power-of-two-square, like 512 x 512) paste these character  poses, evenly distributed and consistently positioned (so the &quot;ground&quot; is the same for all).
+      
+      <br><br></font></td>
+    <td valign=top width=256><font face="arial"><img src="GameDesign/MouseThief_spritesheet.png" width=256></font></td>
+  </tr></table>
+  </font>
+  
+  <table width=100% border=0>
+    <tr>
+      <td valign=top><font face="arial"><b>IN UNITY:</b> <br>
+        a) Add Spritesheet  to Project.<br>
+        <br>
+        b) In the Inspecter, add these settings:
+        <li>Texture Type = <b>Sprite</b>       
+          <li>Sprite Mode = <b>Multiple</b>
+            <li><b>Pixels Per Unit</b> = 100. <br>
+              <br>
+              </font></td>
+      <td valign=top width=256><img src="GameDesign/UnityTerrain/Unity2D_spritesheet1.png"></td>
+      </tr>
+  </table>
+<font face="arial"><br>
+c) <b>SLICE THE SPRITESHEET:</b><br>
+Hit <b>[Sprite  Editor]</b>. In the upper-left open &ldquo;Slice&rdquo;
+<li>Choose Type &quot;Grid By Cell Size.&quot;
+<li>Set <strong>Pixel Size</strong> to evenly  surround character poses (170x256 for our mouse thief).
+<li>Hit <strong>[Slice]</strong>. See your slices by clicking the 3-color button in the upper-right <img src="GameDesign/UnityTerrain/Unity2D_button1.png">. 
+<li>If not satisfied, revise slice numbers and re-slice.
+<li>When you are done, hit <strong>[Apply]</strong>. Each sliced pose is now its own object in the project (visible by opening the Spritesheet twirly in the project).
+
+</font></td></tr></table>
+
+<table><tr>
+<td><img src="GameDesign/UnityTerrain/Unity2D_spritesheet2a.png"></td>
+<td><img src="GameDesign/UnityTerrain/Unity2D_spritesheet2b.png"></td>
+</tr></table>
+
+<table width=600><tr>
+  <td><font face=arial><br><center><img src="GameDesign/UnityTerrain/Unity2D_spritesheet2c.png"></center><br>
+  d) <b>ADD PLAYER:</b> 
+<br>Open the Spritesheet twirly in  the Project to see the slices as frames.<li>Select the Idle frame (first pose) and drag it into the Hierarchy.<li>Re-name it &quot;Player.&quot;
+<li>In  the Inspector,&nbsp;set &quot;<strong>Order in Layer</strong>&quot; = highest (100).
+<li>Add Component &gt; Physics2D  &gt; <strong>Box Collider 2D</strong> and <strong>RigidBody 2D</strong>.
+<li>In RigidBody 2D set Gravity Scale = 4, Constraint &gt; Freeze Rotation Z.<br>
+  <br>
+  e) <b>SET ANIMATION CLIPS:</b>
+<li> Open  <strong>Window &gt; Animation &gt; Animation</strong> (for animating 2D Characters, lights, and particles. Can also hit [Ctrl/Cmd]+[6] to open this panel).
+<li> In the  Hierarchy select the &quot;<strong>Player</strong>&quot; frame  (so animation clips are made on  it).
+<img src="gamedesign/Unity2D/AnimationCreate.png" alt=""></font>
+<li><font face="arial"> Hit <strong>[Create]</strong>. This creates both an <strong>Animator Controller</strong> and a first animation <strong>clip</strong>.<br>
+&nbsp; &nbsp; &nbsp; &nbsp; 1. <strong>Save</strong> the first clip file with  name <strong>mouse_idle.anim</strong>. See it added to  list below &quot;Preview.&quot;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; 2. We want to put the individual frames from  the Project to just below the clip name in the Animation window to  add them to the clip timeline (in this case, &quot;mouse_idle&quot; frames are #1 and #2). Click the twirly on the left to see the keyframes as pictures.
+<strong>Drag up frame #1, then frame #2, then frame #1 again to create a loop</strong>.<br>
+&nbsp; &nbsp; &nbsp; &nbsp; 3. <strong>Move the  keyframes in the timeline to set your timing.</strong> For the three idle frames (pose 1, pose 2, pose 1 again) set them to <strong>0, 10, and 20</strong>. <br>
+<br>&nbsp; &nbsp; &nbsp; &nbsp; 4. Click on the word &quot;mouse_idle&quot; in the rolldown, choose &quot;<strong>Create New Clip</strong>.&quot; 
+<br><strong>Repeat  steps 1-3 for all intended character motions</strong> (mouse_run, mouse_jump, etc.): <br><center><img src="GameDesign/UnityTerrain/Unity2D_spritesheet3.png"></center>
+
+
+<br>d) Select the Player in the Hierarchy. In the Inspector note the new <b>Animator</b> (named for Player), created  automatically when Animation clips were made.
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; 1. Doubleclick Animator in Project to open the Mecanim <b>State Machine.</b>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; 2. Link up states with transitions (RightClick a state and choose Make Transition,<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;then click on destination): 
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <img src="gamedesign/Unity2D/Mecanim_transition.png">
+
+  <br> 
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; mouse_idle -&gt; to -&gt; mouse_run 
+  <br> 
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; mouse_run -&gt; to -&gt; mouse_idle  
+  <br> 
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Any State -&gt; to -&gt; mouse_jump
+  <br> 
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; mouse_jump -&gt; to -&gt; mouse_idle
+
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; 3. Create parameters in the upper-left corner of the State Machine: 
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; a <strong>Trigger</strong> named &quot;jump&quot; and a <strong>Bool</strong> named &quot;run,&quot; etc.<br>
+&nbsp; &nbsp; &nbsp; &nbsp; 4. <b>Select each transition</b> and in the Inspector <b>add parameters</b>:
+<br>&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; a. To [Any State -&gt; to -&gt; mouse_jump] add the &quot;jump&quot; Trigger
+<br>&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; b. To [mouse_idle -&gt; to -&gt; mouse_run]  add the &quot;run&quot; Boolean (set to true)
+<br>&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; c. To [mouse_run -&gt; to -&gt; mouse_idle]  add the &quot;run&quot; Boolean (set to false)
+<br>&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;And <b>disable Has Exit Time</b> on the "run" transitions.
+  
+<br>
+<center><img src="GameDesign/UnityTerrain/Unity2D_spritesheet4.png"></center><br>
+f) Add the following movement script to the animated player. This will include commands to play the animation, with a basic  Play command:: 
+<br>
+<b>anim.Play</b>(&quot;run&quot;); and <b>anim.Play</b>(&quot;jump&quot;);<br><br>
+...or  a more advanced, condition-specific command:
+<br>
+<b>anim.SetBool(</b>
+<font color=#e36c0a><b>"run", true</b></font><b>);</b> and <b>anim.SetTrigger</b>(
+<font color=#e36c0a><b>"jump"</b></font>); <br>
+<br>
+
+</font>
+</td></tr></table>
+
+<center>
+<font face=arial><i>2D PlayerControlAnimated.cs script. <b>Boldface/Color = new  content:</b></i></font>
+
+    <table width=700 cellpadding=10 border=1><tr><td><font face=arial><font color=#3ab050><b>using</b></font> UnityEngine;<br>
+            <font color=#3ab050><b>using</b></font> System;<br>
+            <font color=#3ab050><b>using</b></font> System.Collections;<br><br>public class PlayerControlAnimated  : MonoBehaviour {<br><br>&nbsp; &nbsp; &nbsp; public  float speed = 0.2f  ;<br>&nbsp; &nbsp; &nbsp; public  string axisName = &quot;Horizontal&quot;;<br>&nbsp; &nbsp; &nbsp; public  float jump = 1;<br>
+      &nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#0070c0><b>Animator</b></font><b> anim;</b><br><br>&nbsp; &nbsp; &nbsp; <font color=#31849b><b>void</b></font><b> Start () {</b><br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>anim =  gameObject.GetComponent&lt;Animator&gt; ();</b><br>
+      &nbsp; &nbsp; &nbsp; <b>}</b><br><br>&nbsp; &nbsp; &nbsp; void Update () {<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //movement  code<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>if</b></font> (<font color=#0070c0><b>Input</b></font>.<b>GetKey(KeyCode.LeftArrow) ||  Input.GetKey(KeyCode.RightArrow)) {</b><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>transform.position +=  transform.right * Input.GetAxis(axisName)* speed;</b><br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>anim.SetBool(</b><font color=#e36c0a><b>"walk", true</b></font><b>); }</b><br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>else { anim.SetBool(</b><font color=#e36c0a><b>"walk", false</b></font><b>); }</b><br><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //jump code<br><b>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </b><font color=#31849b><b>if</b></font> (<font color=#0070c0><b>Input</b></font>.<b>GetKey(KeyCode.UpArrow)){</b><br>
+      <b>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </b><font color=#0070c0><b>Vector3</b></font><b> position = </b><font color=#31849b><b>this</b></font><b>.transform.position;</b><br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>position.y  += jump / </b><font color=#e36c0a><b>4</b></font><b>;</b><br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>this</b></font><b>.transform.position = position;</b><br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>anim.SetTrigger(</b><font color=#e36c0a><b>"jump"</b></font><b>);</b><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>}</b>
+      
+      <br><br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>anim.SetFloat(&quot;speed&quot;, Mathf.Abs(Input.GetAxis(axisName)));</b><br><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //flip  character based on movement direction<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if  (Input.GetAxis (axisName) &lt; 0){<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Vector3 newScale = transform.localScale;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; newScale.x =  1.0f;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; transform.localScale  = newScale;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; else  if (Input.GetAxis (axisName) &gt; 0){<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Vector3 newScale =transform.localScale;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; newScale.x =  -1.0f;<br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; transform.localScale  = newScale;<br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br>&nbsp; &nbsp; &nbsp; }<br>
+}</font></td></tr></table>
+</center>
+
+<table width=700><tr><td>
+
+<font face="arial"><br>
+g) Once these bold-face changes are added to the script,  drag the <strong>Animator Controller </strong>into the new script slot in the Inspector. <br>
+<br><br><a name="part5">&nbsp;</a>
+<br><font color=purple><b>PART 5:</b></font></font> <font face="arial"><b>ADDING PICKUPS:</b>
+  
+</font><font face="arial"><li>Get the <a href="gamedesign/CoinUnity.png" target=coin><b>coin art</b></a> from the course site and add it to your Project.
+<li>In  Inspector make it a <b>Sprite</b> with a <b>Pixels Per Unit</b> = 100. 
+<li>Drag it into the Hierarhcy and in the Inspector name it coin_art and set <b>Order in Layer</b> = 90.
+<li>Add Component > Physics2D > <b>BoxCollider2D</b> and turn on <b>Is Trigger</b>. Add <b>RigidBody2D</b> and switch from Dynamic to<b> Kinematic</b>.</font><li><font face="arial">In the project Create a new C# script called "PickUps" and add this code inside of the public class:
+
+<br><br>
+</font><center>
+<font face=arial><i>PickUps.cs script.</i><br>
+</font><table width=90% cellpadding=10 border=1><tr>
+  <td><font face=arial><font color=#3ab050><b>using</b></font> UnityEngine;<br>
+<font color=#3ab050><b>using</b></font> System;<br>
+<font color=#3ab050><b>using</b></font>  System.Collections;<br><br>
+      <font color=#3ab050><b>public class </b></font></font><font color=#0070c0 face="arial"><b>PickUps </b></font><font face=arial>: </font><font color=#0070c0 face="arial"><b>MonoBehaviour</b></font> <font face=arial>{<br>
+      <br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#3ab050><b>private</b></font><font color=#0070c0><b> float</b></font> originalY;<br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#3ab050><b>public</b></font><font color=#0070c0><b> float</b></font> bobStrength = <font color=#e36c0a><b>0.5f</b></font>;<br><br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>void</b></font> Start(){<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+        <font color=#31849b><b>this</b></font>.originalY = <font color=#31849b><b>this</b></font>.transform.position.y;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>void</b></font> Update()<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; transform.position = new <font color=#0070c0><b>Vector2</b></font>(transform.position.x,<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; originalY + ((<font color=#31849b><b>float</b></font>)Mathf.Sin(<font color=#0070c0><b>Time</b></font>.time) * bobStrength));<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br>
+}</font></td></tr></table>
+</center>
+<font face="arial">
+  
+Note:  bobStrength is Public so it can be changed in Inspector for testing.<br><br><br>
+<a name="part6">&nbsp;</a><br>
+<b><font color=purple>PART 6:</font></b> <b>COIN PICKUP INTERACTIVITY:</b><br>
+To be a PickUp, the coin should do the following when the player touches it: make a sound, disappear, and add to the score.</font>
+<font face="arial">
+<li> Set the MouseThief  <strong>tag</strong> to &quot;<b>Player</b>&quot;
+<li> Add the coin <a href="gamedesign/CoinPickUp.wav" target=sound><strong>soundFX</strong></a> file to the Project and then drag onto the coin in the Hierarchy to make it an Audio Source. In the Inspector, turn off &quot;Play on Awake&quot;.</font><li><font face="arial"> Add to the PickUps code (NOTE: the Trigger function is Trigger2D, using a Collider2D):<br><br>
+</font><center>
+  <font face=arial><i>PickUp.cs script. <b>Boldface/Color = new  content:</b></i><br>
+</font><table width=90% cellpadding=10 border=1><tr>
+<td><font face=arial><font color=#3ab050><b>using</b></font> UnityEngine;<br>
+          <font color=#3ab050><b>using</b></font> System;<br>
+          <font color=#3ab050><b>using</b></font>  System.Collections;<br>
+          <br>
+          <font color=#3ab050><b>public class </b></font></font><font color=#0070c0 face="arial"><b>PickUps </b></font><font face=arial>: </font><font color=#0070c0 face="arial"><b>MonoBehaviour</b></font> <font face=arial>{<br>
+            <br>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#3ab050><b>private</b></font><font color=#0070c0><b> float</b></font> originalY;<br>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#3ab050><b>public</b></font><font color=#0070c0><b> float</b></font> bobStrength = <font color=#e36c0a><b>0.5f</b></font>;<br>
+            <br>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>void</b></font> Start(){<br>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>this</b></font>.originalY = <font color=#31849b><b>this</b></font>.transform.position.y;<br>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br>
+            <br>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>void</b></font> Update()  {<br>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; transform.position = new <font color=#0070c0><b>Vector2</b></font>(transform.position.x,<br>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; originalY + ((<font color=#31849b><b>float</b></font>)Mathf.Sin(<font color=#0070c0><b>Time</b></font>.time) * bobStrength));<br>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br>
+            <br><br>
+            <strong>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b>void</font> OnTriggerEnter2D(<font color=#31849b>Collider2D</font> other) {<br>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#3ab050>if</font>  (other.gameObject.tag == <font color=#ed6c0a>&quot;Player&quot;</font>){<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; GetComponent&lt;<font color=#31849b>AudioSource</font>&gt;().Play();<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; StartCoroutine(DestroyThis()); }<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;}<br><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b>IEnumerator</font> DestroyThis(){<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#3ab050>yield return new</font> <font color=#31849b>WaitForSeconds</font>(<font color=#ed6c0a>0.3f</font>);<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Destroy(gameObject);<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;}</strong><br>}<br></font></td>
+</tr></table>
+</center>
+
+<font face="arial"><br>
+<b>DOUBLING NOTE: </b>If the audio plays twice (and, later, the score registers two hits per coin) this is because the colliders hit twice before the object is destroyed. We need to disable the collider when first impacted. Add this script to <b>OnTriggerEnter2D</b> above the AudioSource Play:<br>
+</font>
+<center>
+  <table width=90% cellpadding=10 border=1>
+    <tr>
+      <td><font face="arial">&nbsp; &nbsp; &nbsp; <strong>GetComponent&lt;<font color=#31849b>Collider2D</font>&gt; ().enabled = <font color=#ed6c0a>false</font>; </strong></font></td>
+    </tr>
+  </table>
+</center>
+<font face="arial"></font><font face="arial"><br>
+<br>
+<a name="part7">&nbsp;</a>
+<br>
+<b><font color=purple>PART 7:</font> UI AND SCORING:</b><br>To provide scoring feedback, we need two new things:<br>(1) A graphic way to display the score (such as <b>UI Text</b>)<br>
+(2) an empty <b>GameObject</b> containing a public script for managing the score.<br>
+<br><b>[A]</b> Start by <b>creating an Empty G.O</b>.:</font>
+<font face="arial">
+<li> GameObject &gt; <b>CreateEmpty</b><li> Name it GameControlObj.<li> In the Inspector apply the <b>tag</b> GameController.<li> Create a <b>new C# script </b>with the name <b>GameController</b>.<li> Add this script to GameControlObj.<br> Doubleclick the script to open in your IDE.<br> NOTE the critical &ldquo;using&rdquo; namespace for UI at the top:<br><br>
+  
+  <center>
+  <font face=arial><i>GameController.cs script.</i></font>
+    <table width=90% cellpadding=10 border=1><tr>
+      <td><font face=arial><font color=#3ab050><b>using</b></font> UnityEngine;<br>
+        <font color=#3ab050><b>using</b></font> System.Collections;<br>
+        <font color=#3ab050><b>using</b></font> UnityEngine.UI;<br><br>
+        <font color=#3ab050><b>public class</b></font></font> <font color=#31849b face="arial"><b>GameController</b> : <b>MonoBehaviour</b></font><font face="arial">  {<br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=#3ab050><b>public</b></font> <font color=#31849b><b>GameObject</b></font> textGameObject;<br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=#3ab050><b>private</b></font> <font color=#31849b><b>int</b></font>  score;<br><br>
+          &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; <font color=#31849b><b>void</b></font> Start () {<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; score = 0;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; UpdateScore (); }<br><br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=#3ab050><b>public</b></font> <font color=#31849b><b>void</b></font>  AddScore (<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>int</b></font> newScoreValue) {<br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; score += newScoreValue; UpdateScore  (); }<br><br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color=#31849b><b>void</b></font> UpdateScore () {<br>
+          &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>Text</b></font> scoreTextB = textGameObject.GetComponent&lt;<font color=#31849b><b>Text</b></font>&gt;();<br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; scoreTextB.text  = <font color=#ed6c0a><b>&quot;Score: &quot;</b></font> + score; }<br>
+          }</font></td></tr></table>
+  </center>
+  
+  <br>
+  <b>[B]</b> <b>Create a Canvas Text object</b>: GameObject &gt; UI &gt; <b>Text</b> (NOTE: Will not be visible in Scene  view, only in the Game view).
+<li>In the Inspector, change text field to say &quot;Score&quot; and set Pos  X and Pos Y toward a corner. 
+  NOTE: If you can't find it easily, try these settings (
+  You can also change text color, font, and size):<br>
+  &nbsp; &nbsp; &nbsp; PosX= -280, PosY= 190, Width= 250, Height= 80</font><li><font face="arial">Select your GameControlObj G.O. and drag the Text  object into the empty public Text Game Object space in the GameController  script component.<br><br>
+  <b>[C]</b> Finally, add three things to the  <b>PickUps</b> script:<br><br> 
+  1. Add a <b>private  variable</b> and a new <b>Start</b> method<b>:</b><br>
+</font><center><table width=90% cellpadding=10 border=1><tr><td>
+  <font face="arial">&nbsp; &nbsp; &nbsp;<font color=#3ab050><b>private</b></font></font> <font color=#31849b face="arial"><b>GameController</b></font><font face="arial"> gameController; 
+  
+<br><br>&nbsp; &nbsp; &nbsp; <font color=#31849b><b>void</b></font> Start () { 
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>this</b></font>.originalY = <font color=#31849b><b>this</b></font>.transform.position.y;  
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>GameObject</b></font> CtrlTemp = <font color=#31849b><b>GameObject</b></font>.FindWithTag (<font color=#ed6c0a><b>&quot;GameController&quot;</b></font>);
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<b> <font color=#3ab050>if</font></b> (CtrlTemp != <font color=#31849b><b>null</b></font>) {
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; gameController = CtrlTemp.GetComponent &lt;<font color=#31849b><b>GameController</b></font>&gt;(); }
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#3ab050><b>if</b></font> (CtrlTemp == <font color=#31849b><b>null</b></font>) {
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>Debug</b></font>.Log (<font color=#ed6c0a><b>&quot;Cannot find 'GameController' script&quot;</b></font>); } 
+<br>&nbsp; &nbsp; &nbsp; }
+</font></td></tr></table></center>
+
+<font face="arial"><br>2. Add this line into the <b>OnTriggerEnter2D</b> method:<br>
+</font><center><table width=90% cellpadding=10 border=1><tr><td>
+  <font face="arial">&nbsp; &nbsp; &nbsp; gameController.AddScore (<font color=#ed6c0a><b>1</b></font>); 
+</font></td></tr></table></center>
+<font face="arial"><br><br>
+<a name="part8">&nbsp;</a><br>
+<b><font color=purple>PART 8:</font> ADDING DEBUG.LOG</b><br>
+Not sure why certain behavior is occurring? Add a &quot;hook&quot; to the debug log!<br>
+For example, in the PickUps script above,  right after the scoring part of the OnTriggerEnter2D method, you can add this to see how many times the collider is activated:<br>
+</font><center><table width=90% cellpadding=10 border=1><tr>
+<td><font face="arial">&nbsp; &nbsp; &nbsp; <font color=#31849b><b>Debug</b></font>.Log (<font color=#ed6c0a><b>&quot;coin touch!&quot;</b></font>); 
+</font></td></tr></table></center>
+
+<font face="arial"><br>
+DoubleClick the lower-left corner of the Unity Editor to open the Console and view the log as you play.<br><br><br>
+<i>Tutorial by Jason Wiser, <a href="http://www.Madwomb.com" target=mw>Madwomb.com</a></i><br>
+</font></td></tr>
+</table>
+</center>
+
+</body>
+</html>

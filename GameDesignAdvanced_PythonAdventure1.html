@@ -1,0 +1,408 @@
+<html>
+<head>
+<title>Intro Python Tutorial</title>
+</head>
+
+<body text=#222222 link=#1e6669 vlink=#7700aa alink=#1088bb>
+
+<center>
+<table width=850 cellpadding=10 border=0>
+<tr>
+  <td valign=top>
+<a name=top>&nbsp;</a>
+<br>
+
+<center>
+
+<table width=100% height=50 cellpadding=0 bgcolor=#bbbbbb><tr>
+<td align=center><font face=arial>
+<b>PYTHON PAGES:</b> &nbsp; &nbsp; 
+<a href="GameDesignAdvanced_PythonStart.html"><font color=#efefef><b>PYTHON START</b></font></a> &nbsp; | &nbsp; 
+<font color=#dedede><b><em>PYTHON TEXT ADVENTURES</em></b></font> &nbsp; | &nbsp;
+<a href="GameDesignAdvanced_Python.html"><font color=#efefef><b>PYTHON CONCEPTS</b></font></a>
+</font></td>
+</tr></table>
+
+
+<br>
+<font size=+2 face="arial"><b>PYTHON - Text Adventure Scripts (Three Beginner Examples, and More)</b></font><font face="arial"><br>
+<em>IN THIS PAGE: </em><a href="#ifs">Nested if-s</a> &nbsp; | &nbsp; 
+<a href="#functions">Functions</a> &nbsp; | &nbsp;
+<a href="#whiles">While-Locations</a> &nbsp; | &nbsp; 
+<a href="#dictionaries">Python Dictionaries</a> &nbsp; | &nbsp; 
+<a href="#multimedia">Multimedia with PyGame</a>
+
+</font>
+</center>
+
+
+<br><br><br>
+<a name="ifs">&nbsp;</a><a href="#top"><img src="gamedesignAdvanced/PythonIcon_sm.png" alt=""></a><br>
+<table width=100% cellpadding=5>
+  <tr>
+    <td colspan=3><font face=arial> <b>TEXT ADVENTURE EXAMPLE #1: Simple nested If-s</b> </font></td>
+  </tr>
+  <tr>
+    <td width=50% valign=top><font face=arial> A simple way to approach a (limited) text adventure is to repeatedly nest if-statements. 
+    
+    <br><br>
+    This is relatively easy to code, but <strong>non-intuitive to read or edit</strong> afterwards.<br>
+      <br>
+      <strong>Consider this script:</strong><a href="gamedesignAdvanced/scripts_python/TextVenture1_nested_Ifs.txt" target=python3><b>TextVenture1_nested_Ifs.txt</b></a><br>
+      (see <a href="gamedesignAdvanced/scripts_python/pythonWeek1.zip" traget=zip><strong>pythonWeek1.zip</strong></a>, or copy txt into new file and save as .py)<br><br>
+      <br>
+      <br>
+      <em><strong></strong></em><em><strong>CONSIDER:</strong></em> How can we make code that is easier to understand and revise?<br>
+      <br><br><br>
+      <br><br><br><br>
+    <a href="https://youtu.be/DEcFCn2ubSg" target=vid1>Source Video</a></font></td>
+    <td><img src="gamedesign/space.png" alt="" height=1 with=10></td>
+    <td width=50% valign=top><font face=arial><br>
+      A sample <strong>while</strong> loop for a location in this script:<br>
+      </font>
+      <center>
+        <table width=450 cellpadding=5 border=1>
+          <tr>
+            <td><font face=arial> #First Location <br>
+              while location == 0: <br>
+              &nbsp; &nbsp; print() <br>
+              &nbsp; &nbsp; print ("You are in room 0") <br>
+              &nbsp; &nbsp; print ("obvious exits are NORTH, SOUTH,") <br>
+              &nbsp; &nbsp; print ("and ... DENNIS") <br>
+              <br>
+              &nbsp; &nbsp; command = input ("What would you like to do? ") <br>
+              <br>
+              &nbsp; &nbsp; if command in ("north","n","NORTH"): <br>
+              &nbsp; &nbsp; &nbsp; &nbsp; location = 1 <br>
+              &nbsp; &nbsp; elif command in ("south","s","SOUTH"): <br>
+              &nbsp; &nbsp; &nbsp; &nbsp; location = 2 <br>
+              &nbsp; &nbsp; elif command in ("dennis","Dennis","DENNIS"): <br>
+              &nbsp; &nbsp; &nbsp; &nbsp; print ("Dennis screams ALL THE CRAZY MILADIES!") <br>
+              &nbsp; &nbsp; else: <br>
+              &nbsp; &nbsp; &nbsp; &nbsp; print ("you have input an unrecognized command.") </font></td>
+          </tr>
+        </table>
+      </center></td>
+  </tr>
+</table>
+
+<br><br><br><br><br><br>
+
+<br>
+<font face=arial><a name="functions">&nbsp;</a></font><a href="#top"><img src="gamedesignAdvanced/PythonIcon_sm.png" alt=""></a><br>
+<table width=100% cellpadding=5><tr>
+<td colspan=3><font face=arial>
+<b>TEXT ADVENTURE EXAMPLE #2: Breaking our Interactions into Functions</b>
+</font></td>
+</tr><tr>
+<td width=40% valign=top><font face=arial>
+While straightforward, the long column of nested if-s is hard to edit, and becomes increasingly difficult to manage for a longer game. 
+<br><br>
+A solution can be to break out each <strong>interaction</strong> into a <strong>separate function</strong>, with <strong>calls</strong> to those function in the <strong>gameloop</strong> at the <strong>bottom</strong>.<br><br>
+
+When creating a script with called functions in Python, remember the <strong>Order of Execution:</strong><br>
+<strong>FIRST</strong> define the functions, 
+<br>
+<strong>THEN</strong> follow with the code which uses the defined functions:<br>
+<li><strong>#comments</strong> can go on top
+<li>followed by <strong>Import Module statements</strong>
+<li>followed by <strong>variables</strong>
+<li>then <strong>Define Functions</strong>
+<li>finally, include the <strong>code</strong> which uses the defined functions <br>
+<br><br>
+<strong>Consider this script. </strong><br>
+<a href="gamedesignAdvanced/scripts_python/TextVenture2_functionsRandom2.txt" target=python2><b>TextVenture2_functionsRandom2.txt</b></a>
+
+<br>
+(see <a href="gamedesignAdvanced/scripts_python/pythonWeek1.zip" traget=zip><strong>pythonWeek1.zip</strong></a>, or copy txt into new file and save as .py)<br>
+  <br>
+  <br>
+  <br>
+  <em><strong></strong></em><em><strong>EXERCISE: </strong></em>How can we reduce the randomness with clear responses to our choices, and make divergent paths?<br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br>
+    
+    <a href="https://youtu.be/miuHrP2O7Jw" target=vid1>Source Video</a>
+    
+    <br><br>
+  </font></td>
+<td><img src="gamedesign/space.png" height=1 with=10></td>
+<td width=60% valign=top><font face=arial><a href="gamedesignAdvanced/scripts_python/TextVenture2_functionsRandom2.py" target=python2></a><br>
+<em>Example function:</em> The <strong>Input Prompt</strong> (that  the Gameloop will cause  all Paths functions to call). <br>
+<center>
+<table width=450 cellpadding=5 border=1><tr>
+<td># get player input <br>
+  <font face=arial>&nbsp; &nbsp; </font>def choosePath():<br>
+  <font face=arial>&nbsp; &nbsp; &nbsp; &nbsp; </font>path = ''<br>
+  <font face=arial>&nbsp; &nbsp; </font><font face=arial>&nbsp; &nbsp; </font>while path != '1' and path != '2':<br>
+  <font face=arial>&nbsp; &nbsp; </font><font face=arial>&nbsp; &nbsp; </font><font face=arial>&nbsp; &nbsp; </font>path = input('What do you do? (1 or 2): ')<br>
+  <font face=arial>&nbsp; &nbsp; &nbsp; &nbsp; </font>return path</td>
+</tr></table>
+</center><br>
+<em>Example function</em>: a text block that offers <strong>choice</strong> (repeat for as many choices as the game intends to offer)<br>
+<center>
+<table width=450 cellpadding=5 border=1><tr>
+<td># first setting<br>
+  def displayIntro():<br>
+  <font face=arial>&nbsp; &nbsp; </font>print()<br>
+  <font face=arial>&nbsp; &nbsp; </font>print(&quot;Greetings!&quot;)<br>
+  <font face=arial>&nbsp; &nbsp; </font>time.sleep(2)<br>
+  <font face=arial>&nbsp; &nbsp; </font>print('You walk through a dense wood. You see two<font face="arial">&nbsp; </font>paths.')<br>
+  <font face=arial>&nbsp; &nbsp; </font>time.sleep(1)<br>
+  <font face=arial>&nbsp; &nbsp; </font>print('Right or left?')<br>
+  <font face=arial>&nbsp; &nbsp; </font>time.sleep(1)</td>
+</tr></table>
+</center><br>
+<em>Example function:</em> <strong>Paths</strong> (using random designation, for fun. Need a new one for each text block) <br>
+<center>
+<table width=450 cellpadding=5 border=1><tr>
+<td># choice1<br>
+  def checkPath1(chosenPath):<br>
+  <font face=arial>&nbsp; &nbsp; </font>#flavor<br>
+  <font face=arial>&nbsp; &nbsp; </font>print()<br>
+  <font face=arial>&nbsp; &nbsp; </font>print('You head down the path...')<br>
+  <font face=arial>&nbsp; &nbsp; </font>time.sleep(2)<br>
+<br>
+<font face=arial>&nbsp; &nbsp; </font>correctPath = random.randint(1,2)<br>
+<font face=arial>&nbsp; &nbsp; </font>#choice/random results<br>
+<font face=arial>&nbsp; &nbsp; </font>if choosePath == str (correctPath):<br>
+<font face=arial>&nbsp; &nbsp; </font><font face=arial>&nbsp; &nbsp; </font>print()<br>
+<font face=arial>&nbsp; &nbsp; &nbsp; &nbsp; </font>print('<font face="arial">The path is super dark and creepy.</font>')<br>
+<font face=arial>&nbsp; &nbsp; </font><font face=arial>&nbsp; &nbsp; </font>time.sleep(1)<br>
+<font face=arial>&nbsp; &nbsp; </font>else:<br>
+<font face=arial>&nbsp; &nbsp; </font><font face=arial>&nbsp; &nbsp; </font>print()<br>
+<font face=arial>&nbsp; &nbsp; </font><font face=arial>&nbsp; &nbsp; </font>print('<font face="arial">The path is well lit.</font>')<br>
+<font face=arial>&nbsp; &nbsp; </font><font face=arial>&nbsp; &nbsp; </font>time.sleep(1)</td>
+</tr></table>
+</center>
+<br>
+<em>Example</em> <strong>Gameloop</strong> (using while. Only need one per game.) <br>
+</font>
+  <center>
+    <table width=450 cellpadding=5 border=1>
+      <tr>
+        <td><font face=arial>#Control loop, to keep game running<br>
+          playAgain = 'Yes'<br>
+          while playAgain == 'Yes' or playAgain =='Y' or playAgain == 'y' or playAgain == 'yes':<br>
+&nbsp; &nbsp; displayIntro()<br>
+&nbsp; &nbsp; choice1 = choosePath()<br>
+&nbsp; &nbsp; checkPath1(choice1)<br>
+&nbsp; &nbsp; playAgain = input('Want to play again? (Type yes or y to continue playing): ')<br>
+&nbsp; &nbsp; print ('See you later!') </font></td>
+      </tr>
+    </table>
+  </center>
+  <br></td>
+</tr></table>
+
+<br><br><br><br><br><br>
+
+<br><a name="whiles">&nbsp;</a><a href="#top"><img src="gamedesignAdvanced/PythonIcon_sm.png" alt=""></a><br>
+
+<table width=100% cellpadding=5><tr>
+<td colspan=3><font face=arial>
+<b>TEXT ADVENTURE #3a: Location Based Design Using While-Loops</b>
+</font></td>
+</tr><tr>
+<td width=50% valign=top><font face=arial>
+A helpful way to conceptually organize a Text Adventure game, both for the designers and the players, is to create a grid of regions (lay them out with notecards!) and imagine the game as movement between these regions. These regions can be rooms in a building, different buldings in a town, areas of a forest, etc.
+
+<br><br>A simple way to implement a location-based design is to make each location a while-loop, and enter each while looop by changing a variable that designates location. 
+
+<br><br>
+<strong>Consider this script: </strong><a href="gamedesignAdvanced/scripts_python/TextVenture3_locationBased.txt" target=python3><b>TextVenture3_locationBased.txt</b></a> <br>
+(see <a href="gamedesignAdvanced/scripts_python/pythonWeek1.zip" traget=zip><strong>pythonWeek1.zip</strong></a>, or copy txt into new file and save as .py)
+
+<br>
+<br>
+<br>
+<br>
+<em><strong>EXERCISES:</strong></em> 
+<li>How might you break out of the loop to end the game?
+(don't look first at this <a href="gamedesignAdvanced/scripts_python/TextVenture3_locationBased2.py" target=python3><b>solution</b></a>)
+<li>How would you add meaningful interactions within each location?
+<li> How do we add inventory, scoring, and health states to this game? <br><br><br>
+</font>
+</td>
+<td><img src="gamedesign/space.png" alt="" height=1 with=10></td>
+<td width=50% valign=top><font face=arial><br>
+A sample <strong>while</strong> loop for a location in this script:<br>
+<center>
+  <table width=450 cellpadding=5 border=1>
+    <tr>
+      <td><font face=arial> #First Location <br>
+        while location == 0: <br>
+        &nbsp; &nbsp; print() <br>
+        &nbsp; &nbsp; print ("You are in room 0") <br>
+        &nbsp; &nbsp; print ("obvious exits are NORTH, SOUTH,") <br>
+        &nbsp; &nbsp; print ("and ... DENNIS") <br>
+        <br>
+        &nbsp; &nbsp; command = input ("What would you like to do? ") <br>
+        <br>
+        &nbsp; &nbsp; if command in ("north","n","NORTH"): <br>
+        &nbsp; &nbsp; &nbsp; &nbsp; location = 1 <br>
+        &nbsp; &nbsp; elif command in ("south","s","SOUTH"): <br>
+        &nbsp; &nbsp; &nbsp; &nbsp; location = 2 <br>
+        &nbsp; &nbsp; elif command in ("dennis","Dennis","DENNIS"): <br>
+        &nbsp; &nbsp; &nbsp; &nbsp; print ("Dennis screams ALL THE CRAZY MILADIES!") <br>
+        &nbsp; &nbsp; else: <br>
+        &nbsp; &nbsp; &nbsp; &nbsp; print ("you have input an unrecognized command.") 
+        
+</font></td>
+    </tr>
+  </table>
+</center>
+<br><br><br><br>
+<i>With thanks to Jesica Plowman</i>
+</font></td>
+</tr></table>
+<font face=arial><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<a name="dictionaries"><font face="arial">&nbsp;</font></a><a href="#top"><font face="arial"><img src="gamedesignAdvanced/PythonIcon_sm.png" alt=""></font></a><br>
+</font>
+<table width=100% cellpadding=5>
+  <tr>
+    <td colspan=3><font face=arial> <b>TEXT ADVENTURE #3b: Using Python Dictionaries</b> to store player states</font></td>
+  </tr>
+  <tr>
+    <td width=50% valign=top><font face=arial> In the following example we use Dictionaries to store information about player progress, including the places in the game where they have already visited. <br>
+      <br>
+      Consider this example: <br>
+      solved_places = {'a1' : False, 'a2' : False, <br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 'a3' : False, 'a4' : False<br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 'b1' : False, 'b2' : False<br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 'b3' : False, 'b4' : False}<br>
+      <br>
+      The curly-brackets { } indicate a <strong>Dictionary</strong>, with values that can be changed (parentheses would mean <strong>Tuples</strong>, with values that are immutable). These colon pairs, separated by commas, create a <strong>Dictionary of Key-Value pairs</strong> including a string key and a value (in this case, a  bool that when solved can be used to trigger events in that area or others, etc.). SO, we can ask for <strong>solved_places.a1,</strong> and <strong>print</strong> or <strong>assign</strong> to the paired value.<br>
+      <br>
+      To assign a value, or create a new entry: <br>
+      dictionaryname ['keyname'] = 'string' or Bool<br>
+      <em><strong>EXAMPLE:</strong></em> solved_places ['ai'] = True<br>
+      <br>
+      Since pairs are referenced by their key, the order they are added does not matter. <br>
+      <br>
+      We also create a <strong>Class</strong> (a list of attributes which can be used to create multiple game objects of that type) to initialize a player &quot;myPlayer&quot;. <strong>How can we use this to create NPCs?</strong><br>
+      <br>
+      <strong>EXERCISE: </strong>How might we create an Inventory for this game, of items picked up in these rooms?<br>
+      <br>
+      <br>
+      <br>
+      <br>
+      A series of source videos, starting here: <a href="https://youtu.be/ERLT1iU0DVY" target=vid1>video3</a></font></td>
+    <td><font face="arial"><img src="gamedesign/space.png" alt="" height=1 with=10></font></td>
+    <td width=50% valign=top><font face="arial">Open this script <a href="gamedesignAdvanced/scripts_python/TextVenture4_Dictionaries.txt" target=text><strong>TextVenture4_Dictionaries.txt</strong></a> and save as a .py file (or open the <a href="gamedesignAdvanced/scripts_python/pythonWeek2.zip" target=zip><strong>zip</strong></a>) <br>
+      <br>
+      <br>
+      <br>
+      <em>Example function:</em> asdads. <br>
+      </font>
+      <center>
+        <table width=450 cellpadding=5 border=1>
+          <tr>
+            <td><font face="arial"># asadadad<br>
+              &nbsp; &nbsp;asasdasd</font></td>
+          </tr>
+        </table>
+      </center>
+      <font face="arial"><br>
+        <br>
+        <br>
+        <br>
+      </font></td>
+  </tr>
+</table>
+
+<br><br><br>
+<br><br>
+<br><br>
+<a name="multimedia">&nbsp;</a>
+<a href="#top"><img src="gamedesignAdvanced/PythonIcon_sm.png" alt=""></a>
+<br>
+
+<table width=100% cellpadding=5>
+  <tr>
+    <td colspan=3><font face=arial> <b>TEXT ADVENTURE ART / AUDIO: Including Multimedia with PyGame</b></font></td>
+  </tr>
+  <tr>
+    <td width=50% valign=top><font face=arial><strong>INSTALL PYGAME</strong><br>
+      Go to PyGame.org, see information here:<br>
+      https://www.pygame.org/wiki/GettingStarted#Pygame%20Installation<br>
+      We use PIP (python package installer) to auto-install libraries and modules. In the regular cmd prompt:<br>
+      &gt; python -m pip install -U pygame --user<br>
+      See if it works, run an included game example in the cmd prompt:<br>
+      &gt; python -m pygame.examples.aliens<br>
+      <br>
+      <em><strong>NOTE:</strong></em> If this fails, we likely did not connect the original PATH when installing ("Add python 3.6 to PATH"), and need to <a href="https://www.youtube.com/watch?v=UTUlp6L2zkw" target=new3>establish that path</a>. <br>
+      <em><strong>WINDOWS 10: </strong></em>RightClick "This PC", choose Properties, choose "Advanced System Settings," choose Environmental Variables. Select "Path", hit [Edit], and add paths with [New]. Like:<br>
+      C:\Users\darmatage\AppData\Local\Programs\Python\Python38-32<br>
+      C:\Users\darmatage\AppData\Local\Programs\Python\Python38-32\Scripts<br>
+      (NOTE: find the path by going to IDLE and hitting File &gt; SaveAs)<br>
+      Test in cmd prompt: <br>
+      > python --version and pip --version.<br>
+      <br>
+      ...OR simply cd your way to the pythonVersion folder, and run the install command there<br>
+      &gt; cd AppData\Local\Programs\Python\Python38-32\<br>
+      &gt; python -m pip install -U pygame --user <br>
+      <br>
+      restart IDLE, and test by typing in the shell prompt <br>
+      &gt;&gt;&gt; import pygame<br>
+      <br>
+      <em><strong>MAC</strong></em> user <a href="https://www.pygame.org/wiki/GettingStarted#Mac%20installation" target=new4>Install notes</a><br>
+      <br>
+      Wth PyGameinstalled f we have access to options for dipsplaying images and sound. For text we need to declare teh space where it will be seen.<br>
+      Note these <a href="https://nerdparadise.com/programming/pygame/part3" target=audio>audio options</a>. <br>
+      <br>
+      <strong>EXERCISE: </strong>Create a short sequence of branching screens and take player input to switch between them.<br>
+      <br>
+      <br>
+      <br>
+      <br>
+      Source Videos : <a href="https://youtu.be/ujOTNg17LjI?t=468" target=vid1>vid1</a> <br>
+      <br>
+    </font></td>
+    <td><font face="arial"><img src="gamedesign/space.png" alt="" height=1 with=10></font></td>
+    <td width=50% valign=top><font face="arial">Open this script <a href="gamedesignAdvanced/scripts_python/Testgame3_pyGame3.txt" target=text><strong>Testgame3_pyGame3.txt</strong></a> and save as a .py file (or open the <a href="gamedesignAdvanced/scripts_python/pythonWeek3.zip" target=zip><strong>zip</strong></a>) <br>
+      <br>
+      To use PyGame when installed: import pygame, and initialize, and be sure to close at end. <br>
+      <br>
+      <br>
+      Images (PNG, GIF, or JPG), audio files (WAV or MP3), and font files (TTS) should be located in the same folder as the .py file/s that reference them. PNGs are well suited for images with transparency, to avoid default hard-rectangle edges. <br>
+      <br>
+      <br>
+      Text needs a text block to appear. <br>
+      <br>
+      <br>
+      Fill the screen (like with white) and then display an image and/or text block. To display the next image (change the image), the screen must be filled again to cover the previous image/text. <br>
+      <br>
+      <em>Example function:</em> asdads. <br>
+      </font>
+      <center>
+        <table width=450 cellpadding=5 border=1>
+          <tr>
+            <td><font face="arial"># asadadad<br>
+              &nbsp; &nbsp;asasdasd</font></td>
+          </tr>
+        </table>
+      </center>
+      <font face="arial"><br>
+        <br>
+        <br>
+        <br>
+      </font></td>
+  </tr>
+</table>
+<br>
+<br>
+<br>
+<font face=arial><br>
+<i>Notes by Jason Wiser, except where noted</i></font><br>
+</font></td></tr></table>
+</center>
+
+</body>
+</html>

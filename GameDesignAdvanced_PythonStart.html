@@ -1,0 +1,223 @@
+<html>
+<head>
+<title>Intro Python Tutorial</title>
+</head>
+
+<body text=#222222 link=#1e6669 vlink=#7700aa alink=#1088bb>
+
+<center>
+<table width=850 cellpadding=10 border=0>
+<tr>
+  <td valign=top>
+<a name=top>&nbsp;</a>
+<br>
+
+<center>
+<table width=100% height=50 cellpadding=0 bgcolor=#bbbbbb><tr>
+<td align=center><font face=arial> <b>PYTHON PAGES:</b> &nbsp; &nbsp; 
+<font color=#dedede><b><em>PYTHON START</em></b></font> &nbsp; | &nbsp; 
+<a href="GameDesignAdvanced_PythonAdventure1.html"><font color=#efefef><b>PYTHON TEXT ADVENTURES</b></font></a> &nbsp; | &nbsp; 
+<a href="GameDesignAdvanced_Python.html"><font color=#efefef><b>PYTHON CONCEPTS</b></font></a> 
+</font></td>
+</tr></table>
+
+<font face=arial><br>
+<font size=+2><b>PYTHON - Getting Started</b></font>
+<br>
+<em>IN THIS PAGE:</em> <a href="#structure">Structure</a> &nbsp; | &nbsp; 
+<a href="#operators">Operators</a> &nbsp; | &nbsp; 
+<a href="#ifthen">If-Then</a> &nbsp; | &nbsp; 
+<a href="#gameloop">GameLoop</a> &nbsp; | &nbsp; 
+<a href="#modes">Modes &amp; Events</a> &nbsp; | &nbsp; 
+<a href="#image">Image Loading</a>
+</font>
+</center>
+    
+<br><br><br>
+<font face=arial><b>DOWNLOADING AND PREPPING PYTHON</b></font>
+<table width=100% cellpadding=5><tr>
+<td width=50% valign=top><font face=arial>
+<b>Preliminaries:</b>
+<br>
+We start by downloading Python 
+<br>(please choose version 3 (3.5.x), NOT version 2.):
+<a href="https://www.python.org/downloads/" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.python.org/downloads/&source=gmail&ust=1579803631528000&usg=AFQjCNHrK7hy6ngVEL3UQOCL-RZO-p90vA">https://www.python.org/downloads/</a>
+
+<li>Doubleclick executable to bring up the install window. 
+<li>Click Add Python to PATH and hit Install Now.
+
+<br><br>
+<li>In Start menu, type "idle" or "python"to open  the 
+<br>default IDE: IDLE Python
+<br><br>
+In the Python Shell, try basic calculations: 
+<li>type a number * another number
+( or /, +, -)
+<li>Hit [Return] to get answer . 
+
+
+<br><br><br>
+<br><br>
+  <a href="https://www.youtube.com/watch?v=q58qUZ1oZVg" target=vid>source video</a>  
+  <br><br>
+</font></td><td width=50% valign=top><font face=arial>
+
+<strong>To write a program: 
+</strong>
+<li>File > New File and put the new window next to the Shell.
+<li>In the new window: File > Save As, choose location and name: hello.py
+<li><strong>Type this code: 
+</strong><br>
+<center>
+  <table width=200 cellpadding=10 border=1>
+    <tr>
+      <td><font face=arial>print("Hello World") </font></td>
+    </tr>
+  </table>
+</center>
+<li>File > Save 
+</font><li><font face="arial">Run > Run Module to see it run back in the Python Shell. 
+<br><em><strong>NOTE:</strong></em> for a quick run+save, just hit <strong>[F5]</strong> and hit [OK]
+
+<br><br><br>
+<strong>Now try this:
+</strong><br>
+</font><center>
+  <table width=300 cellpadding=10 border=1>
+    <tr>
+      <td><font face=arial>name = input('What is your name?: ') <br>
+        print('Hello, ' + name + '!') </font></td>
+    </tr>
+  </table>
+</center>
+<font face="arial">Hit [F5] to run+save.<br>
+
+</font></td></tr></table>
+<br>
+<font face=arial><b>MORE IDE NOTES</b></font>
+<table width=100% cellpadding=5>
+  <tr>
+    <td width=50% valign=top><font face=arial> 
+    
+In IDLE, select a line or many lines of text and hit [tab] to indent them all.
+
+<br><br>OR, 
+<br>hit <strong>[Ctrl] + ]</strong> to indent
+<br>hit <strong>[Ctrl] + [</strong> to de-dent
+
+<br><br>
+<strong>To customize keys in IDLE
+</strong><br>
+(If you're using IDLE, and the Norwegian keyboard makes Ctrl-[ a problem, you can change the key).
+
+<li>Go Options->Configure IDLE.
+<li>Click the Keys tab.
+<li>If necessary, click Save as New Custom Key Set.
+<li>With your custom key set, find "dedent-region" in the list.
+<li>Click Get New Keys for Selection.
+<br>
+etc
+(Try putting in Shift-Tab).
+
+<br><br><br>Note that a file created in a  basic text editor, like Notepad, and  saved as a .py file  will work as a Python  file.</font></td>
+<td width=50% valign=top><font face="arial">
+NOTES for the code above, and to come:
+<li>Name is just a variable (reference). 
+<li>Quotes can be single or double, but be consistent.
+<li>Watch out for reserved words (and, or, etc)
+<li>Functions are created by starting with "def"
+<li>Curlybrackets indicate a Dictionary (database) and regular parenthesis are for immutable database (tuples items)
+<li>Python also does not use a line-end identifyer. Instead:
+<li>Python uses indents to indicate relationship. Everything under an if-statement or while-loop needs to be indented together. Use either 4 spaces or a tab. Learn more on the <a href="Style guide: https://www.python.org/dev/peps/pep-0008/" target=style>styelguide</a>
+  
+  
+  
+  <br><br>
+  <strong>ALTERNATE IDE TO IDLE: </strong>
+  <br>
+  NOTE: You are not required to use the default IDLE development environment. 
+  <br>A popular IDE for Python is PyCharm by JetBrains. The free version is the <a href="https://www.jetbrains.com/pycharm/download/" target=jb>"Community Edition"</a>
+  <br>When installing, get Markdown Language support
+  <br>RUN: create new project, decide location.
+  <br>(<a href="https://stackoverflow.com/questions/34900042/why-would-i-add-python-to-path" target=path>stackoverflow.com/questions/34900042/why-would-i-add-python-to-path</a>)
+  
+</font></td>
+  </tr>
+</table>
+<br>
+<a name="ifs">&nbsp;</a><a href="#top"><img src="gamedesignAdvanced/PythonIcon_sm.png" alt=""></a><br>
+<table width=100% cellpadding=5>
+  <tr>
+    <td colspan=3><font face=arial> <b>GAME #1: A simple Guessing Game</b></font></td>
+  </tr>
+  <tr>
+    <td width=50% valign=top><font face=arial> A simple way to approach a (limited) text adventure is to repeatedly nest if-statements. This is relatively easy to code, but non-intuitive to read/edit afetrwards.<br>
+      <br>
+      <strong>Consider this script: </strong><a href="gamedesignAdvanced/scripts_python/GuessingGame.txt" target=python3><b>GuessingGame.txt</b></a> 
+<br>(see <a href="gamedesignAdvanced/scripts_python/pythonWeek1.zip" traget=zip><strong>pythonWeek1.zip</strong></a>, or copy txt into new file and save as .py)<br><br><strong>NOTE:</strong> 
+<li>In the WIN condition, the + + around the "name" variable is string concatenation.
+<li>In the LOSE condition, the comma after the string allows a different type (int) to be displayed there.   
+
+<br><br>
+      <em><strong>EXERCISE:</strong></em> How can we make code that is easier to understand and revise?<br>
+(Please try it before looking at this
+<a href="gamedesignAdvanced/scripts_python/GuessingGame_guessesLeft.txt" target=python3><b>solution</b></a>)
+<br>
+  <br>
+  <br><br>
+  <br><br>
+  <a href="https://www.youtube.com/watch?v=Jk3az4ZXEKU" target=vid1>Source Video</a>
+    </font></td>
+    <td><img src="gamedesign/space.png" alt="" height=1 with=10></td>
+    <td width=50% valign=top><font face=arial><br>
+      The full script:<br>
+      </font>
+      <center>
+        <table width=450 cellpadding=5 border=1>
+          <tr>
+            <td><font face=arial>      
+# Description: A number guessing game by Mr McNally
+
+<br><br>import random
+
+<br><br>name = input("Hello, what is your name? ")
+<br>answerNum = random.randint(1, 100)
+<br>
+print("Hi " + name + ", I'm thinking of a number  1-100.")
+
+<br>
+guessesTaken = 0
+
+<br>while guessesTaken < 5:
+<br>&nbsp; &nbsp; guess = input("Enter a guess: ")
+<br>&nbsp; &nbsp; guess = int(guess)
+<br>&nbsp; &nbsp; guessesTaken = guessesTaken + 1
+<br>&nbsp; &nbsp;  if guess < answerNum:
+<br>&nbsp; &nbsp; &nbsp; &nbsp;  print("That was too low.")
+<br>&nbsp; &nbsp; elif guess > answerNum:
+<br>&nbsp; &nbsp; &nbsp; &nbsp;  print("That was too high!")
+<br>&nbsp; &nbsp; else:
+<br>&nbsp; &nbsp; &nbsp; &nbsp; break
+
+<br><br># once the while loop is broken
+<br>if guess == answerNum:
+<br>&nbsp; &nbsp; print("You win! Congrats, " + name + ", you guessed right")
+<br>else:
+<br>&nbsp; &nbsp; &nbsp; &nbsp; print("You lose. The right answer was ", answerNum)
+
+            
+            </font></td>
+          </tr>
+        </table>
+      </center></td>
+  </tr>
+</table>
+<br>
+<br>
+<font face=arial><br>
+<i>Notes by Jason Wiser, except where noted</i></font><br>
+</font></td></tr></table>
+</center>
+
+</body>
+</html>
