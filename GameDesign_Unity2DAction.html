@@ -13860,6 +13860,7 @@ Gizmos.DrawWireSphere(transform.position, stopDistance);<br>
 <br>
 <font color=gray>// &quot;find nearest&quot; adapted from:</font><br>
 <font color=gray>// https://forum.unity.com/threads/clean-est-way-to-find-nearest-object-of-many-c.44315/
+</font>
 <br>
 </div>
 
@@ -14201,20 +14202,27 @@ It may be helpful to add a ground object sprite, and to make the player bouncy w
 
 <strong>4.</strong> Want your swinging player to <strong>only grapple onto particular objects</strong>? <br>
 The Grapple.cs script already includes a CanGrapple() function to test the click.
+<ol>
 <li> To activate it: find the two commented-out lines in the Update() function, and un-comment them:
+</ol>
 
 <br>
 <div class="blockScript">
-&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;<font color=gray>//if (CanGrapple()){</font><br>
+<font color=gray>
+&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;
+//if (CanGrapple()){
+<br>
         <br>
-        <font face=arial><font face=arial>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;</font></font><font color=gray>//}
+&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;
+//}
+</font>
 </div>
 
-
+<ol start="2">
 <li> Select any object to add a <strong>new Layer</strong> called "<strong>grapple</strong>". 
 <li> Select  Player. In Inspector assign "grapple" to the Grapple.cs LayerMask script <strong>slot</strong>. 
 <li> Finally, create <strong>new sprites</strong> at the top of the camera area. In the Inspector <strong>[Add Component]</strong> &gt; <strong>BoxCollider2D</strong>. Assign the <strong>grapple Layer</strong>.
-
+</ol>
 
 <br><br><br><br>
 <img src="gamedesign/Unity2D/grapple4.png" alt="" align=right>Hit <strong>[Play]</strong> to test! <br>
@@ -16884,7 +16892,7 @@ Name them &quot;InventoryBox&quot; and &quot;PickUp&quot;.
 <br><br><br><br>
 <a href="#02i"><img src="gamedesign/triangle_purple.png" alt=""></a> 
 <a name="02i1b">&nbsp;</a>
-<font size=+1><b>DRAG-AND-DROP PUZZLE EXAMPLES</b>
+<font size=+1><b>DRAG-AND-DROP PUZZLE EXAMPLES</b></font>
 
 <br><br>
 <a href="gamedesign/Unity2D/SandwichDemo.png" target=sand><img src="gamedesign/Unity2D/SandwichDemo_thumb.png" align=right></a>
@@ -17596,7 +17604,7 @@ b).</b> Duplicate the button twice for a total of three buttons.
 <br>
 <b>a).</b> RightClick the Hiearchy to create an <b>Empty GameObject</b>.
 <ul>
-<br> In the Inspector name it &quot;<b>Panel</b>&quot; and reset transforms.<b>
+<br> In the Inspector name it &quot;<b>Panel</b>&quot; and reset transforms.
 </ul>
 
 <br><br>
