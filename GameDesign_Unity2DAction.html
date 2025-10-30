@@ -101,6 +101,9 @@ html {
 	/* course description */
 	#siteTop3{
 		vertical-align: top;
+		text-align:center; 
+		max-width: 90%; 
+		margin: auto
 	}
 	
 	/* weekly breakdown links */
@@ -618,13 +621,16 @@ iframe {
 <a name=theTop>&nbsp;</a> 
 <a href="GameDesign_Unity.html"><img src="gamedesign/UnityLogo60.png" alt="Go to Unity Menu" align=right></a>
 
-<font size=+2><b>UNITY 2D Action Tutorial: <br>Platformer and Top-Down Gameplay</b></font><br>
-This tutorial covers 22 modules for Unity Action 2D Games: <b><font color=purple>Platformers</font> </b>and<b><font color=#dc0bdc> Top-Down / Isometric</font></b>. This includes <b>Player and Vehicle Movement</b>, <b>Battling</b>, helpful and enemy <b>NPCs</b>, Interactive Environments and <b>Hazards</b>, <b>Inventory</b> and <b>Pause</b> menus, <b>Audio</b> and <b>Game Feel</b>.<br>
+<font size=+2><b>UNITY 2D Action Tutorial: <br>Platformer and Top-Down Gameplay</b></font>
+
+<br>
+This tutorial covers 22 modules for Unity Action 2D Games: <b><font color=purple>Platformers</font> </b>and<b><font color=#dc0bdc> Top-Down / Isometric</font></b>. This includes <b>Player and Vehicle Movement</b>, <b>Battling</b>, helpful and enemy <b>NPCs</b>, Interactive Environments and <b>Hazards</b>, <b>Inventory</b> and <b>Pause</b> menus, <b>Audio</b> and <b>Game Feel</b>.
+
+<p>
 Peruse each section menu to get inspired! <a href="#explain">Read about how to work in teams</a>! You are not expected to use all of these tutorials in your game: pick and choose the ones that work for your design. Most of these scripts can easily be adapted for 3D games.
 </div>
 
-<br>
-
+<!--
 <center>
 <table width=800 border=0><tr><td valign=top>
 
@@ -724,19 +730,21 @@ Melee, Shooting, Patrol </b></font></td>
 </td></tr>
 </table>
 </center>
+-->
 
 <!-- START Index -->
 
 <a name=index>&nbsp;</a>
-<br>
     
-<div id="siteTop3" class="sectionHeader" style="text-align:center">
+<div id="siteTop3" class="sectionHeader">
 	<h2 style="padding-bottom: 10px;">TUTORIAL PARTS</h2>
 </div>
-    
-<div id="siteTop4" style="margin: auto">
-	<div class="w3-row-padding" style="max-width: 90%;">
-		<div class="w3-half">
+
+<!--
+<div style="max-width: 90%; margin: auto">
+-->
+<div class="w3-row-padding" style="max-width: 90%; margin: auto">
+	<div class="w3-half">
         
         <div style="width:100%; background-color:#f7d3d3; text-align:center; padding:5px">
         <span class=topic>PART 1:</span> <a href="#01">BASIC 2D GAME SET-UP</a>
@@ -786,8 +794,8 @@ Melee, Shooting, Patrol </b></font></td>
 <span class=topic>[1k]:</span> Read / Write to a <b><a href="#01k">JSON file</a></b>
 </div>
 
-        </div>          
-        <div class="w3-half">
+	</div>          
+	<div class="w3-half">
         
         <div style="width:100%; background-color:#ddeeff; text-align:center; padding:5px">
         <font color="purple"><b>PART 2:</b></font> <a href="#02">ADVANCED SETTINGS</a>
@@ -836,33 +844,11 @@ Melee, Shooting, Patrol </b></font></td>
 <div class="indexRow iRow3">
 <span class=topic>[2K]:</span> Intro Animation (add an <a href="#02k">Opening Comic</a>)
 <div>
-      </div>
-    </div>
-            
-            <br><br>
-            
+      		</div>
+    	</div>
 
-	<div class="w3-row-padding">
-        <center>
-        <em>See past narrative game projects from</em> 
-        <a href="GameDesign_MassArt_PastProjects.html" target="MassArt">MassArt</a> <em>and</em> 
-        <a href="GameDesign_Harvard_PastProjects.html" target="Harvard">Harvard</a>
-        </center>
 	</div> 
-            
-                  
-	<div class="w3-row-padding">
-	<center>
-		<br>
-		<button class="accordionAllButton" id="toggleWeeks">
-		Open / Close All Topics
-		</button>
-		<br>
-	</center>
-	</div>
-   
-</div>
-</div>
+
 </div>        
 
 <!-- END of top area -->
@@ -1570,13 +1556,13 @@ NOTE: to move in the opposite direction, set the bool moveLeft = false and posit
 
 <a name="01b">&nbsp;</a>
 <br>
-<table width=850 cellpadding=10 border=0><tr>
-  <td>
+
 <button class="accordion2">
 <a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a><font face="arial"><b> [1B]</b> <b>PLATFORMER PLAYER MOVEMENT</b> &nbsp; &nbsp; &nbsp; &nbsp;</font>
 </button>
+
 <div class="panel">
-<table width=800 cellpadding=10 border=0><tr><td valign=top>
+
 <center>
 <font face="arial"><a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a><font size=+2><font color=purple><b>[1B]:</b></font> <b>PLATFORMER PLAYER CREATION</b></font></font>
 <font face="arial"><br>
@@ -1883,10 +1869,9 @@ Instead of adding a new collider in code to check distance to the feet, we can s
   </font><br>
   <font face=arial><b>e.</b> Hit <b>[Play]</b> and test movement and jump!<br>
   Do your Player character's colliders get stuck on things? Turn off [Play] and add a slippery new <b>Physics Material</b> to the Player collider material slots, with Friction and Bounciness set to zero (rightclick Project panel to create).
-  
-  
-  
-If it is still an issue, be sure your player bottom collider is a circle, and consider adding circle colliders to the ends of platforms.<br>
+If it is still an issue, be sure your player bottom collider is a circle, and consider adding circle colliders to the ends of platforms.
+
+<br>
 <br>
 <b>f. BETTER JUMP:</b> Does your Player jump feel too float-ty?
 <br>
@@ -1926,7 +1911,6 @@ Create a new C# script called &quot;<b>PlayerBetterFall.cs</b>&quot; with the co
 &nbsp; &nbsp; &nbsp; }<br>
 }
 </div>
-
 
 <br>
 <br>
@@ -2022,30 +2006,35 @@ Follow this <a href="GameDesign_Unity2DTilemap.html#player" target=2dArt><b>2D A
 Consider modifying this <a href="gamedesign/EzraSzanton_Platformer.unitypackage" target=squish>Squishy Platfomer Character Package</a> by developer Ezra Szanton 
 <br>
 (Unity Physics / Velocity based, rather than transfom-based)<br>
-<br></td></tr></table>
-</div></td>
-</tr></table>
+<br>
+</div>
+
+<!-- END 1B -->
+
+
+<!-- START 1C -->
 
 <br>
 <a name="01c">&nbsp;</a>
 <br>
-<table width=850 cellpadding=10 border=0><tr>
-  <td>
+
 <button class="accordion1">
 <a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a><font face="arial"><b> [1C]</b> <b>TOP-DOWN PLAYER MOVEMENT AND SETTING</b> &nbsp; &nbsp;</font>
 </button>
+
 <div class="panel">
-<table width=800 cellpadding=10 border=0><tr>
-  <td valign=top>
+
 <center>
-<font face="arial"><a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a><font size=+2><font color=#dc0bdc><b>[1C]:</b></font> <b>TOP-DOWN PLAYER CREATION</b></font></font>
-<font face="arial"><br>
+<a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a>
+<font size=+2><span class="topic">[1C]:</span> <b>TOP-DOWN PLAYER CREATION</b></font>
+
+<br>
 Top-Down Player: <a href="#01c1">Set-Up</a> &nbsp; | &nbsp; 
 <a href="#01c2">Movement</a>&nbsp; <br>
 Top-Down Shooter: <a href="#01c1">Rotate to Mouse</a> &nbsp; | &nbsp; <a href="#01c2">Rotate to Movement</a>&nbsp; <br>
 <a href="#01c3">Multi-Lane Environment</a> &nbsp; | &nbsp; 
 <a href="#01c4">Climbing</a> &nbsp;&nbsp; | &nbsp; 
-<a href="#01c5">Blend Trees</a></font>
+<a href="#01c5">Blend Trees</a>
 </center>
 
 <font face="arial">
@@ -2082,8 +2071,6 @@ All of your art for Unity should be 72ppi, and drawn/ painted/ etc at the final 
 
 
 Drag the player art onto Player:
-<br>
-<br>
 <div class="w3-row-padding panelWideTextShorter">
 	<div class="w3-half"><font face="arial"><b>If your player art is currently a single sprite:</b> <br />
 	    <br />
@@ -2103,26 +2090,31 @@ Open the spritesheet in the project panel to view the poses (click the triangle)
 In the Inspector rename is &quot;<strong>player_art</strong>&quot; and set <strong>Order In Layer</strong> = <strong>100</strong>.</font><br>
 	</div>
 </div>
-<br /><br>
+<br />
 <strong>NOTE:</strong> Character art should be sized using Pixels Per Unit in the Project panel Inspector , NOT by changing scale in the Scene Inspector. <br>
 Once the sprite is in the Scene, adjust its size by selecting the source image in the Project panel, changing <strong>Pixles Per Unit</strong>, and hitting <strong>[Apply]</strong>. 
 
 <br>Choose large numbers to shrink characters, smaller numbers make larger.<br>
 <br>
-<b>FOR ANIMATION: </b>Create a folder called "Animation" to locate under Media.</font>
-<br><font face=arial><img src="gamedesign/bullet.png" alt=""> Select player_art, open the Window &gt; Animation &gt; <b>Animation panel</b>.</font>
-<br><font face=arial><img src="gamedesign/bullet.png" alt=""> Hit <b>[create]</b> and locate the Animation folder to save the clip name as <b>charName_idle</b>.</font>
-<br><font face=arial><img src="gamedesign/bullet.png" alt=""> Click the clip name in the Animation window (upper left) to <b>create new clips:</b> 
+<b>FOR ANIMATION: </b>Create a folder called "Animation" to locate under Media.
+<ol>
+<li> Select player_art, open the Window &gt; Animation &gt; <b>Animation panel</b>.
+
+<li> Hit <b>[create]</b> and locate the Animation folder to save the clip name as <b>charName_idle</b>.
+<li> Click the clip name in the Animation window (upper left) to <b>create new clips:</b> 
 <br>
 <b>charName_walk</b>, <b>charName_GetHurt</b>, and any other clips for which you have created images.
 <br>
 (like charName_climbLeft, charName_climbRight, charName_stairsUp, charName_stairsDown, etc). 
 <br>
-Each of these clips is automatically assigned to the Statemachine <b>Animator</b> Component that was added to player_art when the first clip was created.</font>
-<br><font face=arial><img src="gamedesign/bullet.png" alt=""> For each clip in the list, <b>drag</b> the intended art from the Project panel into the Animation <b>timeline</b>.</font>
-<br><font face=arial><img src="gamedesign/bullet.png" alt=""> Hit Play in the Animation panel to see the character run the animation in the Scene view.
+Each of these clips is automatically assigned to the Statemachine <b>Animator</b> Component that was added to player_art when the first clip was created.
 
-<br><br>
+<li> For each clip in the list, <b>drag</b> the intended art from the Project panel into the Animation <b>timeline</b>.
+
+<li> Hit Play in the Animation panel to see the character run the animation in the Scene view.
+</ol>
+
+<br>
 <b>c.</b> Select Player, <b>[Add Component] Physics2D &gt; BoxCollider2D</b> (adjust to surround the feet), and <b>Rigidbody2D</b> (turn on <b>Constraints > Freeze Rotation Z</b>, and set <b>Gravity Scale = 0</b>).
 
 <br><br><br>
@@ -2211,7 +2203,6 @@ For other sounds, like  attacks or getting hurt, [Add Component] separate AudioS
 Add class variables for AudioSource to the relevant scripts, like <b>public AudioSource AttackSFX; </b><br>
 Add activation commands to relevant triggers in the same scripts, like <b>AttackSFX.Play(); </b><br><br>
 <br><br>
-<br>
 <a href="#01c"><img src="gamedesign/triangle_purple.png" alt=""></a><b><a name="01c1">&nbsp;</a>TOP DOWN SHOOTER: ROTATE TOWARDS MOUSE</b><br>
 <br>
 <img src="gamedesign/Unity2D/Art2D_HunterA.png" align=right width=256 border=1>
@@ -2567,17 +2558,14 @@ Hit the <strong>[Sprite Editor]</strong> button (middle-right). <br />
     <li>Left = -1, 0
     <li>Front = 0, -1
     </ul>
-
 </ol>
-
 
 <br />
 <center>
-  <font face="arial"><i>PlayerMoveAround_BlendTree.cs script:</i><br />
-    </font>
-  <table width="100%" cellpadding="10" border="1" bgcolor="#f7f7f7">
-    <tr>
-      <td><font face="arial"><font color="#3ab050"><b>using</b></font> System.Collections.Generic;<br />
+<i>PlayerMoveAround_BlendTree.cs script:</i>
+</center>
+<div class="blockScript">
+<font color="#3ab050"><b>using</b></font> System.Collections.Generic;<br />
         <font color="#3ab050"><b>using</b></font> System.Collections;<br />
         <font color="#3ab050"><b>using</b></font> UnityEngine;<br />
         <br />
@@ -2619,32 +2607,35 @@ Hit the <strong>[Sprite Editor]</strong> button (middle-right). <br />
         &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; }<br />
         &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br />
         &nbsp; &nbsp; &nbsp; }<br />
-        }</font></td>
-    </tr>
-  </table>
-</center>
+        }
+</div>
+
 
 <p>Hit <b>[Play]</b> to test your character motion: WASD or Joystick to move both horizontally and vertically. 
 <br>Turn off Play to continue editing your Scene.
 
-
 <br><br><br>
-</td></tr></table>
-</div></td>
-</tr></table>
+
+</div>
 <br>
+
+<!-- END 1C -->
+
+
+<!-- START 1D -->
 
 <a name="01d">&nbsp;</a>
 <br>
-<table width=850 cellpadding=10 border=0><tr><td>
+
 <button class="accordion2">
 <a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a><font face="arial"><b> [1D]</b> <b>CAMERA FOLLOW</b> &nbsp; &nbsp; &nbsp; &nbsp;</font>
 </button>
+
 <div class="panel">
-<table width=800 cellpadding=10 border=0><tr><td valign=top>
+
 <center>
 <a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a>
-<h3><font color=purple><b>[1D]:</b></font> <b>CAMERA FOLLOW</b></h3>
+<font size=+2><span class="topic">[1D]:</span> <b>CAMERA FOLLOW</b></font>
 </center>
 
 In most Platformers the camera is expected to follow the player position. A <b>LERP</b> (linear interpolation) will move the camera smoothly to the player's new position, rather than jumping jerkily. <br>
@@ -2664,8 +2655,6 @@ To &quot;move&quot; the camera further back, in order to see more of the screen,
 <br>
 By default, <b>Size=5</b>. Just  a small change to 7 or 8 can show a lot more content!<br>
 </div>
-
-
 
 <br>
 <br>
@@ -2785,22 +2774,26 @@ If the original space was 2x the game screen size, try max = 2 x 10 and min = -1
 </div>
 
 <br><br>
-</td></tr></table>
-</div></td>
-</tr></table>
+
+</div>
 <br>
+
+<!-- END 1D -->
+
+
+<!-- START 1E -->
 
 <a name="01e">&nbsp;</a>
 <br>
-<table width=850 cellpadding=10 border=0><tr><td>
 <button class="accordion1">
 <a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a><font face="arial"><b> [1E]</b> <b>GAMEHANDLER / PLAYER STATE / PLAYER DAMAGE</b> &nbsp; &nbsp; &nbsp; &nbsp;</font>
 </button>
+
 <div class="panel">
-  <table width=800 cellpadding=10 border=0><tr>
-<td valign=top>
+
 <center>
-<font face="arial"><a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a><font size=+2><font color=purple><b>[1E]:</b></font> <b>PLAYER STATE</b></font>
+<a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a>
+<font size=+2><font color=purple><b>[1E]:</b></font> <b>PLAYER STATE</b></font>
 <br>
 <a href="#01e1">Canvas</a> &nbsp; | &nbsp; 
 <a href="#01e2">GameHandler</a> &nbsp;|  &nbsp; 
@@ -2810,12 +2803,12 @@ If the original space was 2x the game screen size, try max = 2 x 10 and min = -1
   Make a <a href="#01e5">GameHandlerCanvas Prefab</a> &nbsp;| &nbsp; 
   More Advanced UI: <a href="#01e6">Heart Health System</a> or <a href="#01e7">HealthBar</a>
 
-</font>
 </center>
 
-<font face=arial>
 <br>
-<b><font face=arial><b><font face=arial><a href="#01e"><img src="gamedesign/triangle_purple.png" alt=""></a></font><a name="01e1">&nbsp;</a></b></font><font color=purple>STEP 1.</font> CANVAS</b>
+<a href="#01e"><img src="gamedesign/triangle_purple.png" alt=""></a>
+<a name="01e1">&nbsp;</a>
+<b><font color=purple>STEP 1.</font> CANVAS</b>
 
 <br><b>1. CANVAS:</b> If you do not already have a <b>GameObject &gt; UI &gt; Canvas</b> object in your Hierarchy, create one.<br>
 Note  in the Scene view the Unity Canvas displays enormous compared to the Sprite / Tilemap content (by design), but they overlap perfectly in the Game view.
@@ -2824,8 +2817,7 @@ Note  in the Scene view the Unity Canvas displays enormous compared to the Sprit
 <b>a.</b> In Inspector, set <b>Canvas Scaler &gt; UI Scale Mode</b> from &quot;Constant Pixel Size&quot; to &quot;<b>Scale With Screen Size</b>&quot; and Reference Resolution = <b>1280 x 720</b>. 
 
 <br><br>
-<b>b. Add Player Stat #1:</b> 
-</font><ol>
+<b>b. Add Player Stat #1:</b><ol>
 <li> <font face="arial"><b>BACKGROUND: </b>Add a GameObject &gt; UI &gt; <b>Image</b>. Name it &quot;<b>imageHealthBG</b>&quot;. 
 
 <br>
@@ -3454,31 +3446,35 @@ Set <b>color</b> = green.
 <br> Set <b>Fill Method</b> from Radial 360 to "<b>Horizontal</b>". 
 </ul>
 <br>
-</td></tr></table>
-</div></td>
-</tr></table>
+
+</div>
+
 <br>
+
+<!-- END 1E -->
+
+
+<!-- START 1F -->
 
 <a name="01f">&nbsp;</a>
 <br>
-<table width=850 cellpadding=10 border=0><tr><td>
+
 <button class="accordion2">
 <a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a><font face="arial"><b> [1F]</b> <b>PLAYER BATTLE SCRIPTS</b> &nbsp; &nbsp; &nbsp; &nbsp;</font>
 </button>
+
 <div class="panel">
-<table width=800 cellpadding=10 border=0><tr>
-<td valign=top>
+
 <center>
-<font face="arial"><a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a>
-<font size=+2><font color=purple><b>[1F]:</b></font> <b>PLAYER BATTLE SCRIPTS</b></font></font>
-<font face="arial"><br>
+<a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a>
+<font size=+2><font color=purple><b>[1F]:</b></font> <b>PLAYER BATTLE SCRIPTS</b></font><br>
 Player 
 <a href="#01f1">Melee</a> &nbsp; | &nbsp; 
 <a href="#01f2">Shooting</a>, 
 <a href="#01f3">Projectiles</a>, and 
 <a href="#01f4">Explosions</a> &nbsp; | &nbsp; 
 <a href="#01f5">Defense</a>
-</font></center><font face="arial">
+</center>
 
 <br><a href="#01f"><img src="gamedesign/triangle_purple.png" alt=""></a>
 <a name="01f1">&nbsp;</a>
@@ -3498,10 +3494,8 @@ Set  <b>LayerMask</b> <b>rolldown</b> in Inspector to "<b>Enemies</b>" (may need
 <b>c.</b> Create an "Attack" Input:<br>Open <b>Edit > Project Settings</b> panel to select the <b>Input Manager</b>.<br>
 Open the first <b>Fire1</b> and change it to "<b>Attack</b>".<br>
 Set &quot;Positive Button&quot; = &quot;space&quot; and &quot;Alt Positive Button&quot; = &quot;joystick button 0&quot;.<br><br>
-</font>
-
 <center>
-<i>PlayerAttackMelee.cs script:</i>
+  <i>PlayerAttackMelee.cs script:</i>
 </center>
 
 <div class="blockScript">
@@ -3679,7 +3673,7 @@ Drag FirePoint into the firePoint <b>script slot</b>.
           &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; projectile.GetComponent&lt;<font color="#31849b"><b>Rigidbody2D</b></font>&gt;().AddForce(fwd * projectileSpeed, ForceMode2D.Impulse);
           <br>&nbsp; &nbsp; &nbsp; }
           <br>}
-        </div>
+    </div>
         
 
 <br><br>
@@ -3927,20 +3921,26 @@ Set &quot;Positive Button&quot; = &quot;Q&quot; and &quot;Alt Positive Button&qu
 <em><b>NOTE:</b></em> this defense functionality can be modified for player <b>invisibility</b>, to hide from enemies. 
 <br>Instead of removing damage, the Defense bool in the GameHandler would redirect the enemies, as if the player is not present. 
 <br>
-</td></tr></table>
-</div></td>
-</tr></table>
+
+</div>
+
 <br>
+
+
+<!-- END 1F -->
+
+
+<!-- START 1G -->
 
 <a name="01g">&nbsp;</a>
 <br>
-<table width=850 cellpadding=10 border=0><tr><td>
+
 <button class="accordion1">
 <a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a><font face="arial"><b> [1G]</b> <b>FRAME SCENES: MAIN MENU, WIN, LOSE</b> &nbsp; &nbsp; &nbsp;</font>
 </button>
+
 <div class="panel">
-<table width=800 cellpadding=10 border=0><tr>
-<td valign=top>
+
 <center>
 <font face="arial"><a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a><font size=+2><font color=purple><b>[1G]:</b></font> <b>FRAME SCENES</b></font>
 <br> 
@@ -4111,24 +4111,29 @@ MainMenu, EndWin,  EndLose, and Credits. Also, how to replay the level a player 
   
   <br>
   <br>
-  <em><strong>NOTE:</strong></em> You still need a separate &quot;MAIN MENU&quot; button that always goes back to the MainMenu. <br>
+  <em><strong>NOTE:</strong></em> You still need a separate &quot;MAIN MENU&quot; button that always goes back to the MainMenu. 
   <br>
-</font></p>
-</p></td></tr></table>
-</div></td>
-</tr></table>
+  <br>
+
+</div>
 <br>
+
+<!-- END 1G -->
+
+
+<!-- START 1H -->
 
 <a name="01h">&nbsp;</a>
 <br>
-<table width=850 cellpadding=10 border=0><tr>
-  <td>
+
+
 <button class="accordion2">
 <a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a><font face="arial"><b> [1H]</b> <b>MENUS: PAUSE MENU, SHOP, MINIMAP</b> &nbsp; &nbsp; &nbsp;</font>
 </button>
+
 <div class="panel">
-<table width=800 cellpadding=10 border=0><tr>
-<td valign=top>
+
+
 <center>
 <font face="arial"><a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a><font size=+2><font color=purple><b>[1H]:</b></font> <b>MENUS</b></font></font>
 <font face="arial"><br>
@@ -4899,21 +4904,26 @@ A <a href="gamedesign/Unity2D/MiniMap_ring.png" target=ring>Border Ring PNG</a> 
 <li> <b>Turn off Raycast Target</b> so the ring image does not block interactivity (clicking and dragging the ScrollRect) 
 </ol>
 
-<br><br></td></tr></table>
+<br><br>
 
-</div></td>
-</tr></table>
+</div>
 <br>
+
+<!-- END 1H -->
+
+
+<!-- START 1I -->
 
 <a name="01i">&nbsp;</a>
 <br>
-<table width=850 cellpadding=10 border=0><tr>
-  <td>
+
 <button class="accordion1">
 <a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a><font face="arial"><b> [1I]</b> <b>LEVEL CHANGES: Doors and Switches</b> </font>
 </button>
+
 <div class="panel">
-<table width=800 cellpadding=10 border=0><tr><td valign=top>
+
+
 <center>
 <font face="arial"><a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a>
 <font size=+2><font color=purple><b>[1I]:</b></font> <b>LEVEL CHANGES</b></font></font>
@@ -5274,15 +5284,22 @@ Want to create a <b>Scene Transition</b>, like a <b>cross fades</b> or <b>wipe</
 </div></td></tr></table>
 
 <br>
+
+<!-- END 1I -->
+
+
+<!-- START 1J -->
+
+
 <a name="01j">&nbsp;</a> 
 <br>
-<table width=850 cellpadding=10 border=0><tr>
-<td><button class="accordion1">
+
+<button class="accordion1">
 <a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a><font face="arial"><b> [1J]</b> <b>LOCAL MULTIPLAYER: Custom Inputs for Player controls, Split Screen and Full Screen</b></font>
 </button>
+
 <div class="panel2">
-<table width=800 cellpadding=10 border=0><tr>
-<td valign=top>
+
 
 <center>
 <a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a> 
@@ -6125,23 +6142,27 @@ The object should now be blue in both the Hierarchy and the Project panel, indic
 <br>
 <br>
 <br>
-</font></td>
-</tr>
-</table>
 
-</div></td>
-</tr>
-</table>
+</div>
+</div>
 
 <br>
-<a name="01k">&nbsp;</a> <br>
-<table width=850 cellpadding=10 border=0><tr>
-<td><button class="accordion1">
-<a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a><font face="arial"><b> [1K]</b> <b>READ / WRITE TO EXTERNAL FILES: JSON</b></font>
+
+<!-- END 1J -->
+
+
+<!-- START 1K -->
+
+<a name="01k">&nbsp;</a> 
+<br>
+
+<button class="accordion1">
+<a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a>
+<b> [1K]</b> <b>READ / WRITE TO EXTERNAL FILES: JSON</b>
 </button>
+
 <div class="panel2">
-<table width=800 cellpadding=10 border=0><tr>
-<td valign=top>
+
 <center>
 <a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a> 
 <font size=+2><font color=purple><b>[1K]:</b></font> <b> READ and WRITE EXTERNAL FILES</b></font 
@@ -6513,67 +6534,75 @@ Hit [Play], and click the button to see the .txt file get created in the Assets 
 </div>        
         
         <br>
-</font></td>
-</tr>
-</table>
-</div></td>
-</tr>
-</table>
 <br>
+</div>
+<br>
+
+<!-- END 1k -->
+
 <center>
-  <img src="gamedesign/bullet.png" alt=""> &nbsp; <img src="gamedesign/bullet.png" alt=""> &nbsp; <img src="gamedesign/bullet.png" alt=""> &nbsp; <img src="gamedesign/bullet.png" alt=""><br><br>
-<a name="02a">&nbsp;</a>
+  <img src="gamedesign/bullet.png" alt=""> &nbsp; <img src="gamedesign/bullet.png" alt=""> &nbsp; <img src="gamedesign/bullet.png" alt=""> &nbsp; <img src="gamedesign/bullet.png" alt="">
 </center>
+
+
+<!-- START 2A -->
+
+<br>
+<a name="02a">&nbsp;</a>
+<br>
+
 <table width=850 cellpadding=10 border=0><tr><td>
 <button class="accordion3">
 <a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a><font face="arial"><b> [2A]</b> <b>PICKUPS: INVENTORY, BOOSTS, KEYS</b></font>
 </button>
+
 <div class="panel">
 <table width=800 cellpadding=10 border=0><tr>
 <td valign=top>
+
 <center>
 <font face="arial" size=+2><font color=purple><b>[2A]:</b></font> <b>PICKUPS</b></font>
 </center>
-<center>
-<table width=550><tr>
-<td valign=top width=300><font face=arial>
-<b>[A]. BASIC PICKUP:</b></font><font face=arial>
+
+
+
+<div class="w3-row-padding">
+	<div class="w3-half">
+	<b>[A]. BASIC PICKUP:</b>
+        <ol>
+        <li> <a href="#02a1">PickUp Objects</a> 
+        <li> <a href="#02a2">Up-Down Movement</a> or <a href="#02a2b">Color Pulse</a>
+        <li> Player <a href="#02a3">Boosts</a>
+        <li> <a href="#02a4">Randomization</a> (Top Down Games) 
+        <li> <a href="#02a4b">Keys</a> / Locked Doors (level interior)
+        </ol>
+	</div>
+	<div class="w3-half">
+    <b>[B]. INVENTORY SYSTEM:</b> 
+        <ol>
+        <li> <a href="#02a5"><b>Canvas</b></a> Set-Up 
+        <li> <a href="#02a6"><b>Game Inventory</b></a> Script 
+        <li> <a href="#02a7">Crafting</a> or <a href="#02a7">Cooking</a>
+        <li> <a href="#02a8">Change</a> Player Abilities 
+        <li> Inventory <a href="#02a9"><b>PickUp</b></a>
+        </ol>
+	</div>
+</div>
+
 <br>
-&nbsp; &nbsp;1. <a href="#02a1">PickUp Objects</a>
 <br>
-&nbsp; &nbsp;2. <a href="#02a2">Up-Down Movement</a>
-or <a href="#02a2b">Color Pulse</a><br>
-&nbsp; &nbsp;3. Player <a href="#02a3">Boosts</a>
-<br>
-&nbsp; &nbsp;4. <a href="#02a4">Randomization</a> (Top Down Games)
-</font><font face=arial> <br>
-&nbsp; &nbsp;5. <a href="#02a4b">Keys</a> / Locked Doors (level interior)</font></td>
-<td valign=top>&nbsp; &nbsp;</td>
-<td valign=top width=250><font face=arial>
-<b>[B]. INVENTORY SYSTEM:</b>
-<br>
-&nbsp; &nbsp;1. <a href="#02a5"><b>Canvas</b></a> Set-Up
-<br>
-&nbsp; &nbsp;2. <a href="#02a6"><b>Game Inventory</b></a> Script
-<br>
-&nbsp; &nbsp;3. <a href="#02a7">Crafting</a> 
-or <a href="#02a7">Cooking</a><br>
-&nbsp; &nbsp;4. <a href="#02a8">Change</a> Player Abilities
-<br>
-&nbsp; &nbsp;5. Inventory <a href="#02a9"><b>PickUp</b></a>
-</font></td>
-</tr></table>
-</center>
-<br>
-<font face="arial"><b></b></font><br>
-<font face="arial"><b>[A]. BASIC PICK-UP OBJECTS FOR STAT CHANGES / BOOSTS:</b>
+<b>[A]. BASIC PICK-UP OBJECTS FOR STAT CHANGES / BOOSTS:</b>
 
 <br>
 <b><em>SUMMARY:</em></b> This is a multi-purpose Pick-Up script that can be used for health or speed power-up boosts, etc.
 
 <br>
 <br>
-<font face="arial"> <b><font face=arial><a href="#02a"><img src="gamedesign/triangle_purple.png" alt=""></a></font><a name="02a1">&nbsp;</a></b></font><font color=purple><b>1. PICK-UP OBJECTS</b></font>
+
+<a href="#02a"><img src="gamedesign/triangle_purple.png" alt=""></a>
+<a name="02a1">&nbsp;</a>
+<font color=purple><b>1. PICK-UP OBJECTS</b></font>
+
 <br>
 <b>a.</b> Create an <b>Empty Game Object</b> (RightClick the Hierarchy or open the GameObject menu). 
 <br>
@@ -6675,7 +6704,7 @@ To add the playerPowerupVFX, please see the GameFeel final section of this Tutor
 <br>
 <br>
 <br>
-<a href="#02a"><img src="gamedesign/triangle_purple.png" alt=""></a></font><a name="02a2">&nbsp;</a><font color=purple><b>2a. PICKUP MOVEMENT:</b></font>
+<a href="#02a"><img src="gamedesign/triangle_purple.png" alt=""></a><a name="02a2">&nbsp;</a><font color=purple><b>2a. PICKUP MOVEMENT:</b></font>
 <br>
 Optionally Create a new <b>C# script</b> named &quot;<b>PickUp_UpDown.cs</b>&quot; with the following content.<br>
 Add to the PickUpBoost object to get up-and-down movement.
@@ -7504,28 +7533,40 @@ In the Inspector name this object &quot;<b>PickupInventory</b>&quot; and in the 
 <br>
 <br><b>c.</b> Once the script is applied, add to the Inspector <b>script slot</b> the desired &quot;Item Name&quot;. <br>
 The GameInventory.cs script above assumes these names (you can make them more specfic to your game): <br>
-&quot;item1&quot;, &quot;item2&quot;, &quot;item3&quot;, &quot;item4&quot;, &quot;item 5&quot;<br>
+&quot;item1&quot;, &quot;item2&quot;, &quot;item3&quot;, &quot;item4&quot;, &quot;item 5&quot;
+
 <br>
-<font face=arial><b>d.</b> Change the image to the PNG art for this pick-up-able object. <br>
+<br>
+<b>d.</b> Change the image to the PNG art for this pick-up-able object. <br>
 Select the child Image to find the Source Image slot in the Inspector. 
-<br>Drag in the art from the Project panel.<br>
-</font><br>
-<b>e.</b>&nbsp;<font face=arial>Drag this <b>PickupInventory</b> object into the Project panel to create a <b>Prefab</b>. 
+<br>Drag in the art from the Project panel.
+
 <br>
-Change the item name and image for other pickup-able objects.</font><br>
+<br>
+<b>e.</b> Drag this <b>PickupInventory</b> object into the Project panel to create a <b>Prefab</b>. 
+<br>
+Change the item name and image for other pickup-able objects.
+
+<br>
 <br></td></tr></table>
 </div></td></tr></table>
 <br>
 
+<!-- END 2A -->
+
+
+<!-- START 2B -->
+
 <a name="02b">&nbsp;</a>
 <br>
-<table width=850 cellpadding=10 border=0><tr><td>
+
 <button class="accordion4">
 <a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a><font face="arial"><b> [2B]</b> <b>PLAYER RESPAWN and MAP LOCATION RETURN</b>&nbsp; &nbsp; &nbsp; &nbsp;</font>
 </button>
+
 <div class="panel">
-  <table width=800 cellpadding=10 border=0><tr>
-<td valign=top>
+
+
   <center>
     <font face="arial"><a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a><font size=+2><font color=purple><b>[2B]:</b></font> <b>PLAYER RESPAWN AND CHECKPOINTS</b></font></font>
   
@@ -7972,8 +8013,8 @@ When we enter a door/building from a map, we just need a command that updates bo
 &nbsp; &nbsp; &nbsp;&nbsp;<font color=#31849b><b>public void</b></font> OnTriggerEnter2D(Collider2D other) {<br>
 &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; <font color=#3ab050><b>if</b></font> (other.gameObject.tag == <font color=#ed6c0a><b>&quot;Player&quot;</b></font>){<br>
 <font face="arial">&nbsp; &nbsp; &nbsp;&nbsp; </font><font face="arial">&nbsp; &nbsp; &nbsp;&nbsp; </font><font face="arial">&nbsp; &nbsp; &nbsp;&nbsp; </font><font face="arial">&nbsp; &nbsp; &nbsp;&nbsp; </font>GameHandler_PlayerReturn.<font face="arial">lastDoorPosition</font> = <font face="arial">doorReturnPos</font>;<br>
-<font face="arial">&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; </font>GameHandler_PlayerReturn.<font face="arial">lastMap</font> = thisLevel</font></font></font>; <br>
-&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; </font>SceneManager.LoadScene (NextLevel);<br>
+<font face="arial">&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; </font>GameHandler_PlayerReturn.<font face="arial">lastMap</font> = thisLevel; <br>
+&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; SceneManager.LoadScene (NextLevel);<br>
 &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; }<br>
 &nbsp; &nbsp; &nbsp;&nbsp; } <br>
 } <br>
@@ -7981,24 +8022,31 @@ When we enter a door/building from a map, we just need a command that updates bo
 
 <br>
 <br>
-</td></tr></table>
-</div></td></tr></table>
+
+</div>
 <br>
+
+<!-- END 2B -->
+
+
+<!-- START 2C -->
 
 <a name="02c">&nbsp;</a>
 <br>
-<table width=850 cellpadding=10 border=0><tr>
-<td><button class="accordion3">
-<a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a>
-<font face="arial"><b> [2C] INTERACTIVE ENVIRONMENTS, HAZARDS, AND PUZZLES</b> 
-</font>
+
+<button class="accordion3">
+<a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a> 
+<b>[2C] INTERACTIVE ENVIRONMENTS, HAZARDS, AND PUZZLES</b>
 </button>
+
 <div class="panel1">
-<table width=800 cellpadding=10 border=0><tr>
-<td valign=top>
+
 <center>
-<font face="arial"><a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a><font size=+2><font color=#dc0bdc><b>[2C]: </b></font></font></font><font size=+2 face="arial"><b>ENVIRONMENT HAZARDS AND INTERACTIVE SPACES</b></font>
+<a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a>
+<font size=+2><span class="topic">[2C]:</span> <b>ENVIRONMENT HAZARDS AND INTERACTIVE SPACES</b></font>
 </center>
+
+<br>
 <div class="w3-row-padding panelWideTextShorter">
 	<div class="w3-half" style="background-color:#ebead1">
     <b>HAZARDS:</b> <br />
@@ -8011,7 +8059,7 @@ When we enter a door/building from a map, we just need a command that updates bo
 	  <b>STEALTH GAME TOOLS:</b> <br />
 1. <a href="#02c_bush">Hide</a> in a bush
 (WIP)<br />
-      <br>
+      <br><br><br>
 	</div>
 </div>
 
@@ -8040,22 +8088,22 @@ When we enter a door/building from a map, we just need a command that updates bo
 1. <a href="#02c11">Moveable Block</a> <br />
 2. <a href="#02c12">Block-able Laser</a>   
 <br><br>
-</div>
-	<div class="w3-half" style="background-color:#daeeed">
 3. <a href="#02c18">Sliding Walls</a> <br />
 4. <a href="#02c13">Switch-able Walls</a> <br />
-5. <a href="#02c14">Breakable Walls</a> (webs) <br />
-<br />
+5. <a href="#02c14">Breakable Walls</a> (webs) 
+<br /><br>
+</div>
+	<div class="w3-half" style="background-color:#daeeed">
+    <br><br>
 6. Indicate <a href="#02c15">Hidden Spaces</a> <br />
 7. <a href="#02c16">SpriteMasks</a> (light in dark) <br />
 8. <a href="#02c17">Enemy Zapper</a>
-<br>
+<br><br><br>
 	<br>
 	</div>
 </div>
-<br></td></tr>
-<tr><td bgcolor=#ebead1>
-<font face=arial>
+
+<br><br>
 
 <center>
 <font face="arial"><img src="gamedesign/bullet.png" alt="">&nbsp;
@@ -8192,7 +8240,7 @@ Lava produces increased damage the longer a player stands in it. Like the Spike,
 </center>
 
 <br><br>
-<font face=arial>
+
 <a href="#02c"><img src="gamedesign/triangle_purple.png" alt=""></a>
 <a name="02c3">&nbsp;</a>
 <b><font color=purple>HAZARD 3.</font> MOVING WALL OF DOOM (Traveling Threat):</b>
@@ -8250,9 +8298,7 @@ The Rigidbody2D is  here to allow colliders to work, and Rigidbody2D.velocity re
 <b>e. ADD DAMAGE SCRIPT: </b>This script is just to move / animate the wall. To make it cause damage, add the <a href="02c1"><em>DamageInstant.cs</em></a> script to the WallOfDoom GameObject (see above).
 
 <br><br><br>
-
-</td></tr>
-<tr><td bgcolor=#d9e6d3><font face=arial>
+<br><br><br><br><br><br>
 
 <center>
 <font face="arial"><img src="gamedesign/bullet.png" alt="">&nbsp;
@@ -8717,8 +8763,8 @@ Make sure the player character has the tag &quot;Player&quot;, and that the Vert
 </div>
 
 <br><br><br>
-</td></tr>
-<tr><td bgcolor=#ebdcb6>
+<br><br><br><br><br>
+
 <a name="02c_bush">&nbsp;</a>
 <center>
 <img src="gamedesign/bullet.png" alt="">&nbsp;
@@ -8839,8 +8885,10 @@ Duplicate the player_art and set the duplicate to color=black.
 </div>
         
 <br>
-<br></td></tr>
-<tr><td bgcolor=#ebe0ea>
+<br>
+<br><br><br><br><br><br>
+
+
 <center>
 <font face="arial"><img src="gamedesign/bullet.png" alt="">&nbsp;
 <img src="gamedesign/bullet.png" alt="">&nbsp;
@@ -9165,8 +9213,10 @@ The following <b>C# Script</b> paint one new tile at a time onto a Tilemap based
 <br>
  To create a system for rule tiles to interact better with neighboring tiles, see this video on <a href="https://youtu.be/FwOxLkJTXag?si=EDwiOwkhJWnhk4m4" target=custom>Custom Rule Tile scripts</a>.<br>
  <br>
- <br></td></tr>
-<tr><td bgcolor=#daeeed>
+ <br>
+ 
+<br><br><br><br>
+ 
 
 <center>
 <font face="arial"><img src="gamedesign/bullet.png" alt="">&nbsp;
@@ -10266,23 +10316,27 @@ Want to create an electrified fence to kill enemies?<br>
 <br>
 </div>
 
-
 <br>
 <br>
 <br><br>
-</font></td></tr></table>
-</div></td></tr></table>
+
+</div>
 <br>
+
+<!-- END 2C -->
+
+
+<!-- START 2D -->
 
 <a name="02d">&nbsp;</a>
 <br>
-<table width=850 cellpadding=10 border=0><tr><td>
+
 <button class="accordion4">
 <a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a><font face="arial"><b> [2D]</b> <b>NPC ENEMIES</b> </font>
 </button>
+
 <div class="panel">
-<table width=800 cellpadding=10 border=0><tr>
-<td valign=top>
+
 <center>
 <a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a>
 <font size=+2><font color=purple><b>[2D]:</b></font> <b>NPC ENEMIES</b></font><br>
@@ -11085,7 +11139,7 @@ In Inspector: <strong>Drag</strong> the GroundCheck Game Object into the groundC
 To adapt this Enemy for use on floating platforms OR on platorfms bounded by walls (so it switched irections when hitting an empty space OR wall):<br>
 <b>1.</b> Make sure that the <b>GroundCheck Position Y =0</b>, so it is straight out in front of the player. to be used for both ground and wall checks.<br>
 <b>2.</b> Add a new Tilemap layer <b>TM_walls</b> for all walls, ad Layer ID &quot;walls&quot; and apply to this Tilemap.<br>
-<b>3.</b> Use this <b>adjusted script</b>. In Inspector, <b>set wallCheck layer slot</b> to the new Layer ID &quot;walls&quot;: </font>
+<b>3.</b> Use this <b>adjusted script</b>. In Inspector, <b>set wallCheck layer slot</b> to the new Layer ID &quot;walls&quot;: 
 
 <br><br>
 <center>
@@ -11618,7 +11672,7 @@ In the Inspector <b>reset Transforms</b>.<br>
 <b>h.</b> Under <b>moveSpots</b> hit <b>[+]</b> twice to add two Transforms variable slots. <br>
 <b>i.</b> Fast-drag the two location point GOs into these new Transform variables slots. 
 <br>
-Hit <b>[Play]</b>: the NPC will move randomly between the points! Turn off Play to continue editing.</font><br>
+Hit <b>[Play]</b>: the NPC will move randomly between the points! Turn off Play to continue editing.<br>
 <!--
 <center>
   <font face="arial"><i>EnemyPatrolAttack.cs script:</i> [Script To Come]<br>
@@ -12169,6 +12223,9 @@ Hit <b>[Play]</b>: the NPC will move randomly between the points! Turn off Play 
 <font face=arial>&nbsp; &nbsp; &nbsp;&nbsp; </font>}<br>}<br><br>
 </div>
 
+
+<br><br><p>
+
 <center>
 <img src="gamedesign/bullet.png" alt="">
 <img src="gamedesign/bullet.png" alt="">
@@ -12180,10 +12237,10 @@ Hit <b>[Play]</b>: the NPC will move randomly between the points! Turn off Play 
 <img src="gamedesign/bullet.png" alt="">
 <img src="gamedesign/bullet.png" alt="">
 
-<br>
+<br><br>
 4a. NPC Rotates in Place and <a href="#02d9">Destroys Player</a>
 
-&nbsp; | &nbsp; 
+<br>
 
 4b. <a href="#02d9b">Spot Player</a> to Raise NPC Alertness
 </center>
@@ -12332,7 +12389,7 @@ In your script editor add content below. Save.
   <font face=arial>&nbsp; &nbsp; &nbsp;&nbsp; </font><b>f.</b> Reduce the Line Renderer <b>Width</b> (try <b>0.25</b>). <br>
   <font face=arial>&nbsp; &nbsp; &nbsp;&nbsp;<b> g. </b></font>Change Material placeholder color by clicking the rectangle. <br>
   <font face=arial>&nbsp; &nbsp; &nbsp;&nbsp; </font><b>h.</b> Select the EnemyGaze and <b>drag </b>the<b> LineOfSight </b> into the script slot. 
-  </font>
+  
   
   <br><br><br><br>
   
@@ -12550,23 +12607,28 @@ In your script editor add content below. Save.
 <br><br>
 </div>
 
-<br></td></tr></table>
-</div></td>
-</tr></table>
+<br>
+</div>
 
 <br>
+
+<!-- END 2D -->
+
+
+<!-- START 2E -->
 
 <a name="02e">&nbsp;</a>
 <br>
-<table width=850 cellpadding=10 border=0><tr><td>
+
 <button class="accordion3">
 <a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a><font face="arial"><b> [2E]</b> <b>NPC FRIENDLIES: CHAT AND FOLLOW</b>
 &nbsp; &nbsp; &nbsp; 
 </font>
 </button>
+
 <div class="panel">
-<table width=800 cellpadding=10 border=0><tr>
-<td valign=top>
+
+
 <center>
 <a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a>
   <font size=+2 color=purple><b>[2E]: NPC FRIENDLIES</b></font>
@@ -12649,54 +12711,66 @@ Also works with signage, treasure boxes, etc.
 
 <br>
 If it is just a single sprite pixel art image (animation is not required to test this script): <br>
-<img src="gamedesign/bullet.png" alt=""> Set <b>properties</b> in Inspector:<br>&nbsp; &nbsp; &nbsp; &nbsp;Pixels Size = <b>16</b><br>
+<li> Set <b>properties</b> in Inspector:
+<br>&nbsp; &nbsp; &nbsp; &nbsp;Pixels Size = <b>16</b><br>
 &nbsp; &nbsp; &nbsp; &nbsp;Filter Mode = <b>Point (no filter)</b><br>
 &nbsp; &nbsp; &nbsp; &nbsp;Compression = <b>None</b>.<br>
 &nbsp; &nbsp; &nbsp; &nbsp;Hit <b>[Apply].</b><br>
-<img src="gamedesign/bullet.png" alt=""> Drag the sprite into Hierarchy.<br>
-<img src="gamedesign/bullet.png" alt=""> In the Inspector name it &quot;<b>NPC_[name]_art</b>&quot;<br>
-<img src="gamedesign/bullet.png" alt=""> <b>Reset</b> Transforms.<br><br>
+<li> Drag the sprite into Hierarchy.<br>
+<li> In the Inspector name it &quot;<b>NPC_[name]_art</b>&quot;<br>
+<li> <b>Reset</b> Transforms.
+
+<br><br>
 <b>b.</b> Create a GameObject &gt; <b>Empty GameObject</b>. <br>
-<img src="gamedesign/bullet.png" alt=""> In the Inspector name it &quot;<b>NPC_chat</b>&quot; <br>
-<img src="gamedesign/bullet.png" alt=""> <b>Reset </b>Transforms.
+<li> In the Inspector name it &quot;<b>NPC_chat</b>&quot; <br>
+<li> <b>Reset </b>Transforms.
 
 
 <br>
-<img src="gamedesign/bullet.png" alt=""> <b>Drag</b> NPC art onto NPC_chat to make it a child. 
+<li> <b>Drag</b> NPC art onto NPC_chat to make it a child. 
 <br>
-<img src="gamedesign/bullet.png" alt=""> In Inspector set &quot;Order in layer&quot; = 90.<br><br>
+<li> In Inspector set &quot;Order in layer&quot; = 90.
+
+<br><br>
 <b>c.</b> Add <b>two colliders</b> to NPC_chat: <br>
-<img src="gamedesign/bullet.png" alt=""> Select the NPC_chat object.<br>
-<img src="gamedesign/bullet.png" alt=""> <b>[Add Component]</b>  Physics 2D &gt; <b>BoxCollider2D</b>.
+<li> Select the NPC_chat object.<br>
+<li> <b>[Add Component]</b>  Physics 2D &gt; <b>BoxCollider2D</b>.
 <br>
-<img src="gamedesign/bullet.png" alt=""> Change the size of the first one to closely surround the NPC form (to block player movement). <br>
-<img src="gamedesign/bullet.png" alt=""> Change the second one to isTrigger, and extend its Collider outward to the sides and below, for the space the Player can stand to chat with this NPC. <br><br><br>
+<li> Change the size of the first one to closely surround the NPC form (to block player movement). <br>
+<li> Change the second one to isTrigger, and extend its Collider outward to the sides and below, for the space the Player can stand to chat with this NPC. 
 
+
+<br><br><br>
 <b>[2] CREATE THE UI ELEMENTS: <br>
 a.</b> Select your <b>Canvas</b>, if it exists,<br>
 (If not, GameObject &gt; UI &gt; Canvas. Set  <b>Canvas Scaler &gt; UI Scale Mode</b> from &quot;Constant Pixel Size&quot; to &quot;<b>Scale With Screen Size</b>&quot;. Set size to <b>1280</b> x <b>720</b>.).<br>
-<img src="gamedesign/bullet.png" alt=""> RightClick Canvas, choose <b> UI &gt; Image</b>.<br>
-<img src="gamedesign/bullet.png" alt=""> Name it &quot;<b>MONOLOGUE_BOX</b>&quot;.<br>
+<li> RightClick Canvas, choose <b> UI &gt; Image</b>.<br>
+<li> Name it &quot;<b>MONOLOGUE_BOX</b>&quot;.<br>
 Zoom out in the Scene view to see the entire Canvas (can select the Canvas and in the Scene hit [<b>f</b>]).<br>
-<img src="gamedesign/bullet.png" alt=""> In the Inspector set the image size for the full Canvas (1280x720) and set color alpha=0 (fully transparent). 
+<li> In the Inspector set the image size for the full Canvas (1280x720) and set color alpha=0 (fully transparent). 
 <br>Also, to allow click-through, uncheck <strong>Raycast Target</strong>.<br><br>
 <b>b.</b> RightClick MONOLOGUE_BOX to create a second <b>UI &gt; Image</b> (centered as a child under it).<br>
-<img src="gamedesign/bullet.png" alt=""> Name it &quot;<b>MonologueBG</b>&quot;.<br>
-<img src="gamedesign/bullet.png" alt=""> Size 600 x 150 and move  to fit in  the bottom third of the Canvas. Set color alpha=0.<br>
-<img src="gamedesign/bullet.png" alt=""> Optionally add framing art to this ImageSprite.<br>
+<li> Name it &quot;<b>MonologueBG</b>&quot;.<br>
+<li> Size 600 x 150 and move  to fit in  the bottom third of the Canvas. Set color alpha=0.<br>
+<li> Optionally add framing art to this ImageSprite.<br>
 <br>
 <b>c.</b> RightClick DialogueBG to create&nbsp;a <b> UI &gt; </b><strong>Text-TextMeshPro</strong> (centered as a child under MonologueBG).<br>
-<img src="gamedesign/bullet.png" alt=""> Name it &quot;<b>TextMonologue</b>&quot;.<br>
-<img src="gamedesign/bullet.png" alt=""> Size 590 x 140 and move to fit MonologueBG.<br>
-<img src="gamedesign/bullet.png" alt=""> Set <b>Font</b> Size = 30 and <b>color</b> = black.<br>
-<img src="gamedesign/bullet.png" alt=""> Set text field to an ellipsis: "...".<br><br>
+<li> Name it &quot;<b>TextMonologue</b>&quot;.<br>
+<li> Size 590 x 140 and move to fit MonologueBG.<br>
+<li> Set <b>Font</b> Size = 30 and <b>color</b> = black.<br>
+<li> Set text field to an ellipsis: "...".
+
+<br><br>
 <b>d.</b> RightClick DialogueBG to create&nbsp;a<b> UI &gt;  Button</b><strong>-TextMeshPro</strong>.<br>
-<img src="gamedesign/bullet.png" alt=""> Name it &quot;<b>ButtonNext</b>&quot;.<br>
-<img src="gamedesign/bullet.png" alt=""> Scale and move ButtonNext to fit in the lower-right corner of MonologueBG: 100 x 60.<br>
-<img src="gamedesign/bullet.png" alt=""> Set the button Normal and Highlight colors.<br>
-<img src="gamedesign/bullet.png" alt=""> In the child Text object, set text field to &quot;NEXT&quot;.<br>
-<img src="gamedesign/bullet.png" alt=""> Set <b>Font</b> Size = <b>35</b>, Style = <b>Bold</b>, and <b>color</b> = black.<br>
-<img src="gamedesign/bullet.png" alt=""> Set <b>Navigation</b> from &quot;Automatic&quot; to <b>&quot;None</b>&quot;.<br>
+<li> Name it &quot;<b>ButtonNext</b>&quot;.<br>
+<li> Scale and move ButtonNext to fit in the lower-right corner of MonologueBG: 100 x 60.<br>
+<li> Set the button Normal and Highlight colors.<br>
+<li> In the child Text object, set text field to &quot;NEXT&quot;.<br>
+<li> Set <b>Font</b> Size = <b>35</b>, Style = <b>Bold</b>, and <b>color</b> = black.<br>
+<li> Set <b>Navigation</b> from &quot;Automatic&quot; to <b>&quot;None</b>&quot;.
+
+
+<br>
 <br>
 <br>
 <b>[3] CREATE THE DIALOGUE MANAGER: </b><br>
@@ -12891,6 +12965,8 @@ Just be sure to add the Scene copes of MONOLOGUE_BOX and MonologueText objects t
 <b>[1] CREATE THE NPC: </b><br>
 <b>a.</b> Create and import art for at least <b>two NPC characters</b><br>
 (<b>64x64</b> to match  Player character, or as desired). 
+
+
 <table width=100% cellpadding=10><tr>
 <td valign=top><font face=arial>If it is just a <strong>single sprite pixel art image</strong> (animation is not required to test this script): <br>
     <img src="gamedesign/bullet.png" alt=""> Set <b>properties</b> in Inspector:<br>
@@ -12930,12 +13006,15 @@ Once the sprite is in the Scene, adjust its size by selecting the source image i
 <br><br>
     <strong><em>NOTE:</em></strong> Animation is not required to test this script.</font></td>
 </tr></table>
+
+
 <br><br>
 <b>b.</b> Create and import <b>face bubble art</b> for the Player character and the NPC characters (<b>128x128</b>). <br>
 Do not drag into the Hierarchy (will be added to the UI). <br>
 <br>
-<b>c.</b> Create a GameObject &gt; <b>Empty GameObject</b>. <br>
-<li"> In the Inspector name it &quot;<b>NPC_chat</b>&quot; <br>
+<b>c.</b> Create a GameObject &gt; <b>Empty GameObject</b>. 
+<ol>
+<li> In the Inspector name it &quot;<b>NPC_chat</b>&quot; <br>
 <li> <b>Reset </b>Transforms. <br>
 <li> <b>Drag</b> both NPC art images onto NPC_chat to make them each a child 
 <br>
@@ -12944,85 +13023,110 @@ Do not drag into the Hierarchy (will be added to the UI). <br>
 <li> In Inspector set &quot;Order in layer&quot; on these sprites = 90. 
 <br>
 <li> Disable all but one of the character images.
+</ol>
 
 <br>
 <br>
-<b>d.</b> Add <b>a Collider</b> to NPC_chat: <br>
+<b>d.</b> Add <b>a Collider</b> to NPC_chat: 
+<ol>
 <li> Select the NPC_chat object.<br>
 <li> <b>[Add Component]</b> Physics 2D &gt; <b>BoxCollider2D</b>.<br>
 <li> Enable isTrigger, and extend its Collider outward to the sides and below, for the space the Player can stand to chat with this NPC. 
+</ol>
+
 
 <br>
 <br>
+<b>[2] CREATE THE UI ELEMENTS:</b>
 <br>
-<b>[2] CREATE THE UI ELEMENTS: <br>
-a.</b> Select your <b>Canvas</b>, if it exists,<br>
-(If not, GameObject &gt; UI &gt; Canvas. Set <b>Canvas Scaler &gt; UI Scale Mode</b> from &quot;Constant Pixel Size&quot; to &quot;<b>Scale With Screen Size</b>&quot;. Set size to <b>1280</b> x <b>720</b>.).<br>
-<img src="gamedesign/bullet.png" alt=""> RightClick Canvas, choose <b> UI &gt; Image</b>.<br>
-<img src="gamedesign/bullet.png" alt=""> Name it &quot;<b>DIALOGUE_BOX</b>&quot;.<br>
+<b>a.</b> Select your <b>Canvas</b>, if it exists,<br>
+(If not, GameObject &gt; UI &gt; Canvas. Set <b>Canvas Scaler &gt; UI Scale Mode</b> from &quot;Constant Pixel Size&quot; to &quot;<b>Scale With Screen Size</b>&quot;. Set size to <b>1280</b> x <b>720</b>.).
+<ol>
+<li> RightClick Canvas, choose <b> UI &gt; Image</b>.<br>
+<li> Name it &quot;<b>DIALOGUE_BOX</b>&quot;.<br>
 Zoom out in the Scene view to see the entire Canvas (can select the Canvas and in the Scene hit [<b>f</b>]).<br>
-<img src="gamedesign/bullet.png" alt=""> In the Inspector set the image size for the full Canvas (1280x720) and set color alpha=0 (fully transparent). 
+<li> In the Inspector set the image size for the full Canvas (1280x720) and set color alpha=0 (fully transparent). 
 <br>Also, to allow click-through, uncheck <strong>Raycast Target</strong>.
+</ol>
 
 <br>
 <br>
-<b>b.</b> RightClick DIALOGUE_BOX to create a second <b>UI &gt; Image</b> (centered as a child under it).<br>
+<b>b.</b> RightClick DIALOGUE_BOX to create a second <b>UI &gt; Image</b> (centered as a child under it).
+<ol>
 <li> Name it &quot;<b>DialogueBG</b>&quot;.<br>
 <li> Size 600 x 150 and move  to fit in  the bottom third of the Canvas. Set color alpha=0.<br>
 <li> Optionally add framing art to this ImageSprite.
+</ol>
 
 <br>
 <br>
-<b>c.</b> RightClick DialogueBG to create&nbsp;a <b> UI &gt; Text</b><strong>-TextMeshPro</strong> (centered as a child under DialogueBG).<br>
+<b>c.</b> RightClick DialogueBG to create&nbsp;a <b> UI &gt; Text</b><strong>-TextMeshPro</strong> (centered as a child under DialogueBG).
+<ol>
 <li> Name it &quot;<b>TextDialogue</b>&quot;.<br>
 <li> Size 590 x 140 and move to fit DialogueBG.<br>
 <li> Set <b>Font</b> Size = 30 and <b>color</b> = black.<br>
 <li> Set text field to an ellipsis: "...".
+</ol>
 
 <br>
 <br>
-<b>d.</b> RightClick DialogueBG to create&nbsp;a<b> UI &gt;  Button</b><strong>-TextMeshPro</strong>.<br>
+<b>d.</b> RightClick DialogueBG to create&nbsp;a<b> UI &gt;  Button</b><strong>-TextMeshPro</strong>.
+<ol>
 <li> Name it &quot;<b>ButtonNext</b>&quot;.<br>
 <li> Scale and move ButtonNext to fit in the lower-right corner of DialogueBG: 100 x 60.<br>
 <li> Set the button Normal and Highlight colors.<br>
 <li> In the child Text object, set text field to &quot;NEXT&quot;.<br>
 <li> Set <b>Font</b> Size = <b>35</b>, Style = <b>Bold</b>, and <b>color</b> = black.<br>
 <li> Set <b>Navigation</b> from &quot;Automatic&quot; to <b>&quot;None</b>&quot;.
+</ol>
 
 <br>
 <br>
 <br>
 <b>[3] CREATE THE DIALOGUE MANAGER: </b><br>
-<b>a.</b> Create&nbsp;an empty game object: <b>GameObject &gt; Empty</b>. <br>
+<b>a.</b> Create&nbsp;an empty game object: <b>GameObject &gt; Empty</b>. 
+<ol>
 <li> Name it &quot;<b>DialogueManager</b>&quot;. <br>
 <li> <b>Reset</b> the Transforms. 
+</ol>
 
 <br>
 <br>
-<b>b. </b>In the Inspector add a new <b>TAG</b>: &quot;<b>DialogueManager</b>&quot;: <br>
+<b>b. </b>In the Inspector add a new <b>TAG</b>: &quot;<b>DialogueManager</b>&quot;: 
+<ol>
 <li> Find &quot;tag&quot; near the top of the Inpector. Hit Untagged, choose AddTag. Hit [+] and type. <br>
 <li> Re-select the DialogueManager Object and add this <b>tag</b>. 
+</ol>
 
 <br>
 <br>
 <br>
-<b>[4] CREATE THE TWO SCRIPTS: </b><br>
-<b>a.</b> Create a new C# script &quot;<b>NPCDialogueManager.cs</b>&quot; with the content below. <br>
+<b>[4] CREATE THE TWO SCRIPTS: </b>
 <br>
-<b>b.</b> Select the <b>DialogueManager</b> object and add this script. <br>
+<b>a.</b> Create a new C# script &quot;<b>NPCDialogueManager.cs</b>&quot; with the content below. 
+
+<br>
+<br>
+<b>b.</b> Select the <b>DialogueManager</b> object and add this script. 
+<ol>
 <li> In the Inspector, fast-drag <b>DIALOGUE_BOX</b> and <b>TextDialogue</b> from the Canvas into the <b>script slots</b>.<br>
 <li> Open the <strong>NPC_Choices</strong> Array. Hit <b>[+]</b> for as many <b>character bubble images</b> you desire.
 <br>
 &nbsp; &nbsp;<strong>Drag</strong> the sprites in from your Project panel art folder. 
 <br>
-&nbsp; &nbsp;Pay attention to how they are numbered: those are the values for each NPC.<br>
-<br>
-<b>c.</b> Set <b>ButtonNext:</b><br>
-<li> Select ButtonNext, and in the Inspector,
+&nbsp; &nbsp;Pay attention to how they are numbered: those are the values for each NPC.
+</ol>
 
+
+<br>
+<br>
+<b>c.</b> Set <b>ButtonNext:</b>
+<ol>
+<li> Select ButtonNext, and in the Inspector,
 near bottom, add an <b>OnClick</b> function <b>[+]</b>. <br>
 <li> <b>Drag</b> the DialogueManager into the &quot;None&quot; slot. <br>
 <li> Set the <b>function</b> to NPCDialogueManager &gt; DialogueNext().
+</ol>
 
 <br>
 <br>
@@ -13168,11 +13272,16 @@ counter = <font color=#ed6c0a><b>1</b></font>;<br>
 
 <br>
 <br>
-<b>d.</b> Create a <b>second script</b> called &quot;<b>NPCDialogue.cs</b>&quot; and include the content below. <br>
+<b>d.</b> Create a <b>second script</b> called &quot;<b>NPCDialogue.cs</b>&quot; and include the content below. 
+<ol>
 <li> Apply this second script to your <b>NPC_chat</b> object in the Scene. <br>
-<li> In the Inspector, open the Array and hit <b>[+]</b> for as many <b>lines of dialogue</b> you desire and type them in. <br>
+<li> In the Inspector, open the Array and hit <b>[+]</b> for as many <b>lines of dialogue</b> you desire. Type them in. <br>
 The contents of this array will replace the DialogueManger array for each interaction!<br>
-This script works as long as (1) the DialogueManager <b>object</b> with the DialogueManager <b>tag</b> and <b>script</b> exists in the scene, and (2) The Canvas with DIALOGUE_BOX exists: </font> <br>
+This script works as long as (1) the DialogueManager <b>object</b> with the DialogueManager <b>tag</b> and <b>script</b> exists in the scene, and (2) The Canvas with DIALOGUE_BOX exists: 
+</ol> 
+
+
+<br>
 <br>
 <center>
 <i>NPCDialogue.cs script:</i>
@@ -13235,19 +13344,22 @@ This script works as long as (1) the DialogueManager <b>object</b> with the Dial
 <br>
 <b>[5]. MAKE PREFABS:</b> <br>
 <b>a. NPC Prefab:</b>
+<ol>
 <li> <b>Drag</b> the NPC_chat into the Project &gt; Assets folder to make it a <b>Prefab</b>. <br>
 <li> Drag copies into the Scene as needed.<br>
 These copies can include new character art (just disable the old art) and new dialogue lines, but will use the same Canvas DialogueBox.<br>
 The name of these copies in the Hierarchy can also be changed for each NPC non-combat character name.
+</ol>
 
 <br>
 <br>
 <b>b. DialogueManager Prefab and DIALOGUE_BOX Prefab:</b>
+<ol>
 <li> <b>Drag</b> the DialogueManager into the Project &gt; Assets folder to make it a <b>Prefab</b>. <br>
 <li> <b>Drag</b> the DIALOGUE_BOX parent object from the Canvas  into Project &gt; Assets folder to make it a <b>Prefab</b>..<br>
 Both of these can now be added to any desired Scene, to add NPC dialogue functionality. <br>
-Just be sure to add the Scene copies of DIALOGUE_BOX and DialogueText objects to the DialogueManager script slots in each scene. <br>
-<br><br>
+Just be sure to add the Scene copies of DIALOGUE_BOX and DialogueText objects to the DialogueManager script slots in each scene. 
+</ol><br>
 
 <center>
   <img src="gamedesign/bullet.png" alt="">&nbsp;
@@ -13614,26 +13726,26 @@ Gizmos.DrawWireSphere(transform.position, stopDistance);<br>
 
 <br><br>
  
-</td></tr></table>
-</div></td>
-</tr></table>
+</div>
+
 <br>
 
+<!-- END 2E -->
 
 
-
+<!-- START 2F -->
 
 <a name="02f">&nbsp;</a>
 <br>
-<table width=850 cellpadding=10 border=0><tr>
-  <td>
+
 <button class="accordion4">
 <a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a> <font face="arial"><b>[2F] MORE PLAYER MOVES: TELEPORT, HOOKSHOT, VEHICLE MOTION, FLYING, DASH</b>
  </font>
 </button>
+
 <div class="panel">
-<table width=800 cellpadding=10 border=0><tr>
-<td valign=top>
+
+
   <center>
     <font face="arial"><a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a><font size=+2><font color=#dc0bdc><b>[2F]:</b></font> <b>MORE PLAYER MOVEMENT</b></font>
 <br>
@@ -14093,7 +14205,7 @@ The Grapple.cs script already includes a CanGrapple() function to test the click
 
 <br>
 <div class="blockScript">
-&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;</font><font color=gray>//if (CanGrapple()){</font><br>
+&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;<font color=gray>//if (CanGrapple()){</font><br>
         <br>
         <font face=arial><font face=arial>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;</font></font><font color=gray>//}
 </div>
@@ -14111,7 +14223,7 @@ will not activate the grappling line, but clicking on the sprites with the grapp
 
 <br><br><br>
 <br><br><br>
-<br><br><br>
+<br>
 <br>
 <br>
 <center>
@@ -14302,12 +14414,10 @@ The movement is very different than a person's, with evident accelertion and dec
 <li><font face="arial">In the Hierarchy, <strong>duplicate</strong> the trail object (select and hit <strong>[Ctrl / Cmd] + [d]</strong>). <br>
   Move the trails to represent each wheel side. </font></ol><br>
 
-<p><font face="arial"><em><strong>NOTE:</strong></em> To have a Player that moves normally, and then enters a Car (essentially becoming the Car): consider a keyboard input, within range of the Car: parent the player to the Car, set the player to .SetActive(false), set the Car to the Player tag, and set active the CarController_TopDown component on the car, so it becomes the Player. Reverse all of this when the player wants to get out and walk.</font></p>
-<font face="arial">
+<p><font face="arial"><em><strong>NOTE:</strong></em> To have a Player that moves normally, and then enters a Car (essentially becoming the Car): consider a keyboard input, within range of the Car: parent the player to the Car, set the player to .SetActive(false), set the Car to the Player tag, and set active the CarController_TopDown component on the car, so it becomes the Player. Reverse all of this when the player wants to get out and walk.</font><font face="arial"><br>
+  <br>
 
-<br><br>
-
-</font>
+</font></p>
 <center>
   <img src="gamedesign/bullet.png" alt="">
   <img src="gamedesign/bullet.png" alt="">
@@ -14556,27 +14666,36 @@ Consider a Dash that moves the player at much greater speeds over short distance
 
 <p>
   <p><strong>QUESTIONS: </strong>
+  <ol>
   <li> How might we get a full range of directions, instead of discrete buttons?
 <li> How might we identify of the webGL browser is being viewed / played on a mobie device, to display this button system only when touch is available?
 <a href="https://discussions.unity.com/t/how-to-detect-if-a-mobile-is-running-the-webgl-scene/645467/12" target=newMobile1>helpful discussion</a>
+</ol>
+
 
 <br>
-<br><br>
-<br></td></tr></table>
-</div></td>
-</tr></table>
 <br>
+<br>
+</div>
+
+<br>
+
+<!-- END 2F -->
+
+
+<!-- START 2G -->
 
 <a name="02g">&nbsp;</a>
 <br>
-<table width=850 cellpadding=10 border=0><tr><td>
+
 <button class="accordion3">
 <a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a>
-<font face="arial"><b> [2G]</b> <b>GAME FEEL: VFX / SFX</b> </font>
+<b> [2G]</b> <b>GAME FEEL: VFX / SFX</b>
 </button>
+
 <div class="panel">
-<table width=800 cellpadding=10 border=0><tr>
-<td valign=top>
+
+
   <center>
 <a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a><font size=+2><font color=purple><b>[2G]:</b></font> <b>GAME FEEL: VFX / SFX</b></font>
 <br>
@@ -16195,19 +16314,24 @@ Add these 3 sections, save and return to Unity:
 Hit <strong>[Play]</strong> to test.<br>
 Hit <strong>[spacebar]</strong> to activate the effect, and again to stop it. 
 <br><br>
-</td></tr></table>
-</div></td></tr></table>
+
+</div>
 <br>
+
+<!-- END 2G -->
+
+
+<!-- START 2H -->
 
 <a name="02h">&nbsp;</a>
 <br>
-<table width=850 cellpadding=10 border=0><tr><td>
+
 <button class="accordion4">
 <a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a><font face="arial"><b> [2H]</b> <b>GAME TIMER</b> &nbsp; &nbsp; &nbsp; </font>
 </button>
+
 <div class="panel">
-<table width=800 cellpadding=10 border=0><tr>
-<td valign=top>
+
 
 <center>
 <font face="arial"><a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a><font size=+2 color=purple><b>[2H]:</b></font></font> <font size=+2 face="arial"><b>GAME TIMER</b></font>
@@ -16486,7 +16610,7 @@ In the Inspector name it "ChargeCircleBG", set width and height = 120, set Sourc
 
 <br><br>
 <b>2.</b> <b>Duplicate</b> ChargeCircleBG. In Inspector name duplicate "<b>ChargeCicle</b>", set width and height = <b>90</b>, set color = <b>white</b>. Drag ChargeCircle onto Charge CircleBG to make it a <b>child</b>. <br><br>
-<b>3.</b> Create a new C# script "<b>RechargeTimer2.cs</b>". Add the following content, save, and in Unity drag onto the ChargeCircleBG object. Drag ChargeCicle into the <b>Display script slot</b>. </font>
+<b>3.</b> Create a new C# script "<b>RechargeTimer2.cs</b>". Add the following content, save, and in Unity drag onto the ChargeCircleBG object. Drag ChargeCicle into the <b>Display script slot</b>. 
 
 <br>
 <center>
@@ -16576,20 +16700,27 @@ In the Inspector name it "ChargeCircleBG", set width and height = 120, set Sourc
 
 <br>
 <br>
-</td></tr></table>
-</div></td>
-</tr></table>
+
+</div>
+
 <br>
+
+<!-- END 2H -->
+
+
+<!-- START 2I -->
 
 <a name="02i">&nbsp;</a>
 <br>
-<table width=850 cellpadding=10 border=0><tr><td>
+
 <button class="accordion3">
-<a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a><font face="arial"><b> [2I] OTHER INTERACTIONS: DRAG AND DROP,  NOTEPAD</b> &nbsp; &nbsp; &nbsp;</font>
+<a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a>
+<b> [2I] OTHER INTERACTIONS: DRAG AND DROP,  NOTEPAD</b> 
 </button>
+
 <div class="panel">
-  <table width=800 cellpadding=10 border=0><tr>
-<td valign=top>
+
+
 <center>
 <font face="arial"><a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a><font size=+2><font color=purple><b>[2I]:</b></font> <b>DRAG AND DROP</b></font></font>
 <br>
@@ -16872,28 +17003,27 @@ Drag the Notepad object into [None] and add this function: Notepad &gt; <b>Updat
 </div>
 
 <br><br>
-</td></tr></table>
-</div></td>
-</tr></table>
 
-
-
+</div>
 <br>
-<a name="02j">&nbsp;</a> <br>
-<table width=850 cellpadding=10 border=0>
-  <tr>
-    <td><button class="accordion3">
-      <a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a><font face="arial"> <b>[2J] AUDIO EVENTS</b> &nbsp; &nbsp; &nbsp;</font>
-      </button>
-      <div class="panel2">
 
-<table width=800 cellpadding=10 border=0><tr>
-<td valign=top>
+<!-- END 2I -->
+
+
+<!-- START 2j -->
+
+<a name="02j">&nbsp;</a> 
+<br>
+
+<button class="accordion3">
+<a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a> <b>[2J] AUDIO EVENTS</b>
+</button>
+
+      <div class="panel2">
 
 <center>
 <a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a>
-<font size=+2><font color=purple><b>[2J]:</b></font> 
-<b>AUDIO</b></font>
+<font size=+2><span class="topic">[2J]:</span> <b>AUDIO</b></font>
 <br>
 <strong>PLAYER:</strong> <a href="#02j1">Multiple Audio Files</a> &nbsp; | &nbsp;
 <a href="#02j2">Footstep Variation</a>
@@ -17085,9 +17215,9 @@ Music and ambient  audio should be assigned to child objects of a GameObject Pre
 
 
 <br>
-<font face=arial>Add the following script to the Audio Manager<br>
+Add the following script to the Audio Manager<br>
 <br>
-</font>
+
 <center>
   <font face=arial><em>AudioInterrupt.cs:</em></font><br>
 </center>
@@ -17330,56 +17460,60 @@ Volume can also be set directly in a script(set value 0-to-1):
 <center>
   <img src="gamedesign/bullet.png" alt=""> &nbsp; <img src="gamedesign/bullet.png" alt=""> &nbsp; <img src="gamedesign/bullet.png" alt="">
 </center>
-<font face=arial>&nbsp;</font><font face=arial><font face=arial><br>
-<font face=arial><a href="#02j"><img src="gamedesign/triangle_purple.png" alt=""></a> <a name="filters">&nbsp;</a></font><font size=+1><b>AUDIO FILTER EFFECTS</b></font><br>
-<strong>Try these Audio <a href="https://docs.unity3d.com/560/Documentation/Manual/class-AudioEffect.html" target=filters>filters</a></strong> for <font face=arial>additional Audio Effects in Unity</font>:
+
+<br>
+<a href="#02j"><img src="gamedesign/triangle_purple.png" alt=""></a> 
+<a name="filters">&nbsp;</a>
+<font size=+1><b>AUDIO FILTER EFFECTS</b></font>
+
+<p>
+<strong>Try these Audio <a href="https://docs.unity3d.com/560/Documentation/Manual/class-AudioEffect.html" target=filters>filters</a></strong> for additional Audio Effects in Unity:
+
+<ul>
+<li> <strong>Low Pass:</strong> Make spatial audio die quickly/sound further away, like in a  fog or behind a door. Also, removes high-frequency problems like the hiss of a poor recording.
 
 <br><br>
-<img src="gamedesign/bullet.png" alt=""> <strong>Low Pass:</strong> Make spatial audio die quickly/sound further away, like in a  fog or behind a door. Also, removes high-frequency problems like the hiss of a poor recording.
+<li> <strong>High Pass:</strong> Removes low-frequency problems, like handling a mic, for a clearer sound.
 
 <br><br>
-<img src="gamedesign/bullet.png" alt=""> <strong>High Pass:</strong> Removes low-frequency problems, like handling a mic, for a clearer sound.
+<li> <strong>Echo:</strong> Create sound delays and repetitions. Try wet mix and dry mix. Use to reprsent sound in large / cavernous spaces.
 
 <br><br>
-<img src="gamedesign/bullet.png" alt=""> <strong>Echo:</strong> Create sound delays and repetitions. Try wet mix and dry mix. Use to reprsent sound in large / cavernous spaces.
+<li> <strong>Distortion:</strong> Use to represent the sound of a low-quality radio signal
 
 <br><br>
-<img src="gamedesign/bullet.png" alt=""> <strong>Distortion:</strong> Use to represent the sound of a low-quality radio signal
-
-<br><br>
-<img src="gamedesign/bullet.png" alt=""> <strong>Reverb:</strong> Create custom changes to create the illusion of room size. 
+<li> <strong>Reverb:</strong> Create custom changes to create the illusion of room size. 
 <br>&nbsp;  NOTE: settings are grayed out unless  <strong>Reverb Preset</strong> is set to <strong>User</strong>, 
 
 <br><br>
-<img src="gamedesign/bullet.png" alt=""> <strong>Chorus:</strong> Create the illusion that the sound is being emitted from multiple sources.
+<li> <strong>Chorus:</strong> Create the illusion that the sound is being emitted from multiple sources.
+</ul>
 
-<br><br><br>
-<a href="https://docs.unity3d.com/560/Documentation/Manual/AudioMixer.html" target=mixer><strong>AudioMixer</strong></a><strong>:</strong> To control when some parts of the audio get softer while others get louder (ducking). For example, lower the music while an important sound effect is heard, etc. <br>
+<br><br>
+<a href="https://docs.unity3d.com/560/Documentation/Manual/AudioMixer.html" target=mixer><strong>AudioMixer</strong></a><strong>:</strong> To control when some parts of the audio get softer while others get louder (ducking). For example, lower the music while an important sound effect is heard, etc. 
 <br>
 <br><br>
-</font></td>
-</tr></table>
-</div></td>
-</tr></table>
+
+</div>
 
 <br>
+
+<!-- END 2J -->
+
+
+<!-- START 2K -->
+
 <a name="02k">&nbsp;</a> 
 <br>
-<!--
-<details>
-  <summary>[2K] INTRO ANIMATIONS</summary>
--->
 
-<table width=850 cellpadding=10 border=0>
-  <tr>
-    <td><button class="accordion3">
-      <a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a><font face="arial"> <b>[2K] INTRO ANIMATIONS</b> &nbsp; &nbsp; &nbsp;</font>
-      </button>
-      <div class="panel2">
+<button class="accordion3">
+<a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a>
+<b>[2K] INTRO ANIMATIONS</b> 
+</button>
       
+<div class="panel2">
       
-<table width=800 cellpadding=10 border=0><tr>
-<td valign=top><center>
+<center>
 <font face="arial"><a href="#theTop"><img src="comicsDesign/ArrowUp.png" alt=""></a> <font size=+2><font color=purple><b>[2K]:</b></font> <b>INTRO ANIMATIONS</b></font></font> <font face="arial">
 
 <br>
@@ -17430,53 +17564,71 @@ The following assumes  these game Prefabs have been built: GameHandler, Pause Me
 a).</b> File > New Scene, then File &gt;  <b>Save As</b> to name it "<b>LevelComic</b>" in the Scenes folder.<br>
 <b>b).</b> In File > <b>Build Settings</b>, add this scene.<br>
 <b>c).</b> In the GameHandler script, change the <b>StartGame()</b> function to go to &quot;LevelComic&quot;.<br>
-<b>d).</b> Create a Canvas and Placeholder text:<br>
-&nbsp; &nbsp; <img src="gamedesign/bullet.png" alt=""> GameObject &gt; UI &gt; <strong>Canvas</strong>. Set to Scale with Screen Size, 1280 x 720.<br>
-&nbsp; &nbsp; <img src="gamedesign/bullet.png" alt=""> RightClick the Canvas to create a UI > Legacy > Text. In the Inspector name it text_Placeholder. <br> 
-<b>e).</b> Load in the usual <b>Prefabs</b> for you game:<br> 
-&nbsp; &nbsp; 
- <img src="gamedesign/bullet.png" alt=""> Drag into the Hierarchy your <strong>GameHandler</strong> Prefab. Add text_Placeholder to Text script slots (health, etc). <br> 
-&nbsp; &nbsp; 
- <img src="gamedesign/bullet.png" alt=""> Drag onto Canvas your <strong>PAUSE_MENU</strong> prefab. Drag it into the GameHandler script slot. Activate the OnClick events for all Pause Menu buttons and slider with the GameHandler.<br> 
-&nbsp; &nbsp; 
- <img src="gamedesign/bullet.png" alt=""> Add your <strong>MusicManager</strong> Prefab.
- 
+<b>d).</b> Create a Canvas and Placeholder text:
+
+<ol>
+<li> GameObject &gt; UI &gt; <strong>Canvas</strong>. Set to Scale with Screen Size, 1280 x 720.<li> RightClick the Canvas to create a UI > Legacy > Text. In the Inspector name it text_Placeholder. 
+</ol>
+
+<br> 
+<b>e).</b> Load in the usual <b>Prefabs</b> for you game:
+<ol>
+<li> Drag into the Hierarchy your <strong>GameHandler</strong> Prefab. Add text_Placeholder to Text script slots (health, etc). 
+<li> Drag onto Canvas your <strong>PAUSE_MENU</strong> prefab. Drag it into the GameHandler script slot. Activate the OnClick events for all Pause Menu buttons and slider with the GameHandler.
+<li> Add your <strong>MusicManager</strong> Prefab.
+</ol> 
  
 <br><br><br> 
 <b>2. Create the STORY BUTTONS:<br>
 a).</b> With the Canvas selected, add a UI &gt; Legacy &gt; Button (ideally, drag into the Canvas a Button_Menu prefab, used for all menu buttons!).<b><br>
-b).</b> Duplicate the button twice for a total of three buttons.<br>
- &nbsp; <img src="gamedesign/bullet.png" alt=""> In the Inspector, name them &quot;<b>button_Next</b>&quot;, &quot;<b>button_Back</b>&quot;, and &quot;<b>button_Skip</b>&quot;.<br>
-&nbsp; <img src="gamedesign/bullet.png" alt=""> Make sure <strong>Navigation</strong> is changed from &quot;Automatic&quot; to &quot;<strong>None</strong>&quot;.<br>
-&nbsp; <img src="gamedesign/bullet.png" alt=""> At the bottom of each click the [+] to create an OnClick() event.<br>
-&nbsp; <img src="gamedesign/bullet.png" alt=""> Open each button, select the text, and change the text field to display  button function: NEXT, BACK, SKIP.
+b).</b> Duplicate the button twice for a total of three buttons.
+<ol>
+<li> In the Inspector, name them &quot;<b>button_Next</b>&quot;, &quot;<b>button_Back</b>&quot;, and &quot;<b>button_Skip</b>&quot;.
+<li> Make sure <strong>Navigation</strong> is changed from &quot;Automatic&quot; to &quot;<strong>None</strong>&quot;.
+<li> At the bottom of each click the [+] to create an OnClick() event.
+<li> Open each button, select the text, and change the text field to display  button function: NEXT, BACK, SKIP.
+</ol>
 
 <br><br>
 <br>
-<b>3. Create the COMIC PANELS:<br>
-a).</b> RightClick the Hiearchy to create an <b>Empty GameObject</b>.<br>
-&nbsp; <img src="gamedesign/bullet.png" alt=""> In the Inspector name it &quot;<b>Panel</b>&quot; and reset transforms.<b><br>
-b).</b> RightClick Panel to add a 2D Object &gt; Sprite &gt; <b>Square</b>.<br>
-&nbsp; <img src="gamedesign/bullet.png" alt=""> In Inspector name it &quot;<b>panel_art</b>&quot; and set <b>Scale</b>: X = <b>1.4</b>, Y = <b>1.4</b>.<br>
+<b>3. Create the COMIC PANELS:</b>
+
+<br>
+<b>a).</b> RightClick the Hiearchy to create an <b>Empty GameObject</b>.
+<ul>
+<br> In the Inspector name it &quot;<b>Panel</b>&quot; and reset transforms.<b>
+</ul>
+
+<br><br>
+<b>b).</b> RightClick Panel to add a 2D Object &gt; Sprite &gt; <b>Square</b>.
+<ul> 
+<br>In Inspector name it &quot;<b>panel_art</b>&quot; and set <b>Scale</b>: X = <b>1.4</b>, Y = <b>1.4</b>.
+</ul>
+
+<br><br>
 <b>c).</b> In Photoshop, create your comic panel art.<br>
 Each panel should be a full screen: <b>1280 x 720</b>, <b>72 ppi</b>.<br>
 (for quick demo purposes, create two panels that can alternate, like these:
-<a href="gamedesign/Unity2D/Dialogue_BGalley.png" target=vis4>01</a> | <a href="gamedesign/Unity2D/Dialogue_BGcityUp.png" target=vis2>02</a>).<br>
-&nbsp; <img src="gamedesign/bullet.png" alt=""> <b>Import</b> the art panels into the Unity Project panel Assets folder.<br>
-&nbsp; <img src="gamedesign/bullet.png" alt=""> Select the panel_art object in the Hierarchy and <b>drag</b> the panel art into the Source Image slot.<br>
-&nbsp; <img src="gamedesign/bullet.png" alt=""> <b>Duplicate</b> the Panel object for as many panels you want (try 5).<br>
-&nbsp; <img src="gamedesign/bullet.png" alt=""> <b>Move</b> each Panel 20 units to the right: x= 20, 40, 60, 80, etc (or more, if you want more gutter space).
-
+<a href="gamedesign/Unity2D/Dialogue_BGalley.png" target=vis4>01</a> | <a href="gamedesign/Unity2D/Dialogue_BGcityUp.png" target=vis2>02</a>).
+<ol>
+<li> <b>Import</b> the art panels into the Unity Project panel Assets folder.
+<li> Select the panel_art object in the Hierarchy and <b>drag</b> the panel art into the Source Image slot.
+<li> <b>Duplicate</b> the Panel object for as many panels you want (try 5).
+<li> <b>Move</b> each Panel 20 units to the right: x= 20, 40, 60, 80, etc (or more, if you want more gutter space).
+</ol>
 
 <br><br>
 <br>
-<b>4. Add THE CAMERA SCRIPT:</b><br>
-&nbsp; <img src="gamedesign/bullet.png" alt=""> Create a new script: &quot;<b>OpeningComicNavigation</b>.cs&quot;. Add the content below. Save and compile in Unity.<br>
-&nbsp; <img src="gamedesign/bullet.png" alt=""> <strong>Apply</strong> this script to the <strong>MainCamera</strong> in LevelComic.<br>
-&nbsp; <img src="gamedesign/bullet.png" alt=""> In the Inspector, hit <b>[+]</b> in the <b>array</b> for as many Panels you want (remember arrays start at index 0).<br>
-&nbsp; &nbsp;&nbsp; <b>Drag</b> the Panel objects into the new slots.<br>
-&nbsp; <img src="gamedesign/bullet.png" alt=""> <b>Drag</b> button_Back into the script slot.<br>
-&nbsp; <img src="gamedesign/bullet.png" alt=""> For each of the three comic navigation buttons, drag MainCamera into the OnClick None slot, and choose the correct function to add ( <em>PanelNext()</em>, <em>PanelBack()</em>, <em>PanelSkip()</em> ). 
+<b>4. Add THE CAMERA SCRIPT:</b>
+<ol>
+<li> Create a new script: &quot;<b>OpeningComicNavigation</b>.cs&quot;. Add the content below. Save and compile in Unity.
+<li> <strong>Apply</strong> this script to the <strong>MainCamera</strong> in LevelComic.
+<li> In the Inspector, hit <b>[+]</b> in the <b>array</b> for as many Panels you want (remember arrays start at index 0).
+<br>
+&nbsp; &nbsp;&nbsp; <b>Drag</b> the Panel objects into the new slots.
+<li> <b>Drag</b> button_Back into the script slot.
+<li> For each of the three comic navigation buttons, drag MainCamera into the OnClick None slot, and choose the correct function to add ( <em>PanelNext()</em>, <em>PanelBack()</em>, <em>PanelSkip()</em> ). 
+</ol>
 
 <br>
 <br>
@@ -17583,9 +17735,7 @@ Each panel should be a full screen: <b>1280 x 720</b>, <b>72 ppi</b>.<br>
 &nbsp; &nbsp; &nbsp; &nbsp; } <br>
 <br>
 }
-
 </div>
-
 
 <br>
 
@@ -17594,8 +17744,9 @@ Each panel should be a full screen: <b>1280 x 720</b>, <b>72 ppi</b>.<br>
 <img src="gamedesign/bullet.png" alt=""> &nbsp; 
 <img src="gamedesign/bullet.png" alt="">
 </center>
-<font face=arial><font face=arial><a name="comic2">&nbsp;</a></font></font><br><br>
-<font face=arial>
+
+<a name="comic2">&nbsp;</a>
+<br><br>
 <a href="gamedesign/Unity2D/ComicPage1.png" target=comicPage1><img src="gamedesign/Unity2D/ComicPage1_thumb.png" width=780></a>
 
 <br><br>
@@ -17605,53 +17756,79 @@ Each panel should be a full screen: <b>1280 x 720</b>, <b>72 ppi</b>.<br>
 <em><b>SUMMARY:</b></em> Create a <strong>single comic page</strong> with any number of panels. 
 <br>
 The camera moves between the panels, stopping at each, and finally jumping to the next page (or gameplay).<br>
-The following assumes  these game Prefabs have been built: GameHandler, Pause Menu, Music Manager.<br>
+The following assumes  these game Prefabs have been built: GameHandler, Pause Menu, Music Manager.
+
 <br>
-<b>1. Create a new framing SCENE for your game:<br>
-a).</b> File > New Scene, then File &gt; <b>Save As</b> to name it "<b>ComicPage1</b>" in the Scenes folder.<br>
-<b>b).</b> In File > <b>Build Settings</b>, add this scene.<br>
-<b>c).</b> In the GameHandler script, change the <b>Play()</b> function to go to &quot;ComicPage1&quot;.<br>
-<b>d).</b> Create a Canvas and Placeholder text:<br>
-&nbsp; &nbsp; <img src="gamedesign/bullet.png" alt=""> GameObject &gt; UI &gt; <strong>Canvas</strong>.<br>
-&nbsp; &nbsp; <img src="gamedesign/bullet.png" alt=""> Set &quot;UI Scale Mode&quot; to <strong>Scale with Screen Size</strong>, 1280 x 720.<br>
-&nbsp; &nbsp; <img src="gamedesign/bullet.png" alt=""> RightClick the Canvas to create a UI > Legacy > Text. In the Inspector name it text_Placeholder.<br>
-<b>e).</b> Load in the usual <b>Prefabs</b> for you game:<br>
-&nbsp; &nbsp; <img src="gamedesign/bullet.png" alt=""> Drag into the Hierarchy your <strong>GameHandler</strong> Prefab. Add text_Placeholder to Text script slots (health, etc). <br>
-&nbsp; &nbsp; <img src="gamedesign/bullet.png" alt=""> Drag onto Canvas your <strong>PAUSE_MENU</strong> prefab. Drag it into the GameHandler script slot. Activate the OnClick events for all Pause Menu buttons and slider with the GameHandler.<br>
-&nbsp; &nbsp; <img src="gamedesign/bullet.png" alt=""> Add your <strong>MusicManager</strong> Prefab.
+<br>
+<b>1. Create a new framing SCENE for your game:</b>
+<br>
+<b>a).</b> File > New Scene, then File &gt; <b>Save As</b> to name it "<b>ComicPage1</b>" in the Scenes folder.
+
+<br><br>
+<b>b).</b> In File > <b>Build Settings</b>, add this scene.
+
+<br><br>
+<b>c).</b> In the GameHandler script, change the <b>Play()</b> function to go to &quot;ComicPage1&quot;.
+
+<br><br>
+<b>d).</b> Create a Canvas and Placeholder text:
+<ol>
+<li> GameObject &gt; UI &gt; <strong>Canvas</strong>.
+<li> Set &quot;UI Scale Mode&quot; to <strong>Scale with Screen Size</strong>, 1280 x 720.
+<li> RightClick the Canvas to create a UI > Legacy > Text. In the Inspector name it text_Placeholder.
+</ol>
+
+<br><br>
+<b>e).</b> Load in the usual <b>Prefabs</b> for you game:
+<ol>
+<li> Drag into the Hierarchy your <strong>GameHandler</strong> Prefab. Add text_Placeholder to Text script slots (health, etc). 
+<li> Drag onto Canvas your <strong>PAUSE_MENU</strong> prefab. Drag it into the GameHandler script slot. Activate the OnClick events for all Pause Menu buttons and slider with the GameHandler.
+<li> Add your <strong>MusicManager</strong> Prefab.
+</ol>
 
 <br><br>
 <br>
-<b>2. Create the SKIP BUTTON:<br>
-a).</b> With the Canvas selected, add a UI &gt; Legacy &gt; Button 
-<br>(ideally, drag into the Canvas a Button_Menu prefab, used for all menu buttons!).<b>
+<b>2. Create the SKIP BUTTON:</b>
+<br>
+<b>a).</b> With the Canvas selected, add a UI &gt; Legacy &gt; Button 
+<br>(ideally, drag into the Canvas a Button_Menu prefab, used for all menu buttons!).
 
 <br><br>
-b).</b> Duplicate the button twice for a total of three buttons.<br>
-&nbsp; <img src="gamedesign/bullet.png" alt=""> In the Inspector, name it &quot;<b>button_Skip</b>&quot;.<br>
-&nbsp; <img src="gamedesign/bullet.png" alt=""> Make sure <strong>Navigation</strong> is changed from &quot;Automatic&quot; to &quot;<strong>None</strong>&quot;.<br>
-&nbsp; <img src="gamedesign/bullet.png" alt=""> At the bottom click the [+] to create an OnClick() event.<br>
-&nbsp; <img src="gamedesign/bullet.png" alt=""> Open the button, select the text, change the text field to display: SKIP.
+<b>b).</b> Duplicate the button twice for a total of three buttons.
+<ol>
+<li> In the Inspector, name it &quot;<b>button_Skip</b>&quot;.
+<li> Make sure <strong>Navigation</strong> is changed from &quot;Automatic&quot; to &quot;<strong>None</strong>&quot;.
+<li> At the bottom click the [+] to create an OnClick() event.
+<li> Open the button, select the text, change the text field to display: SKIP.
+</ol>
 
 <br><br>
 <br>
 <b>3. Create the COMIC MANAGER and CONTROL OBJECTS:<br>
 a)</b> 
-Create the Comic Manager object<br>
-&nbsp; <img src="gamedesign/bullet.png" alt=""> RightClick the Canvas to create an <b>Image</b>.<br>
-&nbsp; <img src="gamedesign/bullet.png" alt=""> In the Inspector name it &quot;<b>COMIC_MANAGER</b>&quot;. Set Size=1280x720, color alpha=0.<b>
+Create the Comic Manager object
+<ol>
+<li> RightClick the Canvas to create an <b>Image</b>.
+<li> In the Inspector name it &quot;<b>COMIC_MANAGER</b>&quot;. Set Size=1280x720, color alpha=0.
+</ol>
+
 <br><br>
-</b><strong>b)</strong> 
-Create the Comic Pivot and Center objects:<br>
-&nbsp; <img src="gamedesign/bullet.png" alt=""> Right-click COMIC_MANAGER to add <strong>two</strong> <strong>Empty Game Objects</strong>.<br>
-&nbsp; <img src="gamedesign/bullet.png" alt=""> In the Inspector name them &quot;<strong>ComicCenter</strong>&quot; and &quot;<strong>ComicPivot</strong>&quot;. <b><br>
+<strong>b)</strong> 
+Create the Comic Pivot and Center objects:
+<ol>
+<li> Right-click COMIC_MANAGER to add <strong>two</strong> <strong>Empty Game Objects</strong>.
+<li> In the Inspector name them &quot;<strong>ComicCenter</strong>&quot; and &quot;<strong>ComicPivot</strong>&quot;.
+</ol>
+
 <br>
-</b><br>
-<b>4. Create the COMIC PAGE and PANELS:<br>
- a).</b> Create the Comic Page Background:
 <br>
-&nbsp; <img src="gamedesign/bullet.png" alt=""> RightClick COMIC_MANAGER to add an <strong>Image</strong>.<br>
-&nbsp; <img src="gamedesign/bullet.png" alt=""> In Inspector name it &quot;<b>Comic_Back</b>&quot;, set <b>Size</b> (for ex: 600 x 700) and  color.
+<br>
+<b>4. Create the COMIC PAGE and PANELS:</b><br>
+ <b>a).</b> Create the Comic Page Background:
+<ol>
+<li> RightClick COMIC_MANAGER to add an <strong>Image</strong>.
+<li> In Inspector name it &quot;<b>Comic_Back</b>&quot;, set <b>Size</b> (for ex: 600 x 700) and  color.
+</ol>
 
 <br><br>
 <b>b).</b> Create the first Comic Panel:
@@ -17693,11 +17870,9 @@ Create the Comic Pivot and Center objects:<br>
 &nbsp; &nbsp; &nbsp; &nbsp; <font color=#31849b><b>public</b></font> <font color=#31849b><b>void</b></font> DeactivatePanel(){ <br>        
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; panelArtColor.SetActive(</font><font color=#365f91 face="arial"><b>false</b></font><font face=arial>); <br>    
 &nbsp; &nbsp; &nbsp; &nbsp; } <br>
-<br>}   
-          
-          
+<br>}     
 <br><br>          
-        </div>
+</div>
 
 <br>
 <p>
@@ -18083,13 +18258,8 @@ Load up all of the public script slots with the contents.
 
 <br>
 <br>
-</td>
-</tr></table>
 
-
-</div></td>
-  </tr>
-</table>
+</div>
 
 
 <!--</details>-->
